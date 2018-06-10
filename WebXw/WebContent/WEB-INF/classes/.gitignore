@@ -1,5 +1,5 @@
-/accounting/
 /app/
+/accounting/
 /application.properties
 /applicationContext.xml
 /cms.identity.hbm.xml
