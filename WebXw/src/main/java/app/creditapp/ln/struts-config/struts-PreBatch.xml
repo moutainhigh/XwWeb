@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="PreBatchAction" namespace="/" extends="struts-cms">
+	
+		<!-- 详细信息 -->
+		<action name="PreBatchAction_getTab" method="getTab" class="app.creditapp.ln.action.PreBatchAction">
+			<result name="tab">/creditapp/ln/PreBatch_Tab.jsp</result>
+		</action>
+	
+	    <!--分页查询 -->
+		<action name="PreBatchAction_findByPage" method="findByPage" class="app.creditapp.ln.action.PreBatchAction">
+			<result name="list">/creditapp/ln/PreBatch_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="PreBatchAction_input" method="input" class="app.creditapp.ln.action.PreBatchAction">
+			<result name="input">/creditapp/ln/PreBatch_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="PreBatchAction_del" method="del" class="app.creditapp.ln.action.PreBatchAction">
+			<result name="list">/creditapp/ln/PreBatch_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="PreBatchAction_getById" method="getById" class="app.creditapp.ln.action.PreBatchAction">
+			<result name="detail">/creditapp/ln/PreBatch_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="PreBatchActionInsert" method="insert" class="app.creditapp.ln.action.PreBatchAction">
+			<result name="input">/creditapp/ln/PreBatch_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/PreBatch_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PreBatchActionUpdate" method="update" class="app.creditapp.ln.action.PreBatchAction">
+			<result name="input">/creditapp/ln/PreBatch_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/PreBatch_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

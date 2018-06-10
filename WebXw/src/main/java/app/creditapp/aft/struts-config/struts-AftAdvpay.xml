@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftAdvpayAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftAdvpayAction_findByPage" method="findByPage" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="list">/creditapp/aft/AftAdvpay_List.jsp</result>
+		</action>
+		
+		<action name="AftAdvpayAction_execAdvpay" method="execAdvpay" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="list">/creditapp/aft/AftAdvpay_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AftAdvpayAction_input" method="input" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="input">/creditapp/aft/AftAdvpay_Insert.jsp</result>
+		</action>
+		<!--提前还款测算-->
+		<action name="AftAdvpayAction_calcAdvpay" method="calcAdvpay" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="success">/creditapp/aft/AftAdvpay_Insert.jsp</result>
+			<result name="input">/creditapp/aft/AftAdvpay_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AftAdvpayAction_del" method="del" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="list">/creditapp/aft/AftAdvpay_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AftAdvpayAction_getById" method="getById" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="detail">/creditapp/aft/AftAdvpay_Detail.jsp</result>
+		</action>
+		<action name="AftAdvpayAction_getByIdForTrace" method="getByIdForTrace" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="detail">/creditapp/aft/AftAdvpay_DetailForTrace.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AftAdvpayActionInsert" method="insert" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="input">/creditapp/aft/AftAdvpay_Insert.jsp</result>
+			<result name="detail">/creditapp/aft/AftAdvpay_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftAdvpayActionUpdate" method="update" class="app.creditapp.aft.action.AftAdvpayAction">
+			<result name="input">/creditapp/aft/AftAdvpay_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftAdvpay_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

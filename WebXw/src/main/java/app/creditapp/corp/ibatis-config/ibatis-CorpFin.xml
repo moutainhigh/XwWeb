@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpFin" type="app.creditapp.corp.entity.CorpFin"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpFin" class="CorpFin">
+    <result property="saleIncome" column="SALE_INCOME" jdbcType="double"/>
+    <result property="syzqyVal" column="SYZQY_VAL" jdbcType="double"/>
+    <result property="loanAmt" column="LOAN_AMT" jdbcType="double"/>
+    <result property="debtTot" column="DEBT_TOT" jdbcType="double"/>
+    <result property="assstTot" column="ASSST_TOT" jdbcType="double"/>
+    <result property="floDebt" column="FLO_DEBT" jdbcType="double"/>
+    <result property="floAsset" column="FLO_ASSET" jdbcType="double"/>
+    <result property="cashSave" column="CASH_SAVE" jdbcType="double"/>
+    <result property="finId" column="FIN_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="filler" column="FILLER" />
+    <result property="endDate" column="END_DATE" />
+    <result property="netCash" column="NET_CASH" jdbcType="double"/>
+    <result property="gaAddRate" column="GA_ADD_RATE" jdbcType="double"/>
+    <result property="siAddRate" column="SI_ADD_RATE" jdbcType="double"/>
+    <result property="assDebtRate" column="ASS_DEBT_RATE" jdbcType="double"/>
+    <result property="netAsset" column="NET_ASSET" jdbcType="double"/>
+    <result property="netGain" column="NET_GAIN" jdbcType="double"/>
+    <result property="incomeTax" column="INCOME_TAX" jdbcType="double"/>
+    <result property="payInt" column="PAY_INT" jdbcType="double"/>
+    <result property="saleCost" column="SALE_COST" jdbcType="double"/>
+    </resultMap>
+     <sql id="CorpFin.columns">
+        <![CDATA[
+         SALE_INCOME,
+         SYZQY_VAL,
+         LOAN_AMT,
+         DEBT_TOT,
+         ASSST_TOT,
+         FLO_DEBT,
+         FLO_ASSET,
+         CASH_SAVE,
+         FIN_ID,
+         BR_NAME,
+         BR_NO,
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         DEPT_NO,
+         FILLER,
+         END_DATE,
+         NET_CASH,
+         GA_ADD_RATE,
+         SI_ADD_RATE,
+         ASS_DEBT_RATE,
+         NET_ASSET,
+         NET_GAIN,
+         INCOME_TAX,
+         PAY_INT,
+         SALE_COST
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpFin.insert">
+        <![CDATA[
+        INSERT INTO CORP_FIN(
+         SALE_INCOME,
+         SYZQY_VAL,
+         LOAN_AMT,
+         DEBT_TOT,
+         ASSST_TOT,
+         FLO_DEBT,
+         FLO_ASSET,
+         CASH_SAVE,
+         FIN_ID,
+         BR_NAME,
+         BR_NO,
+         UP_OPNO,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         DEPT_NO,
+         FILLER,
+         END_DATE,
+         NET_CASH,
+         GA_ADD_RATE,
+         SI_ADD_RATE,
+         ASS_DEBT_RATE,
+         NET_ASSET,
+         NET_GAIN,
+         INCOME_TAX,
+         PAY_INT,
+         SALE_COST
+         )VALUES(
+         #saleIncome#,
+         #syzqyVal#,
+         #loanAmt#,
+         #debtTot#,
+         #assstTot#,
+         #floDebt#,
+         #floAsset#,
+         #cashSave#,
+         #finId#,
+         #brName#,
+         #brNo#,
+         #upOpno#,
+         #upDate#,
+         #txDate#,
+         #opNo#,
+         #deptNo#,
+         #filler#,
+         #endDate#,
+         #netCash#,
+         #gaAddRate#,
+         #siAddRate#,
+         #assDebtRate#,
+         #netAsset#,
+         #netGain#,
+         #incomeTax#,
+         #payInt#,
+         #saleCost#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpFin.del">
+        <![CDATA[
+               DELETE FROM CORP_FIN
+                 WHERE
+               	FIN_ID = #finId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpFin.update">
+        <![CDATA[
+         UPDATE CORP_FIN set
+         SALE_INCOME=#saleIncome#,
+         SYZQY_VAL=#syzqyVal#,
+         LOAN_AMT=#loanAmt#,
+         DEBT_TOT=#debtTot#,
+         ASSST_TOT=#assstTot#,
+         FLO_DEBT=#floDebt#,
+         FLO_ASSET=#floAsset#,
+         CASH_SAVE=#cashSave#,
+         FIN_ID=#finId#,
+         BR_NAME=#brName#,
+         BR_NO=#brNo#,
+         UP_OPNO=#upOpno#,
+         UP_DATE=#upDate#,
+         FILLER=#filler#,
+         END_DATE=#endDate#,
+         NET_CASH=#netCash#,
+         GA_ADD_RATE=#gaAddRate#,
+         SI_ADD_RATE=#siAddRate#,
+         ASS_DEBT_RATE=#assDebtRate#,
+         NET_ASSET=#netAsset#,
+         NET_GAIN=#netGain#,
+         INCOME_TAX=#incomeTax#,
+         PAY_INT=#payInt#,
+         SALE_COST=#saleCost#
+          WHERE
+               	FIN_ID = #finId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CorpFin.getById"  resultMap="RM.CorpFin">
+        SELECT <include refid="CorpFin.columns"/>
+        <![CDATA[
+             FROM CORP_FIN 
+         WHERE 
+               	FIN_ID = #finId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpFin.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpFin.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_FIN <include refid="CorpFin.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpFin.findByPage" resultMap="RM.CorpFin">
+        SELECT <include refid="CorpFin.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpFin.columns"/> FROM CORP_FIN
+                    <include refid="CorpFin.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询合作机构财务信息记录数 -->
+    <select id="CorpFin.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM CORP_FIN WHERE 
+             br_no = #brNo# ORDER BY FIN_ID DESC
+    </select>
+    <!-- 分页查询合作机构财务信息-->
+    <select id="CorpFin.findByPageQuotaForCorp" resultMap="RM.CorpFin">
+        SELECT <include refid="CorpFin.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpFin.columns"/> FROM CORP_FIN WHERE  
+             br_no = #brNo# ORDER BY FIN_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="CorpFin.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_PERS_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

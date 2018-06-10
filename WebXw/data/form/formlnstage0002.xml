@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="lnstage0002" title="业务阶段表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="partSts" fieldtype="1" maxlength="2" formactiveid="1" labelalign="3" labelcol="1" labelname="分账标志[01未分账02分账通过03分账失败]" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="mstSts" fieldtype="1" maxlength="2" formactiveid="2" labelalign="3" labelcol="1" labelname="主文件生成标志[01未生成02已生成]" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="sendSts" fieldtype="1" maxlength="2" formactiveid="3" labelalign="3" labelcol="1" labelname="发送支付平台状态[01未发送02已发送]" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="paySts" fieldtype="1" maxlength="2" formactiveid="4" labelalign="3" labelcol="1" labelname="放款状态[01未放款02已放款]" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="rsDesc" fieldtype="1" maxlength="60" formactiveid="5" labelalign="3" labelcol="1" labelname="结果说明" mustinput="0" row="5"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txTime" fieldtype="1" maxlength="17" formactiveid="6" labelalign="3" labelcol="1" labelname="申请日期" mustinput="0" row="6"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="upTime" fieldtype="1" maxlength="17" formactiveid="7" labelalign="3" labelcol="1" labelname="更新日期" mustinput="0" row="7"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="appId" fieldtype="1" maxlength="14" formactiveid="8" labelalign="3" labelcol="1" labelname="申请ID" mustinput="0" row="8"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="valSts" fieldtype="1" maxlength="2" formactiveid="9" labelalign="3" labelcol="1" labelname="校验状态[01未校验02通过03未通过]" mustinput="0" row="9"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dupSts" fieldtype="1" maxlength="2" formactiveid="10" labelalign="3" labelcol="1" labelname="重复状态[01未检查02不重复03重复]" mustinput="0" row="10"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="chkSts" fieldtype="1" maxlength="2" formactiveid="11" labelalign="3" labelcol="1" labelname="筛查状态[01未筛查02通过03未通过]" mustinput="0" row="11"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="evelSts" fieldtype="1" maxlength="1" formactiveid="12" labelalign="3" labelcol="1" labelname="客户评级[1未评级A级B级C级]C为拒绝" mustinput="0" row="12"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="zdappSts" fieldtype="1" maxlength="2" formactiveid="13" labelalign="3" labelcol="1" labelname="自动审批状态[01待审批02通过03否决]" mustinput="0" row="13"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="pactSts" fieldtype="1" maxlength="2" formactiveid="14" labelalign="3" labelcol="1" labelname="合同生成标志[01未生成02已生成]" mustinput="0" row="14"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="rgappSts" fieldtype="1" maxlength="2" formactiveid="15" labelalign="3" labelcol="1" labelname="人工审批状态[00不审批01待审批02通过03否决]" mustinput="0" row="15"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dueSts" fieldtype="1" maxlength="2" formactiveid="16" labelalign="3" labelcol="1" labelname="借据生成标志[01未生成02已生成]" mustinput="0" row="16"/>
+</form>

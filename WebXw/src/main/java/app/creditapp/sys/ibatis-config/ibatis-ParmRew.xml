@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ParmRew" type="app.creditapp.sys.entity.ParmRew"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ParmRew" class="ParmRew">
+    <result property="rewNo" column="REW_NO" />
+    <result property="rewName" column="REW_NAME" />
+    <result property="rewType" column="REW_TYPE" />
+    <result property="rewLevel" column="REW_LEVEL" />
+    <result property="rewValue" column="REW_VALUE" jdbcType="double"/>
+    <result property="rewUnit" column="REW_UNIT" />
+    <result property="rewDeal" column="REW_DEAL" />
+    <result property="rewCyc" column="REW_CYC" />
+    <result property="rewAcpt" column="REW_ACPT" />
+    <result property="rewSts" column="REW_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    </resultMap>
+     <sql id="ParmRew.columns">
+        <![CDATA[
+         REW_NO,
+         REW_NAME,
+         REW_TYPE,
+         REW_LEVEL,
+         REW_VALUE,
+         REW_UNIT,
+         REW_DEAL,
+         REW_CYC,
+         REW_ACPT,
+         REW_STS,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ParmRew.insert">
+        <![CDATA[
+        INSERT INTO PARM_REW(
+         REW_NO,
+         REW_NAME,
+         REW_TYPE,
+         REW_LEVEL,
+         REW_VALUE,
+         REW_UNIT,
+         REW_DEAL,
+         REW_CYC,
+         REW_ACPT,
+         REW_STS,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         PARM_REW_NO_SEQ.NEXTVAL,
+         #rewName#,
+         #rewType#,
+         #rewLevel#,
+         #rewValue#,
+         #rewUnit#,
+         #rewDeal#,
+         #rewCyc#,
+         #rewAcpt#,
+         #rewSts#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ParmRew.del">
+        <![CDATA[
+               DELETE FROM PARM_REW
+                 WHERE
+               	REW_NO = #rewNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ParmRew.update">
+        <![CDATA[
+         UPDATE PARM_REW set
+         REW_NO=#rewNo#,
+         REW_NAME=#rewName#,
+         REW_TYPE=#rewType#,
+         REW_LEVEL=#rewLevel#,
+         REW_VALUE=#rewValue#,
+         REW_UNIT=#rewUnit#,
+         REW_DEAL=#rewDeal#,
+         REW_CYC=#rewCyc#,
+         REW_ACPT=#rewAcpt#,
+         REW_STS=#rewSts#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	REW_NO = #rewNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ParmRew.getById"  resultMap="RM.ParmRew">
+        SELECT <include refid="ParmRew.columns"/>
+        <![CDATA[
+             FROM PARM_REW 
+         WHERE 
+               	REW_NO = #rewNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ParmRew.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rewNo">
+                  <isNotEmpty prepend="AND" property="rewNo">
+                      REW_NO = #rewNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewType">
+                  <isNotEmpty prepend="AND" property="rewType">
+                      REW_TYPE = #rewType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewLevel">
+                  <isNotEmpty prepend="AND" property="rewLevel">
+                      REW_LEVEL = #rewLevel#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewDeal">
+                  <isNotEmpty prepend="AND" property="rewDeal">
+                      REW_DEAL = #rewDeal#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewAcpt">
+                  <isNotEmpty prepend="AND" property="rewAcpt">
+                      REW_ACPT = #rewAcpt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewSts">
+                  <isNotEmpty prepend="AND" property="rewSts">
+                      REW_STS = #rewSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ParmRew.findPage.count" resultClass="int">
+        SELECT count(*) FROM PARM_REW <include refid="ParmRew.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ParmRew.findByPage" resultMap="RM.ParmRew">
+        SELECT <include refid="ParmRew.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ParmRew.columns"/> FROM PARM_REW
+                    <include refid="ParmRew.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="inf0050" title="提前还款批次主表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="batchNo" fieldtype="1" maxlength="30" formactiveid="1" labelalign="3" labelcol="1" labelname="批次编号" mustinput="0" row="1" />
+</form>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsRepyFine" type="app.creditapp.inf.entity.WsRepyFine"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsRepyFine" class="WsRepyFine">
+    <result property="wsId" column="WS_ID" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cnt" column="CNT" jdbcType="Int"/>
+    <result property="txPayOver" column="TX_PAY_OVER" jdbcType="double"/>
+    </resultMap>
+     <sql id="WsRepyFine.columns">
+        <![CDATA[
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         TX_PAY_OVER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WsRepyFine.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_FINE(
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         TX_PAY_OVER
+         )VALUES(
+         #wsId#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #txPayOver#
+         )
+          ]]>
+    </insert>
+        <!-- 表新增 -->
+    <insert id="WsIn2303_1.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_FINE(
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         TX_PAY_OVER
+         )VALUES(
+         #wsId#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #txPayOver#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="WsRepyFine.del">
+        <![CDATA[
+               DELETE FROM WS_REPY_FINE
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WsRepyFine.update">
+        <![CDATA[
+         UPDATE WS_REPY_FINE set
+         WS_ID=#wsId#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         CNT=#cnt#,
+         TX_PAY_OVER=#txPayOver#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WsRepyFine.getById"  resultMap="RM.WsRepyFine">
+        SELECT <include refid="WsRepyFine.columns"/>
+        <![CDATA[
+             FROM WS_REPY_FINE 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WsRepyFine.findPage.where">
+        <dynamic prepend="where">
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="WsRepyFine.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_REPY_FINE <include refid="WsRepyFine.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WsRepyFine.findByPage" resultMap="RM.WsRepyFine">
+        SELECT <include refid="WsRepyFine.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRepyFine.columns"/> FROM WS_REPY_FINE
+                    <include refid="WsRepyFine.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <select id="WsRepyFine.getListByWsId" resultMap="RM.WsRepyFine">
+        SELECT <include refid="WsRepyFine.columns"/>
+        FROM WS_REPY_FINE WHERE WS_ID=#wsId#
+    </select>
+</sqlMap>

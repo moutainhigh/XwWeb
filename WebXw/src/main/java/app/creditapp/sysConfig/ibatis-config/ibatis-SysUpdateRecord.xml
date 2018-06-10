@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="TableUpdateRecord" type="app.creditapp.sysConfig.entity.SysUpdateRecord"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.TableUpdateRecord" class="TableUpdateRecord">
+    <result property="id" column="ID"/>
+    <result property="tableName" column="TABLE_NAME"/>
+    <result property="modifyTime" column="MODIFY_TIME"/>
+    <result property="modifyRecord" column="MODIFY_RECORD"/>
+    <result property="modifyUserNo" column="MODIFY_USER_NO"/>
+    <result property="tableComment" column="TABLE_COMMENT"/>
+    <result property="user_name" column="USER_NAME"/>
+    </resultMap>
+     <sql id="TableUpdateRecord.columns">
+        <![CDATA[
+         ID,
+         TABLE_NAME,
+         MODIFY_TIME,
+         MODIFY_RECORD,
+         MODIFY_USER_NO,
+         TABLE_COMMENT,
+         getusername(MODIFY_USER_NO) as USER_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="TableUpdateRecord.insert">
+        <![CDATA[
+        INSERT INTO SYS_UPDATE_RECORD(
+         ID,
+         TABLE_NAME,
+         MODIFY_TIME,
+         MODIFY_RECORD,
+         MODIFY_USER_NO,
+         TABLE_COMMENT
+         )VALUES(
+         #id#,
+         #tableName#,
+         #modifyTime#,
+         #modifyRecord#,
+         #modifyUserNo#,
+         #tableComment#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre"
+			keyProperty="id">
+			SELECT TABLE_UPDATE_RECORD_SEQ.nextval AS ID FROM DUAL
+		</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="TableUpdateRecord.del">
+        <![CDATA[
+               DELETE FROM SYS_UPDATE_RECORD
+                 WHERE
+               ID = #ID#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="TableUpdateRecord.update">
+        <![CDATA[
+         UPDATE SYS_UPDATE_RECORD set
+         ID=#id#,
+         TABLE_NAME=#tableName#,
+         MODIFY_TIME=#modifyTime#,
+         MODIFY_RECORD=#modifyRecord#,
+         MODIFY_USER_NO=#modifyUserNo#,
+         TABLE_COMMENT=#tableComment#
+          WHERE
+                 ID = #ID#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="TableUpdateRecord.getById"  resultMap="RM.TableUpdateRecord">
+        SELECT <include refid="TableUpdateRecord.columns"/>
+        <![CDATA[
+             FROM SYS_UPDATE_RECORD
+         WHERE 
+             ID = #ID#
+        ]]>
+     </select>
+     
+       <!-- 分页查询条件 -->
+    <sql id="TableUpdateRecord.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="ID">
+                      <isNotEmpty prepend="AND" property="ID">
+                          ID = #ID#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="tableName">
+                      <isNotEmpty prepend="AND" property="tableName">
+                          TABLE_NAME like '%'||#tableName#||'%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="modifyTime">
+                      <isNotEmpty prepend="AND" property="modifyTime">
+                          MODIFY_TIME like '%'||#modifyTime#||'%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="tableComment">
+                      <isNotEmpty prepend="AND" property="tableComment">
+                          TABLE_COMMENT like '%'||#tableComment#||'%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="modifyUserNo">
+                      <isNotEmpty prepend="AND" property="modifyUserNo">
+                          MODIFY_USER_NO like '%'||#modifyUserNo#||'%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="TableUpdateRecord.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_UPDATE_RECORD <include refid="TableUpdateRecord.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="TableUpdateRecord.findByPage" resultMap="RM.TableUpdateRecord">
+        SELECT <include refid="TableUpdateRecord.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="TableUpdateRecord.columns"/> FROM SYS_UPDATE_RECORD 
+                    <include refid="TableUpdateRecord.findPage.where"/> order by id desc
+             ) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum# 
+    </select>
+</sqlMap>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="wv0001" title="息费减免明细">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="perdNo" fieldtype="1" maxlength="4" formactiveid="1" labelalign="3" labelcol="1" labelname="期次号" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="reliefType" fieldtype="1" maxlength="2" formactiveid="2" labelalign="3" labelcol="3" labelname="减免类型[01-本利罚,02-费用]" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="traceNo" fieldtype="1" maxlength="20" formactiveid="3" labelalign="3" labelcol="1" labelname="日志主流水" mustinput="0" row="2" />
+</form>

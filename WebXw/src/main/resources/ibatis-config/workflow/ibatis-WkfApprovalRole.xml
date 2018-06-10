@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WkfApprovalRole" type="app.creditapp.wkf.entity.WkfApprovalRole"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WkfApprovalRole" class="WkfApprovalRole">
+    <result property="wkfRoleNo" column="WKF_ROLE_NO"/>
+    <result property="wkfRoleName" column="WKF_ROLE_NAME"/>
+    <result property="wkfrolelev" column="WKF_ROLE_LEV"/>
+    <result property="wkfbrno" column="WKF_BR_NO"/>
+    <result property="br_no" column="BR_NO"/>
+    <result property="op_no" column="OP_NO"/>
+    <result property="tx_date" column="TX_DATE"/>
+    <result property="up_date" column="UP_DATE"/>
+    </resultMap>
+     <sql id="WkfApprovalRole.columns">
+        <![CDATA[
+         WKF_ROLE_NO,
+         WKF_ROLE_NAME,
+         WKF_ROLE_LEV,
+         WKF_BR_NO,
+         BR_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WkfApprovalRole.insert">
+        <![CDATA[
+        INSERT INTO WKF_APPROVAL_ROLE(
+         WKF_ROLE_NO,
+         WKF_ROLE_NAME,
+         WKF_ROLE_LEV,
+         WKF_BR_NO,
+         BR_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #wkfRoleNo#,
+         #wkfRoleName#,
+         #wkfrolelev#,
+         #wkfbrno#,
+         #br_no#,
+         #op_no#,
+         #tx_date#,
+         #up_date#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="WkfApprovalRole.del">
+        <![CDATA[
+               DELETE FROM WKF_APPROVAL_ROLE
+                 WHERE
+               	WKF_ROLE_NO = #wkfRoleNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WkfApprovalRole.update">
+        <![CDATA[
+         UPDATE WKF_APPROVAL_ROLE set
+         WKF_ROLE_NO=#wkfRoleNo#,
+         WKF_ROLE_NAME=#wkfRoleName#,
+         WKF_ROLE_LEV=#wkfrolelev#,
+         WKF_BR_NO=#wkfbrno#,
+         BR_NO=#br_no#,
+         OP_NO=#op_no#,
+         TX_DATE=#tx_date#,
+         UP_DATE=#up_date# 
+          WHERE
+               	WKF_ROLE_NO = #wkfRoleNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WkfApprovalRole.getById"  resultMap="RM.WkfApprovalRole">
+        SELECT <include refid="WkfApprovalRole.columns"/>
+        <![CDATA[
+             FROM WKF_APPROVAL_ROLE 
+         WHERE 
+               	WKF_ROLE_NO = #wkfRoleNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WkfApprovalRole.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="AND" property="wkfRoleNo">
+                      WKF_ROLE_NO = #wkfRoleNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleName">
+                  <isNotEmpty prepend="AND" property="wkfRoleName">
+                      WKF_ROLE_NAME like '%$wkfRoleName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+ 
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="WkfApprovalRole.findPage.count" resultClass="int">
+        SELECT count(*) FROM WKF_APPROVAL_ROLE <include refid="WkfApprovalRole.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WkfApprovalRole.findByPage" resultMap="RM.WkfApprovalRole">
+        SELECT <include refid="WkfApprovalRole.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WkfApprovalRole.columns"/> FROM WKF_APPROVAL_ROLE
+                    <include refid="WkfApprovalRole.findPage.where"/>
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# and rnum &lt;#endNum# order by WKF_ROLE_NO
+    </select>
+    <select id="WkfApprovalRole.getAllList" resultMap="RM.WkfApprovalRole">
+        SELECT <include refid="WkfApprovalRole.columns"/> FROM WKF_APPROVAL_ROLE 
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="AND" property="wkfRoleNo">
+                      WKF_ROLE_NO = #wkfRoleNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleName">
+                  <isNotEmpty prepend="AND" property="wkfRoleName">
+                      WKF_ROLE_NAME like '%$wkfRoleName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+         ORDER BY WKF_ROLE_NO
+    </select>
+    <!-- 分页查询记录数 -->
+    <select id="WkfApprovalRole.findPage.countPop" resultClass="int">
+        SELECT count(*) FROM (SELECT <include refid="WkfApprovalRole.columns"/> FROM WKF_APPROVAL_ROLE where wkf_role_lev &lt;=(select br_lev from tbl_org_departments where br_no=#br_no#)) <include refid="WkfApprovalRole.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WkfApprovalRole.findByPagePop" resultMap="RM.WkfApprovalRole">
+        SELECT <include refid="WkfApprovalRole.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WkfApprovalRole.columns"/> FROM (SELECT <include refid="WkfApprovalRole.columns"/> FROM WKF_APPROVAL_ROLE where wkf_role_lev &lt;=(select br_lev from tbl_org_departments where br_no=#br_no#))
+                    <include refid="WkfApprovalRole.findPage.where"/>
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# and rnum &lt;#endNum# order by WKF_ROLE_NO
+    </select>
+    
+    <select id="WkfApprovalRole.findRoleList" resultMap="RM.WkfApprovalRole">
+        SELECT <include refid="WkfApprovalRole.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WkfApprovalRole.columns"/> FROM (SELECT <include refid="WkfApprovalRole.columns"/> FROM WKF_APPROVAL_ROLE )
+                    <include refid="WkfApprovalRole.findPage.where"/>
+             ) m 
+        	)
+         order by WKF_ROLE_NO
+    </select>
+    
+    <!-- 分页查询记录数 -->
+    <select id="WkfApprovalRole.findPage.countPopTwo" resultClass="int">
+        SELECT count(*) FROM (SELECT <include refid="WkfApprovalRole.columns"/> FROM WKF_APPROVAL_ROLE where wkf_role_lev='2' or wkf_role_lev='1') <include refid="WkfApprovalRole.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WkfApprovalRole.findByPageTwoPop" resultMap="RM.WkfApprovalRole">
+        SELECT <include refid="WkfApprovalRole.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WkfApprovalRole.columns"/> FROM (SELECT <include refid="WkfApprovalRole.columns"/> FROM WKF_APPROVAL_ROLE where wkf_role_lev='2' or wkf_role_lev='1')
+                    <include refid="WkfApprovalRole.findPage.where"/>
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# and rnum &lt;#endNum# order by WKF_ROLE_NO
+    </select>
+</sqlMap>

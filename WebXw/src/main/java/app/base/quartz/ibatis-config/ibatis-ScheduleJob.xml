@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ScheduleJob" type="app.base.quartz.entity.ScheduleJob"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ScheduleJob" class="ScheduleJob">
+    <result property="jobId" column="JOB_ID" jdbcType="Long"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="createTime" column="CREATE_TIME" />
+    <result property="updateTime" column="UPDATE_TIME" />
+    <result property="jobName" column="JOB_NAME" />
+    <result property="jobGroup" column="JOB_GROUP" />
+    <result property="jobStatus" column="JOB_STATUS" />
+    <result property="cronExpression" column="CRON_EXPRESSION" />
+    <result property="description" column="DESCRIPTION" />
+    <result property="beanClass" column="BEAN_CLASS" />
+    <result property="isConcurrent" column="IS_CONCURRENT" />
+    <result property="springId" column="SPRING_ID" />
+    <result property="methodName" column="METHOD_NAME" />
+    <result property="startTime" column="START_TIME" />
+    <result property="endTime" column="END_TIME" />
+    <result property="repeatCount" column="REPEAT_COUNT" jdbcType="Int"/>
+    <result property="repeatInterval" column="REPEAT_INTERVAL" jdbcType="java.lang.Long" />
+    <result property="argumentsStr" column="ARGUMENTS_STR" />
+    <result property="triggerType" column="TRIGGER_TYPE" />
+    <result property="userName" column="USER_NAME" />
+    <result property="allTime" column="ALLTIME" />
+    <result property="mode" column="JOB_MODE" />
+    <result property="timingTime" column="TIMINGTIME" />
+    <result property="week" column="WEEK" />
+    <result property="jobTaskName" column="JOB_TASKNAME" />
+    </resultMap>
+     <sql id="ScheduleJob.columns">
+        <![CDATA[
+         JOB_ID,
+         OP_NO,
+         CREATE_TIME,
+         UPDATE_TIME,
+         JOB_NAME,
+         JOB_GROUP,
+         JOB_STATUS,
+         CRON_EXPRESSION,
+         DESCRIPTION,
+         BEAN_CLASS,
+         IS_CONCURRENT,
+         SPRING_ID,
+         METHOD_NAME,
+         START_TIME,
+         END_TIME,
+         REPEAT_COUNT,
+         REPEAT_INTERVAL,
+         ARGUMENTS_STR,
+         TRIGGER_TYPE,
+         FUN_GETUSERNAME(op_no) as USER_NAME,
+         ALLTIME,
+         JOB_MODE,
+         TIMINGTIME,
+         WEEK
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ScheduleJob.insert">
+        <![CDATA[
+        INSERT INTO SCHEDULE_JOB(
+         JOB_ID,
+         OP_NO,
+         CREATE_TIME,
+         UPDATE_TIME,
+         JOB_NAME,
+         JOB_GROUP,
+         JOB_STATUS,
+         CRON_EXPRESSION,
+         DESCRIPTION,
+         BEAN_CLASS,
+         IS_CONCURRENT,
+         SPRING_ID,
+         METHOD_NAME,
+         START_TIME,
+         END_TIME,
+         REPEAT_COUNT,
+         REPEAT_INTERVAL,
+         ARGUMENTS_STR,
+         TRIGGER_TYPE,
+         ALLTIME,
+         JOB_MODE,
+         TIMINGTIME,
+         WEEK
+         )VALUES(
+         SCHEDULE_JOB_ID_SEQ.NEXTVAL,
+         #opNo#,
+         #createTime#,
+         #updateTime#,
+         #jobName#,
+         #jobGroup#,
+         #jobStatus#,
+         #cronExpression#,
+         #description#,
+         #beanClass#,
+         #isConcurrent#,
+         #springId#,
+         #methodName#,
+         #startTime#,
+         #endTime#,
+         #repeatCount#,
+         #repeatInterval#,
+         #argumentsStr#,
+         #triggerType#,
+         #allTime#,
+         #mode#,
+         #timingTime#,
+         #week#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ScheduleJob.del">
+        <![CDATA[
+               DELETE FROM SCHEDULE_JOB
+                 WHERE
+               	JOB_ID = #jobId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ScheduleJob.update">
+        <![CDATA[
+        UPDATE schedule_job set
+         OP_NO=#opNo#,
+         CREATE_TIME=#createTime#,
+         UPDATE_TIME=#updateTime#,
+         JOB_NAME=#jobName#,
+         JOB_GROUP=#jobGroup#,
+         JOB_STATUS=#jobStatus#,
+         CRON_EXPRESSION=#cronExpression#,
+         DESCRIPTION=#description#,
+         BEAN_CLASS=#beanClass#,
+         IS_CONCURRENT=#isConcurrent#,
+         SPRING_ID=#springId#,
+         METHOD_NAME=#methodName#,
+         START_TIME=#startTime#,
+         END_TIME=#endTime#,
+         REPEAT_COUNT=#repeatCount#,
+         REPEAT_INTERVAL=#repeatInterval#,
+         ARGUMENTS_STR=#argumentsStr#,
+         TRIGGER_TYPE = #triggerType#,
+         ALLTIME = #allTime#,
+         JOB_MODE = #mode#,
+         TIMINGTIME = #timingTime#,
+         WEEK = #week#
+          WHERE
+               	JOB_ID = #jobId#        ]]>
+    </update>
+    <update id="ScheduleJob.chaStart">
+        <![CDATA[
+        UPDATE schedule_job set JOB_STATUS='1' WHERE JOB_ID = #jobId#        ]]>
+    </update>
+        <update id="ScheduleJob.chaStop">
+        <![CDATA[
+        UPDATE schedule_job set JOB_STATUS='0' WHERE JOB_ID = #jobId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ScheduleJob.getById"  resultMap="RM.ScheduleJob">
+        SELECT <include refid="ScheduleJob.columns"/>
+        <![CDATA[
+             FROM SCHEDULE_JOB 
+         WHERE 
+               	JOB_ID = #jobId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ScheduleJob.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="jobId">
+                  <isNotEmpty prepend="AND" property="jobId">
+                      JOB_ID = #jobId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="opNo">
+                  <isNotEmpty prepend="AND" property="opNo">
+                      OP_NO = #opNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="createTime">
+                  <isNotEmpty prepend="AND" property="createTime">
+                      CREATE_TIME = #createTime#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="jobName">
+                  <isNotEmpty prepend="AND" property="jobName">
+                      JOB_NAME like '%$jobName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ScheduleJob.findPage.count" resultClass="int">
+        SELECT count(*) FROM SCHEDULE_JOB <include refid="ScheduleJob.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ScheduleJob.findByPage" resultMap="RM.ScheduleJob">
+        SELECT <include refid="ScheduleJob.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ScheduleJob.columns"/> FROM SCHEDULE_JOB
+                    <include refid="ScheduleJob.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

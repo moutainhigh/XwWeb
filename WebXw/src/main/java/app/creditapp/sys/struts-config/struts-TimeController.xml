@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="TimeControllerAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="TimeControllerAction_findByPage" method="findByPage" class="app.creditapp.sys.action.TimeControllerAction">
+			<result name="list">/creditapp/sys/TimeController_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="TimeControllerAction_input" method="input" class="app.creditapp.sys.action.TimeControllerAction">
+			<result name="input">/creditapp/sys/TimeController_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="TimeControllerAction_del" method="del" class="app.creditapp.sys.action.TimeControllerAction">
+			<result name="list">/creditapp/sys/TimeController_List.jsp</result>
+		</action>
+		
+		<!--策略启动与停止 -->
+		<action name="TimeControllerAction_*" method="{1}" class="app.creditapp.sys.action.TimeControllerAction">
+			<result name="{1}">/creditapp/sys/TimeController_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="TimeControllerAction_getById" method="getById" class="app.creditapp.sys.action.TimeControllerAction">
+			<result name="detail">/creditapp/sys/TimeController_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="TimeControllerActionInsert" method="insert" class="app.creditapp.sys.action.TimeControllerAction">
+			<result name="input">/creditapp/sys/TimeController_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/TimeController_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="TimeControllerActionUpdate" method="update" class="app.creditapp.sys.action.TimeControllerAction">
+			<result name="input">/creditapp/sys/TimeController_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/TimeController_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

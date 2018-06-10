@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="ddtlrel0001" title="扣款明细与批扣文件关联表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="relId" fieldtype="1" maxlength="20" formactiveid="1" labelalign="3" labelcol="1" labelname="关联ID" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="debitNo" fieldtype="1" maxlength="20" formactiveid="2" labelalign="3" labelcol="1" labelname="批扣流水号" mustinput="0" row="2" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="ddtlNo" fieldtype="1" maxlength="20" formactiveid="3" labelalign="3" labelcol="1" labelname="扣款明细流水号" mustinput="0" row="3" />
+</form>

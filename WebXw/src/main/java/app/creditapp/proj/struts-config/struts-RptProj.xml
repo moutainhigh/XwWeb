@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<!-- START SNIPPET: xworkSample -->
+<struts>
+	<package name="RptProjPackage" namespace="/" extends="struts-default">
+
+		<action name="RptProjAction_del" method="del" class="app.creditapp.proj.action.RptProjAction">
+        	<result name="del" type="redirect">RptProjAction_findByPage.action</result>
+        </action>
+        <action name="RptProjAction_insert" method="insert" class="app.creditapp.proj.action.RptProjAction">
+        	<result name="insert" type="redirect">RptProjAction_findByPage.action</result>
+        </action>
+        <action name="RptProjAction_update" method="update" class="app.creditapp.proj.action.RptProjAction">
+        	<result name="update" type="redirect">RptProjAction_findByPage.action</result>
+        </action>
+        <action name="RptProjAction_*" method="{1}" class="app.creditapp.proj.action.RptProjAction">
+            <result name="{1}">/creditapp/strgg/RptProj_{1}.jsp</result>
+        </action>
+        
+    </package>
+</struts>

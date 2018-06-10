@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="sys0203" title="系统异常">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="expId" fieldtype="1" maxlength="12" formactiveid="1" labelalign="3" labelcol="1" labelname="异常ID" mustinput="0" row="1" />
+</form>

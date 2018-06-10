@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="loan102" para="eadis_page" link="AcLoanBackLogAction_findByPage.action" title="放款反馈信息表" type="1">
+<tableitem align="2" filedname="backLogNo" id="1" indexed="1" label="放款反馈流水号" row="1" type="4" typepara="AcLoanBackLogAction_getById.action;backLogNo-backLogNo;query-'query'"/>
+<tableitem align="2" filedname="loanLogNo" id="2" indexed="2" label="放款流水号" row="1" type="0" />
+<tableitem align="2" filedname="backRes" id="3" indexed="3" label="放款结果[01-成功,02-失败]" row="1" type="0" />
+<tableitem align="2" filedname="backDate" id="4" indexed="4" label="返回时间" row="1" type="0" />
+<tableitem align="2" filedname="backSts" id="5" indexed="5" label="反馈状态[01-待处理,02-已处理]" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="6" indexed="6" label="-" row="1" type="5" typepara="AcLoanBackLogAction_getById.action;backLogNo-backLogNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="7" indexed="7" label="-" row="1" type="5" typepara="AcLoanBackLogAction_del.action;backLogNo-backLogNo;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundRepayPlan" type="app.creditapp.fund.entity.FundRepayPlan"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundRepayPlan" class="FundRepayPlan">
+    <result property="repayPlanNo" column="REPAY_PLAN_NO" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="totalIssue" column="TOTAL_ISSUE" jdbcType="Int"/>
+    <result property="totalAmt" column="TOTAL_AMT" jdbcType="double"/>
+    <result property="repayIssue" column="REPAY_ISSUE" jdbcType="Int"/>
+    <result property="repayDate" column="REPAY_DATE" />
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double"/>
+    <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    <result property="cashManager" column="CASH_MANAGER" jdbcType="double"/>
+    <result property="unrepayAmt" column="UNREPAY_AMT" jdbcType="double"/>
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="FundRepayPlan.columns">
+        <![CDATA[
+         REPAY_PLAN_NO,
+         FUND_NO,
+         TOTAL_ISSUE,
+         TOTAL_AMT,
+         REPAY_ISSUE,
+         REPAY_DATE,
+         REPAY_AMT,
+         PAY_AMT,
+         CASH_MANAGER,
+         UNREPAY_AMT,
+         FILLER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundRepayPlan.insert">
+        <![CDATA[
+        INSERT INTO FUND_REPAY_PLAN(
+         REPAY_PLAN_NO,
+         FUND_NO,
+         TOTAL_ISSUE,
+         TOTAL_AMT,
+         REPAY_ISSUE,
+         REPAY_DATE,
+         REPAY_AMT,
+         PAY_AMT,
+         CASH_MANAGER,
+         UNREPAY_AMT,
+         FILLER
+         )VALUES(
+         #repayPlanNo#,
+         #fundNo#,
+         #totalIssue#,
+         #totalAmt#,
+         #repayIssue#,
+         #repayDate#,
+         #repayAmt#,
+         #payAmt#,
+         #cashManager#,
+         #unrepayAmt#,
+         #filler#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundRepayPlan.del">
+        <![CDATA[
+               DELETE FROM FUND_REPAY_PLAN
+                 WHERE
+               	REPAY_PLAN_NO = #repayPlanNo#        ]]>
+    </delete>
+        <!-- 表按资金进行删除 -->
+    <delete id="FundRepayPlan.delByFunoNo">
+        <![CDATA[
+               DELETE FROM FUND_REPAY_PLAN
+                 WHERE
+               	FUND_NO = #fundNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundRepayPlan.update">
+        <![CDATA[
+         UPDATE FUND_REPAY_PLAN set
+         REPAY_PLAN_NO=#repayPlanNo#,
+         FUND_NO=#fundNo#,
+         TOTAL_ISSUE=#totalIssue#,
+         TOTAL_AMT=#totalAmt#,
+         REPAY_ISSUE=#repayIssue#,
+         REPAY_DATE=#repayDate#,
+         REPAY_AMT=#repayAmt#,
+         PAY_AMT=#payAmt#,
+         CASH_MANAGER=#cashManager#,
+         UNREPAY_AMT=#unrepayAmt#,
+         FILLER=#filler#
+          WHERE
+               	REPAY_PLAN_NO = #repayPlanNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundRepayPlan.getById"  resultMap="RM.FundRepayPlan">
+        SELECT <include refid="FundRepayPlan.columns"/>
+        <![CDATA[
+             FROM FUND_REPAY_PLAN 
+         WHERE 
+               	REPAY_PLAN_NO = #repayPlanNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundRepayPlan.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="repayIssue">
+                  <isNotEmpty prepend="AND" property="repayIssue">
+                      REPAY_ISSUE = #repayIssue#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundRepayPlan.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_REPAY_PLAN <include refid="FundRepayPlan.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundRepayPlan.findByPage" resultMap="RM.FundRepayPlan">
+        SELECT <include refid="FundRepayPlan.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundRepayPlan.columns"/> FROM FUND_REPAY_PLAN
+                    <include refid="FundRepayPlan.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+        <!--一段时间内清算金额-->
+    <select id="FundRepayPlan.getBalByDate" resultClass="double">
+        SELECT nvl(sum(REPAY_AMT),0) FROM FUND_REPAY_PLAN A, FUND_BASE B
+          WHERE A.FUND_NO = B.FUND_NO
+            AND B.PROJ_NO = #fundNo#
+            AND A.REPAY_DATE  &gt; #repayDate# 
+            AND A.REPAY_DATE &lt;= #filler#
+    </select>   
+</sqlMap>

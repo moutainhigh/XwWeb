@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AppWkfcfg" type="app.creditapp.wkf.entity.AppWkfcfg"/>
+<typeAlias alias="ProdBrno" type="app.creditapp.sys.entity.ProdBrno"/>
+
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AppWkfcfg" class="AppWkfcfg">
+    <result property="id" column="ID"/>
+    <result property="brNo" column="BR_NO"/>
+    <result property="appType" column="APP_TYPE"/>
+    <result property="processKey" column="WKF_NO"/>
+    <result property="processDesc" column="WKF_NAME"/>
+    <result property="prdtNo" column="PRDT_NO"/>
+     <result property="prdtName" column="PRDT_NAME"/>
+    <result property="remark" column="WKF_DISC"/>
+    <result property="processDefId" column="WKF_ID"/>
+    <result property="processId" column="DEPLOYMENT_ID"/>
+    <result property="processSts" column="PROCESS_STS"/>
+     <result property="brName" column="BRNAME"/>
+     <result property="txBrno" column="TX_BR_NO"/>
+     <result property="txDate" column="TX_DATE"/>
+     <result property="txUserId" column="TXUSERID"/>
+     <result property="txModifyDate" column="TXMODIFYDATE"/>
+     <result property="beiZhu" column="BEIZHU"/>
+    </resultMap>
+    
+    <resultMap id="RM.AppWkfcfg1" class="AppWkfcfg">
+    <result property="id" column="ID"/>
+    <result property="brNo" column="BR_NO"/>
+    <result property="brName" column="BRNAME"/>
+    <result property="appType" column="APP_TYPE"/>
+    <result property="processKey" column="WKF_NO"/>
+    <result property="processDesc" column="WKF_NAME"/>
+    <result property="prdtNo" column="PRDT_NO"/>
+    <result property="prdtName" column="PRDTNAME"/>
+    <result property="remark" column="WKF_DISC"/>
+    <result property="processDefId" column="WKF_ID"/>
+    <result property="processId" column="DEPLOYMENT_ID"/>
+    <result property="processSts" column="PROCESS_STS"/>
+     <result property="txBrno" column="TX_BR_NO"/>
+     <result property="txDate" column="TX_DATE"/>
+     <result property="txUserId" column="TXUSERID"/>
+     <result property="txModifyDate" column="TXMODIFYDATE"/>
+     <result property="beiZhu" column="BEIZHU"/>
+    </resultMap>
+    <resultMap id="RM.ProdBrno" class="ProdBrno">
+      <result property="prod_no" column="PROD_NO"/>
+      <result property="prod_name" column="PROD_NAME"/>
+      
+    </resultMap>
+     <sql id="AppWkfcfg.columns">
+        <![CDATA[
+         ID,
+         BR_NO,
+         APP_TYPE,
+         WKF_NO,
+         WKF_NAME,
+         PRDT_NO,
+         PRDT_NAME,
+         WKF_ID,
+         DEPLOYMENT_ID,
+         PROCESS_STS,
+         WKF_DISC,
+         TX_BR_NO,
+         TX_DATE,
+         TXUSERID,
+         TXMODIFYDATE,
+         TX_BR_NO || '-' || FUN_GETBRNAME(TX_BR_NO) AS BRNAME,
+         BEIZHU
+        
+          ]]>
+    </sql>
+    <sql id="AppWkfcfg.columns1">
+        <![CDATA[
+         ID,
+         BR_NO,
+         BR_NO || '-' || FUN_GETBRNAME(BR_NO) AS BRNAME,
+         APP_TYPE,
+         WKF_NO,
+         WKF_NAME,
+         PRDT_NO,
+         FUN_GETPRODNAME(#prdtNo#) AS PRDTNAME,
+         WKF_ID,
+         DEPLOYMENT_ID,
+         PROCESS_STS,
+         WKF_DISC,
+         TX_BR_NO,
+         TX_DATE,
+         TXUSERID,
+         TXMODIFYDATE,
+         BEIZHU
+          ]]>
+    </sql>
+        <!-- 表新增 -->
+    <insert id="AppWkfcfg.insert">
+        <![CDATA[
+          INSERT INTO APP_WKFCFG(
+         	ID,
+         	BR_NO,
+         	APP_TYPE,
+         	WKF_NO,
+         	WKF_NAME,
+         	WKF_ID,
+         	PRDT_NO,
+         	PRDT_NAME,
+         	WKF_DISC,
+         	DEPLOYMENT_ID,
+         	PROCESS_STS,
+         	TX_BR_NO,
+         	TX_DATE,
+         	TXUSERID,
+         	TXMODIFYDATE,
+         	BEIZHU
+           )VALUES(
+           	#id#,
+			#brNo#,
+			#appType#,
+			#processKey#,
+			#processDesc#,
+			#processDefId#,
+			#prdtNo#,
+			#prdtName#,
+			#remark#,
+			#processId#,
+			#processSts#,
+			#txBrno#,
+			#txDate#,
+			#txUserId#,
+			#txModifyDate#,
+			#beiZhu#
+           )
+        ]]>
+    </insert>
+
+     <select id="AppWkfcfg.getNextVal"  resultClass="String">
+        SELECT  APP_WKFCFG_SEQ.nextval AS ID FROM DUAL
+     </select>
+     
+     <select id="AppWkfcfg.getProdList"  resultMap="RM.ProdBrno">
+       select PROD_NO,PROD_NAME FROM PROD_BASE WHERE PROD_NO IN(SELECT PROD_NO  FROM PROD_BRNO WHERE BR_NO=#brNo# AND PROD_NO IN(
+   			 SELECT PROD_NO FROM PROD_BASE ))
+     </select>
+     
+    <!-- 表修改 -->
+    <update id="AppWkfcfg.update">
+        <![CDATA[
+         UPDATE APP_WKFCFG set
+         BR_NO=#brNo#,
+         APP_TYPE=#appType#,
+         WKF_NO=#processKey#,
+         WKF_NAME=#processDesc#,
+         PRDT_NO=#prdtNo#,
+         PRDT_NAME=#prdtName#,
+          WKF_ID=#processDefId#,
+           DEPLOYMENT_ID=#processId#,
+           PROCESS_STS=#processSts#,
+         WKF_DISC=#remark#,
+         	TXUSERID=#txUserId#,
+			 TXMODIFYDATE=#txModifyDate#,
+			 BEIZHU=#beiZhu#
+          WHERE
+               	ID=#id#     ]]>
+    </update>
+    
+    
+    
+    <!-- 查询流程 -->
+    <sql id="AppWkfcfg.getById.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="id">
+                  <isNotEmpty prepend="AND" property="id">
+                      ID=#id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appType">
+                  <isNotEmpty prepend="AND" property="appType">
+                      APP_TYPE = #appType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfName">
+                  <isNotEmpty prepend="AND" property="wkfName">
+                      WKF_NAME = #wkfName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfDisc">
+                  <isNotEmpty prepend="AND" property="wkfDisc">
+                      WKF_DISC = #wkfDisc#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="processKey">
+                  <isNotEmpty prepend="AND" property="processKey">
+                      WKF_NO = #processKey#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO like '%'||#brNo#||'%' 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+     <!-- 表查询ById -->
+    <select id="AppWkfcfg.getById"  resultClass="String">
+        SELECT  WKF_NO
+             FROM APP_WKFCFG 
+             <include refid="AppWkfcfg.getById.where"/>  and process_sts='0'
+             
+     </select>
+     
+     <!-- 更新流程状态 -->
+     <update id="AppWkfcfg.updateProcessSts">
+     	UPDATE APP_WKFCFG SET PROCESS_STS=#processSts# WHERE WKF_NO=#processKey#
+     </update>
+     
+     <!-- 根据流程表示查找记录 -->
+    <select id="AppWkfcfg.getByProcessKey"  resultMap="RM.AppWkfcfg">
+    	SELECT <include refid="AppWkfcfg.columns"/>
+             FROM APP_WKFCFG  WHERE WKF_NO=#processKey#
+    </select>
+     
+	 <select id="AppWkfcfg.getById2"  resultMap="RM.AppWkfcfg">
+        SELECT <include refid="AppWkfcfg.columns"/>
+             FROM APP_WKFCFG 
+             <include refid="AppWkfcfg.getById.where"/>
+             
+     </select>
+     <select id="AppWkfcfg.chkPrdtNo"  resultMap="RM.AppWkfcfg1">
+		SELECT <include refid="AppWkfcfg.columns1"/> FROM APP_WKFCFG WHERE BR_NO  like '%'||#brNo#||'@%'  AND APP_TYPE=#appType#  AND PRDT_NO LIKE '%@'||#prdtNo#||'@%'
+		     <isPropertyAvailable property="id">
+                  <isNotEmpty prepend="AND" property="id">
+                      ID != #id# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+     </select>
+          
+      <!-- 表查询count，唯一性判断 贷款-->
+    <select id="AppWkfcfg.findWkfCount.count"  resultClass="int">
+        SELECT COUNT(*)
+             FROM APP_WKFCFG 
+         WHERE 
+             APP_TYPE = #appType# AND BR_NO like '%'||#brNo#||'%' AND PRDT_NO LIKE '%'||#prdtNo#||'%'
+     </select>
+     
+     <!-- 表查询ById 贷款-->
+    <select id="AppWkfcfg.getByIdForLoan"  resultClass="String">
+        SELECT  distinct(WKF_NO)
+             FROM APP_WKFCFG 
+         WHERE 
+             APP_TYPE = #appType# AND BR_NO like '%'||#brNo#||'%'  AND PRDT_NO LIKE '%'||#prdtNo#||'%'   and process_sts='0'
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AppWkfcfg.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO  LIKE '%'||#brNo#||'%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfNo">
+                  <isNotEmpty prepend="AND" property="wkfNo">
+                      WKF_NO = #processKey# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfName">
+                  <isNotEmpty prepend="AND" property="wkfName">
+                      WKF_NAME like '%'||#wkfName#||'%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appType">
+                  <isNotEmpty prepend="AND" property="appType">
+                      APP_TYPE = #appType# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfDisc">
+                  <isNotEmpty prepend="AND" property="wkfDisc">
+                      WKF_DISC like '%'||#wkfDisc#||'%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 
+    <select id="AppWkfcfg.findPage.count" resultClass="int">
+        SELECT count(*) FROM APP_WKFCFG <include refid="AppWkfcfg.findPage.where"/>
+    </select>
+    -->
+    
+    <delete id="AppWkfcfg.deleteByKey">
+    	delete from app_wkfcfg where app_type=#appType#  and wkf_no=#processKey#  
+    </delete>
+    
+    
+      <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AppWkfcfg.findPage.list.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO  LIKE '%'||#brNo#||'%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfNo">
+                  <isNotEmpty prepend="AND" property="wkfNo">
+                      WKF_NO = #processKey# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appType">
+                  <isNotEmpty prepend="AND" property="appType">
+                      APP_TYPE = #appType# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+             <isPropertyAvailable property="txBrno">
+                  <isNotEmpty prepend="AND" property="txBrno">
+                      TX_BR_NO = #txBrno# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfDisc">
+                  <isNotEmpty prepend="AND" property="wkfDisc">
+                      WKF_DISC like '%$wkfDisc$%' 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfName">
+                  <isNotEmpty prepend="AND" property="wkfName">
+                      WKF_NAME like '%$wkfName$%' 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <!-- 分页查询记录数 -->
+    <select id="AppWkfcfg.findPage.count" resultClass="int">
+        SELECT count(*) FROM APP_WKFCFG <include refid="AppWkfcfg.findPage.list.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AppWkfcfg.findByPage" resultMap="RM.AppWkfcfg">
+        SELECT <include refid="AppWkfcfg.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AppWkfcfg.columns"/> FROM APP_WKFCFG
+                    <include refid="AppWkfcfg.findPage.list.where"/> order by app_type
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 表查询getAppWkfcfgList -->
+    <select id="AppWkfcfg.getAppWkfcfgList"  resultMap="RM.AppWkfcfg">
+        SELECT <include refid="AppWkfcfg.columns"/>
+             FROM APP_WKFCFG 
+         WHERE APP_TYPE = #appType# AND BR_NO = #brNo#
+             
+     </select>
+</sqlMap>

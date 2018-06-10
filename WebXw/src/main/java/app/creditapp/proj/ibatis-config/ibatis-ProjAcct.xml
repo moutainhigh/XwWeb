@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ProjAcct" type="app.creditapp.proj.entity.ProjAcct"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ProjAcct" class="ProjAcct">
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="filler" column="FILLER" />
+    <result property="acctDesc" column="ACCT_DESC" />
+    <result property="cardNo" column="CARD_NO" />
+    <result property="acctUse" column="ACCT_USE" />
+    <result property="acctBal" column="ACCT_BAL" jdbcType="double"/>
+    <result property="opnBank" column="OPN_BANK" />
+    <result property="acctName" column="ACCT_NAME" />
+    <result property="acctType" column="ACCT_TYPE" />
+    <result property="acctNo" column="ACCT_NO" />
+    <result property="acctId" column="ACCT_ID" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="cardSts" column="CARD_STS" />
+    <result property="cardChn" column="CARD_CHN" />
+    <result property="orgNo" column="ORG_NO" />
+    <result property="bankProv" column="BANK_PROV" />
+    <result property="bankCity" column="BANK_CITY" />
+    <result property="projId" column="PROJ_ID" />
+    <result property="sendSts" column="SEND_STS" />
+    <result property="cardName" column="CARD_NAME" />
+    <result property="taCity" column="TA_CITY" />
+    <result property="sellFlag" column="SETT_FLAG" />
+    
+    </resultMap>
+     <sql id="ProjAcct.columns">
+        <![CDATA[
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         DEPT_NO,
+         FILLER,
+         ACCT_DESC,
+         CARD_NO,
+         ACCT_USE,
+         ACCT_BAL,
+         OPN_BANK,
+         ACCT_NAME,
+         ACCT_TYPE,
+         ACCT_NO,
+         ACCT_ID,
+         PROJ_NAME,
+         PROJ_NO,
+         CARD_STS,
+         CARD_CHN,
+         ORG_NO,
+         BANK_PROV,
+         BANK_CITY,
+         FUN_GETIDBYPROJNO(PROJ_NO) AS PROJ_ID,
+         SEND_STS,
+         CARD_NAME,
+         TA_CITY,
+         SETT_FLAG
+          ]]>
+    </sql>
+   
+    
+    <!-- 通过视图，查询项目编号,专户账号，账户开户地，开户名称 -->
+     <update id="ProjAcct.findByPageForAcct">
+       merge into PROJ_ACCT b
+	 using (SELECT * FROM  VW_BIZ_PROJECTINFO@TA_DBLINK VW WHERE EXISTS(SELECT 1 FROM PROJ_BASE PB WHERE PB.PROJ_NO=VW.ID) AND NOT EXISTS (
+          SELECT 1 FROM PROJ_ACCT PM WHERE PM.PROJ_NO=VW.ID) AND VW.BANKACNTNO IS NOT NULL)t
+	 on (b.proj_no=t.id)
+when matched then
+		update set 
+      b.PROJ_NAME=t.PROJECTNAME,  
+      b.ACCT_NO=t.BANKACNTNO,
+      b.ACCT_NAME=t.BANKACNTNAME, 
+      b.ACCT_TYPE='01',  
+      b.ACCT_ID=PROJ_BASE_SEQ.NEXTVAL,
+      b.OPN_BANK=t.BANKNAME,  
+      b.TA_CITY=t.AREANAME
+when not matched then 
+		 insert (
+		 b.PROJ_NO,
+         b.PROJ_NAME,
+         b.ACCT_NO,
+         b.ACCT_NAME,
+         b.ACCT_TYPE,
+         b.ACCT_ID,
+         b.CARD_STS,
+         b.OPN_BANK,
+         b.TA_CITY
+         )values(
+         t.ID,
+         t.PROJECTNAME,
+         t.BANKACNTNO,
+         t.BANKACNTNAME,
+         '01',
+         PROJ_BASE_SEQ.NEXTVAL,
+         '01',
+         t.BANKNAME,
+         t.AREANAME
+		 )
+    </update>
+   
+    <!-- 表新增 -->
+    <insert id="ProjAcct.insert">
+        <![CDATA[
+        INSERT INTO PROJ_ACCT(
+         UP_OPNO,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         DEPT_NO,
+         FILLER,
+         ACCT_DESC,
+         CARD_NO,
+         CARD_NAME,
+         ACCT_USE,
+         ACCT_BAL,
+         OPN_BANK,
+         ACCT_NAME,
+         ACCT_TYPE,
+         ACCT_NO,
+         ACCT_ID,
+         PROJ_NAME,
+         PROJ_NO,
+         CARD_STS,
+         CARD_CHN,
+         ORG_NO,
+         BANK_PROV,
+         BANK_CITY,
+         SEND_STS,
+         TA_CITY,
+         SETT_FLAG
+         )VALUES(
+         #upOpno#,
+         #upDate#,
+         #txDate#,
+         #opNo#,
+         #deptNo#,
+         #filler#,
+         #acctDesc#,
+         #cardNo#,
+         #cardName#,
+         #acctUse#,
+         #acctBal#,
+         #opnBank#,
+         #acctName#,
+         #acctType#,
+         #acctNo#,
+         #acctId#,
+         #projName#,
+         #projNo#,
+         #cardSts#,
+         #cardChn#,
+         #orgNo#,
+         #bankProv#,
+         #bankCity#,
+         #sendSts#,
+         #taCity#,
+         #sellFlag#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ProjAcct.del">
+        <![CDATA[
+               DELETE FROM PROJ_ACCT
+                 WHERE acct_id = #acctId#
+
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ProjAcct.update">
+        <![CDATA[
+         UPDATE PROJ_ACCT set
+         UP_OPNO=#upOpno#,
+         UP_DATE=#upDate#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#,
+         DEPT_NO=#deptNo#,
+         FILLER=#filler#,
+         ACCT_DESC=#acctDesc#,
+         CARD_NO=#cardNo#,
+         ACCT_USE=#acctUse#,
+         ACCT_BAL=#acctBal#,
+         OPN_BANK=#opnBank#,
+         ACCT_NAME=#acctName#,
+         ACCT_TYPE=#acctType#,
+         ACCT_NO=#acctNo#,
+         ACCT_ID=#acctId#,
+         PROJ_NAME=#projName#,
+         PROJ_NO=#projNo#,
+         CARD_CHN=#cardChn#,
+         SEND_STS=#sendSts#,
+         ORG_NO=#orgNo#,
+         BANK_PROV=#bankProv#,
+         BANK_CITY=#bankCity#,
+         CARD_NAME=#cardName#,
+         TA_CITY=#taCity#,
+         SETT_FLAG=#sellFlag#
+          WHERE acct_id = #acctId#
+          
+ 
+        ]]>
+    </update>
+    
+    <!-- 表修改 -->
+    <update id="ProjAcct.updateAcctBal">
+        <![CDATA[
+         UPDATE PROJ_ACCT set
+         ACCT_BAL=#acctBal#
+          WHERE acct_no = #acctNo#
+        ]]>
+    </update>
+    
+    <!-- 表修改 -->
+    <update id="ProjAcct.updateSts">
+        <![CDATA[
+         UPDATE PROJ_ACCT set
+         CARD_STS=#cardSts#,
+         SEND_STS=#sendSts#
+          WHERE acct_id = #acctId# or Acct_No = #acctNo#
+        ]]>
+    </update>
+    <!-- 生成单笔申请批次编号 -->
+	<select id="ProjAcct.getProjId" resultClass="string">
+		<![CDATA[ SELECT proj_id FROM proj_base where proj_no = #projNo#]]>
+	</select>
+     <!-- 表查询ById -->
+    <select id="ProjAcct.getById"  resultMap="RM.ProjAcct">
+        SELECT <include refid="ProjAcct.columns"/>
+        <![CDATA[
+             FROM PROJ_ACCT 
+         WHERE acct_id = #acctId#
+
+        ]]>
+     </select>
+     
+      <!-- 表查询ById -->
+    <select id="ProjAcct.getInterfaceById"  resultMap="RM.ProjAcct">
+               SELECT 
+                  proj_no   ,
+                  proj_name ,
+                  acct_id   ,
+                  acct_no   ,
+                  acct_type ,
+                  acct_name ,
+                  opn_bank  ,
+                  acct_bal  ,
+                  FUN_GETDIC('ACCT_USE', ACCT_USE) AS acct_use  ,
+                  card_no   ,
+                  card_chn  ,
+                  card_sts  ,
+                  acct_desc ,
+                  filler    ,
+                  dept_no   ,
+                  send_sts,
+                  op_no     ,
+                  TO_CHAR(SYSDATE,'YYYY-MM-DD') as tx_date,
+                  up_date   ,
+                  up_opno   ,
+                  FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+                  FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+                  ORG_NO,
+                  BANK_PROV,
+                  BANK_CITY,
+                  CARD_NAME,
+                  FUN_GETIDBYPROJNO(PROJ_NO) AS PROJ_ID,
+                  TA_CITY,
+                  SETT_FLAG
+                FROM PROJ_ACCT A 
+                WHERE A.acct_id = #acctId#
+     </select>    
+     <select id="ProjAcct.getByProjNoAndAcctType"  resultMap="RM.ProjAcct">
+        SELECT <include refid="ProjAcct.columns"/>
+        <![CDATA[
+             FROM PROJ_ACCT 
+         WHERE proj_no=#projNo# and acct_type=#acctType# 
+        ]]>
+     </select>
+     
+     <select id="ProjAcct.getByProjNoAndAcctTypeAndChn"  resultMap="RM.ProjAcct">
+        SELECT <include refid="ProjAcct.columns"/>
+        <![CDATA[
+             FROM PROJ_ACCT 
+         WHERE proj_no=#projNo# and acct_type=#acctType# and card_sts=#cardSts# and card_chn=#cardChn#
+        ]]>
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ProjAcct.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="acctType">
+                  <isNotEmpty prepend="AND" property="acctType">
+                      ACCT_TYPE = #acctType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cardSts">
+                  <isNotEmpty prepend="AND" property="cardSts">
+                      CARD_STS = #cardSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acctNo">
+                  <isNotEmpty prepend="AND" property="acctNo">
+                      ACCT_NO = #acctNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      proj_Name like '%$projName$%' 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="acctName">
+                  <isNotEmpty prepend="AND" property="acctName">
+                      acct_Name like '%$acctName$%' 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ProjAcct.findPage.count" resultClass="int">
+        SELECT count(*) FROM PROJ_ACCT <include refid="ProjAcct.findPage.where"/>
+    </select>
+    
+     <!--判断  某渠道的虚拟账户是否存在，存在的话不能进行新增-->
+    <select id="ProjAcct.findPage.countForX" resultClass="int">
+        SELECT count(*) FROM PROJ_ACCT WHERE ACCT_TYPE = #acctType# AND　 CARD_STS　＝　'01' AND　 CARD_CHN　＝　#cardChn# AND PROJ_NO = #projNo#
+    </select>
+    
+    
+    <select id="ProjAcct.findPageForPop.count" resultClass="int">
+        SELECT count(*) from VW_ACT_ACCOUNTINFO@TA_DBLINK
+			  where edate > to_date(SUBSTR(FUN_SYSTIME, 0, 8), 'yyyymmdd')
+			  and state = '2'
+ 			  and projectid = #projNo#
+    </select>
+    <!-- 分页查询 -->
+    <select id="ProjAcct.findByPage" resultMap="RM.ProjAcct">
+        SELECT <include refid="ProjAcct.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjAcct.columns"/> FROM PROJ_ACCT
+                    <include refid="ProjAcct.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+        <!-- 分页查询 -->
+    <select id="ProjAcct.findListByProjNo" resultMap="RM.ProjAcct">
+        SELECT <include refid="ProjAcct.columns"/>
+        FROM PROJ_ACCT
+         where proj_no = #projNo# and (acct_type = '03' or acct_type = '04')
+    </select>
+    
+    <select id="ProjAcct.findByPageForPop" resultMap="RM.ProjAcct">
+		    select 
+         '' UP_OPNO,
+         '' UP_DATE,
+         '' TX_DATE,
+         '' OP_NO,
+         '' DEPT_NO,
+         '' FILLER,
+         '' ACCT_DESC,
+         '' CARD_NO,
+         '' CARD_CHN,
+         '' SEND_STS,
+         '' ACCT_USE,
+         '' ACCT_BAL,
+         '' OPN_BANK,
+         c.tradename as ACCT_NAME,
+         '' ACCT_TYPE,
+         '' ACCT_NO,
+         a.id as ACCT_ID,
+         b.customname as PROJ_NAME,
+         ''  PROJ_NO,
+         ''  PROJ_ID,
+         '' CARD_STS,
+         '' CARD_NAME,
+         '' ORG_NO,
+         '' BANK_PROV,
+         '' BANK_CITY,
+         '' UP_OPNAME,
+         '' OP_NAME,
+         '' SETT_FLAG
+         from VW_ACT_ACCOUNTINFO@TA_DBLINK a 
+         inner join VW_CST_CUSTOMINFO@TA_DBLINK b on a.customid= b.id
+         left join VW_CST_TRADE@Ta_Dblink c on b.tradeid = c.id
+		 where a.edate > to_date(SUBSTR(FUN_SYSTIME, 0, 8), 'yyyymmdd')
+		   and a.state = '2'
+ 		   and a.projectid = #projNo#
+		
+    </select>
+    
+     <!-- 分页查询项目账户信息记录数 -->
+    <select id="ProjAcct.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM PROJ_ACCT 
+         <dynamic prepend="where">
+             proj_no = #projNo# 
+             <isNotEmpty prepend="and" property="acctType">  
+              ACCT_TYPE=#acctType# 
+             </isNotEmpty> 
+         </dynamic>    
+         ORDER BY ACCT_ID DESC
+    </select>
+    <!-- 分页查询项目账户信息信息-->
+    <select id="ProjAcct.findByPageQuotaForCorp" resultMap="RM.ProjAcct">
+        SELECT <include refid="ProjAcct.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjAcct.columns"/> FROM PROJ_ACCT   
+             <dynamic prepend="where">
+             proj_no = #projNo# 
+             <isNotEmpty prepend="and" property="acctType">  
+              ACCT_TYPE=#acctType# 
+             </isNotEmpty> 
+         </dynamic>    
+              
+              ORDER BY ACCT_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="ProjAcct.getKey" resultClass="string">
+   	 <![CDATA[ SELECT PROJ_BASE_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+	    <!-- 获取软通TA借据视图VW_ACT_ACCOUNTINFO中部分信息 -->
+     <select id="VW_ACT_ACCOUNTINFO.getByprojno"  resultMap="RM.ProjAcct">
+         SELECT 
+                  '' proj_no   ,
+                  '' proj_id   ,
+                  '' proj_name ,
+                  a.id acct_id   ,
+                  '' acct_no   ,
+                  '' acct_type ,
+                  b.customname AS acct_name ,
+                  '' opn_bank  ,
+                  '' acct_bal  ,
+                  c.tradename AS acct_use  ,
+                  '' card_no   ,
+                  '' card_chn  ,
+                  '' SEND_STS  ,
+                  '' card_sts  ,
+                  '' card_name ,
+                  '' acct_desc ,
+                  '' filler    ,
+                  '' dept_no   ,
+                  '' op_no     ,
+                  '' tx_date,
+                  '' up_date   ,
+                  '' up_opno   ,
+                  '' OP_NAME,
+                  '' UP_OPNAME,
+                  '' ORG_NO,
+                  '' BANK_PROV,
+                  '' BANK_CITY,
+                  '' TA_CITY,
+                  '' SETT_FLAG
+                FROM  VW_ACT_ACCOUNTINFO@TA_DBLINK a 
+                INNER JOIN VW_CST_CUSTOMINFO@TA_DBLINK b on a.customid= b.id
+                LEFT  JOIN VW_CST_TRADE@Ta_Dblink c on b.tradeid = c.id
+                WHERE  a.projectid=#projNo# 
+                  AND a.edate > to_date(SUBSTR(FUN_SYSTIME,0,8),'yyyymmdd')
+                  AND a.state = '2'
+                  AND rownum = 1
+     </select>
+     <select id="ProjAcct.getByProjNo" resultClass="int">
+     	select count(*) from proj_acct where proj_no = #projNo# and (acct_type = '03' or acct_type = '04') and card_sts = '01'
+     </select>
+</sqlMap>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CifPersInf" type="app.creditapp.cif.entity.CifPersInf"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CifPersInf" class="CifPersInf">
+    <result property="gradeDate" column="GRADE_DATE" />
+    <result property="email" column="EMAIL" />
+    <result property="idNo" column="ID_NO" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifType" column="CIF_TYPE" />
+    <result property="sex" column="SEX" />
+    <result property="birthDay" column="BIRTH_DAY" />
+    <result property="marriage" column="MARRIAGE" />
+    <result property="edu" column="EDU" />
+    <result property="degree" column="DEGREE" />
+    <result property="commTel" column="COMM_TEL" />
+    <result property="phoneNo" column="PHONE_NO" />
+    <result property="commCode" column="COMM_CODE" />
+    <result property="commAddr" column="COMM_ADDR" />
+    <result property="cifArea" column="CIF_AREA" />
+    <result property="resTel" column="RES_TEL" />
+    <result property="resCode" column="RES_CODE" />
+    <result property="resAddr" column="RES_ADDR" />
+    <result property="resSts" column="RES_STS" />
+    <result property="income" column="INCOME" jdbcType="double"/>
+    <result property="mateName" column="MATE_NAME" />
+    <result property="mateIdtype" column="MATE_IDTYPE" />
+    <result property="mateIdno" column="MATE_IDNO" />
+    <result property="mateWork" column="MATE_WORK" />
+    <result property="mateTel" column="MATE_TEL" />
+    <result property="grade" column="GRADE" />
+    <result property="brNo" column="BR_NO" />
+    <result property="recSts" column="REC_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="areaName" column="AREA_NAME" />
+    </resultMap>
+     <sql id="CifPersInf.columns">
+        <![CDATA[
+         GRADE_DATE,
+         EMAIL,
+         ID_NO,
+         ID_TYPE,
+         CIF_NAME,
+         CIF_NO,
+         CIF_TYPE,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         EDU,
+         DEGREE,
+         COMM_TEL,
+         PHONE_NO,
+         COMM_CODE,
+         COMM_ADDR,
+         CIF_AREA,
+         RES_TEL,
+         RES_CODE,
+         RES_ADDR,
+         RES_STS,
+         INCOME,
+         MATE_NAME,
+         MATE_IDTYPE,
+         MATE_IDNO,
+         MATE_WORK,
+         MATE_TEL,
+         GRADE,
+         BR_NO,
+         FUN_GETBRNAME(br_no) as BR_NAME,
+         FUN_GETAREANAME(CIF_AREA) as AREA_NAME,
+         REC_STS,
+         TX_DATE,
+         UP_DATE,
+         OP_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CifPersInf.insert">
+        <![CDATA[
+        INSERT INTO CIF_PERS(
+         GRADE_DATE,
+         EMAIL,
+         ID_NO,
+         ID_TYPE,
+         CIF_NAME,
+         CIF_NO,
+         CIF_TYPE,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         EDU,
+         DEGREE,
+         COMM_TEL,
+         PHONE_NO,
+         COMM_CODE,
+         COMM_ADDR,
+         CIF_AREA,
+         RES_TEL,
+         RES_CODE,
+         RES_ADDR,
+         RES_STS,
+         INCOME,
+         MATE_NAME,
+         MATE_IDTYPE,
+         MATE_IDNO,
+         MATE_WORK,
+         MATE_TEL,
+         GRADE,
+         BR_NO,
+         REC_STS,
+         TX_DATE,
+         UP_DATE,
+         OP_NO
+         )VALUES(
+         #gradeDate#,
+         #email#,
+         #idNo#,
+         #idType#,
+         #cifName#,
+         #cifNo#,
+         #cifType#,
+         #sex#,
+         #birthDay#,
+         #marriage#,
+         #edu#,
+         #degree#,
+         #commTel#,
+         #phoneNo#,
+         #commCode#,
+         #commAddr#,
+         #cifArea#,
+         #resTel#,
+         #resCode#,
+         #resAddr#,
+         #resSts#,
+         #income#,
+         #mateName#,
+         #mateIdtype#,
+         #mateIdno#,
+         #mateWork#,
+         #mateTel#,
+         #grade#,
+         #brNo#,
+         #recSts#,
+         #txDate#,
+         #upDate#,
+         #opNo#
+         )
+          ]]>
+    </insert>
+    
+    <!-- 获取KEY -->
+    <select id="CifPersInf.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_PERS_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+    
+    <!-- 表删除 -->
+    <delete id="CifPersInf.del">
+        <![CDATA[
+               DELETE FROM CIF_PERS
+                 WHERE
+               	CIF_NO = #cifNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CifPersInf.update">
+        <![CDATA[
+         UPDATE CIF_PERS set
+         GRADE_DATE=#gradeDate#,
+         EMAIL=#email#,
+         ID_NO=#idNo#,
+         ID_TYPE=#idType#,
+         CIF_NAME=#cifName#,
+         CIF_NO=#cifNo#,
+         CIF_TYPE=#cifType#,
+         SEX=#sex#,
+         BIRTH_DAY=#birthDay#,
+         MARRIAGE=#marriage#,
+         EDU=#edu#,
+         DEGREE=#degree#,
+         COMM_TEL=#commTel#,
+         PHONE_NO=#phoneNo#,
+         COMM_CODE=#commCode#,
+         COMM_ADDR=#commAddr#,
+         CIF_AREA=#cifArea#,
+         RES_TEL=#resTel#,
+         RES_CODE=#resCode#,
+         RES_ADDR=#resAddr#,
+         RES_STS=#resSts#,
+         INCOME=#income#,
+         MATE_NAME=#mateName#,
+         MATE_IDTYPE=#mateIdtype#,
+         MATE_IDNO=#mateIdno#,
+         MATE_WORK=#mateWork#,
+         MATE_TEL=#mateTel#,
+         GRADE=#grade#,
+         BR_NO=#brNo#,
+         REC_STS=#recSts#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         OP_NO=#opNo#
+          WHERE
+               	CIF_NO = #cifNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CifPersInf.getById"  resultMap="RM.CifPersInf">
+        SELECT <include refid="CifPersInf.columns"/>
+        <![CDATA[
+             FROM CIF_PERS 
+         WHERE 
+               	CIF_NO = #cifNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CifPersInf.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="idNo">
+                  <isNotEmpty prepend="AND" property="idNo">
+                      ID_NO = #idNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifType">
+                  <isNotEmpty prepend="AND" property="cifType">
+                      CIF_TYPE = #cifType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="grade">
+                  <isNotEmpty prepend="AND" property="grade">
+                      GRADE = #grade#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      CIF_NO in (select cif_no from ln_pact where proj_no in (select proj_no from proj_mang where login_id = #loginid#))
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CifPersInf.findPage.count" resultClass="int">
+        SELECT count(*) FROM CIF_PERS <include refid="CifPersInf.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CifPersInf.findByPage" resultMap="RM.CifPersInf">
+        SELECT <include refid="CifPersInf.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifPersInf.columns"/> FROM CIF_PERS
+                    <include refid="CifPersInf.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+</sqlMap>

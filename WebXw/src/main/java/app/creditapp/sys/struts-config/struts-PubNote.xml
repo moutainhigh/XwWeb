@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="PubNoteAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="PubNoteAction_findByPage" method="findByPage" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="list">/creditapp/sys/KbNote_List.jsp</result>
+		</action>
+		<!--后台配置查询 -->
+		<action name="PubNoteAction_findByAll" method="findByAll" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="listAll">/creditapp/sys/KbNote_ListAll.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="PubNoteAction_input" method="input" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="input">/creditapp/sys/KbNote_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="PubNoteAction_del" method="del" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="listAll">/creditapp/sys/KbNote_ListAll.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="PubNoteAction_getById" method="getById" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="detail">/creditapp/sys/KbNote_Detail.jsp</result>
+		</action>
+		
+		<!--弹出框查看 -->
+		<action name="PubNoteAction_popView" method="popView" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="popView">/creditapp/sys/KbNote_popView.jsp</result>
+		</action>
+		<!--弹出框列表 -->
+		<action name="PubNoteAction_popList" method="popList" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="popList">/creditapp/sys/KbNote_popList.jsp</result>
+		</action>
+		<!--知识库查询 -->
+		<action name="PubNoteAction_getByIdZsk" method="getByIdZsk" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="detailZsk">/creditapp/sys/KbNote_DetailZsk.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="PubNoteActionInsert" method="insert" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="input">/creditapp/sys/KbNote_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/KbNote_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PubNoteActionUpdate" method="update" class="app.creditapp.sys.action.PubNoteAction">
+			<result name="input">/creditapp/sys/KbNote_DetailZsk.jsp</result>
+			<result name="detailZsk">/creditapp/sys/KbNote_DetailZsk.jsp</result>
+		</action>
+		
+	  	<action name="PubNoteActionDownload"  method="downLoad" class="app.creditapp.sys.action.PubNoteAction">
+	       	<result name="success" type="stream">
+				<param name="contentType">application/octet-stream;charset=ISO8859-1</param> 
+			 	<param name="inputName">downloadFile</param>
+				<param name="contentDisposition">attachment;fileName="${file_name}";noteNo="${noteNo}"</param> 
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="fileNotFound">/404.jsp</result>
+        </action>
+	</package>
+</struts>
+
+
+

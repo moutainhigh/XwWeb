@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftMessageAlarmAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询
+		<action name="AftMessageAlarmAction_initMessagePage" method="initMessagePage" class="app.creditapp.aft.action.AftMessageAlarmAction">
+			<result name="initMessage">/creditapp/workMessage/SysB1.jsp</result>
+		</action>
+		 -->
+		<action name="AftMessageAlarmAction_initMessagePage" method="initMessagePage" class="app.creditapp.aft.action.AftMessageAlarmAction">
+			<result name="initMessage">/creditapp/workMessage/SysB1.jsp</result>
+		</action>
+		
+		<action name="AftMessageAlarmAction_showMessagePage" method="showMessagePage" class="app.creditapp.aft.action.AftMessageAlarmAction">
+			<result name="initMessage">/creditapp/workMessage/SysB1.jsp</result>
+		</action>
+		
+		<action name="AftMessageAlarmAction_reloadMessagePage" method="reloadMessagePage" class="app.creditapp.aft.action.AftMessageAlarmAction">
+		</action>
+		
+		<action name="AftMessageAlarmAction_ignoreMessage" method="ignoreMessage" class="app.creditapp.aft.action.AftMessageAlarmAction">
+		</action>
+		
+		<action name="AftMessageAlarmAction_updateMessage" method="updateMessage" class="app.creditapp.aft.action.AftMessageAlarmAction">
+		</action>
+		
+		<action name="AftMessageAlarmAction_getMessageJsonForRecent" method="getMessageJsonForRecent" class="app.creditapp.aft.action.AftMessageAlarmAction">
+		</action>
+		
+		<action name="AftMessageAlarmAction_getMessageJsonForBetween" method="getMessageJsonForBetween" class="app.creditapp.aft.action.AftMessageAlarmAction">
+		</action>
+	</package>
+</struts>
+
+
+

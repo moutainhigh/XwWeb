@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="BatchSql" type="app.creditapp.batch.entity.BatchSql"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.BatchSql" class="BatchSql">
+    <result property="node_no" column="NODE_NO" />
+    <result property="sql" column="SQL" />
+    <result property="sql_desc" column="SQL_DESC" />
+    <result property="sql_lev" column="SQL_LEV" jdbcType="Int"/>
+     <result property="id" column="ID" />
+    </resultMap>
+     <sql id="BatchSql.columns">
+        <![CDATA[
+         NODE_NO,
+         SQL,
+         SQL_DESC,
+         SQL_LEV,
+         ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="BatchSql.insert">
+        <![CDATA[
+        INSERT INTO BATCH_SQL(
+         NODE_NO,
+         SQL,
+         SQL_DESC,
+         SQL_LEV,
+         ID
+         )VALUES(
+         #node_no#,
+         #sql#,
+         #sql_desc#,
+         #sql_lev#,
+         #id#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="id" >
+			SELECT BATCH_SQL_SEQ.NEXTVAL AS id FROM DUAL
+        </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="BatchSql.delByNodeNo">
+        <![CDATA[
+               DELETE FROM BATCH_SQL
+                 WHERE
+               	NODE_NO = #node_no#        ]]>
+    </delete>
+    
+     <!-- 表删除 -->
+    <delete id="BatchSql.del">
+        <![CDATA[
+               DELETE FROM BATCH_SQL
+                 WHERE
+               	ID = #id#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="BatchSql.update">
+        <![CDATA[
+         UPDATE BATCH_SQL set
+         NODE_NO=#node_no#,
+         SQL=#sql#,
+         SQL_DESC=#sql_desc#,
+         SQL_LEV=#sql_lev#
+          WHERE
+               ID = #id#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="BatchSql.getById"  resultMap="RM.BatchSql">
+        SELECT <include refid="BatchSql.columns"/>
+        <![CDATA[
+             FROM BATCH_SQL 
+         WHERE 
+               	ID = #id#       ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="BatchSql.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="node_no">
+                  <isNotEmpty prepend="AND" property="node_no">
+                      NODE_NO = #node_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="BatchSql.findPage.count" resultClass="int">
+        SELECT count(*) FROM BATCH_SQL <include refid="BatchSql.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="BatchSql.findByPage" resultMap="RM.BatchSql">
+        SELECT <include refid="BatchSql.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="BatchSql.columns"/> FROM BATCH_SQL
+                    <include refid="BatchSql.findPage.where"/> ORDER BY SQL_LEV
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

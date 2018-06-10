@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysUserRole" type="app.creditapp.sys.entity.SysUserRole"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysUserRole" class="SysUserRole">
+    <result property="rec_id" column="REC_ID" />
+    <result property="user_no" column="USER_NO" />
+    <result property="role_no" column="ROLE_NO" />
+    </resultMap>
+    	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysUserRole1" class="SysUserRole">
+    <result property="role_no" column="ROLE_NO" />
+    </resultMap>
+     <sql id="SysUserRole.columns">
+        <![CDATA[
+         REC_ID,
+         USER_NO,
+         ROLE_NO
+          ]]>
+    </sql>
+    
+    <sql id="SysUserRole.columns1">
+        <![CDATA[
+         ROLE_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysUserRole.insert">
+        <![CDATA[
+        INSERT INTO SYS_USER_ROLE(
+         REC_ID,
+         USER_NO,
+         ROLE_NO
+         )VALUES(
+         #rec_id#,
+         #user_no#,
+         #role_no#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="rec_id">
+          		SELECT REC_ID_SEQ.nextval AS REC_ID FROM DUAL
+          </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysUserRole.del">
+        <![CDATA[
+               DELETE FROM SYS_USER_ROLE
+                 WHERE
+               	REC_ID = #rec_id#        ]]>
+    </delete>
+    
+     <!-- 按照用户号删除 -->
+    <delete id="SysUserRole.delByLoginId">
+        <![CDATA[
+               DELETE FROM SYS_USER_ROLE
+                 WHERE
+               	REC_ID = #rec_id#        ]]>
+    </delete>
+    
+    <delete id="SysUserRole.delByRole">
+        <![CDATA[
+               DELETE FROM SYS_USER_ROLE
+                 WHERE
+               	USER_NO = #user_no# and ROLE_NO=#role_no#       ]]>
+    </delete>
+    
+    <!-- 表修改 -->
+    <update id="SysUserRole.update">
+        <![CDATA[
+         UPDATE SYS_USER_ROLE set
+         REC_ID=#rec_id#,
+         USER_NO=#user_no#,
+         ROLE_NO=#role_no#
+          WHERE
+               	REC_ID = #rec_id#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysUserRole.getById"  resultMap="RM.SysUserRole">
+        SELECT sur.REC_ID,
+	        sur.USER_NO,
+	        (SELECT ROLE_NO || '-' || ROLE_NAME FROM SYS_ROLE WHERE ROLE_NO = sur.ROLE_NO) AS ROLE_NO
+        <![CDATA[
+             FROM SYS_USER_ROLE sur
+         WHERE 
+               	REC_ID = #rec_id#  and  USER_NO=#user_no#     ]]>
+     </select>
+          <!-- 表查询ByOpNo -->
+    <select id="SysUserRole.getRoleNo"  resultClass="String">
+        SELECT sur.role_no 
+             FROM SYS_USER_ROLE sur,sys_role b
+         WHERE 
+               sur.USER_NO=#user_no#  and  sur.role_no =b.role_no 
+     </select>
+     <!-- 表查询ById -->
+    <select id="SysUserRole.getByRoleAndBrno"  resultMap="RM.SysUserRole">
+        SELECT <include refid="SysUserRole.columns"/>
+        <![CDATA[
+             FROM SYS_USER_ROLE sys
+         WHERE 
+               	USER_NO = #user_no#  and  ROLE_NO=#role_no#   ]]>
+     </select>
+     
+     <select id="SysUserRole.getAllRoleNO"  resultMap="RM.SysUserRole">
+        SELECT <include refid="SysUserRole.columns"/>
+        <![CDATA[
+             FROM SYS_USER_ROLE sys
+         WHERE 
+               	USER_NO = #user_no#    ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysUserRole.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rec_id">
+                  <isNotEmpty prepend="AND" property="rec_id">
+                      REC_ID = #rec_id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="user_no">
+                  <isNotEmpty prepend="AND" property="user_no">
+                      USER_NO = #user_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_no">
+                  <isNotEmpty prepend="AND" property="role_no">
+                      ROLE_NO = #role_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysUserRole.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_USER_ROLE <include refid="SysUserRole.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysUserRole.findByPage" resultMap="RM.SysUserRole">
+        SELECT <include refid="SysUserRole.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT sur.REC_ID,
+			        sur.USER_NO,
+			        ROLE_NO
+			 FROM SYS_USER_ROLE sur
+                    where USER_NO = #user_no#
+             ) m
+        	) sys WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

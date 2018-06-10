@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ProjAcctAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="ProjAcctAction_findByPage" method="findByPage" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_List.jsp</result>
+		</action>
+		<action name="ProjAcctAction_findByPageForPop" method="findByPageForPop" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_ListForPop.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="ProjAcctAction_findByPageToProj" method="findByPageToProj" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_ListToProj.jsp</result>
+		</action>
+		<action name="ProjAcctAction_active" method="active" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_ListToProj_Read.jsp</result>
+		</action>
+		<action name="ProjAcctAction_inactive" method="inactive" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_List.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="ProjAcctAction_findByPageToProj_Read" method="findByPageToProj_Read" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list_Read">/creditapp/proj/ProjAcct_ListToProj_Read.jsp</result>
+		</action>
+		<!--查询项目对应的费用账户 -->
+		<action name="ProjAcctAction_findByPageToFee" method="findByPageToFee" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list_Fee">/creditapp/proj/ProjAcct_ListToFee.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="ProjAcctAction_acctSynMes" method="acctSynMes" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list_Read">/creditapp/proj/ProjAcct_ListToProj_Read.jsp</result>
+		</action>
+		<!-- 分页查询   旧的查询余额-->
+		<action name="ProjAcctAction_acctBalMes" method="acctBalMes" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list_Read">/creditapp/proj/ProjAcct_ListToProj_Read.jsp</result>
+		</action>
+		<!--分页查询 同步余额 -->
+		<action name="ProjAcctAction_serchAcctBal" method="serchAcctBal" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list_Read">/creditapp/proj/ProjAcct_ListToProj_Read.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="ProjAcctAction_input" method="input" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="input">/creditapp/proj/ProjAcct_Insert.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="ProjAcctAction_inputAcct" method="inputAcct" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="input">/creditapp/proj/ProjAcct_InsertAcct.jsp</result>
+		</action>
+		<!--删除 -->
+		<action name="ProjAcctAction_del" method="del" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="ProjAcctAction_getById" method="getById" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detail">/creditapp/proj/ProjAcct_Detail.jsp</result>
+			<result name="detailForZ">/creditapp/proj/ProjAcct_DetailForZ.jsp</result>
+		</action>
+		
+		<!--详情修改页面 -->
+		<action name="ProjAcctAction_getByIdXQ" method="getByIdXQ" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detail">/creditapp/proj/ProjAcct_Detail.jsp</result>
+			<result name="detailForZ">/creditapp/proj/ProjAcct_DetailForZ.jsp</result>
+			<result name="detailForFK">/creditapp/proj/ProjAcct_DetailForFK.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="ProjAcctAction_getById_Read" method="getById_Read" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detail_Read">/creditapp/proj/ProjAcct_Detail_Read.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="ProjAcctActionInsert" method="insert" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list_Read">/creditapp/proj/ProjAcct_ListToProj_Read.jsp</result>
+			<result name="input">/creditapp/proj/ProjAcct_InsertAcct.jsp</result>
+			<result name="detail">/creditapp/proj/ProjAcct_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ProjAcctActionUpdate" method="update" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="input">/creditapp/proj/ProjAcct_Detail.jsp</result>
+			<result name="detail">/creditapp/proj/ProjAcct_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ProjAcctActionUpdateForZ" method="updateForZ" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detailForZ">/creditapp/proj/ProjAcct_DetailForZ.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ProjAcctActionUpdateForFK" method="updateForFK" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detailForFK">/creditapp/proj/ProjAcct_DetailForFK.jsp</result>
+		</action>
+		<!-- 根据项目号显示所有的的账户信息 -->
+		<action name="ProjAcctAction_listQuotaForCorp" method="listQuotaForCorp" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_listQuotaForCorp.jsp</result>
+		</action>
+		
+		<!-- 项目zhanghu详细信息 -->
+		<action name="ProjAcctAction_getTab" method="getTab" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="tab">/creditapp/proj/ProjAcct_Tab.jsp</result>
+		</action>
+		<!-- 按照项目号显示所有的的账户信息 
+		<action name="ProjAcctAction_listQuotaForCorp" method="listQuotaForCorp" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_listQuotaForCorp.jsp</result>
+		</action>
+		-->
+		<!-- 按照项目号跟账户类型查询账户信息 -->
+		<action name="ProjAcctAction_findByProjNoAndAcctType" method="findByProjNoAndAcctType" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list1">/creditapp/proj/ProjAcct_ListForEcharts.jsp</result>
+			<result name="list2">/creditapp/proj/ProjAcct_Virtual_ListForEcharts.jsp</result>
+		</action>
+		<action name="ProjAcctAction_findByProjNoToFK" method="findByProjNoToFK" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_ListForFK.jsp</result>
+		</action>
+		<!--未来现金流预测-->
+		<action name="ProjAcctAction_future_cash_flow" method="future_cash_flow" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detail">/creditapp/proj/Future_Cash_Flow.jsp</result>
+		</action>
+		<!--虚拟户预测-->
+		<action name="ProjAcctAction_virtual_account_calculaor" method="virtual_account_calculaor" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detail">/creditapp/proj/Virtual_Acc_Calculaor.jsp</result>
+		</action>	
+		<!--虚拟户预拨款-->
+		<action name="ProjAcctAction_virtual_AllocateReg" method="virtual_AllocateReg" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detail">/creditapp/proj/Allocate_Reg.jsp</result>
+		</action>
+		<!--虚拟户预拨款数据-->
+		<action name="ProjAcctAction_insert_allocateRegWsIn" method="insert_allocateRegWsIn" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="detail">/creditapp/proj/Allocate_Reg.jsp</result>
+		</action>
+		<!-- 分页查询虚拟账户信息 -->
+		<action name="ProjAcctAction_findByPageForVa" method="findByPageForVa" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list">/creditapp/proj/ProjAcct_listForVa.jsp</result>
+		</action>
+		<!-- 资金同步 -->
+		<action name="ProjAcctAction_fundsync" method="fundsync" class="app.creditapp.proj.action.ProjAcctAction">
+			<result name="list1">/creditapp/proj/ProjAcct_ListForEcharts.jsp</result>
+			<result name="list2">/creditapp/proj/ProjAcct_Virtual_ListForEcharts.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ========================================================= -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn3101Id</ruleId>
+		<ruleName>wsIn3101Rule</ruleName>
+		<columnList>
+			<!-- 合作机构号 -->
+			<column columenName="brNo">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			
+			<!-- 合同号 -->
+			<column columenName="pactNo">
+				<canNull>false</canNull>
+				<maxLength>40</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 原因 -->
+			<column columenName="reason">
+				<canNull>false</canNull>
+				<maxLength>60</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			
+		</columnList>
+	</rules>
+</ruleRoot>

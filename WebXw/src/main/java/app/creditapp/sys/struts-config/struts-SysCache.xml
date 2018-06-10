@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysCacheAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysCacheAction_findByPage" method="findByPage" class="app.creditapp.sys.action.SysCacheAction">
+			<result name="list">/creditapp/sys/SysCache_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="SysCacheAction_input" method="input" class="app.creditapp.sys.action.SysCacheAction">
+			<result name="input">/creditapp/sys/SysCache_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysCacheAction_del" method="del" class="app.creditapp.sys.action.SysCacheAction">
+			<result name="list">/creditapp/sys/SysCache_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="SysCacheAction_getById" method="getById" class="app.creditapp.sys.action.SysCacheAction">
+			<result name="detail">/creditapp/sys/SysCache_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysCacheActionInsert" method="insert" class="app.creditapp.sys.action.SysCacheAction">
+			<result name="input">/creditapp/sys/SysCache_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysCache_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysCacheActionUpdate" method="update" class="app.creditapp.sys.action.SysCacheAction">
+			<result name="input">/creditapp/sys/SysCache_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/SysCache_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,809 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn2001_1Id</ruleId>
+		<ruleName>wsIn2001_1Rule</ruleName>
+		<columnList>
+			<column columenName="workSts">
+				<canNull>true</canNull>
+				<maxLength>2</maxLength>
+				<minLength>2</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 合同号码 -->
+			<column columenName="prePactNo">
+				<canNull>false</canNull>
+				<maxLength>40</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 客户名称 -->
+			<column columenName="custName">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 证件类型 -->
+			<column columenName="idType">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 证件号码 -->
+			<column columenName="idNo">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 客户类型 -->
+			<column columenName="custType">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength>2</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 性别 -->
+			<column columenName="sex">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 出生日期 -->
+			<column columenName="birth">
+				<canNull>false</canNull>
+				<maxLength>8</maxLength>
+				<minLength>8</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 婚姻状况 -->
+			<column columenName="marriage">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength>2</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 是否有子女 -->
+			<column columenName="children">
+				<canNull>true</canNull>
+				<maxLength>2</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 最高学历 -->
+			<column columenName="edu">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength>2</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 最高学位 -->
+			<column columenName="degree">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 联系电话 -->
+			<column columenName="telNo">
+				<canNull>false</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 手机号码 -->
+			<column columenName="phoneNo">
+				<canNull>false</canNull>
+				<maxLength>15</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 通讯邮编 -->
+			<column columenName="postCode">
+				<canNull>true</canNull>
+				<maxLength>6</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 通讯地址 -->
+			<column columenName="postAddr">
+				<canNull>true</canNull>
+				<maxLength>60</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 户籍归属地 -->
+			<column columenName="homeArea">
+				<canNull>false</canNull>
+				<maxLength>6</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 住宅电话 -->
+			<column columenName="homeTel">
+				<canNull>true</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 住宅邮编 -->
+			<column columenName="homeCode">
+				<canNull>true</canNull>
+				<maxLength>6</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 住宅地址 -->
+			<column columenName="homeAddr">
+				<canNull>true</canNull>
+				<maxLength>60</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 居住状况 -->
+			<column columenName="homeSts">
+				<canNull>true</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 月收入（元） -->
+			<column columenName="income">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+					<!-- 配偶名称 -->
+			<column columenName="mateName">
+				<canNull>true</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 配偶证件类型 -->
+			<column columenName="mateIdtype">
+				<canNull>true</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 配偶证件号码 -->
+			<column columenName="mateIdno">
+				<canNull>true</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 配偶工作单位 -->
+			<column columenName="mateWork">
+				<canNull>true</canNull>
+				<maxLength>60</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 配偶联系电话 -->
+			<column columenName="mateTel">
+				<canNull>true</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 信托项目编号 -->
+			<column columenName="projNo">
+				<canNull>false</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 产品号 -->
+			<column columenName="prdtNo">
+				<canNull>false</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 合同金额 -->
+			<column columenName="pactAmt">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<!-- 趸交费总额 -->
+			<column columenName="feeTotal">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<!-- 利率（月） -->
+			<column columenName="lnRate">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>10,6</complexNumber>
+			</column>
+				<!-- 申请地点 -->
+			<column columenName="appArea">
+				<canNull>false</canNull>
+				<maxLength>6</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 申请用途 -->
+			<column columenName="appUse">
+				<canNull>false</canNull>
+				<maxLength>60</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 合同期限（月） -->
+			<column columenName="termMon">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 合同期限（日） -->
+			<column columenName="termDay">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 担保方式 -->
+			<column columenName="vouType">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 到期日期 -->
+			<column columenName="endDate">
+				<canNull>true</canNull>
+				<maxLength>8</maxLength>
+				<minLength>8</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 扣款日类型  -->
+			<column columenName="payType">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength>2</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 扣款日期  -->
+			<column columenName="payDay">
+				<canNull>true</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue>28</maxValue>
+				<minValue>1</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 职业  -->
+			<column columenName="workType">
+				<canNull>true</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 工作单位名称  -->
+			<column columenName="workName">
+				<canNull>true</canNull>
+				<maxLength>60</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 工作单位所属行业  -->
+			<column columenName="workWay">
+				<canNull>true</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 工作单位邮编-->
+			<column columenName="workCode">
+				<canNull>true</canNull>
+				<maxLength>6</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 工作单位地址-->
+			<column columenName="workAddr">
+				<canNull>true</canNull>
+				<maxLength>6</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 职务-->
+			<column columenName="workDuty">
+				<canNull>true</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 职称-->
+			<column columenName="workTitle">
+				<canNull>true</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 工作起始年份-->
+			<column columenName="workYear">
+				<canNull>true</canNull>
+				<maxLength>4</maxLength>
+				<minLength>4</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 是否有车-->
+			<column columenName="ifCar">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 是否有按揭车贷-->
+			<column columenName="ifCarCred">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 是否有房-->
+			<column columenName="ifRoom">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 是否有按揭房贷-->
+			<column columenName="ifMort">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 是否有贷记卡-->
+			<column columenName="ifCard">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 贷记卡最低额度-->
+			<column columenName="cardAmt">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 是否填写申请表-->
+			<column columenName="ifApp">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 是否有身份证信息-->
+			<column columenName="ifId">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 是否已签订合同-->
+			<column columenName="ifPact">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

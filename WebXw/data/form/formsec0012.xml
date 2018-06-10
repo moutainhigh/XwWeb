@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="sec0012" title="用户登录详细">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="op_no" fieldsize="6" fieldtype="1" formactiveid="3" labelalign="3" labelcol="1" labelname="操作员号" mustinput="0" readonly="1" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="6" fieldname="br_no" fieldsize="8" fieldtype="1" formactiveid="4" labelalign="3" labelcol="5" labelname="机构号" mustinput="" readonly="1" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="op_name" fieldsize="12" fieldtype="1" formactiveid="5" labelalign="3" labelcol="3" labelname="操作员姓名" mustinput="" readonly="1" row="1"/>
+</form>

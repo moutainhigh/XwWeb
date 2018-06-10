@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="ddtl0001" title="扣款明细表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="traceNo" fieldtype="1" maxlength="20" formactiveid="1" labelalign="3" labelcol="1" labelname="主机流水号" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="ddtlNo" fieldtype="1" maxlength="10" formactiveid="2" labelalign="3" labelcol="3" labelname="扣款明细流水号" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="loanNo" fieldtype="1" maxlength="14" formactiveid="3" labelalign="3" labelcol="1" labelname="借据号" mustinput="0" row="2" />
+</form>

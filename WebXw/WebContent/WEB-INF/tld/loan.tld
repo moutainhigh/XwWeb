@@ -1,0 +1,207 @@
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+<tlibversion>1.0</tlibversion>
+<jspversion>1.1</jspversion>
+<shortname>dhcc</shortname>
+<uri>http://jakarta.apache.org/struts/tags-tiles</uri>
+
+    <tag>
+	<name>formTag</name>
+	<tagclass>com.core.struts.taglib.FormTag</tagclass>
+	<bodycontent>JSP</bodycontent>
+	<attribute>
+		<name>name</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>property</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>mode</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    </tag>
+
+
+    <tag>
+	<name>formPreviewTag</name>
+	<tagclass>com.core.struts.taglib.taglibforpre.PreFormTag</tagclass>
+	<bodycontent>JSP</bodycontent>
+	
+	<attribute>
+		<name>property</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>mode</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    </tag>
+
+
+    <tag>
+	<name>tableTag</name>
+	<tagclass>com.core.struts.taglib.ListTableTag</tagclass>
+	<bodycontent>JSP</bodycontent>
+	<attribute>
+		<name>name</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>property</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>paginate</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>head</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	
+    </tag>
+
+	<tag>
+	<name>preTableTag</name>
+	<tagclass>com.core.struts.taglib.taglibforpre.PreListTableTag</tagclass>
+	<bodycontent>JSP</bodycontent>
+	<attribute>
+		<name>name</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>property</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>paginate</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>head</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	
+    </tag>
+    
+    <tag>
+	<name>tabTag</name>
+	<tagclass>com.core.struts.taglib.TabPlaneTag</tagclass>
+	<bodycontent>JSP</bodycontent>
+	<attribute>
+		<name>name</name>
+		<required>false</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>
+		<name>tabList</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+    </tag>
+    
+    <tag>
+  		<name>button</name>
+  		<tagclass>com.core.struts.taglib.SysRoleButtonTag</tagclass>
+  		<bodycontent>jsp</bodycontent>
+  		
+  		<attribute>
+  			<name>action</name>
+  			<required>true</required>
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		
+  		<attribute>
+  			<name>value</name>
+  			<required>true</required>
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		
+  		<attribute>
+  			<name>onclick</name>
+  			<required>false</required>
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		
+  		<attribute>
+  			<name>menu</name>
+  			<required>false</required>
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		
+  		<attribute>
+  			<name>typeclass</name>
+  			<required>false</required>
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  		
+  		<attribute>
+  			<name>commit</name>
+  			<required>false</required>
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>	
+  		
+  		<attribute>
+  			<name>param</name>
+  			<required>false</required>
+  			<rtexprvalue>true</rtexprvalue>
+  		</attribute>
+  	</tag>
+  	<tag>
+		<name>tableDynamicTag</name>
+		<tagclass>com.core.struts.taglib.taglibforjson.JsonListTableDynamicTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<attribute>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>property</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>paginate</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>head</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+    </tag>
+  
+
+</taglib>

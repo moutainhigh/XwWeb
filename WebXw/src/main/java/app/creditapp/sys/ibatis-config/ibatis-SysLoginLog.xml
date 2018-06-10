@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysLoginLog" type="app.creditapp.sys.entity.SysLoginLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysLoginLog" class="SysLoginLog">
+    <result property="sessionId" column="SESSION_ID"/>
+    <result property="brNo" column="BR_NO"/>
+    <result property="opNo" column="OP_NO"/>
+    <result property="opName" column="OP_NAME"/>
+    <result property="loginDate" column="LOGIN_DATE"/>
+    <result property="loginTime" column="LOGIN_TIME"/>
+    <result property="loginIp" column="LOGIN_IP"/>
+    <result property="logoutTime" column="LOGOUT_TIME"/>
+    <result property="osName" column="OS_NAME"/>
+    <result property="osVersion" column="OS_VERSION"/>
+    <result property="ieName" column="IE_NAME"/>
+    <result property="ieVersion" column="IE_VERSION"/>
+    </resultMap>
+     <sql id="SysLoginLog.columns">
+        <![CDATA[
+         SESSION_ID,
+         BR_NO,
+         OP_NO,
+         OP_NAME,
+         LOGIN_DATE,
+         LOGIN_TIME,
+         LOGIN_IP,
+         LOGOUT_TIME,
+         OS_NAME,
+         OS_VERSION,
+         IE_NAME,
+         IE_VERSION
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysLoginLog.insert">
+        <![CDATA[
+        INSERT INTO SYS_LOGIN_LOG(
+         SESSION_ID,
+         BR_NO,
+         OP_NO,
+         OP_NAME,
+         LOGIN_DATE,
+         LOGIN_TIME,
+         LOGIN_IP,
+         LOGOUT_TIME,
+         OS_NAME,
+         OS_VERSION,
+         IE_NAME,
+         IE_VERSION
+         )VALUES(
+         #sessionId#,
+         #brNo#,
+         #opNo#,
+         #opName#,
+         #loginDate#,
+         #loginTime#,
+         #loginIp#,
+         #logoutTime#,
+         #osName#,
+         #osVersion#,
+         #ieName#,
+         #ieVersion#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysLoginLog.del">
+        <![CDATA[
+               DELETE FROM SYS_LOGIN_LOG
+                 WHERE
+               	SESSION_ID = #sessionId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysLoginLog.update">
+        <![CDATA[
+         UPDATE SYS_LOGIN_LOG set
+         SESSION_ID=#sessionId#,
+         BR_NO=#brNo#,
+         OP_NO=#opNo#,
+         OP_NAME=#opName#,
+         LOGIN_DATE=#loginDate#,
+         LOGIN_TIME=#loginTime#,
+         LOGIN_IP=#loginIp#,
+         LOGOUT_TIME=#logoutTime#,
+         OS_NAME=#osName#,
+         OS_VERSION=#osVersion#,
+         IE_NAME=#ieName#,
+         IE_VERSION=#ieVersion#
+          WHERE
+               	SESSION_ID = #sessionId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysLoginLog.getById"  resultMap="RM.SysLoginLog">
+        SELECT <include refid="SysLoginLog.columns"/>
+        <![CDATA[
+             FROM SYS_LOGIN_LOG 
+         WHERE 
+               	SESSION_ID = #sessionId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysLoginLog.findPage.where">
+      <dynamic prepend="where">
+        		  <isPropertyAvailable property="sessionId">
+                      <isNotEmpty prepend="AND" property="sessionId">
+                          SESSION_ID = #sessionId#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="opNo">
+                      <isNotEmpty prepend="AND" property="opNo">
+                          OP_NO = #opNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="opName">
+                      <isNotEmpty prepend="AND" property="opName">
+                          OP_NAME = #opName#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="beginDate">
+                  	<isPropertyAvailable property="endDate">
+                      <isNotEmpty prepend="AND" property="beginDate">
+                      	<![CDATA[
+                          LOGIN_DATE >= #beginDate#
+                         ]]>
+                      </isNotEmpty>
+                      <isNotEmpty prepend="AND" property="endDate">
+                      	<![CDATA[
+                          LOGIN_DATE <= #endDate#
+                        ]]>
+                      </isNotEmpty>
+                    </isPropertyAvailable>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysLoginLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_LOGIN_LOG <include refid="SysLoginLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysLoginLog.findByPage" resultMap="RM.SysLoginLog">
+        SELECT <include refid="SysLoginLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysLoginLog.columns"/> FROM SYS_LOGIN_LOG
+                    <include refid="SysLoginLog.findPage.where"/>
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+    </select>
+</sqlMap>

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ============================================================= -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn2301_1Id</ruleId>
+		<ruleName>wsIn2301_1Rule</ruleName>
+		<columnList>
+			<!-- 合同号不能为空 -->
+			<column columenName="pactNo">
+				<canNull>false</canNull>
+				<maxLength>40</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 扣款流水号 -->
+			<column columenName="serialNo">
+				<canNull>false</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 应收罚息 -->
+			<column columenName="payOver">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType>16,2</regexpType>
+			</column>
+			<!-- 应收代扣费总额 -->
+			<column columenName="feeRec">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType>16,2</regexpType>
+			</column>
+			<!-- 扣款金额 -->
+			<column columenName="repayTotal">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType>16,2</regexpType>
+			</column>
+			<!-- 扣款本金 -->
+			<column columenName="repayAmt">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType>16,2</regexpType>
+			</column>
+			<!-- 扣款利息 -->
+			<column columenName="repayInte">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType>16,2</regexpType>
+			</column>
+			<!-- 扣款罚息 -->
+			<column columenName="repayOver">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType>16,2</regexpType>
+			</column>
+			<!-- 代扣费总额 -->
+			<column columenName="feeTotal">
+				<canNull>true</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType>16,2</regexpType>
+			</column>
+			<!-- 扣款账号 -->
+			<column columenName="acNo">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 扣款账号 -->
+			<column columenName="cardChn">
+				<canNull>true</canNull>
+				<maxLength>6</maxLength>
+				<minLength>6</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

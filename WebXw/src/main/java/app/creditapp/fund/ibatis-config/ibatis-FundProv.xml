@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundProv" type="app.creditapp.fund.entity.FundProv"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundProv" class="FundProv">
+    <result property="provNo" column="PROV_NO" />
+    <result property="provProjNo" column="PROV_PROJ_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="fundName" column="FUND_NAME" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="days" column="DAYS" jdbcType="Int"/>
+    <result property="fdAmt" column="FD_AMT" jdbcType="double"/>
+    <result property="finRate" column="FIN_RATE" jdbcType="float"/>
+    <result property="fineCost" column="FINE_COST" jdbcType="double"/>
+    <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    <result property="finIncome" column="FIN_INCOME" jdbcType="double"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="FundProv.columns">
+        <![CDATA[
+         PROV_NO,
+         PROV_PROJ_NO,
+         PROJ_NO,
+         FUND_NO,
+         FUND_NAME,
+         BEG_DATE,
+         END_DATE,
+         DAYS,
+         FD_AMT,
+         FIN_RATE,
+         FINE_COST,
+         PAY_AMT,
+         FIN_INCOME,
+         OP_NO,
+         TX_DATE,
+         FILLER
+          ]]>
+    </sql>
+    <sql id="FundProv.columnsS">
+        <![CDATA[
+         PROV_NO,
+         PROV_PROJ_NO,
+         PROJ_NO,
+         FUND_NO,
+         FUND_NAME,
+         BEG_DATE,
+         END_DATE,
+         DAYS,
+         FD_AMT,
+         FIN_RATE,
+         FINE_COST,
+         PAY_AMT,
+         FIN_INCOME,
+         fun_getusername(OP_NO) AS OP_NO,
+         TX_DATE,
+         FILLER
+          ]]>
+    </sql>
+      
+    <!-- 表新增 -->
+    <insert id="FundProv.insert">
+        <![CDATA[
+        INSERT INTO FUND_PROV(
+         PROV_NO,
+         PROV_PROJ_NO,
+         PROJ_NO,
+         FUND_NO,
+         FUND_NAME,
+         BEG_DATE,
+         END_DATE,
+         DAYS,
+         FD_AMT,
+         FIN_RATE,
+         FINE_COST,
+         PAY_AMT,
+         FIN_INCOME,
+         OP_NO,
+         TX_DATE,
+         FILLER
+         )VALUES(
+         #provNo#,
+         #provProjNo#,
+         #projNo#,
+         #fundNo#,
+         #fundName#,
+         #begDate#,
+         #endDate#,
+         #days#,
+         #fdAmt#,
+         #finRate#,
+         #fineCost#,
+         #payAmt#,
+         #finIncome#,
+         #opNo#,
+         #txDate#,
+         #filler#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="provNo" >
+				SELECT  FUND_PROV_SEQ.NEXTVAL AS provNo FROM DUAL
+         </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundProv.del">
+        <![CDATA[
+               DELETE FROM FUND_PROV
+                 WHERE
+               	PROV_NO = #provNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundProv.update">
+        <![CDATA[
+         UPDATE FUND_PROV set
+         PROV_NO=#provNo#,
+         PROJ_NO=#projNo#,
+         FUND_NO=#fundNo#,
+         FUND_NAME=#fundName#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         DAYS=#days#,
+         FD_AMT=#fdAmt#,
+         FIN_RATE=#finRate#,
+         FINE_COST=#fineCost#,
+         PAY_AMT=#payAmt#,
+         FIN_INCOME=#finIncome#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         FILLER=#filler#
+          WHERE
+               	PROV_NO = #provNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundProv.getById"  resultMap="RM.FundProv">
+        SELECT <include refid="FundProv.columnsS"/>
+        <![CDATA[
+             FROM FUND_PROV 
+         WHERE 
+               	PROV_NO = #provNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundProv.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="provProjNo">
+                  <isNotEmpty prepend="AND" property="provProjNo">
+                      PROV_PROJ_NO = #provProjNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="fundName">
+                  <isNotEmpty prepend="AND" property="fundName">
+                      FUND_NAME like '%$fundName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundProv.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_PROV <include refid="FundProv.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundProv.findByPage" resultMap="RM.FundProv">
+        SELECT <include refid="FundProv.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundProv.columnsS"/> FROM FUND_PROV
+                    <include refid="FundProv.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysRoleMenu" type="app.creditapp.sys.entity.SysRoleMenu"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysRoleMenu" class="SysRoleMenu">
+    <result property="rec_id" column="REC_ID" />
+    <result property="role_no" column="ROLE_NO" />
+    <result property="menu_no" column="MENU_NO" />
+    </resultMap>
+     <sql id="SysRoleMenu.columns">
+        <![CDATA[
+         REC_ID,
+         ROLE_NO,
+         MENU_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysRoleMenu.insert">
+        <![CDATA[
+        INSERT INTO SYS_ROLE_MENU(
+         REC_ID,
+         ROLE_NO,
+         MENU_NO
+         )VALUES(
+         #rec_id#,
+         #role_no#,
+         #menu_no#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysRoleMenu.del">
+        <![CDATA[
+               DELETE FROM SYS_ROLE_MENU
+                 WHERE
+               	REC_ID = #rec_id#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysRoleMenu.update">
+        <![CDATA[
+         UPDATE SYS_ROLE_MENU set
+         REC_ID=#rec_id#,
+         ROLE_NO=#role_no#,
+         MENU_NO=#menu_no#
+          WHERE
+               	REC_ID = #rec_id#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysRoleMenu.getById"  resultMap="RM.SysRoleMenu">
+        SELECT <include refid="SysRoleMenu.columns"/>
+        <![CDATA[
+             FROM SYS_ROLE_MENU 
+         WHERE 
+               	REC_ID=#rec_id#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysRoleMenu.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rec_id">
+                  <isNotEmpty prepend="AND" property="rec_id">
+                     REC_ID=#rec_id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_no">
+                  <isNotEmpty prepend="AND" property="role_no">
+                      ROLE_NO = #role_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="menu_no">
+                  <isNotEmpty prepend="AND" property="menu_no">
+                      MENU_NO = #menu_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysRoleMenu.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_ROLE_MENU <include refid="SysRoleMenu.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysRoleMenu.findByPage" resultMap="RM.SysRoleMenu">
+        SELECT <include refid="SysRoleMenu.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysRoleMenu.columns"/> FROM SYS_ROLE_MENU
+                    <include refid="SysRoleMenu.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <!-- 表新增 -->
+    <insert id="SysRoleMenu.saveAndUpdate">
+        <![CDATA[
+        INSERT INTO SYS_ROLE_MENU(
+         REC_ID,
+         ROLE_NO,
+         MENU_NO
+         )VALUES(
+         #rec_id#,
+         #role_no#,
+         #menu_no#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="rec_id" >
+			SELECT REC_ID_SEQ.NEXTVAL AS rec_id FROM DUAL
+        </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysRoleMenu.delRoleMenuByRoleNo">
+        <![CDATA[
+               DELETE FROM SYS_ROLE_MENU
+                 WHERE
+               	ROLE_NO = #role_no#        ]]>
+    </delete>
+</sqlMap>

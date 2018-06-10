@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="RptCorpDaily" type="app.creditapp.corp.entity.RptCorpDaily"/>
+
+    <resultMap id="RM.RPT_CORP_DAILY" class="RptCorpDaily">
+			<result property="rptDate" column="RPT_DATE" columnIndex="1"/>
+			<result property="rptType" column="RPT_TYPE" columnIndex="2"/>
+			<result property="brNo" column="BR_NO" columnIndex="3"/>
+			<result property="cifNum" column="CIF_NUM" columnIndex="4"/>
+			<result property="lnCnt" column="LN_CNT" columnIndex="5"/>
+			<result property="lnBal" column="LN_BAL" columnIndex="6"/>
+			<result property="overBal" column="OVER_BAL" columnIndex="7"/>
+			<result property="intstBal" column="INTST_BAL" columnIndex="8"/>
+			<result property="fineBal" column="FINE_BAL" columnIndex="9"/>
+			<result property="mtrAmt" column="MTR_AMT" columnIndex="10"/>
+			<result property="mtrIntst" column="MTR_INTST" columnIndex="11"/>
+			<result property="cntYear" column="CNT_YEAR" columnIndex="12"/>
+			<result property="cntMon" column="CNT_MON" columnIndex="13"/>
+			<result property="cntDay" column="CNT_DAY" columnIndex="14"/>
+			<result property="cntAvg" column="CNT_AVG" columnIndex="15"/>
+			<result property="amtTot" column="AMT_TOT" columnIndex="16"/>
+			<result property="amtYear" column="AMT_YEAR" columnIndex="17"/>
+			<result property="amtMon" column="AMT_MON" columnIndex="18"/>
+			<result property="amtDay" column="AMT_DAY" columnIndex="19"/>
+			<result property="amtAvg" column="AMT_AVG" columnIndex="20"/>
+			<result property="repayDaycnt" column="REPAY_DAYCNT" columnIndex="21"/>
+			<result property="repayMoncnt" column="REPAY_MONCNT" columnIndex="22"/>
+			<result property="repayYearcnt" column="REPAY_YEARCNT" columnIndex="23"/>
+			<result property="repayTotcnt" column="REPAY_TOTCNT" columnIndex="24"/>
+			<result property="repayAvgcnt" column="REPAY_AVGCNT" columnIndex="25"/>
+			<result property="repayTot" column="REPAY_TOT" columnIndex="26"/>
+			<result property="repayYear" column="REPAY_YEAR" columnIndex="27"/>
+			<result property="repayMon" column="REPAY_MON" columnIndex="28"/>
+			<result property="repayDay" column="REPAY_DAY" columnIndex="29"/>
+			<result property="intstTot" column="INTST_TOT" columnIndex="30"/>
+			<result property="intstYear" column="INTST_YEAR" columnIndex="31"/>
+			<result property="intstMon" column="INTST_MON" columnIndex="32"/>
+			<result property="intstDay" column="INTST_DAY" columnIndex="33"/>
+			<result property="fineTot" column="FINE_TOT" columnIndex="34"/>
+			<result property="fineYear" column="FINE_YEAR" columnIndex="35"/>
+			<result property="fineMon" column="FINE_MON" columnIndex="36"/>
+			<result property="fineDay" column="FINE_DAY" columnIndex="37"/>
+			<result property="repayAvg" column="REPAY_AVG" columnIndex="38"/>
+			<result property="rebuyAmt" column="REBUY_AMT" columnIndex="39"/>
+			<result property="compAmt" column="COMP_AMT" columnIndex="40"/>
+			<result property="passDayrate" column="PASS_DAYRATE" columnIndex="41"/>
+			<result property="passMonrate" column="PASS_MONRATE" columnIndex="42"/>
+			<result property="failDayrate" column="FAIL_DAYRATE" columnIndex="43"/>
+			<result property="failMonrate" column="FAIL_MONRATE" columnIndex="44"/>
+
+    </resultMap>
+  
+    <sql id="RptCorpDaily.columns">
+        <![CDATA[
+				RPT_DATE,
+				RPT_TYPE,
+				BR_NO,
+				CIF_NUM,
+				LN_CNT,
+				LN_BAL,
+				OVER_BAL,
+				INTST_BAL,
+				FINE_BAL,
+				MTR_AMT,
+				MTR_INTST,
+				CNT_YEAR,
+				CNT_MON,
+				CNT_DAY,
+				CNT_AVG,
+				AMT_TOT,
+				AMT_YEAR,
+				AMT_MON,
+				AMT_DAY,
+				AMT_AVG,
+				REPAY_DAYCNT,
+				REPAY_MONCNT,
+				REPAY_YEARCNT,
+				REPAY_TOTCNT,
+				REPAY_AVGCNT,
+				REPAY_TOT,
+				REPAY_YEAR,
+				REPAY_MON,
+				REPAY_DAY,
+				INTST_TOT,
+				INTST_YEAR,
+				INTST_MON,
+				INTST_DAY,
+				FINE_TOT,
+				FINE_YEAR,
+				FINE_MON,
+				FINE_DAY,
+				REPAY_AVG,
+				REBUY_AMT,
+				COMP_AMT,
+				PASS_DAYRATE,
+				PASS_MONRATE,
+				FAIL_DAYRATE,
+				FAIL_MONRATE
+        ]]>
+    </sql>
+   
+    <insert id="RptCorpDaily.insert">
+        <![CDATA[
+		INSERT INTO RPT_CORP_DAILY(
+				RPT_DATE,
+				RPT_TYPE,
+				BR_NO,
+				CIF_NUM,
+				LN_CNT,
+				LN_BAL,
+				OVER_BAL,
+				INTST_BAL,
+				FINE_BAL,
+				MTR_AMT,
+				MTR_INTST,
+				CNT_YEAR,
+				CNT_MON,
+				CNT_DAY,
+				CNT_AVG,
+				AMT_TOT,
+				AMT_YEAR,
+				AMT_MON,
+				AMT_DAY,
+				AMT_AVG,
+				REPAY_DAYCNT,
+				REPAY_MONCNT,
+				REPAY_YEARCNT,
+				REPAY_TOTCNT,
+				REPAY_AVGCNT,
+				REPAY_TOT,
+				REPAY_YEAR,
+				REPAY_MON,
+				REPAY_DAY,
+				INTST_TOT,
+				INTST_YEAR,
+				INTST_MON,
+				INTST_DAY,
+				FINE_TOT,
+				FINE_YEAR,
+				FINE_MON,
+				FINE_DAY,
+				REPAY_AVG,
+				REBUY_AMT,
+				COMP_AMT,
+				PASS_DAYRATE,
+				PASS_MONRATE,
+				FAIL_DAYRATE,
+				FAIL_MONRATE
+			)VALUES(
+				#rptDate#,
+				#rptType#,
+				#brNo#,
+				#cifNum#,
+				#lnCnt#,
+				#lnBal#,
+				#overBal#,
+				#intstBal#,
+				#fineBal#,
+				#mtrAmt#,
+				#mtrIntst#,
+				#cntYear#,
+				#cntMon#,
+				#cntDay#,
+				#cntAvg#,
+				#amtTot#,
+				#amtYear#,
+				#amtMon#,
+				#amtDay#,
+				#amtAvg#,
+				#repayDaycnt#,
+				#repayMoncnt#,
+				#repayYearcnt#,
+				#repayTotcnt#,
+				#repayAvgcnt#,
+				#repayTot#,
+				#repayYear#,
+				#repayMon#,
+				#repayDay#,
+				#intstTot#,
+				#intstYear#,
+				#intstMon#,
+				#intstDay#,
+				#fineTot#,
+				#fineYear#,
+				#fineMon#,
+				#fineDay#,
+				#repayAvg#,
+				#rebuyAmt#,
+				#compAmt#,
+				#passDayrate#,
+				#passMonrate#,
+				#failDayrate#,
+				#failMonrate#)
+        ]]>
+        <selectKey resultClass="java.lang.String" type="pre" keyProperty="rptDate" >
+		<![CDATA[SELECT RPT_CORP_DAILY_SEQ.nextval AS RPT_DATE FROM DUAL]]>
+	</selectKey> 
+    </insert>
+	
+    <delete id="RptCorpDaily.del">
+        <![CDATA[
+		DELETE FROM RPT_CORP_DAILY WHERE RPT_DATE=#rptDate#
+        ]]>
+    </delete>
+    
+    <update id="RptCorpDaily.update">
+        <![CDATA[
+		UPDATE RPT_CORP_DAILY SET 
+			RPT_TYPE=#rptType#,
+			BR_NO=#brNo#,
+			CIF_NUM=#cifNum#,
+			LN_CNT=#lnCnt#,
+			LN_BAL=#lnBal#,
+			OVER_BAL=#overBal#,
+			INTST_BAL=#intstBal#,
+			FINE_BAL=#fineBal#,
+			MTR_AMT=#mtrAmt#,
+			MTR_INTST=#mtrIntst#,
+			CNT_YEAR=#cntYear#,
+			CNT_MON=#cntMon#,
+			CNT_DAY=#cntDay#,
+			CNT_AVG=#cntAvg#,
+			AMT_TOT=#amtTot#,
+			AMT_YEAR=#amtYear#,
+			AMT_MON=#amtMon#,
+			AMT_DAY=#amtDay#,
+			AMT_AVG=#amtAvg#,
+			REPAY_DAYCNT=#repayDaycnt#,
+			REPAY_MONCNT=#repayMoncnt#,
+			REPAY_YEARCNT=#repayYearcnt#,
+			REPAY_TOTCNT=#repayTotcnt#,
+			REPAY_AVGCNT=#repayAvgcnt#,
+			REPAY_TOT=#repayTot#,
+			REPAY_YEAR=#repayYear#,
+			REPAY_MON=#repayMon#,
+			REPAY_DAY=#repayDay#,
+			INTST_TOT=#intstTot#,
+			INTST_YEAR=#intstYear#,
+			INTST_MON=#intstMon#,
+			INTST_DAY=#intstDay#,
+			FINE_TOT=#fineTot#,
+			FINE_YEAR=#fineYear#,
+			FINE_MON=#fineMon#,
+			FINE_DAY=#fineDay#,
+			REPAY_AVG=#repayAvg#,
+			REBUY_AMT=#rebuyAmt#,
+			COMP_AMT=#compAmt#,
+			PASS_DAYRATE=#passDayrate#,
+			PASS_MONRATE=#passMonrate#,
+			FAIL_DAYRATE=#failDayrate#,
+			FAIL_MONRATE=#failMonrate# 
+		WHERE RPT_DATE=#rptDate#
+        ]]>
+    </update>
+
+	<select id="RptCorpDaily.getAllRptCorpDaily"  resultMap="RM.RPT_CORP_DAILY">
+        SELECT <include refid="RptCorpDaily.columns"/>
+        <![CDATA[
+             FROM RPT_CORP_DAILY
+        ]]>
+     </select>
+     
+    <select id="RptCorpDaily.getById"  resultMap="RM.RPT_CORP_DAILY">
+        SELECT <include refid="RptCorpDaily.columns"/>
+        <![CDATA[
+             FROM RPT_CORP_DAILY
+         WHERE 
+             RPT_DATE = #rptDate#
+        ]]>
+     </select>
+    <sql id="RptCorpDaily.findByPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="rptDate">
+                      <isNotEmpty prepend="AND" property="rptDate">
+                          RPT_DATE = #rptDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+
+    <select id="RptCorpDaily.findPage.count" resultClass="int">
+        SELECT count(*) FROM RPT_CORP_DAILY <include refid="RptCorpDaily.findByPage.where"/>
+    </select>
+
+    <select id="RptCorpDaily.findByPage" resultMap="RM.RPT_CORP_DAILY">
+        SELECT <include refid="RptCorpDaily.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptCorpDaily.columns"/> FROM RPT_CORP_DAILY
+                    <include refid="RptCorpDaily.findByPage.where"/>
+             ) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+    
+    <sql id="RptCorpDaily.findByAll.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="rptDate">
+                      <isNotEmpty prepend="AND" property="rptDate">
+                          RPT_DATE = #rptDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+    <select id="RptCorpDaily.findByAll"  resultMap="RM.RPT_CORP_DAILY">
+        SELECT <include refid="RptCorpDaily.columns"/>
+        FROM RPT_CORP_DAILY
+        <include refid="RptCorpDaily.findByAll.where"/>
+     </select>
+     
+     <select id="RptCorpDaily.getList"  resultMap="RM.RPT_CORP_DAILY">
+        SELECT <include refid="RptCorpDaily.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptCorpDaily.columns"/> FROM RPT_CORP_DAILY
+                    where BR_NO=#brNo# order by rpt_date desc
+             ) m 
+           WHERE rownum &lt;=7
+        )
+       WHERE rnum &gt;= 0  order by rpt_date asc
+     </select>
+     <select id="RptCorpDaily.findByAllNum"  resultMap="RM.RPT_CORP_DAILY">
+        SELECT <include refid="RptCorpDaily.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptCorpDaily.columns"/> FROM RPT_CORP_DAILY
+                    where BR_NO=#brNo# order by rpt_date desc
+             ) m 
+           WHERE rownum &lt;=15
+        )
+       WHERE rnum &gt;= 0  order by rpt_date asc
+     </select>
+    <sql id="RptCorpDaily.getRpt.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="rptDate">
+                      <isNotEmpty prepend="AND" property="rptDate">
+                          RPT_DATE = #rptDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 根据日期和合作机构号查询 -->
+    <select id="RptCorpDaily.findRpt"  resultMap="RM.RPT_CORP_DAILY">
+        SELECT <include refid="RptCorpDaily.columns"/>
+             FROM RPT_CORP_DAILY
+        <include refid="RptCorpDaily.getRpt.where"/>
+     </select>
+</sqlMap>

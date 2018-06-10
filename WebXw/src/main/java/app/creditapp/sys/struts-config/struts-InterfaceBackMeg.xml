@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="InterfaceBackMegAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="InterfaceBackMegAction_findByPage" method="findByPage" class="app.creditapp.sys.action.InterfaceBackMegAction">
+			<result name="list">/creditapp/sys/InterfaceBackMeg_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="InterfaceBackMegAction_input" method="input" class="app.creditapp.sys.action.InterfaceBackMegAction">
+			<result name="input">/creditapp/sys/InterfaceBackMeg_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="InterfaceBackMegAction_del" method="del" class="app.creditapp.sys.action.InterfaceBackMegAction">
+			<result name="list">/creditapp/sys/InterfaceBackMeg_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="InterfaceBackMegAction_getById" method="getById" class="app.creditapp.sys.action.InterfaceBackMegAction">
+			<result name="detail">/creditapp/sys/InterfaceBackMeg_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="InterfaceBackMegActionInsert" method="insert" class="app.creditapp.sys.action.InterfaceBackMegAction">
+			<result name="input">/creditapp/sys/InterfaceBackMeg_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/InterfaceBackMeg_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="InterfaceBackMegActionUpdate" method="update" class="app.creditapp.sys.action.InterfaceBackMegAction">
+			<result name="input">/creditapp/sys/InterfaceBackMeg_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/InterfaceBackMeg_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

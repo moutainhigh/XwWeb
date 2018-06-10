@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="inf0015" para="eadis_page" link="WsRepyMesAction_findByPage.action" title="扣款信息上传进件表" type="1">
+<tableitem align="2" filedname="wsId" id="2" indexed="2" label="接收数据ID" row="1" type="0" />
+<tableitem align="2" filedname="batchNo" id="3" indexed="3" label="批次编号" row="1" type="0" />
+<tableitem align="2" filedname="brNo" id="4" indexed="4" label="合作机构编号" row="1" type="0" />
+<tableitem align="2" filedname="pactNo" id="5" indexed="5" label="合同编号" row="1" type="0" />
+<tableitem align="2" filedname="acName" id="6" indexed="6" label="账户姓名" row="1" type="0" />
+<tableitem align="2" filedname="acNo" id="7" indexed="7" label="还款账号" row="1" type="0" />
+<tableitem align="2" filedname="opnCode" id="8" indexed="8" label="银行代码" row="1" type="0" />
+<tableitem align="2" filedname="opnName" id="9" indexed="9" label="开户行" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="20" indexed="20" label="-" row="1" type="5" typepara="WsRepyMesAction_getById.action;brNo-brNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="21" indexed="21" label="-" row="1" type="5" typepara="WsRepyMesAction_del.action;brNo-brNo;onClick-lkconfirm" width="2"/>
+</table>

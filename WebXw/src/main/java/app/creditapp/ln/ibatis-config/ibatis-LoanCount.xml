@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+	<typeAlias alias="LoanCount" type="app.creditapp.ln.entity.LoanCount" />
+
+	<!-- 实体类映射 -->
+	<resultMap class="LoanCount" id="RM.LoanCount">
+		<result property="batchNo" column="BATCH_NO" />
+		<result property="projNo" column="PROJ_NO" />
+		<result property="pactNo" column="PACT_NO" />
+		<result property="upDate" column="UP_DATE" />
+		<result property="cifName" column="CIF_NAME" />
+		<result property="curNo" column="CUR_NO" />
+		<result property="loanAmt" column="LOAN_AMT" />
+		<result property="loanSts" column="LOAN_STS" />
+		<result property="loanBankCode" column="LOAN_BANK_CODE" />
+		<result property="loanAcNo" column="LOAN_AC_NO" />
+		<result property="cardChn" column="CARD_CHN" />
+		<result property="begDt" column="BEG_DT" />
+		<result property="endDt" column="END_DT" />
+		<result property="brNo" column="BR_NO" />
+
+	</resultMap>
+
+	<!-- 列表返回记录 -->
+	<resultMap class="LoanCount" id="RM.LoanCountForPage">
+		<result property="batchNo" column="BATCH_NO" />
+		<result property="projNo" column="PROJ_NO" />
+		<result property="pactNo" column="PACT_NO" />
+		<result property="upDate" column="UP_DATE" />
+		<result property="cifName" column="CIF_NAME" />
+		<result property="curNo" column="CUR_NO" />
+		<result property="loanAmt" column="LOAN_AMT" />
+		<result property="loanSts" column="LOAN_STS" />
+		<result property="loanBankCode" column="LOAN_BANK_CODE" />
+		<result property="loanAcNo" column="LOAN_AC_NO" />
+		<result property="cardChn" column="CARD_CHN" />
+		<result property="brNo" column="BR_NO" />
+
+	</resultMap>
+
+
+	<sql id="LoanCount.columns">
+        <![CDATA[
+        BATCH_NO,
+        PROJ_NO,
+        PACT_NO,
+        UP_DATE,
+        CIF_NAME,
+        CUR_NO,
+        LOAN_AMT,
+        LOAN_STS,
+        LOAN_BANK_CODE,
+        LOAN_AC_NO,
+        CARD_CHN,
+        BR_NO
+        ]]>
+	</sql>
+	<!-- 根据实际情况选择分页查询条件 -->
+	<sql id="LoanCount.findPage.and">
+
+		<isPropertyAvailable property="brNo">
+			<isNotEmpty prepend="AND" property="brNo">
+				A.BR_NO = #brNo#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="projNo">
+			<isNotEmpty prepend="AND" property="projNo">
+				B.PROJ_NO = #projNo#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="pactNo">
+			<isNotEmpty prepend="AND" property="pactNo">
+				A.PACT_NO = #pactNo#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="begDt">
+			<isNotEmpty prepend="AND" property="begDt">
+				substr(A.UP_DATE,1,8)
+				&gt;= #begDt#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="endDt">
+			<isNotEmpty prepend="AND" property="endDt">
+				substr(A.UP_DATE,1,8)
+				&lt;= #endDt#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		
+	</sql>
+
+	<!-- 分页查询记录数 -->
+	<select id="Loan.findPage.count" resultClass="int">
+		SELECT COUNT(*)
+		FROM AC_LOAN_LOG A, AC_LN_MST B
+		WHERE A.LOAN_NO = B.LOAN_NO
+		<include refid="LoanCount.findPage.and" />
+		<isPropertyAvailable property="loginid">
+			<isNotEmpty prepend="AND" property="loginid">
+				PROJ_NO IN (select proj_no from proj_mang where login_id = #loginid#)
+			</isNotEmpty>
+		</isPropertyAvailable>
+	</select>
+
+	<!-- 分页查询 -->
+	<select id="Loan.findByPage" resultMap="RM.LoanCountForPage">
+		select 
+		<include refid="LoanCount.columns" />
+		from
+		(select m.*,rownum as rown
+		from(
+		SELECT B.BATCH_NO,
+		A.BR_NO,
+		A.PACT_NO,
+		B.CIF_NAME,
+		SUBSTR(A.UP_DATE, 1, 8) UP_DATE,
+		B.CUR_NO,
+		TO_CHAR(A.LOAN_AMT, 'FM9999999990.00') LOAN_AMT,
+		A.LOAN_STS,
+		A.LOAN_BANK_CODE,
+		A.LOAN_AC_NO,
+		A.CARD_CHN,
+		B.PROJ_NO
+		FROM AC_LOAN_LOG A, AC_LN_MST B
+		WHERE A.LOAN_NO = B.LOAN_NO
+		<include refid="LoanCount.findPage.and" />
+		order by A.UP_DATE, B.PROJ_NO)m
+		)
+		where 
+		 rown &gt;= #startNum#
+		AND rown &lt; #endNum#
+		<isPropertyAvailable property="loginid">
+			<isNotEmpty prepend="AND" property="loginid">
+				PROJ_NO IN (select proj_no from proj_mang where login_id = #loginid#)
+			</isNotEmpty>
+		</isPropertyAvailable>
+	</select>
+
+
+</sqlMap>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysCache" type="app.creditapp.sys.entity.SysCache"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysCache" class="SysCache">
+    <result property="cache_no" column="CACHE_NO" />
+    <result property="cache_name" column="CACHE_NAME" />
+    <result property="cache_chn_name" column="CACHE_CHN_NAME" />
+    <result property="cache_type" column="CACHE_TYPE" />
+    <result property="cache_desc" column="CACHE_DESC" />
+    </resultMap>
+     <sql id="SysCache.columns">
+        <![CDATA[
+         CACHE_NO,
+         CACHE_NAME,
+         CACHE_CHN_NAME,
+         CACHE_TYPE,
+         CACHE_DESC
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysCache.insert">
+        <![CDATA[
+        INSERT INTO SYS_CACHE(
+         CACHE_NO,
+         CACHE_NAME,
+         CACHE_CHN_NAME,
+         CACHE_TYPE,
+         CACHE_DESC
+         )VALUES(
+         #cache_no#,
+         #cache_name#,
+         #cache_chn_name#,
+         #cache_type#,
+         #cache_desc#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="cache_no" >
+				SELECT  SYS_CACHE_SEQ.NEXTVAL AS cache_no FROM DUAL
+      	 </selectKey>	
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysCache.del">
+        <![CDATA[
+               DELETE FROM SYS_CACHE
+                 WHERE
+               	CACHE_NO = #cache_no#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysCache.update">
+        <![CDATA[
+         UPDATE SYS_CACHE set
+         CACHE_NO=#cache_no#,
+         CACHE_NAME=#cache_name#,
+         CACHE_CHN_NAME=#cache_chn_name#,
+         CACHE_TYPE=#cache_type#,
+         CACHE_DESC=#cache_desc#
+          WHERE
+               	CACHE_NO = #cache_no#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysCache.getById"  resultMap="RM.SysCache">
+        SELECT <include refid="SysCache.columns"/>
+        <![CDATA[
+             FROM SYS_CACHE 
+         WHERE 
+               	CACHE_NO = #cache_no#        ]]>
+     </select>
+     
+     <!-- 加载时缓存 -->
+    <select id="SysCache.getSysCache"  resultMap="RM.SysCache">
+        SELECT <include refid="SysCache.columns"/>
+        <![CDATA[
+             FROM SYS_CACHE 
+         WHERE 
+               	CACHE_TYPE = '1'        ]]>
+     </select>
+     
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysCache.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="cache_no">
+                  <isNotEmpty prepend="AND" property="cache_no">
+                      CACHE_NO = #cache_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cache_name">
+                  <isNotEmpty prepend="AND" property="cache_name">
+                      CACHE_NAME = #cache_name#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cache_chn_name">
+                  <isNotEmpty prepend="AND" property="cache_chn_name">
+                      CACHE_CHN_NAME = #cache_chn_name#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cache_type">
+                  <isNotEmpty prepend="AND" property="cache_type">
+                      CACHE_TYPE = #cache_type#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysCache.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_CACHE <include refid="SysCache.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysCache.findByPage" resultMap="RM.SysCache">
+        SELECT <include refid="SysCache.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysCache.columns"/> FROM SYS_CACHE
+                    <include refid="SysCache.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

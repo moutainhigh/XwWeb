@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ProjParm" type="app.creditapp.proj.entity.ProjParm"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ProjParm" class="ProjParm">
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="filler" column="FILLER" />
+    <result property="leverRate" column="LEVER_RATE" />
+    <result property="backDays" column="BACK_DAYS" jdbcType="Int"/>
+    <result property="rgAppRate" column="RG_APP_RATE" />
+    <result property="mangFeerate" column="MANG_FEERATE" />
+    <result property="truPayType" column="TRU_PAY_TYPE" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="overDays" column="OVER_DAYS" />
+    <result property="fundEndDays" column="FUND_END_DAYS" />
+    <result property="projEndDays" column="PROJ_END_DAYS" />
+    <result property="intDays" column="INT_DAYS" />
+    <result property="endDay" column="END_DAY" />
+    <result property="overDay" column="OVER_DAY" />
+    <result property="compstDays" column="COMPST_DAYS" jdbcType="Int"/>
+    </resultMap>
+     <sql id="ProjParm.columns">
+        <![CDATA[
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         DEPT_NO,
+         FILLER,
+         LEVER_RATE,
+         BACK_DAYS,
+         RG_APP_RATE,
+         MANG_FEERATE,
+         TRU_PAY_TYPE,
+         PROJ_NAME,
+         PROJ_NO,
+         OVER_DAYS,
+         FUND_END_DAYS,
+         PROJ_END_DAYS,
+         INT_DAYS,
+         END_DAY,
+         OVER_DAY,
+         INT_DAYS,
+         COMPST_DAYS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ProjParm.insert">
+        <![CDATA[
+        INSERT INTO PROJ_PARM(
+         UP_OPNO,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         DEPT_NO,
+         FILLER,
+         LEVER_RATE,
+         BACK_DAYS,
+         RG_APP_RATE,
+         MANG_FEERATE,
+         TRU_PAY_TYPE,
+         PROJ_NAME,
+         PROJ_NO,
+         OVER_DAYS,
+         FUND_END_DAYS,
+         PROJ_END_DAYS,
+         INT_DAYS,
+		 END_DAY,
+		 OVER_DAY,         
+         COMPST_DAYS
+         )VALUES(
+         #upOpno#,
+         #upDate#,
+         #txDate#,
+         #opNo#,
+         #deptNo#,
+         #filler#,
+         #leverRate#,
+         #backDays#,
+         #rgAppRate#,
+         #mangFeerate#,
+         #truPayType#,
+         #projName#,
+         #projNo#,
+         #overDays#,
+         #fundEndDays#,
+         #projEndDays#,
+         #intDays#,
+         #endDay#,
+         #overDay#,
+         #compstDays#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ProjParm.del">
+        <![CDATA[
+               DELETE FROM PROJ_PARM
+                 WHERE proj_no = #projNo#
+  
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ProjParm.update">
+        <![CDATA[
+         UPDATE PROJ_PARM set
+         UP_OPNO=#upOpno#,
+         UP_DATE=#upDate#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#,
+         DEPT_NO=#deptNo#,
+         FILLER=#filler#,
+         LEVER_RATE=#leverRate#,
+         BACK_DAYS=#backDays#,
+         RG_APP_RATE=#rgAppRate#,
+         MANG_FEERATE=#mangFeerate#,
+         TRU_PAY_TYPE=#truPayType#,
+         PROJ_NAME=#projName#,
+         PROJ_NO=#projNo#,
+         OVER_DAYS=#overDays#,
+         FUND_END_DAYS=#fundEndDays#,
+         PROJ_END_DAYS=#projEndDays#,
+         INT_DAYS=#intDays#,
+         END_DAY=#endDay#,
+         OVER_DAY=#overDay#,
+         COMPST_DAYS=#compstDays#
+          WHERE proj_no = #projNo#
+ 
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ProjParm.getById"  resultMap="RM.ProjParm">
+        SELECT <include refid="ProjParm.columns"/>
+        <![CDATA[
+             FROM PROJ_PARM 
+         WHERE proj_no = #projNo#
+
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ProjParm.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      PROJ_NAME = #projName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ProjParm.findPage.count" resultClass="int">
+        SELECT count(*) FROM PROJ_PARM <include refid="ProjParm.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ProjParm.findByPage" resultMap="RM.ProjParm">
+        SELECT <include refid="ProjParm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjParm.columns"/> FROM PROJ_PARM
+                    <include refid="ProjParm.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询合作机构配置信息记录数 -->
+    <select id="ProjParm.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM PROJ_PARM WHERE 
+             proj_no = #projNo# ORDER BY PROJ_NO DESC
+    </select>
+    <!-- 分页查询合作机构配置信息-->
+    <select id="ProjParm.findByPageQuotaForCorp" resultMap="RM.ProjParm">
+        SELECT <include refid="ProjParm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjParm.columns"/> FROM PROJ_PARM WHERE  
+             proj_no = #projNo# ORDER BY PROJ_NO DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    
+    <!-- 查询信托项目参数配置信息-->
+    <select id="ProjParm.findListBySts" resultMap="RM.ProjParm">
+        SELECT <include refid="ProjParm.columns"/>
+        <![CDATA[
+             FROM PROJ_PARM p
+          WHERE EXISTS (SELECT 1 FROM proj_base b WHERE b.proj_no=p.proj_no AND b.proj_sts='01')
+        ]]>
+    </select>
+    
+    <!-- 获取KEY -->
+    <select id="ProjParm.getKey" resultClass="string">
+   	 <![CDATA[ SELECT PROJ_BASE_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

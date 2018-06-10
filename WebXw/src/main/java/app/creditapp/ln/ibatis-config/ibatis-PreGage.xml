@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PreGage" type="app.creditapp.ln.entity.PreGage"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.PreGage" class="PreGage">
+    <result property="appId" column="APP_ID" />
+    <result property="gageCifname" column="GAGE_CIFNAME" />
+    <result property="gageIdtype" column="GAGE_IDTYPE" />
+    <result property="gageIdno" column="GAGE_IDNO" />
+    <result property="gageType" column="GAGE_TYPE" />
+    <result property="gageName" column="GAGE_NAME" />
+    <result property="gageDesc" column="GAGE_DESC" />
+    <result property="gageValue" column="GAGE_VALUE" jdbcType="double"/>
+    <result property="gageLic" column="GAGE_LIC" />
+    <result property="gageLictype" column="GAGE_LICTYPE" />
+    <result property="gageLicbr" column="GAGE_LICBR" />
+    <result property="gageBegdate" column="GAGE_BEGDATE" />
+    <result property="gageEnddate" column="GAGE_ENDDATE" />
+    <result property="gageAmt" column="GAGE_AMT" jdbcType="double"/>
+    <result property="gageId" column="GAGE_ID" />
+    </resultMap>
+   
+   <!--ws2006（wsout2006_1_1）输出结果map--> 
+   <typeAlias alias="wsout2006_1_1" type="app.creditapp.inf.entity.WsOut2006_1_1"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.wsout2006_1_1" class="wsout2006_1_1">
+    <result property="gcustName" column="GAGE_CIFNAME" />
+    <result property="gcustIdtype" column="GAGE_IDTYPE" />
+    <result property="gcustIdno" column="GAGE_IDNO" />
+    <result property="gType" column="GAGE_TYPE" />
+    <result property="gName" column="GAGE_NAME" />
+    <result property="gDesc" column="GAGE_DESC" />
+    <result property="gValue" column="GAGE_VALUE" jdbcType="double"/>
+    <result property="gLicno" column="GAGE_LIC" />
+    <result property="LicType" column="GAGE_LICTYPE" />
+    </resultMap>
+    <!--结束-->
+     <sql id="PreGage.columns">
+        <![CDATA[
+         APP_ID,
+         GAGE_CIFNAME,
+         GAGE_IDTYPE,
+         GAGE_IDNO,
+         GAGE_TYPE,
+         GAGE_NAME,
+         GAGE_DESC,
+         GAGE_VALUE,
+         GAGE_LIC,
+         GAGE_LICTYPE,
+         GAGE_LICBR,
+         GAGE_BEGDATE,
+         GAGE_ENDDATE,
+         GAGE_AMT,
+         GAGE_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="PreGage.insert">
+        <![CDATA[
+        INSERT INTO PRE_GAGE(
+         GAGE_ID,
+         APP_ID,
+         GAGE_CIFNAME,
+         GAGE_IDTYPE,
+         GAGE_IDNO,
+         GAGE_TYPE,
+         GAGE_NAME,
+         GAGE_DESC,
+         GAGE_VALUE,
+         GAGE_LIC,
+         GAGE_LICTYPE,
+         GAGE_LICBR,
+         GAGE_BEGDATE,
+         GAGE_ENDDATE,
+         GAGE_AMT
+         )VALUES(
+         PRE_GAGE_SEQ.NEXTVAL,
+         #appId#,
+         #gageCifname#,
+         #gageIdtype#,
+         #gageIdno#,
+         #gageType#,
+         #gageName#,
+         #gageDesc#,
+         #gageValue#,
+         #gageLic#,
+         #gageLictype#,
+         #gageLicbr#,
+         #gageBegdate#,
+         #gageEnddate#,
+         #gageAmt#
+         )
+          ]]>
+    </insert>
+    
+    
+     <!-- 表新增 接口 ws2004 -->
+    <insert id="WsIn2004_1.insert">
+        <![CDATA[
+         INSERT INTO PRE_GAGE(
+         GAGE_ID,
+         APP_ID,
+         GAGE_CIFNAME,
+         GAGE_IDTYPE,
+         GAGE_IDNO,
+         GAGE_TYPE,
+         GAGE_NAME,
+         GAGE_DESC,
+         GAGE_VALUE,
+         GAGE_LIC,
+         GAGE_LICTYPE,
+         GAGE_LICBR,
+         GAGE_BEGDATE,
+         GAGE_ENDDATE,
+         GAGE_AMT
+         )VALUES(
+         PRE_GAGE_SEQ.NEXTVAL,
+         #appId#,
+         #gcustName#,
+         #gcustIdtype#,
+         #gcustIdno#,
+         #gType#,
+         #gName#,
+         #gDesc#,
+         #gValue#,
+         #gLicno#,
+         #gLicType#,
+         #gLicbr#,
+         #gBegdate#,
+         #gEnddate#,
+         #gValue#
+         )
+          ]]>
+    </insert>
+    
+    
+    
+    
+    <!-- 表删除 -->
+    <delete id="PreGage.del">
+        <![CDATA[
+               DELETE FROM PRE_GAGE
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="PreGage.update">
+        <![CDATA[
+         UPDATE PRE_GAGE set
+         APP_ID=#appId#,
+         GAGE_CIFNAME=#gageCifname#,
+         GAGE_IDTYPE=#gageIdtype#,
+         GAGE_IDNO=#gageIdno#,
+         GAGE_TYPE=#gageType#,
+         GAGE_NAME=#gageName#,
+         GAGE_DESC=#gageDesc#,
+         GAGE_VALUE=#gageValue#,
+         GAGE_LIC=#gageLic#,
+         GAGE_LICTYPE=#gageLictype#,
+         GAGE_LICBR=#gageLicbr#,
+         GAGE_BEGDATE=#gageBegdate#,
+         GAGE_ENDDATE=#gageEnddate#,
+         GAGE_AMT=#gageAmt#
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update>
+    <!-- 接口ws2006查找数据sql -->
+      <select id="PreGage.getByIdforws2006" resultMap="RM.wsout2006_1_1">
+        SELECT <include refid="PreGage.columns"/>
+        <![CDATA[
+        FROM PRE_GAGE 
+        WHERE APP_ID = #appId# ]]>
+     </select>  
+    <!-- 结束 --> 
+     
+     
+     <!-- 表查询ById -->
+    <select id="PreGage.getById" resultMap="RM.PreGage">
+        SELECT <include refid="PreGage.columns"/>
+        <![CDATA[
+             FROM PRE_GAGE 
+         WHERE 
+               	GAGE_ID = #gageId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PreGage.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="gageCifname">
+                  <isNotEmpty prepend="AND" property="gageCifname">
+                      GAGE_CIFNAME = #gageCifname#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gageIdno">
+                  <isNotEmpty prepend="AND" property="gageIdno">
+                      GAGE_IDNO = #gageIdno#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gageType">
+                  <isNotEmpty prepend="AND" property="gageType">
+                      GAGE_TYPE = #gageType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="PreGage.findPage.count" resultClass="int">
+        SELECT count(*) FROM PRE_GAGE <include refid="PreGage.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="PreGage.findByPage" resultMap="RM.PreGage">
+        SELECT <include refid="PreGage.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="PreGage.columns"/> FROM PRE_GAGE
+                    <include refid="PreGage.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <!-- 分页查询预进件申请信息押品信息记录数 -->
+    <select id="PreGage.findByPageQuotaForLn.count" resultClass="int">
+        SELECT count(*) FROM PRE_GAGE WHERE 
+             APP_ID = #appId# ORDER BY APP_ID DESC
+    </select>
+    <!-- 分页查询预进件申请信息押品信息-->
+    <select id="PreGage.findByPageQuotaForLn" resultMap="RM.PreGage">
+        SELECT <include refid="PreGage.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="PreGage.columns"/> FROM PRE_GAGE WHERE  
+             APP_ID = #appId# ORDER BY APP_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+  
+</sqlMap>

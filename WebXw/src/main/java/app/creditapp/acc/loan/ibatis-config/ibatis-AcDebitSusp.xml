@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcDebitSusp" type="app.creditapp.acc.loan.entity.AcDebitSusp"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcDebitSusp" class="AcDebitSusp">
+    <result property="wsId" column="WS_ID" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="acNo" column="AC_NO" />
+    <result property="opnCode" column="OPN_CODE" />
+    <result property="opnName" column="OPN_NAME" />
+    <result property="payOver" column="PAY_OVER" jdbcType="double"/>
+    <result property="feeRec" column="FEE_REC" jdbcType="double"/>
+    <result property="repayTotal" column="REPAY_TOTAL" jdbcType="double"/>
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double"/>
+    <result property="repayInte" column="REPAY_INTE" jdbcType="double"/>
+    <result property="repayOver" column="REPAY_OVER" jdbcType="double"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double"/>
+    <result property="serialNo" column="SERIAL_NO" />
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="cardChn" column="CARD_CHN" />
+    <result property="txCde" column="TX_CDE" />
+    </resultMap>
+     <sql id="AcDebitSusp.columns">
+        <![CDATA[
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         SERIAL_NO,
+         DEAL_STS,
+         DEAL_DESC,
+         TX_DATE,
+         CARD_CHN,
+         TX_CDE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcDebitSusp.insert">
+        <![CDATA[
+        INSERT INTO AC_DEBIT_SUSP(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         SERIAL_NO,
+         DEAL_STS,
+         DEAL_DESC,
+         TX_DATE,
+         CARD_CHN,
+         TX_CDE
+         )VALUES(
+         #wsId#,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #acName#,
+         #acNo#,
+         #opnCode#,
+         #opnName#,
+         #payOver#,
+         #feeRec#,
+         #repayTotal#,
+         #repayAmt#,
+         #repayInte#,
+         #repayOver#,
+         #feeTotal#,
+         #serialNo#,
+         #dealSts#,
+         #dealDesc#,
+         #txDate#,
+         #cardChn#,
+         #txCde#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcDebitSusp.del">
+        <![CDATA[
+               DELETE FROM AC_DEBIT_SUSP
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcDebitSusp.update">
+        <![CDATA[
+         UPDATE AC_DEBIT_SUSP set
+         WS_ID=#wsId#,
+         BATCH_NO=#batchNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         AC_NAME=#acName#,
+         AC_NO=#acNo#,
+         OPN_CODE=#opnCode#,
+         OPN_NAME=#opnName#,
+         PAY_OVER=#payOver#,
+         FEE_REC=#feeRec#,
+         REPAY_TOTAL=#repayTotal#,
+         REPAY_AMT=#repayAmt#,
+         REPAY_INTE=#repayInte#,
+         REPAY_OVER=#repayOver#,
+         FEE_TOTAL=#feeTotal#,
+         SERIAL_NO=#serialNo#,
+         DEAL_STS=#dealSts#,
+         DEAL_DESC=#dealDesc#,
+         TX_DATE=#txDate#,
+         CARD_CHN=#cardChn#,
+         TX_CDE=#txCde#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcDebitSusp.getById"  resultMap="RM.AcDebitSusp">
+        SELECT <include refid="AcDebitSusp.columns"/>
+        <![CDATA[
+             FROM AC_DEBIT_SUSP 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     
+         <!-- 表查询BySerialNo -->
+    <select id="AcDebitSusp.getBySerialNo"  resultMap="RM.AcDebitSusp">
+        SELECT <include refid="AcDebitSusp.columns"/>
+        <![CDATA[
+             FROM AC_DEBIT_SUSP 
+         WHERE 
+               	SERIAL_NO = #serialNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcDebitSusp.findPage.where">
+        <dynamic prepend="where">
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcDebitSusp.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_DEBIT_SUSP <include refid="AcDebitSusp.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcDebitSusp.findByPage" resultMap="RM.AcDebitSusp">
+        SELECT <include refid="AcDebitSusp.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcDebitSusp.columns"/> FROM AC_DEBIT_SUSP
+                    <include refid="AcDebitSusp.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

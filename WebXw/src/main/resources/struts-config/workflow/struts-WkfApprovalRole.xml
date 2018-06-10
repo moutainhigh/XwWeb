@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="WkfApprovalRoleAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="WkfApprovalRoleAction_findByPage" method="findByPage" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="list">/creditapp/wkf/WkfApprovalRole_List.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="WkfApprovalRoleAction_findByPageSys" method="findByPageSys" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="sysList">/creditapp/wkf/WkfApprovalRole_SysList.jsp</result>
+		</action>
+		<!--pop分页查询 -->
+		<action name="WkfApprovalRoleAction_findByPagePop" method="findByPagePop" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="popList">/creditapp/wkf/WkfApprovalRole_PopList.jsp</result>
+		</action>
+		
+		<action name="WkfApprovalRoleAction_findByPagePopList" method="findByPagePopList" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="popList1">/creditapp/wkf/WkfApprovalRole_PopListForRole.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="WkfApprovalRoleAction_findByPageForApprovalUser" method="findByPageForApprovalUser" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="approvalUserList">/creditapp/wkf/WkfApprovalRole_ApprovalUserList.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="WkfApprovalRoleAction_findByPageForGroup" method="findByPageForGroup" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="groupList">/creditapp/wkf/WkfApprovalGroup_List.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="WkfApprovalRoleAction_input" method="input" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="input">/creditapp/wkf/WkfApprovalRole_Insert.jsp</result>
+		</action>
+		
+		<action name="WkfApprovalRoleAction_groupInput" method="groupInput" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="groupInput">/creditapp/wkf/WkfApprovalGroup_input.jsp</result>
+		</action>
+		
+		<action name="WkfApprovalRoleAction_insertOrUpdate" method="insertOrUpdate" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="groupList">/creditapp/wkf/WkfApprovalGroup_List.jsp</result>
+			<result name="groupInput">/creditapp/wkf/WkfApprovalGroup_input.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="WkfApprovalRoleAction_del" method="del" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="list">/creditapp/wkf/WkfApprovalRole_List.jsp</result>
+		</action>
+		<action name="WkfApprovalRoleAction_delGroup" method="delGroup" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="list">/creditapp/wkf/WkfApprovalRole_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="WkfApprovalRoleAction_getById" method="getById" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="detail">/creditapp/wkf/WkfApprovalRole_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="WkfApprovalRoleActionInsert" method="insert" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="input">/creditapp/wkf/WkfApprovalRole_Insert.jsp</result>
+			<result name="detail">/creditapp/wkf/WkfApprovalRole_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="WkfApprovalRoleActionUpdate" method="update" class="app.creditapp.wkf.action.WkfApprovalRoleAction">
+			<result name="input">/creditapp/wkf/WkfApprovalRole_Detail.jsp</result>
+			<result name="detail">/creditapp/wkf/WkfApprovalRole_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

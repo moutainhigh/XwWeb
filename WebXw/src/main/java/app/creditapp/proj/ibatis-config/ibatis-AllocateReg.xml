@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AllocateReg" type="app.creditapp.proj.entity.AllocateReg"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AllocateReg" class="AllocateReg">
+    <result property="allocateRegId" column="ALLOCATE_REG_ID" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="acctId" column="ACCT_ID" />
+    <result property="acctNo" column="ACCT_NO" />
+    <result property="fAcctNo" column="F_ACCT_NO" />
+    <result property="txAmt" column="TX_AMT" jdbcType="double"/>
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="AllocateReg.columns">
+        <![CDATA[
+         ALLOCATE_REG_ID,
+         PROJ_NO,
+         ACCT_ID,
+         ACCT_NO,
+         F_ACCT_NO,
+         TX_AMT,
+         TX_DATE,
+         OP_NO,
+         FILLER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AllocateReg.insert">
+        <![CDATA[
+        INSERT INTO ALLOCATE_REG(
+         ALLOCATE_REG_ID,
+         PROJ_NO,
+         ACCT_ID,
+         ACCT_NO,
+         F_ACCT_NO,
+         TX_AMT,
+         TX_DATE,
+         OP_NO,
+         FILLER
+         )VALUES(
+         #allocateRegId#,
+         #projNo#,
+         #acctId#,
+         #acctNo#,
+         #fAcctNo#,
+         #txAmt#,
+         FUN_SYSTIME,
+         #opNo#,
+         #filler#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="allocateRegId" >
+				SELECT  ALLOCATE_REG_SEQ.NEXTVAL AS detailId FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AllocateReg.del">
+        <![CDATA[
+               DELETE FROM ALLOCATE_REG
+                 WHERE
+               	ALLOCATE_REG_ID = #allocateRegId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AllocateReg.update">
+        <![CDATA[
+         UPDATE ALLOCATE_REG set
+         ALLOCATE_REG_ID=#allocateRegId#,
+         PROJ_NO=#projNo#,
+         ACCT_ID=#acctId#,
+         ACCT_NO=#acctNo#,
+         F_ACCT_NO=#fAcctNo#,
+         TX_AMT=#txAmt#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#,
+         FILLER=#filler#
+          WHERE
+               	ALLOCATE_REG_ID = #allocateRegId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AllocateReg.getById"  resultMap="RM.AllocateReg">
+        SELECT <include refid="AllocateReg.columns"/>
+        <![CDATA[
+             FROM ALLOCATE_REG 
+         WHERE 
+               	ALLOCATE_REG_ID = #allocateRegId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AllocateReg.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acctNo">
+                  <isNotEmpty prepend="AND" property="acctNo">
+                      ACCT_NO = #acctNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AllocateReg.findPage.count" resultClass="int">
+        SELECT count(*) FROM ALLOCATE_REG <include refid="AllocateReg.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AllocateReg.findByPage" resultMap="RM.AllocateReg">
+        SELECT <include refid="AllocateReg.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AllocateReg.columns"/> FROM ALLOCATE_REG
+                    <include refid="AllocateReg.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

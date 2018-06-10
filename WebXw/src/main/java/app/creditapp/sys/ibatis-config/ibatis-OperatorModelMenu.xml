@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="OperatorModelMenu" type="app.creditapp.sys.entity.OperatorModelMenu"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.OperatorModelMenu" class="OperatorModelMenu">
+    <result property="menu_no" column="MENU_NO" />
+    <result property="menu_name" column="MENU_NAME" />
+    <result property="menu_url" column="MENU_URL" />
+    <result property="menu_parent" column="MENU_PARENT" />
+    <result property="menu_lvl" column="MENU_LVL" />
+    <result property="menu_stats" column="MENU_STATS" />
+    <result property="group_seq" column="GROUP_SEQ" jdbcType="Int"/>
+    <result property="cif_type" column="CIF_TYPE" />
+    <result property="last_url" column="LAST_URL" />
+    </resultMap>
+     <sql id="OperatorModelMenu.columns">
+        <![CDATA[
+         MENU_NO,
+         MENU_NAME,
+         MENU_URL,
+         MENU_PARENT,
+         MENU_LVL,
+         MENU_STATS,
+         GROUP_SEQ,
+         CIF_TYPE,
+         LAST_URL
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="OperatorModelMenu.insert">
+        <![CDATA[
+        INSERT INTO OPERATOR_MODEL_MENU(
+         MENU_NO,
+         MENU_NAME,
+         MENU_URL,
+         MENU_PARENT,
+         MENU_LVL,
+         MENU_STATS,
+         GROUP_SEQ,
+         CIF_TYPE,
+         LAST_URL
+         )VALUES(
+         #menu_no#,
+         #menu_name#,
+         #menu_url#,
+         #menu_parent#,
+         #menu_lvl#,
+         #menu_stats#,
+         #group_seq#,
+         #cif_type#,
+         #last_url#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="OperatorModelMenu.del">
+        <![CDATA[
+               DELETE FROM OPERATOR_MODEL_MENU
+                 WHERE
+               	MENU_NO = #menu_no#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="OperatorModelMenu.update">
+        <![CDATA[
+         UPDATE OPERATOR_MODEL_MENU set
+         MENU_NO=#menu_no#,
+         MENU_NAME=#menu_name#,
+         MENU_URL=#menu_url#,
+         MENU_PARENT=#menu_parent#,
+         MENU_LVL=#menu_lvl#,
+         MENU_STATS=#menu_stats#,
+         GROUP_SEQ=#group_seq#,
+         CIF_TYPE=#cif_type#,
+         LAST_URL=#last_url#
+          WHERE
+               	MENU_NO = #menu_no#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="OperatorModelMenu.getById"  resultMap="RM.OperatorModelMenu">
+        SELECT <include refid="OperatorModelMenu.columns"/>
+        <![CDATA[
+             FROM OPERATOR_MODEL_MENU 
+         WHERE 
+               	MENU_NO = #menu_no#        ]]>
+     </select>
+     
+     <select id="OperatorModelMenu.getByLstUrl"  resultMap="RM.OperatorModelMenu">
+        SELECT <include refid="OperatorModelMenu.columns"/>
+        <![CDATA[
+             FROM OPERATOR_MODEL_MENU 
+         WHERE 
+               	LAST_URL like  '%'||#last_url#||'%'    ]]>
+     </select>
+      <!-- 根据父节点得到直接子节点信息 -->
+    <select id="OperatorModelMenu.getAllMenuByParent" resultMap="RM.OperatorModelMenu">
+	    SELECT <include refid="OperatorModelMenu.columns"/>
+	    <![CDATA[
+	        FROM OPERATOR_MODEL_MENU WHERE MENU_PARENT = #menuParent#
+	    ]]>
+    </select>
+    
+   <select id="OperatorModelMenu.findAll" resultMap="RM.OperatorModelMenu">
+	    SELECT <include refid="OperatorModelMenu.columns"/>
+	    <![CDATA[
+	        FROM OPERATOR_MODEL_MENU where menu_stats is null or menu_stats != '0' order by menu_lvl,GROUP_SEQ
+	    ]]>
+    </select>
+    <select id="OperatorModelMenu.findByType" resultMap="RM.OperatorModelMenu">
+	    SELECT <include refid="OperatorModelMenu.columns"/>
+	    <![CDATA[
+	        FROM OPERATOR_MODEL_MENU where (menu_stats is null or menu_stats != '0') and (cif_type=#cif_type# OR cif_type IS NULL) order by menu_lvl,GROUP_SEQ
+	    ]]>
+    </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="OperatorModelMenu.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="menu_no">
+                  <isNotEmpty prepend="AND" property="menu_no">
+                      MENU_NO = #menu_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="menu_name">
+                  <isNotEmpty prepend="AND" property="menu_name">
+                      MENU_NAME = #menu_name#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="menu_lvl">
+                  <isNotEmpty prepend="AND" property="menu_lvl">
+                      MENU_LVL = #menu_lvl#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="menu_stats">
+                  <isNotEmpty prepend="AND" property="menu_stats">
+                      MENU_STATS = #menu_stats#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="OperatorModelMenu.findPage.count" resultClass="int">
+        SELECT count(*) FROM OPERATOR_MODEL_MENU <include refid="OperatorModelMenu.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="OperatorModelMenu.findByPage" resultMap="RM.OperatorModelMenu">
+        SELECT <include refid="OperatorModelMenu.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="OperatorModelMenu.columns"/> FROM OPERATOR_MODEL_MENU
+                    <include refid="OperatorModelMenu.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

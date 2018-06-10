@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="sec0033" title="系统访问汇总">
+<formelement datatype="6" fieldalign="1" fieldcol="2" fieldname="belongDate" fieldtype="1" formactiveid="9" labelalign="3" labelcol="1" labelname="归属日" maxlength="10" mustinput="0" onclick="fPopUpCalendarDlg(belongDate);return false" readonly="1" row="1"/>
+</form>

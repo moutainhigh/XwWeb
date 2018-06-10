@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ProjAcctLst" type="app.creditapp.proj.entity.ProjAcctLst"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ProjAcctLst" class="ProjAcctLst">
+    <result property="txTime" column="TX_TIME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txDirect" column="TX_DIRECT" />
+    <result property="txAmt" column="TX_AMT" jdbcType="double"/>
+    <result property="txAcctName" column="TX_ACCT_NAME" />
+    <result property="txOpnBkno" column="TX_OPN_BKNO" />
+    <result property="txOpnBank" column="TX_OPN_BANK" />
+    <result property="txAcctNo" column="TX_ACCT_NO" />
+    <result property="lstId" column="LST_ID" />
+    <result property="acctId" column="ACCT_ID" />
+    </resultMap>
+     <sql id="ProjAcctLst.columns">
+        <![CDATA[
+         TX_TIME,
+         TX_DATE,
+         TX_DIRECT,
+         TX_AMT,
+         TX_ACCT_NAME,
+         TX_OPN_BKNO,
+         TX_OPN_BANK,
+         TX_ACCT_NO,
+         LST_ID,
+         ACCT_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ProjAcctLst.insert">
+        <![CDATA[
+        INSERT INTO PROJ_ACCT_LST(
+         TX_TIME,
+         TX_DATE,
+         TX_DIRECT,
+         TX_AMT,
+         TX_ACCT_NAME,
+         TX_OPN_BKNO,
+         TX_OPN_BANK,
+         TX_ACCT_NO,
+         LST_ID,
+         ACCT_ID
+         )VALUES(
+         #txTime#,
+         #txDate#,
+         #txDirect#,
+         #txAmt#,
+         #txAcctName#,
+         #txOpnBkno#,
+         #txOpnBank#,
+         #txAcctNo#,
+         #lstId#,
+         #acctId#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ProjAcctLst.del">
+        <![CDATA[
+               DELETE FROM PROJ_ACCT_LST
+                 WHERE
+               	LST_ID = #lstId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ProjAcctLst.update">
+        <![CDATA[
+         UPDATE PROJ_ACCT_LST set
+         TX_TIME=#txTime#,
+         TX_DATE=#txDate#,
+         TX_DIRECT=#txDirect#,
+         TX_AMT=#txAmt#,
+         TX_ACCT_NAME=#txAcctName#,
+         TX_OPN_BKNO=#txOpnBkno#,
+         TX_OPN_BANK=#txOpnBank#,
+         TX_ACCT_NO=#txAcctNo#,
+         LST_ID=#lstId#,
+         ACCT_ID=#acctId#
+          WHERE
+               	LST_ID = #lstId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ProjAcctLst.getById"  resultMap="RM.ProjAcctLst">
+        SELECT <include refid="ProjAcctLst.columns"/>
+        <![CDATA[
+             FROM PROJ_ACCT_LST 
+         WHERE 
+               	LST_ID = #lstId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ProjAcctLst.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="txAcctName">
+                  <isNotEmpty prepend="AND" property="txAcctName">
+                      TX_ACCT_NAME = #txAcctName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txAcctNo">
+                  <isNotEmpty prepend="AND" property="txAcctNo">
+                      TX_ACCT_NO = #txAcctNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="lstId">
+                  <isNotEmpty prepend="AND" property="lstId">
+                      LST_ID = #lstId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ProjAcctLst.findPage.count" resultClass="int">
+        SELECT count(*) FROM PROJ_ACCT_LST <include refid="ProjAcctLst.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ProjAcctLst.findByPage" resultMap="RM.ProjAcctLst">
+        SELECT <include refid="ProjAcctLst.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjAcctLst.columns"/> FROM PROJ_ACCT_LST
+                    <include refid="ProjAcctLst.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询项目账户信息记录数 -->
+    <select id="ProjAcctLst.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM PROJ_ACCT_LST WHERE 
+             acct_id = #acctId#  ORDER BY LST_ID DESC
+    </select>
+    <!-- 分页查询项目账户信息信息-->
+    <select id="ProjAcctLst.findByPageQuotaForCorp" resultMap="RM.ProjAcctLst">
+        SELECT <include refid="ProjAcctLst.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjAcctLst.columns"/> FROM PROJ_ACCT_LST WHERE  
+              acct_id = #acctId# ORDER BY LST_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="ProjAcctLst.getKey" resultClass="string">
+   	 <![CDATA[ SELECT PROJ_BASE_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

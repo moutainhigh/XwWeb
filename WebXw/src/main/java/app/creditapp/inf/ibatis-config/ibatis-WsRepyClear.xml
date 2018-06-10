@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsRepyClear" type="app.creditapp.inf.entity.WsRepyClear"/>
+	 <!-- 閸掓銆冮弻銉嚄鏉╂柨娲栫�涙顔� -->
+    <resultMap id="RM.WsRepyClear" class="WsRepyClear">
+    <result property="wsId" column="WS_ID" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="acNo" column="AC_NO" />
+    <result property="opnCode" column="OPN_CODE" />
+    <result property="opnName" column="OPN_NAME" />
+    <result property="serialNo" column="SERIAL_NO" />
+    <result property="payOver" column="PAY_OVER" jdbcType="double"/>
+    <result property="feeRec" column="FEE_REC" jdbcType="double"/>
+    <result property="repayTotal" column="REPAY_TOTAL" jdbcType="double"/>
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double"/>
+    <result property="repayInte" column="REPAY_INTE" jdbcType="double"/>
+    <result property="repayOver" column="REPAY_OVER" jdbcType="double"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double"/>
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="cardChn" column="CARD_CHN" />
+    
+    </resultMap>
+    <!--閹恒儱褰� ws2304鏉╂柨娲栫�涙顔�-->
+  <typeAlias alias="WsOut2304" type="app.creditapp.inf.entity.WsOut2304"/>
+	 <!-- 閸掓銆冮弻銉嚄鏉╂柨娲栫�涙顔� -->
+    <resultMap id="RM.WsRepyClearforws2304" class="WsOut2304">
+    
+    <result property="pactNo" column="PACT_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="acNo" column="AC_NO" />
+    <result property="opnCode" column="OPN_CODE" />
+    <result property="opnName" column="OPN_NAME" />
+    <result property="serialNo" column="SERIAL_NO" />
+    <result property="payOver" column="PAY_OVER" jdbcType="double"/>
+    <result property="feeRec" column="FEE_REC" jdbcType="double"/>
+    <result property="repayTotal" column="REPAY_TOTAL" jdbcType="double"/>
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double"/>
+    <result property="repayInte" column="REPAY_INTE" jdbcType="double"/>
+    <result property="repayOver" column="REPAY_OVER" jdbcType="double"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double"/>
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    <result property="cardChn" column="CARD_CHN" />
+    
+    </resultMap>
+     <sql id="WsRepyClearforws2304.columns">
+        <![CDATA[
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         SERIAL_NO,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         DEAL_STS,
+         DEAL_DESC,
+         CARD_CHN
+          ]]>
+    </sql>
+    <!--缂佹挻娼�-->
+     <sql id="WsRepyClear.columns">
+        <![CDATA[
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         SERIAL_NO,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         DEAL_STS,
+         DEAL_DESC,
+         TX_DATE,
+         CARD_CHN
+          ]]>
+    </sql>
+    <!-- 鐞涖劍鏌婃晶锟� -->
+    <insert id="WsRepyClear.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_CLEAR(
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         SERIAL_NO,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         DEAL_STS,
+         DEAL_DESC,
+         TX_DATE,
+         CARD_CHN
+         )VALUES(
+         WS_ID_SEQ.NEXTVAL,
+         #brNo#,
+         #pactNo#,
+         #acName#,
+         #acNo#,
+         #opnCode#,
+         #opnName#,
+         #serialNo#,
+         #payOver#,
+         #feeRec#,
+         #repayTotal#,
+         #repayAmt#,
+         #repayInte#,
+         #repayOver#,
+         #feeTotal#,
+         #dealSts#,
+         #dealDesc#,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         #cardChn#
+         )
+          ]]>
+    </insert>
+    <!--閹恒儱褰泈s2303閹绘帒鍙嗛弫鐗堝祦鎼存挻鏌熷▔锟�-->
+     <insert id="WsRepyClearforws2303.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_CLEAR(
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         SERIAL_NO,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         TX_DATE,
+         DEAL_STS,
+         DEAL_DESC,
+         CARD_CHN
+         )VALUES(
+         #wsId#,
+         #brNo#,
+         #pactNo#,
+         #acName#,
+         #acNo#,
+         #opnCode#,
+         #opnName#,
+         #serialNo#,
+         #payOver#,
+         #feeRec#,
+         #repayTotal#,
+         #repayAmt#,
+         #repayInte#,
+         #repayOver#,
+         #feeTotal#,
+         to_char(SYSDATE,'YYYYMMDD'),
+         #dealSts#,
+         #dealDesc#,
+         #cardChn#
+         )
+          ]]>
+    </insert>
+    <!--缂佹挻娼�-->
+    <!-- 鐞涖劌鍨归梽锟� -->
+    <delete id="WsRepyClear.del">
+        <![CDATA[
+               DELETE FROM WS_REPY_CLEAR
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+    <!-- 閹恒儱褰泈s2303鐞涖劌鍨归梽锟� -->
+    <delete id="WsRepyClearforws2303.del">
+        <![CDATA[
+               DELETE FROM WS_REPY_CLEAR
+                 WHERE
+               	PACT_NO = #pactNo# AND  BR_NO=#brNo#  ]]>
+    </delete>
+    <!-- 鐞涖劋鎱ㄩ弨锟� -->
+    <update id="WsRepyClear.update">
+        <![CDATA[
+         UPDATE WS_REPY_CLEAR set
+         WS_ID=#wsId#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         AC_NAME=#acName#,
+         AC_NO=#acNo#,
+         OPN_CODE=#opnCode#,
+         OPN_NAME=#opnName#,
+         SERIAL_NO=#serialNo#,
+         PAY_OVER=#payOver#,
+         FEE_REC=#feeRec#,
+         REPAY_TOTAL=#repayTotal#,
+         REPAY_AMT=#repayAmt#,
+         REPAY_INTE=#repayInte#,
+         REPAY_OVER=#repayOver#,
+         FEE_TOTAL=#feeTotal#,
+         DEAL_STS=#dealSts#,
+         DEAL_DESC=#dealDesc#,
+         CARD_CHN=#cardChn#,
+         TX_DATE=#txDate#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    <update id="WsRepyClear.updateSts">
+    <![CDATA[
+    UPDATE WS_REPY_CLEAR set DEAL_STS=#dealSts#,DEAL_DESC=#dealDesc# WHERE WS_ID = #wsId#   ]]>
+    </update>
+     <!-- 鐞涖劍鐓＄拠顢▂Id -->
+    <select id="WsRepyClear.getById"  resultMap="RM.WsRepyClear">
+        SELECT <include refid="WsRepyClear.columns"/>
+        <![CDATA[
+             FROM WS_REPY_CLEAR 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     
+       <select id="WsRepyClear.getDealIngByPactno"  resultMap="RM.WsRepyClear">
+        SELECT <include refid="WsRepyClear.columns"/>
+        <![CDATA[
+             FROM WS_REPY_CLEAR 
+         WHERE 
+               	PACT_NO=#pactNo# AND BR_NO=#brNo# AND DEAL_STS='02'       ]]>
+     </select>
+     
+     
+     <!--閹恒儱褰泈s2304閺屻儲澹樼拠顓炲綖-->
+      <select id="WsRepyClearforws2304.getById"  resultMap="RM.WsRepyClearforws2304">
+        SELECT <include refid="WsRepyClearforws2304.columns"/>
+        <![CDATA[
+         FROM   (SELECT * FROM WS_REPY_CLEAR ORDER BY WS_ID DESC )
+         WHERE 
+               	BR_NO = #brNo#     AND  PACT_NO = #pactNo#   AND (DEAL_STS='02'  OR  DEAL_STS='03')  AND  rownum <2  ]]>
+     </select>
+     
+      <!--閹恒儱褰泈s2304閺屻儲澹樼拠顓炲綖-->
+      <select id="WsRepyClearforws2304.getByIdforNew"  resultMap="RM.WsRepyClearforws2304">
+        SELECT <include refid="WsRepyClearforws2304.columns"/>
+        <![CDATA[
+         FROM   (SELECT * FROM WS_REPY_CLEAR ORDER BY WS_ID DESC )
+         WHERE 
+               	BR_NO = #brNo#     AND  PACT_NO = #pactNo#   AND (DEAL_STS='01' OR  DEAL_STS='05' OR  DEAL_STS='04')  AND  rownum <2  ]]>
+     </select>
+     
+      <!--閹恒儱褰泈s2304閺屻儲澹樼拠顓炲綖-->
+      <select id="WsRepyClearforws2304.getByIdForall"  resultMap="RM.WsRepyClear">
+        SELECT <include refid="WsRepyClear.columns"/>
+        <![CDATA[
+             FROM WS_REPY_CLEAR 
+         WHERE 
+                	BR_NO = #brNo#     AND PACT_NO = #pactNo#  ]]>
+     </select>
+     
+       <!-- 閺嶈宓佺�圭偤妾幆鍛枌闁瀚ㄩ崚鍡涖�夐弻銉嚄閺夆�叉 -->
+    <sql id="WsRepyClear.findPage.where">
+                <dynamic prepend="where">
+        	        	<isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+            <isPropertyAvailable property="wsId">
+                      <isNotEmpty prepend="AND" property="wsId">
+                          WS_ID = #wsId#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="txDate">
+                      <isNotEmpty prepend="AND" property="txDate">
+                          TX_DATE = #txDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+     <!-- 閹恒儱褰�2304閺屻儴顕楅弶鈥叉 -->
+    <sql id="WsRepyClearforws3204.findPage.where">
+                <dynamic prepend="where">
+        	        	<isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+            <isPropertyAvailable property="pactNo">
+                      <isNotEmpty prepend="AND" property="pactNo">
+                          PACT_NO = #pactNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <!-- 閹恒儱褰泈s2304鐠佹澘缍嶉弫锟� -->
+    <select id="WsRepyClear.countforws3204" resultClass="int">
+        SELECT count(*) FROM WS_REPY_CLEAR <include refid="WsRepyClearforws3204.findPage.where"/>
+    </select>
+    <!-- 閸掑棝銆夐弻銉嚄 -->
+    <!-- 閸掑棝銆夐弻銉嚄鐠佹澘缍嶉弫锟� -->
+    <select id="WsRepyClear.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_REPY_CLEAR <include refid="WsRepyClear.findPage.where"/>
+    </select>
+    <!-- 閸掑棝銆夐弻銉嚄 -->
+    <select id="WsRepyClear.findByPage" resultMap="RM.WsRepyClear">
+        SELECT <include refid="WsRepyClear.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRepyClear.columns"/> FROM WS_REPY_CLEAR
+                    <include refid="WsRepyClear.findPage.where"/>
+                    ORDER BY WS_ID DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

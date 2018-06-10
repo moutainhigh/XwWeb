@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysExceptionAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysExceptionAction_findByPage" method="findByPage" class="app.util.syslog.action.SysExceptionAction">
+			<result name="list">/creditapp/util/syslog/SysException_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="SysExceptionAction_input" method="input" class="app.util.syslog.action.SysExceptionAction">
+			<result name="input">/creditapp/util/syslog/SysException_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysExceptionAction_del" method="del" class="app.util.syslog.action.SysExceptionAction">
+			<result name="list">/creditapp/util/syslog/SysException_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="SysExceptionAction_getById" method="getById" class="app.util.syslog.action.SysExceptionAction">
+			<result name="detail">/creditapp/util/syslog/SysException_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysExceptionActionInsert" method="insert" class="app.util.syslog.action.SysExceptionAction">
+			<result name="input">/creditapp/util/syslog/SysException_Insert.jsp</result>
+			<result name="detail">/creditapp/util/syslog/SysException_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysExceptionActionUpdate" method="update" class="app.util.syslog.action.SysExceptionAction">
+			<result name="input">/creditapp/util/syslog/SysException_Detail.jsp</result>
+			<result name="detail">/creditapp/util/syslog/SysException_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftRewRealAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftRewRealAction_findByPage" method="findByPage" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="list">/creditapp/aft/AftRewReal_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AftRewRealAction_input" method="input" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="input">/creditapp/aft/AftRewReal_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AftRewRealAction_del" method="del" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="list">/creditapp/aft/AftRewReal_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AftRewRealAction_getById" method="getById" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="detail">/creditapp/aft/AftRewReal_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AftRewRealActionInsert" method="insert" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="input">/creditapp/aft/AftRewReal_Insert.jsp</result>
+			<result name="detail">/creditapp/aft/AftRewReal_Detail.jsp</result>
+		</action>
+		<!--预警处理查询 -->
+		<action name="AftRewRealAction_getByIdToRew" method="getByIdToRew" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="detail">/creditapp/aft/AftRewReal_DetailToRew.jsp</result>
+			<result name="detailRead">/creditapp/aft/AftRewDealReal_Detail.jsp</result>
+		</action>
+		<!--预警处理查询插入 -->
+		<action name="AftRewRealAction_insertToRew" method="insertToRew" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="detail">/creditapp/aft/AftRewReal_DetailToRew.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftRewRealActionUpdate" method="update" class="app.creditapp.aft.action.AftRewRealAction">
+			<result name="input">/creditapp/aft/AftRewReal_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftRewReal_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="acLnMst" namespace="/" extends="struts-cms">
+		<global-results>
+			<result name="invalid.token">/creditapp/common/commitRepeat.jsp
+			</result>
+			<result name="commonException">/creditapp/common/exception.jsp
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="commonException"
+				exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		<action name="AcLnMstAction_getByIdForRepayPlnAdjForInsert" method="getByIdForRepayPlnAdjForInsert"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="insert">/creditapp/acc/loan/RepayPlnAdj_Insert.jsp</result>
+		</action>
+		
+		<action name="AcLnMstAction_getByIdForAdvRepayForInsert" method="getByIdForAdvRepayForInsert"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="insert">/creditapp/acc/loan/AdvRepay_Insert.jsp
+			</result>
+		</action>
+		
+		<action name="AcLnMstAction_getByIdForRateAdj" method="getByIdForRateAdj"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="insert">/creditapp/acc/loan/RateAdj_Insert.jsp
+			</result>
+		</action>
+		
+		<action name="AcLnMstAction_getByIdForWroffLoan" method="getByIdForWroffLoan"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="insert">/creditapp/acc/loan/WroffLoan_Insert.jsp
+			</result>
+		</action>
+		
+		<action name="AcLnMstAction_getByIdForBackWroffLoan" method="getByIdForBackWroffLoan"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="insert">/creditapp/acc/loan/BackWroffLoan_Insert.jsp
+			</result>
+		</action>
+		
+		<action name="AcLnMstAction_getByIdForWroffLoanRate" method="getByIdForWroffLoanRate"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="insert">/creditapp/acc/loan/WroffLoanRate_Insert.jsp
+			</result>
+		</action>
+		
+		<action name="AcLnMstAction_getByIdForLoanStsAdj" method="getByIdForLoanStsAdj"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="insert">/creditapp/acc/loan/LoanStsAdj_Insert.jsp
+			</result>
+		</action>
+		
+		<action name="AcLnMstAction_findByPageForAcChange" method="findByPageForAcChange"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="listForAcChange">/creditapp/acc/loan/AcLnMst_ListForAcChange.jsp
+			</result>
+		</action>
+		
+		<action name="AcLnMstAction_findByPage" method="findByPage"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="list">/creditapp/acc/loan/AcLnMst_List.jsp
+			</result>
+		</action><action name="AcLnMstAction_findByPagedk" method="findByPagedk"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="list">/creditapp/acc/loan/AcLnMstdk_List.jsp
+			</result>
+		</action>
+		<action name="AcLnMstAction_getById" method="getById"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="input">/creditapp/acc/loan/AcLnMst_Detail.jsp
+			</result>
+			<result name="detail">/creditapp/acc/loan/AcLnMst_Detail.jsp
+			</result>
+		</action>
+		<action name="AcLnMstAction_getByIddk" method="getByIddk"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="input">/creditapp/acc/loan/AcLnMst_Detail.jsp
+			</result>
+			<result name="detail">/creditapp/acc/loan/AcLnMst_Detaildk.jsp
+			</result>
+			</action>
+		<action name="AcLnMstAction_getTabView" method="getTabView"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="tab">/creditapp/acc/loan/AcLnMst_Tab.jsp
+			</result>
+		</action>
+		<action name="AcLnMstAction_getTabForAcChange" method="getTabForAcChange"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="tab">/creditapp/acc/loan/AcLnMst_TabForAcChange.jsp
+			</result>
+		</action>
+		<action name="AcLnMstAction_initForLoanIntstSemt" method="initForLoanIntstSemt"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="input">/creditapp/acc/loan/LoanIntstSemt_Detail.jsp
+			</result>
+			<result name="detail">/creditapp/acc/loan/LoanIntstSemt_Detail.jsp
+			</result>
+		</action>
+		<action name="AcLnMstAction_getByLoanNoForLoanIntstSemt" method="getByLoanNoForLoanIntstSemt"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="detail">/creditapp/acc/loan/LoanIntstSemt_Detail.jsp</result>
+		</action>
+		
+		<!-- 
+		<action name="AcLnMstAction_LoanIntstSemt_*" method="{1}"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="input">/creditapp/acc/loan/LoanIntstSemt_Detail.jsp
+			</result>
+			<result name="detail">/creditapp/acc/loan/LoanIntstSemt_Detail.jsp
+			</result>
+		</action> -->
+		<action name="AcLnMstAction_LoanAcctAdj_*" method="{1}"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="input">/creditapp/acc/loan/LoanAcctAdj_Detail.jsp
+			</result>
+			<result name="detail">/creditapp/acc/loan/LoanAcctAdj_Detail.jsp
+			</result>
+			<result name="listPop">/creditapp/acc/loan/AcLnMst_ListPop.jsp
+			</result>
+			<result name="listForAcChange">/creditapp/acc/loan/AcLnMst_ListForAcChange.jsp
+			</result>
+		</action>
+
+		<action name="AcLnMst_*_*" method="getAcLnMstInfo{2}"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result>/creditapp/acc/loan/{1}_acLnMst_result.jsp
+			</result>
+		</action>
+		<action name="AcLnMstList_*_*" method="getAcLnMstInfoByLoanNo"
+			class="app.accounting.action.AcLnMstAction">
+			<result>/accounting/{1}/{2}_input.jsp
+			</result>
+		</action>
+		<action name="AcLnMstSelect" method="getAcLnMstInfoByLoanNo"
+			class="app.accounting.action.AcLnMstAction">
+			<result>/accounting/view/AcLnMst_select.jsp
+			</result>
+		</action>
+		<action name="AcLnMstAction_*" method="findByPage"
+			class="app.accounting.action.AcLnMstAction">
+			<result name="list">/accounting/view/{1}_input.jsp
+			</result>
+
+		</action>
+		<!-- 账号变更后加 -->
+		<action name="AcLnMstAction_findByPageForPop" method="findByPageForPop"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="listPop">/creditapp/acc/loan/AcLnMst_ListPop.jsp
+			</result>
+		</action>
+		<!--放款失败分页查询-->
+		<action name="AcLnMstAction_findByPageToLoanFail" method="findByPageToLoanFail"
+			class="app.creditapp.acc.loan.action.AcLnMstAction">
+			<result name="list">/creditapp/acc/loan/AcLnMst_ListToLoanFail.jsp
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysMenuAction" namespace="/" extends="struts-cms">
+		<action name="SysMenuAction_*" method="{1}" class="app.creditapp.sys.action.SysMenuAction">
+			<result name="rootMenu">/creditapp/sys/SysMenu_TreeList.jsp</result>
+        	<result name="allMenu">/creditapp/sys/SysMenu_List.jsp</result>
+        	<result name="editWindow">/creditapp/sys/SysMenu_EditWindow.jsp</result>
+        	<result name="allMenuByRole">/creditapp/sys/SysMenuRole_List.jsp</result>
+        	<result name="allButtonByRole">/creditapp/sys/SysMenuButton_List.jsp</result>
+        	<result name="Usermenu">/creditapp/sys/SysUserRole_List.jsp</result>
+        	<result name="showGuideMap">/creditapp/sys/sysMenuGuideMap.jsp</result>
+       </action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="RptFundDaily" type="app.creditapp.fund.entity.RptFundDaily"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.RptFundDaily" class="RptFundDaily">
+    <result property="rptDate" column="RPT_DATE" />
+    <result property="rptType" column="RPT_TYPE" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="fdType" column="FD_TYPE" />
+    <result property="fdAmt" column="FD_AMT" jdbcType="double"/>
+    <result property="cashBal" column="CASH_BAL" jdbcType="double"/>
+    <result property="rightBal" column="RIGHT_BAL" jdbcType="double"/>
+    <result property="addAmt" column="ADD_AMT" jdbcType="double"/>
+    <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    </resultMap>
+     <sql id="RptFundDaily.columns">
+        <![CDATA[
+         RPT_DATE,
+         RPT_TYPE,
+         PROJ_NO,
+         FUND_NO,
+         FD_TYPE,
+         FD_AMT,
+         CASH_BAL,
+         RIGHT_BAL,
+         ADD_AMT,
+         PAY_AMT
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="RptFundDaily.insert">
+        <![CDATA[
+        INSERT INTO RPT_FUND_DAILY(
+         RPT_DATE,
+         RPT_TYPE,
+         PROJ_NO,
+         FUND_NO,
+         FD_TYPE,
+         FD_AMT,
+         CASH_BAL,
+         RIGHT_BAL,
+         ADD_AMT,
+         PAY_AMT
+         )VALUES(
+         #rptDate#,
+         #rptType#,
+         #projNo#,
+         #fundNo#,
+         #fdType#,
+         #fdAmt#,
+         #cashBal#,
+         #rightBal#,
+         #addAmt#,
+         #payAmt#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="RptFundDaily.del">
+        <![CDATA[
+               DELETE FROM RPT_FUND_DAILY
+                 WHERE
+               	FUND_NO = #fundNo#  and fd_type = #fdType#
+  and rpt_date = #rptDate#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="RptFundDaily.update">
+        <![CDATA[
+         UPDATE RPT_FUND_DAILY set
+         RPT_DATE=#rptDate#,
+         RPT_TYPE=#rptType#,
+         PROJ_NO=#projNo#,
+         FUND_NO=#fundNo#,
+         FD_TYPE=#fdType#,
+         FD_AMT=#fdAmt#,
+         CASH_BAL=#cashBal#,
+         RIGHT_BAL=#rightBal#,
+         ADD_AMT=#addAmt#,
+         PAY_AMT=#payAmt#
+          WHERE
+               	FUND_NO = #fundNo#  and fd_type = #fdType#
+  and rpt_date = #rptDate#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="RptFundDaily.getById"  resultMap="RM.RptFundDaily">
+        SELECT <include refid="RptFundDaily.columns"/>
+        <![CDATA[
+             FROM RPT_FUND_DAILY 
+         WHERE 
+               	FUND_NO = #fundNo#  and fd_type = #fdType#
+  and rpt_date = #rptDate#
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="RptFundDaily.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rptDate">
+                  <isNotEmpty prepend="AND" property="rptDate">
+                      RPT_DATE = #rptDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rptType">
+                  <isNotEmpty prepend="AND" property="rptType">
+                      RPT_TYPE = #rptType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fdType">
+                  <isNotEmpty prepend="AND" property="fdType">
+                      fd_type = #fdType#
+                   </isNotEmpty>
+             </isPropertyAvailable>             
+        </dynamic>
+    </sql>
+    <sql id="RptFundDaily.findPage.and">
+        	<isPropertyAvailable property="rptDate">
+                  <isNotEmpty prepend="AND" property="rptDate">
+                      RPT_DATE = #rptDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rptType">
+                  <isNotEmpty prepend="AND" property="rptType">
+                      RPT_TYPE = #rptType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fdType">
+                  <isNotEmpty prepend="AND" property="fdType">
+                      fd_type = #fdType#
+                   </isNotEmpty>
+             </isPropertyAvailable>             
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="RptFundDaily.findPage.count" resultClass="int">
+        SELECT count(*) FROM RPT_FUND_DAILY <include refid="RptFundDaily.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="RptFundDaily.findByPage" resultMap="RM.RptFundDaily">
+        SELECT <include refid="RptFundDaily.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="RptFundDaily.columns"/> FROM RPT_FUND_DAILY
+                    <include refid="RptFundDaily.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 分页查询 -->
+    <select id="RptFundDaily.findByFdType" resultMap="RM.RptFundDaily">
+        SELECT <include refid="RptFundDaily.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT    rpt_date,
+                       proj_no,
+                       nvl(sum(fd_amt), 0) as fd_amt,
+                       '' as fund_no,
+                       '' as fd_type,
+                       '' as rpt_type,
+                       '' as cash_bal,
+                       '' as right_bal,
+                       '' as add_amt,
+                       '' as pay_amt
+                  FROM RPT_FUND_DAILY 
+                  where fd_state = '01'
+                 and fd_flag = '01'
+                 <include refid="RptFundDaily.findPage.and"/> 
+                 group by proj_no, rpt_date
+                 order by rpt_date desc
+             ) m
+        	) WHERE rnum &gt;= 1 AND rnum &lt;7  order by RPT_DATE asc
+    </select>    
+    
+        <select id="RptFundDaily.getList"  resultMap="RM.RptFundDaily">
+        SELECT <include refid="RptFundDaily.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptFundDaily.columns"/> FROM RPT_FUND_DAILY
+                    where FUND_NO=#fundNo# order by rpt_date desc
+             ) m 
+           WHERE rownum &lt;=7
+        )
+       WHERE rnum &gt;= 0  order by rpt_date asc
+     </select>
+</sqlMap>

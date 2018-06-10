@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<bean class="app.creditapp.imagemgr.dispscan.upload.entity.MgrMultiPartRequest" name="requestParser" optional="true" scope="default" type="org.apache.struts2.dispatcher.multipart.MultiPartRequest"/>
+<constant name="struts.multipart.handler" value="requestParser"/>
+<constant name="struts.multipart.maxSize" value="100000000"/>
+<constant name="struts.devMode" value="false"/>
+<constant name="struts.xwork.chaining.copyErrors" value="true"/>
+<constant name="struts.i18n.encoding" value="GBK"></constant>
+<!--增加 PDF 使用PDF插件默认下载不出现XXX.action文件-->
+<constant name="struts.action.extension" value="pdf,action"/> 
+
+<package abstract="true" extends="struts-default" name="struts-cms">
+	<interceptors>
+		<interceptor class="app.base.interceptor.AuthenticationInterceptor" name="authorityValidate" />
+		<interceptor class="app.util.syslog.interceptor.ExceptionInterceptor" name="sysLogInterceptor" />
+		<interceptor-stack name="cms-base-interceptors">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="sysLogInterceptor" />
+			<interceptor-ref name="authorityValidate">
+				<param name="excludeMethods">
+					userLogin,userLogout,userLoginForAjax,dealBack
+				</param>
+			</interceptor-ref>
+
+			<interceptor-ref name="exception">
+				<param name="logEnabled">true</param>
+				<param name="logLevel">ERROR</param>
+			</interceptor-ref>
+
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="cms-base-interceptors" />
+	<global-results>
+		<result name="noLogin">
+			/creditapp/noLoginException.jsp
+		</result>
+		<result name="noAuthority">
+			/creditapp/noAuthorityException.jsp
+		</result>
+		<result name="commonException">
+			/creditapp/pub/exception.jsp
+		</result>
+		<result name="invalid.token">
+			/creditapp/pub/commitRepeat.jsp
+		</result>
+	</global-results>
+</package>
+
+
+<!-- 登录 -->
+<package extends="struts-default" name="userlogon" namespace="/creditapp">
+
+	<global-results>
+		<result name="invalid.token">
+			/creditapp/pub/commitRepeat.jsp
+		</result>
+		<result name="commonException">
+			/creditapp/pub/exception.jsp
+		</result>
+	</global-results>
+	<global-exception-mappings>
+		<exception-mapping exception="java.lang.Exception" result="commonException">
+		</exception-mapping>
+	</global-exception-mappings>
+
+	<action class="app.creditapp.sys.action.LoginAction" method="userLogin" name="cms">
+		<result name="main">/creditapp/index20.jsp</result>
+		<result name="newLogin">/entor.jsp</result>
+		<result name="login">/oldentor.jsp</result>
+		<result name="updatepwd">/creditapp/sec/changepassesc.jsp</result>
+	</action>
+	<action class="app.creditapp.sys.action.LoginAction" method="userLoginForAjax" name="cmsForAjax">
+	</action>
+	
+	<action class="app.creditapp.sys.action.SysUserAction" method="location" name="location">
+		<result name="success">/creditapp/location.jsp</result>
+	</action>
+	
+	<action class="app.creditapp.sys.action.LoginAction" method="userLogout" name="logout">
+		<result name="newLogin">/cmsindex.jsp</result>
+		<result name="login">/cmsindex.jsp</result>
+	</action>
+	
+</package>
+
+
+<include file="app/creditapp/sys/struts-config/struts-DailyEvent.xml" />
+<include file="app/creditapp/sys/struts-config/struts-FundServiceRate.xml" />
+<include file="app/creditapp/sys/struts-config/struts-InterfaceBackMeg.xml" />
+<include file="app/creditapp/sys/struts-config/struts-ParamInteg.xml" />
+<include file="app/creditapp/sys/struts-config/struts-ParmArea.xml" />
+<include file="app/creditapp/sys/struts-config/struts-ParmKey.xml" />
+<include file="app/creditapp/sys/struts-config/struts-ParmRew.xml" />
+<include file="app/creditapp/sys/struts-config/struts-ParmRewRule.xml" />
+<include file="app/creditapp/sys/struts-config/struts-PrdtBase.xml" />
+<include file="app/creditapp/sys/struts-config/struts-PubNote.xml" />
+<include file="app/creditapp/sys/struts-config/struts-RulesBase.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SchedulejobLog.xml" />
+<include file="app/creditapp/sys/struts-config/struts-ScheduleTask.xml" />
+<include file="app/creditapp/sys/struts-config/struts-Student.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysButton.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysCache.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysGlobal.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysLog.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysLoginLog.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysMenu.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysOrg.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysPath.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysRole.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysRoleMenu.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysUser.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysUserLog.xml" />
+<include file="app/creditapp/sys/struts-config/struts-SysUserRole.xml" />
+<include file="app/creditapp/sys/struts-config/struts-TableDoc.xml" />
+<include file="app/creditapp/sys/struts-config/struts-TimeController.xml" />
+
+<include file="app/creditapp/acc/struts-config/struts-WsRepyFee.xml" />
+
+<include file="app/creditapp/acc/cancel/struts-config/struts-Cancel.xml" />
+<include file="app/creditapp/acc/chg/struts-config/struts-AcRepyDayChga.xml" />
+<include file="app/creditapp/acc/chg/struts-config/struts-AftRelief.xml" />
+
+<include file="app/creditapp/acc/loan/struts-config/struts-AcDebit.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-AcDebitSusp.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-AcLnLo.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-AcLnMst.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-AcLnPmLog.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-AcLnRepayPlnCur.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-AcLoanBackLog.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-AcLoanLog.xml" />
+<include file="app/creditapp/acc/loan/struts-config/struts-Loan.xml" />
+
+<include file="app/creditapp/acc/log/struts-config/struts-AcChrgLog.xml" />
+<include file="app/creditapp/acc/log/struts-config/struts-AcLnIntstLog.xml" />
+<include file="app/creditapp/acc/log/struts-config/struts-AcTraceLog.xml" />
+
+<include file="app/creditapp/acc/option/struts-config/struts-AcComHoliday.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcDamFormula.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcFeeFormula.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcFeeParm.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcFeeRate.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcFineFormula.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcLnRepayPln.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcLnRepayPlnSusp.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcLnSetLmtLog.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcReplanFormula.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcReplanParm.xml" />
+<include file="app/creditapp/acc/option/struts-config/struts-AcReplanSec.xml" />
+
+<include file="app/creditapp/aft/struts-config/struts-AftAdvpay.xml" />
+<include file="app/creditapp/aft/struts-config/struts-AftAssetPool.xml" />
+<include file="app/creditapp/aft/struts-config/struts-AftAssetRel.xml" />
+<include file="app/creditapp/aft/struts-config/struts-AftMessageAlarm.xml"/>
+<include file="app/creditapp/aft/struts-config/struts-AftPoolRel.xml"/>
+<include file="app/creditapp/aft/struts-config/struts-AftReliefDtl.xml"/>
+<include file="app/creditapp/aft/struts-config/struts-AftRepyClear.xml"/>
+<include file="app/creditapp/aft/struts-config/struts-AftReverse.xml"/>
+<include file="app/creditapp/aft/struts-config/struts-AftRewDeal.xml" />
+<include file="app/creditapp/aft/struts-config/struts-AftRewfund.xml" />
+<include file="app/creditapp/aft/struts-config/struts-AftRewPact.xml" />
+<include file="app/creditapp/aft/struts-config/struts-AftRewProj.xml" />
+<include file="app/creditapp/aft/struts-config/struts-AftRewReal.xml" />
+
+<include file="app/creditapp/approve/struts-config/struts-ApproveAc.xml" />
+<include file="app/creditapp/approve/struts-config/struts-ApproveAft.xml" />
+<include file="app/creditapp/approve/struts-config/struts-ApproveBlack.xml" />
+<include file="app/creditapp/approve/struts-config/struts-ApproveLoan.xml" />
+<include file="app/creditapp/approve/struts-config/struts-WorkFlow.xml" />
+
+<include file="app/creditapp/batch/struts-config/struts-BatchExe.xml" />
+<include file="app/creditapp/batch/struts-config/struts-BatchNode.xml" />
+<include file="app/creditapp/batch/struts-config/struts-BatchSql.xml" />
+<include file="app/creditapp/batch/struts-config/struts-BatchStep.xml" />
+
+<include file="app/creditapp/cif/struts-config/struts-CifAcct.xml" />
+<include file="app/creditapp/cif/struts-config/struts-CifBlack.xml" />
+<include file="app/creditapp/cif/struts-config/struts-CifPers.xml" />
+<include file="app/creditapp/cif/struts-config/struts-CifPersCareer.xml" />
+<include file="app/creditapp/cif/struts-config/struts-CifPersHis.xml" />
+<include file="app/creditapp/cif/struts-config/struts-CifPortrait.xml" />
+
+<include file="app/creditapp/dev/struts-config/struts-PopParmConf.xml" />
+<include file="app/creditapp/dev/struts-config/struts-TreeConf.xml" />
+
+<include file="struts-config/creditapp/struts-parmDic.xml" />
+
+<include file="struts-config/screencore/struts-screencore.xml" />
+<include file="struts-config/screencore/struts-screencorefortool.xml" />
+
+<include file="struts-config/workflow/struts-AppWkfcfg.xml" />
+<include file="struts-config/workflow/struts-Task.xml" />
+<include file="struts-config/workflow/struts-WkfApprovalRole.xml" />
+<include file="struts-config/workflow/struts-WkfApprovalUser.xml" />
+
+<include file="app/creditapp/pac/struts-config/struts-DocConfig.xml" />
+<include file="app/creditapp/pac/struts-config/struts-PacBase.xml" />
+<include file="app/creditapp/pact/struts-config/struts-LnPact.xml" />
+
+<include file="app/creditapp/ln/struts-config/struts-DebitCount.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LoanCount.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnAcct.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnAcctMid.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnApply.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnApplyMid.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnApplyReg.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnApprIdea.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnBatch.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnDue.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnGageMid.xml" />
+<include file="app/creditapp/ln/struts-config/struts-LnStage.xml" />
+<include file="app/creditapp/ln/struts-config/struts-PreApply.xml" />
+<include file="app/creditapp/ln/struts-config/struts-PreBatch.xml" />
+<include file="app/creditapp/ln/struts-config/struts-PreGage.xml" />
+
+<include file="app/creditapp/fund/struts-config/struts-FundBase.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundDetail.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundPayPlan.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundProv.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundProvProj.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundProvService.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundProvSplitTerm.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundRepayPlan.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundRightDetail.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundSplit.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundSplitDetail.xml" />
+<include file="app/creditapp/fund/struts-config/struts-FundSplitTerm.xml" />
+<include file="app/creditapp/fund/struts-config/struts-RptFundDaily.xml" />
+
+<include file="app/creditapp/inf/struts-config/struts-AllocateRegWsIn.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsBase.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsElyRepy.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsElyRepyBatch.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsRedctn.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsRepyClear.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsRepyFine.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsRepyMes.xml" />
+<include file="app/creditapp/inf/struts-config/struts-WsRepyPlan.xml" />
+
+<include file="app/creditapp/proj/struts-config/struts-AllocateReg.xml" />
+<include file="app/creditapp/proj/struts-config/struts-ProjAcct.xml" />
+<include file="app/creditapp/proj/struts-config/struts-ProjAcctLst.xml" />
+<include file="app/creditapp/proj/struts-config/struts-ProjBase.xml" />
+<include file="app/creditapp/proj/struts-config/struts-ProjMang.xml" />
+<include file="app/creditapp/proj/struts-config/struts-ProjParm.xml" />
+<include file="app/creditapp/proj/struts-config/struts-RptProj.xml" />
+
+<include file="app/creditapp/corp/struts-config/struts-CorpAcct.xml" />
+<include file="app/creditapp/corp/struts-config/struts-CorpBase.xml" />
+<include file="app/creditapp/corp/struts-config/struts-CorpCert.xml" />
+<include file="app/creditapp/corp/struts-config/struts-CorpCont.xml" />
+<include file="app/creditapp/corp/struts-config/struts-CorpFin.xml" />
+<include file="app/creditapp/corp/struts-config/struts-CorpGdinfo.xml" />
+<include file="app/creditapp/corp/struts-config/struts-CorpParm.xml" />
+<include file="app/creditapp/corp/struts-config/struts-CorpTaRel.xml" />
+<include file="app/creditapp/corp/struts-config/struts-RptCorpArea.xml" />
+<include file="app/creditapp/corp/struts-config/struts-RptCorpDaily.xml" />
+<include file="app/creditapp/corp/struts-config/struts-RptCorpPrdt.xml" />
+
+<include file="app/creditapp/cred/struts-config/struts-CifBlackApp.xml" />
+<include file="app/creditapp/cred/struts-config/struts-CorpEval.xml" />
+<include file="app/creditapp/cred/struts-config/struts-PcrpQueryInfo.xml" />
+<include file="app/creditapp/cred/struts-config/struts-CifEval.xml" />
+
+<include file="app/creditapp/gage/struts-config/struts-LnGage.xml" />
+
+
+<include file="app/util/syslog/struts-config/struts-SysException.xml" />
+
+
+
+
+
+
+
+
+
+
+</struts>

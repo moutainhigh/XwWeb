@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcChrgLog" type="app.creditapp.acc.log.entity.AcChrgLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcChrgLog" class="AcChrgLog">
+    <result property="chrgId" column="CHRG_ID" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="feeParmId" column="FEE_PARM_ID" />
+    <result property="feeKind" column="FEE_KIND" />
+    <result property="perdNo" column="PERD_NO" />
+    <result property="chrgAmt" column="CHRG_AMT" jdbcType="double"/>
+    <result property="repayChrgAmt" column="REPAY_CHRG_AMT" jdbcType="double"/>
+    <result property="wvChrgAmt" column="WV_CHRG_AMT" jdbcType="double"/>
+    <result property="chrgSts" column="CHRG_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="brName" column="BR_NAME" />
+    <result property="payChrgAmt" column="PAY_CHRG_AMT" />
+    </resultMap>
+    
+    <resultMap id="RM.AcChrgLogF" class="AcChrgLog">
+    <result property="chrgId" column="CHRG_ID" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="feeParmId" column="FEE_PARM_ID" />
+    <result property="feeKind" column="FEE_KIND" />
+    <result property="perdNo" column="PERD_NO" />
+    <result property="chrgAmt" column="CHRG_AMT" jdbcType="double"/>
+    <result property="repayChrgAmt" column="REPAY_CHRG_AMT" jdbcType="double"/>
+    <result property="wvChrgAmt" column="WV_CHRG_AMT" jdbcType="double"/>
+    <result property="chrgSts" column="CHRG_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="brName" column="BR_NAME" />
+    <result property="cifName" column="CIF_NAME" />
+    </resultMap>
+    
+    <resultMap id="RM.AcChrgLogAmt" class="AcChrgLog">
+    <result property="chrgAmt" column="CHRG_AMT" jdbcType="double"/>
+    <result property="repayChrgAmt" column="REPAY_CHRG_AMT" jdbcType="double"/>
+    </resultMap>
+    <!--
+    <resultMap id="RM.AcChrgLog" class="AcChrgLog">
+    <result property="chrgId" column="CHRG_ID" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="feeParmId" column="FEE_PARM_ID" />
+    <result property="feeKind" column="FEE_KIND" />
+    <result property="perdNo" column="PERD_NO" />
+    <result property="chrgAmt" column="CHRG_AMT" jdbcType="double"/>
+    <result property="repayChrgAmt" column="REPAY_CHRG_AMT" jdbcType="double"/>
+    <result property="wvChrgAmt" column="WV_CHRG_AMT" jdbcType="double"/>
+    <result property="chrgSts" column="CHRG_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="brName" column="BR_NAME" />
+    <result property="loanNo" column="LOAN_NO" />
+    </resultMap>
+    
+    -->
+    <resultMap id="RM.AcChrgLogLo" class="AcChrgLog">
+    	<result property="chrgId" column="CHRG_ID" />
+    	<result property="loanNo" column="LOAN_NO" />
+        <result property="perdNo" column="PERD_NO" />
+    	<result property="chrgAmt" column="CHRG_AMT" jdbcType="double"/>
+    </resultMap>
+     <sql id="AcChrgLog.columns">
+        <![CDATA[
+         CHRG_ID,
+         TRACE_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         FEE_PARM_ID,
+         FEE_KIND,
+         PERD_NO,
+         CHRG_AMT,
+         REPAY_CHRG_AMT,
+         WV_CHRG_AMT,
+         CHRG_STS,
+         TX_DATE,
+         TX_TIME,
+         UP_DATE,
+         fun_getbrname (br_no) as BR_NAME,
+         PAY_CHRG_AMT
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcChrgLog.insert">
+        <![CDATA[
+        INSERT INTO AC_CHRG_LOG(
+         CHRG_ID,
+         TRACE_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         FEE_PARM_ID,
+         FEE_KIND,
+         PERD_NO,
+         CHRG_AMT,
+         REPAY_CHRG_AMT,
+         WV_CHRG_AMT,
+         CHRG_STS,
+         TX_DATE,
+         TX_TIME,
+         UP_DATE,
+         PAY_CHRG_AMT
+         )VALUES(
+         #chrgId#,
+         #traceNo#,
+         #loanNo#,
+         #pactNo#,
+         #brNo#,
+         #feeParmId#,
+         #feeKind#,
+         #perdNo#,
+         #chrgAmt#,
+         #repayChrgAmt#,
+         #wvChrgAmt#,
+         #chrgSts#,
+         #txDate#,
+         #txTime#,
+         #upDate#,
+         #payChrgAmt#
+         )
+          ]]>
+            <selectKey resultClass="java.lang.String" type="pre" keyProperty="chrgId" >
+			SELECT ac_chrg_log_seq.nextval AS CHRG_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcChrgLog.del">
+        <![CDATA[
+               DELETE FROM AC_CHRG_LOG
+                 WHERE
+               	CHRG_ID = #chrgId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcChrgLog.update">
+        <![CDATA[
+         UPDATE AC_CHRG_LOG set
+         CHRG_ID=#chrgId#,
+         TRACE_NO=#traceNo#,
+         LOAN_NO=#loanNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         FEE_PARM_ID=#feeParmId#,
+         FEE_KIND=#feeKind#,
+         PERD_NO=#perdNo#,
+         CHRG_AMT=#chrgAmt#,
+         REPAY_CHRG_AMT=#repayChrgAmt#,
+         WV_CHRG_AMT=#wvChrgAmt#,
+         CHRG_STS=#chrgSts#,
+         TX_DATE=#txDate#,
+         TX_TIME=#txTime#,
+         UP_DATE=#upDate#,
+         PAY_CHRG_AMT=#payChrgAmt#
+          WHERE
+               	CHRG_ID = #chrgId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcChrgLog.getById"  resultMap="RM.AcChrgLog">
+        SELECT <include refid="AcChrgLog.columns"/>
+        <![CDATA[
+             FROM ac_chrg_log 
+         WHERE  CHRG_ID = #chrgId#        ]]>
+     </select>
+     
+      <!-- 查询最小期次欠费记录 -->
+    <select id="AcChrgLog.getLoFeeMinPerd"  resultMap="RM.AcChrgLog">
+        SELECT <include refid="AcChrgLog.columns"/>
+        <![CDATA[
+             FROM AC_CHRG_LOG 
+        where pact_no=#pactNo# and perd_no in
+        (select min(perd_no) as min_perd_no from ac_chrg_log 
+        	where chrg_sts='02' and loan_no=#loanNo#
+        		 group by perd_no )
+       ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcChrgLog.findPage.where">
+        <dynamic prepend="where">
+       		 <isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      TRACE_NO= #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="laonNo">
+                  <isNotEmpty prepend="AND" property="laonNo">
+                      LAON_NO = #laonNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                     BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <sql id="AcChrgLog.findPage.AND">
+ 
+       		 <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      A.PACT_NO= #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+       		 <isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      TRACE_NO= #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      LOAN_NO = #loanNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                     A.BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                     proj_no in (select proj_no from proj_mang where login_id = #loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcChrgLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM   ac_chrg_log a,  ln_due b
+	           	   where  a.loan_no = b.due_no 
+	           	   <include refid="AcChrgLog.findPage.AND"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcChrgLog.findByPage" resultMap="RM.AcChrgLogF">
+
+      SELECT chrg_id,
+	  		 trace_no,
+	         pact_no,
+	         br_no,
+	         cif_name,
+	         fun_getbrname (br_no) as BR_NAME,
+	         fee_parm_id,
+	         perd_no,
+	         chrg_amt,
+	         rePay_chrg_amt,
+	         chrg_sts,
+	         loan_no,
+	         fee_Kind,
+	         wv_Chrg_Amt,
+	         tx_Date,
+	         tx_time,
+	         up_date,
+	         proj_no
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+           (select a.chrg_id,
+	  			   a.trace_no,
+	               a.pact_no,
+	               b.cif_name,
+	               a.br_no,
+	               a.fee_parm_id,
+	               a.perd_no,
+	               a.chrg_amt,
+	               a.repay_chrg_amt,
+	               a.chrg_sts,
+	               a.loan_no,
+	               a.fee_Kind,
+	               a.wv_Chrg_Amt,
+	               a.tx_Date,
+	               a.tx_time,
+	               a.up_date,
+	               b.proj_no
+		           from  ac_chrg_log a,  ln_due b
+	           	   where  a.loan_no = b.due_no
+	           	   <include refid="AcChrgLog.findPage.AND"/> order by trace_no desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <select id="AcChrgLog.getLoFeeAmt" resultClass="double">
+       select nvl(sum(chrg_amt)-sum(nvl(repay_chrg_amt,0))-sum(nvl(wv_chrg_amt,0)),0) as lo_fee from ac_chrg_log  where loan_no=#loanNo#
+    </select>
+    
+    <select id="AcChrgLog.getLoFeeList" resultMap="RM.AcChrgLogLo">
+       select chrg_id,loan_no,perd_no, nvl(chrg_amt-nvl(repay_chrg_amt,0)-nvl(wv_chrg_amt,0),0) as chrg_amt from ac_chrg_log  where loan_no=#loanNo# order by tx_date asc
+    </select>
+    
+     <select id="AcChrgLog.getListByPerdNo" resultMap="RM.AcChrgLog">
+       select  <include refid="AcChrgLog.columns"/> from ac_chrg_log  where loan_no=#loanNo# and perd_no=#perdNo#
+    </select>
+    
+     <select id="AcChrgLog.getListByTraceno" resultMap="RM.AcChrgLog">
+       select  <include refid="AcChrgLog.columns"/> from ac_chrg_log  where trace_no=#traceNo#
+    </select>
+    
+    <select id="AcChrgLog.getAllAmt" resultMap="RM.AcChrgLogAmt">
+       select  sum(CHRG_AMT) as CHRG_AMT,sum(REPAY_CHRG_AMT) as REPAY_CHRG_AMT  from ac_chrg_log  where loan_no=#loanNo# and perd_no=#perdNo#
+    </select>
+</sqlMap>

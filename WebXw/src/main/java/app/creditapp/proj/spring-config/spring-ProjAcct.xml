@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+	default-lazy-init="false">
+	<!-- <bean id="allocateRegService" class="app.creditapp.inf.client.AllocateRegService" 
+		factory-method="create" factory-bean="AllocateRegServiceFactory"></bean> -->
+	<bean id="projAcctDao" class="app.creditapp.proj.dao.impl.ProjAcctDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="allocateRegDao" class="app.creditapp.proj.dao.impl.AllocateRegDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="allocateRegServiceBo" class="app.creditapp.inf.bo.impl.AllocateRegServiceBoImpl"></bean>
+	<bean id="allocateRegWsInDao" class="app.creditapp.inf.dao.impl.AllocateRegWsInDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="interfaceBackMegDao" class="app.creditapp.sys.dao.impl.InterfaceBackMegDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="projAcctBo" class="app.creditapp.proj.bo.impl.ProjAcctBoImpl">
+		<property name="projAcctDao" ref="projAcctDao" />
+		<property name="projBaseDao" ref="projBaseDao" />
+		<property name="allocateRegDao" ref="allocateRegDao" />
+		<property name="interfaceBackMegDao" ref="interfaceBackMegDao" />
+		<property name="allocateRegService" ref="allocateRegService" />
+		<property name="allocateRegServiceBo" ref="allocateRegServiceBo" />
+		<property name="allocateRegWsInDao" ref="allocateRegWsInDao" />
+	</bean>
+
+</beans>
+

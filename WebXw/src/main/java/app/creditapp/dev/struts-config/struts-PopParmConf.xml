@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="PopParmConfAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="PopParmConfAction_findByPage" method="findByPage" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="list">/creditapp/dev/PopParmConf_List.jsp</result>
+		</action>
+		<action name="PopParmConfAction_findForCheckBox" method="findForCheckBox" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="list">/creditapp/dev/PopParmConf_ChBList.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="PopParmConfAction_input" method="input" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="input">/creditapp/dev/PopParmConf_Insert.jsp</result>
+		</action>
+		<action name="PopParmConfAction_inputChB" method="inputChB" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="input">/creditapp/dev/PopParmConf_InsertChB.jsp</result>
+		</action>
+		<!--删除 -->
+		<action name="PopParmConfAction_del" method="del" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="list">/creditapp/dev/PopParmConf_List.jsp</result>
+		</action>
+		<action name="PopParmConfAction_delbox" method="delbox" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="list">/creditapp/dev/PopParmConf_ChBList.jsp</result>
+		</action>
+		<!--测试 -->
+		<action name="PopParmConfAction_test" method="test" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="list">/creditapp/dev/PopParmConf_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="PopParmConfAction_getById" method="getById" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="detail">/creditapp/dev/PopParmConf_Detail.jsp</result>
+		</action>
+		<action name="PopParmConfAction_getByIdChB" method="getByIdChB" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="detail">/creditapp/dev/PopParmConfBox_Detail.jsp</result>
+		</action>
+		<action name="PopParmConfAction_queryAjax" method="queryAjax" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="">/creditapp/dev/PopParmConf_Detail.jsp</result>
+		</action>
+		<action name="PopParmConfAction_findByPop" method="findByPop" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="">/creditapp/dev/PopParmConf_Detail.jsp</result>
+		</action>
+		<action name="PopParmConfAction_findByPopChB" method="findByPopChB" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="">/creditapp/dev/PopParmConf_Detail.jsp</result>
+		</action>
+		<action name="PopParmConfAction_createSql" method="createSql" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="">/creditapp/dev/PopParmConf_Detail.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="PopParmConfActionInsert" method="insert" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="input">/creditapp/dev/PopParmConf_Insert.jsp</result>
+			<result name="detail">/creditapp/dev/PopParmConf_Detail.jsp</result>
+			<result name="list">/creditapp/dev/PopParmConf_List.jsp</result>
+		</action>
+		<action name="PopParmConfActionInsertChB" method="insertChB" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="input">/creditapp/dev/PopParmConf_InsertChB.jsp</result>
+			<result name="list">/creditapp/dev/PopParmConf_ChBList.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PopParmConfActionUpdate" method="update" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="input">/creditapp/dev/PopParmConf_Detail.jsp</result>
+			<result name="detail">/creditapp/dev/PopParmConf_Detail.jsp</result>
+			<result name="list1">/creditapp/dev/PopParmConf_List.jsp</result>
+		</action>
+		<action name="PopParmConfActionUpdateChB" method="updateChB" class="app.creditapp.dev.action.PopParmConfAction">
+			<result name="list">/creditapp/dev/PopParmConf_ChBList.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

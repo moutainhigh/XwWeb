@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="sys0014" para="eadis_page" link="ParmAreaAction_findByPage.action" title="行政区划" type="1">
+<tableitem align="2" filedname="areaNo" id="1" indexed="1" label="行政区划编号" row="1" type="0" />
+<tableitem align="2" filedname="areaName" id="2" indexed="2" label="行政区划名称" row="1" type="0" />
+<tableitem align="2" filedname="areaLev" id="3" indexed="3" label="行政级别" row="1" type="0" />
+<tableitem align="2" filedname="areaUp" id="4" indexed="4" label="上级行政区号" row="1" type="0" />
+<tableitem align="2" filedname="postCode" id="5" indexed="5" label="邮政编码" row="1" type="0" />
+<tableitem align="2" filedname="areaSts" id="6" indexed="6" label="状态" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="7" indexed="7" label="-" row="1" type="5" typepara="ParmAreaAction_getById.action;areaNo-areaNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="8" indexed="8" label="-" row="1" type="5" typepara="ParmAreaAction_del.action;areaNo-areaNo;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WkfApprovalUser" type="app.creditapp.wkf.entity.WkfApprovalUser"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WkfApprovalUser" class="WkfApprovalUser">
+    <result property="seq" column="SEQ"/>
+    <result property="wkfUserName" column="WKF_USER_NAME"/>
+    <result property="wkfRoleNo" column="WKF_ROLE_NO"/>
+    <result property="wkfBrNo" column="WKF_BR_NO"/>
+    <result property="br_no" column="BR_NO"/>
+    <result property="op_no" column="OP_NO"/>
+    <result property="tx_date" column="TX_DATE"/>
+    <result property="up_date" column="UP_DATE"/>
+	<result property="wkfRoleName" column="WKF_ROLE_NAME" />
+    </resultMap>
+     <sql id="WkfApprovalUser.columns">
+        <![CDATA[
+         SEQ,
+         WKF_USER_NAME,
+         WKF_ROLE_NO,
+         WKF_BR_NO,
+         BR_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         WKF_ROLE_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WkfApprovalUser.insert">
+        <![CDATA[
+        INSERT INTO WKF_APPROVAL_USER(
+         SEQ,
+         WKF_USER_NAME,
+         WKF_ROLE_NO,
+         WKF_ROLE_NAME,
+         WKF_BR_NO,
+         BR_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #seq#,
+         #wkfUserName#,
+         #wkfRoleNo#,
+         #wkfRoleName#,
+         #wkfBrNo#,
+         #br_no#,
+         #op_no#,
+         #tx_date#,
+         #up_date#
+         )
+          ]]>
+		<selectKey resultClass="java.lang.String" type="pre" keyProperty="seq">
+	    	SELECT WKF_APPROVAL_USER_SEQ.nextval AS SEQ FROM DUAL
+		</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="WkfApprovalUser.del">
+        <![CDATA[
+               DELETE FROM WKF_APPROVAL_USER
+                 WHERE
+               	WKF_USER_NAME=#wkfUserName#  ]]>
+    </delete>
+    <delete id="WkfApprovalUser.delForRole">
+        <![CDATA[
+               DELETE FROM WKF_APPROVAL_USER
+                 WHERE
+                WKF_ROLE_NO=#wkfRoleNo#         ]]>
+    </delete>
+    <delete id="WkfApprovalUser.delByWkfRoleNo">
+        <![CDATA[
+               DELETE FROM WKF_APPROVAL_USER
+                 WHERE
+               WKF_ROLE_NO=#wkfRoleNo#      ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WkfApprovalUser.update">
+        <![CDATA[
+         UPDATE WKF_APPROVAL_USER set
+         SEQ=#seq#,
+         WKF_USER_NAME=#wkfUserName#,
+         WKF_ROLE_NO=#wkfRoleNo#,
+         WKF_ROLE_NAME = #wkfRoleName#,
+         WKF_BR_NO=#wkfBrNo#,
+         BR_NO=#br_no#,
+         OP_NO=#op_no#,
+         TX_DATE=#tx_date#,
+         UP_DATE=#up_date# 
+          WHERE
+               SEQ=#seq#         ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WkfApprovalUser.getById"  resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/>
+        <![CDATA[
+             FROM WKF_APPROVAL_USER 
+         WHERE 
+               	SEQ = #seq#        ]]>
+     </select>
+     
+     <select id="WkfApprovalUser.getById2"  resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/>
+        <![CDATA[
+             FROM WKF_APPROVAL_USER 
+         WHERE 
+             WKF_USER_NAME=#wkfUserName# AND
+             WKF_ROLE_NO=#wkfRoleNo#       ]]>
+     </select>
+     
+     
+    <select id="WkfApprovalUser.getRoleNoById"  resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/>
+        <![CDATA[
+             FROM WKF_APPROVAL_USER 
+         WHERE 
+             WKF_USER_NAME=#wkfUserName#
+                   ]]>
+     </select>
+     
+      <select id="WkfApprovalUser.getByRoleName"  resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/>
+        <![CDATA[
+             FROM WKF_APPROVAL_USER 
+         WHERE 
+             WKF_USER_NAME=#wkfUserName# and WKF_ROLE_NAME=#wkfRoleName# 
+                   ]]>
+     </select>
+     
+     
+      <!-- 表查询 -->
+    <select id="WkfApprovalUser.getByUser"  resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/>
+            FROM WKF_APPROVAL_USER 
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="wkfUserName">
+                  <isNotEmpty prepend="AND" property="wkfUserName">
+                      WKF_USER_NAME = #wkfUserName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="AND" property="wkfRoleNo">
+                      WKF_ROLE_NO = #wkfRoleNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfBrNo">
+                  <isNotEmpty prepend="AND" property="wkfBrNo">
+                      WKF_BR_NO = #wkfBrNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WkfApprovalUser.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="seq">
+                  <isNotEmpty prepend="AND" property="seq">
+                      SEQ = #seq#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfUserName">
+                  <isNotEmpty prepend="AND" property="wkfUserName">
+                      WKF_USER_NAME = #wkfUserName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="AND" property="wkfRoleNo">
+                      (WKF_ROLE_NO = #wkfRoleNo# OR WKF_ROLE_NAME like '%'||#wkfRoleNo#||'%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="wkfRoleName">
+                  <isNotEmpty prepend="AND" property="wkfRoleName">
+                      WKF_ROLE_NAME like '%$wkfRoleName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <sql id="WkfApprovalUser.findApprovalUserByPage.where">
+       <dynamic prepend="where">
+        	<isPropertyAvailable property="wkfUserName">
+                  <isNotEmpty prepend="OR" property="wkfUserName">
+                      W.WKF_USER_NAME in ($wkfUserName$)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="OR" property="wkfRoleNo">
+                      W.WKF_ROLE_NO in ($wkfRoleNo$)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfBrNo">
+                  <isNotEmpty prepend="OR" property="wkfBrNo">
+                      W.WKF_BR_NO in ($wkfBrNo$)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+       </dynamic>
+    </sql>
+    <sql id="WkfApprovalUser.findApproveUserByPage.where">
+       <dynamic prepend="where">
+        	<isPropertyAvailable property="wkfUserName">
+                  <isNotEmpty prepend="AND" property="wkfUserName">
+                      WW.WKF_USER_NAME in ($wkfUserName$)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="AND" property="wkfRoleNo">
+                      WW.WKF_ROLE_NO in ($wkfRoleNo$)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfBrNo">
+                  <isNotEmpty prepend="AND" property="wkfBrNo">
+                      WW.WKF_BR_NO in ($wkfBrNo$)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+       </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="WkfApprovalUser.findPage.count" resultClass="int">
+        select   count(WKF_USER_NAME) from wkf_approval_user <include refid="WkfApprovalUser.findPage.where"/>
+    </select>
+     <select id="WkfApprovalUser.getUserCount" resultClass="int">
+        select  count(*) from wkf_approval_user  where wkf_user_name = #wkfUserName#
+    </select>
+    <select id="WkfApprovalUser.findApprovalUserByPage.count" resultClass="int">
+        SELECT count(*) FROM WKF_APPROVAL_USER W  <include refid="WkfApprovalUser.findApprovalUserByPage.where"/> 
+    </select>
+    <select id="WkfApprovalUser.getApproveUserCount.count" resultClass="int">
+    SELECT count(*) FROM (SELECT W.SEQ,W.WKF_BR_NO,R.WKF_ROLE_NO 
+            FROM WKF_APPROVAL_USER W ,  SYS_USER_INFO     U, WKF_APPROVAL_ROLE R 
+        WHERE W.WKF_USER_NAME=U.LOGIN_ID AND W.WKF_ROLE_NO=R.WKF_ROLE_NO ) WW 
+        <include refid="WkfApprovalUser.findApproveUserByPage.where"/> 
+    </select>
+    <!-- 分页查询 -->
+    <select id="WkfApprovalUser.findByPage" resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WkfApprovalUser.columns"/> FROM WKF_APPROVAL_USER
+                    <include refid="WkfApprovalUser.findPage.where"/>
+             ) m 
+             where seq in (select  seq from wkf_approval_user  )
+        	)
+        WHERE rnum &gt;= #startNum# and rnum &lt;#endNum# 
+    </select>
+    <select id="WkfApprovalUser.findApprovalUserByPage" resultClass="java.util.HashMap">
+        SELECT *
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (
+            SELECT * FROM 
+            ( SELECT WKF_USER_NAME,U.USER_NAME,W.WKF_ROLE_NO,W.WKF_ROLE_NAME FROM WKF_APPROVAL_USER W,SYS_USER_INFO U,WKF_APPROVAL_ROLE R WHERE W.WKF_USER_NAME=U.LOGIN_ID AND W.WKF_ROLE_NO=R.WKF_ROLE_NO ) W 
+               <include refid="WkfApprovalUser.findApprovalUserByPage.where"/>  
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# and rnum &lt;#endNum# 
+    </select>
+    <select id="WkfApprovalUser.findApproveUserByPage" resultClass="java.util.HashMap">
+        SELECT *
+        FROM (
+        	SELECT m.*, rownum as rnum  FROM (  SELECT *  FROM  
+            (
+             SELECT WKF_USER_NAME,U.USER_NAME,R.WKF_ROLE_NO,R.WKF_ROLE_NAME, W.WKF_BR_NO FROM WKF_APPROVAL_USER W,SYS_USER_INFO U,WKF_APPROVAL_ROLE R WHERE W.WKF_USER_NAME=U.LOGIN_ID AND W.WKF_ROLE_NO=R.WKF_ROLE_NO ) WW 
+               <include refid="WkfApprovalUser.findApproveUserByPage.where"/>  
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# and rnum &lt;#endNum# 
+    </select>
+    <select id="WkfApprovalUser.getAllList" resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/> FROM WKF_APPROVAL_USER
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="seq">
+                  <isNotEmpty prepend="AND" property="seq">
+                      SEQ = #seq#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfUserName">
+                  <isNotEmpty prepend="AND" property="wkfUserName">
+                      WKF_USER_NAME = #wkfUserName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="AND" property="wkfRoleNo">
+                      WKF_ROLE_NO = #wkfRoleNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfBrNo">
+                  <isNotEmpty prepend="AND" property="wkfBrNo">
+                      WKF_BR_NO = #wkfBrNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+         ORDER BY WKF_ROLE_NO,WKF_USER_NAME
+    </select>
+    <select id="WkfApprovalUser.getAllList2" resultMap="RM.WkfApprovalUser">
+        SELECT <include refid="WkfApprovalUser.columns"/> FROM WKF_APPROVAL_USER WHERE   WKF_USER_NAME = #wkfUserName#  ORDER BY WKF_ROLE_NO,WKF_USER_NAME
+    </select>
+    <select id="WkfApprovalUser.getListForWKF" resultClass="string">
+        SELECT WKF_USER_NAME||','||U.DISPLAYNAME||','||WKF_BR_NO||','||ORG.DISPLAYNAME||','||WKF.WKF_ROLE_NO||','||ROLE.WKF_ROLE_NAME AS USERINFO FROM WKF_APPROVAL_USER WKF,SYS_USER_INFO U,TBL_ORG_DEPARTMENTS ORG,WKF_APPROVAL_ROLE ROLE WHERE WKF.WKF_USER_NAME=U.LOGIN_ID AND WKF.WKF_BR_NO=ORG.BR_NO AND WKF.WKF_ROLE_NO=ROLE.WKF_ROLE_NO 
+       	<isPropertyAvailable property="wkfRoleNo">
+                 <isNotEmpty prepend="AND" property="wkfRoleNo">
+                     WKF.WKF_ROLE_NO = #wkfRoleNo#
+                  </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="wkfBrNo">
+                 <isNotEmpty prepend="AND" property="wkfBrNo">
+                     WKF.WKF_BR_NO = #wkfBrNo#
+                  </isNotEmpty>
+            </isPropertyAvailable>
+    </select>
+    <select id="WkfApprovalUser.getSeq" resultClass="string">
+        SELECT WKF_APPROVAL_USER_SEQ.NEXTVAL FROM DUAL
+    </select>
+    <!-- 根据操作员取审批人员类型-->
+    <select id="WkfApprovalUser.getSignType" resultClass="int">
+        SELECT count(*) FROM WKF_APPROVAL_USER a,wkf_approval_role b  WHERE a.wkf_role_no = b.wkf_role_no AND 
+        a. WKF_USER_NAME = #op_no#  AND  b.sign_type = '2'   
+         </select>
+    
+    <sql id="WkfApprovalUser.findByPageMapPop.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="seq">
+                  <isNotEmpty prepend="AND" property="seq">
+                      SEQ = #seq#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfUserName">
+                  <isNotEmpty prepend="AND" property="wkfUserName">
+                      W.WKF_USER_NAME = #wkfUserName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="wkfRoleNo">
+                  <isNotEmpty prepend="AND" property="wkfRoleNo">
+                      W.WKF_ROLE_NO = #wkfRoleNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="wkfBrNo">
+                  <isNotEmpty prepend="AND" property="wkfBrNo">
+                      W.WKF_BR_NO = #wkfBrNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <select id="WkfApprovalUser.findByPageMapPop" resultClass="java.util.HashMap">
+        SELECT *
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT WKF_USER_NAME,U.DISPLAYNAME,W.WKF_ROLE_NO,WKF_ROLE_NAME FROM WKF_APPROVAL_USER W,SYS_USER_INFO U,WKF_APPROVAL_ROLE R WHERE W.WKF_USER_NAME=U.LOGIN_ID AND W.WKF_ROLE_NO=R.WKF_ROLE_NO
+                    <include refid="WkfApprovalUser.findByPageMapPop.where"/>
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# and rnum &lt;#endNum# order by wkf_br_no
+    </select>
+    
+   
+</sqlMap>

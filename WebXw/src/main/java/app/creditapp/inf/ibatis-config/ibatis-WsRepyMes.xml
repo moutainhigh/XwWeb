@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsRepyMes" type="app.creditapp.inf.entity.WsRepyMes"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsRepyMes" class="WsRepyMes">
+    <result property="wsId" column="WS_ID" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="acNo" column="AC_NO" />
+    <result property="opnCode" column="OPN_CODE" />
+    <result property="opnName" column="OPN_NAME" />
+    <result property="payOver" column="PAY_OVER" jdbcType="double" nullValue="0.00"/>
+    <result property="feeRec" column="FEE_REC" jdbcType="double" nullValue="0.00"/>
+    <result property="repayTotal" column="REPAY_TOTAL" jdbcType="double" nullValue="0.00"/>
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="repayInte" column="REPAY_INTE" jdbcType="double" nullValue="0.00"/>
+    <result property="repayOver" column="REPAY_OVER" jdbcType="double" nullValue="0.00"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double" nullValue="0.00"/>
+    <result property="serialNo" column="SERIAL_NO" />
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    <result property="cardChn" column="CARD_CHN" />
+    <!--result property="brName" column="BR_NAME"/-->
+    </resultMap>
+    <resultMap id="RM.WsRepyMess" class="WsRepyMes">
+    <result property="wsId" column="WS_ID" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="acNo" column="AC_NO" />
+    <result property="opnCode" column="OPN_CODE" />
+    <result property="opnName" column="OPN_NAME" />
+    <result property="payOver" column="PAY_OVER" jdbcType="double" nullValue="0.00"/>
+    <result property="feeRec" column="FEE_REC" jdbcType="double" nullValue="0.00"/>
+    <result property="repayTotal" column="REPAY_TOTAL" jdbcType="double" nullValue="0.00"/>
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="repayInte" column="REPAY_INTE" jdbcType="double" nullValue="0.00"/>
+    <result property="repayOver" column="REPAY_OVER" jdbcType="double" nullValue="0.00"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double" nullValue="0.00"/>
+    <result property="serialNo" column="SERIAL_NO" />
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    </resultMap>
+    <!--接口ws2302返回字段-->
+  	<typeAlias alias="WsRepyMesforws2302" type="app.creditapp.inf.entity.WsOut2302_1"/>  
+    <resultMap id="RM.WsRepyMesfor2302" class="WsRepyMesforws2302">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="repayTotal" column="REPAY_TOTAL" jdbcType="double" nullValue="0.00"/>
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="repayInte" column="REPAY_INTE" jdbcType="double" nullValue="0.00"/>
+    <result property="repayOver" column="REPAY_OVER" jdbcType="double" nullValue="0.00"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double" nullValue="0.00"/>
+    <result property="serialNo" column="SERIAL_NO" />
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    </resultMap> 
+    <!--统计扣款信息-->
+    <typeAlias alias="WsRepyMes_Count" type="app.creditapp.inf.entity.WsRepyMes_Count"/>  
+    <resultMap id="RM.WsRepyMes_Count" class="WsRepyMes_Count">
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="deal_sts" column="DEAL_STS" />
+    <result property="deal_desc" column="DEAL_DESC" />
+    <result property="repay_sum" column="REPAY_SUM" jdbcType="double" nullValue="0.00"/>
+    <result property="repay_count" column="REPAY_COUNT" jdbcType="int" nullValue="0"/>
+    <result property="txDate" column="TX_DATE" />
+    </resultMap>
+  
+    <sql id="WsRepyMesforws2302.columns">
+        <![CDATA[
+         PACT_NO,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         SERIAL_NO,
+         DEAL_STS,
+         DEAL_DESC
+          ]]>
+    </sql>
+      <!--结束-->
+    
+    
+     <sql id="WsRepyMes.columns">
+        <![CDATA[
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         SERIAL_NO,
+         DEAL_STS,
+         DEAL_DESC,
+         CARD_CHN
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WsRepyMes.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_MES(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         AC_NAME,
+         AC_NO,
+         OPN_CODE,
+         OPN_NAME,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         SERIAL_NO,
+         DEAL_STS,
+         DEAL_DESC,
+         TX_DATE
+         )VALUES(
+         WS_ID_SEQ.NEXTVAL,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #acName#,
+         #acNo#,
+         #opnCode#,
+         #opnName#,
+         #payOver#,
+         #feeRec#,
+         #repayTotal#,
+         #repayAmt#,
+         #repayInte#,
+         #repayOver#,
+         #feeTotal#,
+         #serialNo#,
+         #dealSts#,
+         #dealDesc#,
+         to_char(SYSDATE,'YYYYMMDD')
+         )
+          ]]>
+    </insert>
+    
+    
+    <!-- 接口ws2301表新增 -->
+    <insert id="WsRepyMesforws2301.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_MES(
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         SERIAL_NO,
+         PAY_OVER,
+         FEE_REC,
+         REPAY_TOTAL,
+         REPAY_AMT,
+         REPAY_INTE,
+         REPAY_OVER,
+         FEE_TOTAL,
+         BATCH_NO,
+         AC_NO,
+         TX_DATE,
+         CARD_CHN
+         )VALUES(
+         #wsId#, 
+         #brNo#,
+         #pactNo#,
+         #serialNo#,
+         #payOver#,
+         #feeRec#,
+         #repayTotal#,
+         #repayAmt#,
+         #repayInte#,
+         #repayOver#,
+         #feeTotal#,
+         #batchNo#,
+         #acNo#,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         #cardChn#
+         )
+          ]]>
+    </insert>
+    
+    <!-- 表删除 -->
+    <delete id="WsRepyMes.del">
+        <![CDATA[
+               DELETE FROM WS_REPY_MES
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WsRepyMes.update">
+        <![CDATA[
+         UPDATE WS_REPY_MES set
+         WS_ID=#wsId#,
+         BATCH_NO=#batchNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         AC_NAME=#acName#,
+         AC_NO=#acNo#,
+         OPN_CODE=#opnCode#,
+         OPN_NAME=#opnName#,
+         PAY_OVER=#payOver#,
+         FEE_REC=#feeRec#,
+         REPAY_TOTAL=#repayTotal#,
+         REPAY_AMT=#repayAmt#,
+         REPAY_INTE=#repayInte#,
+         REPAY_OVER=#repayOver#,
+         FEE_TOTAL=#feeTotal#,
+         SERIAL_NO=#serialNo#,
+         DEAL_STS=#dealSts#,
+         DEAL_DESC=#dealDesc#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    <update id="WsRepyMes.updateSts">
+     <![CDATA[
+    	UPDATE WS_REPY_MES set DEAL_STS =#dealSts#,DEAL_DESC=#dealDesc# WHERE WS_ID = #wsId# ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="WsRepyMes.getById"  resultMap="RM.WsRepyMes">
+        SELECT <include refid="WsRepyMes.columns"/>
+        <![CDATA[
+             FROM WS_REPY_MES 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     
+    <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WsRepyMes.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="batchNo">
+                      <isNotEmpty prepend="AND" property="batchNo">
+                          BATCH_NO = #batchNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="pactNo">
+                      <isNotEmpty prepend="AND" property="pactNo">
+                          PACT_NO = #pactNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 接口ws2302查找条件 -->
+    <sql id="WsRepyMes.findPageforws2302.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="batchNo">
+                      <isNotEmpty prepend="AND" property="batchNo">
+                          BATCH_NO = #batchNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="pactNo">
+                      <isNotEmpty prepend="AND" property="pactNo">
+                          PACT_NO = #pactNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!--接口ws2302返回条数和查找语句-->
+     <select id="WsRepyMes.findPage.countforws2302" resultClass="int">
+        SELECT count(*) FROM WS_REPY_MES <include refid="WsRepyMes.findPageforws2302.where"/>
+    </select>
+   
+      <select id="WsRepyMes.findByPageforws2302" resultMap="RM.WsRepyMesfor2302">
+        SELECT <include refid="WsRepyMesforws2302.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRepyMesforws2302.columns"/> FROM WS_REPY_MES
+                    <include refid="WsRepyMes.findPageforws2302.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!---结束-->
+    <!--接口ws2301详细表根据pact_no删除重复的数据-->
+    <!-- 表删除 -->
+    <delete id="WsRepyMesforPactNo.del">
+        <![CDATA[
+            DELETE FROM WS_REPY_MES A
+ 			WHERE (A.PACT_NO,A.BATCH_NO) IN (SELECT PACT_NO,BATCH_NO
+                         FROM WS_REPY_MES
+                        GROUP BY PACT_NO,BATCH_NO
+                        HAVING COUNT(1) > 1)    ]]>
+    </delete>
+    <!-- 分页查询记录数 -->
+    <select id="WsRepyMes.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_REPY_MES <include refid="WsRepyMes.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WsRepyMes.findByPage" resultMap="RM.WsRepyMes">
+        SELECT <include refid="WsRepyMes.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRepyMes.columns"/> FROM WS_REPY_MES
+                    <include refid="WsRepyMes.findPage.where"/>
+                    ORDER BY WS_ID DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 根据批次返回列表 -->
+    <select id="WsRepyMes.getByBatch" resultMap="RM.WsRepyMess">
+        SELECT <include refid="WsRepyMes.columns"/>
+         FROM WS_REPY_MES WHERE BATCH_NO=#batchNo# 
+    </select>
+    
+    <!-- 根据批次合同号返回实体信息-->
+    <select id="WsRepyMes.getIdForNew" resultMap="RM.WsRepyMesfor2302">
+      SELECT <include refid="WsRepyMesforws2302.columns"/> FROM WS_REPY_MES
+                    <include refid="WsRepyMes.findPageforws2302.where"/>
+    </select>
+    
+     <!-- 根据批次返回列表 -->
+    <select id="WsRepyMes.getByBatchAndPactNo" resultMap="RM.WsRepyMess">
+        SELECT <include refid="WsRepyMes.columns"/>
+         FROM WS_REPY_MES WHERE BATCH_NO=#batchNo# and PACT_NO=#pactNo# and br_no=#brNo#
+    </select>
+    
+    <!-- 统计扣款信息 -->
+    <select id="WsRepyMes.getCountMes.count" resultClass="int">
+        SELECT count(*) FROM 
+        (
+		select DEAL_STS,
+		       DEAL_DESC,
+		       count(*) REPAY_COUNT,
+		       sum(REPAY_AMT + REPAY_INTE + REPAY_OVER + FEE_TOTAL) REPAY_SUM,
+		       TX_DATE,br_no
+		  from ws_repy_mes
+		   where batch_no IN
+		       (SELECT batch_no
+		          FROM ws_repy_mes_batch b
+		          <dynamic prepend="where">
+		             <isPropertyAvailable property="txTime">
+		                 <isNotEmpty prepend="AND" property="txTime">
+		                     to_date(b.tx_time, 'yyyyMMdd hh24:mi:ss') >=
+		               			to_date(#txTime#, 'yyyyMMdd hh24:mi:ss')
+		                 </isNotEmpty>
+		             </isPropertyAvailable>
+		             <isPropertyAvailable property="endTime">
+		                 <isNotEmpty prepend="AND" property="endTime">
+		                     to_date(b.tx_time, 'yyyyMMdd hh24:mi:ss') &lt;=
+		               			to_date(#endTime#, 'yyyyMMdd hh24:mi:ss')
+		                 </isNotEmpty>
+		             </isPropertyAvailable>
+		             <isPropertyAvailable property="brNo">
+		                 <isNotEmpty prepend="AND" property="brNo">
+		                      BR_NO = #brNo#
+		                 </isNotEmpty>
+		             </isPropertyAvailable>
+		        </dynamic>
+		         )
+		 group by deal_sts, deal_desc, tx_date,br_no)
+    </select>
+    <select id="WsRepyMes.getCountMes" resultMap="RM.WsRepyMes_Count">
+    SELECT BR_NO,BR_NAME,DEAL_STS,DEAL_DESC,REPAY_COUNT,REPAY_SUM,TX_DATE
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (
+       SELECT case deal_sts
+         when '01' then
+          '未处理'
+         when '02' then
+          '渠道处理中'
+         when '03' then
+          '处理成功'
+         when '04' then
+          '处理失败'
+         when '05' then
+          '系统异常'
+         else
+          deal_sts
+       end DEAL_STS,
+       DEAL_DESC,
+       count(*) REPAY_COUNT,
+       sum(REPAY_AMT + REPAY_INTE + REPAY_OVER + FEE_TOTAL) REPAY_SUM,
+       TX_DATE,
+       BR_NO,
+       FUN_GETBRNAME(BR_NO) as BR_NAME
+ 	 FROM ws_repy_mes
+ 	  WHERE batch_no IN
+       (SELECT batch_no
+          FROM ws_repy_mes_batch b
+          <dynamic prepend="where">
+             <isPropertyAvailable property="txTime">
+                 <isNotEmpty prepend="AND" property="txTime">
+                     to_date(b.tx_time, 'yyyyMMdd hh24:mi:ss') >=
+               			to_date(#txTime#, 'yyyyMMdd hh24:mi:ss')
+                 </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="endTime">
+                 <isNotEmpty prepend="AND" property="endTime">
+                     to_date(b.tx_time, 'yyyyMMdd hh24:mi:ss') &lt;=
+               			to_date(#endTime#, 'yyyyMMdd hh24:mi:ss')
+                 </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                 <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                 </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+        )
+ 	GROUP BY DEAL_STS, DEAL_DESC, TX_DATE, BR_NO 
+ 	ORDER BY  BR_NO ASC, TX_DATE  DESC
+ 		) m
+    ) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

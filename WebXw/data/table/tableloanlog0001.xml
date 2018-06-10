@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="loanlog0001" para="eadis_page" link="AcLoanLogAction_findByPage.action" title="放款信息表" type="1">
+<tableitem align="2" filedname="loanLogNo" id="1" indexed="1" label="放款流水号" row="1" type="4" typepara="AcLoanLogAction_getById.action;loanLogNo-loanLogNo;query-'query'"/>
+<tableitem align="2" filedname="pactNo" id="4" indexed="4" label="合同号" row="1" type="0" />
+<tableitem align="2" filedname="brNo" id="5" indexed="5" label="机构号" row="1" type="0" />
+<tableitem align="2" filedname="loanAmt" id="6" indexed="6" label="放款金额" row="1" type="0" />
+<tableitem align="2" filedname="xtAcNo" id="7" indexed="7" label="信托账号" row="1" type="0" />
+<tableitem align="2" filedname="loanAcNo" id="8" indexed="8" label="放款账号" row="1" type="0" />
+<tableitem align="2" filedname="loanAcName" id="10" indexed="10" label="账户户名" row="1" type="0" />
+<tableitem align="2" filedname="loanSts" id="15" indexed="15" label="放款状态[01-待处理,02-已发送,03-放款成功,04-放款失败]" row="1" type="0" />
+<tableitem align="2" filedname="txDate" id="16" indexed="16" label="登记日期" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="19" indexed="19" label="-" row="1" type="5" typepara="AcLoanLogAction_getById.action;loanLogNo-loanLogNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="20" indexed="20" label="-" row="1" type="5" typepara="AcLoanLogAction_del.action;loanLogNo-loanLogNo;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftRepyClear" type="app.creditapp.aft.entity.AftRepyClear"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftRepyClear" class="AftRepyClear">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="clearId" column="CLEAR_ID" />
+    <result property="wsId" column="WS_ID" />
+    <result property="perdNo" column="PERD_NO" />
+    <result property="payDt" column="PAY_DT" />
+    <result property="clearSts" column="CLEAR_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    </resultMap>
+     <sql id="AftRepyClear.columns">
+        <![CDATA[
+         PACT_NO,
+         BR_NO,
+         CLEAR_ID,
+         WS_ID,
+         PERD_NO,
+         PAY_DT,
+         CLEAR_STS,
+         DEAL_DESC,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftRepyClear.insert">
+        <![CDATA[
+        INSERT INTO AFT_REPY_CLEAR(
+         PACT_NO,
+         BR_NO,
+         CLEAR_ID,
+         WS_ID,
+         PERD_NO,
+         PAY_DT,
+         CLEAR_STS,
+         DEAL_DESC,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #pactNo#,
+         #brNo#,
+         #clearId#,
+         #wsId#,
+         #perdNo#,
+         #payDt#,
+         #clearSts#,
+         #dealDesc#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="clearId" >
+			SELECT AFT_REPY_CLEAR_seq.nextval AS CLEAR_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftRepyClear.del">
+        <![CDATA[
+               DELETE FROM AFT_REPY_CLEAR
+                 WHERE
+               	CLEAR_ID = #clearId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftRepyClear.update">
+        <![CDATA[
+         UPDATE AFT_REPY_CLEAR set
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         CLEAR_ID=#clearId#,
+         WS_ID=#wsId#,
+         PERD_NO=#perdNo#,
+         PAY_DT=#payDt#,
+         CLEAR_STS=#clearSts#,
+         DEAL_DESC=#dealDesc#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	CLEAR_ID = #clearId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftRepyClear.getById"  resultMap="RM.AftRepyClear">
+        SELECT <include refid="AftRepyClear.columns"/>
+        <![CDATA[
+             FROM AFT_REPY_CLEAR 
+         WHERE 
+               	CLEAR_ID = #clearId#        ]]>
+     </select>
+     
+      <select id="AftRepyClear.getByWsId"  resultMap="RM.AftRepyClear">
+        SELECT <include refid="AftRepyClear.columns"/>
+        <![CDATA[
+             FROM AFT_REPY_CLEAR 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     
+     <select id="AftRepyClear.getByPactnoAndPerdno"  resultMap="RM.AftRepyClear">
+        SELECT <include refid="AftRepyClear.columns"/>
+        <![CDATA[
+             FROM AFT_REPY_CLEAR 
+         WHERE 
+               PACT_NO=#pactNo# AND BR_NO=#brNo#        ]]>
+     </select>
+     
+     <!-- 根据合同号、机构号查询带处理提前清贷申请 -->
+      <select id="AftRepyClear.getByPactNoIng"  resultMap="RM.AftRepyClear">
+        SELECT <include refid="AftRepyClear.columns"/>
+        <![CDATA[
+             FROM AFT_REPY_CLEAR 
+         WHERE 
+               	PACT_NO=#pactNo# AND BR_NO=#brNo# AND CLEAR_STS='01'        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftRepyClear.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftRepyClear.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_REPY_CLEAR <include refid="AftRepyClear.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftRepyClear.findByPage" resultMap="RM.AftRepyClear">
+        SELECT <include refid="AftRepyClear.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftRepyClear.columns"/> FROM AFT_REPY_CLEAR
+                    <include refid="AftRepyClear.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

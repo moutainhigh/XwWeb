@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="acc8014" title="交易会计关系表,编辑用form">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txCde" fieldsize="AC_TX_CDE" fieldtype="2" fieldwidth="30" formactiveid="1" labelalign="3" labelcol="1" labelname="交易代码" labelwidth="20" maxlength="4" mustinput="1" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="seq" fieldtype="1" fieldwidth="30" formactiveid="2" labelalign="3" labelcol="3" labelname="序号" labelwidth="20" maxlength="3" mustinput="1" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="entryCde" fieldtype="1" formactiveid="3" labelalign="3" labelcol="1" labelname="分录代码" maxlength="10" mustinput="1" onclick="funcAcDcEntryForPop('entryCde,seq','entryCde,seq')" row="2" unit="[选择]"/>
+</form>

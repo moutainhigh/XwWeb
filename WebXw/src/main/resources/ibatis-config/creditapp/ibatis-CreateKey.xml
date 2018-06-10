@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<!-- 生成预进件批次编号 -->
+	<select id="getPreBatchNo.getkey" resultClass="string">
+		<![CDATA[ SELECT PRE_BATCH_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	
+	<!-- 生成预进件批次编号 -->
+	<select id="getQueBatchNo.getkey" resultClass="string">
+		<![CDATA[ SELECT QUE_BATCH_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	<!-- 生成账户维护流水号 -->
+	<select id="getUUID.getkey" resultClass="string">
+		<![CDATA[ SELECT UUID_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	<!-- 生成提前清贷数据ID -->
+	<select id="getWsId.getkey" resultClass="string">
+		<![CDATA[ SELECT WS_ID_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	
+	<!-- 生成单笔申请批次编号 -->
+	<select id="getBatchNo.getkey" resultClass="string">
+		<![CDATA[ SELECT WS_BATCH_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	
+	<!-- 生成预进件业务编号 -->
+	<select id="getPreAppId.getkey" resultClass="string">
+		<![CDATA[ SELECT PRE_APPLY_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	
+	<!-- 生成正式进件批次编号 -->
+	<select id="getLnBatchNo.getkey" resultClass="string">
+		<![CDATA[ SELECT LN_BATCH_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	
+	<!-- 生成正式进件业务编号 -->
+	<select id="getLnApplyNo.getkey" resultClass="string">
+		<![CDATA[ SELECT LN_APPLY_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+	
+	<!--编号生成(公共) -->
+	<select id="getKeyByDate.getPublickey" resultClass="string" remapResults="true">
+		<![CDATA[ SELECT PUBLIC_ID_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+	
+	<!--生成客户号 -->
+	<select id="getKeyByDate.getCif_no" resultClass="string">
+		<![CDATA[ SELECT  CIF_BASE_SEQ.Nextval  from dual ]]>
+	</select>
+	<!--生成申请编号 -->
+	<select id="getKey.getOutInId" resultClass="string">
+		<![CDATA[ SELECT GAGE_OUT_IN_SEQ.NEXTVAL AS OUTIN_ID FROM DUAL]]>
+	</select>
+	<select id="getKey.getNoteModel" resultClass="string">
+		<![CDATA[ SELECT NOTE_MODEL_SEQ.NEXTVAL AS MODEL_ID FROM DUAL]]>
+	</select>
+	
+	<!--获取系统当天客户经理组最大编号 -->
+	<select id="getGroupNo.getkey" resultClass="string">
+		<![CDATA[ SELECT max(group_no) from sys_user_group where group_no like '%'||#sys_date#||'%']]>
+	</select>
+	
+		<!-- 收支管理编号 -->
+	<select id="CreateKey.RpmOffsetAccLog.getKey" resultClass="string">
+		<![CDATA[
+			SELECT RPM_OFFSET_LOG_SEQ.nextval AS SEQN FROM DUAL
+		]]>
+	</select>
+	
+		<!-- 租后提前结清按租赁物编号 -->
+	<select id="CreateKey.AlpBase.getKey" resultClass="string">
+		<![CDATA[
+			SELECT ALP_BASE_SEQ.nextval AS SEQN FROM DUAL
+		]]>
+	</select>
+	
+	<!-- 生成资产池编号 -->
+	<select id="CreateKey.PoolId.getKey" resultClass="string">
+		<![CDATA[ SELECT POOL_ID_SEQ.NEXTVAL FROM DUAL]]>
+	</select>
+</sqlMap>

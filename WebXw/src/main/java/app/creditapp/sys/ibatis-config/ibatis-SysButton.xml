@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysButton" type="app.creditapp.sys.entity.SysButton"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysButton" class="SysButton">
+	    <result property="menu_no" column="MENU_NO" />
+	    <result property="button_no" column="BUTTON_NO" />
+	    <result property="button_desc" column="BUTTON_DESC" />
+    </resultMap>
+     <sql id="SysButton.columns">
+        <![CDATA[
+         MENU_NO,
+         BUTTON_NO,
+         BUTTON_DESC
+          ]]>
+	 </sql>
+    <!-- 表新增 -->
+    <insert id="SysButton.insert">
+        <![CDATA[
+        INSERT INTO SYS_BUTTON(
+         MENU_NO,
+         BUTTON_NO,
+         BUTTON_DESC
+         )VALUES(
+         #menu_no#,
+         #button_no#,
+         #button_desc#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysButton.del">
+        <![CDATA[
+               DELETE FROM SYS_BUTTON
+                 WHERE
+               	MENU_NO = #menu_no#  and BUTTON_NO = #button_no#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysButton.update">
+        <![CDATA[
+         UPDATE SYS_BUTTON set
+         MENU_NO=#menu_no#,
+         BUTTON_NO=#button_no#,
+         BUTTON_DESC=#button_desc#
+          WHERE
+               	MENU_NO = #menu_no#  and button_no = #button_no#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysButton.getById"  resultMap="RM.SysButton">
+        SELECT <include refid="SysButton.columns"/>
+        <![CDATA[
+             FROM SYS_BUTTON 
+         WHERE 
+               	MENU_NO = #menu_no#  and button_no = #button_no#
+        ]]>
+     </select>
+     
+    <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysButton.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="menu_no">
+                  <isNotEmpty prepend="AND" property="menu_no">
+                      MENU_NO = #menu_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="button_no">
+                  <isNotEmpty prepend="AND" property="button_no">
+                      BUTTON_NO = #button_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysButton.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_BUTTON <include refid="SysButton.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysButton.findByPage" resultMap="RM.SysButton">
+        SELECT <include refid="SysButton.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysButton.columns"/> FROM SYS_BUTTON
+                    <include refid="SysButton.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="SysButton.findAllByMenu" resultMap="RM.SysButton">
+        SELECT <include refid="SysButton.columns"/>
+        FROM SYS_BUTTON WHERE MENU_NO=#menu_no#
+    </select>
+</sqlMap>

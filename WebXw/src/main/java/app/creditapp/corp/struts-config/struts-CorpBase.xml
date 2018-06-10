@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CorpBaseAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CorpBaseAction_findByPage" method="findByPage" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="list">/creditapp/corp/CorpBase_List.jsp</result>
+		</action>
+		
+		 <!--分页查询   接口权限配置  合作机构展示列表-->
+		<action name="CorpBaseAction_findByPageforSysWs" method="findByPageforSysWs" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="list">/creditapp/corp/CorpBase_ListForWs.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CorpBaseAction_input" method="input" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="input">/creditapp/corp/CorpBase_Insert.jsp</result>
+		</action>
+		
+			<!--获取新增页面-->
+		<action name="CorpBaseAction_valiBr" method="valiBr" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="list">/creditapp/corp/CorpBase_List.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CorpBaseAction_del" method="del" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="list">/creditapp/corp/CorpBase_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CorpBaseAction_getById" method="getById" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_Detail.jsp</result>
+		</action>
+		<action name="CorpBaseAction_getByIdForBrNo" method="getByIdForBrNo" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_Detail.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="CorpBaseActionInsert" method="insert" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="input">/creditapp/corp/CorpBase_Insert.jsp</result>
+			<result name="detail">/creditapp/corp/CorpBase_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CorpBaseActionUpdate" method="update" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="input">/creditapp/corp/CorpBase_Detail.jsp</result>
+			<result name="detail">/creditapp/corp/CorpBase_Detail.jsp</result>
+		</action>
+		<!-- 总详细信息 -->
+		<action name="CorpBaseAction_getAllDetail" method="getAllDetail" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="all">/creditapp/corp/CorpBase_All.jsp</result>
+	    </action>		
+	    <action name="CorpBaseAction_getAllDetailForRead" method="getAllDetailForRead" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="all">/creditapp/corp/CorpBase_AllForRead.jsp</result>
+	    </action>
+	    <!-- 上面常显信息 -->
+		<action name="CorpBaseAction_getDetailTop" method="getDetailTop" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="top">/creditapp/corp/CorpBase_All_Top.jsp</result>
+		</action>
+	    
+	    <!-- 客户详细信息 -->
+		<action name="CorpBaseAction_getTab" method="getTab" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="tab">/creditapp/corp/CorpBase_Tab.jsp</result>
+		</action>
+		<!--显示业务概况图 -->
+		<action name="CorpBaseAction_showView" method="showView" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowView.jsp</result>
+		</action>
+		<!--列表brNo pop -->
+		<action name="CorpBaseAction_findByPageForPop" method="findByPageForPop" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="listforpop">/creditapp/corp/CorpBase_ListForPop.jsp</result>
+		</action>
+		<!--列表brNo pop -->
+		<action name="CorpBaseAction_delForCorp" method="delForCorp" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="list">/creditapp/corp/CorpBase_ListForPop.jsp</result>
+		</action>
+		<!-- 显示业务概况图 -->
+		<action name="CorpBaseAction_getViewTab" method="getViewTab" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="tab">/creditapp/corp/CorpBase_ViewTab.jsp</result>
+		</action>
+		<!--近一周业务笔数概况图 -->
+		<action name="CorpBaseAction_showActionNum" method="showActionNum" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowActionNum.jsp</result>
+		</action>
+		<!--15天业务笔数概况图 -->
+		<action name="CorpBaseAction_showReNumback" method="showReNumback" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowReNumback.jsp</result>
+		</action>
+		<!--近一周业务金额概况图 -->
+		<action name="CorpBaseAction_showActionAmt" method="showActionAmt" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowActionAmt.jsp</result>
+		</action>
+		<!--近一周产品逾期余额概况图 -->
+		<action name="CorpBaseAction_showActionAmtForBal" method="showActionAmtForBal" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowActionAmtForBal.jsp</result>
+		</action>
+		<!--近一周业务指标概况图 -->
+		<action name="CorpBaseAction_showIndictor" method="showIndictor" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowIndictor.jsp</result>
+		</action>
+		<!--贷款余额概况图 -->
+		<action name="CorpBaseAction_showProBal" method="showProBal" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowProBal.jsp</result>
+		</action>
+		<!--贷款种类余额概况图 -->
+		<action name="CorpBaseAction_showPrdtKind" method="showPrdtKind" class="app.creditapp.corp.action.CorpBaseAction">
+			<result name="detail">/creditapp/corp/CorpBase_ShowPrdtKind.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

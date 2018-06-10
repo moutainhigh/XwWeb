@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>WebXw</display-name>
+	<welcome-file-list>
+		<welcome-file>cmsindex.jsp</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:applicationContext.xml</param-value>
+	</context-param>
+	
+		<!-- session超时定义,单位为分钟 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+		<!-- WenService的Cxf配置
+	<servlet>
+	    <servlet-name>CXFServlet</servlet-name>
+	    <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>CXFServlet</servlet-name>
+	    <url-pattern>/services/*</url-pattern>
+	</servlet-mapping> -->
+	<!-- 登陆用户池维护监听 -->
+	<listener>
+		<listener-class>app.util.LoginSessionListener</listener-class>
+	</listener>
+	
+	<!-- spring监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>app.creditapp.inf.utils.ImgListener</listener-class>
+	</listener>
+		<!-- Struts2拦截器 -->
+	<filter>
+		<filter-name>struts2Filter</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2Filter</filter-name>
+		<url-pattern>*.action</url-pattern>
+		<url-pattern>*.pdf</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>struts2Filter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>struts2CleanupFilter</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2CleanupFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	
+	<!-- 新增 页面组件 -->
+	<servlet>
+		<servlet-name>InitSystemDataServlet</servlet-name>
+		<servlet-class>com.core.struts.InitSystemDataServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitSystemDataServlet</servlet-name>
+		<url-pattern>/InitSystemDataServlet</url-pattern>
+	</servlet-mapping>
+	
+		<!-- 缓存加载器 -->
+	<servlet>
+		<servlet-name>CacheInitServlet</servlet-name>
+		<servlet-class>app.util.CacheInitServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	
+	<!--核算系统数据初始化 -->
+	<servlet>
+		<servlet-name>AccountingInitServlet</servlet-name>
+		<servlet-class>app.creditapp.acc.init.AccountingInitServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	
+		<!-- 启动消息队列以及监听服务 -->
+	<servlet>
+		<servlet-name>QueueInitServlet</servlet-name>
+		<servlet-class>app.creditapp.redis.queue.QueueInitServlet</servlet-class>
+		<load-on-startup>8</load-on-startup>
+	</servlet>
+	
+		<!-- jsp标签库 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/WEB-INF/tld/loan.tld</taglib-uri>
+			<taglib-location>/WEB-INF/tld/loan.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
+</web-app>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="repln007" para="eadis_page" link="AcLnRepayPlnHstAction_findByPage.action" title="还款计划表历史表" type="1">
+<tableitem align="2" filedname="perdNo" id="1" indexed="1" label="期号" row="1" type="4" typepara="AcLnRepayPlnHstAction_getById.action;perdNo-perdNo;loanNo-loanNo;traceNo-traceNo;query-'query'"/>
+<tableitem align="2" filedname="loanNo" id="2" indexed="2" label="借据号" row="1" type="4" typepara="AcLnRepayPlnHstAction_getById.action;perdNo-perdNo;loanNo-loanNo;traceNo-traceNo;query-'query'"/>
+<tableitem align="2" filedname="traceNo" id="3" indexed="3" label="主流水号" row="1" type="4" typepara="AcLnRepayPlnHstAction_getById.action;perdNo-perdNo;loanNo-loanNo;traceNo-traceNo;query-'query'"/>
+<tableitem align="2" filedname="overInd" id="4" indexed="4" label="逾期标志" row="1" type="0" />
+<tableitem align="2" filedname="lstPayDt" id="5" indexed="5" label="最近还款日" row="1" type="0" />
+<tableitem align="2" filedname="wvPrcpAmt" id="6" indexed="6" label="减免本金" row="1" type="0" />
+<tableitem align="2" filedname="wvNormInt" id="7" indexed="7" label="减免正常利息" row="1" type="0" />
+<tableitem align="2" filedname="wvFineInt" id="8" indexed="8" label="减免罚息" row="1" type="0" />
+<tableitem align="2" filedname="prcpSts" id="9" indexed="9" label="本金状态" row="1" type="0" />
+<tableitem align="2" filedname="intSts" id="10" indexed="10" label="利息状态" row="1" type="0" />
+<tableitem align="2" filedname="setlSts" id="11" indexed="11" label="结清标志" row="1" type="0" />
+<tableitem align="2" filedname="fineIntDt" id="12" indexed="12" label="上次结罚息日期" row="1" type="0" />
+<tableitem align="2" filedname="ppErInd" id="13" indexed="13" label="当期还款记录是否为主动还款" row="1" type="0" />
+<tableitem align="2" filedname="ifAdj" id="14" indexed="14" label="本期是否为手动调整" row="1" type="0" />
+<tableitem align="2" filedname="endDt" id="15" indexed="15" label="到期日" row="1" type="0" />
+<tableitem align="2" filedname="payDt" id="16" indexed="16" label="应还款日期" row="1" type="0" />
+<tableitem align="2" filedname="instmAmt" id="17" indexed="17" label="期供金额" row="1" type="0" />
+<tableitem align="2" filedname="prcpAmt" id="18" indexed="18" label="本金" row="1" type="0" />
+<tableitem align="2" filedname="normInt" id="19" indexed="19" label="正常利息" row="1" type="0" />
+<tableitem align="2" filedname="fineInt" id="20" indexed="20" label="罚息" row="1" type="0" />
+<tableitem align="2" filedname="bal" id="21" indexed="21" label="本机余额" row="1" type="0" />
+<tableitem align="2" filedname="repayPrcpAmt" id="22" indexed="22" label="已还本金" row="1" type="0" />
+<tableitem align="2" filedname="repayNormInt" id="23" indexed="23" label="已还正常利息" row="1" type="0" />
+<tableitem align="2" filedname="repayFineInt" id="24" indexed="24" label="已还罚息" row="1" type="0" />
+<tableitem align="2" filedname="lnRate" id="25" indexed="25" label="执行利率" row="1" type="0" />
+<tableitem align="2" filedname="overRate" id="26" indexed="26" label="逾期利率" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="27" indexed="27" label="-" row="1" type="5" typepara="AcLnRepayPlnHstAction_getById.action;perdNo-perdNo;loanNo-loanNo;traceNo-traceNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="28" indexed="28" label="-" row="1" type="5" typepara="AcLnRepayPlnHstAction_del.action;perdNo-perdNo;loanNo-loanNo;traceNo-traceNo;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnApplyMidAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnApplyMidAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="list">/creditapp/ln/LnApplyMid_List.jsp</result>
+		</action>
+		<!--查询规则引擎 -->
+		<action name="LnApplyMidAction_findByReturnId" method="findByReturnId" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="find">/creditapp/ln/LnApplyMid_findReturn.jsp</result>
+		</action>  
+		<!--分页查询 -->
+		<action name="LnApplyMidAction_findByChk" method="findByChk" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="list">/creditapp/ln/LnApplyMid_findChk.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="LnApplyMidAction_input" method="input" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="input">/creditapp/ln/LnApplyMid_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnApplyMidAction_del" method="del" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="list">/creditapp/ln/LnApplyMid_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnApplyMidAction_getById" method="getById" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="detail">/creditapp/ln/LnApplyMid_Detail.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="LnApplyMidAction_getByIdToLn" method="getByIdToLn" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="detail">/creditapp/ln/LnApplyMid_DetailToLn.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="LnApplyMidActionInsert" method="insert" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="input">/creditapp/ln/LnApplyMid_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnApplyMid_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnApplyMidActionUpdate" method="update" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="input">/creditapp/ln/LnApplyMid_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnApplyMid_Detail.jsp</result>
+		</action>
+		<!--进件失败查询 -->
+		<action name="LnApplyMidAction_findByPageToLnFail" method="findByPageToLnFail" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="list">/creditapp/ln/LnApplyMid_ListToLnFail.jsp</result>
+		</action>
+		<!-- 总详细信息 -->
+		<action name="LnApplyMidAction_getAllDetail" method="getAllDetail" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="all">/creditapp/ln/LnApplyMid_All.jsp</result>
+	    </action>	
+	    <!-- 总详细信息 -->
+		<action name="LnApplyMidAction_getAllDetailFail" method="getAllDetailFail" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="all">/creditapp/ln/LnApplyMid_AllFail.jsp</result>
+	    </action>	
+	    <!-- 客户详细信息 -->
+		<action name="LnApplyMidAction_getTab" method="getTab" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="tab">/creditapp/ln/LnApplyMid_Tab.jsp</result>
+		</action>
+		<action name="LnApplyMidAction_getTabFail" method="getTabFail" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="tab">/creditapp/ln/LnApplyMid_TabFail.jsp</result>
+		</action>
+		<!--正式进件明细/统计查询 -->
+		<action name="LnApplyMidAction_findByPageForSta" method="findByPageForSta" class="app.creditapp.ln.action.LnApplyMidAction">
+			<result name="list">/creditapp/ln/LnApplyMid_ListForSta.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

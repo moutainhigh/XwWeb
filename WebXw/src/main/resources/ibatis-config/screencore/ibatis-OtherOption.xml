@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<typeAlias alias="optionsList" type="com.core.domain.screen.OptionsList" />
+	<resultMap id="optionsResultMap" class="optionsList">
+		<result property="optionValue" column="value" nullValue="" />
+		<result property="optionLabel" column="label" nullValue="" />
+	</resultMap>
+
+	<!--所属部门-->
+	<select id="getOrgName" resultMap="optionsResultMap" parameterClass="String">
+		SELECT ORG_NO as value , ORG_DISNAME as label FROM  SYS_ORG  WHERE ORG_STS='01'
+	</select>
+		<!--角色-->
+	<select id="getRoleName" resultMap="optionsResultMap" parameterClass="String">
+		SELECT ROLE_NO as value , ROLE_NAME as label FROM  SYS_ROLE  
+	</select>
+</sqlMap>

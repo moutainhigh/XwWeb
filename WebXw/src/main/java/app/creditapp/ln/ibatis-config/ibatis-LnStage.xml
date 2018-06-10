@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnStage" type="app.creditapp.ln.entity.LnStage"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnStage" class="LnStage">
+    <result property="partSts" column="PART_STS" />
+    <result property="mstSts" column="MST_STS" />
+    <result property="sendSts" column="SEND_STS" />
+    <result property="paySts" column="PAY_STS" />
+    <result property="rsDesc" column="RS_DESC" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upTime" column="UP_TIME" />
+    <result property="appId" column="APP_ID" />
+    <result property="valSts" column="VAL_STS" />
+    <result property="dupSts" column="DUP_STS" />
+    <result property="chkSts" column="CHK_STS" />
+    <result property="evalSts" column="EVAL_STS" />
+    <result property="splitSts" column="SPLIT_STS" />
+    <result property="zdappSts" column="ZDAPP_STS" />
+    <result property="pactSts" column="PACT_STS" />
+    <result property="rgappSts" column="RGAPP_STS" />
+    <result property="dueSts" column="DUE_STS" />
+    </resultMap>
+     <sql id="LnStage.columns">
+        <![CDATA[
+         PART_STS,
+         MST_STS,
+         SEND_STS,
+         PAY_STS,
+         RS_DESC,
+         TX_TIME,
+         UP_TIME,
+         APP_ID,
+         VAL_STS,
+         DUP_STS,
+         CHK_STS,
+         EVAL_STS,
+         SPLIT_STS,
+         ZDAPP_STS,
+         PACT_STS,
+         RGAPP_STS,
+         DUE_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnStage.insert">
+        <![CDATA[
+        INSERT INTO LN_STAGE(
+         PART_STS,
+         MST_STS,
+         SEND_STS,
+         PAY_STS,
+         RS_DESC,
+         TX_TIME,
+         UP_TIME,
+         APP_ID,
+         VAL_STS,
+         DUP_STS,
+         CHK_STS,
+         EVAL_STS,
+         SPLIT_STS,
+         ZDAPP_STS,
+         PACT_STS,
+         RGAPP_STS,
+         DUE_STS
+         )VALUES(
+         #partSts#,
+         #mstSts#,
+         #sendSts#,
+         #paySts#,
+         #rsDesc#,
+         #txTime#,
+         #upTime#,
+         #appId#,
+         #valSts#,
+         #dupSts#,
+         #chkSts#,
+         #splitSts#,
+         #evalSts#,
+         #zdappSts#,
+         #pactSts#,
+         #rgappSts#,
+         #dueSts#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnStage.del">
+        <![CDATA[
+               DELETE FROM LN_STAGE
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnStage.update">
+        <![CDATA[
+         UPDATE LN_STAGE set
+         PART_STS=#partSts#,
+         MST_STS=#mstSts#,
+         SEND_STS=#sendSts#,
+         PAY_STS=#paySts#,
+         RS_DESC=#rsDesc#,
+         TX_TIME=#txTime#,
+         UP_TIME=#upTime#,
+         APP_ID=#appId#,
+         VAL_STS=#valSts#,
+         DUP_STS=#dupSts#,
+         CHK_STS=#chkSts#,
+         EVAL_STS=#evalSts#,
+         SPLIT_STS=#splitSts#,
+         ZDAPP_STS=#zdappSts#,
+         PACT_STS=#pactSts#,
+         RGAPP_STS=#rgappSts#,
+         DUE_STS=#dueSts#
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnStage.getById"  resultMap="RM.LnStage">
+        SELECT <include refid="LnStage.columns"/>
+        <![CDATA[
+             FROM LN_STAGE 
+         WHERE 
+               	APP_ID = #appId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnStage.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="paySts">
+                  <isNotEmpty prepend="AND" property="paySts">
+                      PAY_STS = #paySts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="evalSts">
+                  <isNotEmpty prepend="AND" property="evalSts">
+                      EVAL_STS = #evalSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactSts">
+                  <isNotEmpty prepend="AND" property="pactSts">
+                      PACT_STS = #pactSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnStage.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_STAGE <include refid="LnStage.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnStage.findByPage" resultMap="RM.LnStage">
+        SELECT <include refid="LnStage.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnStage.columns"/> FROM LN_STAGE
+                    <include refid="LnStage.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

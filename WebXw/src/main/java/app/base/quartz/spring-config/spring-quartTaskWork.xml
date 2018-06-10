@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+	default-lazy-init="false">
+	<!--
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+	  -->
+	<bean id="schedulerFactoryBean" class="org.quartz.impl.StdSchedulerFactory" />
+	<bean id="quartzTaskWork" class="app.base.quartz.taskUtil.QuartzTaskWork" >  
+		<property name="schedulerFactoryBean" ref="schedulerFactoryBean"></property>
+    </bean>
+    
+    <bean id="taskScheduleUtil" class="app.base.quartz.taskUtil.QuartzTaskWork" >  
+		<property name="schedulerFactoryBean" ref="schedulerFactoryBean"></property>
+    </bean>
+    
+    <bean id="domywork" class="app.base.quartz.job.test.DoMyWork"></bean>
+    
+</beans>

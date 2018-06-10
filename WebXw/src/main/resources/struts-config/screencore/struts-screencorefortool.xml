@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  	<package name="struts-screencorefortool" namespace="/" extends="struts-default">
+    <global-results>
+        <result name="invalid.token">/creditapp/common/commitRepeat.jsp</result>
+        <result name="commonException">/creditapp/common/exception.jsp</result>
+     </global-results>
+    <global-exception-mappings>
+      <exception-mapping result="commonException" exception="java.lang.Exception"></exception-mapping>  
+    </global-exception-mappings>
+        
+         <!-- FORM文件操作 -->
+         <action name="FormInitAction_initFormNoCormId" method="initFormNoCormId" class="app.util.FormInitAction">
+        	<result name="dragForm">/drag/dragForm.jsp</result>
+         </action>
+         
+          <action name="FormForToolBean_initForm" method="initForm" class="com.core.formbean.screentool.FormForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+          <action name="FormForToolBean_insertForm" method="insertForm" class="com.core.formbean.screentool.FormForToolBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+         <action name="FormForToolBean_copyForm" method="copyForm" class="com.core.formbean.screentool.FormForToolBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="FormForToolBean_updateForm" method="updateForm" class="com.core.formbean.screentool.FormForToolBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="FormForToolBean_deleteForm" method="deleteForm" class="com.core.formbean.screentool.FormForToolBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="FormForToolBean_searchFormList" method="searchFormList" class="com.core.formbean.screentool.FormForToolBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+         <!-- form元素操作-->
+         <action name="FormDataForToolBean_insertFormElement" method="insertFormElement" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_updateRowAndCol" method="updateRowAndCol" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_insertLine" method="insertLine" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_delLine" method="delLine" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_delFormElement" method="delFormElement" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_getFormElement" method="getFormElement" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_getInitFormulavalidate" method="getInitFormulavalidate" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_checkFormulavalidate" method="checkFormulavalidate" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_saveFormulavalidate" method="saveFormulavalidate" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_updateFormElement" method="updateFormElement" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_getInitCalculation" method="getInitCalculation" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_checkCalculation" method="checkCalculation" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         <action name="FormDataForToolBean_updateHide" method="updateHide" class="com.core.formbean.screentool.FormDataForToolBean">
+        	<result>/drag/dragForm.jsp</result>
+         </action>
+         
+         <!-- TABLE文件操作 -->
+          <action name="FormInitAction_initTableNoCormId" method="initTableNoCormId" class="app.util.FormInitAction">
+        	<result name="dragTable">/drag/dragTable.jsp</result>
+         </action>
+         
+        <action name="TableForToolBean_insertTable" method="insertTable" class="com.core.formbean.screentool.TableForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+         <action name="TableForToolBean_copyTable" method="copyTable" class="com.core.formbean.screentool.TableForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+          <action name="TableForToolBean_updateTable" method="updateTable" class="com.core.formbean.screentool.TableForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+          <action name="TableForToolBean_deleteTable" method="deleteTable" class="com.core.formbean.screentool.TableForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+          <action name="TableForToolBean_searchTableList" method="searchTableList" class="com.core.formbean.screentool.TableForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+         
+         <!-- table元素操作 -->
+         <action name="TableDataForToolBean_insertTableElement" method="insertTableElement" class="com.core.formbean.screentool.TableDataForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+         <action name="TableDataForToolBean_getTableElement" method="getTableElement" class="com.core.formbean.screentool.TableDataForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+         <action name="TableDataForToolBean_updateTableElement" method="updateTableElement" class="com.core.formbean.screentool.TableDataForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+         <action name="TableDataForToolBean_updateTableElementCol" method="updateTableElementCol" class="com.core.formbean.screentool.TableDataForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+        <action name="TableDataForToolBean_delTableElement" method="delTableElement" class="com.core.formbean.screentool.TableDataForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+         
+          <action name="TableDataForToolBean_getTableSelfElement" method="getTableSelfElement" class="com.core.formbean.screentool.TableDataForToolBean">
+        	<result>/drag/dragTable.jsp</result>
+         </action>
+         
+         
+         
+         
+          <action name="FormForToolBean_reloadFormXmlInCache" method="reloadFormXmlInCache" class="com.core.formbean.screentool.FormForToolBean">
+        	 <result name="reload">/drag/formbutton.jsp</result>
+         </action>
+         
+           <action name="TableForToolBean_reloadTableXmlInCache" method="reloadTableXmlInCache" class="com.core.formbean.screentool.TableForToolBean">
+        	  <result name="reload">/drag/tablebutton.jsp</result>
+         </action>
+         
+           <action name="FormForToolBean_readId" method="readId" class="com.core.formbean.screentool.FormForToolBean">
+        	 <result name="reload">/drag/formbutton.jsp</result>
+         </action>
+         
+    </package>
+</struts>

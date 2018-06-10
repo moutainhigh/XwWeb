@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcLnRepayPlnAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AcLnRepayPlnAction_*" method="{1}" class="app.creditapp.acc.option.action.AcLnRepayPlnAction">
+			<result name="list">/creditapp/acc/option/AcLnRepayPln_List.jsp</result>
+			<result name="listForCalPlans">/creditapp/acc/option/AcLnRepayPln_ListForCalPlans.jsp</result>
+			<result name="input">/creditapp/acc/option/AcLnRepayPln_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/option/AcLnRepayPln_Detail.jsp</result>
+			<result name="listRead">/creditapp/acc/option/AcLnRepayPln_List_Read.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AcLnRepayPlnActionInsert" method="insert" class="app.creditapp.acc.option.action.AcLnRepayPlnAction">
+			<result name="input">/creditapp/acc/option/AcLnRepayPln_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/option/AcLnRepayPln_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcLnRepayPlnActionUpdate" method="update" class="app.creditapp.acc.option.action.AcLnRepayPlnAction">
+			<result name="input">/creditapp/acc/option/AcLnRepayPln_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/option/AcLnRepayPln_Detail.jsp</result>
+		</action>
+		
+		<action name="AcLnRepayPlnActionCheckDate" method="checkDate" class="app.creditapp.acc.option.action.AcLnRepayPlnAction">
+		
+		</action>
+		
+	</package>
+</struts>
+
+
+

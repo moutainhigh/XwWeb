@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="acct0001" title="账户信息">
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="cifNo" fieldtype="1" maxlength="12" formactiveid="2" labelalign="3" labelcol="3" labelname="客户号码" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="acNo" fieldtype="1" maxlength="30" formactiveid="3" labelalign="3" labelcol="1" labelname="账户号码" mustinput="0" row="2" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="acName" fieldtype="1" maxlength="30" formactiveid="4" labelalign="3" labelcol="3" labelname="账户名" mustinput="0" row="2" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="acSts" fieldtype="1" maxlength="2" formactiveid="12" labelalign="3" labelcol="3" labelname="账户状态[01正常02注销03挂失]" mustinput="0" row="6" />
+</form>

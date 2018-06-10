@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="batch0007" title="批量sql表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="node_no" fieldtype="1" maxlength="12" formactiveid="1" labelalign="3" labelcol="1" labelname="节点号" mustinput="0" row="1" />
+</form>

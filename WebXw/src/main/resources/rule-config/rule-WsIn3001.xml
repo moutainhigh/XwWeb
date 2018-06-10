@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ===================================================== -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn3001Id</ruleId>
+		<ruleName>wsIn3001Rule</ruleName>
+		<columnList>
+			<!-- 申请ID -->
+			<column columenName="brNo">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<column columenName="projNo">
+				<canNull>false</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<column columenName="batNo">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<column columenName="repDate">
+				<canNull>false</canNull>
+				<maxLength>8</maxLength>
+				<minLength>8</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<column columenName="repTotal">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<column columenName="repAmt">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<column columenName="repIntst">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

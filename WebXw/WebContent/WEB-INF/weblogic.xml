@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE weblogic-web-app
+	PUBLIC "-//BEA Systems, Inc.//DTD Web Application 6.1//EN" 
+	"http://www.bea.com/servers/wls610/dtd/weblogic-web-jar.dtd">
+
+<weblogic-web-app>
+	<jsp-descriptor>
+		<page-check-seconds>-1</page-check-seconds>
+		<keepgenerated>true</keepgenerated>
+		<package-prefix>jsp_servlet</package-prefix>
+
+		<jsp-param>
+			<param-name>compileFlags</param-name>
+			<param-value>-g</param-value>
+		</jsp-param>
+		<jsp-param>
+			<param-name>compilerSupportsEncoding</param-name>
+			<param-value>true</param-value>
+		</jsp-param>
+		<jsp-param>
+			<param-name>encoding</param-name>
+			<param-value>GBK</param-value>
+		</jsp-param>
+	</jsp-descriptor>
+	<charset-params>
+		<input-charset>
+			<resource-path>/*</resource-path>
+			<java-charset-name>GBK</java-charset-name>
+		</input-charset>
+		<charset-mapping>
+			<iana-charset-name>GBK</iana-charset-name>
+			<java-charset-name>GBK</java-charset-name>
+		</charset-mapping>
+	</charset-params>
+
+	<session-descriptor>
+		<invalidation-interval-secs>60</invalidation-interval-secs>
+		<timeout-secs>1200</timeout-secs>
+		<cookie-name>JSESSIONID12</cookie-name>
+	</session-descriptor>
+
+	<container-descriptor>
+		<resource-reload-check-secs>-1</resource-reload-check-secs>
+		<servlet-reload-check-secs>-1</servlet-reload-check-secs>
+		<prefer-web-inf-classes>true</prefer-web-inf-classes>
+		<show-archived-real-path-enabled>true</show-archived-real-path-enabled>
+	</container-descriptor>
+
+</weblogic-web-app>

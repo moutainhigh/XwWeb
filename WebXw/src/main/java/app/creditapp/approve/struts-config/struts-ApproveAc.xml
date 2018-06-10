@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ApproveAcAction" namespace="/" extends="struts-cms">
+		<action name="ApproveAcAction_*" method="{1}"
+			class="app.creditapp.approve.action.ApproveAcAction">
+			<result name="tab">/creditapp/approve/ApproveForCifGroupVer_Tab.jsp</result>
+			<result name="nextNode"  type="redirect">WkfTaskAction_findByPage.action?appType=04</result>
+		</action> 
+		<action name="ApproveAcActionInput" method="input"
+			class="app.creditapp.approve.action.ApproveAcAction">
+			<result name="success">/creditapp/approve/ApproveForAc_Insert.jsp</result>
+		</action>
+		<action name="ApproveAcAction_findByPage" method="findByPage"
+			class="app.creditapp.approve.action.ApproveAcAction">
+			<result name="list">/creditapp/approve/ApproveForAc_List.jsp</result>
+		</action>
+		<action name="ApproveAcAction_doSubmit" method="doSubmit"
+			class="app.creditapp.approve.action.ApproveAcAction">
+			<result name="input">/creditapp/approve/ApproveForAc_Insert.jsp</result>
+			<result name="result"  type="redirect">ApproveAcAction_findByPage.action</result>
+			<result name="list">/creditapp/approve/ApproveForAc_Update.jsp</result>
+		</action>
+		<!-- 审批详细信息 -->
+		<action name="ApproveAcAction_getTab" method="getTab" class="app.creditapp.approve.action.ApproveAcAction">
+			<result name="tab">/creditapp/approve/ApproveForAc_getTab.jsp</result>
+		</action>
+	</package>
+</struts>

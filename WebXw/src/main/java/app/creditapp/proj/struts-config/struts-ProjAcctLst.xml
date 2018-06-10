@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ProjAcctLstAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="ProjAcctLstAction_findByPage" method="findByPage" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="list">/creditapp/proj/ProjAcctLst_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="ProjAcctLstAction_input" method="input" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="input">/creditapp/proj/ProjAcctLst_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="ProjAcctLstAction_del" method="del" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="list">/creditapp/proj/ProjAcctLst_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="ProjAcctLstAction_getById" method="getById" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="detail">/creditapp/proj/ProjAcctLst_Detail.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="ProjAcctLstAction_getById_Read" method="getById_Read" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="detail_Read">/creditapp/proj/ProjAcctLst_Detail_Read.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="ProjAcctLstActionInsert" method="insert" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="input">/creditapp/proj/ProjAcctLst_Insert.jsp</result>
+			<result name="detail">/creditapp/proj/ProjAcctLst_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ProjAcctLstActionUpdate" method="update" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="input">/creditapp/proj/ProjAcctLst_Detail.jsp</result>
+			<result name="detail">/creditapp/proj/ProjAcctLst_Detail.jsp</result>
+		</action>
+			<!-- 根据项目号显示所有的的流水信息 -->
+		<action name="ProjAcctLstAction_listQuotaForCorp" method="listQuotaForCorp" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="list">/creditapp/proj/ProjAcctLst_listQuotaForCorp.jsp</result>
+		</action>
+		<!-- 根据项目号显示所有的的流水信息 -->
+		<action name="ProjAcctLstAction_listQuotaForCorp_Read" method="listQuotaForCorp_Read" class="app.creditapp.proj.action.ProjAcctLstAction">
+			<result name="list_Read">/creditapp/proj/ProjAcctLst_listQuotaForCorp_Read.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+    <struts>
+	<package name="SysRequireTableAction" namespace="/" extends="struts-cms">
+		<action name="SysRequireTableAction_*" method="{1}" class="app.creditapp.sysConfig.action.SysRequireTableAction">
+			<result name="list">/creditapp/sys/SysRequireTable_List.jsp</result>
+			<result name="input">/creditapp/sys/SysRequireTable_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysRequireTable_Detail.jsp</result>
+			<result name="allTab">/creditapp/sys/zTree.jsp</result>
+			<result name="tbl_tree">/creditapp/sys/SysRequireTable_Tbltree.jsp</result>
+		</action>
+		<action name="SysRequireTableActionInsert" method="insert" class="app.creditapp.sysConfig.action.SysRequireTableAction">
+			<result name="input">/creditapp/sys/SysRequireTable_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysRequireTable_Detail.jsp</result>
+		</action>
+	</package>
+	</struts>
+
+
+

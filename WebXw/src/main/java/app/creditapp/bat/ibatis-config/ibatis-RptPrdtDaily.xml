@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="RptPrdtDaily" type="app.creditapp.bat.entity.RptPrdtDaily"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.RptPrdtDaily" class="RptPrdtDaily">
+    <result property="rptDate" column="RPT_DATE" />
+    <result property="rptType" column="RPT_TYPE" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="prdtType" column="PRDT_TYPE" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="cifNum" column="CIF_NUM" jdbcType="Int"/>
+    <result property="lnCnt" column="LN_CNT" jdbcType="Int"/>
+    <result property="lnBal" column="LN_BAL" jdbcType="double"/>
+    <result property="overBal" column="OVER_BAL" jdbcType="double"/>
+    <result property="intstBal" column="INTST_BAL" jdbcType="double"/>
+    <result property="cntYear" column="CNT_YEAR" jdbcType="Int"/>
+    <result property="cntMon" column="CNT_MON" jdbcType="Int"/>
+    <result property="cntDay" column="CNT_DAY" jdbcType="Int"/>
+    <result property="cntAvg" column="CNT_AVG" jdbcType="Int"/>
+    <result property="amtTot" column="AMT_TOT" jdbcType="double"/>
+    <result property="amtYear" column="AMT_YEAR" jdbcType="double"/>
+    <result property="amtMon" column="AMT_MON" jdbcType="double"/>
+    <result property="amtDay" column="AMT_DAY" jdbcType="double"/>
+    <result property="amtAvg" column="AMT_AVG" jdbcType="double"/>
+    </resultMap>
+     <sql id="RptPrdtDailyy.columns">
+        <![CDATA[
+         RPT_DATE,
+         RPT_TYPE,
+         PROJ_NO,
+         PRDT_TYPE,
+         PRDT_NO,
+         CIF_NUM,
+         LN_CNT,
+         LN_BAL,
+         OVER_BAL,
+         INTST_BAL,
+         CNT_YEAR,
+         CNT_MON,
+         CNT_DAY,
+         CNT_AVG,
+         AMT_TOT,
+         AMT_YEAR,
+         AMT_MON,
+         AMT_DAY,
+         AMT_AVG
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="RptPrdtDaily.insert">
+        <![CDATA[
+        INSERT INTO RPT_PRDT_DAILY(
+         RPT_DATE,
+         RPT_TYPE,
+         PROJ_NO,
+         PRDT_TYPE,
+         PRDT_NO,
+         CIF_NUM,
+         LN_CNT,
+         LN_BAL,
+         OVER_BAL,
+         INTST_BAL,
+         CNT_YEAR,
+         CNT_MON,
+         CNT_DAY,
+         CNT_AVG,
+         AMT_TOT,
+         AMT_YEAR,
+         AMT_MON,
+         AMT_DAY,
+         AMT_AVG
+         )VALUES(
+         #rptDate#,
+         #rptType#,
+         #projNo#,
+         #prdtType#,
+         #prdtNo#,
+         #cifNum#,
+         #lnCnt#,
+         #lnBal#,
+         #overBal#,
+         #intstBal#,
+         #cntYear#,
+         #cntMon#,
+         #cntDay#,
+         #cntAvg#,
+         #amtTot#,
+         #amtYear#,
+         #amtMon#,
+         #amtDay#,
+         #amtAvg#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="RptPrdtDaily.del">
+        <![CDATA[
+               DELETE FROM RPT_PRDT_DAILY
+                 WHERE
+               	RPT_DATE = #rptDate#  and rpt_type = #rptType#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="RptPrdtDaily.update">
+        <![CDATA[
+         UPDATE RPT_PRDT_DAILY set
+         RPT_DATE=#rptDate#,
+         RPT_TYPE=#rptType#,
+         PROJ_NO=#projNo#,
+         PRDT_TYPE=#prdtType#,
+         PRDT_NO=#prdtNo#,
+         CIF_NUM=#cifNum#,
+         LN_CNT=#lnCnt#,
+         LN_BAL=#lnBal#
+         OVER_BAL=#overBal#,
+         INTST_BAL=#intstBal#,
+         CNT_YEAR=#cntYear#,
+         CNT_MON=#cntMon#,
+         CNT_DAY=#cntDay#,
+         CNT_AVG=#cntAvg#,
+         AMT_TOT=#amtTot#,
+         AMT_YEAR=#amtYaer#,
+         AMT_MON=#amtMon#,
+         AMT_DAY=#amtDay#,
+         AMT_AVG=#amtAvg#
+          WHERE
+               	RPT_DATE = #rptDate#  and rpt_type = #rptType#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="RptPrdtDaily.getById"  resultMap="RM.RptPrdtDaily">
+        SELECT <include refid="RptPrdtDailyy.columns"/>
+        <![CDATA[
+             FROM RPT_PRDT_DAILY 
+         WHERE 
+               	RPT_DATE = #rptDate#  and rpt_type = #rptType#
+        ]]>
+     </select>
+
+    <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="RptPrdtDaily.findPage.where">
+        <dynamic prepend="where">
+        </dynamic>
+    </sql>     
+    <!-- 分页查询记录数 -->
+    <select id="RptPrdtDaily.findPage.count" resultClass="int">
+        SELECT count(*) FROM RPT_PRDT_DAILY <include refid="RptPrdtDaily.findPage.where"/>
+    </select>
+    <!-- 条件查询记录数 -->
+    <select id="RptPrdtDaily.count" resultClass="int">
+        SELECT count(*) FROM RPT_PRDT_DAILY WHERE RPT_TYPE = '05' AND PROJ_NO = #projNo# AND RPT_DATE &gt;= #rptDate# AND RPT_DATE &lt; #prdtNo#
+    </select>
+    <!-- 分页查询 -->
+    <select id="RptPrdtDaily.findByPage" resultMap="RM.RptPrdtDaily">
+        SELECT <include refid="RptPrdtDailyy.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="RptPrdtDailyy.columns"/> FROM RPT_PRDT_DAILY
+                    <include refid="RptPrdtDaily.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <select id="RptPrdtDaily.getList"  resultMap="RM.RptPrdtDaily">
+        SELECT <include refid="RptPrdtDailyy.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptPrdtDailyy.columns"/> FROM RPT_PRDT_DAILY
+                    where PRDT_TYPE=#prdtType# and PROJ_NO=#projNo# order by rpt_date desc
+             ) m 
+           WHERE rownum &lt;=30
+        )
+       WHERE rnum &gt;= 0  order by rpt_date asc
+     </select>
+</sqlMap>

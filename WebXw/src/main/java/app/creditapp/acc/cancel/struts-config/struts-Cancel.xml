@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="cancel" namespace="/" extends="struts-cms">
+		<global-results>
+			<result name="invalid.token">/creditapp/common/commitRepeat.jsp
+			</result>
+			<result name="commonException">/creditapp/common/exception.jsp
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="commonException"
+				exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		<action name="CancelAction_cancelTrace" method="cancelTrace"
+			class="app.creditapp.acc.cancel.action.CancelAction">
+			<result name="input">/creditapp/acc/cancel/CancelTrace_Detail.jsp
+			</result>
+			<result name="success">/creditapp/acc/cancel/CancelTrace_Detail.jsp
+			</result>
+		</action>
+
+
+
+		<action name="CancelAction_*" method="{1}"
+			class="app.creditapp.acc.cancel.action.CancelAction">
+			<result>/creditapp/acc/cancel/{1}_detail.jsp
+			</result>
+			<result name="input">/creditapp/acc/cancel/{1}_input.jsp
+			</result>
+			<result name="detail">/creditapp/acc/cancel/{1}_input.jsp
+			</result>
+			<result name="{1}_error">/creditapp/acc/cancel/{1}_input.jsp
+			</result>
+		</action>
+	</package>
+</struts>

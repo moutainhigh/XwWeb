@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="cur001" para="eadis_page" link="AcLnRepayPlnCurAction_findByPage.action" title="??????????????" type="1">
+<tableitem align="2" filedname="loanNo" id="1" indexed="1" label="借据号" row="1" type="4" typepara="AcLnRepayPlnCurAction_getById.action;loanNo-loanNo;query-'query'"/>
+<tableitem align="2" filedname="pactNo" id="2" indexed="2" label="合同号" row="1" type="0" />
+<tableitem align="2" filedname="brNo" id="3" indexed="3" label="机构号" row="1" type="0" />
+<tableitem align="2" filedname="repayAcNo" id="4" indexed="4" label="还款账号" row="1" type="0" />
+<tableitem align="2" filedname="ttlAmt" id="5" indexed="5" label="总金额" row="1" type="0" />
+<tableitem align="2" filedname="perdNo" id="6" indexed="6" label="当前期数" row="1" type="0" />
+<tableitem align="2" filedname="prcpAmt" id="7" indexed="7" label="本金" row="1" type="0" />
+<tableitem align="2" filedname="normInt" id="8" indexed="8" label="利息" row="1" type="0" />
+<tableitem align="2" filedname="wrkDt" id="9" indexed="9" label="登记日期" row="1" type="0" />
+<tableitem align="2" filedname="payDt" id="10" indexed="10" label="应还日期" row="1" type="0" />
+<tableitem align="2" filedname="endDt" id="11" indexed="11" label="到期日期" row="1" type="0" />
+<tableitem align="2" filedname="repayPrcpAmt" id="12" indexed="12" label="已还本金" row="1" type="0" />
+<tableitem align="2" filedname="repayNormInt" id="13" indexed="13" label="已还利息" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="14" indexed="14" label="-" row="1" type="5" typepara="AcLnRepayPlnCurAction_getById.action;loanNo-loanNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="15" indexed="15" label="-" row="1" type="5" typepara="AcLnRepayPlnCurAction_del.action;loanNo-loanNo;onClick-lkconfirm" width="2"/>
+</table>

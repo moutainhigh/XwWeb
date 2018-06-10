@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SecurityAudit" type="app.creditapp.sec.entity.SecurityAudit"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SecurityAudit" class="SecurityAudit">
+    <result property="itemNo" column="ITEM_NO"/>
+    <result property="codeType" column="CODE_TYPE"/>
+    <result property="itemName" column="ITEM_NAME"/>
+    <result property="itemValues" column="ITEM_VALUES"/>
+    <result property="isUse" column="IS_USE"/>
+    <result property="isEdit" column="IS_EDIT"/>
+    <result property="item_desc" column="ITEM_DESC"/>
+    </resultMap>
+     <sql id="SecurityAudit.columns">
+        <![CDATA[
+         ITEM_NO,
+         CODE_TYPE,
+         ITEM_NAME,
+         ITEM_VALUES,
+         IS_USE,
+         is_Edit,
+         ITEM_DESC
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SecurityAudit.insert">
+        <![CDATA[
+        INSERT INTO SECURITY_AUDIT(
+         ITEM_NO,
+         CODE_TYPE,
+         ITEM_NAME,
+         ITEM_VALUES,
+         IS_USE,
+         IS_EDIT,
+         ITEM_DESC
+         )VALUES(
+         #itemNo#,
+         #codeType#,
+         #itemName#,
+         #itemValues#,
+         #isUse#,
+         #isEdit#,
+         #item_desc#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SecurityAudit.del">
+        <![CDATA[
+               DELETE FROM SECURITY_AUDIT
+                 WHERE
+               ITEM_NO = #itemNo#
+        ]]>
+    </delete>
+    
+    <sql id="SecurityAudit.update.where">
+        <dynamic prepend="where">
+	        <isNotEmpty prepend="," property="itemNo">
+	            ITEM_NO = #itemNo#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="codeType">
+	            CODE_TYPE = #codeType#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="ITEM_NAME">
+	            ITEM_NAME=#itemName#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="ITEM_VALUES">
+	            ITEM_VALUES=#itemValues#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="," property="IS_USE">
+	            IS_USE=#isUse#
+	        </isNotEmpty>
+        </dynamic>
+    </sql>
+    
+    <!-- 表修改 -->
+    <update id="SecurityAudit.update">
+         UPDATE SECURITY_AUDIT set
+         ITEM_VALUES=#itemValues#
+          WHERE
+                 ITEM_NO = #itemNo#
+    </update>
+    <!-- 表修改 是否启用-->
+    <update id="SecurityAudit.updateIsUse">
+        <![CDATA[
+         UPDATE SECURITY_AUDIT set
+         IS_USE=#isUse#
+          WHERE
+                 ITEM_NO = #itemNo#
+        ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="SecurityAudit.getById"  resultMap="RM.SecurityAudit">
+        SELECT <include refid="SecurityAudit.columns"/>
+        <![CDATA[
+             FROM SECURITY_AUDIT
+         WHERE 
+             ITEM_NO = #itemNo#
+        ]]>
+     </select>
+     
+       <!-- 分页查询条件 -->
+    <sql id="SecurityAudit.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="itemNo">
+                      <isNotEmpty prepend="AND" property="itemNo">
+                          ITEM_NO = #itemNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="codeType">
+                      <isNotEmpty prepend="AND" property="codeType">
+                          CODE_TYPE = #codeType#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+     
+    
+    <!-- 分页查询记录数 -->
+    <select id="SecurityAudit.findPage.count" resultClass="int">
+        SELECT count(*) FROM SECURITY_AUDIT <include refid="SecurityAudit.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SecurityAudit.findByPage" resultMap="RM.SecurityAudit">
+        SELECT <include refid="SecurityAudit.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SecurityAudit.columns"/> FROM SECURITY_AUDIT
+                    <include refid="SecurityAudit.findPage.where"/>
+             ) m 
+           )
+       WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="SecurityAudit.findAuditListByCode" resultMap="RM.SecurityAudit">
+       SELECT <include refid="SecurityAudit.columns"/> FROM SECURITY_AUDIT   <include refid="SecurityAudit.findPage.where"/>
+    </select>
+    	<select id="SecurityAudit.getListForSec" resultMap="RM.SecurityAudit">
+		SELECT
+		<include refid="SecurityAudit.columns" />
+     FROM SECURITY_AUDIT where 1=1
+     <isPropertyAvailable property="isUse">
+			<isNotEmpty prepend="AND" property="isUse">
+				is_Use
+				=#isUse# 
+				</isNotEmpty>
+		</isPropertyAvailable>
+	</select>
+</sqlMap>

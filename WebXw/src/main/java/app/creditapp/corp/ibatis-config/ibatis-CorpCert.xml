@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpCert" type="app.creditapp.corp.entity.CorpCert"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpCert" class="CorpCert">
+    <result property="regBegDate" column="REG_BEG_DATE" />
+    <result property="certAudOrg" column="CERT_AUD_ORG" />
+    <result property="certName" column="CERT_NAME" />
+    <result property="certId" column="CERT_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="certLev" column="CERT_LEV" />
+    <result property="regEndDate" column="REG_END_DATE" />
+    <result property="certDesc" column="CERT_DESC" />
+    <result property="certImg" column="CERT_IMG" />
+    <result property="filler" column="FILLER" />
+    <result property="certCode" column="CERT_CODE" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="upOpNo" column="UP_OP_NO" />
+    <result property="upOpName" column="UP_OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    </resultMap>
+     <sql id="CorpCert.columns">
+        <![CDATA[
+         REG_BEG_DATE,
+         CERT_AUD_ORG,
+         CERT_NAME,
+         CERT_ID,
+         BR_NAME,
+         BR_NO,
+         CERT_LEV,
+         REG_END_DATE,
+         CERT_DESC,
+         CERT_IMG,
+         FILLER,
+         CERT_CODE,
+         DEPT_NO,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) as OP_NAME,
+         UP_OP_NO,
+         FUN_GETUSERNAME(UP_OP_NO) AS UP_OP_NAME,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpCert.insert">
+        <![CDATA[
+        INSERT INTO CORP_CERT(
+         REG_BEG_DATE,
+         CERT_AUD_ORG,
+         CERT_NAME,
+         CERT_ID,
+         BR_NAME,
+         BR_NO,
+         CERT_LEV,
+         REG_END_DATE,
+         CERT_DESC,
+         CERT_IMG,
+         FILLER,
+         CERT_CODE,
+         DEPT_NO,
+         OP_NO,
+         UP_OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #regBegDate#,
+         #certAudOrg#,
+         #certName#,
+         #certId#,
+         #brName#,
+         #brNo#,
+         #certLev#,
+         #regEndDate#,
+         #certDesc#,
+         #certImg#,
+         #filler#,
+         #certCode#,
+         #deptNo#,
+         #opNo#,
+         #upOpNo#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpCert.del">
+        <![CDATA[
+               DELETE FROM CORP_CERT
+                 WHERE
+               	CERT_ID = #certId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpCert.update">
+        <![CDATA[
+         UPDATE CORP_CERT set
+         REG_BEG_DATE=#regBegDate#,
+         CERT_AUD_ORG=#certAudOrg#,
+         CERT_NAME=#certName#,
+         CERT_ID=#certId#,
+         BR_NAME=#brName#,
+         BR_NO=#brNo#,
+         CERT_LEV=#certLev#,
+         REG_END_DATE=#regEndDate#,
+         CERT_DESC=#certDesc#,
+         CERT_IMG=#certImg#,
+         FILLER=#filler#,
+         CERT_CODE=#certCode#,
+         UP_OP_NO=#upOpNo#,
+         UP_DATE=#upDate#
+          WHERE
+               	CERT_ID = #certId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CorpCert.getById"  resultMap="RM.CorpCert">
+        SELECT <include refid="CorpCert.columns"/>
+        <![CDATA[
+             FROM CORP_CERT 
+         WHERE 
+               	CERT_ID = #certId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpCert.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="certName">
+                  <isNotEmpty prepend="AND" property="certName">
+                      CERT_NAME = #certName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="certCode">
+                  <isNotEmpty prepend="AND" property="certCode">
+                      CERT_CODE = #certCode#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpCert.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_CERT <include refid="CorpCert.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpCert.findByPage" resultMap="RM.CorpCert">
+        SELECT <include refid="CorpCert.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpCert.columns"/> FROM CORP_CERT
+                    <include refid="CorpCert.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询合作机构资质信息记录数 -->
+    <select id="CorpCert.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM CORP_CERT WHERE 
+             br_no = #brNo# ORDER BY CERT_ID DESC
+    </select>
+    <!-- 分页查询合作机构资质信息-->
+    <select id="CorpCert.findByPageQuotaForCorp" resultMap="RM.CorpCert">
+        SELECT <include refid="CorpCert.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpCert.columns"/> FROM CORP_CERT WHERE  
+             br_no = #brNo# ORDER BY CERT_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="CorpCert.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_PERS_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

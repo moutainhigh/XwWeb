@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpAcct" type="app.creditapp.corp.entity.CorpAcct"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpAcct" class="CorpAcct">
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="filler" column="FILLER" />
+    <result property="areaid" column="AREAID" />
+    <result property="city" column="CITY" />
+    <result property="province" column="PROVINCE" />
+    <result property="exchange" column="EXCHANGE" />
+    <result property="orgNo" column="ORG_NO" />
+    <result property="opnAddr" column="OPN_ADDR" />
+    <result property="acName" column="AC_NAME" />
+    <result property="opnAcno" column="OPN_ACNO" />
+    <result property="opnBank" column="OPN_BANK" />
+    <result property="acctId" column="ACCT_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="acctUse" column="ACCT_USE" />
+    <result property="acctBal" column="ACCT_BAL" />
+    <result property="sendSts" column="SEND_STS" />
+    <result property="acType" column="AC_TYPE" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="phoneNo" column="PHONE_NO" />
+    <result property="validDate" column="VALID_DATE" />
+    <result property="cvvNo" column="CVV_NO" />
+    <result property="acctNoJs" column="ACCT_NO_JS" />
+    <result property="acctNameJs" column="ACCT_NAME_JS" />
+    </resultMap>
+     <sql id="CorpAcct.columns">
+        <![CDATA[
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         DEPT_NO,
+         FILLER,
+         AREAID,
+         CITY,
+         PROVINCE,
+         EXCHANGE,
+         ORG_NO,
+         OPN_ADDR,
+         AC_NAME,
+         OPN_ACNO,
+         OPN_BANK,
+         ACCT_ID,
+         BR_NAME,
+         BR_NO,
+         ACCT_USE,
+         ACCT_BAL,
+         SEND_STS,
+         AC_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO,
+         ACCT_NO_JS,
+         ACCT_NAME_JS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpAcct.insert">
+        <![CDATA[
+        INSERT INTO CORP_ACCT(
+         UP_OPNO,
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         DEPT_NO,
+         FILLER,
+         AREAID,
+         CITY,
+         PROVINCE,
+         EXCHANGE,
+         ORG_NO,
+         OPN_ADDR,
+         AC_NAME,
+         OPN_ACNO,
+         OPN_BANK,
+         ACCT_ID,
+         BR_NAME,
+         BR_NO,
+         ACCT_USE,
+         ACCT_BAL,
+         SEND_STS,
+         AC_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO,
+         ACCT_NO_JS,
+         ACCT_NAME_JS
+         )VALUES(
+         #upOpno#,
+         #upDate#,
+         #txDate#,
+         #opNo#,
+         #deptNo#,
+         #filler#,
+         #areaid#,
+         #city#,
+         #province#,
+         #exchange#,
+         #orgNo#,
+         #opnAddr#,
+         #acName#,
+         #opnAcno#,
+         #opnBank#,
+         #acctId#,
+         #brName#,
+         #brNo#,
+         #acctUse#,
+         #acctBal#,
+         #sendSts#,
+         #acType#,
+         #idType#,
+         #idNo#,
+         #phoneNo#,
+         #validDate#,
+         #cvvNo#,
+         #acctNoJs#,
+         #acctNameJs#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpAcct.del">
+        <![CDATA[
+               DELETE FROM CORP_ACCT
+                 WHERE
+               	ACCT_ID = #acctId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+     <!-- 表删除 -->
+    <delete id="CorpAcct.delForBase">
+        <![CDATA[
+               DELETE FROM CORP_ACCT
+                 WHERE
+               	BR_NO = #brNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpAcct.update">
+        <![CDATA[
+         UPDATE CORP_ACCT set
+         UP_OPNO=#upOpno#,
+         UP_DATE=#upDate#,
+         FILLER=#filler#,
+         AREAID=#areaid#,
+         CITY=#city#,
+         PROVINCE=#province#,
+         EXCHANGE=#exchange#,
+         ORG_NO=#orgNo#,
+         OPN_ADDR=#opnAddr#,
+         AC_NAME=#acName#,
+         OPN_ACNO=#opnAcno#,
+         OPN_BANK=#opnBank#,
+         ACCT_ID=#acctId#,
+         BR_NAME=#brName#,
+         BR_NO=#brNo#,
+         ACCT_USE=#acctUse#,
+         SEND_STS=#sendSts#,
+         AC_TYPE=#acType#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         PHONE_NO=#phoneNo#,
+         VALID_DATE=#validDate#,
+         CVV_NO=#cvvNo#,
+         ACCT_NO_JS=#acctNoJs#,
+         ACCT_NAME_JS=#acctNameJs#
+          WHERE
+               	ACCT_ID = #acctId#        ]]>
+    </update>
+    <update id="CorpAcct.updateAcctJS">
+        <![CDATA[
+         UPDATE CORP_ACCT set
+         ACCT_NO_JS=#acctNoJs#,
+         AC_TYPE=#acType#,
+         ACCT_NAME_JS=#acctNameJs#,
+         EXCHANGE=#exchange#,
+         OPN_BANK=#opnBank#,
+         PROVINCE=#province#,
+         CITY=#city#,
+         CVV_NO=#cvvNo#,
+         VALID_DATE=#validDate#,
+         PHONE_NO=#phoneNo#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         UP_DATE=fun_sysdate
+          WHERE
+               	OPN_ACNO = #opnAcno# AND SEND_STS='02' AND (ACCT_USE='14' or ACCT_USE='03'  )        ]]>
+    </update>
+    
+    <select id="CorpAcct.getByBrNoAndAcNo"  resultMap="RM.CorpAcct">
+        SELECT <include refid="CorpAcct.columns"/>
+        <![CDATA[
+             FROM CORP_ACCT 
+         WHERE 
+               	BR_NO = #brNo# and  OPN_ACNO=#opnAcno#  ]]>
+     </select>
+     <!-- 表查询ById -->
+    <select id="CorpAcct.getById"  resultMap="RM.CorpAcct">
+        SELECT <include refid="CorpAcct.columns"/>
+        <![CDATA[
+             FROM CORP_ACCT 
+         WHERE 
+               	ACCT_ID = #acctId# or br_no =  #brNo#      ]]>
+     </select>
+          <!-- 接口5202查询账户 -->
+    <select id="CorpAcct.getByIdFor5202"  resultMap="RM.CorpAcct">
+        SELECT <include refid="CorpAcct.columns"/>
+        <![CDATA[
+             FROM CORP_ACCT 
+         WHERE 
+               	OPN_ACNO = #opnAcno# AND SEND_STS='02' AND (ACCT_USE='14' or ACCT_USE='03'  ) ]]>
+     </select> 
+     <select id="CorpAcct.getByBrNo"  resultMap="RM.CorpAcct">
+        SELECT <include refid="CorpAcct.columns"/>
+        <![CDATA[
+             FROM CORP_ACCT 
+         WHERE 
+               	BR_NO = #brNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpAcct.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="city">
+                  <isNotEmpty prepend="AND" property="city">
+                      CITY = #city#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acName">
+                  <isNotEmpty prepend="AND" property="acName">
+                      AC_NAME = #acName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="opnAcno">
+                  <isNotEmpty prepend="AND" property="opnAcno">
+                      OPN_ACNO = #opnAcno#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpAcct.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_ACCT <include refid="CorpAcct.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpAcct.findByPage" resultMap="RM.CorpAcct">
+        SELECT <include refid="CorpAcct.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpAcct.columns"/> FROM CORP_ACCT
+                    <include refid="CorpAcct.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询合作机构账户信息记录数 -->
+    <select id="CorpAcct.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM CORP_ACCT WHERE 
+             br_no = #brNo# ORDER BY ACCT_ID DESC
+    </select>
+    <!-- 分页查询合作机构账户信息-->
+    <select id="CorpAcct.findByPageQuotaForCorp" resultMap="RM.CorpAcct">
+        SELECT <include refid="CorpAcct.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpAcct.columns"/> FROM CORP_ACCT WHERE  
+             br_no = #brNo# ORDER BY ACCT_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="CorpAcct.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_PERS_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

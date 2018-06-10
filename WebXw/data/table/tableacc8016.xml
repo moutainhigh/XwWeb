@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GB2312"?>
+<table id="acc8016" link="AcChrgTypAction_findByPageView.action" para="eadis_page" title="交易分录配置下的分录定义表list" type="2">
+<tableitem align="2" filedname="entryCde" id="1" indexed="1" label="分录代码" row="1" type="0"/>
+<tableitem align="2" filedname="entrySeq" id="2" indexed="2" label="序号" row="1" type="0"/>
+<tableitem align="2" filedname="accHrt" id="3" indexed="3" label="科目控制字" row="1" type="0"/>
+<tableitem align="2" filedname="dcInd" id="4" indexed="4" label="借贷标志" row="1" type="6" typepara="AC_DC_IND"/>
+<tableitem align="2" filedname="amtTyp" id="5" indexed="5" label="金额类型" row="1" type="6" typepara="AC_LOAN_AMT_TYP"/>
+</table>

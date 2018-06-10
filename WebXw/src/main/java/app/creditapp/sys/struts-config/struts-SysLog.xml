@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysLogAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysLogAction_findByPage" method="findByPage" class="app.creditapp.sys.action.SysLogAction">
+			<result name="list">/creditapp/sys/SysLog_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="SysLogAction_input" method="input" class="app.creditapp.sys.action.SysLogAction">
+			<result name="input">/creditapp/sys/SysLog_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysLogAction_del" method="del" class="app.creditapp.sys.action.SysLogAction">
+			<result name="list">/creditapp/sys/SysLog_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="SysLogAction_getById" method="getById" class="app.creditapp.sys.action.SysLogAction">
+			<result name="detail">/creditapp/sys/SysLog_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysLogActionInsert" method="insert" class="app.creditapp.sys.action.SysLogAction">
+			<result name="input">/creditapp/sys/SysLog_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysLog_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysLogActionUpdate" method="update" class="app.creditapp.sys.action.SysLogAction">
+			<result name="input">/creditapp/sys/SysLog_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/SysLog_Detail.jsp</result>
+		</action>
+		
+		<action name="SysLogAction_tomain" method="tomain" class="app.creditapp.sys.action.SysLogAction">
+			<result name="list">/creditapp/sys/SysLog_List.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

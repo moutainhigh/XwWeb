@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLnRepayPlnCur" type="app.creditapp.acc.loan.entity.AcLnRepayPlnCur"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnRepayPlnCur" class="AcLnRepayPlnCur">
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="ttlAmt" column="TTL_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="perdNo" column="PERD_NO" jdbcType="Int" nullValue="0"/>
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="wrkDt" column="WRK_DT" />
+    <result property="payDt" column="PAY_DT" />
+    <result property="endDt" column="END_DT" />
+    <result property="repayPrcpAmt" column="REPAY_PRCP_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="repayNormInt" column="REPAY_NORM_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="wvNormInt" column="WV_NORM_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="wvPrcpAmt" column="WV_PRCP_AMT" jdbcType="double" nullValue="0.00"/>
+    </resultMap>
+     <sql id="AcLnRepayPlnCur.columns">
+        <![CDATA[
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         TTL_AMT,
+         PERD_NO,
+         PRCP_AMT,
+         NORM_INT,
+         WRK_DT,
+         PAY_DT,
+         END_DT,
+         REPAY_PRCP_AMT,
+         REPAY_NORM_INT,
+         WV_NORM_INT,
+         WV_PRCP_AMT
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLnRepayPlnCur.insert">
+        <![CDATA[
+        INSERT INTO AC_LN_REPAY_PLN_CUR(
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         TTL_AMT,
+         PERD_NO,
+         PRCP_AMT,
+         NORM_INT,
+         WRK_DT,
+         PAY_DT,
+         END_DT,
+         REPAY_PRCP_AMT,
+         REPAY_NORM_INT
+         )VALUES(
+         #loanNo#,
+         #pactNo#,
+         #brNo#,
+         #ttlAmt#,
+         #perdNo#,
+         #prcpAmt#,
+         #normInt#,
+         #wrkDt#,
+         #payDt#,
+         #endDt#,
+         #repayPrcpAmt#,
+         #repayNormInt#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLnRepayPlnCur.del">
+        <![CDATA[
+               DELETE FROM AC_LN_REPAY_PLN_CUR
+                 WHERE
+               	LOAN_NO = #loanNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcLnRepayPlnCur.update">
+        <![CDATA[
+         UPDATE AC_LN_REPAY_PLN_CUR set
+         LOAN_NO=#loanNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         TTL_AMT=#ttlAmt#,
+         PERD_NO=#perdNo#,
+         PRCP_AMT=#prcpAmt#,
+         NORM_INT=#normInt#,
+         WRK_DT=#wrkDt#,
+         PAY_DT=#payDt#,
+         END_DT=#endDt#,
+         REPAY_PRCP_AMT=#repayPrcpAmt#,
+         REPAY_NORM_INT=#repayNormInt#
+          WHERE
+               	LOAN_NO = #loanNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcLnRepayPlnCur.getById"  resultMap="RM.AcLnRepayPlnCur">
+        SELECT <include refid="AcLnRepayPlnCur.columns"/>
+        <![CDATA[
+             FROM AC_LN_REPAY_PLN_CUR 
+         WHERE 
+               	LOAN_NO = #loanNo#        ]]>
+     </select>
+     
+      <!-- 表查询By合同号和机构关联查询 -->
+    <select id="AcLnRepayPlnCur.getByPactNo"  resultMap="RM.AcLnRepayPlnCur">
+        SELECT <include refid="AcLnRepayPlnCur.columns"/>
+        <![CDATA[
+             FROM AC_LN_REPAY_PLN_CUR 
+         WHERE 
+               	PACT_NO = #pactNo# and BR_NO=#brNo#     ]]>
+     </select>
+     <!-- 表查询By合同号和日期 -->
+     <select id="AcLnRepayPlnCur.getByPactNoAndDt"  resultMap="RM.AcLnRepayPlnCur">
+        SELECT <include refid="AcLnRepayPlnCur.columns"/>
+        
+             FROM AC_LN_REPAY_PLN_CUR 
+         WHERE 
+               	PACT_NO = #pactNo#  
+     </select>
+      <!-- 表查询By合同号 -->
+    <select id="AcLnRepayPlnCur.pactAmt_repayPactAmt"  resultMap="RM.AcLnRepayPlnCur">
+        SELECT <include refid="AcLnRepayPlnCur.columns"/>
+        <![CDATA[
+             FROM AC_LN_REPAY_PLN_CUR 
+         WHERE 
+               	PACT_NO = #pactNo# and BR_NO=#brNo#     ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLnRepayPlnCur.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      LOAN_NO = #loanNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="repayAcNo">
+                  <isNotEmpty prepend="AND" property="repayAcNo">
+                      REPAY_AC_NO = #repayAcNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLnRepayPlnCur.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_REPAY_PLN_CUR <include refid="AcLnRepayPlnCur.findPage.where"/>
+    </select>
+    <select id="AcLnRepayPlnCur.getCurByCnt" resultMap="RM.AcLnRepayPlnCur">
+        SELECT * FROM AC_LN_REPAY_PLN_CUR where PERD_NO = #perdNo# and pact_no=#pactNo#
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLnRepayPlnCur.findByPage" resultMap="RM.AcLnRepayPlnCur">
+        SELECT <include refid="AcLnRepayPlnCur.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcLnRepayPlnCur.columns"/> FROM AC_LN_REPAY_PLN_CUR
+                    <include refid="AcLnRepayPlnCur.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

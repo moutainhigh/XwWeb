@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ========================================================= -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn2401Id</ruleId>
+		<ruleName>wsIn2401Rule</ruleName>
+		<columnList>
+       <!--合作机构号-->
+			<column columenName="brNo">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			  <!--批次号-->
+			<column columenName="batNo">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			  <!--专户银行流水号-->
+			<column columenName="bankNo">
+				<canNull>true</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--记录数-->
+			<column columenName="dataCnt">
+				<canNull>false</canNull>
+				<maxLength>4</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--批次实收金额-->
+			<column columenName="totalAmt">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

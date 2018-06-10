@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PreApply" type="app.creditapp.ln.entity.PreApply"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.PreApply" class="PreApply">
+    <result property="appDate" column="APP_DATE" />
+    <result property="prePactNo" column="PRE_PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="appId" column="APP_ID" />
+    <result property="appSts" column="APP_STS" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="appAmt" column="APP_AMT" jdbcType="double"/>
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double"/>
+    <result property="damRate" column="DAM_RATE" jdbcType="double"/>
+    <result property="appArea" column="APP_AREA" />
+    <result property="lnUse" column="LN_USE" />
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="termMon" column="TERM_MON" jdbcType="Int"/>
+    <result property="termDay" column="TERM_DAY" jdbcType="Int"/>
+    <result property="vouType" column="VOU_TYPE" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="payType" column="PAY_TYPE" />
+    <result property="payKind" column="PAY_KIND" />
+    <result property="payDay" column="PAY_DAY" jdbcType="Int"/>
+    <result property="feeType" column="FEE_TYPE" />
+    <result property="payMent" column="PAY_MENT" />
+    <result property="vouDays" column="VOU_DAYS" jdbcType="Int"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double"/>
+    <result property="feeRate" column="FEE_RATE" jdbcType="double"/>
+    <result property="feeAmt" column="FEE_AMT" jdbcType="double"/>
+    <result property="srvRate" column="SRV_RATE" jdbcType="double"/>
+    <result property="srvAmt" column="SRV_AMT" jdbcType="double"/>
+    <result property="vouRate" column="VOU_RATE" jdbcType="double"/>
+    <result property="vouAmt" column="VOU_AMT" jdbcType="double"/>
+    <result property="feeAmt1" column="FEE_AMT1" jdbcType="double"/>
+    <result property="feeAmt2" column="FEE_AMT2" jdbcType="double"/>
+    <result property="feeAmt3" column="FEE_AMT3" jdbcType="double"/>
+    <result property="feeAmt4" column="FEE_AMT4" jdbcType="double"/>
+    <result property="feeAmt5" column="FEE_AMT5" jdbcType="double"/>
+    <result property="ifItp" column="IF_ITP" />
+    <result property="ifApp" column="IF_APP" />
+    <result property="ifId" column="IF_ID" />
+    <result property="ifAuth" column="IF_AUTH" />
+    <result property="ifPact" column="IF_PACT" />
+    <result property="ifCar" column="IF_CAR" />
+    <result property="ifCarcred" column="IF_CARCRED" />
+    <result property="ifRoom" column="IF_ROOM" />
+    <result property="ifMort" column="IF_MORT" />
+    <result property="ifCard" column="IF_CARD" />
+    <result property="cardAmt" column="CARD_AMT" />
+    <result property="ifFlag" column="IF_FLAG" />
+    <result property="chkRes" column="CHK_RES" />
+    <result property="chkDesc" column="CHK_DESC" />
+    <result property="pactXt" column="PACT_XT" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="cifType" column="CIF_TYPE" />
+    <result property="sex" column="SEX" />
+    <result property="birthDay" column="BIRTH_DAY" />
+    <result property="marriage" column="MARRIAGE" />
+    <result property="children" column="CHILDREN" />
+    <result property="edu" column="EDU" />
+    <result property="degree" column="DEGREE" />
+    <result property="income" column="INCOME" jdbcType="double"/>
+    <result property="commTel" column="COMM_TEL" />
+    <result property="phoneNo" column="PHONE_NO" />
+    <result property="commCode" column="COMM_CODE" />
+    <result property="commAddr" column="COMM_ADDR" />
+    <result property="cifArea" column="CIF_AREA" />
+    <result property="resTel" column="RES_TEL" />
+    <result property="resCode" column="RES_CODE" />
+    <result property="resAddr" column="RES_ADDR" />
+    <result property="resSts" column="RES_STS" />
+    <result property="workType" column="WORK_TYPE" />
+    <result property="corpName" column="CORP_NAME" />
+    <result property="corpWay" column="CORP_WAY" />
+    <result property="corpCode" column="CORP_CODE" />
+    <result property="corpAddr" column="CORP_ADDR" />
+    <result property="duty" column="DUTY" />
+    <result property="title" column="TITLE" />
+    <result property="workYear" column="WORK_YEAR" />
+    <result property="mateName" column="MATE_NAME" />
+    <result property="mateIdtype" column="MATE_IDTYPE" />
+    <result property="mateIdno" column="MATE_IDNO" />
+    <result property="mateWork" column="MATE_WORK" />
+    <result property="mateTel" column="MATE_TEL" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="brName" column="BR_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="workSts" column="WORK_STS" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="cifAreaName" column="CIF_AREANAME" />
+    <result property="appAreaName" column="APP_AREANAME" />
+    </resultMap>
+    <!--接口ws2006  list<wsout2006_1>返回数据Map-->
+  <typeAlias alias="WsOut2006_1" type="app.creditapp.inf.entity.WsOut2006_1" />
+	<!-- 列表查询返回字段 -->
+	<resultMap id="RM.WsOut2006_1" class="WsOut2006_1">
+		   <result property="appId" column="APP_ID" />
+           <result property="brNo" column="BR_NO" />
+           <result property="prePactNo" column="PRE_PACT_NO" />
+           <result property="custName" column="CIF_NAME" />
+           <result property="idType" column="ID_TYPE" />
+           <result property="idNo" column="ID_NO" />
+           <result property="custType" column="CIF_TYPE" />
+           <result property="sex" column="SEX" />
+           <result property="birth" column="BIRTH_DAY" />
+           <result property="marriage" column="MARRIAGE" />
+           <result property="children" column="CHILDREN" />
+           <result property="edu" column="EDU" />
+           <result property="degree" column="DEGREE" />
+           <result property="telNo" column="COMM_TEL" />
+           <result property="phoneNo" column="PHONE_NO" />
+           <result property="postCode" column="COMM_CODE" />
+           <result property="postAddr" column="COMM_ADDR" />
+           <result property="homeArea" column="CIF_AREA" />
+           <result property="homeTel" column="RES_TEL" />
+           <result property="homeCode" column="RES_CODE" />
+           <result property="homeAddr" column="RES_ADDR" />
+           <result property="homeSts" column="RES_STS" />
+           <result property="income" column="INCOME" jdbcType="double" />
+           <result property="mateName" column="MATE_NAME" />
+           <result property="mateIdtype" column="MATE_IDTYPE" />
+           <result property="mateIdno" column="MATE_IDNO" />
+           <result property="mateWork" column="MATE_WORK" />
+           <result property="mateTel" column="MATE_TEL" />
+           <result property="projNo" column="PROJ_NO" />
+           <result property="prdtNo" column="PRDT_NO" />
+           <result property="pactAmt" column="PACT_AMT" jdbcType="double" />
+           <result property="feeTotal" column="FEE_TOTAL" jdbcType="double" />
+           <result property="lnRate" column="LN_RATE" jdbcType="double" />
+           <result property="appArea" column="APP_AREA" />
+           <result property="appUse" column="LN_USE" />
+           <result property="termMon" column="TERM_MON" jdbcType="Int" />
+           <result property="termDay" column="TERM_DAY" jdbcType="Int" />
+           <result property="vouType" column="VOU_TYPE" />
+           <result property="endDate" column="END_DATE" />
+           <result property="payType" column="PAY_TYPE" />
+           <result property="payDay" column="PAY_DAY" jdbcType="Int" />
+           <result property="workType" column="WORK_TYPE" />
+           <result property="workName" column="CORP_NAME" />
+           <result property="workWay" column="CORP_WAY" />
+           <result property="workCode" column="CORP_CODE" />
+           <result property="workAddr" column="CORP_ADDR" />
+           <result property="workDuty" column="DUTY" />
+           <result property="workTitle" column="TITLE" />
+           <result property="workYear" column="WORK_YEAR" />
+           <result property="ifCar" column="IF_CAR" />
+           <result property="ifCarCred" column="IF_CARCRED" />
+           <result property="ifRoom" column="IF_ROOM" />
+           <result property="ifMort" column="IF_MORT" />
+           <result property="ifCard" column="IF_CARD" />
+           <result property="cardAmt" column="CARD_AMT" />
+           <result property="ifApp" column="IF_APP" />
+           <result property="ifId" column="IF_ID" />
+           <result property="ifPact" column="IF_PACT" />
+           <result property="appRersult" column="CHK_RES" />
+           <result property="appDesc" column="CHK_DESC" />
+           <result property="workSts" column="WORK_STS" />
+     </resultMap>
+  <!--结束-->
+  <!-- 接口ws2002 返回值map -->
+  <typeAlias alias="WsOut2002_1" type="app.creditapp.inf.entity.WsOut2002_1" />
+	<!-- 列表查询返回字段 -->
+	<resultMap id="RM.WsOut2002_1" class="WsOut2002_1">
+	<result property="prePactNo" column="PRE_PACT_NO" />
+	<result property="dealSts" column="CHK_RES" />
+	<result property="dealDesc" column="CHK_DESC" />
+  </resultMap>
+  <!--结束-->
+  <!--接口2006返回字段-->
+		<sql id="PreApplyforws2006.columns">
+        <![CDATA[
+         APP_ID,
+         BR_NO,
+         PRE_PACT_NO,
+         CIF_NAME,
+         ID_TYPE,
+         ID_NO,
+         CIF_TYPE,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         CHILDREN,
+         EDU,
+         DEGREE,
+         COMM_TEL,
+         PHONE_NO,
+         COMM_CODE,
+         COMM_ADDR,
+         CIF_AREA,
+         RES_TEL,
+         RES_CODE,
+         RES_ADDR,
+         RES_STS,
+         INCOME,
+         MATE_NAME,
+         MATE_IDTYPE,
+         MATE_IDNO,
+         MATE_WORK,
+         MATE_TEL,
+         PROJ_NO,
+         PRDT_NO,
+         PACT_AMT,
+         FEE_TOTAL,
+         LN_RATE,
+         APP_AREA,
+         LN_USE,
+         TERM_MON,
+         TERM_DAY,
+         VOU_TYPE,
+         END_DATE,
+         PAY_TYPE,
+         PAY_DAY,
+         WORK_TYPE,
+         CORP_NAME,
+         CORP_WAY,
+         CORP_CODE,
+         CORP_ADDR,
+         DUTY,
+         TITLE,
+         WORK_YEAR,
+         IF_CAR,
+         IF_CARCRED,
+         IF_ROOM,
+         IF_MORT,
+         IF_CARD,
+         CARD_AMT,
+         IF_APP,
+         IF_ID,
+         IF_PACT,
+         CHK_RES,
+         CHK_DESC,
+         WORK_STS
+          ]]>
+		</sql>
+	<!--结束-->
+     <sql id="PreApply.columns">
+        <![CDATA[
+         APP_DATE,
+         PRE_PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         APP_ID,
+         APP_STS,
+         CUR_NO,
+         APP_AMT,
+         PACT_AMT,
+         LN_RATE,
+         OVER_RATE,
+         DAM_RATE,
+         APP_AREA,
+         LN_USE,
+         REPAY_TYPE,
+         TERM_MON,
+         TERM_DAY,
+         VOU_TYPE,
+         BEG_DATE,
+         END_DATE,
+         PAY_TYPE,
+         PAY_KIND,
+         PAY_DAY,
+         FEE_TYPE,
+         PAY_MENT,
+         VOU_DAYS,
+         FEE_TOTAL,
+         FEE_RATE,
+         FEE_AMT,
+         SRV_RATE,
+         SRV_AMT,
+         VOU_RATE,
+         VOU_AMT,
+         FEE_AMT1,
+         FEE_AMT2,
+         FEE_AMT3,
+         FEE_AMT4,
+         FEE_AMT5,
+         IF_ITP,
+         IF_APP,
+         IF_ID,
+         IF_AUTH,
+         IF_PACT,
+         IF_CAR,
+         IF_CARCRED,
+         IF_ROOM,
+         IF_MORT,
+         IF_CARD,
+         CARD_AMT,
+         IF_FLAG,
+         CHK_RES,
+         CHK_DESC,
+         PACT_XT,
+         CIF_NAME,
+         ID_TYPE,
+         ID_NO,
+         CIF_TYPE,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         CHILDREN,
+         EDU,
+         DEGREE,
+         INCOME,
+         COMM_TEL,
+         PHONE_NO,
+         COMM_CODE,
+         COMM_ADDR,
+         CIF_AREA,
+         RES_TEL,
+         RES_CODE,
+         RES_ADDR,
+         RES_STS,
+         WORK_TYPE,
+         CORP_NAME,
+         CORP_WAY,
+         CORP_CODE,
+         CORP_ADDR,
+         DUTY,
+         TITLE,
+         WORK_YEAR,
+         MATE_NAME,
+         MATE_IDTYPE,
+         MATE_IDNO,
+         MATE_WORK,
+         MATE_TEL,
+         PROJ_NO,
+         PRDT_NO,
+         FUN_GETPRDTTYPE(PRDT_NO) as LN_TYPE,
+         FUN_GETBRNAME(br_no) as BR_NAME,
+         fun_getprdtname(PRDT_NO) as PRDT_NAME,
+         WORK_STS,
+         FUN_GETPROJNAME(PROJ_NO) AS PROJ_NAME,
+         FUN_GETAREANAME(CIF_AREA) AS CIF_AREANAME,
+         FUN_GETAREANAME(APP_AREA) AS APP_AREANAME
+          ]]>
+    </sql>
+    
+    <!--接口wsin2004、wsin2001插入数据字段-->
+	<insert id="PreApplyforws.insert">
+    <![CDATA[
+      INSERT INTO PRE_APPLY(
+         APP_ID,
+         APP_DATE,
+         BATCH_NO,
+         BR_NO,
+         PRE_PACT_NO,
+         CIF_NAME,
+         ID_TYPE,
+         ID_NO,
+         CIF_TYPE,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         CHILDREN,
+         EDU,
+         DEGREE,
+         COMM_TEL,
+         PHONE_NO,
+         COMM_CODE,
+         COMM_ADDR,
+         CIF_AREA,
+         RES_TEL,
+         RES_CODE,
+         RES_ADDR,
+         RES_STS,
+         INCOME,
+         MATE_NAME,
+         MATE_IDTYPE,
+         MATE_IDNO,
+         MATE_WORK,
+         MATE_TEL,
+         PROJ_NO,
+         PRDT_NO,
+         PACT_AMT,
+         LN_RATE,
+         APP_AREA,
+         LN_USE,
+         TERM_MON,
+         TERM_DAY,
+         VOU_TYPE,
+         END_DATE,
+         PAY_TYPE,
+         PAY_DAY,
+         WORK_TYPE,
+         CORP_NAME,
+         CORP_WAY,
+         CORP_CODE,
+         CORP_ADDR,
+         DUTY,
+         TITLE,
+         WORK_YEAR,
+         IF_CAR,
+         IF_CARCRED,
+         IF_ROOM,
+         IF_MORT,
+         IF_CARD,
+         CARD_AMT,
+         IF_APP,
+         IF_ID,
+         IF_PACT,
+         CHK_RES,
+         CHK_DESC,
+         WORK_STS
+        )VALUES(
+          #appId#,
+          FUN_SYSDATE,
+          #batchNo#,
+          #brNo#,
+          #prePactNo#,
+          #custName#,
+          #idType#,
+          #idNo#,
+          #custType#,
+          #sex#,
+          #birth#,
+          #marriage#,
+          #children#,
+          #edu#,
+          #degree#,
+          #telNo#,
+          #phoneNo#,
+          #postCode#,
+          #postAddr#,
+          #homeArea#,
+          #homeTel#,
+          #homeCode#,
+          #homeAddr#,
+          #homeSts#,
+          #income#,
+          #mateName#,
+          #mateIdtype#,
+          #mateIdno#,
+          #mateWork#,
+          #mateTel#,
+          #projNo#,
+          #prdtNo#,
+          #pactAmt#,
+          #lnRate#,
+          #appArea#,
+          #appUse#,
+          #termMon#,
+          #termDay#,
+          #vouType#,
+          #endDate#,
+          #payType#,
+          #payDay#,
+          #workType#,
+          #workName#,
+          #workWay#,
+          #workCode#,
+          #workAddr#,
+          #workDuty#,
+          #workTitle#,
+          #workYear#,
+          #ifCar#,
+          #ifCarCred#,
+          #ifRoom#,
+          #ifMort#,
+          #ifCard#,
+          #cardAmt#,
+          #ifApp#,
+          #ifId#,
+          #ifPact#,
+          #dealSts#,
+          #dealDesc#,
+          #workSts#)
+         ]]>
+     </insert>
+     <!--结束-->
+    
+    <!-- 表新增 -->
+    <insert id="PreApply.insert">
+        <![CDATA[
+        INSERT INTO PRE_APPLY(
+         APP_DATE,
+         PRE_PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         APP_ID,
+         APP_STS,
+         CUR_NO,
+         APP_AMT,
+         PACT_AMT,
+         LN_RATE,
+         OVER_RATE,
+         DAM_RATE,
+         APP_AREA,
+         LN_USE,
+         REPAY_TYPE,
+         TERM_MON,
+         TERM_DAY,
+         VOU_TYPE,
+         BEG_DATE,
+         END_DATE,
+         PAY_TYPE,
+         PAY_KIND,
+         PAY_DAY,
+         FEE_TYPE,
+         PAY_MENT,
+         VOU_DAYS,
+         FEE_TOTAL,
+         FEE_RATE,
+         FEE_AMT,
+         SRV_RATE,
+         SRV_AMT,
+         VOU_RATE,
+         VOU_AMT,
+         FEE_AMT1,
+         FEE_AMT2,
+         FEE_AMT3,
+         FEE_AMT4,
+         FEE_AMT5,
+         IF_ITP,
+         IF_APP,
+         IF_ID,
+         IF_AUTH,
+         IF_PACT,
+         IF_CAR,
+         IF_CARCRED,
+         IF_ROOM,
+         IF_MORT,
+         IF_CARD,
+         CARD_AMT,
+         IF_FLAG,
+         CHK_RES,
+         CHK_DESC,
+         PACT_XT,
+         CIF_NAME,
+         ID_TYPE,
+         ID_NO,
+         CIF_TYPE,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         CHILDREN,
+         EDU,
+         DEGREE,
+         INCOME,
+         COMM_TEL,
+         PHONE_NO,
+         COMM_CODE,
+         COMM_ADDR,
+         CIF_AREA,
+         RES_TEL,
+         RES_CODE,
+         RES_ADDR,
+         RES_STS,
+         WORK_TYPE,
+         CORP_NAME,
+         CORP_WAY,
+         CORP_CODE,
+         CORP_ADDR,
+         DUTY,
+         TITLE,
+         WORK_YEAR,
+         MATE_NAME,
+         MATE_IDTYPE,
+         MATE_IDNO,
+         MATE_WORK,
+         MATE_TEL,
+         PROJ_NO,
+         PRDT_NO,
+         LN_TYPE,
+         WORK_STS
+         )VALUES(
+         #appDate#,
+         #prePactNo#,
+         #brNo#,
+         #batchNo#,
+         #appId#,
+         #appSts#,
+         #curNo#,
+         #appAmt#,
+         #pactAmt#,
+         #lnRate#,
+         #overRate#,
+         #damRate#,
+         #appArea#,
+         #lnUse#,
+         #repayType#,
+         #termMon#,
+         #termDay#,
+         #vouType#,
+         #begDate#,
+         #endDate#,
+         #payType#,
+         #payKind#,
+         #payDay#,
+         #feeType#,
+         #payMent#,
+         #vouDays#,
+         #feeTotal#,
+         #feeRate#,
+         #feeAmt#,
+         #srvRate#,
+         #srvAmt#,
+         #vouRate#,
+         #vouAmt#,
+         #feeAmt1#,
+         #feeAmt2#,
+         #feeAmt3#,
+         #feeAmt4#,
+         #feeAmt5#,
+         #ifItp#,
+         #ifApp#,
+         #ifId#,
+         #ifAuth#,
+         #ifPact#,
+         #ifCar#,
+         #ifCarcred#,
+         #ifRoom#,
+         #ifMort#,
+         #ifCard#,
+         #cardAmt#,
+         #ifFlag#,
+         #chkRes#,
+         #chkDesc#,
+         #pactXt#,
+         #cifName#,
+         #idType#,
+         #idNo#,
+         #cifType#,
+         #sex#,
+         #birthDay#,
+         #marriage#,
+         #children#,
+         #edu#,
+         #degree#,
+         #income#,
+         #commTel#,
+         #phoneNo#,
+         #commCode#,
+         #commAddr#,
+         #cifArea#,
+         #resTel#,
+         #resCode#,
+         #resAddr#,
+         #resSts#,
+         #workType#,
+         #corpName#,
+         #corpWay#,
+         #corpCode#,
+         #corpAddr#,
+         #duty#,
+         #title#,
+         #workYear#,
+         #mateName#,
+         #mateIdtype#,
+         #mateIdno#,
+         #mateWork#,
+         #mateTel#,
+         #projNo#,
+         #prdtNo#,
+         #lnType#,
+         #workSts#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="PreApply.del">
+        <![CDATA[
+               DELETE FROM PRE_APPLY
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="PreApply.update">
+        <![CDATA[
+         UPDATE PRE_APPLY set
+         APP_DATE=#appDate#,
+         PRE_PACT_NO=#prePactNo#,
+         BR_NO=#brNo#,
+         BATCH_NO=#batchNo#,
+         APP_ID=#appId#,
+         APP_STS=#appSts#,
+         CUR_NO=#curNo#,
+         APP_AMT=#appAmt#,
+         PACT_AMT=#pactAmt#,
+         LN_RATE=#lnRate#,
+         OVER_RATE=#overRate#,
+         DAM_RATE=#damRate#,
+         APP_AREA=#appArea#,
+         LN_USE=#lnUse#,
+         REPAY_TYPE=#repayType#,
+         TERM_MON=#termMon#,
+         TERM_DAY=#termDay#,
+         VOU_TYPE=#vouType#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         PAY_TYPE=#payType#,
+         PAY_KIND=#payKind#,
+         PAY_DAY=#payDay#,
+         FEE_TYPE=#feeType#,
+         PAY_MENT=#payMent#,
+         VOU_DAYS=#vouDays#,
+         FEE_TOTAL=#feeTotal#,
+         FEE_RATE=#feeRate#,
+         FEE_AMT=#feeAmt#,
+         SRV_RATE=#srvRate#,
+         SRV_AMT=#srvAmt#,
+         VOU_RATE=#vouRate#,
+         VOU_AMT=#vouAmt#,
+         FEE_AMT1=#feeAmt1#,
+         FEE_AMT2=#feeAmt2#,
+         FEE_AMT3=#feeAmt3#,
+         FEE_AMT4=#feeAmt4#,
+         FEE_AMT5=#feeAmt5#,
+         IF_ITP=#ifItp#,
+         IF_APP=#ifApp#,
+         IF_ID=#ifId#,
+         IF_AUTH=#ifAuth#,
+         IF_PACT=#ifPact#,
+          IF_CAR=#ifCar#,
+         IF_CARCRED=#ifCarcred#,
+         IF_ROOM=#ifRoom#,
+         IF_MORT=#ifMort#,
+         IF_CARD=#ifCard#,
+         CARD_AMT=#cardAmt#,
+         IF_FLAG=#ifFlag#,
+         CHK_RES=#chkRes#,
+         CHK_DESC=#chkDesc#,
+         PACT_XT=#pactXt#,
+         CIF_NAME=#cifName#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         CIF_TYPE=#cifType#,
+         SEX=#sex#,
+         BIRTH_DAY=#birthDay#,
+         MARRIAGE=#marriage#,
+         CHILDREN=#children#,
+         EDU=#edu#,
+         DEGREE=#degree#,
+         INCOME=#income#,
+         COMM_TEL=#commTel#,
+         PHONE_NO=#phoneNo#,
+         COMM_CODE=#commCode#,
+         COMM_ADDR=#commAddr#,
+         CIF_AREA=#cifArea#,
+         RES_TEL=#resTel#,
+         RES_CODE=#resCode#,
+         RES_ADDR=#resAddr#,
+         RES_STS=#resSts#,
+         WORK_TYPE=#workType#,
+         CORP_NAME=#corpName#,
+         CORP_WAY=#corpWay#,
+         CORP_CODE=#corpCode#,
+         CORP_ADDR=#corpAddr#,
+         DUTY=#duty#,
+         TITLE=#title#,
+         WORK_YEAR=#workYear#,
+         MATE_NAME=#mateName#,
+         MATE_IDTYPE=#mateIdtype#,
+         MATE_IDNO=#mateIdno#,
+         MATE_WORK=#mateWork#,
+         MATE_TEL=#mateTel#,
+         PROJ_NO=#projNo#,
+         PRDT_NO=#prdtNo#,
+         LN_TYPE=#lnType#,
+         WORK_STS=#workSts#
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update>
+    <!-- 表修改 -->
+    <update id="PreApply.updateZDSP">
+        <![CDATA[
+         UPDATE PRE_APPLY set
+         IF_FLAG=#ifFlag#,
+         CHK_RES=#chkRes#,
+         CHK_DESC=#chkDesc#,
+         APP_STS=#appSts#
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update>
+    <!-- 根据合同号更新pregagemid表的Appid -->
+    <update id="PreApply.updateToPreGageMid">
+        <![CDATA[
+         UPDATE pre_gage a
+   		SET a.app_id =
+       	(SELECT app_id
+          FROM pre_apply b
+         WHERE b.pre_pact_no = a.pre_pact_no
+           AND b.br_no = #brNo# AND batch_no = #batchNo# )
+ 			WHERE a.app_id IS NULL     		]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="PreApply.getById"  resultMap="RM.PreApply">
+        SELECT <include refid="PreApply.columns"/>
+        <![CDATA[
+             FROM PRE_APPLY 
+         WHERE 
+               	APP_ID = #appId#        ]]>
+     </select>
+     	<!-- 接口ws2002、ws2006接收数据查找条件 -->
+		<sql id="PreApply.findPageforws2002.where">
+			<dynamic prepend="where">
+				<isPropertyAvailable property="prePactNo">
+					<isNotEmpty prepend="AND" property="prePactNo">
+						PRE_PACT_NO = #prePactNo#
+                   </isNotEmpty>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="brNo">
+					<isNotEmpty prepend="AND" property="brNo">
+						BR_NO = #brNo#
+                   </isNotEmpty>
+				</isPropertyAvailable>
+				<isPropertyAvailable property="batchNo">
+					<isNotEmpty prepend="AND" property="batchNo">
+						BATCH_NO = #batchNo#
+                   </isNotEmpty>
+				</isPropertyAvailable>
+			</dynamic>
+		</sql>		
+
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PreApply.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="prePactNo">
+                  <isNotEmpty prepend="AND" property="prePactNo">
+                     PRE_PACT_NO = #prePactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appSts">
+                  <isNotEmpty prepend="AND" property="appSts">
+                      APP_STS = #appSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!--ws2002端口sql查找语句-->
+		<select id="WsOut2002_1.find" resultMap="RM.WsOut2002_1">
+         SELECT <include refid="PreApply.columns"/>
+         FROM PRE_APPLY  <include refid="PreApply.findPageforws2002.where"/>
+    </select>
+    <!-- 接口ws2006 返回列表 wsout2006_1 pagecounts-->
+	<!-- 分页查询记录数 -->
+		<select id="PreApply.findPageforws2006.count" resultClass="int">
+			SELECT count(*) FROM PRE_APPLY
+			<include refid="PreApply.findPageforws2002.where" />
+		</select>
+	<!-- 接口ws2006 返回列表 wsout2006_1  List<wsout2006_1>分页查询-->
+		<select id="PreApply.findByPageforws2006" resultMap="RM.WsOut2006_1">
+			SELECT
+			<include refid="PreApplyforws2006.columns" />
+			FROM (
+			SELECT m.*, rownum as rnum
+			FROM
+			(SELECT
+			<include refid="PreApplyforws2006.columns" />
+			FROM PRE_APPLY
+			<include refid="PreApply.findPageforws2002.where" />
+			) m
+			) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+		</select>
+    <!-- 分页查询记录数 -->
+    <select id="PreApply.findPage.count" resultClass="int">
+        SELECT count(*) FROM PRE_APPLY <include refid="PreApply.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="PreApply.findByPage" resultMap="RM.PreApply">
+        SELECT <include refid="PreApply.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  APP_DATE,
+			         PRE_PACT_NO,
+			         BR_NO,
+			         BATCH_NO,
+			         APP_ID,
+			         APP_STS,
+			         CUR_NO,
+			         APP_AMT,
+			         PACT_AMT,
+			         LN_RATE,
+			         OVER_RATE,
+			         DAM_RATE,
+			         APP_AREA,
+			         LN_USE,
+			         REPAY_TYPE,
+			         TERM_MON,
+			         TERM_DAY,
+			         VOU_TYPE,
+			         BEG_DATE,
+			         END_DATE,
+			         PAY_TYPE,
+			         PAY_KIND,
+			         PAY_DAY,
+			         FEE_TYPE,
+			         PAY_MENT,
+			         VOU_DAYS,
+			         FEE_TOTAL,
+			         FEE_RATE,
+			         FEE_AMT,
+			         SRV_RATE,
+			         SRV_AMT,
+			         VOU_RATE,
+			         VOU_AMT,
+			         FEE_AMT1,
+			         FEE_AMT2,
+			         FEE_AMT3,
+			         FEE_AMT4,
+			         FEE_AMT5,
+			         IF_ITP,
+			         IF_APP,
+			         IF_ID,
+			         IF_AUTH,
+			         IF_PACT,
+			         IF_CAR,
+			         IF_CARCRED,
+			         IF_ROOM,
+			         IF_MORT,
+			         IF_CARD,
+			         CARD_AMT,
+			         IF_FLAG,
+			         CHK_RES,
+			         CHK_DESC,
+			         PACT_XT,
+			         CIF_NAME,
+			         ID_TYPE,
+			         ID_NO,
+			         CIF_TYPE,
+			         SEX,
+			         BIRTH_DAY,
+			         MARRIAGE,
+			         CHILDREN,
+			         EDU,
+			         DEGREE,
+			         INCOME,
+			         COMM_TEL,
+			         PHONE_NO,
+			         COMM_CODE,
+			         COMM_ADDR,
+			         CIF_AREA,
+			         RES_TEL,
+			         RES_CODE,
+			         RES_ADDR,
+			         RES_STS,
+			         WORK_TYPE,
+			         CORP_NAME,
+			         CORP_WAY,
+			         CORP_CODE,
+			         CORP_ADDR,
+			         DUTY,
+			         TITLE,
+			         WORK_YEAR,
+			         MATE_NAME,
+			         MATE_IDTYPE,
+			         MATE_IDNO,
+			         MATE_WORK,
+			         MATE_TEL,
+			         PROJ_NO,
+			         PRDT_NO,
+			         WORK_STS
+			 	FROM PRE_APPLY
+                    <include refid="PreApply.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 分页查询 -->
+    <select id="PreApply.findListByBatNo" resultMap="RM.PreApply">
+        SELECT <include refid="PreApply.columns"/>
+        FROM  PRE_APPLY WHERE BATCH_NO= #batchNo#
+    </select>
+    <!-- 获取KEY -->
+    <select id="PreApply.getKey" resultClass="string">
+   	 <![CDATA[ SELECT PRE_APPLY_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+	
+	<sql id="PreApply.getListByPreApply.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="prePactNo">
+                  <isNotEmpty prepend="AND" property="prePactNo">
+                       PRE_PACT_NO = #prePactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appSts">
+                  <isNotEmpty prepend="AND" property="appSts">
+                      APP_STS = #appSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+    <select id="PreApply.getListByPreApply"  resultMap="RM.PreApply">
+        SELECT <include refid="PreApply.columns"/>
+             FROM PRE_APPLY 
+         <include refid="PreApply.getListByPreApply.where"/>
+     </select>
+</sqlMap>

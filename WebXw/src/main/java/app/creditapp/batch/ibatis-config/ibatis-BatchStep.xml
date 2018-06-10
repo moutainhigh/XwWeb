@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="BatchStep" type="app.creditapp.batch.entity.BatchStep"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.BatchStep" class="BatchStep">
+    <result property="node_no" column="NODE_NO" />
+    <result property="node_name" column="NODE_NAME" />
+    <result property="up_node_no" column="UP_NODE_NO" />
+    <result property="up_node_name" column="UP_NODE_NAME" />
+    </resultMap>
+     <sql id="BatchStep.columns">
+        <![CDATA[
+         NODE_NO,
+         NODE_NAME,
+         UP_NODE_NO,
+         UP_NODE_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="BatchStep.insert">
+        <![CDATA[
+        INSERT INTO BATCH_STEP(
+         NODE_NO,
+         NODE_NAME,
+         UP_NODE_NO,
+         UP_NODE_NAME
+         )VALUES(
+         #node_no#,
+         #node_name#,
+         #up_node_no#,
+         #up_node_name#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="BatchStep.del">
+        <![CDATA[
+               DELETE FROM BATCH_STEP
+                 WHERE
+               	NODE_NO = #node_no#  AND (UP_NODE_NO=#up_node_no#  OR UP_NODE_NO IS NULL) ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="BatchStep.update">
+        <![CDATA[
+         UPDATE BATCH_STEP set
+         NODE_NO=#node_no#,
+         NODE_NAME=#node_name#,
+         UP_NODE_NO=#up_node_no#,
+         UP_NODE_NAME=#up_node_name#
+          WHERE
+               	NODE_NO = #node_no# AND (UP_NODE_NO=#up_node_no#  OR UP_NODE_NO IS NULL) ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="BatchStep.getById"  resultMap="RM.BatchStep">
+        SELECT <include refid="BatchStep.columns"/>
+        <![CDATA[
+             FROM BATCH_STEP 
+         WHERE 
+               	NODE_NO = #node_no#  AND (UP_NODE_NO=#up_node_no#  OR UP_NODE_NO IS NULL)    ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="BatchStep.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="node_no">
+                  <isNotEmpty prepend="AND" property="node_no">
+                      NODE_NO = #node_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="node_name">
+                  <isNotEmpty prepend="AND" property="node_name">
+                      NODE_NAME like '%' || #node_name# || '%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="up_node_no">
+                  <isNotEmpty prepend="AND" property="up_node_no">
+                      UP_NODE_NO = #up_node_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="up_node_name">
+                  <isNotEmpty prepend="AND" property="up_node_name">
+                      UP_NODE_NAME like '%' || #up_node_name# || '%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="BatchStep.findPage.count" resultClass="int">
+        SELECT count(*) FROM BATCH_STEP <include refid="BatchStep.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="BatchStep.findByPage" resultMap="RM.BatchStep">
+        SELECT <include refid="BatchStep.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="BatchStep.columns"/> FROM BATCH_STEP
+                    <include refid="BatchStep.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <!-- 分页查询 -->
+    <select id="BatchStep.getAllStepList" resultMap="RM.BatchStep">
+    	SELECT <include refid="BatchStep.columns"/>  FROM BATCH_STEP
+    </select>
+</sqlMap>

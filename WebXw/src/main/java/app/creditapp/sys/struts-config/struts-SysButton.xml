@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysButtonAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysButtonAction_*" method="{1}" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="list">/creditapp/sys/SysButton_List.jsp</result>
+		</action>
+		<action name="SysButtonAction_findByPage" method="findByPage" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="list">/creditapp/sys/SysButton_List.jsp</result>
+		</action>
+		<action name="SysButtonAction_findAllByMenu" method="findAllByMenu" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="list">/creditapp/sys/SysButton_ListForMenu.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="SysButtonAction_input" method="input" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="input">/creditapp/sys/SysButton_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysButtonAction_del" method="del" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="list">/creditapp/sys/SysButton_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="SysButtonAction_getById" method="getById" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="detail">/creditapp/sys/SysButton_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysButtonActionInsert" method="insert" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="input">/creditapp/sys/SysButton_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysButton_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysButtonActionUpdate" method="update" class="app.creditapp.sys.action.SysButtonAction">
+			<result name="input">/creditapp/sys/SysButton_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/SysButton_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="alctreg0001" para="eadis_page" link="AllocateRegAction_findByPage.action" title="预拨款登记表" type="1">
+<tableitem align="2" filedname="allocateRegId" id="1" indexed="1" label="预拨款登记ID" row="1" type="4" typepara="AllocateRegAction_getById.action;allocateRegId-allocateRegId;query-'query'"/>
+<tableitem align="2" filedname="projNo" id="2" indexed="2" label="项目编号" row="1" type="0" />
+<tableitem align="2" filedname="acctNo" id="4" indexed="4" label="账号" row="1" type="0" />
+<tableitem align="2" filedname="fAcctNo" id="5" indexed="5" label="转入账号" row="1" type="0" />
+<tableitem align="2" filedname="txAmt" id="6" indexed="6" label="拨款金额" row="1" type="0" />
+<tableitem align="2" filedname="txDate" id="7" indexed="7" label="拨款日期时间" row="1" type="0" />
+<tableitem align="2" filedname="opNo" id="8" indexed="8" label="拨款人员" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="10" indexed="10" label="-" row="1" type="5" typepara="AllocateRegAction_getById.action;allocateRegId-allocateRegId;" width="2"/>
+<tableitem align="2" filedname="删除" id="11" indexed="11" label="-" row="1" type="5" typepara="AllocateRegAction_del.action;allocateRegId-allocateRegId;onClick-lkconfirm" width="2"/>
+</table>

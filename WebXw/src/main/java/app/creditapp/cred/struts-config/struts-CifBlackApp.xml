@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CifBlackAppAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CifBlackAppAction_findByPage" method="findByPage" class="app.creditapp.cred.action.CifBlackAppAction">
+			<result name="list">/creditapp/cred/CifBlackApp_List.jsp</result>
+		</action>
+		<action name="CifBlackAppAction_findByPageblack" method="findByPageblack" class="app.creditapp.cred.action.CifBlackAppAction">
+			<result name="list">/creditapp/cred/CifBlackApp_Listblack.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="CifBlackAppAction_input" method="input" class="app.creditapp.cred.action.CifBlackAppAction">
+			<result name="input">/creditapp/cred/CifBlackApp_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CifBlackAppAction_del" method="del" class="app.creditapp.cred.action.CifBlackAppAction">
+			<result name="list">/creditapp/cred/CifBlackApp_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CifBlackAppAction_getById" method="getById" class="app.creditapp.cred.action.CifBlackAppAction">
+			<result name="detail">/creditapp/cred/CifBlackApp_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CifBlackAppActionInsert" method="insert" class="app.creditapp.cred.action.CifBlackAppAction">
+			<result name="input">/creditapp/cred/CifBlackApp_Insert.jsp</result>
+			<result name="detail">/creditapp/cif/CifBlack_List.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CifBlackAppActionUpdate" method="update" class="app.creditapp.cred.action.CifBlackAppAction">
+			<result name="input">/creditapp/cred/CifBlackApp_Detail.jsp</result>
+			<result name="detail">/creditapp/cred/CifBlackApp_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

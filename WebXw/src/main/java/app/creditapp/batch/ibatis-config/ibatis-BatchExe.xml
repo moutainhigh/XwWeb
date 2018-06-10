@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="BatchExe" type="app.creditapp.batch.entity.BatchExe" />
+	<!-- 列表查询返回字段 -->
+	<resultMap id="RM.BatchExe" class="BatchExe">
+		<result property="node_no" column="NODE_NO" />
+		<result property="node_name" column="NODE_NAME" />
+		<result property="node_status" column="NODE_STATUS" />
+		<result property="batch_date" column="BATCH_DATE" />
+		<result property="arrive_step" column="ARRIVE_STEP" jdbcType="Int" />
+	</resultMap>
+	<sql id="BatchExe.columns">
+        <![CDATA[
+         NODE_NO,
+         NODE_NAME,
+         NODE_STATUS,
+         BATCH_DATE,
+         ARRIVE_STEP
+          ]]>
+	</sql>
+	<!-- 表新增 -->
+	<insert id="BatchExe.insert">
+        <![CDATA[
+        INSERT INTO BATCH_EXE(
+         NODE_NO,
+         NODE_NAME,
+         NODE_STATUS,
+         BATCH_DATE,
+         ARRIVE_STEP
+         )VALUES(
+         #node_no#,
+         #node_name#,
+         #node_status#,
+         #batch_date#,
+         #arrive_step#
+         )
+          ]]>
+	</insert>
+
+	<insert id="BatchExe.init">
+        <![CDATA[
+        INSERT INTO BATCH_EXE(NODE_NO, NODE_NAME, NODE_STATUS, BATCH_DATE, ARRIVE_STEP)
+        SELECT DISTINCT NODE_NO, NODE_NAME, '1', #batch_date#, 0 FROM BATCH_STEP
+          ]]>
+	</insert>
+
+	<!-- 表删除 -->
+	<delete id="BatchExe.del">
+        <![CDATA[
+               DELETE FROM BATCH_EXE
+                 WHERE
+               	BATCH_DATE = #batch_date#  and node_no = #node_no#
+        ]]>
+	</delete>
+	<!-- 表修改 -->
+	<update id="BatchExe.update">
+        <![CDATA[
+         UPDATE BATCH_EXE set
+         NODE_NO=#node_no#,
+         NODE_NAME=#node_name#,
+         NODE_STATUS=#node_status#,
+         BATCH_DATE=#batch_date#,
+         ARRIVE_STEP=#arrive_step#
+          WHERE
+               	BATCH_DATE = #batch_date#  and node_no = #node_no#
+        ]]>
+	</update>
+
+	<!-- 表查询ById -->
+	<select id="BatchExe.getById" resultMap="RM.BatchExe">
+		SELECT
+		<include refid="BatchExe.columns" />
+        <![CDATA[
+             FROM BATCH_EXE 
+         WHERE 
+               	BATCH_DATE = #batch_date#  and node_no = #node_no#
+        ]]>
+	</select>
+
+	<!-- 根据实际情况选择分页查询条件 -->
+	<sql id="BatchExe.findPage.where">
+		<dynamic prepend="where">
+			<isPropertyAvailable property="node_no">
+				<isNotEmpty prepend="AND" property="node_no">
+					NODE_NO = #node_no#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="node_name">
+				<isNotEmpty prepend="AND" property="node_name">
+					NODE_NAME =
+					#node_name#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="node_status">
+				<isNotEmpty prepend="AND" property="node_status">
+					NODE_STATUS =
+					#node_status#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="batch_date">
+				<isNotEmpty prepend="AND" property="batch_date">
+					BATCH_DATE =
+					#batch_date#
+				</isNotEmpty>
+			</isPropertyAvailable>
+		</dynamic>
+	</sql>
+	<!-- 分页查询记录数 -->
+	<select id="BatchExe.findPage.count" resultClass="int">
+		SELECT count(*) FROM BATCH_EXE
+		<include refid="BatchExe.findPage.where" />
+	</select>
+
+	<!-- 当日批量执行节点数 -->
+	<select id="BatchExe.getCountByBtchDate" resultClass="int">
+		SELECT
+		COUNT(*)
+		FROM BATCH_EXE
+		WHERE BATCH_DATE = (SELECT BATCH_DATE FROM
+		SYS_GLOBAL )
+	</select>
+
+	<!-- 当日批量执行失败节点数 -->
+	<select id="BatchExe.getFailBatchNodeCount" resultClass="int">
+		SELECT
+		COUNT(*)
+		FROM BATCH_EXE
+		WHERE BATCH_DATE = (SELECT BATCH_DATE FROM
+		SYS_GLOBAL)
+		AND NODE_STATUS = #nodeSts# AND NODE_NO!='batch001'
+	</select>
+
+	<!-- 分页查询 -->
+	<select id="BatchExe.findByPage" resultMap="RM.BatchExe">
+		SELECT
+		<include refid="BatchExe.columns" />
+		FROM (
+		SELECT m.*, rownum as rnum
+		FROM
+		(SELECT
+		<include refid="BatchExe.columns" />
+		FROM BATCH_EXE
+		<include refid="BatchExe.findPage.where" />
+		ORDER BY BATCH_DATE DESC,NODE_NO
+		) m
+		) WHERE rnum &gt;= #startNum# AND
+		rnum &lt;#endNum#
+	</select>
+
+	<select id="BatchExe.getAllBatchExeByDate" resultMap="RM.BatchExe">
+		SELECT
+		<include refid="BatchExe.columns" />
+		FROM BATCH_EXE WHERE BATCH_DATE=(select bat_date from sys_global)
+	</select>
+
+	<select id="BatchExe.getBatchExeStatusList" resultMap="RM.BatchExe">
+		SELECT
+		<include refid="BatchExe.columns" />
+		FROM BATCH_EXE A,SYS_GLOBAL B WHERE A.BATCH_DATE=B.BATCH_DATE
+	</select>
+
+	<select id="BatchExe.getListByDate" resultMap="RM.BatchExe">
+		SELECT
+		EXE.NODE_NO,
+		EXE.NODE_NAME,
+		EXE.BATCH_DATE,
+		EXE.NODE_STATUS,
+		FUN_GETBATCHSTS(STEP.UP_NODE_NO, EXE.BATCH_DATE) AS ARRIVE_STEP
+		FROM BATCH_EXE EXE, BATCH_STEP STEP
+		WHERE EXE.NODE_NO = STEP.NODE_NO
+		AND EXE.BATCH_DATE = #batch_date#
+	</select>
+</sqlMap>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ProjMangAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="ProjMangAction_findByPage" method="findByPage" class="app.creditapp.proj.action.ProjMangAction">
+			<result name="list">/creditapp/proj/ProjMang_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="ProjMangAction_input" method="input" class="app.creditapp.proj.action.ProjMangAction">
+			<result name="input">/creditapp/proj/ProjMang_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="ProjMangAction_del" method="del" class="app.creditapp.proj.action.ProjMangAction">
+			<result name="list">/creditapp/proj/ProjMang_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="ProjMangAction_getById" method="getById" class="app.creditapp.proj.action.ProjMangAction">
+			<result name="detail">/creditapp/proj/ProjMang_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="ProjMangAction_insert" method="insert" class="app.creditapp.proj.action.ProjMangAction">
+			<result name="input">/creditapp/proj/ProjMang_Insert.jsp</result>
+			<result name="detail">/creditapp/proj/ProjMang_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ProjMangAction_Update" method="update" class="app.creditapp.proj.action.ProjMangAction">
+			<result name="input">/creditapp/proj/ProjMang_Detail.jsp</result>
+			<result name="detail">/creditapp/proj/ProjMang_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

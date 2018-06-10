@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundProvProj" type="app.creditapp.fund.entity.FundProvProj"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundProvProj" class="FundProvProj">
+    <result property="provProjNo" column="PROV_PROJ_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="finCost" column="FIN_COST" jdbcType="double"/>
+    <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    <result property="finlIncome" column="FINL_INCOME" jdbcType="double"/>
+    <result property="managerFee" column="MANAGER_FEE" jdbcType="double"/>
+    <result property="serviceFee" column="SERVICE_FEE" jdbcType="double"/>
+    <result property="drawingAmt" column="DRAWING_AMT" jdbcType="double"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+    <typeAlias alias="RptPrdtDaily" type="app.creditapp.bat.entity.RptPrdtDaily"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.RptPrdtDaily" class="RptPrdtDaily">
+    <result property="rptDate" column="RPT_DATE" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="amtTot" column="AMT_TOT" jdbcType="double"/>
+    <result property="offRate" column="OFF_RATE" jdbcType="float"/>
+    </resultMap>
+     <sql id="FundProvProj.columns">
+        <![CDATA[
+         PROV_PROJ_NO,
+         PROJ_NO,
+         PROJ_NAME,
+         BEG_DATE,
+         END_DATE,
+         FIN_COST,
+         PAY_AMT,
+         FINL_INCOME,
+         MANAGER_FEE,
+         SERVICE_FEE,
+         DRAWING_AMT,
+         OP_NO,
+         TX_DATE,
+         FILLER
+          ]]>
+     </sql>
+     <sql id="FundProvProj.columnsS">
+        <![CDATA[
+         PROV_PROJ_NO,
+         PROJ_NO,
+         PROJ_NAME,
+         BEG_DATE,
+         END_DATE,
+         FIN_COST,
+         PAY_AMT,
+         FINL_INCOME,
+         MANAGER_FEE,
+         SERVICE_FEE,
+         DRAWING_AMT,
+         fun_getusername(OP_NO) AS OP_NO,
+         TX_DATE,
+         FILLER
+          ]]>
+     </sql>
+     <sql id="RptPrdtDaily.columns">
+        <![CDATA[
+         RPT_DATE,
+         PROJ_NO,
+         PRDT_NO,
+         AMT_TOT,
+         OFF_RATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundProvProj.insert">
+        <![CDATA[
+        INSERT INTO FUND_PROV_PROJ(
+         PROV_PROJ_NO,
+         PROJ_NO,
+         PROJ_NAME,
+         BEG_DATE,
+         END_DATE,
+         FIN_COST,
+         PAY_AMT,
+         FINL_INCOME,
+         MANAGER_FEE,
+         SERVICE_FEE,
+         DRAWING_AMT,
+         OP_NO,
+         TX_DATE,
+         FILLER
+         )VALUES(
+         #provProjNo#,
+         #projNo#,
+         #projName#,
+         #begDate#,
+         #endDate#,
+         #finCost#,
+         #payAmt#,
+         #finlIncome#,
+         #managerFee#,
+         #serviceFee#,
+         #drawingAmt#,
+         #opNo#,
+         #txDate#,
+         #filler#
+         )
+          ]]>
+
+    </insert>
+    <!--获取provProjNo-->
+    <select id="FundProvProj.getprovProjNo" resultClass="string">
+        SELECT  FUND_PROV_PROJ_SEQ.NEXTVAL AS provProjNo FROM DUAL
+    </select>
+    <!-- 表删除 -->
+    <delete id="FundProvProj.del">
+        <![CDATA[
+               DELETE FROM FUND_PROV_PROJ
+                 WHERE
+               	PROV_PROJ_NO = #provProjNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundProvProj.update">
+        <![CDATA[
+         UPDATE FUND_PROV_PROJ set
+         PROV_PROJ_NO=#provProjNo#,
+         PROJ_NO=#projNo#,
+         PROJ_NAME=#projName#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         FIN_COST=#finCost#,
+         PAY_AMT=#payAmt#,
+         FINL_INCOME=#finlIncome#,
+         MANAGER_FEE=#managerFee#,
+         SERVICE_FEE=#serviceFee#,
+         DRAWING_AMT=#drawingAmt#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         FILLER=#filler#
+          WHERE
+               	PROV_PROJ_NO = #provProjNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundProvProj.getById"  resultMap="RM.FundProvProj">
+        SELECT <include refid="FundProvProj.columnsS"/>
+        <![CDATA[
+             FROM FUND_PROV_PROJ 
+         WHERE 
+               	PROV_PROJ_NO = #provProjNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundProvProj.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="begDate">
+                  <isNotEmpty prepend="AND" property="begDate">
+                      BEG_DATE = #begDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="endDate">
+                  <isNotEmpty prepend="AND" property="endDate">
+                      END_DATE = #endDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundProvProj.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_PROV_PROJ <include refid="FundProvProj.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundProvProj.findByPage" resultMap="RM.FundProvProj">
+        SELECT <include refid="FundProvProj.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundProvProj.columns"/> FROM FUND_PROV_PROJ
+                    <include refid="FundProvProj.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--获取项目对应累计放贷额-->
+    <select id="RptRrdtDaily.getByPrdtNoamt" resultMap="RM.RptPrdtDaily">
+        SELECT <include refid="RptPrdtDaily.columns"/>
+        FROM (
+            SELECT RPT_DATE,a.PRDT_NO,AMT_DAY AS AMT_TOT,PROJ_NO,b.OFF_RATE from  RPT_PRDT_DAILY a,PRDT_BASE b 
+             WHERE a.PRDT_NO = b.PRDT_NO AND RPT_TYPE='05' AND PROJ_NO=#projNo# AND RPT_DATE=#rptDate# ORDER BY off_rate asc
+             ) 
+    </select>
+    <select id="RptRrdtDaily.getByProjNoamt" resultClass="double">
+        SELECT sum(AMT_TOT) FROM RPT_PRDT_DAILY WHERE RPT_TYPE='05' AND PROJ_NO=#projNo# AND RPT_DATE=#rptDate#
+    </select>
+    <select id="RptRrdtDaily.getBymaxDate" resultMap="RM.RptPrdtDaily">
+        SELECT <include refid="RptPrdtDaily.columns"/>
+        FROM (
+           SELECT RPT_DATE,PROJ_NO,'' AS PRDT_NO,'' AS OFF_RATE,sum(AMT_TOT) AS AMT_TOT FROM  RPT_PRDT_DAILY WHERE RPT_TYPE='05' AND PROJ_NO=#projNo# GROUP BY rpt_date,proj_no ORDER BY rpt_date DESC
+             ) a WHERE  AMT_TOT &lt;#amtTot# AND rownum=1 
+    </select>
+    <!--按照产品分配的金额-->
+    <select id="RptRrdtDaily.getByprdtno" resultMap="RM.RptPrdtDaily">
+        SELECT <include refid="RptPrdtDaily.columns"/>
+        FROM (
+             SELECT '' as RPT_DATE,a.PRDT_NO,max(a.PROJ_NO) as PROJ_NO,max(b.OFF_RATE) as OFF_RATE,
+             (case when a.RPT_DATE=c.RPT_DATE then MAX(A.AMT_DAY) else (c.AMT_TOT-a.AMT_TOT) end) AS AMT_TOT 
+             from RPT_PRDT_DAILY a, PRDT_BASE b, RPT_PRDT_DAILY c
+             WHERE a.PRDT_NO = b.PRDT_NO
+             AND a.PROJ_NO = c.PROJ_NO
+             AND a.PRDT_NO = c.PRDT_NO
+             AND a.RPT_TYPE = c.RPT_TYPE
+             AND a.RPT_TYPE = '05'
+             AND a.PROJ_NO = #projNo#
+             AND a.RPT_DATE = #rptDate#
+             AND c.RPT_DATE = #prdtNo#
+           group by a.PRDT_NO,c.AMT_TOT-a.AMT_TOT,a.RPT_DATE,c.RPT_DATE
+           order by PRDT_NO asc
+             )
+    </select>
+    <select id="FundProvProj.getProjNameByProjNo" resultClass="String">
+        SELECT  PROJ_NAME FROM PROJ_BASE WHERE PROJ_NO=#projNo#
+    </select>
+    <select id="FundProvProj.findAll" resultMap="RM.FundProvProj">
+        SELECT <include refid="FundProvProj.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundProvProj.columns"/> FROM FUND_PROV_PROJ
+                    where PROJ_NO=#projNo# order by PROV_PROJ_NO desc
+             ) m
+        	) WHERE rnum &gt;=0 AND rnum &lt;7  order by PROV_PROJ_NO asc
+    </select>
+</sqlMap>

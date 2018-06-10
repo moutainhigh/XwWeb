@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="DailyEvent" type="app.creditapp.sys.entity.DailyEvent"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.DailyEvent" class="DailyEvent">
+    <result property="eventId" column="EVENT_ID" />
+    <result property="title" column="TITLE" />
+    <result property="startTime" column="START_TIME" />
+    <result property="endTime" column="END_TIME" />
+    <result property="allDay" column="ALL_DAY" />
+    <result property="repeat" column="REPEAT" jdbcType="Int"/>
+    <result property="repeatEndDate" column="REPEAT_END_DATE" />
+    <result property="impLevel" column="IMP_LEVEL" />
+    <result property="url" column="URL" />
+    <result property="seId" column="SE_ID" />
+    <result property="taskId" column="TASK_ID" />
+    <result property="eventdesc" column="EVENT_DESC" />
+    <result property="argumentsStr" column="ARGUMENTSSTR" />
+    </resultMap>
+     <sql id="DailyEvent.columns">
+        <![CDATA[
+         EVENT_ID,
+         TITLE,
+         START_TIME,
+         END_TIME,
+         ALL_DAY,
+         REPEAT,
+         REPEAT_END_DATE,
+         IMP_LEVEL,
+         URL,
+         SE_ID,
+         TASK_ID,
+         EVENT_DESC,
+         ARGUMENTSSTR,
+         USER_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="DailyEvent.insert">
+        <![CDATA[
+        INSERT INTO DAILY_EVENT(
+         EVENT_ID,
+         TITLE,
+         START_TIME,
+         END_TIME,
+         ALL_DAY,
+         REPEAT,
+         REPEAT_END_DATE,
+         IMP_LEVEL,
+         URL,
+         SE_ID,
+         TASK_ID,
+         ARGUMENTSSTR,
+         USER_ID
+         )VALUES(
+         #eventId#,
+         #title#,
+         #startTime#,
+         #endTime#,
+         #allDay#,
+         #repeat#,
+         #repeatEndDate#,
+         #impLevel#,
+         #url#,
+         #seId#,
+         #taskId#,
+         #argumentsStr#,
+         #userId#
+         )
+          ]]>
+    </insert>
+    
+    <!-- 表新增 
+    <insert id="DailyEvent.insertadd">
+        <![CDATA[
+        INSERT INTO DAILY_EVENT(
+         EVENT_ID,
+         TITLE,
+         START_TIME,
+         END_TIME,
+         ALL_DAY,
+         REPEAT,
+         REPEAT_END_DATE,
+         IMP_LEVEL,
+         URL,
+         EVENT_DESC
+         )
+         (select lpad(daily_event_seq.nextval, 10, '0'),
+       '资金到期兑付',
+       end_date || '0000',
+       end_date || '0000',
+       '1',
+       '0',
+       '',
+       '3',
+       '',
+       '资金编号：'||a.fund_no||'资金到期兑付金额：'||b.s||'元'
+       from fund_base a
+       left join (select * from (select fund_no,s,pay_date,RANK() OVER(PARTITION BY fund_no ORDER BY pay_date desc) rs from  (select distinct fund_no,pay_date,sum(pay_amt) s from fund_pay_plan group by fund_no,pay_date )) where rs='1' ) b on a.fund_no=b.fund_no
+       left join proj_parm s on a.proj_no=s.proj_no
+       where trunc(a.end_date) - trunc(to_char(sysdate, 'yyyymmdd')) <= s.FUND_END_DAYS
+         and trunc(a.end_date) - trunc(to_char(sysdate, 'yyyymmdd')) > 0
+         and not exists  (select substr(b.event_desc,5,11) from daily_event b where a.fund_no=substr(b.event_desc,5,11)))
+          ]]>
+    </insert>
+    -->
+    <insert id="DailyEvent.insertadd">
+        <![CDATA[
+        INSERT INTO DAILY_EVENT(
+         EVENT_ID,
+         TITLE,
+         START_TIME,
+         END_TIME,
+         ALL_DAY,
+         REPEAT,
+         REPEAT_END_DATE,
+         IMP_LEVEL,
+         URL,
+         EVENT_DESC
+         )
+         (select lpad(daily_event_seq.nextval, 10, '0'),
+                 '资金到期兑付',
+                 trunc(to_char(sysdate, 'yyyymmdd')) || '0000',
+                 trunc(to_char(sysdate, 'yyyymmdd')) || '0000',
+                 '1',
+                 '0',
+                 '',
+                 '3',
+                 '',
+                 '资金到期兑付进行提前提醒'
+           from dual
+          where exists
+         (select 1
+          from fund_base a
+          left join proj_parm s
+            on a.proj_no = s.proj_no
+         where trunc(a.end_date) - trunc(to_char(sysdate, 'yyyymmdd')) <=
+               s.FUND_END_DAYS
+           and trunc(a.end_date) - trunc(to_char(sysdate, 'yyyymmdd')) > 0
+           and not exists
+         (select 1
+                  from daily_event b
+                 where b.title = '资金到期兑付'
+                   and start_time =
+                       trunc(to_char(sysdate, 'yyyymmdd')) || '0000'))
+          )
+          ]]>
+    </insert>
+    <!--资金清算到期提醒-->
+     <insert id="DailyEvent.insertaddremind">
+       <!-- <![CDATA[-->
+        INSERT INTO DAILY_EVENT(
+         EVENT_ID,
+         TITLE,
+         START_TIME,
+         END_TIME,
+         ALL_DAY,
+         REPEAT,
+         REPEAT_END_DATE,
+         IMP_LEVEL,
+         URL,
+         EVENT_DESC
+         )
+         (select lpad(daily_event_seq.nextval, 10, '0'),
+                 '资金清算到期',
+                 trunc(to_char(sysdate, 'yyyymmdd')) || '0000',
+                 trunc(to_char(sysdate, 'yyyymmdd')) || '0000',
+                 '1',
+                 '0',
+                 '',
+                 '3',
+                 '',
+                 '资金清算到期进行提前提醒'
+           from dual
+          where exists
+         (SELECT 1
+			FROM FUND_REPAY_PLAN a
+			WHERE TRUNC(a.REPAY_DATE) - TRUNC(TO_CHAR(sysdate, 'yyyymmdd')) &lt;= 10
+			AND TRUNC(a.REPAY_DATE)   - TRUNC(TO_CHAR(sysdate, 'yyyymmdd'))  &gt; 0
+           and not exists
+         (select 1
+                  from daily_event b
+                 where b.title = '资金清算到期'
+                   and start_time =
+                       trunc(to_char(sysdate, 'yyyymmdd')) || '0000'))
+          )
+      <!--    ]]>-->
+    </insert>
+    <!-- 表删除 -->
+    <delete id="DailyEvent.del">
+        <![CDATA[
+               DELETE FROM DAILY_EVENT
+                 WHERE
+               	EVENT_ID = #eventId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="DailyEvent.update">
+        <![CDATA[
+         UPDATE DAILY_EVENT set
+         EVENT_ID=#eventId#,
+         TITLE=#title#,
+         START_TIME=#startTime#,
+         END_TIME=#endTime#,
+         ALL_DAY=#allDay#,
+         REPEAT=#repeat#,
+         REPEAT_END_DATE=#repeatEndDate#,
+         IMP_LEVEL=#impLevel#,
+         URL=#url#,
+         SE_ID=#seId#,
+         TASK_ID=#taskId#,
+         ARGUMENTSSTR = #argumentsStr#
+          WHERE
+               	EVENT_ID = #eventId#        ]]>
+    </update>
+    
+    
+    <update id="DailyEvent.updateInfo">
+         UPDATE DAILY_EVENT set
+         EVENT_ID=#eventId#
+         <isPropertyAvailable property="title">
+         <isNotEmpty prepend="," property="title">  
+        	TITLE=#title#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="startTime">
+   	 	<isNotEmpty prepend="," property="startTime">  
+        	 START_TIME=#startTime#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="endTime">
+   		 <isNotEmpty prepend="," property="endTime">  
+        	END_TIME=#endTime#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="allDay">
+          <isNotEmpty prepend=",">  
+        	ALL_DAY=#allDay#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="repeat">
+    	 <isNotEmpty prepend="," property="repeat">  
+        	REPEAT=#repeat#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="repeatEndDate">
+    	 <isNotEmpty prepend="," property="repeatEndDate">  
+        	REPEAT_END_DATE=#repeatEndDate#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="impLevel">
+    	 <isNotEmpty prepend="," property="impLevel">  
+        	IMP_LEVEL=#impLevel#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="url">
+         <isNotEmpty prepend="," property="url">  
+        	 URL=#url#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="seId">
+         <isNotEmpty prepend="," property="seId">  
+        	 SE_ID=#seId#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="taskId">
+         <isNotEmpty prepend="," property="taskId">  
+        	 TASK_ID=#taskId#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="argumentsStr">
+         <isNotEmpty prepend="," property="argumentsStr">  
+        	 ARGUMENTSSTR=#argumentsStr#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+    	<isPropertyAvailable property="userId">
+         <isNotEmpty prepend="," property="userId">  
+        	 USER_ID=#userId#
+    	</isNotEmpty>  
+    	</isPropertyAvailable>
+          WHERE
+               	EVENT_ID = #eventId#        
+    </update>
+    
+    
+     <!-- 表查询ById -->
+    <select id="DailyEvent.getById"  resultMap="RM.DailyEvent">
+        SELECT <include refid="DailyEvent.columns"/>
+        <![CDATA[
+             FROM DAILY_EVENT 
+         WHERE 
+               	EVENT_ID = #eventId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="DailyEvent.findPage.where">
+        <dynamic prepend="AND">
+        	<isPropertyAvailable property="title">
+                  <isNotEmpty prepend="AND" property="title">
+                      TITLE = #title#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="startTime">
+                  <isNotEmpty prepend="AND" property="startTime">
+                      START_TIME = #startTime#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="endTime">
+                  <isNotEmpty prepend="AND" property="endTime">
+                      END_TIME = #endTime#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="repeat">
+                  <isNotEmpty prepend="AND" property="repeat">
+                      REPEAT = #repeat#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="userId">
+                  <isNotEmpty prepend="and" property="userId">
+                      USER_ID = #userId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="DailyEvent.findPage.count" resultClass="int">
+        SELECT count(*) FROM DAILY_EVENT <include refid="DailyEvent.findPage.where"/>
+    </select>
+    
+    <select id="DailyEvent.nextSeq" resultClass="String">
+		SELECT lpad(daily_event_seq.nextval,10,'0') FROM DUAL    
+	</select>
+    
+    <!-- 分页查询 -->
+    <select id="DailyEvent.findByPage" resultMap="RM.DailyEvent">
+        SELECT <include refid="DailyEvent.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="DailyEvent.columns"/> FROM DAILY_EVENT
+                    <include refid="DailyEvent.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 查询全部-->
+    <select id="DailyEvent.findAll" resultMap="RM.DailyEvent">
+        SELECT <include refid="DailyEvent.columns"/> FROM DAILY_EVENT where 1 = 1 
+                    <include refid="DailyEvent.findPage.where"/> or  user_id is null
+           
+    </select>
+</sqlMap>

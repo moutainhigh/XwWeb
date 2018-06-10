@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="lnstage0001" para="eadis_page" link="LnStageAction_findByPage.action" title="业务阶段表" type="1">
+<tableitem align="2" filedname="mstSts" id="2" indexed="2" label="主文件生成标志[01未生成02已生成]" row="1" type="0" />
+<tableitem align="2" filedname="paySts" id="4" indexed="4" label="放款状态[01未放款02已放款]" row="1" type="0" />
+<tableitem align="2" filedname="txTime" id="6" indexed="6" label="申请日期" row="1" type="0" />
+<tableitem align="2" filedname="appId" id="8" indexed="8" label="申请ID" row="1" type="4" typepara="LnStageAction_getById.action;appId-appId;query-'query'"/>
+<tableitem align="2" filedname="valSts" id="9" indexed="9" label="校验状态[01未校验02通过03未通过]" row="1" type="0" />
+<tableitem align="2" filedname="chkSts" id="11" indexed="11" label="筛查状态[01未筛查02通过03未通过]" row="1" type="0" />
+<tableitem align="2" filedname="evelSts" id="12" indexed="12" label="客户评级[1未评级A级B级C级]C为拒绝" row="1" type="0" />
+<tableitem align="2" filedname="dueSts" id="16" indexed="16" label="借据生成标志[01未生成02已生成]" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="17" indexed="17" label="-" row="1" type="5" typepara="LnStageAction_getById.action;appId-appId;" width="2"/>
+<tableitem align="2" filedname="删除" id="18" indexed="18" label="-" row="1" type="5" typepara="LnStageAction_del.action;appId-appId;onClick-lkconfirm" width="2"/>
+</table>

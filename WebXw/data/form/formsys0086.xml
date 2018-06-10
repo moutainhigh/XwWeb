@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="sys0086" title="版本信息表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="ver_no" fieldtype="1" maxlength="20" formactiveid="1" labelalign="3" labelcol="1" labelname="版本编号" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="use_flag" fieldtype="1" maxlength="1" formactiveid="4" labelalign="3" labelcol="3" labelname="是否启用" mustinput="0" row="2" />
+</form>

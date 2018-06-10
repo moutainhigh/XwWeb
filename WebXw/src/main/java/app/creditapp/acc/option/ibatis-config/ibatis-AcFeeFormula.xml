@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcFeeFormula" type="app.creditapp.acc.option.entity.AcFeeFormula"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcFeeFormula" class="AcFeeFormula">
+    <result property="feeFormId" column="FEE_FORM_ID" />
+    <result property="feeFormName" column="FEE_FORM_NAME" />
+    <result property="frId" column="FR_ID" />
+    <result property="feeFormulaDes" column="FEE_FORMULA_DES" />
+    <result property="feeFormula" column="FEE_FORMULA" />
+    </resultMap>
+     <sql id="AcFeeFormula.columns">
+        <![CDATA[
+         FEE_FORM_ID,
+         FEE_FORM_NAME,
+         FR_ID,
+         FEE_FORMULA_DES,
+         FEE_FORMULA
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcFeeFormula.insert">
+        <![CDATA[
+        INSERT INTO AC_FEE_FORMULA(
+         FEE_FORM_ID,
+         FEE_FORM_NAME,
+         FR_ID,
+         FEE_FORMULA_DES,
+         FEE_FORMULA
+         )VALUES(
+         #feeFormId#,
+         #feeFormName#,
+         #frId#,
+         #feeFormulaDes#,
+         #feeFormula#
+         )
+          ]]>
+           <selectKey resultClass="java.lang.String" type="pre" keyProperty="feeFormId" >
+			SELECT AC_FEE_FORMULA_seq.nextval AS FEE_FORM_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcFeeFormula.del">
+        <![CDATA[
+               DELETE FROM AC_FEE_FORMULA
+                 WHERE
+               	FEE_FORM_ID = #feeFormId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcFeeFormula.update">
+        <![CDATA[
+         UPDATE AC_FEE_FORMULA set
+         FEE_FORM_ID=#feeFormId#,
+         FEE_FORM_NAME=#feeFormName#,
+         FR_ID=#frId#,
+         FEE_FORMULA_DES=#feeFormulaDes#,
+         FEE_FORMULA=#feeFormula#
+          WHERE
+               	FEE_FORM_ID = #feeFormId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcFeeFormula.getById"  resultMap="RM.AcFeeFormula">
+        SELECT <include refid="AcFeeFormula.columns"/>
+        <![CDATA[
+             FROM AC_FEE_FORMULA 
+         WHERE 
+               	FEE_FORM_ID = #feeFormId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcFeeFormula.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="feeFormId">
+                  <isNotEmpty prepend="AND" property="feeFormId">
+                      FEE_FORM_ID = #feeFormId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="feeFormName">
+                  <isNotEmpty prepend="AND" property="feeFormName">
+                      FEE_FORM_NAME = #feeFormName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcFeeFormula.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_FEE_FORMULA <include refid="AcFeeFormula.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcFeeFormula.findByPage" resultMap="RM.AcFeeFormula">
+        SELECT <include refid="AcFeeFormula.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcFeeFormula.columns"/> FROM AC_FEE_FORMULA
+                    <include refid="AcFeeFormula.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

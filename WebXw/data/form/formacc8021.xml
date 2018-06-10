@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="acc8021" title="公共币种配置,查询form">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="curNo" fieldtype="1" fieldwidth="60" formactiveid="1" labelalign="3" labelcol="1" labelname="币种" labelwidth="40" maxlength="3" mustinput="0" row="1"/>
+</form>

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="RptProj" type="app.creditapp.proj.entity.RptProj"/>
+
+    <resultMap id="RM.RPT_PROJ" class="RptProj">
+			<result property="rptDate" column="RPT_DATE" columnIndex="1"/>
+			<result property="rptType" column="RPT_TYPE" columnIndex="2"/>
+			<result property="projNo" column="PROJ_NO" columnIndex="3"/>
+			<result property="projNatu" column="PROJ_NATU" columnIndex="4"/>
+			<result property="projAmt" column="PROJ_AMT" columnIndex="5"/>
+			<result property="priAmt" column="PRI_AMT" columnIndex="6"/>
+			<result property="subAmt" column="SUB_AMT" columnIndex="7"/>
+			<result property="accBal" column="ACC_BAL" columnIndex="8"/>
+			<result property="virBal" column="VIR_BAL" columnIndex="9"/>
+			<result property="cifNum" column="CIF_NUM" columnIndex="10"/>
+			<result property="lnCnt" column="LN_CNT" columnIndex="11"/>
+			<result property="lnBal" column="LN_BAL" columnIndex="12"/>
+			<result property="overBal" column="OVER_BAL" columnIndex="13"/>
+			<result property="intstBal" column="INTST_BAL" columnIndex="14"/>
+			<result property="fineBal" column="FINE_BAL" columnIndex="15"/>
+			<result property="mtrAmt" column="MTR_AMT" columnIndex="16"/>
+			<result property="mtrIntst" column="MTR_INTST" columnIndex="17"/>
+			<result property="cntYear" column="CNT_YEAR" columnIndex="18"/>
+			<result property="cntMon" column="CNT_MON" columnIndex="19"/>
+			<result property="cntDay" column="CNT_DAY" columnIndex="20"/>
+			<result property="cntAvg" column="CNT_AVG" columnIndex="21"/>
+			<result property="amtTot" column="AMT_TOT" columnIndex="22"/>
+			<result property="amtYear" column="AMT_YEAR" columnIndex="23"/>
+			<result property="amtMon" column="AMT_MON" columnIndex="24"/>
+			<result property="amtDay" column="AMT_DAY" columnIndex="25"/>
+			<result property="amtAvg" column="AMT_AVG" columnIndex="26"/>
+			<result property="repayDaycnt" column="REPAY_DAYCNT" columnIndex="27"/>
+			<result property="repayMoncnt" column="REPAY_MONCNT" columnIndex="28"/>
+			<result property="repayYearcnt" column="REPAY_YEARCNT" columnIndex="29"/>
+			<result property="repayTotcnt" column="REPAY_TOTCNT" columnIndex="30"/>
+			<result property="repayAvgcnt" column="REPAY_AVGCNT" columnIndex="31"/>
+			<result property="repayTot" column="REPAY_TOT" columnIndex="32"/>
+			<result property="repayYear" column="REPAY_YEAR" columnIndex="33"/>
+			<result property="repayMon" column="REPAY_MON" columnIndex="34"/>
+			<result property="repayDay" column="REPAY_DAY" columnIndex="35"/>
+			<result property="intstTot" column="INTST_TOT" columnIndex="36"/>
+			<result property="intstYear" column="INTST_YEAR" columnIndex="37"/>
+			<result property="intstMon" column="INTST_MON" columnIndex="38"/>
+			<result property="intstDay" column="INTST_DAY" columnIndex="39"/>
+			<result property="fineTot" column="FINE_TOT" columnIndex="40"/>
+			<result property="fineYear" column="FINE_YEAR" columnIndex="41"/>
+			<result property="fineMon" column="FINE_MON" columnIndex="42"/>
+			<result property="fineDay" column="FINE_DAY" columnIndex="43"/>
+			<result property="repayAvg" column="REPAY_AVG" columnIndex="44"/>
+			<result property="rebuyAmt" column="REBUY_AMT" columnIndex="45"/>
+			<result property="compAmt" column="COMP_AMT" columnIndex="46"/>
+			<result property="passDayrate" column="PASS_DAYRATE" columnIndex="47"/>
+			<result property="passMonrate" column="PASS_MONRATE" columnIndex="48"/>
+			<result property="failDayrate" column="FAIL_DAYRATE" columnIndex="49"/>
+			<result property="failMonrate" column="FAIL_MONRATE" columnIndex="50"/>
+			<result property="cancleRate" column="CANCLE_RATE" columnIndex="51"/>
+ 
+    </resultMap>
+  
+    <sql id="RptProj.columns">
+        <![CDATA[
+				RPT_DATE,
+				RPT_TYPE,
+				PROJ_NO,
+				PROJ_NATU,
+				PROJ_AMT,
+				PRI_AMT,
+				SUB_AMT,
+				ACC_BAL,
+				VIR_BAL,
+				CIF_NUM,
+				LN_CNT,
+				LN_BAL,
+				OVER_BAL,
+				INTST_BAL,
+				FINE_BAL,
+				MTR_AMT,
+				MTR_INTST,
+				CNT_YEAR,
+				CNT_MON,
+				CNT_DAY,
+				CNT_AVG,
+				AMT_TOT,
+				AMT_YEAR,
+				AMT_MON,
+				AMT_DAY,
+				AMT_AVG,
+				REPAY_DAYCNT,
+				REPAY_MONCNT,
+				REPAY_YEARCNT,
+				REPAY_TOTCNT,
+				REPAY_AVGCNT,
+				REPAY_TOT,
+				REPAY_YEAR,
+				REPAY_MON,
+				REPAY_DAY,
+				INTST_TOT,
+				INTST_YEAR,
+				INTST_MON,
+				INTST_DAY,
+				FINE_TOT,
+				FINE_YEAR,
+				FINE_MON,
+				FINE_DAY,
+				REPAY_AVG,
+				REBUY_AMT,
+				COMP_AMT,
+				PASS_DAYRATE,
+				PASS_MONRATE,
+				FAIL_DAYRATE,
+				FAIL_MONRATE,
+				CANCLE_RATE
+        ]]>
+    </sql> 
+    <insert id="RptProj.insert">
+        <![CDATA[
+		INSERT INTO RPT_PROJ(
+				RPT_DATE,
+				RPT_TYPE,
+				PROJ_NO,
+				PROJ_NATU,
+				PROJ_AMT,
+				PRI_AMT,
+				SUB_AMT,
+				ACC_BAL,
+				VIR_BAL,
+				CIF_NUM,
+				LN_CNT,
+				LN_BAL,
+				OVER_BAL,
+				INTST_BAL,
+				FINE_BAL,
+				MTR_AMT,
+				MTR_INTST,
+				CNT_YEAR,
+				CNT_MON,
+				CNT_DAY,
+				CNT_AVG,
+				AMT_TOT,
+				AMT_YEAR,
+				AMT_MON,
+				AMT_DAY,
+				AMT_AVG,
+				REPAY_DAYCNT,
+				REPAY_MONCNT,
+				REPAY_YEARCNT,
+				REPAY_TOTCNT,
+				REPAY_AVGCNT,
+				REPAY_TOT,
+				REPAY_YEAR,
+				REPAY_MON,
+				REPAY_DAY,
+				INTST_TOT,
+				INTST_YEAR,
+				INTST_MON,
+				INTST_DAY,
+				FINE_TOT,
+				FINE_YEAR,
+				FINE_MON,
+				FINE_DAY,
+				REPAY_AVG,
+				REBUY_AMT,
+				COMP_AMT,
+				PASS_DAYRATE,
+				PASS_MONRATE,
+				FAIL_DAYRATE,
+				FAIL_MONRATE,
+				CANCLE_RATE
+			)VALUES(
+				#rptDate#,
+				#rptType#,
+				#projNo#,
+				#projNatu#,
+				#projAmt#,
+				#priAmt#,
+				#subAmt#,
+				#accBal#,
+				#virBal#,
+				#cifNum#,
+				#lnCnt#,
+				#lnBal#,
+				#overBal#,
+				#intstBal#,
+				#fineBal#,
+				#mtrAmt#,
+				#mtrIntst#,
+				#cntYear#,
+				#cntMon#,
+				#cntDay#,
+				#cntAvg#,
+				#amtTot#,
+				#amtYear#,
+				#amtMon#,
+				#amtDay#,
+				#amtAvg#,
+				#repayDaycnt#,
+				#repayMoncnt#,
+				#repayYearcnt#,
+				#repayTotcnt#,
+				#repayAvgcnt#,
+				#repayTot#,
+				#repayYear#,
+				#repayMon#,
+				#repayDay#,
+				#intstTot#,
+				#intstYear#,
+				#intstMon#,
+				#intstDay#,
+				#fineTot#,
+				#fineYear#,
+				#fineMon#,
+				#fineDay#,
+				#repayAvg#,
+				#rebuyAmt#,
+				#compAmt#,
+				#passDayrate#,
+				#passMonrate#,
+				#failDayrate#,
+				#failMonrate#,
+				#cancleRate#)
+        ]]>
+        <selectKey resultClass="java.lang.String" type="pre" keyProperty="rptDate" >
+		<![CDATA[SELECT RPT_PROJ_SEQ.nextval AS RPT_DATE FROM DUAL]]>
+	</selectKey> 
+    </insert>
+	
+    <delete id="RptProj.del">
+        <![CDATA[
+		DELETE FROM RPT_PROJ WHERE RPT_DATE=#rptDate#
+        ]]>
+    </delete>
+    
+    <update id="RptProj.update">
+        <![CDATA[
+		UPDATE RPT_PROJ SET 
+			RPT_TYPE=#rptType#,
+			PROJ_NO=#projNo#,
+			PROJ_NATU=#projNatu#,
+			PROJ_AMT=#projAmt#,
+			PRI_AMT=#priAmt#,
+			SUB_AMT=#subAmt#,
+			ACC_BAL=#accBal#,
+			VIR_BAL=#virBal#,
+			CIF_NUM=#cifNum#,
+			LN_CNT=#lnCnt#,
+			LN_BAL=#lnBal#,
+			OVER_BAL=#overBal#,
+			INTST_BAL=#intstBal#,
+			FINE_BAL=#fineBal#,
+			MTR_AMT=#mtrAmt#,
+			MTR_INTST=#mtrIntst#,
+			CNT_YEAR=#cntYear#,
+			CNT_MON=#cntMon#,
+			CNT_DAY=#cntDay#,
+			CNT_AVG=#cntAvg#,
+			AMT_TOT=#amtTot#,
+			AMT_YEAR=#amtYear#,
+			AMT_MON=#amtMon#,
+			AMT_DAY=#amtDay#,
+			AMT_AVG=#amtAvg#,
+			REPAY_DAYCNT=#repayDaycnt#,
+			REPAY_MONCNT=#repayMoncnt#,
+			REPAY_YEARCNT=#repayYearcnt#,
+			REPAY_TOTCNT=#repayTotcnt#,
+			REPAY_AVGCNT=#repayAvgcnt#,
+			REPAY_TOT=#repayTot#,
+			REPAY_YEAR=#repayYear#,
+			REPAY_MON=#repayMon#,
+			REPAY_DAY=#repayDay#,
+			INTST_TOT=#intstTot#,
+			INTST_YEAR=#intstYear#,
+			INTST_MON=#intstMon#,
+			INTST_DAY=#intstDay#,
+			FINE_TOT=#fineTot#,
+			FINE_YEAR=#fineYear#,
+			FINE_MON=#fineMon#,
+			FINE_DAY=#fineDay#,
+			REPAY_AVG=#repayAvg#,
+			REBUY_AMT=#rebuyAmt#,
+			COMP_AMT=#compAmt#,
+			PASS_DAYRATE=#passDayrate#,
+            PASS_MONRATE=#passMonrate#,
+            FAIL_DAYRATE=#failDayrate#,
+            FAIL_MONRATE=#failMonrate#,
+            CANCLE_RATE=#cancleRate#
+		WHERE RPT_DATE=#rptDate#
+        ]]>
+    </update>
+
+	<select id="RptProj.getAllRptProj"  resultMap="RM.RPT_PROJ">
+        SELECT <include refid="RptProj.columns"/>
+        <![CDATA[
+             FROM RPT_PROJ
+        ]]>
+     </select>
+     
+    <select id="RptProj.getById"  resultMap="RM.RPT_PROJ">
+        SELECT <include refid="RptProj.columns"/>
+        <![CDATA[
+             FROM RPT_PROJ
+         WHERE 
+             RPT_DATE = #rptDate#
+        ]]>
+     </select>
+    
+    <sql id="RptProj.findByPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="rptDate">
+                      <isNotEmpty prepend="AND" property="rptDate">
+                          RPT_DATE = #rptDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+
+    <select id="RptProj.findPage.count" resultClass="int">
+        SELECT count(*) FROM RPT_PROJ <include refid="RptProj.findByPage.where"/>
+    </select>
+
+    <select id="RptProj.findByPage" resultMap="RM.RPT_PROJ">
+        SELECT <include refid="RptProj.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptProj.columns"/> FROM RPT_PROJ
+                    <include refid="RptProj.findByPage.where"/>
+             ) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+    
+       
+    <select id="RptProj_Daily.findByAll"  resultMap="RM.RPT_PROJ">
+        SELECT <include refid="RptProj.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptProj.columns"/> FROM RPT_PROJ_DAILY
+                    where PROJ_NO=#projNo# order by RPT_DATE desc
+             ) m 
+           WHERE rownum &lt;= 7
+        )
+       WHERE rnum &gt;= 0 order by RPT_DATE asc
+     </select>
+     <select id="RptProj_Daily.findByAllNum"  resultMap="RM.RPT_PROJ">
+        SELECT <include refid="RptProj.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptProj.columns"/> FROM RPT_PROJ_DAILY
+                    where PROJ_NO=#projNo# order by RPT_DATE desc
+             ) m 
+           WHERE rownum &lt;= 15
+        )
+       WHERE rnum &gt;= 0 order by RPT_DATE asc
+     </select>
+        <!-- 获取某段时间内还款金额 -->
+    <select id="FundDetail.getbal" resultClass="double">
+        SELECT nvl(sum(REPAY_DAY+INTST_DAYFINE_DAY),0) FROM RPT_PROJ_DAILY 
+          WHERE RPT_DATE &lt; #rptDate# 
+            AND RPT_DATE &gt;= to_char(to_date(#rptDate#,'yyyymmdd')-30,'yyyymmdd')
+    </select>
+    <select id="RptProj_Daily.getById"  resultMap="RM.RPT_PROJ">
+        SELECT <include refid="RptProj.columns"/>
+        <![CDATA[
+             FROM RPT_PROJ_DAILY
+         WHERE  RPT_DATE = #rptDate#
+           AND  PROJ_NO = #projNo#
+        ]]>
+     </select>
+</sqlMap>

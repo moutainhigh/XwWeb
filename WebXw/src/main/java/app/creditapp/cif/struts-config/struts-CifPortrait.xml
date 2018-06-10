@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CifPortraitAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CifPortraitAction_findByPage" method="findByPage" class="app.creditapp.cif.action.CifPortraitAction">
+			<result name="list">/creditapp/cif/CifPortrait_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CifPortraitAction_input" method="input" class="app.creditapp.cif.action.CifPortraitAction">
+			<result name="input">/creditapp/cif/CifPortrait_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CifPortraitAction_del" method="del" class="app.creditapp.cif.action.CifPortraitAction">
+			<result name="list">/creditapp/cif/CifPortrait_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CifPortraitAction_getById" method="getById" class="app.creditapp.cif.action.CifPortraitAction">
+			<result name="detail">/creditapp/cif/CifPortrait_Detail.jsp</result> 
+			<!--<result name="detail">/creditapp/cif/CifPortrait_AllForRead.jsp</result>-->
+		</action>
+		
+		<!--新增保存-->
+		<action name="CifPortraitActionInsert" method="insert" class="app.creditapp.cif.action.CifPortraitAction">
+			<result name="input">/creditapp/cif/CifPortrait_Insert.jsp</result>
+			<result name="detail">/creditapp/cif/CifPortrait_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CifPortraitActionUpdate" method="update" class="app.creditapp.cif.action.CifPortraitAction">
+			<result name="input">/creditapp/cif/CifPortrait_Detail.jsp</result>
+			<result name="detail">/creditapp/cif/CifPortrait_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

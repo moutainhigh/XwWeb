@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<!-- START SNIPPET: xworkSample -->
+<struts>
+	<package name="RptPrdtDailyPackage" namespace="/" extends="struts-default">
+
+		<action name="RptPrdtDailyAction_del" method="del" class="app.creditapp.bat.action.RptPrdtDailyAction">
+        	<result name="del" type="redirect">RptPrdtDailyAction_findByPage.action</result>
+        </action>
+        <action name="RptPrdtDailyAction_insert" method="insert" class="app.creditapp.bat.action.RptPrdtDailyAction">
+        	<result name="insert" type="redirect">RptPrdtDailyAction_findByPage.action</result>
+        </action>
+        <action name="RptPrdtDailyAction_update" method="update" class="app.creditapp.bat.action.RptPrdtDailyAction">
+        	<result name="update" type="redirect">RptPrdtDailyAction_findByPage.action</result>
+        </action>
+        <action name="RptPrdtDailyAction_*" method="{1}" class="app.creditapp.bat.action.RptPrdtDailyAction">
+            <result name="{1}">/creditapp/strgg/RptPrdtDaily_{1}.jsp</result>
+        </action>
+        
+    </package>
+</struts>

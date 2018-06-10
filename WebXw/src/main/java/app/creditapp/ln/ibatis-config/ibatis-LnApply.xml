@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnApply" type="app.creditapp.ln.entity.LnApply"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnApply" class="LnApply">
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="appId" column="APP_ID" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="appDate" column="APP_DATE" />
+    <result property="pactXt" column="PACT_XT" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="appAmt" column="APP_AMT" jdbcType="double"/>
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double"/>
+    <result property="damRate" column="DAM_RATE" jdbcType="double"/>
+    <result property="appArea" column="APP_AREA" />
+    <result property="lnUse" column="LN_USE" />
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="termMon" column="TERM_MON" jdbcType="Int"/>
+    <result property="termDay" column="TERM_DAY" jdbcType="Int"/>
+    <result property="vouType" column="VOU_TYPE" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="payType" column="PAY_TYPE" />
+    <result property="payKind" column="PAY_KIND" />
+    <result property="payDay" column="PAY_DAY" jdbcType="Int"/>
+    <result property="feeType" column="FEE_TYPE" />
+    <result property="payMent" column="PAY_MENT" />
+    <result property="vouDays" column="VOU_DAYS" jdbcType="Int"/>
+    <result property="feeTotal" column="FEE_TOTAL" jdbcType="double"/>
+    <result property="feeRate" column="FEE_RATE" jdbcType="double"/>
+    <result property="feeAmt" column="FEE_AMT" jdbcType="double"/>
+    <result property="srvRate" column="SRV_RATE" jdbcType="double"/>
+    <result property="srvAmt" column="SRV_AMT" jdbcType="double"/>
+    <result property="vouRate" column="VOU_RATE" jdbcType="double"/>
+    <result property="vouAmt" column="VOU_AMT" jdbcType="double"/>
+    <result property="feeAmt1" column="FEE_AMT1" jdbcType="double"/>
+    <result property="feeAmt2" column="FEE_AMT2" jdbcType="double"/>
+    <result property="feeAmt3" column="FEE_AMT3" jdbcType="double"/>
+    <result property="feeAmt4" column="FEE_AMT4" jdbcType="double"/>
+    <result property="feeAmt5" column="FEE_AMT5" jdbcType="double"/>
+    <result property="apprType" column="APPR_TYPE" />
+    <result property="appSts" column="APP_STS" />
+    <result property="recSts" column="REC_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="czPactNo" column="CZ_PACT_NO" />
+    <result property="resultId" column="RESULT_ID" />
+    </resultMap>
+     <sql id="LnApply.columns">
+        <![CDATA[
+         BATCH_NO,
+         APP_ID,
+         BR_NO,
+         PACT_NO,
+         APP_DATE,
+         PACT_XT,
+         BR_ACC_TYPE,
+         CIF_NO,
+         CIF_NAME,
+         PROJ_NO,
+         PRDT_NO,
+         LN_TYPE,
+         CUR_NO,
+         APP_AMT,
+         PACT_AMT,
+         LN_RATE,
+         OVER_RATE,
+         DAM_RATE,
+         APP_AREA,
+         LN_USE,
+         REPAY_TYPE,
+         TERM_MON,
+         TERM_DAY,
+         VOU_TYPE,
+         BEG_DATE,
+         END_DATE,
+         PAY_TYPE,
+         PAY_KIND,
+         PAY_DAY,
+         FEE_TYPE,
+         PAY_MENT,
+         VOU_DAYS,
+         FEE_TOTAL,
+         FEE_RATE,
+         FEE_AMT,
+         SRV_RATE,
+         SRV_AMT,
+         VOU_RATE,
+         VOU_AMT,
+         FEE_AMT1,
+         FEE_AMT2,
+         FEE_AMT3,
+         FEE_AMT4,
+         FEE_AMT5,
+         APPR_TYPE,
+         APP_STS,
+         REC_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         CZ_PACT_NO,
+         RESULT_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnApply.insert">
+        <![CDATA[
+        INSERT INTO LN_APPLY(
+         BATCH_NO,
+         APP_ID,
+         BR_NO,
+         PACT_NO,
+         APP_DATE,
+         PACT_XT,
+         BR_ACC_TYPE,
+         CIF_NO,
+         CIF_NAME,
+         PROJ_NO,
+         PRDT_NO,
+         LN_TYPE,
+         CUR_NO,
+         APP_AMT,
+         PACT_AMT,
+         LN_RATE,
+         LN_RATE_YEAR,
+         OVER_RATE,
+         DAM_RATE,
+         APP_AREA,
+         LN_USE,
+         REPAY_TYPE,
+         TERM_MON,
+         TERM_DAY,
+         VOU_TYPE,
+         BEG_DATE,
+         END_DATE,
+         PAY_TYPE,
+         PAY_KIND,
+         PAY_DAY,
+         FEE_TYPE,
+         PAY_MENT,
+         VOU_DAYS,
+         FEE_TOTAL,
+         FEE_RATE,
+         FEE_AMT,
+         SRV_RATE,
+         SRV_AMT,
+         VOU_RATE,
+         VOU_AMT,
+         FEE_AMT1,
+         FEE_AMT2,
+         FEE_AMT3,
+         FEE_AMT4,
+         FEE_AMT5,
+         APPR_TYPE,
+         APP_STS,
+         REC_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         CZ_PACT_NO,
+         RESULT_ID
+         )VALUES(
+         #batchNo#,
+         #appId#,
+         #brNo#,
+         #pactNo#,
+         #appDate#,
+         #pactXt#,
+         #brAccType#,
+         #cifNo#,
+         #cifName#,
+         #projNo#,
+         #prdtNo#,
+         #lnType#,
+         #curNo#,
+         #appAmt#,
+         #pactAmt#,
+         #lnRate#,
+         #lnRateYear#,
+         #overRate#,
+         #damRate#,
+         #appArea#,
+         #lnUse#,
+         #repayType#,
+         #termMon#,
+         #termDay#,
+         #vouType#,
+         #begDate#,
+         #endDate#,
+         #payType#,
+         #payKind#,
+         #payDay#,
+         #feeType#,
+         #payMent#,
+         #vouDays#,
+         #feeTotal#,
+         #feeRate#,
+         #feeAmt#,
+         #srvRate#,
+         #srvAmt#,
+         #vouRate#,
+         #vouAmt#,
+         #feeAmt1#,
+         #feeAmt2#,
+         #feeAmt3#,
+         #feeAmt4#,
+         #feeAmt5#,
+         #apprType#,
+         #appSts#,
+         #recSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #czPactNo#,
+         #resultId#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnApply.del">
+        <![CDATA[
+               DELETE FROM LN_APPLY
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!--插入规则引擎返回ID-->
+    <update id="LnApply.resultIdUpdate">
+        <![CDATA[
+         UPDATE LN_APPLY set
+         RESULT_ID=#resultId#
+          WHERE
+               	APP_ID = #appId#  		]]>
+    </update>
+    <!-- 表修改 -->
+    <update id="LnApply.update">
+        <![CDATA[
+         UPDATE LN_APPLY set
+         BATCH_NO=#batchNo#,
+         APP_ID=#appId#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         APP_DATE=#appDate#,
+         PACT_XT=#pactXt#,
+         BR_ACC_TYPE=#brAccType#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         PROJ_NO=#projNo#,
+         PRDT_NO=#prdtNo#,
+         LN_TYPE=#lnType#,
+         CUR_NO=#curNo#,
+         APP_AMT=#appAmt#,
+         PACT_AMT=#pactAmt#,
+         LN_RATE=#lnRate#,
+         LN_RATE_YEAR=#lnRateYear#,
+         OVER_RATE=#overRate#,
+         DAM_RATE=#damRate#,
+         APP_AREA=#appArea#,
+         LN_USE=#lnUse#,
+         REPAY_TYPE=#repayType#,
+         TERM_MON=#termMon#,
+         TERM_DAY=#termDay#,
+         VOU_TYPE=#vouType#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         PAY_TYPE=#payType#,
+         PAY_KIND=#payKind#,
+         PAY_DAY=#payDay#,
+         FEE_TYPE=#feeType#,
+         PAY_MENT=#payMent#,
+         VOU_DAYS=#vouDays#,
+         FEE_TOTAL=#feeTotal#,
+         FEE_RATE=#feeRate#,
+         FEE_AMT=#feeAmt#,
+         SRV_RATE=#srvRate#,
+         SRV_AMT=#srvAmt#,
+         VOU_RATE=#vouRate#,
+         VOU_AMT=#vouAmt#,
+         FEE_AMT1=#feeAmt1#,
+         FEE_AMT2=#feeAmt2#,
+         FEE_AMT3=#feeAmt3#,
+         FEE_AMT4=#feeAmt4#,
+         FEE_AMT5=#feeAmt5#,
+         APPR_TYPE=#apprType#,
+         APP_STS=#appSts#,
+         REC_STS=#recSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         CZ_PACT_NO=#czPactNo#,
+         RESULT_ID=#resultId#
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnApply.getById"  resultMap="RM.LnApply">
+        SELECT <include refid="LnApply.columns"/>
+        <![CDATA[
+             FROM LN_APPLY 
+         WHERE 
+               	APP_ID = #appId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnApply.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnApply.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_APPLY <include refid="LnApply.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnApply.findByPage" resultMap="RM.LnApply">
+        SELECT <include refid="LnApply.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnApply.columns"/> FROM LN_APPLY
+                    <include refid="LnApply.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 获取KEY -->
+    <select id="LnApply.getKey" resultClass="string">
+   	 <![CDATA[ SELECT PRE_APPLY_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

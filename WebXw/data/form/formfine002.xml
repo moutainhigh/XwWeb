@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="fine002" title="罚息公式配置表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opNo" fieldtype="1" maxlength="10" formactiveid="1" labelalign="3" labelcol="1" labelname="登记人" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="txDate" fieldtype="1" maxlength="18" formactiveid="2" labelalign="3" labelcol="3" labelname="登记日期" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="upDate" fieldtype="1" maxlength="18" formactiveid="3" labelalign="3" labelcol="1" labelname="更新时间" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="fineId" fieldtype="1" maxlength="10" formactiveid="4" labelalign="3" labelcol="3" labelname="罚息公式编号" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="fineName" fieldtype="1" maxlength="50" formactiveid="5" labelalign="3" labelcol="1" labelname="罚息公式名称" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="fineFormulaDes" fieldtype="1" maxlength="500" formactiveid="6" labelalign="3" labelcol="3" labelname="罚息公式描述" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="fineFormula" fieldtype="1" maxlength="500" formactiveid="7" labelalign="3" labelcol="1" labelname="fine_formula" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="fineSts" fieldtype="1" maxlength="2" formactiveid="8" labelalign="3" labelcol="3" labelname="罚息公式状态" mustinput="0" row="4"/>
+</form>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcDebitAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AcDebitAction_*" method="{1}" class="app.creditapp.acc.loan.action.AcDebitAction">
+			<result name="list">/creditapp/acc/loan/AcDebit_List.jsp</result>
+			<result name="input">/creditapp/acc/loan/AcDebit_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcDebit_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AcDebitActionInsert" method="insert" class="app.creditapp.acc.loan.action.AcDebitAction">
+			<result name="input">/creditapp/acc/loan/AcDebit_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcDebit_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcDebitActionUpdate" method="update" class="app.creditapp.acc.loan.action.AcDebitAction">
+			<result name="input">/creditapp/acc/loan/AcDebit_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcDebit_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="aft0013" title="抵债物关联表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="1" labelalign="3" labelcol="1" labelname="合作机构号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="pactNo" fieldtype="1" maxlength="60" formactiveid="2" labelalign="3" labelcol="3" labelname="合同编号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="pactId" fieldtype="1" maxlength="40" formactiveid="3" labelalign="3" labelcol="1" labelname="合同ID" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="assId" fieldtype="1" maxlength="12" formactiveid="4" labelalign="3" labelcol="3" labelname="抵债物ID" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="recId" fieldtype="1" maxlength="12" formactiveid="5" labelalign="3" labelcol="1" labelname="记录ID" mustinput="0" row="3"/>
+<formelement datatype="3" fieldalign="1" fieldcol="4" fieldname="assAmt" fieldtype="1" maxlength="16" formactiveid="6" labelalign="3" labelcol="3" labelname="抵债金额" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opNo" fieldtype="1" maxlength="10" formactiveid="7" labelalign="3" labelcol="1" labelname="操作员" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="txDate" fieldtype="1" maxlength="8" formactiveid="8" labelalign="3" labelcol="3" labelname="登记日期" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="upDate" fieldtype="1" maxlength="8" formactiveid="9" labelalign="3" labelcol="1" labelname="更新日期" mustinput="0" row="5"/>
+</form>

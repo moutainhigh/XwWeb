@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysUserAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysUserAction_findByPage" method="findByPage" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_List.jsp</result>
+		</action>
+		<action name="SysUserAction_findByPageForPop" method="findByPageForPop" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_ListForPop.jsp</result>
+		</action>
+		
+		<action name="SysUserAction_findByList" method="findByList" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_List.jsp</result>
+		</action>
+		
+		 <!--客户经理分页查询 -->
+		<action name="SysUserAction_findMangNoPop" method="findMangNoPop" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_ListForMangNoPop.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="SysUserAction_input" method="input" class="app.creditapp.sys.action.SysUserAction">
+			<result name="input">/creditapp/sys/SysUserInfo_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysUserAction_delete" method="delete" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="SysUserAction_getById" method="getById" class="app.creditapp.sys.action.SysUserAction">
+			<result name="detail">/creditapp/sys/SysUserInfo_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysUserActionInsert" method="insert" class="app.creditapp.sys.action.SysUserAction">
+			<result name="input">/creditapp/sys/SysUserInfo_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysUserInfo_Detail.jsp</result>
+			<result name="list" type="redirect">SysUserAction_findByPage.action?user_no=${user_no}&amp;isInsert=${isInsert}</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysUserActionUpdate" method="update" class="app.creditapp.sys.action.SysUserAction">
+			<result name="input">/creditapp/sys/SysUserInfo_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/SysUserInfo_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysUserActionActive" method="active" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_List.jsp</result>
+		</action>
+		<action name="SysUserActionInactive" method="inactive" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_List.jsp</result>
+		</action>
+		
+		<!--tab -->
+		<action name="SysUserAction_getTab" method="getTab" class="app.creditapp.sys.action.SysUserAction">
+			<result name="tab">/creditapp/sys/SysUserInfo_tab.jsp</result>
+		</action>
+		
+		<!--修改状态后重定向到列表页面-->
+		<action name="SysUserAction_updateUserSts" method="updateUserSts" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_List.jsp</result>
+		</action>
+		<!--密码重置-->
+		<action name="SysUserAction_resetPassword" method="resetPassword" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_List.jsp</result>
+		</action>
+		<action name="SysUserAction_changePwdByAjax" method="changePwdByAjax" class="app.creditapp.sys.action.SysUserAction">
+			<result name="input">/creditapp/sys/SysUserInfo_Insert.jsp</result>
+		</action>
+		
+		<!-- 通讯录 -->
+		<action name="SysUserAction_getUserAddressList" method="getUserAddressList" class="app.creditapp.sys.action.SysUserAction">
+			<result name="addressBookList">/creditapp/sys/AddressBookList.jsp</result>
+		</action>
+		<action name="SysUserAction_findAddressBookInfo" method="findAddressBookInfo" class="app.creditapp.sys.action.SysUserAction">
+			<result name="addressBook">/creditapp/sys/AddressBookInfo.jsp</result>
+		</action>
+		<action name="SysUserAction_updateAddress" method="updateAddress" class="app.creditapp.sys.action.SysUserAction">
+			<result name="addressBook">/creditapp/sys/AddressBookInfo.jsp</result>
+		</action>
+		
+		<action name="SysUserAction_findZt" method="findZt" class="app.creditapp.sys.action.SysUserAction">
+			<result name="list">/creditapp/sys/SysUserInfo_ListZt.jsp</result>
+		</action>
+		<action name="SysUserAction_getUser" method="getUser" class="app.creditapp.sys.action.SysUserAction">
+		</action>
+		<!-- 更改首页UI -->
+		<action name="LoginAction_changeSysUserUi" method="changeSysUserUi" class="app.creditapp.sys.action.LoginAction">
+		</action>
+		<!-- 更改用户皮肤 -->
+		<action name="SysUserAction_changeSkin" method="changeSkin" class="app.creditapp.sys.action.SysUserAction">
+		</action>
+	</package>
+</struts>
+
+
+

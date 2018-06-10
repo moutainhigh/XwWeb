@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="chg0002" title="扣款日变更申请表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="batchNo" fieldtype="1" maxlength="30" formactiveid="1" labelalign="3" labelcol="1" labelname="批次号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="pactNo" fieldtype="1" maxlength="40" formactiveid="2" labelalign="3" labelcol="3" labelname="合同号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="3" labelalign="3" labelcol="1" labelname="机构号" mustinput="0" row="2"/>
+<formelement datatype="1" fieldalign="1" fieldcol="4" fieldname="newPayDay" fieldtype="1" maxlength="2" formactiveid="4" labelalign="3" labelcol="3" labelname="新扣款日" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="chgReason" fieldtype="1" maxlength="60" formactiveid="5" labelalign="3" labelcol="1" labelname="变更原因" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="chgaSts" fieldtype="1" maxlength="2" formactiveid="6" labelalign="3" labelcol="3" labelname="变更状态" mustinput="0" row="3"/>
+</form>

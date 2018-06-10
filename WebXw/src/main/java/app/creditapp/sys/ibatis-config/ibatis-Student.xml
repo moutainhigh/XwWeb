@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="Student" type="app.creditapp.sys.entity.Student"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.Student" class="Student">
+    <result property="stu_Id" column="stu_Id" />
+    <result property="stu_Name" column="stu_Name" />
+    <result property="stu_Age" column="stu_Age" />
+    <result property="stu_Sex" column="stu_Sex" />
+    <result property="stu_Phone" column="stu_Phone" />
+    </resultMap>
+     <sql id="Student.columns">
+        <![CDATA[
+         stu_Id,
+         stu_Name,
+         stu_Age,
+         stu_Phone,
+         stu_Sex
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="Student.insert">
+        <![CDATA[
+        INSERT INTO Student(
+        stu_Id,
+         stu_Name,
+         stu_Age,
+         stu_Phone,
+         stu_Sex
+         )VALUES(
+         Student_SEQ.NEXTVAL,
+         #stu_Name#,
+         #stu_Age#,
+         #stu_Phone#,
+         #stu_Sex#
+         )
+          ]]>
+    </insert>
+    
+</sqlMap>

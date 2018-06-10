@@ -1,0 +1,97 @@
+html,body,div,ul,li,p {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* 以下css 粘贴到皮肤css里*/
+.worksbar {
+	width: 90%;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.worksbar li {
+	float: left;
+	width: 19%;
+	padding: 2% 3%;
+	margin-top: 5%;
+}
+
+.worksbar li a {
+	width: 96px;
+	height: 96px;
+	display: block;
+	margin: 0 auto;
+	background-image: url(../images/workbar.png);
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.worksbar li p {
+	text-align: center;
+	font-size: 14px;
+	color: #666;
+	margin: 20px;
+}
+
+.worksbar li:hover.Wbar1 {
+	background-position: 0 0;
+}
+
+.Wbar2 {
+	background-position: -115px 0;
+}
+
+.Wbar3 {
+	background-position: -229px 0;
+}
+
+.Wbar4 {
+	background-position: -344px 0;
+}
+
+.Wbar5 {
+	background-position: -458px 0;
+}
+
+.Wbar6 {
+	background-position: -573px 0;
+}
+
+.Wbar7 {
+	background-position: -687px 0;
+}
+
+.worksbar li:hover .Wbar1 {
+	background-position: 0 -116px;
+}
+
+.worksbar li:hover .Wbar2 {
+	background-position: -115px -116px;
+}
+
+.worksbar li:hover .Wbar3 {
+	background-position: -229px -116px;
+}
+
+.worksbar li:hover .Wbar4 {
+	background-position: -344px -116px;
+}
+
+.worksbar li:hover .Wbar5 {
+	background-position: -458px -116px;
+}
+
+.worksbar li:hover .Wbar6 {
+	background-position: -573px -116px;
+}
+
+.worksbar li:hover .Wbar7 {
+	background-position: -687px -116px;
+}

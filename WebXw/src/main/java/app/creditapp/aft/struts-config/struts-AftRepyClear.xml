@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftRepyClearAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftRepyClearAction_*" method="{1}" class="app.creditapp.aft.action.AftRepyClearAction">
+			<result name="list">/creditapp/aft/AftRepyClear_List.jsp</result>
+			<result name="input">/creditapp/aft/AftRepyClear_Insert.jsp</result>
+			<result name="detail">/creditapp/aft/AftRepyClear_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AftRepyClearActionInsert" method="insert" class="app.creditapp.aft.action.AftRepyClearAction">
+			<result name="input">/creditapp/aft/AftRepyClear_Insert.jsp</result>
+			<result name="detail">/creditapp/aft/AftRepyClear_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftRepyClearActionUpdate" method="update" class="app.creditapp.aft.action.AftRepyClearAction">
+			<result name="input">/creditapp/aft/AftRepyClear_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftRepyClear_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

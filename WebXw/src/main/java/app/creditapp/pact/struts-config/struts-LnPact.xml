@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnPactAction" namespace="/" extends="struts-cms">
+	 
+	    <!--分页查询 -->
+		<action name="LnPactAction_findByPage" method="findByPage" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_List.jsp</result>
+		</action>
+		<action name="LnPactAction_findByPageForInterface" method="findByPageForInterface" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_ListForInterface.jsp</result>
+		</action>
+		<action name="LnPactAction_findByPageAppr" method="findByPageAppr" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_ListForInterface.jsp</result>
+		</action>
+		<action name="LnPactAction_findByPageForAppr" method="findByPageForAppr" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_ListForInterface.jsp</result>
+		</action>
+		<action name="LnPactAction_findByPageForPop" method="findByPageForPop" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_ListPop.jsp</result>
+		</action>
+		<action name="LnPactAction_findByPageForList" method="findByPageForList" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_ListForList.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="LnPactAction_input" method="input" class="app.creditapp.pact.action.LnPactAction">
+			<result name="input">/creditapp/pact/LnPact_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnPactAction_del" method="del" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnPactAction_getById" method="getById" class="app.creditapp.pact.action.LnPactAction">
+			<result name="detail">/creditapp/pact/LnPact_Detail.jsp</result>
+		</action>
+		<action name="LnPactAction_getByIdForAppId" method="getByIdForAppId" class="app.creditapp.pact.action.LnPactAction">
+			<result name="detail">/creditapp/pact/LnPact_Detail.jsp</result>
+		</action>
+		
+		 <!--合同借款详细信息 -->
+		<action name="LnPactAction_getTab" method="getTab" class="app.creditapp.pact.action.LnPactAction">
+			<result name="tab">/creditapp/pact/LnPact_Tab.jsp</result>
+		</action>
+		 <!--合同借款详细信息360 -->
+		<action name="LnPactAction_getTab_360" method="getTab_360" class="app.creditapp.pact.action.LnPactAction">
+			<result name="tab">/creditapp/pact/LnPact_Tab_360.jsp</result>
+		</action>		
+		<!--新增保存-->
+		<action name="LnPactActionInsert" method="insert" class="app.creditapp.pact.action.LnPactAction">
+			<result name="input">/creditapp/pact/LnPact_Insert.jsp</result>
+			<result name="detail">/creditapp/pact/LnPact_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnPactActionUpdate" method="update" class="app.creditapp.pact.action.LnPactAction">
+			<result name="input">/creditapp/pact/LnPact_Detail.jsp</result>
+			<result name="detail">/creditapp/pact/LnPact_Detail.jsp</result>
+		</action>
+		
+		<!-- 根据客户号查询额度信息 -->
+		<action name="LnPactAction_listQuotaForCif" method="listQuotaForCif" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_listQuotaForCif.jsp</result>
+		</action>
+		
+		<action name="LnPactAction_doReplace" method="doReplace" class="app.creditapp.pact.action.LnPactAction">
+			<result name="input">/creditapp/pact/LnPact_ListPop.jsp</result>
+			<result name="list" type="redirect">LnPactAction_findByPageForPop.action?assId=${assId}</result>
+		</action>
+		
+		<action name="LnPactAction_doReplaceAjax" method="doReplaceAjax" class="app.creditapp.pact.action.LnPactAction">
+		</action>
+		<!-- 根据客户号查询合同列表 -->
+		<action name="LnPactAction_listForCif" method="listForCif" class="app.creditapp.pact.action.LnPactAction">
+			<result name="list">/creditapp/pact/LnPact_listForCif.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnPactAction_getByIdDtl" method="getByIdDtl" class="app.creditapp.pact.action.LnPactAction">
+			<result name="detail">/creditapp/pact/LnPact_MesDetail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

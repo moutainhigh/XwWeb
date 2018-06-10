@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PrdtBase" type="app.creditapp.sys.entity.PrdtBase"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.PrdtBase" class="PrdtBase">
+    <result property="prdtId" column="PRDT_ID" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="prdtType" column="PRDT_TYPE" />
+    <result property="minAmt" column="MIN_AMT" jdbcType="double"/>
+    <result property="maxAmt" column="MAX_AMT" jdbcType="double"/>
+    <result property="minMon" column="MIN_MON" jdbcType="Int"/>
+    <result property="maxMon" column="MAX_MON" jdbcType="Int"/>
+    <!--<result property="allowArea" column="" />
+    <result property="allowAreaNo" column="" />-->
+    
+    <result property="allowArea" column="ALLOW_AREA" />
+    <result property="repayNo" column="REPAY_NO" />
+    <result property="defNo" column="DEF_NO" />
+    <result property="damNo" column="DAM_NO" />
+    <result property="maxRate" column="MAX_RATE" jdbcType="double"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double"/>
+    <result property="feeNo" column="FEE_NO" />
+     
+    <result property="prdtDesc" column="PRDT_DESC" />
+    <result property="prdtVer" column="PRDT_VER" jdbcType="Int"/>
+    <result property="prdtSts" column="PRDT_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    
+    <result property="repayName" column="REPAY_NAME" />
+    <result property="damName" column="DAM_NAME" />
+    <result property="defName" column="DEF_NAME" />
+    <result property="brName" column="BR_NAME" />
+    <result property="maxRate" column="MAX_RATE" jdbcType="double"/>
+    <result property="offRate" column="OFF_RATE" jdbcType="double"/>
+    <result property="endDate" column="END_DATE" />
+    <result property="prdtByte" column="PRDT_BYTE" />
+    <result property="rgAppRate" column="RG_APP_RATE" />
+    <result property="failDays" column="FAIL_DAYS" />
+     <result property="regretDate" column="REGRET_DATE" jdbcType="Int"/>
+    <result property="rulesName" column="RULES_NAME" />
+     <result property="uploadDoc" column="UPLOAD_DOC" />
+      <result property="intopDoc" column="INTOP_DOC" />
+       <result property="args" column="ARGS" />
+    </resultMap>
+     <sql id="PrdtBase.columns">
+        <![CDATA[
+         PRDT_ID,
+         PRDT_NO,
+         BR_NO,
+         PRDT_NAME,
+         PRDT_TYPE,
+         MIN_AMT,
+         MAX_AMT,
+         MIN_MON,
+         MAX_MON,
+         REPAY_NO,
+         DEF_NO,
+         DAM_NO,
+         MAX_RATE,
+         OVER_RATE,
+         FEE_NO,
+         PRDT_DESC,
+         PRDT_VER,
+         PRDT_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         BR_ACC_TYPE,
+         FUN_GETREPAYNAME(REPAY_NO) as REPAY_NAME,
+         FUN_GETDAMNAME(DAM_NO) as DAM_NAME,
+         FUN_GETDEFNAME(DEF_NO) as DEF_NAME,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         END_DATE,
+         MIN_RATE,
+         OFF_RATE,
+         PRDT_BYTE,
+         RG_APP_RATE,
+         FAIL_DAYS,
+         ALLOW_AREA,
+         REGRET_DATE,
+         RULES_NAME,
+         UPLOAD_DOC,
+         INTOP_DOC,
+         ARGS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="PrdtBase.insert">
+        <![CDATA[
+        INSERT INTO PRDT_BASE(
+        PRDT_ID,
+         PRDT_NO,
+         BR_NO,
+         PRDT_NAME,
+         PRDT_TYPE,
+         MIN_AMT,
+         MAX_AMT,
+         MIN_MON,
+         MAX_MON,
+         REPAY_NO,
+         DEF_NO,
+         DAM_NO,
+         MAX_RATE,
+         OVER_RATE,
+         FEE_NO,
+         PRDT_DESC,
+         PRDT_VER,
+         PRDT_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         BR_ACC_TYPE,
+         END_DATE,
+         MIN_RATE,
+         OFF_RATE,
+         PRDT_BYTE,
+         RG_APP_RATE,
+         FAIL_DAYS,
+         ALLOW_AREA,
+         REGRET_DATE,
+         RULES_NAME,
+         UPLOAD_DOC,
+         INTOP_DOC,
+         ARGS
+         )VALUES(
+         #prdtId#,
+         #prdtNo#,
+         #brNo#,
+         #prdtName#,
+         #prdtType#,
+         #minAmt#,
+         #maxAmt#,
+         #minMon#,
+         #maxMon#,
+         #repayNo#,
+         #defNo#,
+         #damNo#,
+         #maxRate#,
+         #overRate#,
+         #feeNo#,
+         #prdtDesc#,
+         #prdtVer#,
+         #prdtSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #brAccType#,
+         #endDate#,
+         #minRate#,
+         #offRate#,
+         #prdtByte#,
+         #rgAppRate#,
+         #failDays#,
+         #allowArea#,
+         #regretDate#,
+         #rulesName#,
+         #uploadDoc#,
+         #intopDoc#,
+         #args#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="prdtId" >
+				SELECT  PRDT_BASE_SEQ.NEXTVAL AS prdtId FROM DUAL
+      	 </selectKey>
+    </insert>
+        <!-- 表新增 -->
+    <insert id="PrdtBase.insertForCopy">
+        <![CDATA[
+        INSERT INTO PRDT_BASE(
+        PRDT_ID,
+         PRDT_NO,
+         BR_NO,
+         PRDT_NAME,
+         PRDT_TYPE,
+         MIN_AMT,
+         MAX_AMT,
+         MIN_MON,
+         MAX_MON,
+         REPAY_NO,
+         DEF_NO,
+         DAM_NO,
+         MAX_RATE,
+         OVER_RATE,
+         FEE_NO,
+         PRDT_DESC,
+         PRDT_VER,
+         PRDT_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         BR_ACC_TYPE,
+         END_DATE,
+         MIN_RATE,
+         OFF_RATE,
+         PRDT_BYTE,
+         ALLOW_AREA,
+         RG_APP_RATE,
+         RULES_NAME,
+         UPLOAD_DOC,
+         INTOP_DOC,
+         ARGS
+         )VALUES(
+         #prdtId#,
+         #prdtId#,
+         #brNo#,
+         #prdtName#,
+         #prdtType#,
+         #minAmt#,
+         #maxAmt#,
+         #minMon#,
+         #maxMon#,
+         #repayNo#,
+         #defNo#,
+         #damNo#,
+         #maxRate#,
+         #overRate#,
+         #feeNo#,
+         #prdtDesc#,
+         #prdtVer#,
+         #prdtSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #brAccType#,
+         #endDate#,
+         #minRate#,
+         #offRate#,
+         #prdtByte#,
+         #allowArea#,
+         #rgAppRate#,
+         #rulesName#,
+          #uploadDoc#,
+         #intopDoc#,
+         #args#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="prdtId" >
+				SELECT  PRDT_BASE_SEQ.NEXTVAL AS prdtId FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="PrdtBase.del">
+        <![CDATA[
+               DELETE FROM PRDT_BASE
+                 WHERE
+               	PRDT_ID = #prdtId#       ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="PrdtBase.update">
+        <![CDATA[
+         UPDATE PRDT_BASE set
+         PRDT_ID=#prdtId#,
+         PRDT_NO=#prdtNo#,
+         BR_NO=#brNo#,
+         PRDT_NAME=#prdtName#,
+         PRDT_TYPE=#prdtType#,
+         MIN_AMT=#minAmt#,
+         MAX_AMT=#maxAmt#,
+         MIN_MON=#minMon#,
+         MAX_MON=#maxMon#,
+         REPAY_NO=#repayNo#,
+         DEF_NO=#defNo#,
+         DAM_NO=#damNo#,
+         MAX_RATE=#maxRate#,
+         OVER_RATE=#overRate#,
+         FEE_NO=#feeNo#,
+         PRDT_DESC=#prdtDesc#,
+         PRDT_VER=#prdtVer#,
+         PRDT_STS=#prdtSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         BR_ACC_TYPE=#brAccType#,
+         END_DATE=#endDate#,
+         MIN_RATE=#minRate#,
+         OFF_RATE=#offRate#,
+         PRDT_BYTE=#prdtByte#,
+         RG_APP_RATE=#rgAppRate#,
+         FAIL_DAYS=#failDays#,
+         ALLOW_AREA=#allowArea#,
+         REGRET_DATE=#regretDate#,
+         RULES_NAME=#rulesName#,
+         UPLOAD_DOC=#uploadDoc#,
+         INTOP_DOC= #intopDoc#,
+         ARGS= #args#
+          WHERE
+               	PRDT_ID = #prdtId#       ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="PrdtBase.getById"  resultMap="RM.PrdtBase">
+        SELECT <include refid="PrdtBase.columns"/>
+        <![CDATA[
+             FROM PRDT_BASE 
+         WHERE 
+               	PRDT_NO = #prdtNo#   and   PRDT_ID = #prdtId#   ]]>
+     </select>
+      <!-- 表查询ById -->
+    <select id="PrdtBase.getByPrdtNo"  resultMap="RM.PrdtBase">
+        SELECT <include refid="PrdtBase.columns"/>
+        <![CDATA[
+             FROM PRDT_BASE 
+         WHERE 
+               	PRDT_NO = #prdtNo#   ]]>
+     </select>
+       <select id="PrdtBase.getCountPrd" resultClass="int">
+       select count(*) from PRDT_BASE 
+       where PRDT_NO = #prdtNo#   and   PRDT_ID != #prdtId#
+    </select>
+    
+    <!-- 表查询MaxNoByBrNo -->
+    <select id="PrdtBase.getMaxNoByBrNo"  resultMap="RM.PrdtBase">
+        SELECT <include refid="PrdtBase.columns"/>
+        FROM (SELECT <include refid="PrdtBase.columns"/>
+        <![CDATA[
+             FROM PRDT_BASE 
+         WHERE 
+               	BR_NO = #brNo#
+               	ORDER BY PRDT_NO DESC ]]>
+            )WHERE ROWNUM=1 
+     </select>
+    
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PrdtBase.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="prdtNo">
+                  <isNotEmpty prepend="AND" property="prdtNo">
+                      PRDT_NO = #prdtNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="prdtName">
+                  <isNotEmpty prepend="AND" property="prdtName">
+                      PRDT_NAME like '%$prdtName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="prdtType">
+                  <isNotEmpty prepend="AND" property="prdtType">
+                      PRDT_TYPE = #prdtType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="prdtByte">
+                  <isNotEmpty prepend="AND" property="prdtByte">
+                      PRDT_BYTE = #prdtByte#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="prdtSts">
+                  <isNotEmpty prepend="AND" property="prdtSts">
+                      PRDT_STS = #prdtSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="PrdtBase.findPage.count" resultClass="int">
+        SELECT count(*) FROM (select a.*, FUN_GETREPAYNAME(a.REPAY_NO) as REPAY_NAME,
+         FUN_GETBRNAME(a.BR_NO) as BR_NAME from prdt_base a) <include refid="PrdtBase.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="PrdtBase.findByPage" resultMap="RM.PrdtBase">
+        SELECT <include refid="PrdtBase.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="PrdtBase.columns"/> FROM (select a.*, FUN_GETREPAYNAME(a.REPAY_NO) as REPAY_NAME,
+         FUN_GETBRNAME(a.BR_NO) as BR_NAME from prdt_base a)
+                    <include refid="PrdtBase.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

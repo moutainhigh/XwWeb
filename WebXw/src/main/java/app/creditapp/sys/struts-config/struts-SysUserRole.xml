@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysUserRoleAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysUserRoleAction_findByPage" method="findByPage" class="app.creditapp.sys.action.SysUserRoleAction">
+			<result name="list">/creditapp/sys/SysUserRel_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="SysUserRoleAction_input" method="input" class="app.creditapp.sys.action.SysUserRoleAction">
+			<result name="input">/creditapp/sys/SysUserRel_Insert.jsp</result>
+			<result name="inputWh">/creditapp/sys/SysUserRel_InsertWh.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysUserRoleAction_del" method="del" class="app.creditapp.sys.action.SysUserRoleAction">
+			<result name="list">/creditapp/sys/SysUserRel_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="SysUserRoleAction_getById" method="getById" class="app.creditapp.sys.action.SysUserRoleAction">
+			<result name="detail">/creditapp/sys/SysUserRel_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysUserRoleActionInsert" method="insert" class="app.creditapp.sys.action.SysUserRoleAction">
+			<result name="input">/creditapp/sys/SysUserRel_Insert.jsp</result>
+			<result name="list">/creditapp/sys/SysUserRel_List.jsp</result>
+			<result name="detail">/creditapp/sys/SysUserRel_Detail.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="SysUserRoleAction_insertWh" method="insertWh" class="app.creditapp.sys.action.SysUserRoleAction">
+		    <result name="input">/creditapp/sys/SysUserRel_InsertWh.jsp</result>
+			<result name="list">/creditapp/sys/SysUserRel_List.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysUserRoleActionUpdate" method="update" class="app.creditapp.sys.action.SysUserRoleAction">
+			<result name="input">/creditapp/sys/SysUserRel_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/SysUserRel_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

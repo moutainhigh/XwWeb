@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+    default-lazy-init="false">
+	
+
+<bean id="aftMessageAlarmBo" class="app.creditapp.aft.bo.impl.AftMessageAlarmBoImpl">
+	<property name="aftRewPactBo" ref="aftRewPactBo"/>
+	<property name="aftRewProjBo" ref="aftRewProjBo"/>
+	<property name="aftRewFundBo" ref="aftRewFundBo"/>
+	<property name="aftRewRealBo" ref="aftRewRealBo"/>
+	<property name="lnPactBo" ref="lnPactBo"></property>
+	<property name="fundBaseBo" ref="fundBaseBo"></property>
+</bean>
+
+<bean id="aftManagerManagerInterface" class="app.creditapp.aft.manager.AftMessageManager">
+	<property name="lnGageBo" ref="lnGageBo"></property>
+	<property name="projBaseBo" ref="projBaseBo"></property>
+</bean>
+	
+</beans>
+

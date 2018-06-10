@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ====================该验证的表WS_REBUY================== -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn3001_1Id</ruleId>
+		<ruleName>wsIn3001_1Rule</ruleName>
+		<columnList>
+			
+			<column columenName="pactNo">
+				<canNull>false</canNull>
+				<maxLength>40</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<column columenName="repAmt">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form formTitleShowFlag="false" id="sys0032" title="页面按钮定义">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="menu_no" fieldtype="1" fieldwidth="60" formactiveid="1" labelalign="3" labelcol="1" labelname="菜单号" labelwidth="40" maxlength="6" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="button_no" fieldtype="1" formactiveid="2" labelalign="3" labelcol="1" labelname="按钮编号" maxlength="20" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="button_desc" fieldtype="1" formactiveid="3" labelalign="3" labelcol="1" labelname="按钮描述" maxlength="256" mustinput="0" row="3"/>
+</form>

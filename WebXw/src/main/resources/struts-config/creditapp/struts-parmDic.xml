@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  <package name="parmdic" namespace="/" extends="struts-default">
+    <global-results>
+        <result name="invalid.token">/creditapp/common/commitRepeat.jsp</result>
+        <result name="commonException">/creditapp/common/exception.jsp</result>
+      </global-results>
+    <global-exception-mappings>
+      <exception-mapping result="commonException" exception="java.lang.Exception"></exception-mapping>  
+    </global-exception-mappings>
+        <action name="ParmDicAction_*" method="{1}" class="app.creditapp.action.ParmDicAction">
+          <result name="list">/creditapp/sys/ParmDic_list.jsp</result>
+          <result name="input">/creditapp/sys/ParmDic_insert.jsp</result>
+          <result name="detail">/creditapp/sys/ParmDic_detail.jsp</result>
+          <result name="return_list" type="redirect">ParmDicAction_findByPage.action?key_name=${key_name}&amp;opt_code=${opt_code}</result>
+        </action>
+         <action name="ParmDicAction_insert" method="insert" class="app.creditapp.action.ParmDicAction">
+          <interceptor-ref name="token"></interceptor-ref>
+           <interceptor-ref name="defaultStack"></interceptor-ref>
+           <result name="input">/creditapp/sys/ParmDic_insert.jsp</result>
+           <result name="detail">/creditapp/sys/ParmDic_detail.jsp</result>
+        </action>
+         <action name="ParmDicAction_update" method="update" class="app.creditapp.action.ParmDicAction">
+          <interceptor-ref name="token"></interceptor-ref>
+           <interceptor-ref name="defaultStack"></interceptor-ref>
+           <result name="input">/creditapp/sys/ParmDic_detail.jsp</result>
+           <result name="detail">/creditapp/sys/ParmDic_detail.jsp</result>
+        </action>
+         <action name="ParmDicAction_getFindlist" method="getFindlist" class="app.creditapp.action.ParmDicAction">
+          <result name="list">/creditapp/sys/ParmDic_list.jsp</result>
+        </action>
+    </package>
+</struts>

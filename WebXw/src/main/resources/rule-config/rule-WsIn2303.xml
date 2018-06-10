@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================鍒嗗壊绾�=========================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn2303Id</ruleId>
+		<ruleName>wsIn2303Rule</ruleName>
+		<columnList>
+      <!--鍚堜綔鏈烘瀯鍙�-->
+			<column columenName="brNo">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--鍚堝悓鍙�-->
+			<column columenName="pactNo">
+				<canNull>false</canNull>
+				<maxLength>40</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--璐︽埛濮撳悕-->
+			<column columenName="acName">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--杩樻璐﹀彿-->
+			<column columenName="acNo">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--閾惰浠ｇ爜-->
+			<column columenName="opnCode">
+				<canNull>false</canNull>
+				<maxLength>3</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--寮�鎴疯-->
+			<column columenName="opnName">
+				<canNull>true</canNull>
+				<maxLength>60</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			 <!--鎵ｆ娴佹按鍙�-->
+			<column columenName="serialNo">
+				<canNull>false</canNull>
+				<maxLength>20</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!--搴旀敹缃氭伅-->
+			<column columenName="payOver">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<!--搴旀敹浠ｆ墸璐规�婚-->
+			<column columenName="feeRec">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+				<!--鎵ｆ閲戦-->
+			<column columenName="repayTotal">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<!--鎵ｆ鏈噾-->
+			<column columenName="repayAmt">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<!--鎵ｆ鍒╂伅-->
+			<column columenName="repayInte">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<!--鎵ｆ缃氭伅-->
+			<column columenName="repayOver">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			<!--浠ｆ墸璐规�婚-->
+			<column columenName="feeTotal">
+				<canNull>true</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber>16,2</complexNumber>
+			</column>
+			
+			<!--虚拟账户渠道-->
+			<column columenName="cardChn">
+				<canNull>true</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue>6</maxValue>
+				<minValue>6</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

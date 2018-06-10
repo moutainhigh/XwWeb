@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	 
+	 <package name="TaskAction" namespace="/" extends="struts-cms">
+	      <action name="TaskAction_*" method="{1}" class="app.creditapp.wkf.action.TaskAction">
+	      	<result name="list">/creditapp/wkf/Task_List.jsp</result> 
+	      	<result name="myList" type="redirect">/WkfTaskAction/WkfTaskAction_findByPage.action?appType=${appType}&amp;isEditReturn=${isEditReturn}&amp;cifNo=${tcifNo}&amp;cifName=${tcifName}&amp;appNo=${tappNo}</result> 
+	      	 <result name="batchList" type="redirect">/WkfTaskAction/WkfTaskAction_findByPage.action?appType=${appType}&amp;isBatchFlag=1&amp;isEditReturn=${isEditReturn}&amp;cifNo=${tcifNo}&amp;cifName=${tcifName}&amp;appNo=${tappNo}</result> 
+	      	<result name="mytaskListByUser">/creditapp/wkf/myTaskListByUser.jsp</result> 
+	      	<result name="mytaskListByGroup">/creditapp/wkf/Task_MyGroupList.jsp</result> 
+	      	<result name="myCommitedTask">/creditapp/wkf/Task_MyCommitedList.jsp</result> 
+	      	<result name="mySendedTask">/creditapp/wkf/Task_MySendedList.jsp</result> 
+	      	<result name="myProxyTask">/creditapp/wkf/MyProxyTask_List.jsp</result> 
+	      	<result name="selectTransition">/creditapp/wkf/selectTransition.jsp</result> 
+	      	<result name="selectBackTransition">/creditapp/wkf/selectBackTransition.jsp</result> 
+	      	<result name="approveIdea">/creditapp/wkf/Task_ApproveIdeaList_c.jsp</result> 
+	      </action> 
+    </package>
+</struts>
+ 

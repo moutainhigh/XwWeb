@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcReplanParm" type="app.creditapp.acc.option.entity.AcReplanParm"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcReplanParm" class="AcReplanParm">
+    <result property="replanId" column="REPLAN_ID" />
+    <result property="replanName" column="REPLAN_NAME" />
+    <result property="termType" column="TERM_TYPE" />
+    <result property="frequency" column="FREQUENCY" jdbcType="Int"/>
+    <result property="extendNext" column="EXTEND_NEXT" />
+    <result property="secNo" column="SEC_NO" jdbcType="Int"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="replanSts" column="REPLAN_STS" />
+    <result property="ifLoanInt" column="IF_LOAN_INT" />
+    <result property="intType" column="INT_TYPE" />
+    <result property="intUnit" column="INT_UNIT" jdbcType="Int"/>
+    <result property="holidIfExt" column="HOLID_IF_EXT"/>
+    </resultMap>
+     <sql id="AcReplanParm.columns">
+        <![CDATA[
+         REPLAN_ID,
+         REPLAN_NAME,
+         TERM_TYPE,
+         FREQUENCY,
+         EXTEND_NEXT,
+         SEC_NO,
+         OP_NO,
+         BR_NO,
+         UP_DATE,
+         REPLAN_STS,
+         IF_LOAN_INT,
+         INT_TYPE,
+         INT_UNIT,
+         HOLID_IF_EXT
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcReplanParm.insert">
+        <![CDATA[
+        INSERT INTO AC_REPLAN_PARM(
+         REPLAN_ID,
+         REPLAN_NAME,
+         TERM_TYPE,
+         FREQUENCY,
+         EXTEND_NEXT,
+         SEC_NO,
+         OP_NO,
+         BR_NO,
+         UP_DATE,
+         REPLAN_STS,
+         IF_LOAN_INT,
+         INT_TYPE,
+         INT_UNIT,
+         HOLID_IF_EXT
+         )VALUES(
+         #replanId#,
+         #replanName#,
+         #termType#,
+         #frequency#,
+         #extendNext#,
+         #secNo#,
+         #opNo#,
+         #brNo#,
+         #upDate#,
+         #replanSts#,
+         #ifLoanInt#,
+         #intType#,
+         #intUnit#,
+         #holidIfExt#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="replanId" >
+		SELECT AC_REPLAN_PARM_seq.nextval AS REPLAN_ID FROM DUAL
+    </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcReplanParm.del">
+        <![CDATA[
+               DELETE FROM AC_REPLAN_PARM
+                 WHERE
+               	REPLAN_ID = #replanId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcReplanParm.update">
+        <![CDATA[
+         UPDATE AC_REPLAN_PARM set
+         REPLAN_ID=#replanId#,
+         REPLAN_NAME=#replanName#,
+         TERM_TYPE=#termType#,
+         FREQUENCY=#frequency#,
+         EXTEND_NEXT=#extendNext#,
+         SEC_NO=#secNo#,
+         OP_NO=#opNo#,
+         BR_NO=#brNo#,
+         UP_DATE=#upDate#,
+         IF_LOAN_INT=#ifLoanInt#,
+         INT_TYPE=#intType#,
+         INT_UNIT=#intUnit#,
+         HOLID_IF_EXT=#holidIfExt#
+          WHERE
+               	REPLAN_ID = #replanId#        ]]>
+    </update>
+    
+     <!-- 修改状态 -->
+    <update id="AcReplanParm.updateReplanSts">
+        <![CDATA[
+         UPDATE AC_REPLAN_PARM set
+         REPLAN_STS = #replanSts#
+          WHERE
+               	REPLAN_ID = #replanId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcReplanParm.getById"  resultMap="RM.AcReplanParm">
+        SELECT <include refid="AcReplanParm.columns"/>
+        <![CDATA[
+             FROM AC_REPLAN_PARM 
+         WHERE 
+               	REPLAN_ID = #replanId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcReplanParm.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="replanId">
+                  <isNotEmpty prepend="AND" property="replanId">
+                      REPLAN_ID = #replanId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="replanName">
+                  <isNotEmpty prepend="AND" property="replanName">
+                      REPLAN_NAME like '%'||#replanName#||'%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="termType">
+                  <isNotEmpty prepend="AND" property="termType">
+                      TERM_TYPE = #termType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcReplanParm.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_REPLAN_PARM <include refid="AcReplanParm.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcReplanParm.findByPage" resultMap="RM.AcReplanParm">
+        SELECT <include refid="AcReplanParm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcReplanParm.columns"/> FROM AC_REPLAN_PARM
+                    <include refid="AcReplanParm.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

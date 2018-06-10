@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GB2312"?>
+<table id="acc8005" link="AcLnPaySeqAction_findByPage.action" para="eadis_page" title="还款顺序表" type="1">
+<tableitem align="2" filedname="修改" id="6" indexed="5" label="修改" row="1" type="5" typepara="AcLnPaySeqAction_getById.action;paySeqCde-paySeqCde;paySeq-paySeq;payTxTyp-payTxTyp;query-'query'" width="4"/>
+<tableitem align="2" filedname="删除" id="5" indexed="6" label="删除" row="1" type="5" typepara="AcLnPaySeqAction_del.action;paySeq-paySeq;paySeqCde-paySeqCde;payTxTyp-payTxTyp;onClick-lkconfirm" width="4"/>
+<tableitem align="2" filedname="payAmtTyp" id="4" indexed="4" label="还款金额类型" row="1" type="6" typepara="AC_LN_TX_TYPE"/>
+<tableitem align="2" filedname="paySeq" id="3" indexed="3" label="还款序号" row="1" type="0"/>
+<tableitem align="2" filedname="payTxTyp" id="2" indexed="2" label="交易类型" row="1" type="6" typepara="AC_REPAY_TX_TYPE"/>
+<tableitem align="2" filedname="paySeqCde" id="1" indexed="1" label="还款顺序代码" row="1" type="4" typepara="AcLnPaySeqAction_getById.action;paySeqCde-paySeqCde;paySeq-paySeq;payTxTyp-payTxTyp;view-'view'"/>
+</table>

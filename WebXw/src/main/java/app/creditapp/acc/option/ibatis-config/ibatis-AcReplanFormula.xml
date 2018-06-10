@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcReplanFormula" type="app.creditapp.acc.option.entity.AcReplanFormula"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcReplanFormula" class="AcReplanFormula">
+    <result property="formulaId" column="FORMULA_ID" />
+    <result property="formulaName" column="FORMULA_NAME" />
+    <result property="customEle" column="CUSTOM_ELE" />
+    <result property="payCapDes" column="PAY_CAP_DES" />
+    <result property="payCap" column="PAY_CAP" />
+    <result property="payInteDes" column="PAY_INTE_DES" />
+    <result property="payInte" column="PAY_INTE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="upDate" column="UP_DATE" />
+    </resultMap>
+     <sql id="AcReplanFormula.columns">
+        <![CDATA[
+         FORMULA_ID,
+         FORMULA_NAME,
+         CUSTOM_ELE,
+         PAY_CAP_DES,
+         PAY_CAP,
+         PAY_INTE_DES,
+         PAY_INTE,
+         OP_NO,
+         BR_NO,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcReplanFormula.insert">
+        <![CDATA[
+        INSERT INTO AC_REPLAN_FORMULA(
+         FORMULA_ID,
+         FORMULA_NAME,
+         CUSTOM_ELE,
+         PAY_CAP_DES,
+         PAY_CAP,
+         PAY_INTE_DES,
+         PAY_INTE,
+         OP_NO,
+         BR_NO,
+         UP_DATE
+         )VALUES(
+         #formulaId#,
+         #formulaName#,
+         #customEle#,
+         #payCapDes#,
+         #payCap#,
+         #payInteDes#,
+         #payInte#,
+         #opNo#,
+         #brNo#,
+         #upDate#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="formulaId" >
+			SELECT AC_REPLAN_FORMULA_seq.nextval AS FORMULA_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcReplanFormula.del">
+        <![CDATA[
+               DELETE FROM AC_REPLAN_FORMULA
+                 WHERE
+               	FORMULA_ID = #formulaId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcReplanFormula.update">
+        <![CDATA[
+         UPDATE AC_REPLAN_FORMULA set
+         FORMULA_ID=#formulaId#,
+         FORMULA_NAME=#formulaName#,
+         CUSTOM_ELE=#customEle#,
+         PAY_CAP_DES=#payCapDes#,
+         PAY_CAP=#payCap#,
+         PAY_INTE_DES=#payInteDes#,
+         PAY_INTE=#payInte#,
+         OP_NO=#opNo#,
+         BR_NO=#brNo#,
+         UP_DATE=#upDate#
+          WHERE
+               	FORMULA_ID = #formulaId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcReplanFormula.getById"  resultMap="RM.AcReplanFormula">
+        SELECT <include refid="AcReplanFormula.columns"/>
+        <![CDATA[
+             FROM AC_REPLAN_FORMULA 
+         WHERE 
+               	FORMULA_ID = #formulaId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcReplanFormula.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="formulaId">
+                  <isNotEmpty prepend="AND" property="formulaId">
+                      FORMULA_ID = #formulaId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="formulaName">
+                  <isNotEmpty prepend="AND" property="formulaName">
+                      FORMULA_NAME like  '%'||#formulaName#||'%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcReplanFormula.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_REPLAN_FORMULA <include refid="AcReplanFormula.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcReplanFormula.findByPage" resultMap="RM.AcReplanFormula">
+        SELECT <include refid="AcReplanFormula.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcReplanFormula.columns"/> FROM AC_REPLAN_FORMULA
+                    <include refid="AcReplanFormula.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

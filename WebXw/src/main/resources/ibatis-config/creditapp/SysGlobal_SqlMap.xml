@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap>
+
+    <resultMap id="RM.sys_global" class="app.creditapp.entity.SysGlobal">
+        <result property="glo_no" column="GLO_NO"/>
+        <result property="glo_name" column="GLO_NAME"/>
+        <result property="glo_version" column="GLO_VERSION"/>
+        <result property="sys_date" column="SYS_DATE"/>
+        <result property="glo_lic" column="GLO_LIC"/>
+        <result property="lst_date" column="LST_DATE"/>
+        <result property="bat_date" column="BAT_DATE"/>
+        <result property="sys_sts" column="SYS_STS"/>
+    </resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sys_global.columns">
+	    <![CDATA[
+        	GLO_NO ,
+        	GLO_NAME ,
+        	GLO_VERSION, 
+        	SYS_DATE,
+        	GLO_LIC,
+        	LST_DATE,
+        	BAT_DATE,
+        	SYS_STS
+	    ]]>
+	</sql>
+	
+    <insert id="sys_global.insert" >
+    <![CDATA[
+        INSERT INTO SYS_GLOBAL (
+        	GLO_NO ,
+        	GLO_NAME ,
+        	GLO_VERSION, 
+        	SYS_DATE,
+        	GLO_LIC,
+        	LST_DATE,
+        	BAT_DATE,
+        	SYS_STS
+        ) VALUES (
+        	#glo_no# ,
+        	#glo_name# ,
+        	#glo_version# ,
+        	#sys_date# ,
+        	#glo_lic# ,
+        	#lst_date# ,
+        	#bat_date# ,
+        	#sys_sts#
+        )
+    ]]>
+    </insert>
+
+    <update id="sys_global.update" >
+        UPDATE SYS_GLOBAL
+        <dynamic prepend="set">   
+          <isNotNull prepend="," property="sys_sts">             
+               SYS_STS=#sys_sts#   
+          	 </isNotNull>   
+          	<isNotNull prepend="," property="lst_date">             
+           	   LST_DATE=#lst_date#   
+          	 </isNotNull>   
+          	<isNotNull prepend="," property="sys_date">             
+           	   SYS_DATE=#sys_date#   
+          	 </isNotNull>   
+	      </dynamic> 
+       
+    </update>
+    
+    <update id="sys_global.updateSts" >
+    <![CDATA[
+        UPDATE SYS_GLOBAL SET
+	        SYS_STS = #sys_sts# 
+    ]]>
+    </update>
+    
+    <select id="sys_global.getSysGlobal" resultMap="RM.sys_global">
+	    SELECT <include refid="sys_global.columns"/>
+	    <![CDATA[
+	        FROM SYS_GLOBAL 
+	    ]]>
+    </select>
+</sqlMap>
+

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpParm" type="app.creditapp.corp.entity.CorpParm"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpParm" class="CorpParm">
+    <result property="accType" column="ACC_TYPE" />
+    <result property="parmId" column="PARM_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="putType" column="PUT_TYPE" />
+    <result property="rpyDay" column="RPY_DAY" />
+    <result property="rpyScheme" column="RPY_SCHEME" />
+    <result property="graceDay" column="GRACE_DAY" jdbcType="Int"/>
+    <result property="tolAmt" column="TOL_AMT" jdbcType="double"/>
+    <result property="ftpPath" column="FTP_PATH" />
+     <result property="filler" column="FILLER" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="putTime" column="PUT_TIME" />
+    <result property="monthDays" column="MONTH_DAYS" />
+    <result property="payOrder" column="PAY_ORDER" />
+    <result property="ifRelchk" column="IF_RELCHK" />
+    <result property="commMail" column="COMM_MAIL" />
+    <result property="taName" column="TA_NAME" />
+    <result property="corpSign" column="CORP_SIGN" />
+    <result property="rebuySign" column="REBUY_SIGN" />
+    </resultMap>
+     <sql id="CorpParm.columns">
+        <![CDATA[
+         ACC_TYPE,
+         PARM_ID,
+         BR_NAME,
+         BR_NO,
+         PUT_TYPE,
+         RPY_DAY,
+         RPY_SCHEME,
+         GRACE_DAY,
+         TOL_AMT,
+         FTP_PATH,
+         FILLER,
+         DEPT_NO,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) as OP_NAME,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         PUT_TIME,
+         MONTH_DAYS,
+         PAY_ORDER,
+         IF_RELCHK,
+         TA_NAME,
+         COMM_MAIL,
+         CORP_SIGN,
+         REBUY_SIGN
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpParm.insert">
+        <![CDATA[
+        INSERT INTO CORP_PARM(
+         ACC_TYPE,
+         PARM_ID,
+         BR_NAME,
+         BR_NO,
+         PUT_TYPE,
+         RPY_DAY,
+         RPY_SCHEME,
+         GRACE_DAY,
+         TOL_AMT,
+         FTP_PATH,
+         FILLER,
+         DEPT_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         PUT_TIME,
+         MONTH_DAYS,
+         PAY_ORDER,
+         TA_NAME,
+         IF_RELCHK,
+         COMM_MAIL,
+         CORP_SIGN,
+         REBUY_SIGN
+         )VALUES(
+         'A',
+         #parmId#,
+         #brName#,
+         #brNo#,
+         #putType#,
+         #rpyDay#,
+         #rpyScheme#,
+         #graceDay#,
+         #tolAmt#,
+         #ftpPath#,
+         #filler#,
+         #deptNo#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #upOpno#,
+         #putTime#,
+         #monthDays#,
+         #payOrder#,
+         #taName#,
+         #ifRelchk#,
+         #commMail#,
+         #corpSign#,
+         #rebuySign#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpParm.del">
+        <![CDATA[
+               DELETE FROM CORP_PARM
+                 WHERE
+               	PARM_ID = #parmId#        ]]>
+    </delete>
+    
+     <!-- 表删除 -->
+    <delete id="CorpParm.delForBase">
+        <![CDATA[
+               DELETE FROM CORP_PARM
+                 WHERE
+               	BR_NO = #brNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    
+    
+    <!-- 表修改 -->
+    <update id="CorpParm.update">
+        <![CDATA[
+         UPDATE CORP_PARM set
+         ACC_TYPE='A',
+         PARM_ID=#parmId#,
+         BR_NAME=#brName#,
+         BR_NO=#brNo#,
+         PUT_TYPE=#putType#,
+         RPY_DAY=#rpyDay#,
+         RPY_SCHEME=#rpyScheme#,
+         GRACE_DAY=#graceDay#,
+         TOL_AMT=#tolAmt#,
+         FTP_PATH=#ftpPath#,
+         FILLER=#filler#,
+         UP_DATE=#upDate#,
+         UP_OPNO=#upOpno#,
+         PUT_TIME=#putTime#,
+         MONTH_DAYS=#monthDays#,
+         PAY_ORDER=#payOrder#,
+         IF_RELCHK=#ifRelchk#,
+         TA_NAME=#taName#,
+         COMM_MAIL=#commMail#,
+         CORP_SIGN=#corpSign#,
+         REBUY_SIGN=#rebuySign#
+          WHERE
+               	BR_NO = #brNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CorpParm.getById"  resultMap="RM.CorpParm">
+        SELECT <include refid="CorpParm.columns"/>
+        <![CDATA[
+             FROM CORP_PARM 
+         WHERE 
+               	BR_NO = #brNo#         ]]>
+     </select>
+     
+      <!-- 查询信托项目参数配置信息-->
+    <select id="CorpParm.findListBySts" resultMap="RM.CorpParm">
+       SELECT <include refid="CorpParm.columns"/>
+        <![CDATA[
+             FROM CORP_PARM 
+          WHERE EXISTS (SELECT 1 FROM corp_base b WHERE b.br_no=CORP_PARM.br_no AND b.br_sts='01') ]]>
+    </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpParm.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="accType">
+                  <isNotEmpty prepend="AND" property="accType">
+                      ACC_TYPE = #accType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="putType">
+                  <isNotEmpty prepend="AND" property="putType">
+                      PUT_TYPE = #putType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpParm.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_PARM <include refid="CorpParm.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpParm.findByPage" resultMap="RM.CorpParm">
+        SELECT <include refid="CorpParm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpParm.columns"/> FROM CORP_PARM
+                    <include refid="CorpParm.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    
+     <!-- 分页查询合作机构配置信息记录数 -->
+    <select id="CorpParm.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM CORP_PARM WHERE 
+             br_no = #brNo# ORDER BY PARM_ID DESC
+    </select>
+    <!-- 分页查询合作机构配置信息-->
+    <select id="CorpParm.findByPageQuotaForCorp" resultMap="RM.CorpParm">
+        SELECT <include refid="CorpParm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpParm.columns"/> FROM CORP_PARM WHERE  
+             br_no = #brNo# ORDER BY PARM_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="CorpParm.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_PERS_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

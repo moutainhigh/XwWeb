@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="loginInfoSummary" type="app.creditapp.sec.entity.LoginInfoSummary"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.loginInfoSummary" class="loginInfoSummary">
+	    <result property="loginId" column="login_id"/>
+	    <result property="loginTime" column="login_time"/>
+	    <result property="loginStatus" column="login_status"/>
+    </resultMap>
+    
+    <resultMap id="RM.loginInfoCount" class="loginInfoSummary">
+	    <result property="loginTimeCount" column="logintime_count"/>
+	    <result property="loginUserCount" column="loginuser_count"/>
+	    <result property="logoutTimeCount" column="loginouttime_count"/>
+	    <result property="logoutUserCount" column="logoutuser_count"/>
+	    <result property="loginFailCount" column="loginfail_count"/>
+    </resultMap>
+     <sql id="loginInfoSummary.columns">
+        <![CDATA[
+         login_id,
+         login_time,
+         login_status
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="loginInfoSummary.insert">
+        <![CDATA[
+        INSERT INTO LOGIN_INFO_SUMMARY(
+         login_id,
+         login_time,
+         login_status
+         )VALUES(
+         #loginId#,
+         #loginTime#,
+         #loginStatus#
+         )
+          ]]>
+    </insert>
+    
+    <update id="loginInfoSummary.updateStatus">
+        <![CDATA[
+        update LOGIN_INFO_SUMMARY 
+        set login_status = #loginStatus#
+        where login_id = #loginId# and login_time= #loginTime#
+          ]]>
+    </update>
+     <sql id="loginInfoSummary.betweenDay">
+        <![CDATA[
+        Login_time Between to_date(#firstDay#,'yyyymmdd' ) And to_date(#secondDay#,'yyyymmdd' )
+          ]]>
+    </sql>
+     <!-- 汇总查询 -->
+    
+    <select id="loginInfoSummary.getSummary"  resultMap="RM.loginInfoCount">
+    	SELECT 
+		NVL((SELECT COUNT(*) FROM LOGIN_INFO_SUMMARY WHERE <include refid="loginInfoSummary.betweenDay"/> and LOGIN_STATUS IN('8','9')),0) AS LOGINOUTTIME_COUNT,
+		NVL((SELECT COUNT(*) FROM LOGIN_INFO_SUMMARY WHERE <include refid="loginInfoSummary.betweenDay"/> and LOGIN_STATUS IN('1','2')),0 )AS LOGINTIME_COUNT,
+		NVL((SELECT COUNT(DISTINCT LOGIN_ID ) FROM LOGIN_INFO_SUMMARY WHERE <include refid="loginInfoSummary.betweenDay"/> and LOGIN_STATUS IN('1','2') ),0 )AS LOGINUSER_COUNT,
+		NVL((SELECT COUNT(DISTINCT LOGIN_ID ) FROM LOGIN_INFO_SUMMARY WHERE <include refid="loginInfoSummary.betweenDay"/> and LOGIN_STATUS IN('8','9') ),0) AS LOGOUTUSER_COUNT,
+		NVL((SELECT COUNT(*) FROM LOGIN_INFO_SUMMARY WHERE <include refid="loginInfoSummary.betweenDay"/> and LOGIN_STATUS IN('2') ),0) AS LOGINFAIL_COUNT
+		FROM DUAL
+    </select>
+     
+</sqlMap>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnAcctAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnAcctAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="list">/creditapp/ln/LnAcct_List.jsp</result>
+		</action>
+		 <!--分页查询 -->
+		<action name="LnAcctAction_findByPageRead" method="findByPageRead" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="ListRead">/creditapp/ln/LnAcct_ListRead.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="LnAcctAction_input" method="input" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="input">/creditapp/ln/LnAcct_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnAcctAction_del" method="del" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="list">/creditapp/ln/LnAcct_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnAcctAction_getById" method="getById" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="detail">/creditapp/ln/LnAcct_Detail.jsp</result>
+		</action>
+		<action name="LnAcctAction_getByIdForRead" method="getByIdForRead" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="detail">/creditapp/ln/LnAcct_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnAcctActionInsert" method="insert" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="input">/creditapp/ln/LnAcct_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnAcct_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnAcctActionUpdate" method="update" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="input">/creditapp/ln/LnAcct_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnAcct_Detail.jsp</result>
+		</action>
+		
+		<!-- 根据预进件申请信息appid显示所有的的账户信息 -->
+		<action name="LnAcctAction_listQuotaForLn" method="listQuotaForLn" class="app.creditapp.ln.action.LnAcctAction">
+			<result name="list">/creditapp/ln/LnAcct_listQuotaForIn.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

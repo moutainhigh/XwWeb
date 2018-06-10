@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="lnappr0001" para="eadis_page" link="LnApprAction_findByPage.action" title="审批主表" type="1">
+<tableitem align="2" filedname="apprId" id="1" indexed="1" label="审批批次ID" row="1" type="4" typepara="LnApprAction_getById.action;apprId-apprId;query-'query'"/>
+<tableitem align="2" filedname="brNo" id="2" indexed="2" label="合作机构号" row="1" type="0" />
+<tableitem align="2" filedname="projNo" id="3" indexed="3" label="项目编号" row="1" type="0" />
+<tableitem align="2" filedname="lnType" id="4" indexed="4" label="贷款种类" row="1" type="0" />
+<tableitem align="2" filedname="apprAmt" id="5" indexed="5" label="审批金额" row="1" type="0" />
+<tableitem align="2" filedname="apprNum" id="6" indexed="6" label="审批笔数" row="1" type="0" />
+<tableitem align="2" filedname="apprDate" id="7" indexed="7" label="审批日期" row="1" type="0" />
+<tableitem align="2" filedname="apprSts" id="9" indexed="9" label="审批状态[01待审批02审批中03审批完成]" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="10" indexed="10" label="-" row="1" type="5" typepara="LnApprAction_getById.action;apprId-apprId;" width="2"/>
+<tableitem align="2" filedname="删除" id="11" indexed="11" label="-" row="1" type="5" typepara="LnApprAction_del.action;apprId-apprId;onClick-lkconfirm" width="2"/>
+</table>

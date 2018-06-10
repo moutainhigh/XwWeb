@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcFeeParm" type="app.creditapp.acc.option.entity.AcFeeParm"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcFeeParm" class="AcFeeParm">
+    <result property="feeParmId" column="FEE_PARM_ID" />
+    <result property="feeParmName" column="FEE_PARM_NAME" />
+    <result property="feeKind" column="FEE_KIND" />
+    <result property="feeScenes" column="FEE_SCENES" />
+    <result property="feeMax" column="FEE_MAX" jdbcType="double"/>
+    <result property="feeMin" column="FEE_MIN" jdbcType="double"/>
+    <result property="feeFormId" column="FEE_FORM_ID" />
+    <result property="feeSts" column="FEE_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    </resultMap>
+     <sql id="AcFeeParm.columns">
+        <![CDATA[
+         FEE_PARM_ID,
+         FEE_PARM_NAME,
+         FEE_KIND,
+         FEE_SCENES,
+         FEE_MAX,
+         FEE_MIN,
+         FEE_FORM_ID,
+         FEE_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcFeeParm.insert">
+        <![CDATA[
+        INSERT INTO AC_FEE_PARM(
+         FEE_PARM_ID,
+         FEE_PARM_NAME,
+         FEE_KIND,
+         FEE_SCENES,
+         FEE_MAX,
+         FEE_MIN,
+         FEE_FORM_ID,
+         FEE_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #feeParmId#,
+         #feeParmName#,
+         #feeKind#,
+         #feeScenes#,
+         #feeMax#,
+         #feeMin#,
+         #feeFormId#,
+         #feeSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+            <selectKey resultClass="java.lang.String" type="pre" keyProperty="feeParmId" >
+			SELECT AC_FEE_PARM_seq.nextval AS FEE_PARM_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcFeeParm.del">
+        <![CDATA[
+               DELETE FROM AC_FEE_PARM
+                 WHERE
+               	FEE_PARM_ID = #feeParmId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcFeeParm.update">
+        <![CDATA[
+         UPDATE AC_FEE_PARM set
+         FEE_PARM_ID=#feeParmId#,
+         FEE_PARM_NAME=#feeParmName#,
+         FEE_KIND=#feeKind#,
+         FEE_SCENES=#feeScenes#,
+         FEE_MAX=#feeMax#,
+         FEE_MIN=#feeMin#,
+         FEE_FORM_ID=#feeFormId#,
+         UP_DATE=#upDate#
+          WHERE
+               	FEE_PARM_ID = #feeParmId#        ]]>
+    </update>
+    
+     <!-- 修改状态 -->
+    <update id="AcFeeParm.updateSts">
+        <![CDATA[
+         UPDATE AC_FEE_PARM set
+         FEE_STS=#feeSts#
+          WHERE
+               	FEE_PARM_ID = #feeParmId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcFeeParm.getById"  resultMap="RM.AcFeeParm">
+        SELECT <include refid="AcFeeParm.columns"/>
+        <![CDATA[
+             FROM AC_FEE_PARM 
+         WHERE 
+               	FEE_PARM_ID = #feeParmId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcFeeParm.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="feeParmId">
+                  <isNotEmpty prepend="AND" property="feeParmId">
+                      FEE_PARM_ID = #feeParmId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="feeParmName">
+                  <isNotEmpty prepend="AND" property="feeParmName">
+                      FEE_PARM_NAME like '%' ||#feeParmName#||'%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="feeKind">
+                  <isNotEmpty prepend="AND" property="feeKind">
+                      FEE_KIND = #feeKind#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcFeeParm.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_FEE_PARM <include refid="AcFeeParm.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcFeeParm.findByPage" resultMap="RM.AcFeeParm">
+        SELECT <include refid="AcFeeParm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcFeeParm.columns"/> FROM AC_FEE_PARM
+                    <include refid="AcFeeParm.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

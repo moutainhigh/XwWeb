@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+
+	<typeAlias alias="DebitCount" type="app.creditapp.ln.entity.DebitCount" />
+
+	<!-- 实体类映射 -->
+	<resultMap class="DebitCount" id="RM.DebitCount">
+		<result property="txTime" column="TX_TIME" />
+		<result property="projNo" column="PROJ_NO" />
+		<result property="pactNo" column="PACT_NO" />
+		<result property="perdNo" column="PERD_NO" />
+		<result property="cifName" column="CIF_NAME" />
+		<result property="repayPrcpAmt" column="REPAY_PRCP_AMT" />
+		<result property="repayNormInt" column="REPAY_NORM_INT" />
+		<result property="repayFineInt" column="REPAY_FINE_INT" />
+		<result property="repayFeeAmt" column="REPAY_FEE_AMT" />
+		<result property="repayCount" column="REPAY_COUNT" />
+		<result property="txCde" column="TX_CDE" />
+		<result property="areaName" column="AREA_NAME" />
+		<result property="begDt" column="BEG_DT" />
+		<result property="endDt" column="END_DT" />
+		<result property="brNo" column="BR_NO" />
+
+	</resultMap>
+
+	<!-- 列表返回记录 -->
+	<resultMap class="DebitCount" id="RM.DebitCountForPage">
+		<result property="txTime" column="TX_TIME" />
+		<result property="projNo" column="PROJ_NO" />
+		<result property="brNo" column="BR_NO" />
+		<result property="pactNo" column="PACT_NO" />
+		<result property="perdNo" column="PERD_NO" />
+		<result property="cifName" column="CIF_NAME" />
+		<result property="repayPrcpAmt" column="REPAY_PRCP_AMT" />
+		<result property="repayNormInt" column="REPAY_NORM_INT" />
+		<result property="repayFineInt" column="REPAY_FINE_INT" />
+		<result property="repayFeeAmt" column="REPAY_FEE_AMT" />
+		<result property="repayCount" column="REPAY_COUNT" />
+		<result property="txCde" column="TX_CDE" />
+		<result property="areaName" column="AREA_NAME" />
+	</resultMap>
+
+	<sql id="DebitCount.columns">
+        <![CDATA[
+        TX_TIME,
+        PROJ_NO,
+        BR_NO,
+        PACT_NO,
+        PERD_NO,
+        CIF_NAME,
+        REPAY_PRCP_AMT,
+        REPAY_NORM_INT,
+        REPAY_FINE_INT,
+        REPAY_FEE_AMT,
+        REPAY_COUNT,
+        TX_CDE,
+        AREA_NAME
+        ]]>
+	</sql>
+
+
+	<!-- 根据实际情况选择分页查询条件 -->
+	<sql id="DebitCount.findPage.and">
+
+		<isPropertyAvailable property="brNo">
+			<isNotEmpty prepend="AND" property="brNo">
+				c.BR_NO = #brNo#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="projNo">
+			<isNotEmpty prepend="AND" property="projNo">
+				c.PROJ_NO = #projNo#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="pactNo">
+			<isNotEmpty prepend="AND" property="pactNo">
+				a.PACT_NO = #pactNo#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="begDt">
+			<isNotEmpty prepend="AND" property="begDt">
+				substr(b.TX_TIME,1,8) &gt;= #begDt#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		<isPropertyAvailable property="endDt">
+			<isNotEmpty prepend="AND" property="endDt">
+				substr(b.TX_TIME,1,8) &lt;= #endDt#
+			</isNotEmpty>
+		</isPropertyAvailable>
+		
+	</sql>
+
+
+	<!-- 分页查询记录数 -->
+	<select id="Debit.findPage.count" resultClass="int">
+select count(*)
+from
+(select m.TX_TIME,m.PROJ_NO,m.BR_NO,m.PACT_NO,m.PERD_NO,m.CIF_NAME,m.REPAY_PRCP_AMT,m.REPAY_NORM_INT,m.REPAY_FINE_INT,m.REPAY_FEE_AMT,m.REPAY_COUNT,m.TX_CDE,m.AREA_NAME,rownum as rowm
+from
+(
+select 日期 TX_TIME,项目号 PROJ_NO,合作机构号 BR_NO,合同号 PACT_NO,期次 PERD_NO,客户名 CIF_NAME,sum(本金) REPAY_PRCP_AMT,sum(利息) REPAY_NORM_INT,sum(罚息) REPAY_FINE_INT,sum(费用) REPAY_FEE_AMT,sum(本利罚费) REPAY_COUNT,类型 TX_CDE,地区 AREA_NAME
+from (
+select substr(b.tx_time,1,8) 日期,
+       c.proj_no 项目号,
+       c.br_no 合作机构号,
+       a.pact_no 合同号,
+       a.perd_no 期次,
+       c.cif_name 客户名,
+      a.REPAY_PRCP_AMT 本金,
+       a.REPAY_NORM_INT 利息,
+      a.REPAY_FINE_INT 罚息,
+       a.REPAY_FEE_AMT 费用,
+       (a.REPAY_PRCP_AMT + a.REPAY_NORM_INT + a.REPAY_FINE_INT +
+       a.REPAY_FEE_AMT) 本利罚费,
+       case
+         when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+              b.sub_tx_cde = 'LNMU' then
+          'A类扣款'
+         when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+              b.sub_tx_cde = 'LNC4' then
+          '定时扣款'
+         when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+              b.sub_tx_cde = 'LNCL' then
+          '提前清贷'
+         when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+              b.sub_tx_cde = 'LNSU' then
+          'B类扣款'
+         when b.tx_cde = 'LNRP' and (b.sub_tx_cde = 'LNPR' or b.sub_tx_cde = 'LNSU') then
+          '线下实收'
+           when b.tx_cde = 'LNRP' and b.sub_tx_cde = 'LNCL' then
+          '线下清贷'
+           when b.tx_cde = 'LNRP' and b.sub_tx_cde = 'LNPY' then
+          '线下溢缴款'
+         when b.tx_cde = 'LNAD' then
+          '提前还款'
+         else
+          b.sub_tx_cde
+       end 类型,
+       d.area_name 地区
+  from ac_ln_pm_log a
+  left join ac_trace_log b
+    on (a.TRACE_NO = b.TRACE_NO)
+  left join ln_apply_reg c
+    on (a.pact_no = c.pact_no and a.br_no = c.br_no)
+  left join parm_area d
+    on (c.APP_AREA = d.area_no)
+		where (b.tx_cde = 'LNC4' or b.tx_cde = 'LNRP' or b.tx_cde =
+		'LNDR' or
+		b.tx_cde = 'LNAD')
+		<include refid="DebitCount.findPage.and" />
+      order by 日期,项目号)
+group by 日期,项目号,合作机构号,合同号,期次,客户名,类型,地区)m
+)
+		<dynamic prepend="where">
+		<isPropertyAvailable property="loginid">
+			<isNotEmpty prepend="AND" property="loginid">
+				PROJ_NO IN (select proj_no from proj_mang where login_id = #loginid#)
+			</isNotEmpty>
+		</isPropertyAvailable>
+		</dynamic>
+	</select>
+
+
+	<!-- 分页查询 -->
+	<select id="Debit.findByPage" resultMap="RM.DebitCountForPage">
+		select
+		<include refid="DebitCount.columns" />
+		from
+		(select
+		m.TX_TIME,m.PROJ_NO,m.BR_NO,m.PACT_NO,m.PERD_NO,m.CIF_NAME,m.REPAY_PRCP_AMT,m.REPAY_NORM_INT,m.REPAY_FINE_INT,m.REPAY_FEE_AMT,m.REPAY_COUNT,m.TX_CDE,m.AREA_NAME,rownum
+		as rowm
+		from
+		(
+		select 日期 TX_TIME,项目号 PROJ_NO,合作机构号 BR_NO,合同号 PACT_NO,期次 PERD_NO,客户名 CIF_NAME,sum(本金)
+		REPAY_PRCP_AMT,sum(利息) REPAY_NORM_INT,sum(罚息) REPAY_FINE_INT,sum(费用)
+		REPAY_FEE_AMT,sum(本利罚费) REPAY_COUNT,类型 TX_CDE,地区 AREA_NAME
+		from (
+		select substr(b.tx_time,1,8) 日期,
+		c.proj_no 项目号,
+		c.br_no 合作机构号,
+		a.pact_no 合同号,
+		a.perd_no 期次,
+		c.cif_name 客户名,
+		a.REPAY_PRCP_AMT 本金,
+		a.REPAY_NORM_INT 利息,
+		a.REPAY_FINE_INT 罚息,
+		a.REPAY_FEE_AMT 费用,
+		(a.REPAY_PRCP_AMT + a.REPAY_NORM_INT + a.REPAY_FINE_INT +
+		a.REPAY_FEE_AMT) 本利罚费,
+		case
+		when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+		b.sub_tx_cde = 'LNMU' then
+		'A类扣款'
+		when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+		b.sub_tx_cde = 'LNC4' then
+		'定时扣款'
+		when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+		b.sub_tx_cde = 'LNCL' then
+		'提前清贷'
+		when (b.tx_cde = 'LNC4' or b.tx_cde = 'LNDR') and
+		b.sub_tx_cde = 'LNSU' then
+		'B类扣款'
+		when b.tx_cde = 'LNRP' and (b.sub_tx_cde = 'LNRP' or b.sub_tx_cde =
+		'LNSU') then
+		'线下实收'
+		when b.tx_cde = 'LNRP' and b.sub_tx_cde = 'LNCL' then
+		'线下清贷'
+		when b.tx_cde = 'LNRP' and b.sub_tx_cde = 'LNPY' then
+		'线下溢缴款'
+		when b.tx_cde = 'LNAD' then
+		'提前还款'
+		else
+		b.sub_tx_cde
+		end 类型,
+		d.area_name 地区
+		from ac_ln_pm_log a
+		left join ac_trace_log b
+		on (a.TRACE_NO = b.TRACE_NO)
+		left join ln_apply_reg c
+		on (a.pact_no = c.pact_no and a.br_no = c.br_no)
+		left join parm_area d
+		on (c.APP_AREA = d.area_no)
+		where (b.tx_cde = 'LNC4' or b.tx_cde = 'LNRP' or b.tx_cde = 'LNDR' or
+		b.tx_cde = 'LNAD')
+		<include refid="DebitCount.findPage.and" />
+		order by 日期,项目号)
+		group by 日期,项目号,合作机构号,合同号,期次,客户名,类型,地区)m
+		)
+		where 
+		rowm &gt;= #startNum#
+		AND rowm &lt; #endNum#
+		<isPropertyAvailable property="loginid">
+			<isNotEmpty prepend="AND" property="loginid">
+				PROJ_NO IN (select proj_no from proj_mang where login_id = #loginid#)
+			</isNotEmpty>
+		</isPropertyAvailable>
+	</select>
+
+
+</sqlMap>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="proj0009" title="PROJ_ACCT_LST">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txAcctName" fieldtype="1" maxlength="30" formactiveid="5" labelalign="3" labelcol="1" labelname="交易账户名称" mustinput="0" row="3" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="txAcctNo" fieldtype="1" maxlength="30" formactiveid="8" labelalign="3" labelcol="3" labelname="交易账户账号" mustinput="0" row="4" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="lstId" fieldtype="1" maxlength="10" formactiveid="9" labelalign="3" labelcol="1" labelname="流水号[主键]" mustinput="0" row="5" />
+</form>

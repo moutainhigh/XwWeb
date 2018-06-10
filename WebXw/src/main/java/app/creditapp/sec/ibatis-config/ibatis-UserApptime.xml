@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="UserApptime" type="app.creditapp.sec.entity.UserApptime"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.UserApptime" class="UserApptime">
+    <result property="id" column="ID"/>
+    <result property="userId" column="USER_ID"/>
+    <result property="userName" column="USER_NAME"/>
+    <result property="startTime" column="START_TIME"/>
+    <result property="endTime" column="END_TIME"/>
+    <result property="timeConsuming" column="TIME_CONSUMING"/>
+    <result property="actionName" column="ACTION_NAME"/>
+    <result property="actionPara" column="ACTION_PARA"/>
+    <result property="belongDate" column="BELONG_DATE"/>
+    </resultMap>
+     <resultMap id="RM.AllUserApptime" class="UserApptime">
+    <result property="actionName" column="ACTION_NAME"/>
+    <result property="belongDate" column="BELONG_DATE"/>
+    <result property="allAction" column="all_Action"/>
+    </resultMap>
+     <sql id="UserApptime.columns">
+        <![CDATA[
+         ID,
+         USER_ID,
+         USER_NAME,
+         START_TIME,
+         END_TIME,
+         TIME_CONSUMING,
+         ACTION_NAME,
+         ACTION_PARA,
+         BELONG_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="UserApptime.insert">
+        <![CDATA[
+        INSERT INTO USER_APPTIME(
+         ID,
+         USER_ID,
+         USER_NAME,
+         START_TIME,
+         END_TIME,
+         TIME_CONSUMING,
+         ACTION_NAME,
+         ACTION_PARA,
+         BELONG_DATE
+         )VALUES(
+         #id#,
+         #userId#,
+         #userName#,
+         #startTime#,
+         #endTime#,
+         #timeConsuming#,
+         #actionName#,
+         #actionPara#,
+         #belongDate#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.Integer" type="pre" keyProperty="id">
+			SELECT USER_APPTIME_SEQUENCE.nextval AS ID FROM DUAL
+		</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="UserApptime.del">
+        <![CDATA[
+               DELETE FROM USER_APPTIME
+                 WHERE
+               ID = #id#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="UserApptime.update">
+        <![CDATA[
+         UPDATE USER_APPTIME set
+         ID=#id#,
+         USER_ID=#userId#,
+         USER_NAME=#userName#,
+         START_TIME=#startTime#,
+         END_TIME=#endTime#,
+         TIME_CONSUMING=#timeConsuming#,
+         ACTION_NAME=#actionName#,
+         ACTION_PARA=#actionPara#,
+         BELONG_DATE=#belongDate#
+          WHERE
+                 ID = #id#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="UserApptime.getById"  resultMap="RM.UserApptime">
+        SELECT <include refid="UserApptime.columns"/>
+        <![CDATA[
+             FROM USER_APPTIME
+         WHERE 
+             ID = #id#
+        ]]>
+     </select>
+     
+       <!-- 分页查询条件 -->
+    <sql id="UserApptime.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="userId">
+                      <isNotEmpty prepend="AND" property="userId">
+                          USER_ID = #userId#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="userName">
+                      <isNotEmpty prepend="AND" property="userName">
+                          USER_NAME  like '%'||#userName#||'%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="belongDate">
+                      <isNotEmpty prepend="AND" property="belongDate">
+                          BELONG_DATE = #belongDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="UserApptime.findPage.count" resultClass="int">
+        SELECT count(*) FROM USER_APPTIME <include refid="UserApptime.findPage.where"/>
+    </select>
+     <!-- 分页查询记录数 查询统计用 -->
+    <select id="UserApptime.allFindPage.count" resultClass="int">
+        SELECT count(count(*)) FROM USER_APPTIME  where 1=1 
+        <isEmpty prepend="AND" property="belongDate">
+                          id = 0
+        </isEmpty>
+         <isNotEmpty prepend="AND" property="belongDate">
+                          BELONG_DATE = #belongDate#
+         </isNotEmpty>
+        group by belong_date,action_name
+    </select>
+    <!-- 分页查询 -->
+    <select id="UserApptime.findByPage" resultMap="RM.UserApptime">
+        SELECT <include refid="UserApptime.columns"/> 
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="UserApptime.columns"/>  FROM USER_APPTIME
+                    <include refid="UserApptime.findPage.where"/> order by belong_Date desc, START_TIME desc
+             )m 
+           )
+       WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- action汇总查询 -->
+    <select id="UserApptime.allFindByPage" resultMap="RM.AllUserApptime">
+      SELECT belong_date,action_name,all_action
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT belong_date,action_name,count(action_name) as all_action FROM USER_APPTIME where 1=1
+        	<isEmpty prepend="AND" property="belongDate">
+                          id = 0
+         	</isEmpty>
+        	<isNotEmpty prepend="AND" property="belongDate">
+                          BELONG_DATE = #belongDate#
+         	</isNotEmpty>
+              	group by belong_date,action_name 
+               	  order by belong_Date desc) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+            
+    </select>
+</sqlMap>

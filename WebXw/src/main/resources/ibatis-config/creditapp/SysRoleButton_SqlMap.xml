@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+
+<resultMap id="RM.sysRoleButton" class="app.creditapp.entity.SysRoleButton">
+	<result property="id" column="ID"/>
+	<result property="role_no" column="ROLE_NO"/>
+	<result property="menu_no" column="MENU_NO"/>
+	<result property="button_no" column="BUTTON_NO"/>
+</resultMap>
+
+<select id="SysRoleButton.getById" resultMap="RM.sysRoleButton">
+	SELECT ID
+	<![CDATA[
+	FROM SYS_ROLE_BUTTON
+	WHERE
+	ROLE_NO = #role_no# AND MENU_NO = #menu_no# AND BUTTON_NO = #button_no#
+	]]>
+</select>
+<select id="SysRoleButton.getAll" resultMap="RM.sysRoleButton">
+	SELECT *
+	FROM SYS_ROLE_BUTTON
+</select>
+
+<delete id="SysRoleButton.deleteByMenuButtonNo">
+	<![CDATA[
+    	DELETE FROM SYS_ROLE_BUTTON WHERE MENU_NO = #menu_no# AND BUTTON_NO = #button_no#
+        ]]>
+</delete>
+</sqlMap>

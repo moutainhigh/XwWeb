@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="acc8111" title="还款顺序详细查询">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="repaySeqCde" fieldtype="99" formactiveid="1" labelalign="3" labelcol="1" labelname="还款顺序代码" maxlength="10" mustinput="0" row="1"/>
+<formelement datatype="1" fieldalign="1" fieldcol="2" fieldname="repaySeq" fieldtype="1" formactiveid="2" labelalign="3" labelcol="1" labelname="还款序号" maxlength="3" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="repayAmtTyp" fieldsize="AC_LN_TX_TYPE" fieldtype="21" formactiveid="3" labelalign="3" labelcol="3" labelname="还款金额类型" maxlength="10" mustinput="0" row="1"/>
+</form>

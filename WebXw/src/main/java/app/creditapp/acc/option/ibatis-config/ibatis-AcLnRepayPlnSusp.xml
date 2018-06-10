@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLnRepayPlnSusp" type="app.creditapp.acc.option.entity.AcLnRepayPlnSusp"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnRepayPlnSusp" class="AcLnRepayPlnSusp">
+    <result property="wsId" column="WS_ID" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cnt" column="CNT" jdbcType="Int"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="totalAmt" column="TOTAL_AMT" jdbcType="double"/>
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double"/>
+    <result property="sts" column="STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    </resultMap>
+    <typeAlias alias="WsRepyPlan" type="app.creditapp.inf.entity.WsRepyPlan"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsRepyPlan" class="WsRepyPlan">
+    <result property="wsId" column="WS_ID" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cnt" column="CNT" jdbcType="Int"/>
+    <result property="begDate" column="BEG_DATE" jdbcType="Int"/>
+    <result property="endDate" column="END_DATE" jdbcType="Int"/>
+    <result property="totalAmt" column="TOTAL_AMT" jdbcType="double"/>
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double"/>
+    <result property="sts" column="STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="brName" column="BR_NAME"/>
+    </resultMap>
+     <sql id="AcLnRepayPlnSusp.columns">
+        <![CDATA[
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         BEG_DATE,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE,
+         DEAL_STS,
+         DEAL_DESC
+          ]]>
+    </sql>
+    <sql id="WsRepyPlans.columns">
+        <![CDATA[
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         BEG_DATE,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE,
+         FUN_GETBRNAME(br_no) as BR_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLnRepayPlnSusp.insert">
+        <![CDATA[
+        INSERT INTO AC_LN_REPAY_PLN_SUSP(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         BEG_DATE,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE,
+         DEAL_STS,
+         DEAL_DESC
+         )VALUES(
+         #wsId#,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #begDate#,
+         #endDate#,
+         #totalAmt#,
+         #prcpAmt#,
+         #normInt#,
+         #sts#,
+         #txDate#,
+         #dealSts#,
+         #dealDesc#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLnRepayPlnSusp.del">
+        <![CDATA[
+               DELETE FROM AC_LN_REPAY_PLN_SUSP
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+    
+    <delete id="AcLnRepayPlnSusp.delByPactnoAndBrno">
+        <![CDATA[
+               DELETE FROM AC_LN_REPAY_PLN_SUSP
+                 WHERE
+               	PACT_NO=#pactNo# and BR_NO=#brNo# and  deal_sts='01'       ]]>
+    </delete>
+    
+    <!-- 表修改 -->
+    <update id="AcLnRepayPlnSusp.update">
+        <![CDATA[
+         UPDATE AC_LN_REPAY_PLN_SUSP set
+         WS_ID=#wsId#,
+         BATCH_NO=#batchNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         CNT=#cnt#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         TOTAL_AMT=#totalAmt#,
+         PRCP_AMT=#prcpAmt#,
+         NORM_INT=#normInt#,
+         STS=#sts#,
+         TX_DATE=#txDate#,
+         DEAL_STS=#dealSts#,
+         DEAL_DESC=#dealDesc#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcLnRepayPlnSusp.getById"  resultMap="RM.AcLnRepayPlnSusp">
+        SELECT <include refid="AcLnRepayPlnSusp.columns"/>
+        <![CDATA[
+             FROM AC_LN_REPAY_PLN_SUSP 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLnRepayPlnSusp.findPage.where">
+        <dynamic prepend="where">
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLnRepayPlnSusp.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_REPAY_PLN_SUSP <include refid="AcLnRepayPlnSusp.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLnRepayPlnSusp.findByPage" resultMap="RM.AcLnRepayPlnSusp">
+        SELECT <include refid="AcLnRepayPlnSusp.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcLnRepayPlnSusp.columns"/> FROM AC_LN_REPAY_PLN_SUSP
+                    <include refid="AcLnRepayPlnSusp.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <!-- 根据批次取出list进行还款计划上传的逻辑判断 -->
+    <select id="AcLnRepayPlnSusp.getByWsRepyPlanList" resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlans.columns"/>
+        FROM  WS_REPY_PLAN WHERE BATCH_NO = #batchNo#
+    </select>
+    
+     <!-- 根据批次号查询所有合同（去重） -->
+    <select id="AcLnRepayPlnSusp.getByBatchDisPact" resultClass="string">
+        SELECT distinct pact_no
+        FROM  WS_REPY_PLAN WHERE BATCH_NO = #batchNo#
+    </select>
+    
+     <!-- 根据批次与合同号 取还款计划-->
+    <select id="AcLnRepayPlnSusp.getListByBatchAndPactno" resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlans.columns"/>
+        FROM  WS_REPY_PLAN WHERE BATCH_NO = #batchNo# AND PACT_NO=#pactNo# order by cnt asc
+    </select>
+</sqlMap>

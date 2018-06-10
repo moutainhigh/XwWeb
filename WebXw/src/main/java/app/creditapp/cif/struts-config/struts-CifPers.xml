@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CifPersInfAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CifPersInfAction_findByPage" method="findByPage" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="list">/creditapp/cif/CifPers_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CifPersInfAction_input" method="input" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="input">/creditapp/cif/CifPers_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CifPersInfAction_del" method="del" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="list">/creditapp/cif/CifPers_List.jsp</result>
+		</action>
+		
+		<!--查征 查结果 -->
+		<action name="CifPersInfAction_pcrpQueryInfo" method="pcrpQueryInfo" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="pcrpQuery">/creditapp/cif/PcrpQueryInfo.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CifPersInfAction_getById" method="getById" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="detail">/creditapp/cif/CifPers_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CifPersInfActionInsert" method="insert" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="input">/creditapp/cif/CifPers_Insert.jsp</result>
+			<result name="detail">/creditapp/cif/CifPers_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CifPersInfActionUpdate" method="update" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="input">/creditapp/cif/CifPers_Detail.jsp</result>
+			<result name="detail">/creditapp/cif/CifPers_Detail.jsp</result>
+		</action>
+		
+		<!-- 总详细信息 -->
+		<action name="CifPersInfAction_getAllDetail" method="getAllDetail" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="all">/creditapp/cif/CifPersInf_All.jsp</result>
+	    </action>		
+	    <action name="CifPersInfAction_getAllDetailForRead" method="getAllDetailForRead" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="all">/creditapp/cif/CifPersInf_AllForRead.jsp</result>
+	    </action>
+	    <!-- 上面常显信息 -->
+		<action name="CifPersInfAction_getDetailTop" method="getDetailTop" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="top">/creditapp/cif/CifPersInf_All_Top.jsp</result>
+		</action>
+	    
+	    <!-- 客户详细信息 -->
+		<action name="CifPersInfAction_getTab" method="getTab" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="tab">/creditapp/cif/CifPersInf_Tab.jsp</result>
+		</action>
+		<!-- 证件号转换 -->
+		<action name="CifPersInfAction_getIdNo15" method="getIdNo15" class="app.creditapp.cif.action.CifPersInfAction">
+		</action>
+		<!--显示关系图 -->
+		<action name="CifPersInfAction_showView" method="showView" class="app.creditapp.cif.action.CifPersInfAction">
+			<result name="detail">/creditapp/cif/CifPers_ShowView.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

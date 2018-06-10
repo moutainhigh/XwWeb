@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="PacBaseAction" namespace="/" extends="struts-cms">
+	
+		<!--分页查询 -->
+		<action name="PacBaseAction_findByPage" method="findByPage" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="list">/creditapp/pac/PacBase_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="PacBaseAction_input" method="input" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="input">/creditapp/pac/PacBase_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="PacBaseAction_del" method="del" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="del">/creditapp/pac/PacBase_UpLoadList.jsp</result>
+			<result name="list">/creditapp/pac/PacBase_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="PacBaseAction_getById" method="getById" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="detail">/creditapp/pac/PacBase_Detail.jsp</result>
+		</action>
+		
+		<!--跳转至影像上传页面-->
+		<action name="PacBaseAction_toUploadList" method="toUploadList" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="toUploadList">/creditapp/pac/PacBase_UpLoadList.jsp</result>
+		</action>
+		
+		<!--跳转至影像文件树-->
+		<action name="PacBaseAction_toPacTree" method="toPacTree" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="toPacTree">/creditapp/pac/PacTree.jsp</result>
+		</action>
+		
+		<!--跳转至影像Frame-->
+		<action name="PacBaseAction_toPacFrame" method="toPacFrame" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="toPacFrame">/creditapp/pac/PacFrame.jsp</result>
+		</action>
+		
+		<!--文件上传-->
+		<action name="PacBaseAction_upload" method="upload" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="upload">/creditapp/pac/PacBase_UpLoadList.jsp</result>
+			<result name="toUploadList">/creditapp/pac/PacBase_UpLoadList.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="PacBaseActionInsert" method="insert" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="input">/creditapp/pac/PacBase_Insert.jsp</result>
+			<result name="detail">/creditapp/pac/PacBase_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PacBaseActionUpdate" method="update" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="input">/creditapp/pac/PacBase_Detail.jsp</result>
+			<result name="detail">/creditapp/pac/PacBase_Detail.jsp</result>
+		</action>
+		<!--文件树对应列表-->
+		<action name="PacBaseAction_findByPageForTree" method="findByPageForTree" class="app.creditapp.pac.action.PacBaseAction">
+			<result name="findByPageForTree">/creditapp/pac/PacBase_ListForTree.jsp</result>
+		</action>
+		
+		<action name="PacBaseActionUpdateDownCnt" method="updateDownCnt" class="app.creditapp.pac.action.PacBaseAction">
+		</action>
+	</package>
+</struts>
+
+
+

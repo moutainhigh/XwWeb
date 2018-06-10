@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="GB2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.spring-ApplyBaseRel.xmlorg/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+	default-lazy-init="false">
+
+<import resource="app/base/quartz/spring-config/spring-quartTaskWork.xml" />
+<import resource="app/base/quartz/spring-config/spring-ScheduleJob.xml" />
+
+<import resource="app/creditapp/sys/spring-config/spring-AccessCheckInfo.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-DailyEvent.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-Student.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysPath.xml"/>
+<import resource="app/creditapp/sys/spring-config/spring-SysUser.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysMenu.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysUserLog.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysButton.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysRole.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysUserRole.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysRoleMenu.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysLog.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysLoginLog.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysCache.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysGlobal.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SchedulejobLog.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-ScheduleTask.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysLog.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-TableDoc.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-FundServiceRate.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-InterfaceBackMeg.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-OperatorModelMenu.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-PrdtBase.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-ParmArea.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-ParmKey.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-ParmRew.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-ParmRewRule.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-RulesBase.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-PubNote.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-SysOrg.xml" />
+<import resource="app/creditapp/sys/spring-config/spring-TimeController.xml" />
+
+<import resource="app/creditapp/acc/spring-config/spring-WsRepyFee.xml"/>
+
+<import resource="app/creditapp/acc/cancel/spring-config/spring-Cancel.xml"/>
+<import resource="app/creditapp/acc/chg/spring-config/spring-AcRepyDayChga.xml"/>
+<import resource="app/creditapp/acc/chg/spring-config/spring-AftRelief.xml"/>
+
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcDebit.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcDebitSusp.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcLnLo.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcLnMst.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcLnPmLog.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcLnRepayPlnCur.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcLoanBackLog.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-AcLoanLog.xml"/>
+<import resource="app/creditapp/acc/loan/spring-config/spring-Loan.xml"/>
+
+<import resource="app/creditapp/acc/log/spring-config/spring-AcChrgLog.xml"/>
+<import resource="app/creditapp/acc/log/spring-config/spring-AcLnIntstLog.xml"/>
+<import resource="app/creditapp/acc/log/spring-config/spring-AcTraceLog.xml"/>
+
+<import resource="app/creditapp/acc/option/spring-config/spring-AcComHoliday.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcDamFormula.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcFeeFormula.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcFeeParm.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcFeeRate.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcFineFormula.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcLnRepayPln.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcLnRepayPlnSusp.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcLnSetlmtLog.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcReplanFormula.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcReplanParm.xml"/>
+<import resource="app/creditapp/acc/option/spring-config/spring-AcReplanSec.xml"/>
+
+<import resource="app/creditapp/aft/spring-config/spring-AftAdvpay.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftAssetPool.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftAssetRel.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftMessageAlarm.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftPoolRel.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftReliefDtl.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftRepyClear.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftReverse.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftRewDeal.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftRewFund.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftRewPact.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftRewProj.xml"/>
+<import resource="app/creditapp/aft/spring-config/spring-AftRewReal.xml"/>
+
+<import resource="app/creditapp/approve/spring-config/spring-ApproveAc.xml"/>
+<import resource="app/creditapp/approve/spring-config/spring-ApproveAft.xml"/>
+<import resource="app/creditapp/approve/spring-config/spring-ApproveBlack.xml"/>
+<import resource="app/creditapp/approve/spring-config/spring-ApproveLoan.xml"/>
+
+<import resource="app/creditapp/batch/spring-config/spring-BatchExe.xml"/>
+<import resource="app/creditapp/batch/spring-config/spring-BatchNode.xml"/>
+<import resource="app/creditapp/batch/spring-config/spring-BatchSql.xml"/>
+<import resource="app/creditapp/batch/spring-config/spring-BatchStep.xml"/>
+
+<import resource="app/creditapp/cif/spring-config/spring-CifAcct.xml"/>
+<import resource="app/creditapp/cif/spring-config/spring-CifBlack.xml"/>
+<import resource="app/creditapp/cif/spring-config/spring-CifPers.xml"/>
+<import resource="app/creditapp/cif/spring-config/spring-CifPersCareer.xml"/>
+<import resource="app/creditapp/cif/spring-config/spring-CifPersHis.xml"/>
+<import resource="app/creditapp/cif/spring-config/spring-CifPortrait.xml"/>
+
+<import resource="app/creditapp/dev/spring-config/spring-PopParmConf.xml"/>
+<import resource="app/creditapp/dev/spring-config/spring-TreeConf.xml"/>
+
+<import resource="spring-config/creditapp/spring-cache.xml" />
+<import resource="spring-config/creditapp/spring-CreateKey.xml" />
+<import resource="spring-config/creditapp/spring-parmDic.xml" />
+<import resource="spring-config/creditapp/spring-SysRoleButton.xml" />
+
+<import resource="spring-config/screencore/spring-ScreenCore.xml" />
+
+<import resource="spring-config/workflow/spring-AppWkfcfg.xml" />
+<import resource="spring-config/workflow/spring-WkfApprovalRole.xml" />
+<import resource="spring-config/workflow/spring-WkfApprovalUser.xml" />
+<import resource="spring-config/workflow/spring-WkfInterface.xml" />
+
+<import resource="app/creditapp/pac/spring-config/spring-DocConfig.xml"/>
+<import resource="app/creditapp/pac/spring-config/spring-PacBase.xml"/>
+<import resource="app/creditapp/pact/spring-config/spring-LnPact.xml"/>
+
+<import resource="app/creditapp/ln/spring-config/spring-DebitCount.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LoanCount.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnAcct.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnAcctMid.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnApply.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnApplyMid.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnApplyReg.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnApprIdea.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnBatch.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnDue.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnGageMid.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-LnStage.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-PreApply.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-PreBatch.xml"/>
+<import resource="app/creditapp/ln/spring-config/spring-PreGage.xml"/>
+
+<import resource="app/creditapp/fund/spring-config/spring-FundBase.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundDetail.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundPayPlan.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundProv.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundProvProj.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundProvService.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundProvSplitTerm.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundRepayPlan.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundRightDetail.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundSplit.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundSplitDetail.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-FundSplitTerm.xml" />
+<import resource="app/creditapp/fund/spring-config/spring-RptFundDaily.xml" />
+
+<import resource="app/creditapp/inf/spring-config/spring-AllocateRegService.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-AllocateRegWsIn.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsBase.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsElyRepy.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsElyRepyBatch.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsRedctn.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsRepyClear.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsRepyFine.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsRepyMes.xml"/>
+<import resource="app/creditapp/inf/spring-config/spring-WsRepyPlan.xml"/>
+
+<import resource="app/creditapp/proj/spring-config/spring-AllocateReg.xml"/>
+<import resource="app/creditapp/proj/spring-config/spring-ProjAcct.xml"/>
+<import resource="app/creditapp/proj/spring-config/spring-ProjAcctLst.xml"/>
+<import resource="app/creditapp/proj/spring-config/spring-ProjBase.xml"/>
+<import resource="app/creditapp/proj/spring-config/spring-ProjMang.xml"/>
+<import resource="app/creditapp/proj/spring-config/spring-ProjParm.xml"/>
+<import resource="app/creditapp/proj/spring-config/spring-RptProj.xml"/>
+
+<import resource="app/creditapp/corp/spring-config/spring-CorpAcct.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-CorpBase.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-CorpCert.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-CorpCont.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-CorpFin.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-CorpGdinfo.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-CorpParm.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-CorpTaRel.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-RptCorpArea.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-RptCorpDaily.xml"/>
+<import resource="app/creditapp/corp/spring-config/spring-RptCorpPrdt.xml"/>
+
+<import resource="app/creditapp/cred/spring-config/spring-CifBlackApp.xml"/>
+<import resource="app/creditapp/cred/spring-config/spring-CifEval.xml"/>
+<import resource="app/creditapp/cred/spring-config/spring-CorpEval.xml"/>
+<import resource="app/creditapp/cred/spring-config/spring-PcrpQueryInfo.xml"/>
+
+<import resource="app/creditapp/gage/spring-config/spring-LnGage.xml"/>
+
+<import resource="app/creditapp/wkf/spring-config/spring-WfTask.xml"/>
+
+<import resource="app/util/ruleFiter/spring-config/spring-ruleFilter.xml" />
+<import resource="app/util/message/conversion/spring-config/spring-messageConversion.xml" />
+<import resource="app/util/syslog/spring-config/spring-logFromAop.xml" />
+<import resource="app/util/syslog/spring-config/spring-SysException.xml" />
+
+</beans>

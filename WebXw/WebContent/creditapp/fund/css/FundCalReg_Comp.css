@@ -1,0 +1,146 @@
+﻿body, td, th, li, input{font-family:"Microsoft YaHei", "宋体"; font-size: 12px}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	color: #333333;
+	background-color: #FEFDE8;
+	background-image: url(boc08_bg0.jpg);
+	background-repeat: repeat-x;
+}
+p {
+	font-family: "宋体"; 
+	font-size: 14px; 
+	line-height: 1.5; 
+	text-indent: 28px
+}
+li {
+	line-height: 1.3;
+	list-style-type: square;
+}
+a.nav:link, a.nav:visited, .navl {  color: #355f72}
+a.nav:active, a.nav:hover {  color: #FF6633; text-decoration: underline}
+
+a.laug:link, a.laug:visited, .laugl {  color: #9ab6c3}
+a.laug:active, a.laug:hover {  color: #355f72; text-decoration: underline}
+
+a.fsm:link, a.fsm:visited { font-size: 14px; color: #333333 }
+a.fsm:active, a.fsm:hover { font-size: 14px; color: #FF6633; text-decoration: underline }
+
+a.hlbg:link, a.hlbg:visited {
+	color: #40687A;
+	font-weight: bold;
+}
+a.hlbg:active, a.hlbg:hover {
+	color: #0099CC;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+a:link, a:visited { text-decoration: none; color: #333333}
+a:active, a:hover { text-decoration: underline; color: #FF6633}
+
+a { font-family: "宋体"; text-decoration: none; margin-bottom: 0px}
+h1, h2, h3, h4, h5, h6{
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+h1 {  font-size: 18px; color: #336699; }
+h2 {  font-size: 16px; color: #336699}
+h3 {  font-size: 14px}
+h4 {  font-size: 13px}
+h5 {  font-size: 12px}
+h6 {  font-size: 10px}
+form, input, select { font-size: 12px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+input.srh {
+	height: 17px;
+	border: #D9D9D9 solid 1px;
+	width: 166px;
+	margin-bottom: 4px;
+	padding: 2px;
+}
+select.brh {
+	width: 166px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	border-left: 0px;
+}
+.pbrdl {
+	background-image: url(boc08_brd1.gif);
+	background-repeat: repeat-y;
+}
+.pbrdr {
+	background-image: url(boc08_brd2.gif);
+	background-repeat: repeat-y;
+}
+.navl {color: #355f72}
+.title {
+	font-size: 18px;; 
+	font-weight: bold; 
+	color: #336699
+}
+.bocnet {
+	background-image: url(boc08_line4.gif);
+	background-repeat: repeat-x;
+	text-align: center;
+}
+.itmen {
+	background-image: url(boc08_itembg.jpg);
+	background-repeat: no-repeat;
+	text-align: center;
+}
+.copyrt {
+	font-family: Verdana;
+	font-size: 11px;
+}
+.dashlh {
+	background-image: url(boc08_doth.gif);
+	background-repeat: repeat-x;
+}
+.dashlv {
+	background-image: url(boc08_dotv.gif);
+	background-repeat: repeat-y;
+}
+
+.brd1 {
+	border-left: #D9D9D9 solid;
+	border-left-width: 1px;
+}
+.brd2 {  border: #DCDCDC solid; border-width: 0px 0px 1px 0px}
+
+.brd3 {  border: #FFC68F solid; border-width: 1px 0px 1px 0px}
+.itemhl {
+	background-image: url(boc08_itemhlbg.gif);
+	text-align: center;
+	background-repeat: no-repeat;
+}
+
+
+.brd4 {  border: #D9D9D9 solid 1px}
+.brd5 {
+	border: 4px solid #FFFFFF;
+}
+
+/*利息计算器*/
+.calculator-box{
+	border-radius:4px;
+	font-family:"Microsoft YaHei";
+	margin-top:30px;
+	
+}
+.calator-title{ font-size:16px; color:#333; text-align:left; height:40px; line-height:34px;font-weight:400;}
+.calculator-box .btn{ color:#fff; border:none; border-radius:4px; height:24px; line-height:23px; width:86px; text-align:center; cursor:pointer;}
+
+
+.btnDY{background:#FFF; border-radius:4px; height:24px; line-height:22px; width:86px; text-align:center;
+float:right; cursor:pointer;}
+.calator-list .head th{ height:30px; line-height:30px;}
+.calator-list .head th:last-child{ border-right:none;}
+.calator-list tr td{height:30px; line-height:30px;}
+.calator-list tr td:last-child{ border-right:none;}

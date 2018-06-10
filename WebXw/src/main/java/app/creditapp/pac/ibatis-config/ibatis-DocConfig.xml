@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="DocConfig" type="app.creditapp.pac.entity.DocConfig"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.DocConfig" class="DocConfig">
+    <result property="ifStart" column="IF_START" />
+    <result property="ifSign" column="IF_SIGN" />
+    <result property="docTypeName" column="DOC_TYPE_NAME" />
+    <result property="docTypeNo" column="DOC_TYPE_NO" />
+    <result property="docTypeId" column="DOC_TYPE_ID" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    </resultMap>
+     <sql id="DocConfig.columns">
+        <![CDATA[
+         IF_START,
+         IF_SIGN,
+         DOC_TYPE_NAME,
+         DOC_TYPE_NO,
+         DOC_TYPE_ID,
+         TX_DATE,
+         OP_NO,
+         UP_DATE,
+         UP_OPNO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="DocConfig.insert">
+        <![CDATA[
+        INSERT INTO DOC_CONFIG(
+         IF_START,
+         IF_SIGN,
+         DOC_TYPE_NAME,
+         DOC_TYPE_NO,
+         DOC_TYPE_ID,
+         TX_DATE,
+         OP_NO,
+         UP_DATE,
+         UP_OPNO
+         )VALUES(
+         #ifStart#,
+         #ifSign#,
+         #docTypeName#,
+         #docTypeNo#,
+         #docTypeId#,
+         #txDate#,
+         #opNo#,
+         #upDate#,
+         #upOpno#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="DocConfig.del">
+        <![CDATA[
+               DELETE FROM DOC_CONFIG
+                 WHERE
+               	DOC_TYPE_ID = #docTypeId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="DocConfig.update">
+        <![CDATA[
+         UPDATE DOC_CONFIG set
+         IF_START=#ifStart#,
+         IF_SIGN=#ifSign#,
+         DOC_TYPE_NAME=#docTypeName#,
+         DOC_TYPE_NO=#docTypeNo#,
+         DOC_TYPE_ID=#docTypeId#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#,
+         UP_DATE=#upDate#,
+         UP_OPNO=#upOpno#
+          WHERE
+               	DOC_TYPE_ID = #docTypeId#        ]]>
+    </update>
+    
+    <!--查询文档编码-->
+     <select id="DocConfig.findDocTypeNo" resultMap="RM.DocConfig">
+      SELECT <include refid="DocConfig.columns"/>
+      <![CDATA[
+             FROM DOC_CONFIG 
+         WHERE 
+               	DOC_TYPE_NO = #docTypeNo#        ]]>           
+     </select>
+     
+     <!--获取key-->
+     <select id="DocConfig.getKey" resultClass="string">
+     <![CDATA[ SELECT DOC_CONFIG_SEQ.NEXTVAL FROM DUAL]]>
+     </select>
+     
+     
+     <!-- 表查询ById -->
+    <select id="DocConfig.getById"  resultMap="RM.DocConfig">
+        SELECT <include refid="DocConfig.columns"/>
+        <![CDATA[
+             FROM DOC_CONFIG 
+         WHERE 
+               	DOC_TYPE_ID = #docTypeId#        ]]>
+     </select>
+     
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="DocConfig.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="ifStart">
+                  <isNotEmpty prepend="AND" property="ifStart">
+                      IF_START = #ifStart#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="ifSign">
+                  <isNotEmpty prepend="AND" property="ifSign">
+                      IF_SIGN = #ifSign#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="docTypeName">
+                  <isNotEmpty prepend="AND" property="docTypeName">
+                      DOC_TYPE_NAME like '%' || #docTypeName# || '%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="docTypeNo">
+                  <isNotEmpty prepend="AND" property="docTypeNo">
+                      DOC_TYPE_NO = #docTypeNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="docTypeId">
+                  <isNotEmpty prepend="AND" property="docTypeId">
+                      DOC_TYPE_ID = #docTypeId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="DocConfig.findPage.count" resultClass="int">
+        SELECT count(*) FROM DOC_CONFIG <include refid="DocConfig.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="DocConfig.findByPage" resultMap="RM.DocConfig">
+        SELECT <include refid="DocConfig.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="DocConfig.columns"/> FROM DOC_CONFIG
+                    <include refid="DocConfig.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--根据文档编号查询  -->
+    <select id="DocConfig.getDocType" resultMap="RM.DocConfig">
+    	SELECT * FROM DOC_CONFIG WHERE DOC_TYPE_NO=#docTypeNo# and IF_START='1'
+    </select>
+</sqlMap>

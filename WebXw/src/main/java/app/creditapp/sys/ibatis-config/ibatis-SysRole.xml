@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysRole" type="app.creditapp.sys.entity.SysRole"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysRole" class="SysRole">
+    <result property="role_no" column="ROLE_NO" />
+    <result property="role_name" column="ROLE_NAME" />
+    <result property="role_type" column="ROLE_TYPE" />
+    <result property="role_sts" column="ROLE_STS" />
+    <result property="role_pro" column="ROLE_PRO"/>
+    </resultMap>
+    <resultMap id="RM.SysRoleMenu" class="app.creditapp.sys.entity.SysRoleMenu">
+   		 <result property="menu_no" column="MENU_NO" />
+    </resultMap>
+    <resultMap id="RM.SysButton" class="app.creditapp.sys.entity.SysButton">
+        <result property="menu_no" column="MENU_NO"/>
+        <result property="button_no" column="BUTTON_NO"/>
+        <result property="button_desc" column="BUTTON_DESC"/>
+    </resultMap>
+    <resultMap id="RM.SysRoleButton" class="app.creditapp.entity.SysRoleButton">
+		<result property="id" column="ID"/>
+		<result property="role_no" column="ROLE_NO"/>
+		<result property="menu_no" column="MENU_NO"/>
+		<result property="button_no" column="BUTTON_NO"/>
+	</resultMap>
+     <sql id="SysRole.columns">
+        <![CDATA[
+         ROLE_NO,
+         ROLE_NAME,
+         ROLE_TYPE,
+         ROLE_STS,
+         ROLE_PRO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysRole.insert">
+        <![CDATA[
+        INSERT INTO SYS_ROLE(
+         ROLE_NO,
+         ROLE_NAME,
+         ROLE_TYPE,
+         ROLE_STS,
+         ROLE_PRO
+         )VALUES(
+         #role_no#,
+         #role_name#,
+         #role_type#,
+         #role_sts#,
+         #role_pro#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysRole.del">
+        <![CDATA[
+               DELETE FROM SYS_ROLE
+                 WHERE
+               	ROLE_NO = #role_no#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysRole.update">
+        <![CDATA[
+         UPDATE SYS_ROLE set
+         ROLE_NO=#role_no#,
+         ROLE_NAME=#role_name#,
+         ROLE_TYPE=#role_type#,
+         ROLE_STS=#role_sts#,
+         ROLE_PRO=#role_pro#
+          WHERE
+               	ROLE_NO = #role_no#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysRole.getById"  resultMap="RM.SysRole">
+        SELECT <include refid="SysRole.columns"/>
+        <![CDATA[
+             FROM SYS_ROLE 
+         WHERE 
+               	ROLE_NO = #role_no#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysRole.findPage.and">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="role_no">
+                  <isNotEmpty prepend="AND" property="role_no">
+                      ROLE_NO = #role_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_name">
+                  <isNotEmpty prepend="AND" property="role_name">
+                      ROLE_NAME like '%$role_name$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_type">
+                  <isNotEmpty prepend="AND" property="role_type">
+                      ROLE_TYPE = #role_type#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_sts">
+                  <isNotEmpty prepend="AND" property="role_sts">
+                      ROLE_STS = #role_sts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="role_pro">
+                  <isNotEmpty prepend="AND" property="role_pro">
+                      ROLE_PRO = #role_pro#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+       <sql id="SysRole.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="role_no">
+                  <isNotEmpty prepend="AND" property="role_no">
+                      ROLE_NO = #role_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_name">
+                  <isNotEmpty prepend="AND" property="role_name">
+                      ROLE_NAME = #role_name#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_type">
+                  <isNotEmpty prepend="AND" property="role_type">
+                      ROLE_TYPE = #role_type#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="role_sts">
+                  <isNotEmpty prepend="AND" property="role_sts">
+                      ROLE_STS = #role_sts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="role_pro">
+                  <isNotEmpty prepend="AND" property="role_pro">
+                      ROLE_PRO = #role_pro#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysRole.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_ROLE 
+                 <include refid="SysRole.findPage.and" /> 
+    </select>
+    <select id="SysRole.findByPageForPop.count" resultClass="int">
+        SELECT count(*) FROM SYS_ROLE 
+                 where ROLE_STS ='01'
+    </select>
+    <!-- 分页查询记录数 -->
+    <select id="SysRole.getCountByRoleNo.count" resultClass="int">
+        SELECT count(*) FROM SYS_ROLE where role_no=#role_no#
+                 
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysRole.findByPage" resultMap="RM.SysRole">
+        SELECT <include refid="SysRole.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysRole.columns"/> FROM SYS_ROLE
+             <include refid="SysRole.findPage.and" />   
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="SysRole.findByPageForPop" resultMap="RM.SysRole">
+        SELECT <include refid="SysRole.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysRole.columns"/> FROM SYS_ROLE
+             where ROLE_STS ='01'
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+   <!-- 查询该表的menu_no来对比谁该选中 -->
+    <select id="SysRoleMenu.checkjsp" resultMap="RM.SysRoleMenu">
+        select menu_no from SYS_ROLE_MENU where role_no=#role_no#
+    </select>
+    <delete id="SysRoleButton.deleteButton">
+    <![CDATA[
+        DELETE FROM SYS_ROLE_BUTTON WHERE
+        ROLE_NO = #role_no# AND MENU_NO=#menu_no#
+    ]]>
+    </delete>	
+    <!-- 查询该菜单下的已选择的button -->
+    <select id="SysRoleButton.getButtonList" resultMap="RM.SysRoleButton">
+        select id,role_no,menu_no,button_no from SYS_ROLE_BUTTON where role_no=#role_no# and menu_no=#menu_no#
+    </select>
+    <!-- 查询该菜单下的所有可显示button -->
+    <select id="SysButton.getMenuButton" resultMap="RM.SysButton">
+        select menu_no,button_no,button_desc from SYS_BUTTON where menu_no=#menu_no#
+    </select>
+     <!-- 插入该菜单下的所有已选择button -->
+     <insert id="SysRoleButton.saveButton" >
+    <![CDATA[
+        INSERT INTO SYS_ROLE_BUTTON (
+        	ID,
+        	ROLE_NO,
+        	MENU_NO,
+        	BUTTON_NO
+        ) VALUES (
+        	#id#,
+        	#role_no#,
+        	#menu_no#,
+        	#button_no# 
+        )
+    ]]>
+    <selectKey resultClass="java.lang.String" type="pre" keyProperty="id" >
+			SELECT SYS_ROLE_BUTTON_SEQ.NEXTVAL AS id FROM DUAL
+    </selectKey>
+    </insert>
+</sqlMap>

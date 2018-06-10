@@ -1,0 +1,19 @@
+<CMIS>
+	<!--核算接口-->
+	<buildingElement name="loan">
+		<OPERATION id="LNOP" describe="贷款开户" comproperty="">accounting.interf.loan.OpenLoanAccountOp</OPERATION>
+		<OPERATION id="LNC3" describe="贷款放款" comproperty="">accounting.interf.loan.GrantLoanOp</OPERATION>
+		<OPERATION id="C3BK" describe="放款反馈" comproperty="">accounting.interf.loan.GrantLoanBackOp</OPERATION>
+		<OPERATION id="LNDC" describe="贷款展期" comproperty="">accounting.interf.loan.ExpandLoanOp</OPERATION>
+		<OPERATION id="LNUP" describe="贷款账号变更" comproperty="">accounting.interf.loan.LoanAcctAdjOp</OPERATION>
+		<OPERATION id="LNSA" describe="贷款单户结息" comproperty="">accounting.interf.loan.LoanIntstSemtOp</OPERATION>
+		<OPERATION id="LNC4" describe="贷款还款" comproperty="">accounting.interf.loan.RepayOp</OPERATION>
+		<OPERATION id="DUBF" describe="待收费" comproperty="">accounting.interf.loan.CollectFeeOp</OPERATION>
+		<OPERATION id="LNFC" describe="费用计算" comproperty="">accounting.interf.loan.CalFeeOp</OPERATION>
+		<OPERATION id="LNIC" describe="结息(当期利息)" comproperty="">accounting.interf.loan.LoanCurIntOp</OPERATION>
+		<OPERATION id="LNRV" describe="冲正交易" comproperty="">accounting.interf.cancel.ReverseTraceOp</OPERATION>
+		<OPERATION id="XROR" describe="提前还款测算" comproperty="">accounting.interf.loan.CalIntstOp</OPERATION>
+	</buildingElement>
+	
+</CMIS>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CorpContAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CorpContAction_findByPage" method="findByPage" class="app.creditapp.corp.action.CorpContAction">
+			<result name="list">/creditapp/corp/CorpCont_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CorpContAction_input" method="input" class="app.creditapp.corp.action.CorpContAction">
+			<result name="input">/creditapp/corp/CorpCont_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CorpContAction_del" method="del" class="app.creditapp.corp.action.CorpContAction">
+			<result name="list">/creditapp/corp/CorpCont_listQuotaForCorp.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CorpContAction_getById" method="getById" class="app.creditapp.corp.action.CorpContAction">
+			<result name="detail">/creditapp/corp/CorpCont_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CorpContActionInsert" method="insert" class="app.creditapp.corp.action.CorpContAction">
+			<result name="input">/creditapp/corp/CorpCont_Insert.jsp</result>
+			<result name="detail">/creditapp/corp/CorpCont_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CorpContActionUpdate" method="update" class="app.creditapp.corp.action.CorpContAction">
+			<result name="input">/creditapp/corp/CorpCont_Detail.jsp</result>
+			<result name="detail">/creditapp/corp/CorpCont_Detail.jsp</result>
+		</action>
+		<!-- 根据合作机构号显示所有的的lianxiren信息 -->
+		<action name="CorpContAction_listQuotaForCorp" method="listQuotaForCorp" class="app.creditapp.corp.action.CorpContAction">
+			<result name="list">/creditapp/corp/CorpCont_listQuotaForCorp.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

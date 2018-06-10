@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftAssetPool" type="app.creditapp.aft.entity.AftAssetPool"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftAssetPool" class="AftAssetPool">
+    <result property="poolId" column="POOL_ID" />
+    <result property="poolName" column="POOL_NAME" />
+    <result property="poolDesc" column="POOL_DESC" />
+    <result property="poolCnt" column="POOL_CNT" jdbcType="Int"/>
+    <result property="poolAmt" column="POOL_AMT" jdbcType="double"/>
+    <result property="totalAmt" column="TOTAL_AMT" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="poolSts" column="POOL_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    </resultMap>
+     <sql id="AftAssetPool.columns">
+        <![CDATA[
+         POOL_ID,
+         POOL_NAME,
+         POOL_DESC,
+         POOL_CNT,
+         POOL_AMT,
+         TOTAL_AMT,
+         BEG_DATE,
+         END_DATE,
+         POOL_STS,
+         FUN_GETUSERNAME(OP_NO) as OP_NO,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftAssetPool.insert">
+        <![CDATA[
+        INSERT INTO AFT_ASSET_POOL(
+         POOL_ID,
+         POOL_NAME,
+         POOL_DESC,
+         POOL_CNT,
+         POOL_AMT,
+         TOTAL_AMT,
+         BEG_DATE,
+         END_DATE,
+         POOL_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #poolId#,
+         #poolName#,
+         #poolDesc#,
+         #poolCnt#,
+         #poolAmt#,
+         #totalAmt#,
+         #begDate#,
+         #endDate#,
+         #poolSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftAssetPool.del">
+        <![CDATA[
+               DELETE FROM AFT_ASSET_POOL
+                 WHERE
+               	POOL_ID = #poolId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftAssetPool.update">
+        <![CDATA[
+         UPDATE AFT_ASSET_POOL set
+         POOL_ID=#poolId#,
+         POOL_NAME=#poolName#,
+         POOL_DESC=#poolDesc#,
+         POOL_CNT=#poolCnt#,
+         POOL_AMT=#poolAmt#,
+         TOTAL_AMT=#totalAmt#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         POOL_STS=#poolSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	POOL_ID = #poolId#        ]]>
+    </update>
+    
+      <!-- 表修改 更新资金池借据关联数、资金池金额、本金总额 -->
+    <update id="AftAssetPool.updateTotal">
+        <![CDATA[
+         UPDATE AFT_ASSET_POOL
+   			SET (POOL_CNT, POOL_AMT, TOTAL_AMT,END_DATE,UP_DATE) =
+      		(SELECT COUNT(1),
+               SUM(BAL),
+               SUM(DUE_AMT),
+               TO_CHAR(TO_DATE(Max(END_DATE),'yyyymmdd')+90,'yyyymmdd'),
+               TO_CHAR(SYSDATE, 'yyyymmdd')
+          	FROM AFT_POOL_REL
+         	WHERE POOL_ID = #poolId#)
+ 		WHERE POOL_ID = #poolId# ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="AftAssetPool.getById"  resultMap="RM.AftAssetPool">
+        SELECT <include refid="AftAssetPool.columns"/>
+        <![CDATA[
+             FROM AFT_ASSET_POOL 
+         WHERE 
+               	POOL_ID = #poolId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftAssetPool.findPage.where">
+        <dynamic prepend="where">
+        <isPropertyAvailable property="poolId">
+                  <isNotEmpty prepend="AND" property="poolId">
+                      POOL_Id = #poolId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="poolName">
+                  <isNotEmpty prepend="AND" property="poolName">
+                      POOL_NAME like '%$poolName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="poolSts">
+                  <isNotEmpty prepend="AND" property="poolSts">
+                      POOL_STS = #poolSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      OP_NO in (select op_no from proj_mang where login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftAssetPool.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_ASSET_POOL <include refid="AftAssetPool.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftAssetPool.findByPage" resultMap="RM.AftAssetPool">
+        SELECT <include refid="AftAssetPool.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftAssetPool.columns"/> FROM AFT_ASSET_POOL
+                    <include refid="AftAssetPool.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

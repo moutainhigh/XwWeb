@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CorpParmAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CorpParmAction_findByPage" method="findByPage" class="app.creditapp.corp.action.CorpParmAction">
+			<result name="list">/creditapp/corp/CorpParm_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CorpParmAction_input" method="input" class="app.creditapp.corp.action.CorpParmAction">
+			<result name="input">/creditapp/corp/CorpParm_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CorpParmAction_del" method="del" class="app.creditapp.corp.action.CorpParmAction">
+			<result name="list">/creditapp/corp/CorpParm_listQuotaForCorp.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CorpParmAction_getById" method="getById" class="app.creditapp.corp.action.CorpParmAction">
+			<result name="detail">/creditapp/corp/CorpParm_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CorpParmActionInsert" method="insert" class="app.creditapp.corp.action.CorpParmAction">
+			<result name="input">/creditapp/corp/CorpParm_Insert.jsp</result>
+			<result name="detail">/creditapp/corp/CorpParm_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CorpParmActionUpdate" method="update" class="app.creditapp.corp.action.CorpParmAction">
+			<result name="input">/creditapp/corp/CorpParm_Detail.jsp</result>
+			<result name="detail">/creditapp/corp/CorpParm_Detail.jsp</result>
+		</action>
+		<!-- 根据合作机构号显示所有的的peizhi信息 -->
+		<action name="CorpParmAction_listQuotaForCorp" method="listQuotaForCorp" class="app.creditapp.corp.action.CorpParmAction">
+			<result name="list">/creditapp/corp/CorpParm_listQuotaForCorp.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

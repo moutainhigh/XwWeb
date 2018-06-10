@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+ <!-- <typeAlias alias="AccessCheckInfo" type="app.creditapp.sys.entity.AccessCheckInfo"/>
+	列表查询返回字段
+    <resultMap id="RM.AccessCheckInfo" class="AccessCheckInfo">
+    <result property="prdtId" column="PRDT_ID" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="prdtName" column="PRDT_NAME" />
+    </resultMap> -->
+ 
+       <!-- 根据实际情况选择查询条件 -->
+    <sql id="AccessCheckInfo.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="prdtNo">
+                  <isNotEmpty prepend="AND" property="prdtNo">
+                      PRDT_NO = #prdtNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="prdtName">
+                  <isNotEmpty prepend="AND" property="prdtName">
+                      PRDT_NAME like '%$prdtName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>        	
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 合作机构是否关联了TA的客户信息 -->
+    <select id="AccessCheckInfo.countForMsg.count" resultClass="int">
+        SELECT count(1) FROM CORP_TA_REL WHERE BR_NO = #brNo#
+    </select>
+    <!-- 合作机构维度的配置参数是否配置完成 -->
+    <select id="AccessCheckInfo.countForConf.count" resultClass="int">
+        SELECT count(1) FROM CORP_PARM C
+        WHERE C.PUT_TYPE IS NOT NULL
+   			   AND C.RPY_DAY IS NOT NULL
+  			   AND C.RPY_SCHEME IS NOT NULL
+			   AND C.GRACE_DAY IS NOT NULL
+			   AND C.TOL_AMT IS NOT NULL
+			   AND C.ACC_TYPE IS NOT NULL
+			   AND C.PUT_TIME IS NOT NULL
+			   AND C.MONTH_DAYS IS NOT NULL
+			   AND C.PAY_ORDER IS NOT NULL
+			   AND C.IF_RELCHK IS NOT NULL
+			   AND C.BR_NO = #brNo#
+    </select>
+     <!-- 3、合作机构是否已经关联信托项目 -->
+    <select id="AccessCheckInfo.countForRele.count" resultClass="int">
+        SELECT count(1) FROM PROJ_BASE t WHERE t.BR_NO = #brNo#
+    </select>    
+    <!-- 4、信托项目维度是否参数已配置完成 -->
+    <!-- 首先执行这个SQL 返回如果为0 则没有配置完成，如果返回有数据，再执行第二个SQL -->
+    <select id="AccessCheckInfo.countForParam.count" resultClass="int">
+   		SELECT COUNT(1) FROM proj_parm p WHERE p.proj_no IN (
+   			SELECT b.proj_no FROM proj_base b WHERE b.br_no = #brNo#)
+    </select>
+    <!-- 执行这个SQL，如果返回值为0，则配置完成，如果返回值大于0，则没有配置完成-->
+    <select id="AccessCheckInfo.countForParamConf.count" resultClass="int">
+   		SELECT COUNT(1) FROM proj_parm p WHERE p.proj_no IN (
+   			SELECT b.proj_no FROM proj_base b WHERE b.br_no = #brNo#)
+			AND (p.tru_pay_type IS NULL  
+				OR p.mang_feerate IS NULL 
+				OR p.rg_app_rate IS NULL 
+				AND p.back_days IS NULL 
+				OR p.lever_rate IS NULL 
+				OR p.over_days IS NULL 
+				OR p.fund_end_days IS NULL 
+				OR p.proj_end_days IS NULL 
+				OR p.int_days IS NULL)
+    </select>
+  	<!-- 5、合作机构关联的信托项目中运营人员是否已经全部指派 -->
+    <!-- 执行以下SQL，返回值如果是0 则已经全部指派，返回值如果大于0 则有未指派的项目 -->
+    <select id="AccessCheckInfo.countForDesig.count" resultClass="int">
+   		SELECT COUNT(1) FROM proj_base b WHERE b.br_no = #brNo#
+			AND NOT EXISTS(SELECT 1 FROM proj_mang m WHERE m.proj_no = b.proj_no)
+    </select>
+</sqlMap>

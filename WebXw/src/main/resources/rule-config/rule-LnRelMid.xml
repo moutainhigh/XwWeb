@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ====================该验证的表LN_GAGE_MID================== -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsLnRelMidId</ruleId>
+		<ruleName>lnrelmidRule</ruleName>
+		<columnList>
+			<!-- 申请ID -->
+			<column columenName="appId">
+				<canNull></canNull>
+				<maxLength>14</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 关联人名称 -->
+			<column columenName="relName">
+				<canNull></canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 关联人证件 -->
+			<column columenName="relIdtype">
+				<canNull></canNull>
+				<maxLength>1</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 关联人证件号 -->
+			<column columenName="relIdno">
+				<canNull></canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 关联人联系电话 -->
+			<column columenName="relTel">
+				<canNull></canNull>
+				<maxLength>25</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

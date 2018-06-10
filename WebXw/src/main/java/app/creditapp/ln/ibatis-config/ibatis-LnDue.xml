@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnDue" type="app.creditapp.ln.entity.LnDue"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnDue" class="LnDue">
+    <result property="upTime" column="UP_TIME" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="recSts" column="REC_STS" />
+    <result property="dueSts" column="DUE_STS" />
+    <result property="apprSts" column="APPR_STS" />
+    <result property="fiveSts" column="FIVE_STS" />
+    <result property="fiveDate" column="FIVE_DATE" />
+    <result property="feeAmt5" column="FEE_AMT5" jdbcType="double"/>
+    <result property="feeAmt4" column="FEE_AMT4" jdbcType="double"/>
+    <result property="feeAmt3" column="FEE_AMT3" jdbcType="double"/>
+    <result property="feeAmt2" column="FEE_AMT2" jdbcType="double"/>
+    <result property="feeAmt1" column="FEE_AMT1" jdbcType="double"/>
+    <result property="vouAmt" column="VOU_AMT" jdbcType="double"/>
+    <result property="vouRate" column="VOU_RATE" jdbcType="double"/>
+    <result property="srvAmt" column="SRV_AMT" jdbcType="double"/>
+    <result property="srvRate" column="SRV_RATE" jdbcType="double"/>
+    <result property="feeAmt" column="FEE_AMT" jdbcType="double"/>
+    <result property="feeRate" column="FEE_RATE" jdbcType="double"/>
+    <result property="payMent" column="PAY_MENT" />
+    <result property="payChn" column="PAY_CHN" />
+    <result property="payDay" column="PAY_DAY" />
+    <result property="payKind" column="PAY_KIND" />
+    <result property="payType" column="PAY_TYPE" />
+    <result property="vouType" column="VOU_TYPE" />
+    <result property="repayCycle" column="REPAY_CYCLE" jdbcType="Int"/>
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="termDay" column="TERM_DAY" jdbcType="Int"/>
+    <result property="termMon" column="TERM_MON" jdbcType="Int"/>
+    <result property="termType" column="TERM_TYPE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="mtrDate" column="MTR_DATE" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="damRate" column="DAM_RATE" jdbcType="double"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double"/>
+    <result property="lnRateYear" column="LN_RATE_YEAR" jdbcType="double"/>
+    <result property="bal" column="BAL" jdbcType="double"/>
+    <result property="dueAmt" column="DUE_AMT" jdbcType="double"/>
+    <result property="curNo" column="CUR_NO" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    <result property="pactXt" column="PACT_XT" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="appId" column="APP_ID" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="dueNo" column="DUE_NO" />
+    <result property="normInt" column="NORM_INT" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="brName" column="BR_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="tranSts" column="TRAN_STS" />
+    <result property="tranDate" column="TRAN_DATE" />
+    
+    </resultMap>
+    
+    <resultMap id="RM.LnDueCheck" class="LnDue">
+    <result property="dueNo" column="DUE_NO" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="bal" column="BAL"/>
+    <result property="normInt" column="NORM_INT"/>
+    <result property="chkFlag" column="CHK_FLAG"/>
+    </resultMap>
+    <resultMap id="RM.LnDueForPop" class="LnDue">
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="bal" column="BAL"/>
+    <result property="normInt" column="NORM_INT"/>
+    <result property="dueAmt" column="DUE_AMT"/>
+    <result property="fiveSts" column="FIVE_STS"/>
+    <result property="dueNo" column="DUE_NO"/>
+    </resultMap>
+     <sql id="LnDue.columns">
+        <![CDATA[
+         UP_TIME,
+         TX_TIME,
+         TX_DATE,
+         OP_NO,
+         REC_STS,
+         DUE_STS,
+         APPR_STS,
+         FIVE_STS,
+         FIVE_DATE,
+         FEE_AMT5,
+         FEE_AMT4,
+         FEE_AMT3,
+         FEE_AMT2,
+         FEE_AMT1,
+         VOU_AMT,
+         VOU_RATE,
+         SRV_AMT,
+         SRV_RATE,
+         FEE_AMT,
+         FEE_RATE,
+         PAY_MENT,
+         PAY_CHN,
+         PAY_DAY,
+         PAY_KIND,
+         PAY_TYPE,
+         VOU_TYPE,
+         REPAY_CYCLE,
+         REPAY_TYPE,
+         TERM_DAY,
+         TERM_MON,
+         TERM_TYPE,
+         END_DATE,
+         MTR_DATE,
+         BEG_DATE,
+         DAM_RATE,
+         OVER_RATE,
+         LN_RATE,
+         LN_RATE_YEAR,
+         BAL,
+         DUE_AMT,
+         CUR_NO,
+         LN_TYPE,
+         FUND_NO,
+         PROJ_NO,
+         PRDT_NO,
+         CIF_NAME,
+         CIF_NO,
+         BR_ACC_TYPE,
+         PACT_XT,
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         APP_ID,
+         PACT_ID,
+         DUE_NO,
+         NORM_INT,
+         FUN_GETPROJNAME(PROJ_NO) as PROJ_NAME,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         FUN_GETPRDTNAME(PRDT_NO) as PRDT_NAME，
+         TRAN_STS,
+         TRAN_DATE
+                   ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnDue.insert">
+        <![CDATA[
+        INSERT INTO LN_DUE(
+         UP_TIME,
+         TX_TIME,
+         TX_DATE,
+         OP_NO,
+         REC_STS,
+         DUE_STS,
+         APPR_STS,
+         FIVE_STS,
+         FIVE_DATE,
+         FEE_AMT5,
+         FEE_AMT4,
+         FEE_AMT3,
+         FEE_AMT2,
+         FEE_AMT1,
+         VOU_AMT,
+         VOU_RATE,
+         SRV_AMT,
+         SRV_RATE,
+         FEE_AMT,
+         FEE_RATE,
+         PAY_MENT,
+         PAY_CHN,
+         PAY_DAY,
+         PAY_KIND,
+         PAY_TYPE,
+         VOU_TYPE,
+         REPAY_CYCLE,
+         REPAY_TYPE,
+         TERM_DAY,
+         TERM_MON,
+         TERM_TYPE,
+         END_DATE,
+         MTR_DATE,
+         BEG_DATE,
+         DAM_RATE,
+         OVER_RATE,
+         LN_RATE,
+         BAL,
+         DUE_AMT,
+         CUR_NO,
+         LN_TYPE,
+         FUND_NO,
+         PROJ_NO,
+         PRDT_NO,
+         CIF_NAME,
+         CIF_NO,
+         BR_ACC_TYPE,
+         PACT_XT,
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         APP_ID,
+         PACT_ID,
+         DUE_NO,
+         NORM_INT
+         )VALUES(
+         FUN_SYSTIME,
+         #txTime#,
+         #txDate#,
+         #opNo#,
+         #recSts#,
+         #dueSts#,
+         #apprSts#,
+         #fiveSts#,
+         #fiveDate#,
+         #feeAmt5#,
+         #feeAmt4#,
+         #feeAmt3#,
+         #feeAmt2#,
+         #feeAmt1#,
+         #vouAmt#,
+         #vouRate#,
+         #srvAmt#,
+         #srvRate#,
+         #feeAmt#,
+         #feeRate#,
+         #payMent#,
+         #payChn#,
+         #payDay#,
+         #payKind#,
+         #payType#,
+         #vouType#,
+         #repayCycle#,
+         #repayType#,
+         #termDay#,
+         #termMon#,
+         #termType#,
+         #endDate#,
+         #mtrDate#,
+         #begDate#,
+         #damRate#,
+         #overRate#,
+         #lnRate#,
+         #bal#,
+         #dueAmt#,
+         #curNo#,
+         #lnType#,
+         #fundNo#,
+         #projNo#,
+         #prdtNo#,
+         #cifName#,
+         #cifNo#,
+         #brAccType#,
+         #pactXt#,
+         #pactNo#,
+         #brNo#,
+         #batchNo#,
+         #appId#,
+         #pactId#,
+         #dueNo#,
+         #normInt#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnDue.del">
+        <![CDATA[
+               DELETE FROM LN_DUE
+                 WHERE
+               	DUE_NO = #dueNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnDue.update">
+        <![CDATA[
+         UPDATE LN_DUE set
+         UP_TIME=FUN_SYSTIME,
+         TX_TIME=#txTime#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#,
+         REC_STS=#recSts#,
+         DUE_STS=#dueSts#,
+         APPR_STS=#apprSts#,
+         FIVE_STS=#fiveSts#,
+         FIVE_DATE=#fiveDate#,
+         FEE_AMT5=#feeAmt5#,
+         FEE_AMT4=#feeAmt4#,
+         FEE_AMT3=#feeAmt3#,
+         FEE_AMT2=#feeAmt2#,
+         FEE_AMT1=#feeAmt1#,
+         VOU_AMT=#vouAmt#,
+         VOU_RATE=#vouRate#,
+         SRV_AMT=#srvAmt#,
+         SRV_RATE=#srvRate#,
+         FEE_AMT=#feeAmt#,
+         FEE_RATE=#feeRate#,
+         PAY_MENT=#payMent#,
+         PAY_CHN=#payChn#,
+         PAY_DAY=#payDay#,
+         PAY_KIND=#payKind#,
+         PAY_TYPE=#payType#,
+         VOU_TYPE=#vouType#,
+         REPAY_CYCLE=#repayCycle#,
+         REPAY_TYPE=#repayType#,
+         TERM_DAY=#termDay#,
+         TERM_MON=#termMon#,
+         TERM_TYPE=#termType#,
+         END_DATE=#endDate#,
+         MTR_DATE=#mtrDate#,
+         BEG_DATE=#begDate#,
+         DAM_RATE=#damRate#,
+         OVER_RATE=#overRate#,
+         LN_RATE=#lnRate#,
+         BAL=#bal#,
+         DUE_AMT=#dueAmt#,
+         CUR_NO=#curNo#,
+         LN_TYPE=#lnType#,
+         FUND_NO=#fundNo#,
+         PROJ_NO=#projNo#,
+         PRDT_NO=#prdtNo#,
+         CIF_NAME=#cifName#,
+         CIF_NO=#cifNo#,
+         BR_ACC_TYPE=#brAccType#,
+         PACT_XT=#pactXt#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         BATCH_NO=#batchNo#,
+         APP_ID=#appId#,
+         PACT_ID=#pactId#,
+         DUE_NO=#dueNo#,
+         NORM_INT=#normInt#
+          WHERE
+               	DUE_NO = #dueNo#        ]]>
+    </update>
+    <!-- 表修改(根据申请ID更新dueSts) -->
+    <update id="LnDue.dueStsUpdate">
+        <![CDATA[
+         UPDATE LN_DUE set
+         DUE_STS=#dueSts#
+          WHERE
+               	DUE_NO  = #dueNo# 
+           AND  APP_ID = #appId#         ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="LnDue.getById"  resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        <![CDATA[
+             FROM LN_DUE 
+         WHERE 
+               	DUE_NO = #dueNo#        ]]>
+     </select>
+     <!--根据合同编号 和 合作机构 进行查找 信息-->
+      <select id="LnDue.getByIdForDue"  resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        <![CDATA[
+             FROM LN_DUE 
+         WHERE 
+               	BR_NO=#brNo#    AND  	PACT_NO = #pactNo#    ]]>
+     </select>
+    <select id="LnDue.getByIdForPactNo"  resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        <![CDATA[
+             FROM LN_DUE 
+         WHERE 
+               	PACT_NO = #pactNo#        ]]>
+     </select>
+     <!-- 表查询ByFundNo -->
+    <select id="LnDue.findListByFundNo"  resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        <![CDATA[
+             FROM LN_DUE 
+         WHERE 
+               	FUND_NO = #fundNo#        ]]>
+     </select>
+     
+     <!-- 按照合同ID查询借据信息 -->
+    <select id="LnDue.getByPactId"  resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        <![CDATA[
+             FROM LN_DUE 
+         WHERE 
+               	PACT_ID = #pactId#        ]]>
+     </select>
+     
+      <!-- 按照合同号与机构号查询借据信息 -->
+    <select id="LnDue.getByPactNoAndBrNo"  resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        <![CDATA[
+             FROM LN_DUE 
+         WHERE 
+               	PACT_NO = #pactNo# AND BR_NO=#brNo#        ]]>
+     </select>
+     <!-- 查询需要定时放款的信息 -->
+     <select id="LnDueDao.findList" resultMap="RM.LnDue">
+            SELECT <include refid="LnDue.columns"/>
+       			FROM LN_DUE
+          	WHERE	DUE_STS = '01'
+              AND  	APPR_STS = '01'
+    </select>
+        <!-- 查询需要重新进入F队列的信息 -->
+     <select id="LnDueDao.findListToWorkF" resultMap="RM.LnDue">
+            SELECT <include refid="LnDue.columns"/>
+  				from ln_due m
+ 			where exists (select 1
+          		from ln_stage l
+         	where m.app_id = l.app_id
+           		and DUP_STS = '02'
+           		and CHK_STS = '02'
+           		and EVAL_STS = '02'
+           		and SPLIT_STS = '02'
+           		and ZDAPP_STS = '02'
+           		and PACT_STS = '02'
+           		and DUE_STS = '02'
+           		and PART_STS = '01')    
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnDue.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprSts">
+                  <isNotEmpty prepend="AND" property="apprSts">
+                      APPR_STS = #apprSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="dueSts">
+                  <isNotEmpty prepend="AND" property="dueSts">
+                      DUE_STS = #dueSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NO in (select br_no from corp_base where br_name like '%$brName$%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      PACT_ID = #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dueNo">
+                  <isNotEmpty prepend="AND" property="dueNo">
+                      DUE_NO = #dueNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <sql id="LnDue.findPageForRead.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="mtrDate">
+                  <isNotEmpty prepend="AND" property="mtrDate">
+                      MTR_DATE = #mtrDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="begDate">
+                  <isNotEmpty prepend="AND" property="begDate">
+                      BEG_DATE = #begDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprSts">
+                  <isNotEmpty prepend="AND" property="apprSts">
+                      APPR_STS = #apprSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="dueSts">
+                  <isNotEmpty prepend="AND" property="dueSts">
+                      DUE_STS = #dueSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NO in (select br_no from corp_base where br_name like '%$brName$%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      PACT_ID = #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dueNo">
+                  <isNotEmpty prepend="AND" property="dueNo">
+                      DUE_NO = #dueNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <sql id="LnDue.findPageFail.and">
+    	<isPropertyAvailable property="pactNo">
+              <isNotEmpty prepend="AND" property="pactNo">
+                  PACT_NO = #pactNo#
+               </isNotEmpty>
+         </isPropertyAvailable>
+         <isPropertyAvailable property="cifNo">
+              <isNotEmpty prepend="AND" property="cifNo">
+                  CIF_NO = #cifNo#
+               </isNotEmpty>
+         </isPropertyAvailable>
+    	<isPropertyAvailable property="dueNo">
+              <isNotEmpty prepend="AND" property="dueNo">
+                  DUE_NO = #dueNo#
+               </isNotEmpty>
+         </isPropertyAvailable>
+         <isPropertyAvailable property="loginid">
+              <isNotEmpty prepend="AND" property="loginid">
+                  PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+               </isNotEmpty>
+         </isPropertyAvailable>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnDue.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_DUE <include refid="LnDue.findPage.where"/>
+    </select>
+    <select id="LnDue.findPageForPop.count" resultClass="int">
+         SELECT count(*)
+  FROM LN_DUE T
+ WHERE NOT EXISTS (SELECT 1 FROM AFT_POOL_REL R WHERE R.PACT_NO = T.PACT_NO)
+   AND T.DUE_STS = '02'
+   <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprSts">
+                  <isNotEmpty prepend="AND" property="apprSts">
+                      APPR_STS = #apprSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="dueSts">
+                  <isNotEmpty prepend="AND" property="dueSts">
+                      DUE_STS = #dueSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NO in (select br_no from corp_base where br_name like '%$brName$%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      PACT_ID = #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dueNo">
+                  <isNotEmpty prepend="AND" property="dueNo">
+                      DUE_NO = #dueNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    <select id="LnDue.findPageForRead.count" resultClass="int">
+        SELECT count(*) FROM LN_DUE <include refid="LnDue.findPageForRead.where"/>
+    </select>
+    <select id="LnDue.findPageFail.count" resultClass="int">
+        SELECT count(*) FROM LN_DUE where APPR_STS = #apprSts# <include refid="LnDue.findPageFail.and"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnDue.findByPage" resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  UP_TIME,
+			         TX_TIME,
+			         TX_DATE,
+			         OP_NO,
+			         REC_STS,
+			         DUE_STS,
+			         APPR_STS,
+			         FIVE_STS,
+			         FIVE_DATE,
+			         FEE_AMT5,
+			         FEE_AMT4,
+			         FEE_AMT3,
+			         FEE_AMT2,
+			         FEE_AMT1,
+			         VOU_AMT,
+			         VOU_RATE,
+			         SRV_AMT,
+			         SRV_RATE,
+			         FEE_AMT,
+			         FEE_RATE,
+			         PAY_MENT,
+			         PAY_CHN,
+			         PAY_DAY,
+			         PAY_KIND,
+			         PAY_TYPE,
+			         VOU_TYPE,
+			         REPAY_CYCLE,
+			         REPAY_TYPE,
+			         TERM_DAY,
+			         TERM_MON,
+			         TERM_TYPE,
+			         END_DATE,
+			         MTR_DATE,
+			         BEG_DATE,
+			         DAM_RATE,
+			         OVER_RATE,
+			         LN_RATE,
+			         LN_RATE_YEAR,
+			         BAL,
+			         DUE_AMT,
+			         CUR_NO,
+			         LN_TYPE,
+			         FUND_NO,
+			         PROJ_NO,
+			         PRDT_NO,
+			         CIF_NAME,
+			         CIF_NO,
+			         BR_ACC_TYPE,
+			         PACT_XT,
+			         PACT_NO,
+			         BR_NO,
+			         BATCH_NO,
+			         APP_ID,
+			         PACT_ID,
+			         DUE_NO,
+			         NORM_INT,
+			         TRAN_STS,
+			         TRAN_DATE
+          FROM LN_DUE
+                    <include refid="LnDue.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="LnDue.findByPageForPop" resultMap="RM.LnDueForPop">
+		SELECT 
+		
+		PACT_ID,
+       PACT_NO,
+       BR_NO,
+       BR_NAME,
+       CIF_NO,
+       CIF_NAME,
+       DUE_AMT,
+       BAL,
+       NORM_INT,
+       BEG_DATE,
+       END_DATE,
+       DUE_NO,
+       FIVE_STS
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT 
+            PACT_ID,
+       PACT_NO,
+       BR_NO,
+       FUN_GETBRNAME(BR_NO) AS BR_NAME,
+       CIF_NO,
+       CIF_NAME,
+       DUE_AMT,
+       BAL,
+       DUE_NO,
+       nvl(NORM_INT,0.00) as NORM_INT,
+       decode(substr(BEG_DATE,0,4)||'-'||substr(BEG_DATE,5,2)||'-'||substr(BEG_DATE,7,2),'--',' ',substr(BEG_DATE,0,4)||'-'||substr(BEG_DATE,5,2)||'-'||substr(BEG_DATE,7,2)) as BEG_DATE,
+       decode(substr(END_DATE,0,4)||'-'||substr(END_DATE,5,2)||'-'||substr(END_DATE,7,2),'--',' ',substr(END_DATE,0,4)||'-'||substr(END_DATE,5,2)||'-'||substr(END_DATE,7,2)) as END_DATE,
+       FIVE_STS FROM LN_DUE T
+                     WHERE NOT EXISTS (SELECT 1 FROM AFT_POOL_REL R WHERE R.PACT_NO = T.PACT_NO)
+   AND T.DUE_STS = '02'
+   <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprSts">
+                  <isNotEmpty prepend="AND" property="apprSts">
+                      APPR_STS = #apprSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="dueSts">
+                  <isNotEmpty prepend="AND" property="dueSts">
+                      DUE_STS = #dueSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NO in (select br_no from corp_base where br_name like '%$brName$%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      PACT_ID = #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dueNo">
+                  <isNotEmpty prepend="AND" property="dueNo">
+                      DUE_NO = #dueNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="LnDue.findByPageForRead" resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT UP_TIME,
+			         TX_TIME,
+			         TX_DATE,
+			         OP_NO,
+			         REC_STS,
+			         DUE_STS,
+			         APPR_STS,
+			         FIVE_STS,
+			         FIVE_DATE,
+			         FEE_AMT5,
+			         FEE_AMT4,
+			         FEE_AMT3,
+			         FEE_AMT2,
+			         FEE_AMT1,
+			         VOU_AMT,
+			         VOU_RATE,
+			         SRV_AMT,
+			         SRV_RATE,
+			         FEE_AMT,
+			         FEE_RATE,
+			         PAY_MENT,
+			         PAY_CHN,
+			         PAY_DAY,
+			         PAY_KIND,
+			         PAY_TYPE,
+			         VOU_TYPE,
+			         REPAY_CYCLE,
+			         REPAY_TYPE,
+			         TERM_DAY,
+			         TERM_MON,
+			         TERM_TYPE,
+			         END_DATE,
+			         MTR_DATE,
+			         BEG_DATE,
+			         DAM_RATE,
+			         OVER_RATE,
+			         LN_RATE,
+			         BAL,
+			         DUE_AMT,
+			         CUR_NO,
+			         LN_TYPE,
+			         LN_RATE_YEAR,
+			         FUND_NO,
+			         PROJ_NO,
+			         PRDT_NO,
+			         CIF_NAME,
+			         CIF_NO,
+			         BR_ACC_TYPE,
+			         PACT_XT,
+			         PACT_NO,
+			         BR_NO,
+			         BATCH_NO,
+			         APP_ID,
+			         PACT_ID,
+			         DUE_NO,
+			         NORM_INT,
+			         TRAN_STS,
+			         TRAN_DATE
+			       FROM LN_DUE
+                    <include refid="LnDue.findPageForRead.where"/>
+                    order by beg_Date desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 分账放款失败查询 -->
+    <select id="LnDue.findAllFail" resultMap="RM.LnDue">
+       SELECT <include refid="LnDue.columns"/>
+        <![CDATA[
+             FROM LN_DUE 
+         WHERE 
+               	APPR_STS = #apprSts#  <include refid="LnDue.findPageFail.and"/>      ]]>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnDue.findPageFail" resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM
+            (select UP_TIME,
+			         TX_TIME,
+			         TX_DATE,
+			         OP_NO,
+			         REC_STS,
+			         DUE_STS,
+			         APPR_STS,
+			         FIVE_STS,
+			         FIVE_DATE,
+			         FEE_AMT5,
+			         FEE_AMT4,
+			         FEE_AMT3,
+			         FEE_AMT2,
+			         FEE_AMT1,
+			         VOU_AMT,
+			         VOU_RATE,
+			         SRV_AMT,
+			         SRV_RATE,
+			         FEE_AMT,
+			         FEE_RATE,
+			         PAY_MENT,
+			         PAY_CHN,
+			         PAY_DAY,
+			         PAY_KIND,
+			         PAY_TYPE,
+			         VOU_TYPE,
+			         REPAY_CYCLE,
+			         REPAY_TYPE,
+			         TERM_DAY,
+			         TERM_MON,
+			         TERM_TYPE,
+			         END_DATE,
+			         MTR_DATE,
+			         BEG_DATE,
+			         DAM_RATE,
+			         OVER_RATE,
+			         LN_RATE,
+			         LN_RATE_YEAR,
+			         BAL,
+			         DUE_AMT,
+			         CUR_NO,
+			         LN_TYPE,
+			         FUND_NO,
+			         PROJ_NO,
+			         PRDT_NO,
+			         CIF_NAME,
+			         CIF_NO,
+			         BR_ACC_TYPE,
+			         PACT_XT,
+			         PACT_NO,
+			         BR_NO,
+			         BATCH_NO,
+			         APP_ID,
+			         PACT_ID,
+			         DUE_NO,
+			         NORM_INT,
+			         TRAN_STS,
+			         TRAN_DATE
+  				from ln_due
+ 				where APPR_STS = #apprSts#
+                    <include refid="LnDue.findPageFail.and"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--抽查回访列表查询条件 -->
+    <sql id="LnDue.getCheckListt">
+        <dynamic prepend="where">
+      	<isPropertyAvailable property="pactNo">
+          <isNotEmpty prepend="AND" property="pactNo">
+                 D.PACT_NO = #pactNo#
+      	  </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="brNo">
+          <isNotEmpty prepend="AND" property="brNo">
+                 D.BR_NO = #brNo#
+          </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="projNo">
+          <isNotEmpty prepend="AND" property="projNo">
+          	    D.PROJ_NO = #projNo#
+          </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="prdtNo">
+          <isNotEmpty prepend="AND" property="prdtNo">
+          	    D.PRDT_NO = #prdtNo#
+          </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="prdtName">
+          <isNotEmpty prepend="AND" property="prdtName">
+          	    FUN_GETPRDTNAME(D.PRDT_NO) like '%$prdtName$%'
+          </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="cifNo">
+          <isNotEmpty prepend="AND" property="cifNo">
+                 D.CIF_NO = #cifNo#
+          </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="cifName">
+          <isNotEmpty prepend="AND" property="cifName">
+          	     D.CIF_NAME like '%$cifName$%'
+           </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="begDate">
+          <isNotEmpty prepend="AND" property="begDate">
+          	     D.BEG_DATE = #begDate#
+           </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="chkFlag">
+          <isNotEmpty prepend="AND" property="chkFlag">
+          	     D.CHK_FLAG = #chkFlag#
+           </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="loginid">
+          <isNotEmpty prepend="AND" property="loginid">
+          	     proj_no in (select proj_no from proj_mang where login_id = #loginid#)
+           </isNotEmpty>
+        </isPropertyAvailable>
+        </dynamic>
+     </sql>
+                  
+    <!-- 抽查回访列表 -->
+    <select id="LnDue.getCheckList"  resultMap="RM.LnDueCheck">
+    SELECT DUE_NO,  
+		       	  PACT_ID,
+		          PACT_NO,
+		          BR_NO,
+		          FUN_GETBRNAME(BR_NO) AS BR_NAME,
+		          CIF_NO,
+		          CIF_NAME,
+		          PRDT_NO,
+		          FUN_GETPRDTNAME(PRDT_NO)AS PRDT_NAME,
+		          BEG_DATE,
+		          END_DATE,
+		          PROJ_NO,
+		          FUN_GETPROJNAME(PROJ_NO) AS PROJ_NAME,
+		          BAL,
+		          NORM_INT,
+		          CHK_FLAG
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            ( SELECT D.DUE_NO,  
+		       	  D.PACT_ID,
+		          D.PACT_NO,
+		          D.BR_NO,
+		          D.CIF_NO,
+		          D.CIF_NAME,
+		          D.PRDT_NO,
+		          D.BEG_DATE,
+		          D.END_DATE,
+		          D.PROJ_NO,
+		          D.BAL,
+		          D.NORM_INT,
+		          D.CHK_FLAG
+			    FROM LN_DUE D
+		         <include refid="LnDue.getCheckListt"/>
+         ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+     </select>
+     <select id="LnDue.getCheckList.count" resultClass="int">
+    	SELECT  COUNT(*)
+  		FROM LN_DUE D
+	         <include refid="LnDue.getCheckListt"/>
+	 </select>
+	 <select id="LnDue.getLndueList" resultMap="RM.LnDue">
+    	select <include refid="LnDue.columns"/> from ln_due where due_sts = '01'
+   		and due_no not in(select loan_no from ac_ln_mst)
+	 </select>
+	 
+	  <select id="LnDue.getLndueListByBrno" resultMap="RM.LnDue">
+    	select <include refid="LnDue.columns"/> from ln_due where BR_NO = #brNo# and due_sts = '02'
+	 </select>
+	     <!-- 查询台帐参数信息 -->
+    <select id="LnDue.getParmByTzNo" resultMap="RM.LnDue">
+        SELECT <include refid="LnDue.columns"/> FROM LN_DUE  WHERE BR_NO = #brNo#
+    </select>
+</sqlMap>

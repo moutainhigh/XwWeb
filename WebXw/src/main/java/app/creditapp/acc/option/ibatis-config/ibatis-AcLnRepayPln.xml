@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLnRepayPln" type="app.creditapp.acc.option.entity.AcLnRepayPln"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnRepayPln" class="AcLnRepayPln">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="perdNo" column="PERD_NO" jdbcType="Int"/>
+    <result property="payDt" column="PAY_DT" />
+    <result property="instmAmt" column="INSTM_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="fineInt" column="FINE_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="bal" column="BAL" jdbcType="double" nullValue="0.00"/>
+    <result property="repayPrcpAmt" column="REPAY_PRCP_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="repayNormInt" column="REPAY_NORM_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="repayFineInt" column="REPAY_FINE_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double" nullValue="0.00"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double" nullValue="0.00"/>
+    <result property="overInd" column="OVER_IND" />
+    <result property="lstPayDt" column="LST_PAY_DT" />
+    <result property="wvPrcpAmt" column="WV_PRCP_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="wvNormInt" column="WV_NORM_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="wvFineInt" column="WV_FINE_INT" jdbcType="double" nullValue="0.00"/>
+    <result property="prcpSts" column="PRCP_STS" />
+    <result property="intSts" column="INT_STS" />
+    <result property="setlSts" column="SETL_STS" />
+    <result property="fineIntDt" column="FINE_INT_DT" />
+    <result property="ppErInd" column="PP_ER_IND" />
+    <result property="ifAdj" column="IF_ADJ" />
+    </resultMap>
+    <resultMap id="RM.AcLnRepayPlnAmt" class="AcLnRepayPln">
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double"/>
+    <result property="fineInt" column="FINE_INT" jdbcType="double"/>
+    <result property="repayPrcpAmt" column="REPAY_PRCP_AMT" jdbcType="double"/>
+    <result property="repayNormInt" column="REPAY_NORM_INT" jdbcType="double"/>
+    <result property="repayFineInt" column="REPAY_FINE_INT" jdbcType="double"/>
+    <result property="bal" column="BAL" jdbcType="double"/>
+    </resultMap>
+     <sql id="AcLnRepayPln.columns">
+        <![CDATA[
+         PACT_NO,
+         BR_NO,
+         fun_getBrName(BR_NO) as br_name,
+         LOAN_NO,
+         PERD_NO,
+         PAY_DT,
+         INSTM_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         FINE_INT,
+         BAL,
+         REPAY_PRCP_AMT,
+         REPAY_NORM_INT,
+         REPAY_FINE_INT,
+         LN_RATE,
+         OVER_RATE,
+         OVER_IND,
+         LST_PAY_DT,
+         WV_PRCP_AMT,
+         WV_NORM_INT,
+         WV_FINE_INT,
+         PRCP_STS,
+         INT_STS,
+         SETL_STS,
+         FINE_INT_DT,
+         PP_ER_IND,
+         IF_ADJ
+          ]]>
+    </sql>
+   
+
+    <!-- 表新增 -->
+    <insert id="AcLnRepayPln.insert">
+        <![CDATA[
+        INSERT INTO AC_LN_REPAY_PLN(
+         PACT_NO,
+         BR_NO,
+         LOAN_NO,
+         PERD_NO,
+         PAY_DT,
+         INSTM_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         FINE_INT,
+         BAL,
+         REPAY_PRCP_AMT,
+         REPAY_NORM_INT,
+         REPAY_FINE_INT,
+         LN_RATE,
+         OVER_RATE,
+         OVER_IND,
+         LST_PAY_DT,
+         WV_PRCP_AMT,
+         WV_NORM_INT,
+         WV_FINE_INT,
+         PRCP_STS,
+         INT_STS,
+         SETL_STS,
+         FINE_INT_DT,
+         PP_ER_IND,
+         IF_ADJ
+         )VALUES(
+         #pactNo#,
+         #brNo#,
+         #loanNo#,
+         #perdNo#,
+         #payDt#,
+         #instmAmt#,
+         #prcpAmt#,
+         #normInt#,
+         #fineInt#,
+         #bal#,
+         #repayPrcpAmt#,
+         #repayNormInt#,
+         #repayFineInt#,
+         #lnRate#,
+         #overRate#,
+         #overInd#,
+         #lstPayDt#,
+         #wvPrcpAmt#,
+         #wvNormInt#,
+         #wvFineInt#,
+         #prcpSts#,
+         #intSts#,
+         #setlSts#,
+         #fineIntDt#,
+         #ppErInd#,
+         #ifAdj#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLnRepayPln.del">
+        <![CDATA[
+               DELETE FROM AC_LN_REPAY_PLN
+                 WHERE
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcLnRepayPln.update">
+        <![CDATA[
+         UPDATE AC_LN_REPAY_PLN set
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         LOAN_NO=#loanNo#,
+         PERD_NO=#perdNo#,
+         PAY_DT=#payDt#,
+         INSTM_AMT=#instmAmt#,
+         PRCP_AMT=#prcpAmt#,
+         NORM_INT=#normInt#,
+         FINE_INT=#fineInt#,
+         BAL=#bal#,
+         REPAY_PRCP_AMT=#repayPrcpAmt#,
+         REPAY_NORM_INT=#repayNormInt#,
+         REPAY_FINE_INT=#repayFineInt#,
+         LN_RATE=#lnRate#,
+         OVER_RATE=#overRate#,
+         OVER_IND=#overInd#,
+         LST_PAY_DT=#lstPayDt#,
+         WV_PRCP_AMT=#wvPrcpAmt#,
+         WV_NORM_INT=#wvNormInt#,
+         WV_FINE_INT=#wvFineInt#,
+         PRCP_STS=#prcpSts#,
+         INT_STS=#intSts#,
+         SETL_STS=#setlSts#,
+         FINE_INT_DT=#fineIntDt#,
+         PP_ER_IND=#ppErInd#,
+         IF_ADJ=#ifAdj#
+          WHERE
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcLnRepayPln.getById"  resultMap="RM.AcLnRepayPln">
+        SELECT <include refid="AcLnRepayPln.columns"/>
+        <![CDATA[
+             FROM AC_LN_REPAY_PLN 
+         WHERE 
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+        ]]>
+     </select>
+     
+      <!-- 表查询ById MaxPerdNo -->
+    <select id="AcLnRepayPln.getByIdMaxPerdNo" resultClass="int" >
+        SELECT nvl(max(PERD_NO),0)
+             FROM AC_LN_REPAY_PLN 
+         WHERE 
+               	PACT_NO=#pactNo# and loan_no = #loanNo#
+     </select>
+     
+       <!-- 表查询ByIdforpactNo -->
+     <select id="AcLnRepayPln.getByIdforpactNo"  resultMap="RM.AcLnRepayPln">
+        SELECT <include refid="AcLnRepayPln.columns"/>
+        <![CDATA[
+             FROM AC_LN_REPAY_PLN 
+         WHERE 
+               	PACT_NO = #pactNo# 
+        ]]>
+     </select>
+     
+     <select id="AcLnRepayPln.getListByLoanNo"  resultMap="RM.AcLnRepayPln">
+        SELECT <include refid="AcLnRepayPln.columns"/>
+        <![CDATA[
+             FROM AC_LN_REPAY_PLN 
+         WHERE 
+               	loan_no = #loanNo# 
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLnRepayPln.findPage.where">
+        <dynamic prepend="where">
+         <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+         </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLnRepayPln.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_REPAY_PLN <include refid="AcLnRepayPln.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLnRepayPln.findByPage" resultMap="RM.AcLnRepayPln">
+        SELECT <include refid="AcLnRepayPln.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcLnRepayPln.columns"/> FROM AC_LN_REPAY_PLN
+                    <include refid="AcLnRepayPln.findPage.where"/> order by perd_no asc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 查询贷款的应收本金、利息、已还本金、已还正常利息 -->
+    <select id="AcLnRepayPln.getAllAmt"  resultMap="RM.AcLnRepayPlnAmt">
+              SELECT nvl(sum(nvl(prcp_amt, 0)),0) as prcp_amt,
+       			 nvl(sum(nvl(norm_int, 0)),0) as norm_int,
+       			 nvl(sum(nvl(fine_int, 0)),0) as fine_int,
+        		nvl(sum(nvl(repay_prcp_amt, 0)),0) as repay_prcp_amt,
+        		nvl(sum(nvl(repay_norm_int, 0)),0) as repay_norm_int,
+        		nvl(sum(nvl(repay_fine_int, 0)),0) as repay_fine_int,
+        		nvl(sum(nvl(prcp_amt, 0) + nvl(norm_int, 0)+nvl(fine_int, 0) - nvl(repay_prcp_amt, 0) -
+          		  nvl(repay_norm_int, 0)-nvl(repay_fine_int, 0)),0) as bal
+             from ac_ln_repay_pln
+             where
+               	loan_no = #loanNo# 
+     </select>
+    <select id="AcLnRepayPln.getByBrNoPactNoPerdNo" resultMap="RM.AcLnRepayPln">
+    	select 
+    	<include refid="AcLnRepayPln.columns"/>
+    	from Ac_Ln_Repay_Pln where pact_no=#pactNo# and br_no=#brNo# and perd_no=#perdNo#
+    </select>
+</sqlMap>

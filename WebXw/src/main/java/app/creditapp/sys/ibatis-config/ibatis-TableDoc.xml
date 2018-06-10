@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="Table_Doc" type="app.creditapp.sys.entity.TableDoc"/>
+    <!-- 列表查询返回字段 -->
+    <resultMap id="RM.Table_Doc" class="Table_Doc">
+      <result property="doc_no" column="DOC_NO"/>
+      <result property="doc_name" column="DOC_NAME"/>
+      <result property="lev" column="LEV"/>
+      <result property="uplev" column="UPLEV"/>
+
+    </resultMap>
+    <!-- 表字段 -->
+    <sql id="Table_Doc.columns">
+        <![CDATA[
+            DOC_NO,
+            DOC_NAME,
+            LEV,
+            UPLEV
+        ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="TableDoc.insert">
+        <![CDATA[
+          INSERT INTO Table_Doc(
+            DOC_NO,
+            DOC_NAME,
+            LEV,
+            UPLEV
+           )VALUES(
+            #doc_no#,
+            #doc_name#,
+            #lev#,
+            #uplev#
+            )
+        ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="TableDoc.del">
+        <![CDATA[
+               DELETE FROM Table_Doc
+                 WHERE
+              DOC_NO=#doc_no#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="TableDoc.update">
+        <![CDATA[
+            UPDATE Table_Doc set
+               DOC_NO=#doc_no#,
+               DOC_NAME=#doc_name#,
+               LEV=#lev#,
+               UPLEV=#uplev#
+            WHERE
+              DOC_NO=#doc_no#
+        ]]>
+    </update>
+    <!-- 表查询ById -->
+    <select id="TableDoc.getById"  resultMap="RM.Table_Doc">
+        SELECT <include refid="Table_Doc.columns"/>
+        <![CDATA[
+             FROM Table_Doc
+         WHERE 
+            DOC_NO=#doc_no#
+        ]]>
+     </select>
+   <!-- 获取所有的菜单 -->
+    <select id="TableDoc.findAll"  resultMap="RM.Table_Doc">
+        SELECT <include refid="Table_Doc.columns"/>
+        <![CDATA[
+             FROM Table_Doc  ORDER BY DOC_NO
+        ]]>
+     </select>     
+ 
+      
+    <!-- 分页查询条件 -->
+    <sql id="TableDoc.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="doc_no">
+                      <isNotEmpty prepend="AND" property="doc_no">
+                        DOC_NO=#doc_no#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="TableDoc.findPage.count" resultClass="int">
+        SELECT count(*) FROM Table_Doc <include refid="TableDoc.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="tabledoclist.findByPage" resultMap="RM.Table_Doc">
+        SELECT <include refid="Table_Doc.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="Table_Doc.columns"/> FROM Table_Doc
+                    <include refid="TableDoc.findPage.where"/>
+             ) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+    <!--查找文档结构树 -->
+    <select id="tabledoclist.getMkTblList" resultMap="RM.Table_Doc">
+       SELECT * FROM TABLE_DOC ORDER BY SEQ 
+    </select>
+</sqlMap>

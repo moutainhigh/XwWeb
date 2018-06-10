@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<rules>
+		<ruleId>201</ruleId>
+		<ruleName>StudentRule</ruleName>
+		<columnList>
+			<column columenName="age">
+				<canNull>false</canNull>
+				<maxLength></maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue>0</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+			</column>
+
+			<column columenName="name">
+				<canNull>false</canNull>
+				<startStr>O</startStr>
+			</column>
+
+			<column columenName="email" warningType="regexpType,endStr">
+				<regexpType>email</regexpType>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

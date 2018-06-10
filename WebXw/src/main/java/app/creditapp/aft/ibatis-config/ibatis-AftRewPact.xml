@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftRewPact" type="app.creditapp.aft.entity.AftRewPact"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftRewPact" class="AftRewPact">
+    <result property="rewNo" column="REW_NO" />
+    <result property="rewType" column="REW_TYPE" />
+    <result property="rewId" column="REW_ID" />
+    <result property="rewDate" column="REW_DATE" />
+    <result property="rewValue" column="REW_VALUE" jdbcType="double"/>
+    <result property="projNo" column="PROJ_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="bal" column="BAL" jdbcType="double"/>
+    <result property="intst" column="INTST" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="relId" column="REL_ID" />
+    <result property="rewCont" column="REW_CONT" />
+    <result property="acptNo" column="ACPT_NO" />
+    <result property="dealRest" column="DEAL_REST" />
+    <result property="rewSts" column="REW_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="rewName" column="REW_NAME" />
+    <result property="brName" column="BR_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    </resultMap>
+    
+    <resultMap id="RM.AftRewPactAndCallback" class="AftRewPact">
+    <result property="rewId" column="REW_ID" />
+    <result property="rewNo" column="REW_NO" />
+    <result property="rewName" column="REW_NAME" />
+    <result property="rewType" column="REW_TYPE" />
+    <result property="rewDate" column="REW_DATE" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="brNo" column="BR_NO" />
+    <result property="endDate" column="END_DATE" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="bal" column="BAL" jdbcType="double"/>
+    <result property="lastDate" column="LAST_DATE" />
+    <result property="brName" column="BR_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="dealRest" column="DEAL_REST" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="backId" column="BACK_ID" />
+    <result property="collWay" column="COLL_WAY" />
+    <result property="collResult" column="COLL_RESULT" />
+    </resultMap>
+    
+    <resultMap id="RM.AftRewPact.collect" class="AftRewPact">
+    <result property="rewNo" column="REW_NO" />
+    <result property="rewType" column="REW_TYPE" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="rewCont" column="REW_CONT" />
+    <!-- 
+    <result property="rewSts" column="REW_STS" />
+     -->
+    <result property="rewName" column="REW_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="sumCount" column="SUM_COUNT" />
+    
+    </resultMap>
+    <!-- 催收列表查询返回字段
+    <resultMap id="RM.AftRewPact" class="AftRewPact">
+    <result property="rewNo" column="REW_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="bal" column="BAL" jdbcType="double"/>
+    <result property="intst" column="INTST" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="brName" column="BR_NAME" />
+    <result property="dealRest" column="DEAL_REST" />
+    </resultMap> -->
+     <sql id="AftRewPact.columns">
+        <![CDATA[
+         REW_NO,
+         REW_TYPE,
+         REW_ID,
+         REW_DATE,
+         REW_VALUE,
+         PROJ_NO,
+         BR_NO,
+         PACT_ID,
+         PACT_NO,
+         CIF_NO,
+         CIF_NAME,
+         PRDT_NO,
+         PACT_AMT,
+         BAL,
+         INTST,
+         BEG_DATE,
+         END_DATE,
+         REL_ID,
+         REW_CONT,
+         ACPT_NO,
+         DEAL_REST,
+         REW_STS,
+         TX_DATE,
+         UP_DATE,
+         FUN_GETREWNAME(rew_no) as REW_NAME,
+         FUN_GETBRNAME(br_no) as BR_NAME,
+         FUN_GETPROJNAME(PROJ_NO) AS PROJ_NAME,
+         FUN_GETPRDTNAME(PRDT_NO) as PRDT_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftRewPact.insert">
+        <![CDATA[
+        INSERT INTO AFT_REW_PACT(
+         REW_NO,
+         REW_TYPE,
+         REW_ID,
+         REW_DATE,
+         REW_VALUE,
+         PROJ_NO,
+         BR_NO,
+         PACT_ID,
+         PACT_NO,
+         CIF_NO,
+         CIF_NAME,
+         PRDT_NO,
+         PACT_AMT,
+         BAL,
+         INTST,
+         BEG_DATE,
+         END_DATE,
+         REL_ID,
+         REW_CONT,
+         ACPT_NO,
+         DEAL_REST,
+         REW_STS,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #rewNo#,
+         #rewType#,
+         #rewId#,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         #rewValue#,
+         #projNo#,
+         #brNo#,
+         #pactId#,
+         #pactNo#,
+         #cifNo#,
+         #cifName#,
+         #prdtNo#,
+         #pactAmt#,
+         #bal#,
+         #intst#,
+         #begDate#,
+         #endDate#,
+         #relId#,
+         #rewCont#,
+         #acptNo#,
+         '01',
+         #rewSts#,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         TO_CHAR(SYSDATE,'YYYYMMDD')
+         )
+          ]]>
+          <selectKey resultClass="String" type="pre" keyProperty="rewId" >
+				SELECT  AFT_REW_SEQ.NEXTVAL AS REW_ID FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表新增 -->
+    <insert id="AftRewPact.insertForSplit">
+        <![CDATA[
+        INSERT INTO AFT_REW_PACT(
+         REW_NO,
+         REW_TYPE,
+         REW_ID,
+         REW_DATE,
+         REW_VALUE,
+         PROJ_NO,
+         BR_NO,
+         PACT_ID,
+         PACT_NO,
+         CIF_NO,
+         CIF_NAME,
+         PRDT_NO,
+         PACT_AMT,
+         BAL,
+         INTST,
+         BEG_DATE,
+         END_DATE,
+         REL_ID,
+         REW_CONT,
+         ACPT_NO,
+         DEAL_REST,
+         REW_STS,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #rewNo#,
+         #rewType#,
+         AFT_REW_PACT_SEQ.NEXTVAL,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         #rewValue#,
+         #projNo#,
+         #brNo#,
+         #pactId#,
+         #pactNo#,
+         #cifNo#,
+         #cifName#,
+         #prdtNo#,
+         #pactAmt#,
+         #bal#,
+         #intst#,
+         #begDate#,
+         #endDate#,
+         #relId#,
+         #rewCont#,
+         #acptNo#,
+         '01',
+         #rewSts#,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         TO_CHAR(SYSDATE,'YYYYMMDD')
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftRewPact.del">
+        <![CDATA[
+               DELETE FROM AFT_REW_PACT
+                 WHERE
+               	REW_ID = #rewId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftRewPact.update">
+        <![CDATA[
+         UPDATE AFT_REW_PACT set
+         REW_NO=#rewNo#,
+         REW_TYPE=#rewType#,
+         REW_ID=#rewId#,
+         REW_DATE=#rewDate#,
+         REW_VALUE=#rewValue#,
+         PROJ_NO=#projNo#,
+         BR_NO=#brNo#,
+         PACT_ID=#pactId#,
+         PACT_NO=#pactNo#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         PRDT_NO=#prdtNo#,
+         PACT_AMT=#pactAmt#,
+         BAL=#bal#,
+         INTST=#intst#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         REL_ID=#relId#,
+         REW_CONT=#rewCont#,
+         ACPT_NO=#acptNo#,
+         DEAL_REST=#dealRest#,
+         REW_STS=#rewSts#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	REW_ID = #rewId#        ]]>
+    </update>
+    
+    <!-- 表修改 -->
+    <update id="AftRewPact.updateSts">
+        <![CDATA[
+         UPDATE AFT_REW_PACT set
+         REW_STS=#rewSts#
+          WHERE
+               	PROJ_NO = #projNo#        ]]>
+    </update>
+    
+    <!-- 表修改 -->
+    <update id="AftRewPact.updateDealRest">
+        <![CDATA[
+         UPDATE AFT_REW_PACT set
+         DEAL_REST=#dealRest#
+          WHERE
+               	REW_ID = #rewId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftRewPact.getById"  resultMap="RM.AftRewPact">
+        SELECT <include refid="AftRewPact.columns"/>
+        <![CDATA[
+             FROM AFT_REW_PACT 
+         WHERE 
+               	REW_ID = #rewId#        ]]>
+     </select>
+     
+     <!-- 表查询ByPactNo -->
+    <select id="AftRewPact.getByPactNo"  resultMap="RM.AftRewPact">
+        SELECT <include refid="AftRewPact.columns"/>
+        <![CDATA[
+             FROM AFT_REW_PACT 
+         WHERE 
+               	PACT_NO = #pactNo# and br_No = #brNo#  and rownum=1    ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftRewPact.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rewNo">
+                  <isNotEmpty prepend="AND" property="rewNo">
+                      REW_NO = #rewNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewType">
+                  <isNotEmpty prepend="AND" property="rewType">
+                      REW_TYPE = #rewType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="begDate">
+                  <isNotEmpty prepend="AND" property="begDate">
+                      BEG_DATE = #begDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="rewSts">
+                  <isNotEmpty prepend="AND" property="rewSts">
+                      rew_Sts = #rewSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="rewDate">
+                  <isNotEmpty prepend="AND" property="rewDate">
+                      REW_DATE = #rewDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+	        <isPropertyAvailable property="brNo">
+	          <isNotEmpty prepend="AND" property="brNo">
+	                 BR_NO = #brNo#
+	          </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="projName">
+	          <isNotEmpty prepend="AND" property="projName">
+	          	    fun_getprojname(PROJ_NO)like '%$projName$%'
+	          </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="cifNo">
+	          <isNotEmpty prepend="AND" property="cifNo">
+	                 CIF_NO = #cifNo#
+	          </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="cifName">
+	          <isNotEmpty prepend="AND" property="cifName">
+	          	     CIF_NAME like '%$cifName$%'
+	           </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="dealRest">
+	          <isNotEmpty prepend="AND" property="dealRest">
+	                 DEAL_REST = #dealRest#
+	          </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="pactNo">
+	          <isNotEmpty prepend="AND" property="pactNo">
+	                 PACT_NO = #pactNo#
+	          </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+        <sql id="AftRewPact.findbyPage.and">
+        	<isPropertyAvailable property="rewNo">
+                  <isNotEmpty prepend="AND" property="rewNo">
+                      a.REW_NO = #rewNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewType">
+                  <isNotEmpty prepend="AND" property="rewType">
+                      a.REW_TYPE = #rewType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      a.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      a.BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      a.CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="begDate">
+                  <isNotEmpty prepend="AND" property="begDate">
+                      a.BEG_DATE = #begDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="rewSts">
+                  <isNotEmpty prepend="AND" property="rewSts">
+                      a.rew_Sts = #rewSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="rewDate">
+                  <isNotEmpty prepend="AND" property="rewDate">
+                      a.REW_DATE = #rewDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+	        <isPropertyAvailable property="projNo">
+	          <isNotEmpty prepend="AND" property="projNo">
+	          	    a.PROJ_NO = #projNo#
+	          </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="cifName">
+	          <isNotEmpty prepend="AND" property="cifName">
+	          	     a.CIF_NAME like '%$cifName$%'
+	           </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="dealRest">
+	          <isNotEmpty prepend="AND" property="dealRest">
+	                 a.DEAL_REST = #dealRest#
+	          </isNotEmpty>
+	        </isPropertyAvailable>
+	        <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                     a.PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql>
+    <sql id="AftRewPact.findBewteen.where">
+        <dynamic prepend="and">
+        	<isPropertyAvailable property="endDate">
+                  <isNotEmpty prepend="AND" property="endDate">
+                     <![CDATA[ REW_DATE < #endDate# ]]>
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="beginDate">
+                  <isNotEmpty prepend="AND" property="beginDate">
+                     <![CDATA[ REW_DATE > #beginDate# ]]>
+                   </isNotEmpty>
+            </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftRewPact.findPage.count" resultClass="int">
+        SELECT  count(*)
+			FROM AFT_REW_PACT A left join  AFT_CALLBACK B
+		on ( a.pact_no = b.pact_no and a.br_no = b.br_no)    where a.rew_no = '100000' <include refid="AftRewPact.findbyPage.and"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftRewPact.findByPage" resultMap="RM.AftRewPactAndCallback">
+        SELECT 		   REW_ID,
+        			   REW_NO,
+         			   FUN_GETREWNAME(REW_NO) as REW_NAME,
+         			   FUN_GETREWTYPE(REW_NO) as REW_TYPE,
+         			   REW_DATE,
+				       PACT_ID,
+				       pact_no,
+				       end_date,
+				       BR_NO,
+				       CIF_NAME,
+				       cif_no,
+				       PROJ_NO,
+				       back_id,
+				       PRDT_NO,
+				       PACT_AMT,
+				       BAL,
+				       COLL_WAY,
+				       COLL_RESULT,
+				       last_date,
+				       deal_rest,
+				       FUN_GETBRNAME(br_no) as BR_NAME,
+				       FUN_GETPROJNAME(PROJ_NO) AS PROJ_NAME,
+				       FUN_GETPRDTNAME(PRDT_NO) as PRDT_NAME
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT    a.REW_ID,
+            		   a.REW_NO,
+            		   a.REW_DATE,
+				       a.PACT_ID,
+				       a.end_date,
+				       a.pact_no,
+				       a.cif_no,
+				       a.BR_NO,
+				       a.CIF_NAME,
+				       a.PROJ_NO,
+				       a.PRDT_NO,
+				       a.PACT_AMT,
+				       a.BAL,
+				       b.COLL_WAY,
+                       b.COLL_RESULT,
+				       b.back_id,
+				       a.deal_rest,
+				       b.TX_DATE as last_date
+				       FROM AFT_REW_PACT A left join  AFT_CALLBACK B
+				       on ( a.pact_no = b.pact_no and a.br_no = b.br_no)  where a.rew_no = '100000'
+                   <include refid="AftRewPact.findbyPage.and"/> order by  b.TX_DATE desc nulls last,a.END_DATE desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <select id="AftRewPact.findPactCollect" resultMap="RM.AftRewPact.collect">
+        SELECT FUN_GETPROJNAME(PROJ_NO) as REW_CONT,
+		       FUN_GETPROJNAME(PROJ_NO) as PROJ_NAME,
+		       FUN_GETREWNAME(REW_NO) as REW_NAME,
+		       FUN_GETREWTYPE(REW_NO) as REW_TYPE,
+		       REW_NO,
+		       PROJ_NO,
+		       COUNT(1) as SUM_COUNT
+		  FROM AFT_REW_PACT
+		  <include refid="AftRewPact.findPage.where"/>
+		  <include refid="AftRewPact.findBewteen.where"/>
+		 GROUP BY PROJ_NO, REW_NO
+    </select>
+    
+    <select id="AftRewPact.findByList" resultMap="RM.AftRewPact">
+        SELECT <include refid="AftRewPact.columns"/>
+        FROM AFT_REW_PACT  <include refid="AftRewPact.findPage.where"/> 
+    </select>
+    
+    <select id="AftRewPact.findByDateBewteen" parameterClass="java.util.Map" resultMap="RM.AftRewPact">
+        SELECT <include refid="AftRewPact.columns"/>
+        FROM AFT_REW_PACT  <include refid="AftRewPact.findPage.where"/> 
+        <![CDATA[
+        and REW_DATE < #endDate# and REW_DATE > #beginDate#
+        ]]>
+    </select>
+     <select id="AftRewPact.getRewNo" resultClass="java.lang.String">
+        <![CDATA[ SELECT REW_NO FROM PARM_REW where rew_no=#rewName# ]]>
+    </select>
+</sqlMap>

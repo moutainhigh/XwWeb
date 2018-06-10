@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnGage" type="app.creditapp.gage.entity.LnGage"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnGage" class="LnGage">
+    <result property="upDate" column="UP_DATE" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="gageSts" column="GAGE_STS" />
+    <result property="gateDete" column="GATE_DETE" />
+    <result property="evalValue" column="EVAL_VALUE" jdbcType="double"/>
+    <result property="evalOrg" column="EVAL_ORG" />
+    <result property="evalDate" column="EVAL_DATE" />
+    <result property="evalType" column="EVAL_TYPE" />
+    <result property="gageAmt" column="GAGE_AMT" jdbcType="double"/>
+    <result property="gageOutdate" column="GAGE_OUTDATE" />
+    <result property="gageEnddate" column="GAGE_ENDDATE" />
+    <result property="gageBegdate" column="GAGE_BEGDATE" />
+    <result property="gageLicbr" column="GAGE_LICBR" />
+    <result property="gageLic" column="GAGE_LIC" />
+    <result property="gageValue" column="GAGE_VALUE" jdbcType="double"/>
+    <result property="gageDesc" column="GAGE_DESC" />
+    <result property="gageName" column="GAGE_NAME" />
+    <result property="gageType" column="GAGE_TYPE" />
+    <result property="gageIdno" column="GAGE_IDNO" />
+    <result property="gageIdtype" column="GAGE_IDTYPE" />
+    <result property="gageCifname" column="GAGE_CIFNAME" />
+    <result property="gageId" column="GAGE_ID" />
+    <result property="appId" column="APP_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="gageLictype" column="GAGE_LICTYPE" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="brName" column="BR_NAME" />
+    <result property="opName" column="OP_NAME"/>
+    </resultMap>
+    <typeAlias alias="WsOut2104_1_2" type="app.creditapp.inf.entity.WsOut2104_1_2"/>  
+    <resultMap id="RM.WsOut2104_1_2" class="WsOut2104_1_2">
+    <result property="gcustIdno" column="GAGE_IDNO" />
+    <result property="gcustIdtype" column="GAGE_IDTYPE" />
+    <result property="gcustName" column="GAGE_CIFNAME" />
+    <result property="gDesc" column="GAGE_DESC" />
+    <result property="gName" column="GAGE_NAME" />
+    <result property="gType" column="GAGE_TYPE" />
+    <result property="gValue" column="EVAL_VALUE" jdbcType="double"/>
+    <result property="gLicno" column="GAGE_LIC" />
+    <result property="gLicType" column="GAGE_LICTYPE" />
+    </resultMap>
+     <sql id="LnGage.columns">
+        <![CDATA[
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         BR_NO,
+         GAGE_STS,
+         GATE_DETE,
+         EVAL_VALUE,
+         EVAL_ORG,
+         EVAL_DATE,
+         EVAL_TYPE,
+         GAGE_AMT,
+         GAGE_OUTDATE,
+         GAGE_ENDDATE,
+         GAGE_BEGDATE,
+         GAGE_LICBR,
+         GAGE_LIC,
+         GAGE_VALUE,
+         GAGE_DESC,
+         GAGE_NAME,
+         GAGE_TYPE,
+         GAGE_IDNO,
+         GAGE_IDTYPE,
+         GAGE_CIFNAME,
+         GAGE_ID,
+         APP_ID,
+         CIF_NO,
+         GAGE_LICTYPE,
+         FUN_GETCIFNAME(CIF_NO) AS CIF_NAME,
+         FUN_GETBRNAME(br_no) as BR_NAME,
+         FUN_GETUSERNAME(OP_NO)as OP_NAME
+          ]]>
+    </sql>
+         <sql id="WsOut2104_1_2.columns">
+        <![CDATA[
+         GAGE_IDNO,
+         GAGE_IDTYPE,
+         EVAL_VALUE,
+         GAGE_LIC,
+         GAGE_DESC,
+         GAGE_NAME,
+         GAGE_TYPE,
+         GAGE_CIFNAME,
+         GAGE_LICTYPE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnGage.insert">
+        <![CDATA[
+        INSERT INTO LN_GAGE(
+         UP_DATE,
+         TX_DATE,
+         OP_NO,
+         BR_NO,
+         GAGE_STS,
+         GATE_DETE,
+         EVAL_VALUE,
+         EVAL_ORG,
+         EVAL_DATE,
+         EVAL_TYPE,
+         GAGE_AMT,
+         GAGE_OUTDATE,
+         GAGE_ENDDATE,
+         GAGE_BEGDATE,
+         GAGE_LICBR,
+         GAGE_LIC,
+         GAGE_VALUE,
+         GAGE_DESC,
+         GAGE_NAME,
+         GAGE_TYPE,
+         GAGE_IDNO,
+         GAGE_IDTYPE,
+         GAGE_CIFNAME,
+         GAGE_ID,
+         APP_ID,
+         CIF_NO,
+         GAGE_LICTYPE
+         )VALUES(
+         #upDate#,
+         #txDate#,
+         #opNo#,
+         #brNo#,
+         #gageSts#,
+         #gateDete#,
+         #evalValue#,
+         #evalOrg#,
+         #evalDate#,
+         #evalType#,
+         #gageAmt#,
+         #gageOutdate#,
+         #gageEnddate#,
+         #gageBegdate#,
+         #gageLicbr#,
+         #gageLic#,
+         #gageValue#,
+         #gageDesc#,
+         #gageName#,
+         #gageType#,
+         #gageIdno#,
+         #gageIdtype#,
+         #gageCifname#,
+         #gageId#,
+         #appId#,
+         #cifNo#,
+         #gageLictype#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="gageId" >
+				SELECT  LN_GAGE_SEQ.NEXTVAL AS gageId FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnGage.del">
+        <![CDATA[
+               DELETE FROM LN_GAGE
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnGage.update">
+        <![CDATA[
+         UPDATE LN_GAGE set
+         UP_DATE=#upDate#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#,
+         BR_NO=#brNo#,
+         GAGE_STS=#gageSts#,
+         GATE_DETE=#gateDete#,
+         EVAL_VALUE=#evalValue#,
+         EVAL_ORG=#evalOrg#,
+         EVAL_DATE=#evalDate#,
+         EVAL_TYPE=#evalType#,
+         GAGE_AMT=#gageAmt#,
+         GAGE_OUTDATE=#gageOutdate#,
+         GAGE_ENDDATE=#gageEnddate#,
+         GAGE_BEGDATE=#gageBegdate#,
+         GAGE_LICBR=#gageLicbr#,
+         GAGE_LIC=#gageLic#,
+         GAGE_VALUE=#gageValue#,
+         GAGE_DESC=#gageDesc#,
+         GAGE_NAME=#gageName#,
+         GAGE_TYPE=#gageType#,
+         GAGE_IDNO=#gageIdno#,
+         GAGE_IDTYPE=#gageIdtype#,
+         GAGE_CIFNAME=#gageCifname#,
+         GAGE_ID=#gageId#,
+         APP_ID=#appId#,
+         CIF_NO=#cifNo#,
+         GAGE_LICTYPE=#gageLictype#
+          WHERE
+               	APP_ID = #appId#  and GAGE_ID = #gageId#      ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnGage.getById"  resultMap="RM.LnGage">
+        SELECT <include refid="LnGage.columns"/>
+        <![CDATA[
+             FROM LN_GAGE 
+         WHERE 
+               	APP_ID = #appId#   and GAGE_ID = #gageId#       ]]>
+     </select>
+     
+     <!-- 根据appId查询所有对应记录 -->
+    <select id="LnGage.findlist" resultMap="RM.WsOut2104_1_2">
+        SELECT <include refid="WsOut2104_1_2.columns"/> FROM LN_Gage
+        WHERE 
+			APP_ID = #appId#
+    </select>
+    <sql id="LnGage.findlistBygegeSts.where">
+    	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="gageId">
+                  <isNotEmpty prepend="AND" property="gageId">
+                      GAGE_ID = #gageId#
+                   </isNotEmpty>
+        </isPropertyAvailable>
+        <isPropertyAvailable property="gageCifname">
+                  <isNotEmpty prepend="AND" property="gageCifname">
+                      GAGE_CIFNAME like '%$gageCifname$%'
+                   </isNotEmpty>
+        </isPropertyAvailable>
+    
+     </sql>
+      <select id="LnGage.findlistBygegeSts.count" resultClass="int">
+        SELECT count(*) FROM LN_GAGE WHERE 
+					GAGE_STS = '05'
+    </select>
+     <!-- 根据gage_sts=05查询所有对应记录 -->
+    <select id="LnGage.findlistBygegeSts" resultMap="RM.LnGage">
+		SELECT <include refid="LnGage.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  UP_DATE,
+			         TX_DATE,
+			         OP_NO,
+			         BR_NO,
+			         GAGE_STS,
+			         GATE_DETE,
+			         EVAL_VALUE,
+			         EVAL_ORG,
+			         EVAL_DATE,
+			         EVAL_TYPE,
+			         GAGE_AMT,
+			         GAGE_OUTDATE,
+			         GAGE_ENDDATE,
+			         GAGE_BEGDATE,
+			         GAGE_LICBR,
+			         GAGE_LIC,
+			         GAGE_VALUE,
+			         GAGE_DESC,
+			         GAGE_NAME,
+			         GAGE_TYPE,
+			         GAGE_IDNO,
+			         GAGE_IDTYPE,
+			         GAGE_CIFNAME,
+			         GAGE_ID,
+			         APP_ID,
+			         CIF_NO,
+			         GAGE_LICTYPE
+          		FROM LN_GAGE
+                    WHERE 
+					GAGE_STS = '05'
+					<include refid="LnGage.findlistBygegeSts.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 根据GAGE_ID查询APP_ID -->
+    <select id="LnGage.findAppIdByGageId" resultClass="String">
+        SELECT APP_ID FROM LN_Gage
+        WHERE 
+			GAGE_ID = #gageId#
+    </select>
+     <update id="LnGage.updateSts">
+        UPDATE LN_Gage SET GAGE_STS = '03',
+        				   GAGE_OUTDATE=#gageOutdate#
+        WHERE 
+			GAGE_ID = #gageId#
+    </update>
+    
+    <sql id="LnGage.findPage.where">
+       <!-- 根据实际情况选择分页查询条件 -->
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gageType">
+                  <isNotEmpty prepend="AND" property="gageType">
+                      GAGE_TYPE = #gageType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gageIdno">
+                  <isNotEmpty prepend="AND" property="gageIdno">
+                      GAGE_IDNO = #gageIdno#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gageCifname">
+                  <isNotEmpty prepend="AND" property="gageCifname">
+                      GAGE_CIFNAME like '%$gageCifname$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnGage.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_GAGE <include refid="LnGage.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnGage.findByPage" resultMap="RM.LnGage">
+        SELECT <include refid="LnGage.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  UP_DATE,
+			         TX_DATE,
+			         OP_NO,
+			         BR_NO,
+			         GAGE_STS,
+			         GATE_DETE,
+			         EVAL_VALUE,
+			         EVAL_ORG,
+			         EVAL_DATE,
+			         EVAL_TYPE,
+			         GAGE_AMT,
+			         GAGE_OUTDATE,
+			         GAGE_ENDDATE,
+			         GAGE_BEGDATE,
+			         GAGE_LICBR,
+			         GAGE_LIC,
+			         GAGE_VALUE,
+			         GAGE_DESC,
+			         GAGE_NAME,
+			         GAGE_TYPE,
+			         GAGE_IDNO,
+			         GAGE_IDTYPE,
+			         GAGE_CIFNAME,
+			         GAGE_ID,
+			         APP_ID,
+			         CIF_NO,
+			         GAGE_LICTYPE
+          FROM LN_GAGE
+                    <include refid="LnGage.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    
+      <!-- 分页查询某客户的押品信息记录数 -->
+    <select id="LnGage.findByPageQuotaForCif.count" resultClass="int">
+        SELECT count(*) FROM LN_GAGE WHERE 
+             cif_no = #cifNo# ORDER BY APP_ID DESC
+    </select>
+    <!-- 分页查询某客户的押品信息-->
+    <select id="LnGage.findByPageQuotaForCif" resultMap="RM.LnGage">
+        SELECT <include refid="LnGage.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  UP_DATE,
+			         TX_DATE,
+			         OP_NO,
+			         BR_NO,
+			         GAGE_STS,
+			         GATE_DETE,
+			         EVAL_VALUE,
+			         EVAL_ORG,
+			         EVAL_DATE,
+			         EVAL_TYPE,
+			         GAGE_AMT,
+			         GAGE_OUTDATE,
+			         GAGE_ENDDATE,
+			         GAGE_BEGDATE,
+			         GAGE_LICBR,
+			         GAGE_LIC,
+			         GAGE_VALUE,
+			         GAGE_DESC,
+			         GAGE_NAME,
+			         GAGE_TYPE,
+			         GAGE_IDNO,
+			         GAGE_IDTYPE,
+			         GAGE_CIFNAME,
+			         GAGE_ID,
+			         APP_ID,
+			         CIF_NO,
+         			 GAGE_LICTYPE
+          FROM LN_GAGE WHERE  
+             cif_no = #cifNo# ORDER BY APP_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    
+      <!-- 分页查询某shenqing的押品信息记录数 -->
+    <select id="LnGage.findByPageQuotaForLn.count" resultClass="int">
+        SELECT count(*) FROM LN_GAGE WHERE 
+             APP_ID = #appId# ORDER BY APP_ID DESC
+    </select>
+    <!-- 分页查询某shenqing的押品信息-->
+    <select id="LnGage.findByPageQuotaForLn" resultMap="RM.LnGage">
+        SELECT <include refid="LnGage.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  UP_DATE,
+			         TX_DATE,
+			         OP_NO,
+			         BR_NO,
+			         GAGE_STS,
+			         GATE_DETE,
+			         EVAL_VALUE,
+			         EVAL_ORG,
+			         EVAL_DATE,
+			         EVAL_TYPE,
+			         GAGE_AMT,
+			         GAGE_OUTDATE,
+			         GAGE_ENDDATE,
+			         GAGE_BEGDATE,
+			         GAGE_LICBR,
+			         GAGE_LIC,
+			         GAGE_VALUE,
+			         GAGE_DESC,
+			         GAGE_NAME,
+			         GAGE_TYPE,
+			         GAGE_IDNO,
+			         GAGE_IDTYPE,
+			         GAGE_CIFNAME,
+			         GAGE_ID,
+			         APP_ID,
+			         CIF_NO,
+			         GAGE_LICTYPE
+          FROM LN_GAGE WHERE  
+              APP_ID = #appId# ORDER BY APP_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+</sqlMap>

@@ -1,0 +1,1214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnPact" type="app.creditapp.pact.entity.LnPact"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnPact" class="LnPact">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="appId" column="APP_ID" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="putAmt" column="PUT_AMT" jdbcType="double"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double"/>
+    <result property="damRate" column="DAM_RATE" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="termType" column="TERM_TYPE" />
+    <result property="termMon" column="TERM_MON" jdbcType="Int"/>
+    <result property="termDay" column="TERM_DAY" jdbcType="Int"/>
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="vouType" column="VOU_TYPE" />
+    <result property="payType" column="PAY_TYPE" />
+    <result property="payKind" column="PAY_KIND" />
+    <result property="payDay" column="PAY_DAY" />
+    <result property="payChn" column="PAY_CHN" />
+    <result property="ifCron" column="IF_CRON" />
+    <result property="cronTime" column="CRON_TIME" />
+    <result property="apprType" column="APPR_TYPE" />
+    <result property="apprSts" column="APPR_STS" />
+    <result property="pactSts" column="PACT_STS" />
+    <result property="recSts" column="REC_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upTime" column="UP_TIME" />
+    <result property="pactXt" column="PACT_XT" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    <result property="payMent" column="PAY_MENT" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    </resultMap>
+    
+        <resultMap id="RM.LnPactDue" class="LnPact">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="appId" column="APP_ID" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="putAmt" column="PUT_AMT" jdbcType="double"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double"/>
+    <result property="damRate" column="DAM_RATE" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="termType" column="TERM_TYPE" />
+    <result property="termMon" column="TERM_MON" jdbcType="Int"/>
+    <result property="termDay" column="TERM_DAY" jdbcType="Int"/>
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="vouType" column="VOU_TYPE" />
+    <result property="payType" column="PAY_TYPE" />
+    <result property="payKind" column="PAY_KIND" />
+    <result property="payDay" column="PAY_DAY" />
+    <result property="payChn" column="PAY_CHN" />
+    <result property="ifCron" column="IF_CRON" />
+    <result property="cronTime" column="CRON_TIME" />
+    <result property="apprType" column="APPR_TYPE" />
+    <result property="apprSts" column="APPR_STS" />
+    <result property="pactSts" column="PACT_STS" />
+    <result property="recSts" column="REC_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upTime" column="UP_TIME" />
+    <result property="pactXt" column="PACT_XT" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    <result property="payMent" column="PAY_MENT" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="dueSts" column="DUE_STS" />
+    </resultMap>
+    
+    <resultMap id="RM.LnPactWf" class="LnPact">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="appId" column="APP_ID" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="putAmt" column="PUT_AMT" jdbcType="double"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double"/>
+    <result property="damRate" column="DAM_RATE" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="termType" column="TERM_TYPE" />
+    <result property="termMon" column="TERM_MON" jdbcType="Int"/>
+    <result property="termDay" column="TERM_DAY" jdbcType="Int"/>
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="vouType" column="VOU_TYPE" />
+    <result property="payType" column="PAY_TYPE" />
+    <result property="payKind" column="PAY_KIND" />
+    <result property="payDay" column="PAY_DAY" />
+    <result property="payChn" column="PAY_CHN" />
+    <result property="ifCron" column="IF_CRON" />
+    <result property="cronTime" column="CRON_TIME" />
+    <result property="apprType" column="APPR_TYPE" />
+    <result property="apprSts" column="APPR_STS" />
+    <result property="pactSts" column="PACT_STS" />
+    <result property="recSts" column="REC_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upTime" column="UP_TIME" />
+    <result property="pactXt" column="PACT_XT" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    <result property="payMent" column="PAY_MENT" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="dbid" column="DBID" />
+    <result property="signState" column="SIGN_STATE" />
+    </resultMap>
+    
+    <resultMap id="RM.LnPactAppr" class="LnPact">
+    <result property="brNo" column="BR_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="numAppr" column="NUM_APPR" jdbcType="Int"/>
+    <result property="sumPactAmt" column="SUM_PACT_AMT" jdbcType="double"/>
+    <result property="averPactAmt" column="AVER_PACT_AMT" jdbcType="double"/>
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+    
+    <resultMap id="RM.LnPactApprAndBatch" class="LnPact">
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="lnType" column="LN_TYPE" />
+    <result property="numAppr" column="NUM_APPR" jdbcType="Int"/>
+    <result property="sumPactAmt" column="SUM_PACT_AMT" jdbcType="double"/>
+    <result property="averPactAmt" column="AVER_PACT_AMT" jdbcType="double"/>
+    <result property="brName" column="BR_NAME" />
+    <result property="appId" column="APP_ID" />
+    <result property="processId" column="PROCESS_ID" />
+    </resultMap>   
+        
+     <sql id="LnPact.columns">
+        <![CDATA[
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         APP_ID,
+         PACT_ID,
+         CIF_NO,
+         CIF_NAME,
+         PRDT_NO,
+         PROJ_NO,
+         LN_TYPE,
+         CUR_NO,
+         PACT_AMT,
+         PUT_AMT,
+         LN_RATE,
+         OVER_RATE,
+         DAM_RATE,
+         BEG_DATE,
+         END_DATE,
+         TERM_TYPE,
+         TERM_MON,
+         TERM_DAY,
+         REPAY_TYPE,
+         VOU_TYPE,
+         PAY_TYPE,
+         PAY_KIND,
+         PAY_DAY,
+         PAY_CHN,
+         IF_CRON,
+         CRON_TIME,
+         APPR_TYPE,
+         APPR_STS,
+         PACT_STS,
+         REC_STS,
+         TX_DATE,
+         TX_TIME,
+         UP_TIME,
+         PACT_XT,
+	     BR_ACC_TYPE,
+	     PAY_MENT,
+	     PROCESS_ID,
+	     OP_NO,
+	     FUN_GETBRNAME(BR_NO) AS BR_NAME,
+	     FUN_GETPROJNAME(PROJ_NO) AS PROJ_NAME,
+	     FUN_GETPRDTNAME(PRDT_NO) AS PRDT_NAME,
+	     FUN_GETUSERNAME(OP_NO) AS OP_NAME
+          ]]>
+    </sql>
+    
+         <sql id="LnPactDue.columns">
+        <![CDATA[
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         APP_ID,
+         PACT_ID,
+         CIF_NO,
+         CIF_NAME,
+         PRDT_NO,
+         PROJ_NO,
+         LN_TYPE,
+         CUR_NO,
+         PACT_AMT,
+         PUT_AMT,
+         LN_RATE,
+         OVER_RATE,
+         DAM_RATE,
+         BEG_DATE,
+         END_DATE,
+         TERM_TYPE,
+         TERM_MON,
+         TERM_DAY,
+         REPAY_TYPE,
+         VOU_TYPE,
+         PAY_TYPE,
+         PAY_KIND,
+         PAY_DAY,
+         PAY_CHN,
+         IF_CRON,
+         CRON_TIME,
+         APPR_TYPE,
+         APPR_STS,
+         PACT_STS,
+         REC_STS,
+         TX_DATE,
+         TX_TIME,
+         UP_TIME,
+         PACT_XT,
+	     BR_ACC_TYPE,
+	     PAY_MENT,
+	     PROCESS_ID,
+	     OP_NO,
+	     FUN_GETBRNAME(BR_NO) AS BR_NAME,
+	     FUN_GETPROJNAME(PROJ_NO) AS PROJ_NAME,
+	     FUN_GETPRDTNAME(PRDT_NO) AS PRDT_NAME,
+	     FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+	     DUE_STS
+          ]]>
+    </sql>
+    
+    <sql id="LnPact.columnsWf">
+        <![CDATA[
+         a.PACT_NO,
+         a.BR_NO,
+         a.BATCH_NO,
+         a.APP_ID,
+         a.PACT_ID,
+         a.CIF_NO,
+         a.CIF_NAME,
+         a.PRDT_NO,
+         a.PROJ_NO,
+         a.LN_TYPE,
+         a.CUR_NO,
+         a.PACT_AMT,
+         a.PUT_AMT,
+         a.LN_RATE,
+         a.OVER_RATE,
+         a.DAM_RATE,
+         a.BEG_DATE,
+         a.END_DATE,
+         a.TERM_TYPE,
+         a.TERM_MON,
+         a.TERM_DAY,
+         a.REPAY_TYPE,
+         a.VOU_TYPE,
+         a.PAY_TYPE,
+         a.PAY_KIND,
+         a.PAY_DAY,
+         a.PAY_CHN,
+         a.IF_CRON,
+         a.CRON_TIME,
+         a.APPR_TYPE,
+         a.APPR_STS,
+         a.PACT_STS,
+         a.REC_STS,
+         a.TX_DATE,
+         a.TX_TIME,
+         a.UP_TIME,
+         a.PACT_XT,
+	     a.BR_ACC_TYPE,
+	     a.PAY_MENT,
+	     a.PROCESS_ID,
+	     a.OP_NO,
+	     FUN_GETBRNAME(a.BR_NO) AS BR_NAME,
+	     FUN_GETPROJNAME(a.PROJ_NO) AS PROJ_NAME,
+	     FUN_GETPRDTNAME(a.PRDT_NO) AS PRDT_NAME,
+	     FUN_GETUSERNAME(a.OP_NO) AS OP_NAME,
+	     b.dbid,
+	     b.sign_state
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnPact.insert">
+        <![CDATA[
+        INSERT INTO LN_PACT(
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         APP_ID,
+         PACT_ID,
+         CIF_NO,
+         CIF_NAME,
+         PRDT_NO,
+         PROJ_NO,
+         LN_TYPE,
+         CUR_NO,
+         PACT_AMT,
+         PUT_AMT,
+         LN_RATE,
+         OVER_RATE,
+         DAM_RATE,
+         BEG_DATE,
+         END_DATE,
+         TERM_TYPE,
+         TERM_MON,
+         TERM_DAY,
+         REPAY_TYPE,
+         VOU_TYPE,
+         PAY_TYPE,
+         PAY_KIND,
+         PAY_DAY,
+         PAY_CHN,
+         IF_CRON,
+         CRON_TIME,
+         APPR_TYPE,
+         APPR_STS,
+         PACT_STS,
+         REC_STS,
+         OP_NO,
+         TX_DATE,
+         TX_TIME,
+         UP_TIME,
+         PACT_XT,
+	     BR_ACC_TYPE,
+	     PAY_MENT,
+	     PROCESS_ID
+         )VALUES(
+         #pactNo#,
+         #brNo#,
+         #batchNo#,
+         #appId#,
+         #pactId#,
+         #cifNo#,
+         #cifName#,
+         #prdtNo#,
+         #projNo#,
+         #lnType#,
+         #curNo#,
+         #pactAmt#,
+         #putAmt#,
+         #lnRate#,
+         #overRate#,
+         #damRate#,
+         #begDate#,
+         #endDate#,
+         #termType#,
+         #termMon#,
+         #termDay#,
+         #repayType#,
+         #vouType#,
+         #payType#,
+         #payKind#,
+         #payDay#,
+         #payChn#,
+         #ifCron#,
+         #cronTime#,
+         #apprType#,
+         #apprSts#,
+         #pactSts#,
+         #recSts#,
+         #opNo#,
+         #txDate#,
+         #txTime#,
+         FUN_SYSTIME,
+         #pactXt#,
+	     #brAccType#,
+	     #payMent#,
+	     #processId#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnPact.del">
+        <![CDATA[
+               DELETE FROM LN_PACT
+                 WHERE
+               	PACT_ID = #pactId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnPact.update">
+        <![CDATA[
+         UPDATE LN_PACT set
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         BATCH_NO=#batchNo#,
+         APP_ID=#appId#,
+         PACT_ID=#pactId#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         PRDT_NO=#prdtNo#,
+         PROJ_NO=#projNo#,
+         LN_TYPE=#lnType#,
+         CUR_NO=#curNo#,
+         PACT_AMT=#pactAmt#,
+         PUT_AMT=#putAmt#,
+         LN_RATE=#lnRate#,
+         OVER_RATE=#overRate#,
+         DAM_RATE=#damRate#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         TERM_TYPE=#termType#,
+         TERM_MON=#termMon#,
+         TERM_DAY=#termDay#,
+         REPAY_TYPE=#repayType#,
+         VOU_TYPE=#vouType#,
+         PAY_TYPE=#payType#,
+         PAY_KIND=#payKind#,
+         PAY_DAY=#payDay#,
+         PAY_CHN=#payChn#,
+         IF_CRON=#ifCron#,
+         CRON_TIME=#cronTime#,
+         APPR_TYPE=#apprType#,
+         APPR_STS=#apprSts#,
+         PACT_STS=#pactSts#,
+         REC_STS=#recSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         TX_TIME=#txTime#,
+         UP_TIME=FUN_SYSTIME,
+         PACT_XT=#pactXt#,
+	     BR_ACC_TYPE=#brAccType#,
+	     PAY_MENT=#payMent#,
+	     PROCESS_ID=#processId#
+
+          WHERE
+               	PACT_ID = #pactId#        ]]>
+    </update>
+    <update id="LnPact.updateSts">
+        <![CDATA[
+         UPDATE LN_PACT set
+         APPR_STS=#apprSts#,
+        PACT_STS=#pactSts#
+
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update> 
+     <!-- 表查询ById -->
+    <select id="LnPact.getById"  resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/> FROM LN_PACT 
+          <dynamic prepend="where">
+        	<isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      PACT_ID = #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+             <isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+           </dynamic>
+     </select>
+
+     <select id="LnPact.getByIdForBatchNo"  resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        <![CDATA[
+             FROM LN_PACT 
+         WHERE 
+               BATCH_NO = #batchNo#      ]]>
+     </select>
+     <select id="LnPact.getByIdForAppId"  resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+             FROM LN_PACT 
+         WHERE 
+               APP_ID = #appId#    
+               <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+     </select>
+     <select id="LnPact.getByIdForApp"  resultMap="RM.LnPactAppr">
+       select 
+         Br_No,
+         FUN_GETBRNAME(Br_No) as Br_Name,
+         FUN_GETPROJNAME(Proj_No) as Proj_NAME,
+         Proj_No,
+         Ln_Type,
+         count(*) num_appr,
+         sum(pact_amt) as sum_pact_amt,
+         sum(pact_amt) / count(*) as aver_pact_amt
+    from (select  Br_No, Proj_No, Ln_Type,APP_ID, pact_amt as pact_amt
+          from ln_pact
+         where APPR_TYPE = '02'
+           and APPR_STS = '01'
+           and ln_type is not null)
+           where app_id in (
+           
+           select p.APP_ID_
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '01'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')
+         )
+         
+			<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO =  #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO in  (select proj_no from proj_mang where login_id = #loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+   group by  Br_No, Proj_No, Ln_Type order by br_no desc
+     </select>
+         <select id="LnPact.getByIdForAppr"  resultMap="RM.LnPactApprAndBatch">
+       select 
+         Br_No,
+         PACT_NO,
+         FUN_GETBRNAME(Br_No) as Br_Name,
+         FUN_GETPROJNAME(Proj_No) as Proj_NAME,
+         Proj_No,
+         Ln_Type,
+         APP_ID,
+         process_id,
+         count(*) num_appr,
+         sum(pact_amt) as sum_pact_amt,
+         sum(pact_amt) / count(*) as aver_pact_amt
+    from (select  Br_No,PACT_NO, Proj_No, Ln_Type, APP_ID,process_id,pact_amt as pact_amt
+          from ln_pact
+         where APPR_TYPE = '02'
+           and APPR_STS = '01')
+           where APP_ID = #appId# 
+			<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                     PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+   group by  Br_No,PACT_NO, Proj_No, Ln_Type,APP_ID,process_id
+     </select>
+     <select id="LnPact.getByIdForAppAndBatch"  resultMap="RM.LnPactApprAndBatch">
+       select 
+         Br_No,
+         PACT_NO,
+         FUN_GETBRNAME(Br_No) as Br_Name,
+         FUN_GETPROJNAME(Proj_No) as Proj_NAME,
+         Proj_No,
+         Ln_Type,
+         APP_ID,
+         process_id,
+         count(*) num_appr,
+         sum(pact_amt) as sum_pact_amt,
+         sum(pact_amt) / count(*) as aver_pact_amt
+    from (select  Br_No,PACT_NO, Proj_No, Ln_Type,APP_ID,process_id, pact_amt as pact_amt
+          from ln_pact
+         where APPR_TYPE = '02'
+           and APPR_STS = '01')
+           where BR_NO = #brNo# and PROJ_NO = #projNo# and LN_TYPE = #lnType#  and APP_ID = #appId#
+   group by  Br_No,PACT_NO, Proj_No, Ln_Type,APP_ID,process_id
+     </select>
+          <select id="LnPact.getByIdForList"  resultMap="RM.LnPactApprAndBatch">
+       select 
+         Br_No,
+         PACT_NO,
+         FUN_GETBRNAME(Br_No) as Br_Name,
+         FUN_GETPROJNAME(Proj_No) as Proj_NAME,
+         Proj_No,
+         Ln_Type,
+         APP_ID,
+         process_id,
+         count(*) num_appr,
+         sum(pact_amt) as sum_pact_amt,
+         sum(pact_amt) / count(*) as aver_pact_amt
+    from (select  Br_No,PACT_NO, Proj_No, Ln_Type,APP_ID,process_id, pact_amt as pact_amt
+          from ln_pact
+         where APPR_TYPE = '02'
+           and APPR_STS = '01')
+           where APP_ID = #appId#  and BR_NO = #brNo# and PROJ_NO = #projNo# and LN_TYPE = #lnType#
+   group by  Br_No,PACT_NO, Proj_No, Ln_Type,APP_ID,process_id
+     </select>
+    <!-- 根据业务申请编号查询合同信息 -->
+    <select id="LnPact.getByAppId"  resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        <![CDATA[
+             FROM LN_PACT 
+         WHERE 
+               APP_ID = #appId#      ]]>
+     </select>
+      <select id="LnPact.findByPageForAppr"  resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        <![CDATA[
+             FROM LN_PACT
+         WHERE 
+               APPR_TYPE = '02'   and APPR_STS !='03'  AND APPR_STS !='01' and APPR_STS !='02' ]]>
+     </select> 
+     <select id="LnPact.findByPageAppr"  resultMap="RM.LnPactAppr">
+        select 
+         Br_No,
+         FUN_GETBRNAME(Br_No) as Br_Name,
+         FUN_GETPROJNAME(Proj_No) as Proj_NAME,
+         Proj_No,
+         Ln_Type,
+         PACT_NO,
+         APPR_TYPE,
+         count(*) num_appr,
+         sum(pact_amt) as sum_pact_amt,
+         sum(pact_amt) / count(*) as aver_pact_amt
+    from (select  Br_No, Proj_No, Ln_Type,APP_ID,PACT_NO,APPR_TYPE,pact_amt as pact_amt
+          from ln_pact
+         where APPR_TYPE = '02'
+           and APPR_STS = '01')
+           where APP_ID = #appId# 
+           <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+   group by Br_No, Proj_No, Ln_Type,PACT_NO,APPR_TYPE
+     </select>
+      <select id="LnPact.findByPageForBatchNo"  resultMap="RM.LnPactAppr">
+        select 
+         Br_No,
+         FUN_GETBRNAME(Br_No) as Br_Name,
+         FUN_GETPROJNAME(Proj_No) as Proj_NAME,
+         Proj_No,
+         Ln_Type,
+         PACT_NO,
+         count(*) num_appr,
+         sum(pact_amt) as sum_pact_amt,
+         sum(pact_amt) / count(*) as aver_pact_amt
+    from (select  Br_No, Proj_No, Ln_Type,PACT_NO, pact_amt as pact_amt
+          from ln_pact
+         where APPR_TYPE = '02'
+           and APPR_STS = '01')
+           where BATCH_NO = #batchNo# 
+   group by  Br_No, Proj_No, Ln_Type,PACT_NO
+     </select>
+      <!-- 表查询根据机构号和合同号联合查询-->
+    <select id="LnPact.getPactNoAndBrNo"  resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        <![CDATA[
+             FROM LN_PACT 
+         WHERE 
+               	PACT_NO = #pactNo#  and BR_NO = #brNo#     ]]>
+     </select>
+     
+     <!-- 查询需要重新进入E队列的信息 -->
+     <select id="LnPactDao.findListToWorkE" resultMap="RM.LnPact">
+            SELECT <include refid="LnPact.columns"/>
+       			from ln_pact m
+ 			where exists (select 1
+          		from ln_stage l
+         	where m.app_id = l.app_id
+           		and DUP_STS = '02'
+           		and CHK_STS = '02'
+           		and EVAL_STS = '02'
+           		and SPLIT_STS = '02'
+           		and ZDAPP_STS = '02'
+           		and PACT_STS = '02'
+           		and DUE_STS = '01')
+   			and m.appr_type = '01' 
+    </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnPact.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      PACT_ID= #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+ <!--            <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      fun_getbrname(br_no) like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>     -->
+        	<isPropertyAvailable property="pactSts">
+                  <isNotEmpty prepend="AND" property="pactSts">
+                      PACT_STS = #pactSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprSts">
+                  <isNotEmpty prepend="AND" property="apprSts">
+                      APPR_STS = #apprSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprType">
+                  <isNotEmpty prepend="AND" property="apprType">
+                      APPR_TYPE = #apprType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      PROJ_NO in (select proj_no from proj_base where proj_Name like '%$projName$%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="lnType">
+                  <isNotEmpty prepend="AND" property="lnType">
+                      LN_TYPE = #lnType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <sql id="LnPact.findPage.AND">
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      L.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      L.PACT_ID= #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      L.BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      L.CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      L.CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+ <!--            <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      fun_getbrname(br_no) like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>     -->
+        	<isPropertyAvailable property="pactSts">
+                  <isNotEmpty prepend="AND" property="pactSts">
+                      L.PACT_STS = #pactSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprSts">
+                  <isNotEmpty prepend="AND" property="apprSts">
+                      L.APPR_STS = #apprSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprType">
+                  <isNotEmpty prepend="AND" property="apprType">
+                      L.APPR_TYPE = #apprType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      L.PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+           <!---  <isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      L.PROJ_NO in (select proj_no from proj_base where proj_Name like '%$projName$%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>-->
+             <isPropertyAvailable property="lnType">
+                  <isNotEmpty prepend="AND" property="lnType">
+                      L.LN_TYPE = #lnType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      L.APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      L.PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="dueSts">
+                  <isNotEmpty prepend="AND" property="dueSts">
+                      D.DUE_STS = #dueSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnPact.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_PACT L,LN_DUE D WHERE L.PACT_ID=D.PACT_ID
+                    <include refid="LnPact.findPage.AND"/>
+                    
+    </select>     
+    <select id="LnPact.findPageForList.count" resultClass="int">
+        SELECT count(*) FROM LN_PACT <include refid="LnPact.findPage.where"/> and process_id is not null
+    </select>
+    <select id="LnPact.findPageForRel.count" resultClass="int">
+        SELECT count(*) FROM LN_PACT where pact_no not in(select pact_no from aft_asset_rel where ass_id=#pactId#)
+        <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+        </isPropertyAvailable>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnPact.findByPage" resultMap="RM.LnPactDue">
+        SELECT <include refid="LnPactDue.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT
+         L.PACT_NO,
+         L.BR_NO,
+         L.BATCH_NO,
+         L.APP_ID,
+         L.PACT_ID,
+         L.CIF_NO,
+         L.CIF_NAME,
+         L.PRDT_NO,
+         L.PROJ_NO,
+         L.LN_TYPE,
+         L.CUR_NO,
+         L.PACT_AMT,
+         L.PUT_AMT,
+         L.LN_RATE,
+         L.OVER_RATE,
+         L.DAM_RATE,
+         L.BEG_DATE,
+         L.END_DATE,
+         L.TERM_TYPE,
+         L.TERM_MON,
+         L.TERM_DAY,
+         L.REPAY_TYPE,
+         L.VOU_TYPE,
+         L.PAY_TYPE,
+         L.PAY_KIND,
+         L.PAY_DAY,
+         L.PAY_CHN,
+         L.IF_CRON,
+         L.CRON_TIME,
+         L.APPR_TYPE,
+         L.APPR_STS,
+         L.PACT_STS,
+         L.REC_STS,
+         L.TX_DATE,
+         L.TX_TIME,
+         L.UP_TIME,
+         L.PACT_XT,
+	     L.BR_ACC_TYPE,
+	     L.PAY_MENT,
+	     L.PROCESS_ID,
+	     L.OP_NO,
+	     D.DUE_STS
+	     FROM LN_PACT L,LN_DUE D WHERE L.PACT_ID=D.PACT_ID
+                    <include refid="LnPact.findPage.AND"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <select id="LnPact.getWfTaskList" resultMap="RM.LnPactWf">
+        SELECT  <include refid="LnPact.columnsWf"/>
+         FROM LN_PACT A,(select p.APP_ID_ as app_id,p.dbid_ as dbid ,p.sign_state_ as sign_state
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '01'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')) b 
+               where a.app_id=b.app_id
+               <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      a.BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      a.PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="lnType">
+                  <isNotEmpty prepend="AND" property="lnType">
+                      a.LN_TYPE = #lnType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    
+     <select id="LnPact.findPage.countForTask" resultClass="int">
+        SELECT count(*) FROM LN_PACT where app_id in(select p.APP_ID_
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '01'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y'))
+               <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="lnType">
+                  <isNotEmpty prepend="AND" property="lnType">
+                      LN_TYPE = #lnType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+              <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    
+    <select id="LnPact.findByPageForTask" resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnPact.columns"/> FROM LN_PACT
+                    where app_id in(select p.APP_ID_
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '01'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y'))
+               <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="lnType">
+                  <isNotEmpty prepend="AND" property="lnType">
+                      LN_TYPE = #lnType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+              <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+               
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    
+    <select id="LnPact.findByPageForList" resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnPact.columns"/> FROM LN_PACT
+                    <include refid="LnPact.findPage.where"/> 
+                     and process_id is not null
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <sql id="LnPact.findByPageForRel.where">
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      fun_getbrname(br_no) like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql> 
+    
+    <select id="LnPact.findByPageForRel" resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnPact.columns"/> FROM LN_PACT 
+                     where pact_no not in(select pact_no from aft_asset_rel where ass_id=#pactId#) and PACT_STS = '04'
+                  <include refid="LnPact.findByPageForRel.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>  
+    
+    <!--
+    <select id="LnPact.findByPageForRel" resultMap="RM.LnPact">
+    SELECT <include refid="LnPact.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (
+    	SELECT <include refid="LnPact.columns"/> FROM LN_PACT WHERE PACT_STS = '04'
+    	<include refid="LnPact.findByPageForRel.where"/>
+    	) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>  
+    -->
+     <!-- 分页查询授信额度合同记录数 -->
+    <select id="LnPact.findByPageQuotaForCif.count" resultClass="int">
+        SELECT count(*) FROM LN_PACT WHERE cif_no = #cifNo# ORDER BY PACT_ID DESC
+    </select>
+    <!-- 分页查询授信额度合同-->
+    <select id="LnPact.findByPageQuotaForCif" resultMap="RM.LnPact">
+        SELECT <include refid="LnPact.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnPact.columns"/> FROM LN_PACT WHERE  
+             cif_no = #cifNo# ORDER BY PACT_NO DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 根据合同号取合同金额 -->
+    <select id="LnPact.getPactAmtCount" resultClass="int">
+        SELECT sum(PACT_AMT) FROM LN_PACT WHERE PACT_NO = #pactNo#
+    </select>
+    
+     <!-- 合同表（ln_pact）的到期日end_date -->
+    <select id="LnPact.getMaxEndDate" resultClass="String">
+        SELECT max(END_DATE) FROM LN_PACT WHERE PACT_NO = #pactNo#
+    </select>   
+</sqlMap>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftReliefDtlAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftReliefDtlAction_findByPage" method="findByPage" class="app.creditapp.aft.action.AftReliefDtlAction">
+			<result name="list">/creditapp/aft/AftReliefDtl_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AftReliefDtlAction_input" method="input" class="app.creditapp.aft.action.AftReliefDtlAction">
+			<result name="input">/creditapp/aft/AftReliefDtl_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AftReliefDtlAction_del" method="del" class="app.creditapp.aft.action.AftReliefDtlAction">
+			<result name="list">/creditapp/aft/AftReliefDtl_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AftReliefDtlAction_getById" method="getById" class="app.creditapp.aft.action.AftReliefDtlAction">
+			<result name="detail">/creditapp/aft/AftReliefDtl_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AftReliefDtlActionInsert" method="insert" class="app.creditapp.aft.action.AftReliefDtlAction">
+			<result name="input">/creditapp/aft/AftReliefDtl_Insert.jsp</result>
+			<result name="detail">/creditapp/aft/AftReliefDtl_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftReliefDtlActionUpdate" method="update" class="app.creditapp.aft.action.AftReliefDtlAction">
+			<result name="input">/creditapp/aft/AftReliefDtl_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftReliefDtl_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

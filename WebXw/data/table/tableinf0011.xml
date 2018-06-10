@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="inf0011" para="eadis_page" link="WsRepyRealAction_findByPage.action" title="实收信息上传进件表" type="1">
+<tableitem align="2" filedname="修改" id="17" indexed="17" label="-" row="1" type="5" typepara="WsRepyRealAction_getById.action;wsId-wsId;" width="2"/>
+<tableitem align="2" filedname="删除" id="18" indexed="18" label="-" row="1" type="5" typepara="WsRepyRealAction_del.action;wsId-wsId;onClick-lkconfirm" width="2"/>
+</table>

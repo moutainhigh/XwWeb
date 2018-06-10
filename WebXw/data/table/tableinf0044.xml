@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="inf0044" para="eadis_page" link="WsRedctnAction_findByPage.action" title="息费减免信息上传明细表" type="1">
+<tableitem align="2" filedname="wsId" id="1" indexed="1" label="数据ID" row="1" type="0" />
+<tableitem align="2" filedname="batchNo" id="2" indexed="2" label="批次编号" row="1" type="4" typepara="WsRedctnAction_getById.action;pactNo-pactNo;query-'query'"/>
+<tableitem align="2" filedname="brNo" id="3" indexed="3" label="合作机构编号" row="1" type="0" />
+<tableitem align="2" filedname="pactNo" id="4" indexed="4" label="合同号:主键" row="1" type="4" typepara="WsRedctnAction_getById.action;pactNo-pactNo;query-'query'"/>
+<tableitem align="2" filedname="修改" id="12" indexed="12" label="-" row="1" type="5" typepara="WsRedctnAction_getById.action;pactNo-pactNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="13" indexed="13" label="-" row="1" type="5" typepara="WsRedctnAction_del.action;pactNo-pactNo;onClick-lkconfirm" width="2"/>
+</table>

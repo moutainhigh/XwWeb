@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="GB2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+	default-lazy-init="false">
+	
+	
+	<bean class="org.springframework.orm.ibatis.SqlMapClientFactoryBean" id="sqlMapClient">
+		<property name="configLocation">
+			<value>classpath:sql-map-config.xml</value>
+		</property>
+		<property name="mappingLocations">
+			<list>
+
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-AccessCheckInfo.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-DailyEvent.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-Student.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysPath.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysUser.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysMenu.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysUserLog.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysButton.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysRole.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysUserRole.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysRoleMenu.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysLog.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SchedulejobLog.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-ScheduleTask.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysLoginLog.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysCache.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-TableDoc.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-FundServiceRate.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-InterfaceBackMeg.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-OperatorModelMenu.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-PrdtBase.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-ParmArea.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-ParmKey.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-ParmRew.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-ParmRewRule.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-RulesBase.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-PubNote.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-SysOrg.xml</value>
+<value>classpath*:/app/creditapp/sys/ibatis-config/ibatis-TimeController.xml</value>
+
+<value>classpath*:/app/creditapp/acc/ibatis-config/ibatis-WsRepyFee.xml</value>
+
+<value>classpath*:/app/creditapp/acc/chg/ibatis-config/ibatis-AcRepyDayChga.xml</value>
+<value>classpath*:/app/creditapp/acc/chg/ibatis-config/ibatis-AftRelief.xml</value>
+
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcDebit.xml</value>
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcDebitSusp.xml</value>
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcLnLo.xml</value>
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcLnMst.xml</value>
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcLnPmLog.xml</value>
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcLnRepayPlnCur.xml</value>
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcLoanBackLog.xml</value>
+<value>classpath*:/app/creditapp/acc/loan/ibatis-config/ibatis-AcLoanLog.xml</value>
+
+<value>classpath*:/app/creditapp/acc/log/ibatis-config/ibatis-AcChrgLog.xml</value>
+<value>classpath*:/app/creditapp/acc/log/ibatis-config/ibatis-AcLnIntstLog.xml</value>
+<value>classpath*:/app/creditapp/acc/log/ibatis-config/ibatis-AcTraceLog.xml</value>
+
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcComHoliday.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcDamFormula.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcFeeFormula.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcFeeParm.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcFeeRate.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcFineFormula.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcLnRepayPln.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcLnRepayPlnSusp.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcLnSetlmtLog.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcReplanFormula.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcReplanParm.xml</value>
+<value>classpath*:/app/creditapp/acc/option/ibatis-config/ibatis-AcReplanSec.xml</value>
+
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftAdvpay.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftAssetPool.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftAssetRel.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftPoolRel.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftReliefDtl.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftRepyClear.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftReverse.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftRewDeal.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftRewFund.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftRewPact.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftRewProj.xml</value>
+<value>classpath*:/app/creditapp/aft/ibatis-config/ibatis-AftRewReal.xml</value>
+
+<value>classpath*:/app/creditapp/batch/ibatis-config/ibatis-BatchExe.xml</value>
+<value>classpath*:/app/creditapp/batch/ibatis-config/ibatis-BatchNode.xml</value>
+<value>classpath*:/app/creditapp/batch/ibatis-config/ibatis-BatchSql.xml</value>
+<value>classpath*:/app/creditapp/batch/ibatis-config/ibatis-BatchStep.xml</value>
+
+<value>classpath*:/app/creditapp/cif/ibatis-config/ibatis-CifAcct.xml</value>
+<value>classpath*:/app/creditapp/cif/ibatis-config/ibatis-CifBlack.xml</value>
+<value>classpath*:/app/creditapp/cif/ibatis-config/ibatis-CifPers.xml</value>
+<value>classpath*:/app/creditapp/cif/ibatis-config/ibatis-CifPersCareer.xml</value>
+<value>classpath*:/app/creditapp/cif/ibatis-config/ibatis-CifPersHis.xml</value>
+<value>classpath*:/app/creditapp/cif/ibatis-config/ibatis-CifPortrait.xml</value>
+
+<value>classpath*:/app/creditapp/dev/ibatis-config/ibatis-PopParmConf.xml</value>
+<value>classpath*:/app/creditapp/dev/ibatis-config/ibatis-TreeConf.xml</value>
+
+<value>classpath*:/ibatis-config/creditapp/cacheBaseSqlMap.xml</value>
+<value>classpath*:/ibatis-config/creditapp/ParmDic_SqlMap.xml</value>
+<value>classpath*:/ibatis-config/creditapp/SysGlobal_SqlMap.xml</value>
+<value>classpath*:/ibatis-config/creditapp/SysRoleButton_SqlMap.xml</value>
+<value>classpath*:/ibatis-config/creditapp/ibatis-CreateKey.xml</value>
+<value>classpath*:/ibatis-config/screencore/ibatis-OtherOption.xml</value>
+<value>classpath*:/ibatis-config/workflow/ibatis-AppWkfcfg.xml</value>
+<value>classpath*:/ibatis-config/workflow/ibatis-WkfApprovalRole.xml</value>
+<value>classpath*:/ibatis-config/workflow/ibatis-WkfApprovalUser.xml</value>
+
+<value>classpath*:/app/creditapp/pac/ibatis-config/ibatis-DocConfig.xml</value>
+<value>classpath*:/app/creditapp/pac/ibatis-config/ibatis-PacBase.xml</value>
+<value>classpath*:/app/creditapp/pact/ibatis-config/ibatis-LnPact.xml</value>
+
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-DebitCount.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LoanCount.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnAcct.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnAcctMid.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnApply.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnApplyMid.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnApplyReg.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnApprIdea.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnBatch.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnDue.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnGageMid.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-LnStage.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-PreApply.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-PreBatch.xml</value>
+<value>classpath*:/app/creditapp/ln/ibatis-config/ibatis-PreGage.xml</value>
+
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundBase.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundDetail.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundPayPlan.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundProv.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundProvProj.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundProvService.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundProvSplitTerm.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundRepayPlan.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundRightDetail.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundSplit.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundSplitDetail.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-FundSplitTerm.xml</value>
+<value>classpath*:/app/creditapp/fund/ibatis-config/ibatis-RptFundDaily.xml</value>
+
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-AllocateRegWsIn.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsBase.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsElyRepy.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsElyRepyBatch.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsRedctn.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsRepyClear.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsRepyFine.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsRepyMes.xml</value>
+<value>classpath*:/app/creditapp/inf/ibatis-config/ibatis-WsRepyPlan.xml</value>
+
+<value>classpath*:/app/creditapp/proj/ibatis-config/ibatis-AllocateReg.xml</value>
+<value>classpath*:/app/creditapp/proj/ibatis-config/ibatis-ProjAcct.xml</value>
+<value>classpath*:/app/creditapp/proj/ibatis-config/ibatis-ProjAcctLst.xml</value>
+<value>classpath*:/app/creditapp/proj/ibatis-config/ibatis-ProjBase.xml</value>
+<value>classpath*:/app/creditapp/proj/ibatis-config/ibatis-ProjMang.xml</value>
+<value>classpath*:/app/creditapp/proj/ibatis-config/ibatis-ProjParm.xml</value>
+<value>classpath*:/app/creditapp/proj/ibatis-config/ibatis-RptProj.xml</value>
+
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpAcct.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpBase.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpCert.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpCont.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpFin.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpGdinfo.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpParm.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-CorpTaRel.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-RptCorpArea.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-RptCorpDaily.xml</value>
+<value>classpath*:/app/creditapp/corp/ibatis-config/ibatis-RptCorpPrdt.xml</value>
+
+<value>classpath*:/app/creditapp/cred/ibatis-config/ibatis-CifBlackApp.xml</value>
+<value>classpath*:/app/creditapp/cred/ibatis-config/ibatis-CifEval.xml</value>
+<value>classpath*:/app/creditapp/cred/ibatis-config/ibatis-CorpEval.xml</value>
+<value>classpath*:/app/creditapp/cred/ibatis-config/ibatis-PcrpQueryInfo.xml</value>
+
+<value>classpath*:/app/creditapp/gage/ibatis-config/ibatis-LnGage.xml</value>
+
+<value>classpath*:/app/creditapp/wkf/ibatis-config/ibatis-WfTask.xml</value>
+
+<value>classpath*:/app/util/syslog/ibatis-config/ibatis-SysException.xml</value>
+
+<!-- classpath*:/app/creditapp/inf/ibatis-config/ibatis-ImgPath.xml
+ -->			</list>
+		</property>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+</beans>

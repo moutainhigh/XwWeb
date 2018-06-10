@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysRoleAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysRoleAction_findByPage" method="findByPage" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="list">/creditapp/sys/SysRole_List.jsp</result>
+		</action>
+		<action name="SysRoleAction_findByPageForPop" method="findByPageForPop" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="list">/creditapp/sys/SysRole_ListForPop.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="SysRoleAction_input" method="input" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="input">/creditapp/sys/SysRole_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysRoleAction_delete" method="delete" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="list">/creditapp/sys/SysRole_List.jsp</result>
+		</action>
+		<action name="SysRoleAction_active" method="active" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="list">/creditapp/sys/SysRole_List.jsp</result>
+		</action>
+		<action name="SysRoleAction_inactive" method="inactive" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="list">/creditapp/sys/SysRole_List.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="SysRoleAction_getById" method="getById" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="detail">/creditapp/sys/SysRole_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysRoleActionInsert" method="insert" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="input">/creditapp/sys/SysRole_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysRole_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysRoleActionUpdate" method="update" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="input">/creditapp/sys/SysRole_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/SysRole_Detail.jsp</result>
+		</action>
+		<!--角色管理对应菜单-->
+		<action name="SysRoleAction_getAllMenuByRole" method="getAllMenuByRole" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="allMenuByRole">/creditapp/sys/SysMenuRole_List.jsp</result>
+		</action>
+		<!--角色管理对应菜单按钮-->
+		<action name="SysRoleAction_getAllButtonByRole" method="getAllButtonByRole" class="app.creditapp.sys.action.SysRoleAction">
+			<result name="allButtonByRole">/creditapp/sys/SysMenuButton_List.jsp</result>
+		</action>
+		<!--角色管理对应菜单按钮保存-->
+		<action name="SysRoleAction_saveButton" method="saveButton" class="app.creditapp.sys.action.SysRoleAction">
+		</action>
+		<!--角色管理对应菜单可显按钮查询-->
+		<action name="SysRoleAction_getMenuButton"  method="getMenuButton" class="app.creditapp.sys.action.SysRoleAction">
+		</action>
+		<!--角色管理对应菜单已选按钮查询-->
+		<action name="SysRoleAction_getButtonList"  method="getButtonList" class="app.creditapp.sys.action.SysRoleAction">
+		</action>
+	</package>
+</struts>
+
+
+

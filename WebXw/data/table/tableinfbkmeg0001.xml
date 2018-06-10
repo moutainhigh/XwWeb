@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="infbkmeg0001" para="eadis_page" link="InterfaceBackMegAction_findByPage.action" title="接口返回信息表" type="1">
+<tableitem align="2" filedname="backMegKey" id="1" indexed="1" label="返回信息编码" row="1" type="4" typepara="InterfaceBackMegAction_getById.action;interfaceName-interfaceName;backMegKey-backMegKey;query-'query'"/>
+<tableitem align="2" filedname="interfaceName" id="2" indexed="2" label="接口名称" row="1" type="4" typepara="InterfaceBackMegAction_getById.action;interfaceName-interfaceName;backMegKey-backMegKey;query-'query'"/>
+<tableitem align="2" filedname="backMegDes" id="3" indexed="3" label="返回信息描述" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="4" indexed="4" label="-" row="1" type="5" typepara="InterfaceBackMegAction_getById.action;interfaceName-interfaceName;backMegKey-backMegKey;" width="2"/>
+<tableitem align="2" filedname="删除" id="5" indexed="5" label="-" row="1" type="5" typepara="InterfaceBackMegAction_del.action;interfaceName-interfaceName;backMegKey-backMegKey;onClick-lkconfirm" width="2"/>
+</table>

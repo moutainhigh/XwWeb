@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="ddtl0002" title="扣款明细表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="traceNo" fieldtype="1" maxlength="20" formactiveid="1" labelalign="3" labelcol="1" labelname="主机流水号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="ddtlNo" fieldtype="1" maxlength="10" formactiveid="2" labelalign="3" labelcol="3" labelname="扣款明细流水号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="loanNo" fieldtype="1" maxlength="14" formactiveid="3" labelalign="3" labelcol="1" labelname="借据号" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="pactNo" fieldtype="1" maxlength="40" formactiveid="4" labelalign="3" labelcol="3" labelname="合同号" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="5" labelalign="3" labelcol="1" labelname="机构号" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="perdNo" fieldtype="1" maxlength="4" formactiveid="6" labelalign="3" labelcol="3" labelname="期数" mustinput="0" row="3"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="ddtlPrcpAmt" fieldtype="1" maxlength="16" formactiveid="7" labelalign="3" labelcol="1" labelname="实扣本金" mustinput="0" row="4"/>
+<formelement datatype="3" fieldalign="1" fieldcol="4" fieldname="ddtlNormInt" fieldtype="1" maxlength="16" formactiveid="8" labelalign="3" labelcol="3" labelname="实扣利息" mustinput="0" row="4"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="ddtlFineInt" fieldtype="1" maxlength="16" formactiveid="9" labelalign="3" labelcol="1" labelname="实扣罚息" mustinput="0" row="5"/>
+<formelement datatype="3" fieldalign="1" fieldcol="4" fieldname="ddtlFeeAmt" fieldtype="1" maxlength="16" formactiveid="10" labelalign="3" labelcol="3" labelname="实扣费用总计" mustinput="0" row="5"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="ddtlAmt" fieldtype="1" maxlength="16" formactiveid="11" labelalign="3" labelcol="1" labelname="实扣总金额" mustinput="0" row="6"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="ddtlDate" fieldtype="1" maxlength="10" formactiveid="12" labelalign="3" labelcol="3" labelname="扣款日" mustinput="0" row="6"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="xtAcNo" fieldtype="1" maxlength="30" formactiveid="13" labelalign="3" labelcol="1" labelname="信托账号" mustinput="0" row="7"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="ddtlAcNo" fieldtype="1" maxlength="30" formactiveid="14" labelalign="3" labelcol="3" labelname="扣款账号" mustinput="0" row="7"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="ddtlAcName" fieldtype="1" maxlength="60" formactiveid="15" labelalign="3" labelcol="1" labelname="账户户名" mustinput="0" row="8"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="ddtlBankCode" fieldtype="1" maxlength="3" formactiveid="16" labelalign="3" labelcol="3" labelname="开户银行代码" mustinput="0" row="8"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="ddtlBankProv" fieldtype="1" maxlength="60" formactiveid="17" labelalign="3" labelcol="1" labelname="开户银行所在省" mustinput="0" row="9"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="ddtlBankCity" fieldtype="1" maxlength="60" formactiveid="18" labelalign="3" labelcol="3" labelname="开户银行所在市" mustinput="0" row="9"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="ddtlBankSite" fieldtype="1" maxlength="80" formactiveid="19" labelalign="3" labelcol="1" labelname="开户银行网点" mustinput="0" row="10"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="ddtlSts" fieldtype="1" maxlength="2" formactiveid="20" labelalign="3" labelcol="3" labelname="扣款状态" mustinput="0" row="10"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txDate" fieldtype="1" maxlength="8" formactiveid="21" labelalign="3" labelcol="1" labelname="登记日期" mustinput="0" row="11"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="txTime" fieldtype="1" maxlength="8" formactiveid="22" labelalign="3" labelcol="3" labelname="登记时间" mustinput="0" row="11"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="upDate" fieldtype="1" maxlength="17" formactiveid="23" labelalign="3" labelcol="1" labelname="更新时间" mustinput="0" row="12"/>
+</form>

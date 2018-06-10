@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftRewDealAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftRewDealAction_findByPage" method="findByPage" class="app.creditapp.aft.action.AftRewDealAction">
+			<result name="list">/creditapp/aft/AftRewDeal_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AftRewDealAction_input" method="input" class="app.creditapp.aft.action.AftRewDealAction">
+			<result name="input">/creditapp/aft/AftRewDeal_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AftRewDealAction_del" method="del" class="app.creditapp.aft.action.AftRewDealAction">
+			<result name="list">/creditapp/aft/AftRewDeal_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AftRewDealAction_getById" method="getById" class="app.creditapp.aft.action.AftRewDealAction">
+			<result name="detail">/creditapp/aft/AftRewDeal_Detail.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="AftRewDealAction_getByIdToRew" method="getByIdToRew" class="app.creditapp.aft.action.AftRewDealAction">
+			<result name="detailToPact">/creditapp/aft/AftRewPact_Detail.jsp</result>
+			<result name="detailToProj">/creditapp/aft/AftRewProj_Detail.jsp</result>
+			<result name="detailToFund">/creditapp/aft/AftRewFund_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftRewDeal_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AftRewDealActionInsert" method="insert" class="app.creditapp.aft.action.AftRewDealAction">
+			<result name="input">/creditapp/aft/AftRewDeal_Insert.jsp</result>
+			<result name="detail">/creditapp/aft/AftRewDeal_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftRewDealActionUpdate" method="update" class="app.creditapp.aft.action.AftRewDealAction">
+			<result name="input">/creditapp/aft/AftRewDeal_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftRewDeal_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

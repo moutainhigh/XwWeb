@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="PrdtBaseAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="PrdtBaseAction_findByPage" method="findByPage" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="list">/creditapp/sys/PrdtBase_List.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="PrdtBaseAction_input" method="input" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Insert.jsp</result>
+		</action>
+		<action name="PrdtBaseAction_inputForAc" method="inputForAc" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_InsertForAc.jsp</result>
+		</action>
+		<!--删除 -->
+		<action name="PrdtBaseAction_del" method="del" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="list">/creditapp/sys/PrdtBase_List.jsp</result>
+		</action>
+		<action name="PrdtBaseAction_active" method="active" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="list">/creditapp/sys/PrdtBase_List.jsp</result>
+		</action>
+		<action name="PrdtBaseAction_inactive" method="inactive" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="list">/creditapp/sys/PrdtBase_List.jsp</result>
+		</action>
+		
+		<!-- 新增-->
+		<action name="PrdtBaseAction_findByPagePop" method="findByPagePop" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="popList">/creditapp/sys/PrdtBase_PopList.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="PrdtBaseAction_getById" method="getById" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="detail">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detailB">/creditapp/sys/PrdtBase_DetailB.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="PrdtBaseAction_getByIdB" method="getByIdB" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="detail">/creditapp/sys/PrdtBase_DetailB.jsp</result>
+		</action>
+		<action name="PrdtBaseAction_getByIdTabFir" method="getByIdTabFir" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="detail">/creditapp/sys/PrdtBase_DetailTabFir.jsp</result>
+		</action>
+		<action name="PrdtBaseAction_getByIdForTab" method="getByIdForTab" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="detail">/creditapp/sys/PrdtBase_DetailForAc.jsp</result>
+		</action>
+		<action name="PrdtBaseAction_getByIdForDou" method="getByIdForDou" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="detail">/creditapp/sys/PrdtBase_DetailForDou.jsp</result>
+		</action>
+		<!--tab -->
+		<action name="PrdtBaseAction_getTab" method="getTab" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="tab">/creditapp/sys/PrdtBase_tab.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="PrdtBaseActionInsert" method="insert" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detailForAc">/creditapp/sys/PrdtBase_DetailForAc.jsp</result>
+		</action>
+		<action name="PrdtBaseActionInsertForCopy" method="insertForCopy" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/PrdtBase_List.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PrdtBaseActionUpdate" method="update" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detailB">/creditapp/sys/PrdtBase_DetailB.jsp</result>
+			<result name="detailForAc">/creditapp/sys/PrdtBase_DetailForAc.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PrdtBaseActionUpdateForAc" method="updateForAc" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/PrdtBase_DetailForAc.jsp</result>
+		</action>
+		<action name="PrdtBaseActionUpdateForNull" method="updateForNull" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/PrdtBase_DetailForNu.jsp</result>
+		</action>
+		<action name="PrdtBaseActionUpdateForNu" method="updateForNu" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/PrdtBase_DetailForNu.jsp</result>
+		</action>
+		<action name="PrdtBaseActionUpdateForDou" method="updateForDou" class="app.creditapp.sys.action.PrdtBaseAction">
+			<result name="input">/creditapp/sys/PrdtBase_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/PrdtBase_DetailForNull.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

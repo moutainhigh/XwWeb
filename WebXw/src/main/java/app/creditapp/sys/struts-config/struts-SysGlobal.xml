@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysGlobalAction" namespace="/" extends="struts-default">
+	
+		<action name="SysGlobalAction_getSysGlobal" method="getSysGlobalPage" class="app.creditapp.sys.action.SysGlobalAction">
+			<result name="list">/creditapp/sys/SysGlobal_List.jsp</result>
+		</action>
+		<action name="SysGlobalAction_updateSts" method="updateSts" class="app.creditapp.sys.action.SysGlobalAction">
+			<result name="list">/creditapp/sys/SysGlobal_List.jsp</result>
+		</action>
+		<action name="SysGlobalAction_update" method="update" class="app.creditapp.sys.action.SysGlobalAction">
+			<result name="list">/creditapp/sys/SysGlobal_List.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

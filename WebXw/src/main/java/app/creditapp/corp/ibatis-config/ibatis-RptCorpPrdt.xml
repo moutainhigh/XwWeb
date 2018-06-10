@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="RptCorpPrdt" type="app.creditapp.corp.entity.RptCorpPrdt"/>
+
+    <resultMap id="RM.RPT_CORP_PRDT" class="RptCorpPrdt">
+			<result property="rptDate" column="RPT_DATE" columnIndex="1"/>
+			<result property="rptType" column="RPT_TYPE" columnIndex="2"/>
+			<result property="brNo" column="BR_NO" columnIndex="3"/>
+			<result property="prdtType" column="PRDT_TYPE" columnIndex="4"/>
+			<result property="prdtNo" column="PRDT_NO" columnIndex="5"/>
+			<result property="cifNum" column="CIF_NUM" columnIndex="6"/>
+			<result property="lnCnt" column="LN_CNT" columnIndex="7"/>
+			<result property="lnBal" column="LN_BAL" columnIndex="8"/>
+			<result property="overBal" column="OVER_BAL" columnIndex="9"/>
+			<result property="intstBal" column="INTST_BAL" columnIndex="10"/>
+			<result property="cntYear" column="CNT_YEAR" columnIndex="11"/>
+			<result property="cntMon" column="CNT_MON" columnIndex="12"/>
+			<result property="cntDay" column="CNT_DAY" columnIndex="13"/>
+			<result property="cntAvg" column="CNT_AVG" columnIndex="14"/>
+			<result property="amtTot" column="AMT_TOT" columnIndex="15"/>
+			<result property="amtYear" column="AMT_YEAR" columnIndex="16"/>
+			<result property="amtMon" column="AMT_MON" columnIndex="17"/>
+			<result property="amtDay" column="AMT_DAY" columnIndex="18"/>
+			<result property="amtAvg" column="AMT_AVG" columnIndex="19"/>
+
+    </resultMap>
+  
+    <sql id="RptCorpPrdt.columns">
+        <![CDATA[
+				RPT_DATE,
+				RPT_TYPE,
+				BR_NO,
+				PRDT_TYPE,
+				PRDT_NO,
+				CIF_NUM,
+				LN_CNT,
+				LN_BAL,
+				OVER_BAL,
+				INTST_BAL,
+				CNT_YEAR,
+				CNT_MON,
+				CNT_DAY,
+				CNT_AVG,
+				AMT_TOT,
+				AMT_YEAR,
+				AMT_MON,
+				AMT_DAY,
+				AMT_AVG
+        ]]>
+    </sql>
+   
+    <insert id="RptCorpPrdt.insert">
+        <![CDATA[
+		INSERT INTO RPT_CORP_PRDT(
+				RPT_DATE,
+				RPT_TYPE,
+				BR_NO,
+				PRDT_TYPE,
+				PRDT_NO,
+				CIF_NUM,
+				LN_CNT,
+				LN_BAL,
+				OVER_BAL,
+				INTST_BAL,
+				CNT_YEAR,
+				CNT_MON,
+				CNT_DAY,
+				CNT_AVG,
+				AMT_TOT,
+				AMT_YEAR,
+				AMT_MON,
+				AMT_DAY,
+				AMT_AVG
+			)VALUES(
+				#rptDate#,
+				#rptType#,
+				#brNo#,
+				#prdtType#,
+				#prdtNo#,
+				#cifNum#,
+				#lnCnt#,
+				#lnBal#,
+				#overBal#,
+				#intstBal#,
+				#cntYear#,
+				#cntMon#,
+				#cntDay#,
+				#cntAvg#,
+				#amtTot#,
+				#amtYear#,
+				#amtMon#,
+				#amtDay#,
+				#amtAvg#)
+        ]]>
+        <selectKey resultClass="java.lang.String" type="pre" keyProperty="rptDate" >
+		<![CDATA[SELECT RPT_CORP_PRDT_SEQ.nextval AS RPT_DATE FROM DUAL]]>
+	</selectKey> 
+    </insert>
+	
+    <delete id="RptCorpPrdt.del">
+        <![CDATA[
+		DELETE FROM RPT_CORP_PRDT WHERE RPT_DATE=#rptDate#
+        ]]>
+    </delete>
+    
+    <update id="RptCorpPrdt.update">
+        <![CDATA[
+		UPDATE RPT_CORP_PRDT SET 
+			RPT_TYPE=#rptType#,
+			BR_NO=#brNo#,
+			PRDT_TYPE=#prdtType#,
+			PRDT_NO=#prdtNo#,
+			CIF_NUM=#cifNum#,
+			LN_CNT=#lnCnt#,
+			LN_BAL=#lnBal#,
+			OVER_BAL=#overBal#,
+			INTST_BAL=#intstBal#,
+			CNT_YEAR=#cntYear#,
+			CNT_MON=#cntMon#,
+			CNT_DAY=#cntDay#,
+			CNT_AVG=#cntAvg#,
+			AMT_TOT=#amtTot#,
+			AMT_YEAR=#amtYear#,
+			AMT_MON=#amtMon#,
+			AMT_DAY=#amtDay#,
+			AMT_AVG=#amtAvg# 
+		WHERE RPT_DATE=#rptDate#
+        ]]>
+    </update>
+
+	<select id="RptCorpPrdt.getAllRptCorpPrdt"  resultMap="RM.RPT_CORP_PRDT">
+        SELECT <include refid="RptCorpPrdt.columns"/>
+        <![CDATA[
+             FROM RPT_CORP_PRDT
+        ]]>
+     </select>
+     
+    <select id="RptCorpPrdt.getById"  resultMap="RM.RPT_CORP_PRDT">
+        SELECT <include refid="RptCorpPrdt.columns"/>
+        <![CDATA[
+             FROM RPT_CORP_PRDT
+         WHERE 
+             RPT_DATE = #rptDate#
+        ]]>
+     </select>
+    
+    <sql id="RptCorpPrdt.findByPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="rptDate">
+                      <isNotEmpty prepend="AND" property="rptDate">
+                          RPT_DATE = #rptDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+
+    <select id="RptCorpPrdt.findPage.count" resultClass="int">
+        SELECT count(*) FROM RPT_CORP_PRDT <include refid="RptCorpPrdt.findByPage.where"/>
+    </select>
+
+    <select id="RptCorpPrdt.findByPage" resultMap="RM.RPT_CORP_PRDT">
+        SELECT <include refid="RptCorpPrdt.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="RptCorpPrdt.columns"/> FROM RPT_CORP_PRDT
+                    <include refid="RptCorpPrdt.findByPage.where"/>
+             ) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+    
+    <select id="RptCorpPrdt.findByAll"  resultMap="RM.RPT_CORP_PRDT">
+        SELECT 
+				RPT_DATE,
+				'' AS RPT_TYPE,
+				'' AS BR_NO,
+				PRDT_TYPE,
+				'' AS PRDT_NO,
+				0 AS CIF_NUM,
+				0 AS LN_CNT,
+				sum(LN_BAL) as LN_BAL,
+				0 AS OVER_BAL,
+				0 AS INTST_BAL,
+				0 AS CNT_YEAR,
+				0 AS CNT_MON,
+				0 AS CNT_DAY,
+				0 AS CNT_AVG,
+				0 AS AMT_TOT,
+				0 AS AMT_YEAR,
+				0 AS AMT_MON,
+				0 AS AMT_DAY,
+				0 AS AMT_AVG
+         FROM RPT_CORP_PRDT
+        WHERE BR_NO=#brNo# 
+         AND rpt_date in (
+           SELECT rpt_date
+		     FROM (
+		       SELECT m.*, rownum as rnum 
+		         FROM 
+		          (SELECT distinct rpt_date FROM RPT_CORP_PRDT
+		              where BR_NO=#brNo# order by rpt_date desc
+		          ) m 
+		        WHERE rownum &lt;= 7
+		          ) WHERE rnum &gt;= 0
+		  )
+		 group by rpt_date,prdt_type
+         order by rpt_date asc
+    </select>
+    
+</sqlMap>

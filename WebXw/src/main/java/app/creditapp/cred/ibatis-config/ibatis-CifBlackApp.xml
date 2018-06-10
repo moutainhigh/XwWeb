@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CifBlackApp" type="app.creditapp.cred.entity.CifBlackApp"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CifBlackApp" class="CifBlackApp">
+    <result property="blkId" column="BLK_ID" />
+    <result property="appId" column="APP_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="blkLevel" column="BLK_LEVEL" />
+    <result property="appType" column="APP_TYPE" />
+    <result property="appReason" column="APP_REASON" />
+    <result property="appSts" column="APP_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    </resultMap>
+     <sql id="CifBlackApp.columns">
+        <![CDATA[
+         BLK_ID,
+         APP_ID,
+         CIF_NO,
+         CIF_NAME,
+         ID_TYPE,
+         ID_NO,
+         BLK_LEVEL,
+         APP_TYPE,
+         APP_REASON,
+         APP_STS,
+         TX_DATE,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CifBlackApp.insert">
+        <![CDATA[
+        INSERT INTO CIF_BLACK_APP(
+         BLK_ID,
+         APP_ID,
+         CIF_NO,
+         CIF_NAME,
+         ID_TYPE,
+         ID_NO,
+         BLK_LEVEL,
+         APP_TYPE,
+         APP_REASON,
+         APP_STS,
+         TX_DATE,
+         OP_NO
+         )VALUES(
+         #blkId#,
+         #appId#,
+         #cifNo#,
+         #cifName#,
+         #idType#,
+         #idNo#,
+         #blkLevel#,
+         #appType#,
+         #appReason#,
+         #appSts#,
+         #txDate#,
+         #opNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CifBlackApp.del">
+        <![CDATA[
+               DELETE FROM CIF_BLACK_APP
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CifBlackApp.update">
+        <![CDATA[
+         UPDATE CIF_BLACK_APP set
+         BLK_ID=#blkId#,
+         APP_ID=#appId#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         BLK_LEVEL=#blkLevel#,
+         APP_TYPE=#appType#,
+         APP_REASON=#appReason#,
+         APP_STS=#appSts#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CifBlackApp.getById"  resultMap="RM.CifBlackApp">
+        SELECT <include refid="CifBlackApp.columns"/>
+        <![CDATA[
+             FROM CIF_BLACK_APP 
+         WHERE 
+               	APP_ID = #appId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CifBlackApp.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="blkId">
+                  <isNotEmpty prepend="AND" property="blkId">
+                      BLK_ID = #blkId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME = #cifName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="idNo">
+                  <isNotEmpty prepend="AND" property="idNo">
+                      ID_NO = #idNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CifBlackApp.findPage.count" resultClass="int">
+        SELECT count(*) FROM CIF_BLACK_APP <include refid="CifBlackApp.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CifBlackApp.findByPage" resultMap="RM.CifBlackApp">
+        SELECT <include refid="CifBlackApp.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifBlackApp.columns"/> FROM CIF_BLACK_APP
+                    <include refid="CifBlackApp.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 获取APPKEY -->
+    <select id="CifBlackApp.getAppKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_BLACK_APP_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+	
+</sqlMap>

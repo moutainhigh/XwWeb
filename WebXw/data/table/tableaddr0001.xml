@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="pub0001" para="eadis_page" link="PubAddrAction_findByPage.action" title="通讯录" type="1">
+<tableitem align="2" filedname="addNo" id="1" indexed="1" label="编号" row="1" type="4" typepara="PubAddrAction_getById.action;addNo-addNo;query-'query'"/>
+<tableitem align="2" filedname="addName" id="2" indexed="2" label="姓名" row="1" type="0" />
+<tableitem align="2" filedname="sex" id="3" indexed="3" label="性别" row="1" type="0" />
+<tableitem align="2" filedname="workTitle" id="7" indexed="7" label="职务" row="1" type="0" />
+<tableitem align="2" filedname="phoneNo1" id="8" indexed="8" label="手机号码1" row="1" type="0" />
+<tableitem align="2" filedname="email" id="11" indexed="11" label="电子邮箱" row="1" type="0" />
+<tableitem align="2" filedname="qqNo" id="12" indexed="12" label="QQ号码" row="1" type="0" />
+<tableitem align="2" filedname="wcNo" id="13" indexed="13" label="微信号码" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="16" indexed="16" label="-" row="1" type="5" typepara="PubAddrAction_getById.action;addNo-addNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="17" indexed="17" label="-" row="1" type="5" typepara="PubAddrAction_del.action;addNo-addNo;onClick-lkconfirm" width="2"/>
+</table>

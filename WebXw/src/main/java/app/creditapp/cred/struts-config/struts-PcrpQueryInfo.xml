@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+    <struts>
+    <!-- 个人信用查询相关业务实现控制 -->
+	<package name="PcrpQueryInfoAction" namespace="/" extends="struts-cms">
+		<action name="PcrpQueryInfoAction_*" method="{1}" class="app.creditapp.cred.action.PcrpQueryInfoAction">
+			<result name="list">/creditapp/cred/PcrpQueryInfo_List.jsp</result>
+			<result name="singleList">/creditapp/cred/PcrpQueryInfo_List.jsp</result>
+			<result name="url">/creditapp/cred/PcrpQueryInfo_InReport30Sar_List.jsp</result>
+			<result name="CustQueryInfoListSC" >/creditapp/cred/PcrpQueryInfoSC_List.jsp</result>
+			<!-- 显示查征信息概况图 -->
+			<result name="tab">/creditapp/cred/PcrpQueryInfo_ViewTab.jsp</result>
+			<result name="viewChart">/creditapp/cred/PcrpQueryInfo_ShowViewChart.jsp</result>
+			<result name="viewNum">/creditapp/cred/PcrpQueryInfo_ShowActionNum.jsp</result>
+		</action>
+	</package>
+	</struts>
+
+

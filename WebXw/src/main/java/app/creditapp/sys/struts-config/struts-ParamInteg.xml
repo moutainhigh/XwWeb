@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ParamIntegAction" namespace="/" extends="struts-cms">
+		<!-- 跳转页-->
+		<action name="ParamIntegAction_skipPage" method="skipPage" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="sk">/creditapp/sys/Skip_Page.jsp</result>
+		</action>
+		
+		<!-- 参数类首页-->
+		<action name="ParamIntegAction_toParam" method="toParam" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="param">/creditapp/sys/Param_Integ.jsp</result>
+	    </action>
+	    <!-- top页-->
+	    <action name="ParamIntegAction_headPage" method="headPage" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="head">/creditapp/sys/Param_Head.jsp</result>
+	    </action>
+	    <!-- 产品管理 -list -->
+		<action name="ParamIntegAction_getPrdtList" method="getPrdtList" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="prdt">/creditapp/sys/Param_PrdtList.jsp</result>
+	    </action>	    
+	    <!--查看详情 -->
+		<action name="ParamIntegAction_findDetail" method="findDetail" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="det">/creditapp/sys/Access_Check_Info.jsp</result>
+		</action>
+		
+		<!-- 性能类首页-->
+		<action name="ParamIntegAction_performance" method="performance" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="perf">/creditapp/sys/Perf_Conf.jsp</result>
+	    </action>
+	    
+	    <!-- 日志类首页-->
+		<action name="ParamIntegAction_sysLog" method="sysLog" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="log">/creditapp/sys/Sys_Log.jsp</result>
+	    </action>
+	    
+	     <!-- 监控类首页-->
+		<action name="ParamIntegAction_monitor" method="monitor" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="moni">/creditapp/sys/Monitor_Conf.jsp</result>
+	    </action>
+	    
+	    <!-- 工具类首页-->
+		<action name="ParamIntegAction_sysTools" method="sysTools" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="tools">/creditapp/sys/Sys_Tools.jsp</result>
+	    </action>
+	    <!-- 业务类首页-->
+		<action name="ParamIntegAction_business" method="business" class="app.creditapp.sys.action.ParamIntegAction">
+			<result name="busi">/creditapp/sys/Business_Conf.jsp</result>
+	    </action>
+	</package>
+</struts>
+
+
+

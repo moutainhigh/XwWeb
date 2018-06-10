@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="ddtlrel0001" para="eadis_page" link="AcDebitRelAction_findByPage.action" title="扣款明细与批扣文件关联表" type="1">
+<tableitem align="2" filedname="relId" id="1" indexed="1" label="关联ID" row="1" type="4" typepara="AcDebitRelAction_getById.action;relId-relId;query-'query'"/>
+<tableitem align="2" filedname="debitNo" id="2" indexed="2" label="批扣流水号" row="1" type="0" />
+<tableitem align="2" filedname="ddtlNo" id="3" indexed="3" label="扣款明细流水号" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="4" indexed="4" label="-" row="1" type="5" typepara="AcDebitRelAction_getById.action;relId-relId;" width="2"/>
+<tableitem align="2" filedname="删除" id="5" indexed="5" label="-" row="1" type="5" typepara="AcDebitRelAction_del.action;relId-relId;onClick-lkconfirm" width="2"/>
+</table>

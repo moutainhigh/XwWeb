@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="pac_image_path0001" title="影像路径表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="fileType" fieldtype="1" maxlength="10" formactiveid="1" labelalign="3" labelcol="1" labelname="文件类型 (后缀名)" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="ifSign" fieldtype="1" maxlength="1" formactiveid="2" labelalign="3" labelcol="1" labelname="是否已经签章0：未签章 1：已签章';2：不需要再签章（针对双章合同）" mustinput="0" row="2" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="3" labelalign="3" labelcol="1" labelname="机构号" mustinput="0" row="3" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="inTime" fieldtype="1" maxlength="20" formactiveid="4" labelalign="3" labelcol="1" labelname="时间" mustinput="0" row="4" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="docPath" fieldtype="1" maxlength="150" formactiveid="5" labelalign="3" labelcol="1" labelname="文档路径" mustinput="0" row="5" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="docName" fieldtype="1" maxlength="100" formactiveid="6" labelalign="3" labelcol="1" labelname="文档名称" mustinput="0" row="6" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="docType" fieldtype="1" maxlength="20" formactiveid="7" labelalign="3" labelcol="1" labelname="文档类型" mustinput="0" row="7" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="transNo" fieldtype="1" maxlength="40" formactiveid="8" labelalign="3" labelcol="1" labelname="业务编号  合同号码或授信编号" mustinput="0" row="8" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="id" fieldtype="1" maxlength="30" formactiveid="9" labelalign="3" labelcol="1" labelname="主键" mustinput="0" row="9" />
+</form>

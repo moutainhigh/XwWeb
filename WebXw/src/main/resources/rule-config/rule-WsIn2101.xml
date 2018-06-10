@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ============================================================ -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn2101Id</ruleId>
+		<ruleName>wsIn2101Rule</ruleName>
+		<columnList>
+			<!-- 合作机构编号 -->
+			<column columenName="brNo">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+				<!-- 批次号码 -->
+			<column columenName="batNo">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+			<!-- 记录数 -->
+			<column columenName="dataCnt">
+				<canNull>false</canNull>
+				<maxLength>4</maxLength>
+				<minLength></minLength>
+				<maxValue>1000</maxValue>
+				<minValue>1</minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+				<complexNumber></complexNumber>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

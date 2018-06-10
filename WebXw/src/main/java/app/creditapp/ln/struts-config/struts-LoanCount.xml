@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LoanCountAction" namespace="/" extends="struts-cms">
+	
+	<!--分页查询 -->
+		<action name="LoanCountAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LoanCountAction">
+			<result name="list">/creditapp/ln/LoanCount_List.jsp</result>
+		</action>
+	
+	</package>
+</struts>

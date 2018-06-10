@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysRoleMenu" type="app.creditapp.sys.entity.SysRoleMenu"/>
+<typeAlias alias="SysMenu" type="app.creditapp.sys.entity.SysMenu"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysMenu" class="SysMenu">
+    <result property="menuNo" column="MENU_NO"/>
+    <result property="menuName" column="MENU_NAME"/>
+    <result property="menuUrl" column="MENU_URL"/>
+    <result property="menuParent" column="MENU_PARENT"/>
+    <result property="menuLvl" column="MENU_LVL"/>
+    <result property="menuSts" column="MENU_STS"/>
+    <result property="menuShape" column="MENU_SHAPE" />
+    <result property="menuSeq" column="MENU_SEQ" />
+    </resultMap>
+     <sql id="SysMenu.columns">
+        <![CDATA[
+         MENU_NO,
+         MENU_NAME,
+         MENU_URL,
+         MENU_PARENT,
+         MENU_LVL,
+         MENU_STS,
+         MENU_SHAPE,
+         MENU_SEQ
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysMenu.insert">
+        <![CDATA[
+        INSERT INTO SYS_MENU(
+         MENU_NO,
+         MENU_NAME,
+         MENU_URL,
+         MENU_PARENT,
+         MENU_LVL,
+         MENU_STS,
+         MENU_SHAPE,
+         MENU_SEQ
+         )VALUES(
+         #menuNo#,
+         #menuName#,
+         #menuUrl#,
+         #menuParent#,
+         #menuLvl#,
+         #menuSts#,
+         #menuShape#,
+         (select nvl(max(MENU_SEQ),0)+1 from SYS_MENU where MENU_PARENT = #menuParent#)
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysMenu.delete">
+        <![CDATA[
+               DELETE FROM SYS_MENU
+                 WHERE
+               	MENU_NO = #menuNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysMenu.update">
+        <![CDATA[
+         UPDATE SYS_MENU set
+         MENU_NO=#menuNo#,
+         MENU_NAME=#menuName#,
+         MENU_URL=#menuUrl#,
+         MENU_PARENT=#menuParent#,
+         MENU_LVL=#menuLvl#,
+         MENU_STS=#menuSts#,
+         MENU_SHAPE=#menuShape#
+          WHERE
+               	MENU_NO = #menuNo#        ]]>
+    </update>
+    <!-- 拖拽菜单修改（需要动态修改序号） -->
+    <update id="SysMenu.moveUpdate">
+        <![CDATA[
+         UPDATE SYS_MENU set
+         MENU_NO=#menuNo#,
+         MENU_NAME=#menuName#,
+         MENU_URL=#menuUrl#,
+         MENU_PARENT=#menuParent#,
+         MENU_LVL=#menuLvl#,
+         MENU_STS=#menuSts#,
+         MENU_SHAPE=#menuShape#,
+         MENU_SEQ=#menuSeq#
+          WHERE
+               	MENU_NO = #menuNo#        ]]>
+    </update>
+    <!-- 拖拽后修改菜单编号 -->
+     <update id="SysMenu.updateMenuSeq">
+	    <![CDATA[
+	        UPDATE SYS_MENU SET
+		        MENU_SEQ = #menuSeq#
+	        WHERE 
+	        	MENU_NO = #menuNo#
+	    ]]>
+    </update>
+    <!--
+    <select id="SysMenu.getByMenuNo" resultMap="RM.SysMenu">
+	    SELECT <include refid="SysMenu.columns"/>
+	    <![CDATA[
+	        FROM SYS_MENU 
+	        WHERE 
+		        MENU_NO = #menuNo#
+	    ]]>
+    </select> -->
+    
+    <select id="SysMenu.findAll" resultMap="RM.SysMenu">
+	    SELECT <include refid="SysMenu.columns"/>
+	    <![CDATA[
+	        FROM SYS_MENU order by menu_no
+	    ]]>
+    </select>
+    
+    <select id="SysMenu.findAll1" resultMap="RM.SysMenu">
+	    SELECT <include refid="SysMenu.columns"/>
+	    <![CDATA[
+	        FROM SYS_MENU order by menu_lvl,menu_seq
+	    ]]>
+    </select>
+    <!-- 查询一个操作员号下面对应的配置的所有菜单 -->
+    <select id="SysMenu.findByRoleNo" resultMap="RM.SysMenu">
+	    SELECT <include refid="SysMenu.columns"/>
+	    <![CDATA[
+	        FROM SYS_MENU where menu_no in (select menu_no from sys_role_menu where role_no=#role_no#) order by menu_lvl
+	    ]]>
+    </select>
+     <!-- 表查询ById -->
+    <select id="SysMenu.getById"  resultMap="RM.SysMenu">
+        SELECT <include refid="SysMenu.columns"/>
+        <![CDATA[
+             FROM SYS_MENU 
+         WHERE 
+               	MENU_NO = #menuNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysMenu.findPage.where">
+         <dynamic prepend="WHERE">
+		       <isNotEmpty prepend="AND" property="menuNo">
+		             MENU_NO = #menuNo#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="menuName">
+		             MENU_NAME = #menuName#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="menuUrl">
+		             MENU_URL = #menuUrl#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="menuParent">
+		             MENU_PARENT = #menuParent#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="menuLvl">
+		             MENU_LVL = #menuLvl#
+		       </isNotEmpty>
+		       <isNotEmpty prepend="AND" property="menuSts">
+		             MENU_STS = #menuSts#
+		       </isNotEmpty>
+	    </dynamic>	
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysMenu.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_MENU <include refid="SysMenu.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysMenu.findByPage" resultMap="RM.SysMenu">
+    	SELECT <include refid="SysMenu.columns"/> FROM SYS_MENU 
+		<include refid="SysMenu.findPage.where"/>
+		<dynamic prepend="ORDER BY">
+			<isNotEmpty property="sortColumns">$sortColumns$</isNotEmpty>
+		</dynamic>
+    </select>
+    
+    <select id="SysMenu.getByMenuNo" resultMap="RM.SysMenu" >
+	    SELECT <include refid="SysMenu.columns"/>
+		FROM (
+			SELECT m.*, rownum as rnum
+			FROM 
+				(SELECT <include refid="SysMenu.columns"/> FROM SYS_MENU
+						<include refid="SysMenu.findPage.where"/>
+				) m 
+        	)
+        WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+    </select>
+     
+    <select id="SysRoleMenu.getMenuByRole" resultClass="SysRoleMenu">
+		SELECT b.menu_no as menu_no,b.menu_name  as menu_name
+		FROM sys_role_menu a,Sys_Menu b 
+		WHERE a.menu_no=b.menu_no 
+		AND a.role_no = #role_no#
+    	AND b.menu_lvl ='1'
+		ORDER BY menu_no
+    </select>
+    <!-- 根据用户Id -->
+     <select id="SysRoleMenu.getMenuByUserId" resultClass="SysRoleMenu" >
+		SELECT b.menu_no as menu_no,b.menu_name  as menu_name
+		FROM sys_role_menu a,Sys_Menu b 
+		WHERE a.menu_no=b.menu_no 
+		AND a.role_no = #roleNo#
+    	AND b.menu_lvl ='1'
+		ORDER BY menu_no
+    </select>
+    <select id="SysMenu.getAllMenuByRole" resultMap="RM.SysMenu" >
+		SELECT b.menu_no menu_no,b.menu_name menu_name,menu_url,menu_lvl,menu_parent,MENU_STS
+		FROM sys_role_menu a,Sys_Menu b 
+		WHERE a.menu_no=b.menu_no 
+		AND a.role_no = #roleNo#
+		AND b.menu_lvl  IN ('2','3')
+		ORDER BY menu_no
+    </select>
+    <select id="SysMenu.getAllMenuByRoles" resultMap="RM.SysMenu" >
+		SELECT b.menu_no menu_no,b.menu_name menu_name,menu_url,menu_lvl,menu_parent,MENU_STS
+		FROM sys_role_menu a,Sys_Menu b 
+		WHERE a.menu_no=b.menu_no 
+		AND a.role_no = #roleNo#
+		ORDER BY menu_no
+    </select>
+    <!-- 根据Id -->
+     <select id="SysMenu.getAllMenuByUserId" resultMap="RM.SysMenu" >
+		SELECT b.menu_no menu_no,b.menu_name menu_name,menu_url,menu_lvl,menu_parent,MENU_STS
+		FROM sys_user_menu a,Sys_Menu b 
+		WHERE a.menu_no=b.menu_no 
+		AND a.role_no = #roleNo#
+		AND b.menu_lvl  IN ('2','3')
+		ORDER BY menu_no
+    </select>
+      <!-- 根据角色号 -->
+      <select id="SysMenu.findAllByRole" resultMap="RM.SysMenu">
+     	select
+     	<include refid="SysMenu.columns" />
+     	from sys_menu where menu_no in ( select menu_no from
+     	sys_role_menu where role_no in $roleno$ ) and MENU_STS = '01'
+     	order by menu_lvl,menu_seq
+     </select>
+     <!-- menu_url查询父菜单 -->
+    <select id="SysMenu.getParentByMenuUrl" resultMap="RM.SysMenu" >
+    	SELECT <include refid="SysMenu.columns"/>
+		FROM  SYS_MENU
+		WHERE menu_no = 
+			(
+				SELECT menu_parent 
+				FROM sys_menu 
+				WHERE menu_url like '%'||#menuUrl#||'%'
+				AND  rownum = 1
+			)
+    </select>
+      <!-- menu_no询父菜单 -->
+    <select id="SysMenu.getParentByMenuNo" resultMap="RM.SysMenu" >
+    	SELECT <include refid="SysMenu.columns"/>
+		FROM  SYS_MENU
+		WHERE menu_no = 
+			(
+				SELECT menu_parent 
+				FROM sys_menu 
+				WHERE menu_no = #menuNo#
+			) 
+    </select>
+     <select id="SysMenu.getAllLev2Menu" resultMap="RM.SysMenu" >
+    	SELECT <include refid="SysMenu.columns"/>
+		FROM  SYS_MENU
+		WHERE menu_lvl = '2'
+    </select>
+    
+    <!-- 根据父节点得到直接子节点信息 -->
+    <select id="SysMenu.getAllMenuByParent" resultMap="RM.SysMenu">
+	    SELECT <include refid="SysMenu.columns"/>
+	    <![CDATA[
+	        FROM SYS_MENU WHERE MENU_PARENT = #menuParent#
+	    ]]>
+    </select>
+    
+     <!-- 根据角色号获取一级菜单 -->
+     <select id="SysMenu.findMenuLev1ByRole" resultMap="RM.SysMenu">
+     	SELECT
+     	<include refid="SysMenu.columns" />
+     	FROM SYS_MENU WHERE MENU_NO IN (SELECT MENU_NO FROM
+     	SYS_ROLE_MENU WHERE ROLE_NO in $roleno$) and MENU_STS='01' AND
+     	MENU_LVL = '1'  order by menu_seq
+     </select>
+</sqlMap>

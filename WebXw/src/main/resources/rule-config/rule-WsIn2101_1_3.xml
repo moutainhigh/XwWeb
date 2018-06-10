@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ====================校验押品信息================== -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsIn2101_1_3Id</ruleId>
+		<ruleName>wsIn2101_1_3Rule</ruleName>
+		<columnList>
+			<column columenName="comName">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<column columenName="comIdtype">
+				<canNull>false</canNull>
+				<maxLength>1</maxLength>
+				<minLength>1</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<column columenName="comIdno">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<column columenName="comTel">
+				<canNull>false</canNull>
+				<maxLength>25</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

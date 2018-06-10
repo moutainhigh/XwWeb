@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="loan101" title="放款反馈信息表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="backLogNo" fieldtype="1" maxlength="20" formactiveid="1" labelalign="3" labelcol="1" labelname="放款反馈流水号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="loanLogNo" fieldtype="1" maxlength="20" formactiveid="2" labelalign="3" labelcol="3" labelname="放款流水号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="backRes" fieldtype="1" maxlength="2" formactiveid="3" labelalign="3" labelcol="1" labelname="放款结果[01-成功,02-失败]" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="backDate" fieldtype="1" maxlength="17" formactiveid="4" labelalign="3" labelcol="3" labelname="返回时间" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="backSts" fieldtype="1" maxlength="2" formactiveid="5" labelalign="3" labelcol="1" labelname="反馈状态[01-待处理,02-已处理]" mustinput="0" row="3"/>
+</form>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundDetail" type="app.creditapp.fund.entity.FundDetail"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundDetail" class="FundDetail">
+    <result property="detailId" column="DETAIL_ID" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="tradeType" column="TRADE_TYPE" />
+    <result property="fdType" column="FD_TYPE" />
+    <result property="termNo" column="TERM_NO" />
+    <result property="txAmt" column="TX_AMT" jdbcType="double"/>
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="FundDetail.columns">
+        <![CDATA[
+         DETAIL_ID,
+         FUND_NO,
+         FD_TYPE,
+         TRADE_TYPE,
+         TX_AMT,
+         TX_DATE,
+         TERM_NO,
+         fun_getusername(OP_NO) as OP_NO,
+         FILLER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundDetail.insert">
+        <![CDATA[
+        INSERT INTO FUND_DETAIL(
+         DETAIL_ID,
+         FUND_NO,
+         TRADE_TYPE,
+         TX_AMT,
+         TX_DATE,
+         OP_NO,
+         FILLER
+         )VALUES(
+         #detailId#,
+         #fundNo#,
+         #tradeType#,
+         #txAmt#,
+         #txDate#,
+         #opNo#,
+         #filler#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="detailId" >
+				SELECT  FUND_DETAIL_SEQ.NEXTVAL AS detailId FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundDetail.del">
+        <![CDATA[
+               DELETE FROM FUND_DETAIL
+                 WHERE
+               	DETAIL_ID = #detailId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundDetail.update">
+        <![CDATA[
+         UPDATE FUND_DETAIL set
+         DETAIL_ID=#detailId#,
+         FUND_NO=#fundNo#,
+         TRADE_TYPE=#tradeType#,
+         TX_AMT=#txAmt#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#,
+         FILLER=#filler#
+          WHERE
+               	DETAIL_ID = #detailId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundDetail.getById"  resultMap="RM.FundDetail">
+        SELECT <include refid="FundDetail.columns"/>
+        FROM ( SELECT A.*,B.FD_TYPE,'' TERM_NO
+             FROM FUND_DETAIL A,FUND_BASE B 
+             WHERE A.FUND_NO=B.FUND_NO AND DETAIL_ID = #detailId#       
+             )
+     </select>
+     <!-- 表查询ById -->
+    <select id="FundDetail.getMaxDate"  resultClass="String">
+        SELECT MAX(TX_DATE) FROM FUND_DETAIL WHERE FUND_NO=#fundNo#
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundDetail.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="detailId">
+                  <isNotEmpty prepend="AND" property="detailId">
+                      DETAIL_ID = #detailId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="tradeType">
+                  <isNotEmpty prepend="AND" property="tradeType">
+                      TRADE_TYPE = #tradeType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txDate">
+                  <isNotEmpty prepend="AND" property="txDate">
+                      TX_DATE = #txDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundDetail.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_DETAIL <include refid="FundDetail.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundDetail.findByPage" resultMap="RM.FundDetail">
+        SELECT <include refid="FundDetail.columns"/>
+        FROM (
+            SELECT m.*,rownum as rnum 
+        FROM  
+            (SELECT n.*,'' AS FD_TYPE,'' AS TERM_NO FROM FUND_DETAIL n
+                    <include refid="FundDetail.findPage.where"/>
+                    order by TX_DATE
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--查历史兑付流水-->
+    <select id="FundDetail.findByhisfundNo.count" resultClass="int">
+        SELECT count(*) FROM 
+         (SELECT FUND_NO, SUM(ABS(TX_AMT)) AS TX_AMT
+                 FROM FUND_DETAIL
+                WHERE FUND_NO = #fundNo#
+                  AND TRADE_TYPE = '02'
+                  AND TX_DATE &lt;= #txDate#
+                GROUP BY FUND_NO) A,
+       FUND_BASE B
+       WHERE A.FUND_NO = B.FUND_NO
+         AND A.TX_AMT &gt; B.CASH_BAL
+    </select>
+    <!--调用存贮过程-->
+    <parameterMap id="proParameters" class="map" >    
+        <parameter property="PROJNO" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+        <parameter property="FUNDNO" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+    </parameterMap>
+    <procedure id="FundDetail.redeem" parameterMap="proParameters" >  
+      {call PKG_FUND.PROC_SYNC_REDEEM(?,?)}  
+    </procedure>
+    <!--调用存贮过程-->
+    <procedure id="FundDetail.insert_after" >  
+      {call PKG_FUND.PROC_FUND_DETAIL_UPDATE(#detailId#,#termNo#)}  
+    </procedure>
+        <!-- 获取某段时间内资金金额 -->
+    <select id="FundDetail.getBalBytradeType" resultClass="double">
+        SELECT nvl(sum(tx_amt)/30,0) FROM FUND_DETAIL A,FUND_BASE B
+          WHERE A.FUND_NO = B.FUND_NO
+            AND B.PROJ_NO = #fundNo#
+            AND A.tx_date &lt; #txDate# 
+            AND A.tx_date &gt;= to_char(to_date(#txDate#,'yyyymmdd')-30,'yyyymmdd')
+            AND TRADE_TYPE = #tradeType#
+    </select>
+</sqlMap>

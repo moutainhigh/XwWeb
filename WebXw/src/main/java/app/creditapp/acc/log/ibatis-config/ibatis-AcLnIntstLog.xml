@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLnIntstLog" type="app.creditapp.acc.log.entity.AcLnIntstLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnIntstLog" class="AcLnIntstLog">
+    <result property="perdNo" column="PERD_NO" jdbcType="Int"/>
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="normInt" column="NORM_INT" jdbcType="double"/>
+    <result property="lstFineInt" column="LST_FINE_INT" jdbcType="double"/>
+    <result property="fineInt" column="FINE_INT" jdbcType="double"/>
+    <result property="lstIntDt" column="LST_INT_DT" />
+    <result property="txDt" column="TX_DT" />
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+     <sql id="AcLnIntstLog.columns">
+        <![CDATA[
+         PERD_NO,
+         LOAN_NO,
+         TRACE_NO,
+         PACT_NO,
+         BR_NO,
+         NORM_INT,
+         LST_FINE_INT,
+         FINE_INT,
+         LST_INT_DT,
+         TX_DT,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         proj_no
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLnIntstLog.insert">
+        <![CDATA[
+        INSERT INTO AC_LN_INTST_LOG(
+         PERD_NO,
+         LOAN_NO,
+         TRACE_NO,
+         PACT_NO,
+         BR_NO,
+         NORM_INT,
+         LST_FINE_INT,
+         FINE_INT,
+         LST_INT_DT,
+         TX_DT
+         )VALUES(
+         #perdNo#,
+         #loanNo#,
+         #traceNo#,
+         #pactNo#,
+         #brNo#,
+         #normInt#,
+         #lstFineInt#,
+         #fineInt#,
+         #lstIntDt#,
+         #txDt#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLnIntstLog.del">
+        <![CDATA[
+               DELETE FROM AC_LN_INTST_LOG
+                 WHERE
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+  and trace_no = #traceNo#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcLnIntstLog.update">
+        <![CDATA[
+         UPDATE AC_LN_INTST_LOG set
+         PERD_NO=#perdNo#,
+         LOAN_NO=#loanNo#,
+         TRACE_NO=#traceNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         NORM_INT=#normInt#,
+         LST_FINE_INT=#lstFineInt#,
+         FINE_INT=#fineInt#,
+         LST_INT_DT=#lstIntDt#,
+         TX_DT=#txDt#
+          WHERE
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+  and trace_no = #traceNo#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcLnIntstLog.getById"  resultMap="RM.AcLnIntstLog">
+        SELECT <include refid="AcLnIntstLog.columns"/>
+        <![CDATA[
+             FROM AC_LN_INTST_LOG 
+         WHERE 
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+  and trace_no = #traceNo#
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLnIntstLog.findPage.where">
+        	<isPropertyAvailable property="perdNo">
+                  <isNotEmpty prepend="AND" property="perdNo">
+                      PERD_NO = #perdNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      LOAN_NO = #loanNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      TRACE_NO = #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                     BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                     PROJ_NO IN (select proj_no from proj_mang where login_id = #loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLnIntstLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_INTST_LOG a,ln_pact b  where a.pact_no = b.pact_no <include refid="AcLnIntstLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLnIntstLog.findByPage" resultMap="RM.AcLnIntstLog">
+        SELECT <include refid="AcLnIntstLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <![CDATA[
+         PERD_NO,
+         LOAN_NO,
+         TRACE_NO,
+         a.PACT_NO,
+         a.BR_NO,
+         NORM_INT,
+         LST_FINE_INT,
+         FINE_INT,
+         LST_INT_DT,
+         TX_DT,
+         FUN_GETBRNAME(a.BR_NO) as BR_NAME,
+         proj_no
+          ]]> FROM AC_LN_INTST_LOG a,ln_pact b  where a.pact_no = b.pact_no
+                    <include refid="AcLnIntstLog.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

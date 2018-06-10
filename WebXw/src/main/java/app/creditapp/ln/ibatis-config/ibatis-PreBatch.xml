@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PreBatch" type="app.creditapp.ln.entity.PreBatch"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.PreBatch" class="PreBatch">
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="batchTime" column="BATCH_TIME" />
+    <result property="batchType" column="BATCH_TYPE" />
+    <result property="batchFile" column="BATCH_FILE" />
+    <result property="batchErrfile" column="BATCH_ERRFILE" />
+    <result property="batchNum" column="BATCH_NUM" jdbcType="Int" nullValue="0"/>
+    <result property="dbNum" column="DB_NUM" jdbcType="Int" nullValue="0"/>
+    <result property="chkNum" column="CHK_NUM" jdbcType="Int" nullValue="0"/>
+    <result property="chkNumOk" column="CHK_NUM_OK" jdbcType="Int" nullValue="0"/>
+    <result property="batchSts" column="BATCH_STS" />
+    <result property="upTime" column="UP_TIME" />
+    <result property="batchDate" column="BATCH_DATE" />
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+    
+     <!--接口ws2005 返回列表-->
+    
+    <typeAlias alias="WsOut2005_1" type="app.creditapp.inf.entity.WsOut2005_1"/>
+    
+    <resultMap id="RM.WsOut2005_1" class="WsOut2005_1">
+			<result property="batNo" column="BATCH_NO" />
+			<result property="batTime" column="BATCH_DATE" />
+			<result property="batNum" column="BATCH_NUM" jdbcType="Int" nullValue="0"/>
+			<result property="recvNum" column="DB_NUM" jdbcType="Int" nullValue="0"/>
+			<result property="chkNum" column="CHK_NUM" jdbcType="Int" nullValue="0"/>
+			<result property="chkNumOK" column="CHK_NUM_OK" jdbcType="Int" nullValue="0"/>
+    </resultMap>
+    
+    
+<typeAlias alias="WsIn4101" type="app.creditapp.inf.entity.WsIn4101"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsIn4101" class="WsIn4101">
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="czPactNo" column="CZ_PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="appDate" column="APP_DATE" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="url" column="URL" />
+    </resultMap>
+     <sql id="PreBatch.columns">
+        <![CDATA[
+         BR_NO,
+         BATCH_NO,
+         BATCH_TIME,
+         BATCH_TYPE,
+         BATCH_FILE,
+         BATCH_ERRFILE,
+         BATCH_NUM,
+         DB_NUM,
+         CHK_NUM,
+         CHK_NUM_OK,
+         BATCH_STS,
+         UP_TIME,
+         BATCH_DATE,
+         fun_getbrname(BR_NO) as BR_NAME
+          ]]>
+    </sql>
+    <!--ws2005接口专用返回字段-->
+    <sql id="WsOut2005_1.columns">
+        <![CDATA[
+				BATCH_NO,
+				BATCH_DATE,
+				BATCH_NUM,
+				DB_NUM,
+				CHK_NUM,
+				CHK_NUM_OK
+        ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="PreBatch.insert">
+        <![CDATA[
+        INSERT INTO PRE_BATCH(
+         BR_NO,
+         BATCH_NO,
+         BATCH_TIME,
+         BATCH_TYPE,
+         BATCH_FILE,
+         BATCH_ERRFILE,
+         BATCH_NUM,
+         DB_NUM,
+         CHK_NUM,
+         CHK_NUM_OK,
+         BATCH_STS,
+         UP_TIME,
+         BATCH_DATE
+         )VALUES(
+         #brNo#,
+         #batchNo#,
+         #batchTime#,
+         #batchType#,
+         #batchFile#,
+         #batchErrfile#,
+         #batchNum#,
+         #dbNum#,
+         #chkNum#,
+         #chkNumOk#,
+         #batchSts#,
+         FUN_SYSTIME,
+         #batchDate#
+         )
+          ]]>
+    </insert>
+    <!-- 表新增 -->
+    <insert id="WsQueryCreditBean.insert">
+        <![CDATA[
+        INSERT INTO QUERY_CREDIT(
+         BATCH_NO,
+         CZ_PACT_NO,
+         BR_NO,
+         APP_DATE,
+         CIF_NAME,
+         ID_TYPE,
+         ID_NO,
+         URL
+         )VALUES(
+         #batchNo#,
+         #czPactNo#,
+         #brNo#,
+         #appDate#,
+         #cifName#,
+         #idType#,
+         #idNo#,
+         #url#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="PreBatch.del">
+        <![CDATA[
+               DELETE FROM PRE_BATCH
+                 WHERE
+               	BATCH_NO = #batchNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="PreBatch.update">
+        <![CDATA[
+         UPDATE PRE_BATCH set
+         BR_NO=#brNo#,
+         BATCH_NO=#batchNo#,
+         BATCH_TIME=#batchTime#,
+         BATCH_TYPE=#batchType#,
+         BATCH_FILE=#batchFile#,
+         BATCH_ERRFILE=#batchErrfile#,
+         BATCH_NUM=#batchNum#,
+         DB_NUM=#dbNum#,
+         CHK_NUM=#chkNum#,
+         CHK_NUM_OK=#chkNumOk#,
+         BATCH_STS=#batchSts#,
+         UP_TIME=#upTime#,
+         BATCH_DATE=#batchDate#
+          WHERE
+               	BATCH_NO = #batchNo#        ]]>
+    </update>
+    
+    <!-- 表修改 -->
+    <update id="PreBatch.updateNum">
+        <![CDATA[
+         update pre_batch b
+   			set chk_num   =
+       			(select count(*) from pre_apply a where a.batch_no = b.batch_no and a.chk_res <> '00'),
+       		chk_num_ok =
+       			(select count(*) from pre_apply a where a.batch_no = b.batch_no and a.chk_res = '01')
+ 			where b.batch_no = #batchNo#   ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="PreBatch.getById"  resultMap="RM.PreBatch">
+        SELECT <include refid="PreBatch.columns"/>
+        <![CDATA[
+             FROM PRE_BATCH 
+         WHERE 
+               	BATCH_NO = #batchNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PreBatch.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+  <!--           <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      fun_getbrname(BR_NO) like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>-->
+        	<isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchSts">
+                  <isNotEmpty prepend="AND" property="batchSts">
+                      BATCH_STS = #batchSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                 BR_NO IN (SELECT p.br_no FROM proj_base p WHERE p.proj_no IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#))
+                  </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchDate">
+                  <isNotEmpty prepend="AND" property="batchDate">
+                      BATCH_DATE = #batchDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+     <!--接口ws2005 返回符合条件总的记录数和分页-->
+     <sql id="WsPreBatch.findByPage.whereforlistWs">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchDate">
+                  <isNotEmpty prepend="AND" property="batchDate">
+                      BATCH_DATE = #batchDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <select id="WsPreBatch.findPageforlistWs.count" resultClass="int">
+    	SELECT count(*) FROM PRE_BATCH <include refid="WsPreBatch.findByPage.whereforlistWs"/>
+    </select>
+    
+    <select id="WsPreBatch.findByPageforlistWs" resultMap="RM.WsOut2005_1">
+         SELECT <include refid="WsOut2005_1.columns"/>
+         FROM(
+              SELECT m.*, rownum as rnum 
+              FROM
+              (SELECT <include refid="WsOut2005_1.columns"/> FROM PRE_BATCH
+                    <include refid="WsPreBatch.findByPage.whereforlistWs"/>
+              ) m 
+               WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+    <!--结束-->
+    
+    
+    <!-- 分页查询记录数 -->
+    <select id="PreBatch.findPage.count" resultClass="int">
+        SELECT count(*) FROM PRE_BATCH <include refid="PreBatch.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="PreBatch.findByPage" resultMap="RM.PreBatch">
+        SELECT <include refid="PreBatch.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  BR_NO,
+			         BATCH_NO,
+			         BATCH_TIME,
+			         BATCH_TYPE,
+			         BATCH_FILE,
+			         BATCH_ERRFILE,
+			         BATCH_NUM,
+			         DB_NUM,
+			         CHK_NUM,
+			         CHK_NUM_OK,
+			         BATCH_STS,
+			         UP_TIME,
+			         BATCH_DATE
+		 FROM PRE_BATCH
+                    <include refid="PreBatch.findPage.where"/> ORDER BY BATCH_DATE DESC,BATCH_TIME DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="PreBatch.getByPreApply"  resultMap="RM.PreBatch">
+        SELECT 
+		BR_NO BR_NO,
+        BATCH_NO BATCH_NO,
+        '' BATCH_DATE,
+        '' BATCH_TIME,
+        '' BATCH_TYPE,
+        '' BATCH_FILE,
+        '' BATCH_ERRFILE,
+        count(app_id) BATCH_NUM,
+        count(app_id) DB_NUM,
+        count(app_id) CHK_NUM,
+        sum(case when CHK_RES='01' then 1 else 0 end) CHK_NUM_OK,
+        0 AUTO_NUM,
+        0 APP_NUM,
+        0 APP_NUM_OK,
+        0 LN_NUM,
+        0 LN_NUM_FZ,
+        0 LN_NUM_OK,
+        '01' BATCH_STS,
+        '' UP_TIME
+             FROM pre_apply
+         WHERE 
+               	BATCH_NO = #batchNo#   group by BATCH_NO,BR_NO
+     </select>
+</sqlMap>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="fund0007" title="资金分账流水表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="logId" fieldtype="1" maxlength="30" formactiveid="1" labelalign="3" labelcol="1" labelname="分账流水编号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="fundNo" fieldtype="1" maxlength="30" formactiveid="2" labelalign="3" labelcol="3" labelname="资金编号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="tradeType" fieldtype="1" maxlength="2" formactiveid="3" labelalign="3" labelcol="1" labelname="交易类型 01-分账；02-充账(现金增加)；03-回冲(现金减少)" mustinput="0" row="2"/>
+<formelement datatype="3" fieldalign="1" fieldcol="4" fieldname="txAmt" fieldtype="1" maxlength="16" formactiveid="4" labelalign="3" labelcol="3" labelname="交易金额" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txDate" fieldtype="1" maxlength="17" formactiveid="5" labelalign="3" labelcol="1" labelname="交易日期" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="filler" fieldtype="1" maxlength="200" formactiveid="6" labelalign="3" labelcol="3" labelname="备注" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opNo" fieldtype="1" maxlength="20" formactiveid="7" labelalign="3" labelcol="1" labelname="登记人员" mustinput="0" row="4"/>
+</form>

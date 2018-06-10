@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CifAcctAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CifAcctAction_findByPage" method="findByPage" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="list">/creditapp/cif/CifAcct_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CifAcctAction_input" method="input" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="input">/creditapp/cif/CifAcct_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CifAcctAction_del" method="del" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="list">/creditapp/cif/CifAcct_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CifAcctAction_getById" method="getById" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="detail">/creditapp/cif/CifAcct_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CifAcctActionInsert" method="insert" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="input">/creditapp/cif/CifAcct_Insert.jsp</result>
+			<result name="detail">/creditapp/cif/CifAcct_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CifAcctActionUpdate" method="update" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="input">/creditapp/cif/CifAcct_Detail.jsp</result>
+			<result name="detail">/creditapp/cif/CifAcct_Detail.jsp</result>
+		</action>
+		<!-- 根据客户号查询某客户的账户信息 -->
+		<action name="CifAcctAction_listQuotaForCif" method="listQuotaForCif" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="list">/creditapp/cif/CifAcct_listQuotaForCif.jsp</result>
+		</action>
+		<!-- 根据客户号查询某客户的账户信息 -->
+		<action name="CifAcctAction_listQuotaForCif_Read" method="listQuotaForCif_Read" class="app.creditapp.cif.action.CifAcctAction">
+			<result name="list_Read">/creditapp/cif/CifAcct_listQuotaForCif_Read.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

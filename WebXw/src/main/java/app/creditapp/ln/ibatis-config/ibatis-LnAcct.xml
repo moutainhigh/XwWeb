@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnAcct" type="app.creditapp.ln.entity.LnAcct"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnAcct" class="LnAcct">
+    <result property="appId" column="APP_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="acUse" column="AC_USE" />
+    <result property="acAmt" column="AC_AMT" jdbcType="double"/>
+    <result property="acType" column="AC_TYPE" />
+    <result property="acNo" column="AC_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="bankCode" column="BANK_CODE" />
+    <result property="bankProv" column="BANK_PROV" />
+    <result property="bankCity" column="BANK_CITY" />
+    <result property="bankSite" column="BANK_SITE" />
+    <result property="acSts" column="AC_STS" />
+    <result property="idType" column="ID_TYPE"/>
+	<result property="idNo" column="ID_NO" />
+	<result property="phoneNo" column="PHONE_NO" />
+	<result property="validDate" column="VALID_DATE" />
+	<result property="cvvNo" column="CVV_NO" />
+	<result property="acctBal" column="ACCT_BAL" />
+    </resultMap>
+    
+    <typeAlias alias="WsOut2104_1_1" type="app.creditapp.inf.entity.WsOut2104_1_1"/>    
+    <resultMap id="RM.WsOut2104_1_1" class="WsOut2104_1_1">
+    <result property="acUse" column="AC_USE" />
+    <result property="acAmt" column="AC_AMT" jdbcType="double"/>
+    <result property="acType" column="AC_TYPE" />
+    <result property="Acno" column="AC_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="bankCode" column="BANK_CODE" />
+    <result property="bankProv" column="BANK_PROV" />
+    <result property="bankCity" column="BANK_CITY" />
+    </resultMap>
+     <sql id="LnAcct.columns">
+        <![CDATA[
+         APP_ID,
+         CIF_NO,
+         fun_getCifName(cif_no) as CIF_NAME,
+         AC_USE,
+         AC_AMT,
+         AC_TYPE,
+         AC_NO,
+         AC_NAME,
+         BANK_CODE,
+         BANK_PROV,
+         BANK_CITY,
+         BANK_SITE,
+         AC_STS,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO,
+         ACCT_BAL
+          ]]>
+    </sql>
+    <sql id="WsOut2104_1_1.columns">
+        <![CDATA[
+         AC_USE,
+         AC_AMT,
+         AC_TYPE,
+         AC_NO,
+         AC_NAME,
+         BANK_CODE,
+         BANK_PROV,
+         BANK_CITY
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnAcct.insert">
+        <![CDATA[
+        INSERT INTO LN_ACCT(
+         APP_ID,
+         CIF_NO,
+         AC_USE,
+         AC_AMT,
+         AC_TYPE,
+         AC_NO,
+         AC_NAME,
+         BANK_CODE,
+         BANK_PROV,
+         BANK_CITY,
+         BANK_SITE,
+         AC_STS,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO,
+         ACCT_BAL
+         )VALUES(
+         #appId#,
+         #cifNo#,
+         #acUse#,
+         #acAmt#,
+         #acType#,
+         #acNo#,
+         #acName#,
+         #bankCode#,
+         #bankProv#,
+         #bankCity#,
+         #bankSite#,
+         #acSts#,
+         #idType#,
+	     #idNo#,
+		 #phoneNo#,
+		 #validDate#,
+		 #cvvNo#,
+		 #acctBal#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnAcct.del">
+        <![CDATA[
+               DELETE FROM LN_ACCT
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    
+     <delete id="LnAcct.delById">
+        <![CDATA[
+               DELETE FROM LN_ACCT
+                 WHERE
+               	APP_ID = #appId# and AC_NO=#acNo# and AC_USE=#acUse#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnAcct.update">
+        <![CDATA[
+         UPDATE LN_ACCT set
+         APP_ID=#appId#,
+         CIF_NO=#cifNo#,
+         AC_USE=#acUse#,
+         AC_AMT=#acAmt#,
+         AC_TYPE=#acType#,
+         AC_NO=#acNo#,
+         AC_NAME=#acName#,
+         BANK_CODE=#bankCode#,
+         BANK_PROV=#bankProv#,
+         BANK_CITY=#bankCity#,
+         BANK_SITE=#bankSite#,
+         AC_STS=#acSts#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         PHONE_NO=#phoneNo#,
+         VALID_DATE=#validDate#,
+         CVV_NO=#cvvNo#
+          WHERE
+               	APP_ID = #appId#    and AC_USE = #acUse#  ]]>
+               	<isPropertyAvailable property="acNo">
+                  <isNotEmpty prepend="AND" property="acNo">
+                      AC_NO = #acNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>   
+    </update>
+    
+    
+     <!-- 表修改 根据ID与用途-->
+    <update id="LnAcct.updateByAppIdAndUse">
+        <![CDATA[
+         UPDATE LN_ACCT set
+         APP_ID=#appId#,
+         CIF_NO=#cifNo#,
+         AC_USE=#acUse#,
+         AC_AMT=#acAmt#,
+         AC_TYPE=#acType#,
+         AC_NO=#acNo#,
+         AC_NAME=#acName#,
+         BANK_CODE=#bankCode#,
+         BANK_PROV=#bankProv#,
+         BANK_CITY=#bankCity#,
+         BANK_SITE=#bankSite#,
+         AC_STS=#acSts#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         PHONE_NO=#phoneNo#,
+         VALID_DATE=#validDate#,
+         CVV_NO=#cvvNo#
+          WHERE
+               	APP_ID = #appId#   AND  AC_NO = #acNo# AND  AC_USE = #acUse#   ]]>
+    </update>
+     <!-- 表修改 根据ID与用途-->
+    <update id="LnAcct.updateByAppIdAndUseForF">
+        <![CDATA[
+         UPDATE LN_ACCT set
+         APP_ID=#appId#,
+         CIF_NO=#cifNo#,
+         AC_USE=#acUse#,
+         AC_AMT=#acAmt#,
+         AC_TYPE=#acType#,
+         AC_NO=#acNo#,
+         AC_NAME=#acName#,
+         BANK_CODE=#bankCode#,
+         BANK_PROV=#bankProv#,
+         BANK_CITY=#bankCity#,
+         BANK_SITE=#bankSite#,
+         AC_STS=#acSts#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         PHONE_NO=#phoneNo#,
+         VALID_DATE=#validDate#,
+         CVV_NO=#cvvNo#
+         
+          WHERE
+               	APP_ID = #appId#    AND  AC_USE = #acUse#  AND AC_STS='01'  ]]>
+    </update>
+    <update id="LnAcct.updateAcSts">
+        <![CDATA[
+         UPDATE LN_ACCT set
+         AC_STS= '02'
+          WHERE
+               	APP_ID = #appId#    AND  AC_USE = '2'  AND AC_NO=#acNo#  ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnAcct.getById"  resultMap="RM.LnAcct">
+        SELECT <include refid="LnAcct.columns"/>
+        <![CDATA[
+             FROM LN_ACCT 
+         WHERE  1 = 1
+               	        ]]>
+               	
+               	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>   
+             <isPropertyAvailable property="acUse">
+                  <isNotEmpty prepend="AND" property="acUse">
+                      AC_USE = #acUse#
+                   </isNotEmpty>
+             </isPropertyAvailable>   
+             <isPropertyAvailable property="acNo">
+                  <isNotEmpty prepend="AND" property="acNo">
+                      AC_NO = #acNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>  
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="acSts">
+                  <isNotEmpty prepend="AND" property="acSts">
+                      AC_STS = #acSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>   
+             AND ROWNUM='1'
+     </select>
+     
+      <!-- 表查询ById -->
+    <select id="LnAcct.getByIdAndSts"  resultMap="RM.LnAcct">
+        SELECT <include refid="LnAcct.columns"/>
+        <![CDATA[
+             FROM LN_ACCT 
+         WHERE  AC_STS = '01'
+               	        ]]>
+               	
+               	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>   
+             <isPropertyAvailable property="acUse">
+                  <isNotEmpty prepend="AND" property="acUse">
+                      AC_USE = #acUse#
+                   </isNotEmpty>
+             </isPropertyAvailable>    
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+ 
+     </select>
+     
+     
+     <!-- 表查询ById -->
+    <select id="LnAcct.getByIdforAdv"  resultMap="RM.LnAcct">
+        SELECT <include refid="LnAcct.columns"/>
+        <![CDATA[
+             FROM LN_ACCT 
+         WHERE  1 = 1
+               	        ]]>
+               	
+               	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>   
+             <isPropertyAvailable property="acUse">
+                  <isNotEmpty prepend="AND" property="acUse">
+                      AC_USE = #acUse#
+                   </isNotEmpty>
+             </isPropertyAvailable>   
+             <isPropertyAvailable property="acNo">
+                  <isNotEmpty prepend="AND" property="acNo">
+                      AC_NO = #acNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>  
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             AND AC_TYPE &lt;&gt; '13'
+             AND ROWNUM='1'
+     </select>
+     
+     
+     <!-- 查询放款账号 -->
+      <select id="LnAcct.getListByFk"  resultMap="RM.LnAcct">
+        SELECT <include refid="LnAcct.columns"/>
+        <![CDATA[
+             FROM LN_ACCT 
+         WHERE  app_id=#appId# and ac_use='2'
+               	        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnAcct.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="acNo">
+                  <isNotEmpty prepend="AND" property="acNo">
+                      AC_NO = #acNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acUse">
+                  <isNotEmpty prepend="AND" property="acUse">
+                      AC_USE = #acUse#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acType">
+                  <isNotEmpty prepend="AND" property="acType">
+                      AC_TYPE = #acType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <!-- 根据appId查询所有对应记录 -->
+    <select id="LnAcct.findlist" resultMap="RM.WsOut2104_1_1">
+        SELECT <include refid="WsOut2104_1_1.columns"/> FROM LN_ACCT 
+        WHERE 
+			APP_ID = #appId#
+    </select>
+    <!-- 分页查询记录数 -->
+    <select id="LnAcct.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_ACCT <include refid="LnAcct.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnAcct.findByPage" resultMap="RM.LnAcct">
+        SELECT <include refid="LnAcct.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnAcct.columns"/> FROM LN_ACCT
+                    <include refid="LnAcct.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 根据原账号进行在账号表中进行查找确认里面是否存在   ws2501 -->
+    <select id="LnAcct.findFor2501.count" resultClass="int">
+        SELECT count(*) FROM LN_ACCT WHERE   AC_NO = #acNo# AND AC_USE=#acUse#
+    </select>
+    
+     <!-- 分页查询预进件申请信息账户信息记录数 -->
+    <select id="LnAcct.findByPageQuotaForLn.count" resultClass="int">
+        SELECT count(*) FROM LN_ACCT WHERE 
+            APP_ID = #appId# ORDER BY APP_ID DESC
+    </select>
+    <select id="LnAcct.getOldCount.count" resultMap="RM.LnAcct">
+        SELECT <include refid="LnAcct.columns"/> FROM LN_ACCT WHERE 
+            APP_ID = #appId# and ac_no = #acNo# and ac_use = '2'
+    </select>
+    <!-- 分页查询预进件申请信息账户信息-->
+    <select id="LnAcct.findByPageQuotaForLn" resultMap="RM.LnAcct">
+        SELECT <include refid="LnAcct.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnAcct.columns"/> FROM LN_ACCT WHERE  
+             APP_ID = #appId# ORDER BY APP_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+</sqlMap>

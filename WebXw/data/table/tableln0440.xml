@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="ln0440" para="eadis_page" link="LnAcctAction_findByPage.action" title="账户信息表" type="1">
+<tableitem align="2" filedname="acNo" id="1" indexed="1" label="账户号码" row="1" type="0" />
+<tableitem align="2" filedname="appId" id="3" indexed="3" label="申请ID" row="1" type="4" typepara="LnAcctAction_getById.action;acNo-acNo;query-'query'"/>
+<tableitem align="2" filedname="cifNo" id="4" indexed="4" label="客户号" row="1" type="0" />
+<tableitem align="2" filedname="acAmt" id="5" indexed="5" label="放款金额" row="1" type="0" />
+</table>

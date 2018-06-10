@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PubNote" type="app.creditapp.sys.entity.PubNote"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.PubNote" class="PubNote">
+    <result property="noteNo" column="NOTE_NO" />
+    <result property="noteType" column="NOTE_TYPE" />
+    <result property="noteTitle" column="NOTE_TITLE" />
+    <result property="noteContent" column="NOTE_CONTENT" />
+    <result property="noteFile" column="NOTE_FILE" />
+    <result property="noteVip" column="NOTE_VIP" />
+    <result property="endDate" column="END_DATE" />
+    <result property="noteSts" column="NOTE_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="contType" column="CONT_TYPE" />
+    <result property="docName" column="DOC_NAME" />
+    
+    </resultMap>
+     <sql id="PubNote.columns">
+        <![CDATA[
+         NOTE_NO,
+         NOTE_TYPE,
+         NOTE_TITLE,
+         NOTE_CONTENT,
+         NOTE_FILE,
+         NOTE_VIP,
+         END_DATE,
+         NOTE_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         CONT_TYPE,
+         DOC_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="PubNote.insert">
+        <![CDATA[
+        INSERT INTO PUB_NOTE(
+         NOTE_NO,
+         NOTE_TYPE,
+         NOTE_TITLE,
+         NOTE_CONTENT,
+         NOTE_FILE,
+         NOTE_VIP,
+         END_DATE,
+         NOTE_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         CONT_TYPE,
+         DOC_NAME
+         )VALUES(
+         #noteNo#,
+         #noteType#,
+         #noteTitle#,
+         #noteContent#,
+         #noteFile#,
+         #noteVip#,
+         #endDate#,
+         #noteSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #contType#,
+         #docName#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="noteNo" >
+				SELECT  PUB_NOTE_SEQ.NEXTVAL AS noteNo FROM DUAL
+      	 </selectKey>	
+    </insert>
+    <!-- 表删除 -->
+    <delete id="PubNote.del">
+        <![CDATA[
+               DELETE FROM PUB_NOTE
+                 WHERE
+               	NOTE_NO = #noteNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="PubNote.update">
+        <![CDATA[
+         UPDATE PUB_NOTE set
+         NOTE_NO=#noteNo#,
+         NOTE_TYPE=#noteType#,
+         NOTE_TITLE=#noteTitle#,
+         NOTE_CONTENT=#noteContent#,
+         NOTE_FILE=#noteFile#,
+         NOTE_VIP=#noteVip#,
+         END_DATE=#endDate#,
+         NOTE_STS=#noteSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         CONT_TYPE=#noteType#,
+         DOC_NAME=#docName#
+          WHERE
+               	NOTE_NO = #noteNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="PubNote.getById"  resultMap="RM.PubNote">
+        SELECT <include refid="PubNote.columns"/>
+        <![CDATA[
+             FROM PUB_NOTE 
+         WHERE 
+               	NOTE_NO = #noteNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PubNote.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="noteNo">
+                  <isNotEmpty prepend="AND" property="noteNo">
+                      NOTE_NO = #noteNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="noteTitle">
+                  <isNotEmpty prepend="AND" property="noteTitle">
+                      NOTE_TITLE like '%$noteTitle$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="noteType">
+                  <isNotEmpty prepend="AND" property="noteType">
+                      NOTE_TYPE= #noteType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="docName">
+                  <isNotEmpty prepend="AND" property="docName">
+                      DOC_NAME= #docName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <sql id="PubNote.findPage.and">
+        <dynamic prepend="and">
+        	<isPropertyAvailable property="noteNo">
+                  <isNotEmpty prepend="AND" property="noteNo">
+                      NOTE_NO = #noteNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="noteType">
+                  <isNotEmpty prepend="AND" property="noteType">
+                      NOTE_TYPE = #noteType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="noteTitle">
+                  <isNotEmpty prepend="AND" property="noteTitle">
+                      NOTE_TITLE like '%$noteTitle$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+    <!-- 分页查询记录数 -->
+    <select id="PubNote.findPage.count" resultClass="int">
+        SELECT count(*) FROM PUB_NOTE 
+                         <include refid="PubNote.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="PubNote.findByPage" resultMap="RM.PubNote">
+        SELECT <include refid="PubNote.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="PubNote.columns"/> FROM PUB_NOTE
+                    <include refid="PubNote.findPage.where"/>
+                    order by TX_DATE desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#       
+    </select>
+    
+    <!-- 得到前10条 -->
+    <sql id="PubNote.getTop10.where">
+    	 where rownum &lt;=10 
+       	<isPropertyAvailable property="noteNo">
+                 <isNotEmpty prepend="AND" property="noteNo">
+                     NOTE_NO = #noteNo#
+                  </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="noteType">
+                 <isNotEmpty prepend="AND" property="noteType">
+                     NOTE_TYPE = #noteType#
+                  </isNotEmpty>
+            </isPropertyAvailable>
+       	<isPropertyAvailable property="noteTitle">
+                 <isNotEmpty prepend="AND" property="noteTitle">
+                     NOTE_TITLE = #noteTitle#
+                  </isNotEmpty>
+            </isPropertyAvailable>
+         order by TX_DATE desc
+    </sql>
+    <!-- 得到前10条 -->
+    <select id="PubNote.getTop10" resultMap="RM.PubNote">
+        SELECT <include refid="PubNote.columns"/>
+        FROM PUB_NOTE
+        <include refid="PubNote.getTop10.where"/>
+    </select>
+        <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PubNote.findByNote_type.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="noteType">
+                 <isNotEmpty prepend="AND" property="noteType">
+                     NOTE_TYPE = #noteType#
+                  </isNotEmpty>
+            </isPropertyAvailable>
+             order by TX_DATE desc
+        </dynamic>
+    </sql>
+    <select id="PubNote.findAllByNote_type" resultMap="RM.PubNote">
+        SELECT <include refid="PubNote.columns"/>
+        FROM PUB_NOTE
+        <include refid="PubNote.findByNote_type.where"/>     
+    </select>
+</sqlMap>

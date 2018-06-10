@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AllocateRegAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AllocateRegAction_findByPage" method="findByPage" class="app.creditapp.proj.action.AllocateRegAction">
+			<result name="list">/creditapp/proj/AllocateReg_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AllocateRegAction_input" method="input" class="app.creditapp.proj.action.AllocateRegAction">
+			<result name="input">/creditapp/proj/AllocateReg_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AllocateRegAction_del" method="del" class="app.creditapp.proj.action.AllocateRegAction">
+			<result name="list">/creditapp/proj/AllocateReg_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AllocateRegAction_getById" method="getById" class="app.creditapp.proj.action.AllocateRegAction">
+			<result name="detail">/creditapp/proj/AllocateReg_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AllocateRegActionInsert" method="insert" class="app.creditapp.proj.action.AllocateRegAction">
+			<result name="input">/creditapp/proj/AllocateReg_Insert.jsp</result>
+			<result name="detail">/creditapp/proj/AllocateReg_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AllocateRegActionUpdate" method="update" class="app.creditapp.proj.action.AllocateRegAction">
+			<result name="input">/creditapp/proj/AllocateReg_Detail.jsp</result>
+			<result name="detail">/creditapp/proj/AllocateReg_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

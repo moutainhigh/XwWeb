@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnApprIdeaAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnApprIdeaAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="list">/creditapp/ln/LnApprIdea_List.jsp</result>
+		</action>
+		<action name="LnApprIdeaAction_findByPageForRead" method="findByPageForRead" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="list">/creditapp/ln/LnApprIdea_ListForRead.jsp</result>
+		</action>
+		
+		<!--分页查询 -->
+		<action name="LnApprIdeaAction_findByAppId" method="findByAppId" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="list">/creditapp/ln/LnApprIdea_ListAppId.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="LnApprIdeaAction_input" method="input" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="input">/creditapp/ln/LnApprIdea_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnApprIdeaAction_del" method="del" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="list">/creditapp/ln/LnApprIdea_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnApprIdeaAction_getById" method="getById" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="detail">/creditapp/ln/LnApprIdea_Detail.jsp</result>
+		</action>
+		
+		<!--进件查询人工审批 -->
+		<action name="LnApprIdeaAction_getByIdLn" method="getByIdLn" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="detail">/creditapp/ln/LnApprIdea_DetailLn.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnApprIdeaAction_getByAppId" method="getById" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="detail">/creditapp/ln/LnApprIdea_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnApprIdeaActionInsert" method="insert" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="input">/creditapp/ln/LnApprIdea_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnApprIdea_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnApprIdeaActionUpdate" method="update" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="input">/creditapp/ln/LnApprIdea_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnApprIdea_Detail.jsp</result>
+		</action>
+		
+		<!-- 详细信息 -->
+		<action name="LnApprIdeaAction_getTab" method="getTab" class="app.creditapp.ln.action.LnApprIdeaAction">
+			<result name="tab">/creditapp/ln/LnApprIdea_Tab.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

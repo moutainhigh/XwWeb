@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="acc8010" title="分录定义表,编辑用form">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="entryCde" fieldtype="1" fieldwidth="30" formactiveid="1" labelalign="3" labelcol="1" labelname="分录代码" labelwidth="20" maxlength="10" mustinput="1" row="1"/>
+<formelement datatype="1" fieldalign="1" fieldcol="4" fieldname="entrySeq" fieldtype="1" fieldwidth="30" formactiveid="2" labelalign="3" labelcol="3" labelname="序号" labelwidth="20" maxlength="22" mustinput="1" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="accHrt" fieldtype="1" formactiveid="3" labelalign="3" labelcol="1" labelname="科目控制字" maxlength="10" mustinput="1" onclick="funcAcComItemForPop('accHrt','accHrt')" readonly="1" row="2" unit="[选择]"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="prdtNo"  fieldsize="AC_PRDT_NAME" fieldtype="2" formactiveid="5" labelalign="3" labelcol="1" labelname="贷款产品描述" maxlength="10" mustinput="1" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="amtTyp" fieldsize="AC_LOAN_AMT_TYP" fieldtype="2" formactiveid="6" labelalign="3" labelcol="3" labelname="金额类型" maxlength="10" mustinput="1" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="dcInd" fieldsize="AC_DC_IND" fieldtype="2" formactiveid="8" labelalign="3" labelcol="3" labelname="借贷标志" maxlength="10" mustinput="1" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="termTyp" fieldsize="AC_LOAN_TERM_TYP" fieldtype="2" formactiveid="9" labelalign="3" labelcol="1" labelname="期限类型" maxlength="10" mustinput="1" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="recvPayInd" fieldsize="AC_RECV_PAY" fieldtype="2" formactiveid="10" labelalign="3" labelcol="3" labelname="收付标志" maxlength="10" mustinput="0" row="4"/>
+</form>

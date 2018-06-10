@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- 不使用namespace是由于sql搜索定位会比较方便 -->
+<sqlMap>
+	<typeAlias alias="cacheBase" type="app.creditapp.entity.CacheBase" />
+	<resultMap id="RM.cacheBase" class="cacheBase">
+		<result property="key_name" column="KEY_NAME" />
+		<result property="opt_code" column="OPT_CODE" />
+		<result property="opt_name" column="OPT_NAME" />
+		<result property="opt_seq" column="OPT_SEQ" />
+	</resultMap>
+
+	<sql id="cacheBase.columns">
+		<![CDATA[
+        	KEY_NAME,
+			OPT_CODE,
+			OPT_NAME,
+			OPT_SEQ
+	    ]]>
+	</sql>
+	<sql id="cacheBase.find.where">
+		<dynamic prepend="where">
+			<isPropertyAvailable property="key_name">
+				<isNotEmpty prepend="AND" property="key_name">
+					KEY_NAME = #key_name#
+				</isNotEmpty>
+			</isPropertyAvailable>
+		</dynamic>
+	</sql>
+	<select id="cacheBase.findByCondition" resultMap="RM.cacheBase">
+		SELECT
+		<include refid="cacheBase.columns" />
+		FROM PARM_DIC_ALL
+		<include refid="cacheBase.find.where" />
+		ORDER BY OPT_SEQ
+	</select>
+	<select id="cacheBase.findKeyByCondition" resultClass="java.lang.String" >
+		SELECT distinct KEY_NAME FROM PARM_DIC_ALL  
+	</select>
+
+</sqlMap>

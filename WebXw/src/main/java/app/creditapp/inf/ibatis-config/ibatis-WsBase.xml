@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsBase" type="app.creditapp.inf.entity.WsBase"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsBase" class="WsBase">
+    <result property="wsBaseId" column="WS_BASE_ID" />
+    <result property="wsDate" column="WS_DATE" />
+    <result property="wsTime" column="WS_TIME" />
+    <result property="txCode" column="TX_CODE" />
+    <result property="wsToken" column="WS_TOKEN" />
+    <result property="wsSerial" column="WS_SERIAL" />
+    <result property="respTime" column="RESP_TIME" />
+    <result property="respCode" column="RESP_CODE" />
+    <result property="respDesc" column="RESP_DESC" />
+    <result property="wsSts" column="WS_STS" />
+    <result property="reqContent" column="REQ_CONTENT" />
+    <result property="respContent" column="RESP_CONTENT" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    
+    </resultMap>
+    <!--reqContent、respContent 返回数据较多-->
+    <resultMap id="RM.WsBaseForlist" class="WsBase">
+    <result property="wsBaseId" column="WS_BASE_ID" />
+    <result property="wsDate" column="WS_DATE" />
+    <result property="wsTime" column="WS_TIME" />
+    <result property="txCode" column="TX_CODE" />
+    <result property="wsToken" column="WS_TOKEN" />
+    <result property="wsSerial" column="WS_SERIAL" />
+    <result property="respTime" column="RESP_TIME" />
+    <result property="respCode" column="RESP_CODE" />
+    <result property="respDesc" column="RESP_DESC" />
+    <result property="wsSts" column="WS_STS" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+     <sql id="WsBaseForlist.columns">
+        <![CDATA[
+         WS_BASE_ID,
+         WS_DATE,
+         WS_TIME,
+         TX_CODE,
+         WS_TOKEN,
+         WS_SERIAL,
+         RESP_TIME,
+         RESP_CODE,
+         RESP_DESC,
+         WS_STS,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) AS BR_NAME
+          ]]>
+    </sql>
+    <sql id="WsBase.columns">
+        <![CDATA[
+         WS_BASE_ID,
+         WS_DATE,
+         WS_TIME,
+         TX_CODE,
+         WS_TOKEN,
+         WS_SERIAL,
+         RESP_TIME,
+         RESP_CODE,
+         RESP_DESC,
+         WS_STS,
+         REQ_CONTENT,
+         RESP_CONTENT,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) AS BR_NAME
+          ]]>
+    </sql>
+    <!-- 表DelBack新增 -->
+    <insert id="WsBase.insertDelBack">
+        <![CDATA[
+        INSERT INTO WS_BASE(
+         WS_BASE_ID,
+         WS_DATE,
+         WS_TIME,
+         TX_CODE,
+         RESP_DESC,
+         WS_STS,
+         RESP_CONTENT
+         )VALUES(
+         WS_BASE_SEQ.NEXTVAL,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         FUN_SYSTIME,
+         #txCode#,
+         #respDesc#,
+         #wsSts#,
+         #respContent#
+         )
+          ]]>
+    </insert>
+    
+    
+    <!-- 表新增 -->
+    <insert id="WsBase.insert">
+        <![CDATA[
+        INSERT INTO WS_BASE(
+         WS_BASE_ID,
+         WS_DATE,
+         WS_TIME,
+         TX_CODE,
+         WS_TOKEN,
+         WS_SERIAL,
+         RESP_TIME,
+         RESP_CODE,
+         RESP_DESC,
+         WS_STS,
+         REQ_CONTENT,
+         RESP_CONTENT,
+         BR_NO
+         )VALUES(
+         WS_BASE_SEQ.NEXTVAL,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         FUN_SYSTIME,
+         #txCode#,
+         #wsToken#,
+         #wsSerial#,
+         #respTime#,
+         #respCode#,
+         #respDesc#,
+         #wsSts#,
+         #reqContent#,
+         #respContent#,
+         #brNo#
+         )
+          ]]>
+    </insert>
+    
+    <!-- 表新增 -->
+    <insert id="WsBase.insertReq" parameterClass="app.creditapp.inf.entity.WsBase">
+        <![CDATA[
+        INSERT INTO WS_BASE(
+         WS_BASE_ID,
+         WS_DATE,
+         WS_TIME,
+         TX_CODE,
+         WS_TOKEN,
+         WS_SERIAL,
+         WS_STS,
+         REQ_CONTENT,
+         BR_NO
+         )VALUES(
+         #wsBaseId#,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         FUN_SYSTIME,
+         #txCode#,
+         #wsToken#,
+         #wsSerial#,
+         #wsSts#,
+         #reqContent#,
+         #brNo#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="wsBaseId" >
+			SELECT WS_BASE_SEQ.NEXTVAL AS WS_BASE_ID FROM DUAL
+      	 </selectKey>
+    </insert>
+    
+    <!-- 表删除 -->
+    <delete id="WsBase.del">
+        <![CDATA[
+               DELETE FROM WS_BASE
+                 WHERE
+               	WS_BASE_ID = #wsBaseId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WsBase.update">
+        <![CDATA[
+         UPDATE WS_BASE set
+         WS_BASE_ID=#wsBaseId#,
+         WS_DATE=#wsDate#,
+         WS_TIME=#wsTime#,
+         TX_CODE=#txCode#,
+         WS_TOKEN=#wsToken#,
+         WS_SERIAL=#wsSerial#,
+         RESP_TIME=#respTime#,
+         RESP_CODE=#respCode#,
+         RESP_DESC=#respDesc#,
+         WS_STS=#wsSts#,
+         REQ_CONTENT=#reqContent#,
+         RESP_CONTENT=#respContent#,
+         BR_NO=#brNo#
+          WHERE
+               	WS_BASE_ID = #wsBaseId#        ]]>
+    </update>
+    
+    <!-- 表DelBack修改 -->
+    <update id="WsBase.updateDelBack">
+        <![CDATA[
+         UPDATE WS_BASE set
+        
+         WS_SERIAL=#wsSerial#
+
+          WHERE
+               	WS_BASE_ID = #wsBaseId#        ]]>
+    </update>
+    
+    <!-- 表修改 -->
+    <update id="WsBase.updateResp">
+        <![CDATA[
+         UPDATE WS_BASE set
+         RESP_TIME=FUN_SYSTIME,
+         RESP_CODE=#respCode#,
+         RESP_DESC=#respDesc#,
+         WS_STS=#wsSts#,
+         RESP_CONTENT=#respContent#,
+         BR_NO=#brNo#
+          WHERE WS_BASE_ID = #wsBaseId# 
+          ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WsBase.getById"  resultMap="RM.WsBase">
+        SELECT <include refid="WsBase.columns"/>
+        <![CDATA[
+             FROM WS_BASE 
+         WHERE 
+               	WS_BASE_ID = #wsBaseId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WsBase.findPage.where">
+        <dynamic prepend="where">
+        <isPropertyAvailable property="wsId">
+                      <isNotEmpty prepend="AND" property="wsId">
+                          WS_BASE_ID = #wsId#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="wsDate">
+                      <isNotEmpty prepend="AND" property="wsDate">
+                          WS_DATE = #wsDate#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="wsTime">
+                      <isNotEmpty prepend="AND" property="wsTime">
+                          WS_TIME = #wsTime#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="txCode">
+                      <isNotEmpty prepend="AND" property="txCode">
+                          TX_CODE = #txCode#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="WsBase.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_BASE <include refid="WsBase.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WsBase.findByPage" resultMap="RM.WsBaseForlist">
+        SELECT <include refid="WsBaseForlist.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsBaseForlist.columns"/> FROM WS_BASE
+                    <include refid="WsBase.findPage.where"/> ORDER BY WS_BASE_ID DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

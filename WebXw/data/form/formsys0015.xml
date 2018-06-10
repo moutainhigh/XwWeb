@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="sys0015" title="行政区划">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="areaNo" fieldtype="1" maxlength="6" formactiveid="1" labelalign="3" labelcol="1" labelname="行政区划编号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="areaName" fieldtype="1" maxlength="30" formactiveid="2" labelalign="3" labelcol="3" labelname="行政区划名称" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="areaLev" fieldtype="1" maxlength="1" formactiveid="3" labelalign="3" labelcol="1" labelname="行政级别" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="areaUp" fieldtype="1" maxlength="6" formactiveid="4" labelalign="3" labelcol="3" labelname="上级行政区号" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="postCode" fieldtype="1" maxlength="6" formactiveid="5" labelalign="3" labelcol="1" labelname="邮政编码" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="areaSts" fieldtype="1" maxlength="2" formactiveid="6" labelalign="3" labelcol="3" labelname="状态" mustinput="0" row="3"/>
+</form>

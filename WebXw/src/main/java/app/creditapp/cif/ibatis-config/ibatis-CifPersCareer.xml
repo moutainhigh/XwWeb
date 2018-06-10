@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CifPersCareer" type="app.creditapp.cif.entity.CifPersCareer"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CifPersCareer" class="CifPersCareer">
+    <result property="recId" column="REC_ID" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="workType" column="WORK_TYPE" />
+    <result property="corpName" column="CORP_NAME" />
+    <result property="corpWay" column="CORP_WAY" />
+    <result property="corpCode" column="CORP_CODE" />
+    <result property="corpAddr" column="CORP_ADDR" />
+    <result property="duty" column="DUTY" />
+    <result property="title" column="TITLE" />
+    <result property="workYear" column="WORK_YEAR" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="recSts" column="REC_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="workSts" column="WORK_STS" />
+    </resultMap>
+     <sql id="CifPersCareer.columns">
+        <![CDATA[
+         REC_ID,
+         CIF_NAME,
+         CIF_NO,
+         WORK_TYPE,
+         CORP_NAME,
+         CORP_WAY,
+         CORP_CODE,
+         CORP_ADDR,
+         DUTY,
+         TITLE,
+         WORK_YEAR,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) AS BR_NAME,
+         REC_STS,
+         TX_DATE,
+         UP_DATE,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         WORK_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CifPersCareer.insert">
+        <![CDATA[
+        INSERT INTO CIF_PERS_CAREER(
+         REC_ID,
+         CIF_NAME,
+         CIF_NO,
+         WORK_TYPE,
+         CORP_NAME,
+         CORP_WAY,
+         CORP_CODE,
+         CORP_ADDR,
+         DUTY,
+         TITLE,
+         WORK_YEAR,
+         BR_NO,
+         REC_STS,
+         TX_DATE,
+         UP_DATE,
+         OP_NO,
+         WORK_STS
+         )VALUES(
+         #recId#,
+         #cifName#,
+         #cifNo#,
+         #workType#,
+         #corpName#,
+         #corpWay#,
+         #corpCode#,
+         #corpAddr#,
+         #duty#,
+         #title#,
+         #workYear#,
+         #brNo#,
+         #recSts#,
+         #txDate#,
+         #upDate#,
+         #opNo#,
+         #workSts#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CifPersCareer.del">
+        <![CDATA[
+               DELETE FROM CIF_PERS_CAREER
+                 WHERE
+               	REC_ID = #recId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CifPersCareer.update">
+        <![CDATA[
+         UPDATE CIF_PERS_CAREER set
+         REC_ID=#recId#,
+         CIF_NAME=#cifName#,
+         CIF_NO=#cifNo#,
+         WORK_TYPE=#workType#,
+         CORP_NAME=#corpName#,
+         CORP_WAY=#corpWay#,
+         CORP_CODE=#corpCode#,
+         CORP_ADDR=#corpAddr#,
+         DUTY=#duty#,
+         TITLE=#title#,
+         WORK_YEAR=#workYear#,
+         BR_NO=#brNo#,
+         REC_STS=#recSts#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         OP_NO=#opNo#,
+         WORK_STS=#workSts#
+          WHERE
+               	REC_ID = #recId#        ]]>
+    </update>
+    
+    <!-- 获取KEY -->
+    <select id="CifPersCareer.getKey" resultClass="string">
+   	 <![CDATA[ SELECT REC_ID_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+    
+     <!-- 表查询ById -->
+    <select id="CifPersCareer.getById"  resultMap="RM.CifPersCareer">
+        SELECT <include refid="CifPersCareer.columns"/>
+        <![CDATA[
+             FROM CIF_PERS_CAREER 
+         WHERE 
+               	REC_ID = #recId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CifPersCareer.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME = #cifName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CifPersCareer.findPage.count" resultClass="int">
+        SELECT count(*) FROM CIF_PERS_CAREER <include refid="CifPersCareer.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CifPersCareer.findByPage" resultMap="RM.CifPersCareer">
+        SELECT <include refid="CifPersCareer.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifPersCareer.columns"/> FROM CIF_PERS_CAREER
+                    <include refid="CifPersCareer.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询某客户的职业信息记录数 -->
+    <select id="CifPersCareer.findByPageQuotaForCif.count" resultClass="int">
+        SELECT count(*) FROM CIF_PERS_CAREER WHERE cif_no = #cifNo# ORDER BY REC_ID DESC
+    </select>
+    <!-- 分页查询某客户的职业信息-->
+    <select id="CifPersCareer.findByPageQuotaForCif" resultMap="RM.CifPersCareer">
+        SELECT <include refid="CifPersCareer.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifPersCareer.columns"/> FROM CIF_PERS_CAREER WHERE  
+             cif_no = #cifNo# ORDER BY REC_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 单独查询某客户的职业信息-->
+    <select id="CifPersCareer.findForCif" resultMap="RM.CifPersCareer">
+        SELECT <include refid="CifPersCareer.columns"/>
+        <![CDATA[
+             FROM CIF_PERS_CAREER 
+         WHERE 
+               	CIF_NO = #cifNo#        ]]>
+     </select>
+</sqlMap>

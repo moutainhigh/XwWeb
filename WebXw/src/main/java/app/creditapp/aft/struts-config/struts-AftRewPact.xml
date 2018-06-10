@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftRewPactAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftRewPactAction_findByPage" method="findByPage" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="list">/creditapp/aft/AftRewPact_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AftRewPactAction_input" method="input" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="input">/creditapp/aft/AftRewPact_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AftRewPactAction_del" method="del" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="list">/creditapp/aft/AftRewPact_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AftRewPactAction_getById" method="getById" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="detail">/creditapp/aft/AftRewPact_Detail.jsp</result>
+		</action>
+		<!--预警处理查询 -->
+		<action name="AftRewPactAction_getByIdToRew" method="getByIdToRew" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="detail">/creditapp/aft/AftRewPact_DetailToRew.jsp</result>
+			<result name="detailRead">/creditapp/aft/AftRewDealPact_Detail.jsp</result>
+		</action>
+		<!--预警处理查询插入 -->
+		<action name="AftRewPactAction_insertToRew" method="insertToRew" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="detail">/creditapp/aft/AftRewPact_DetailToRew.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="AftRewPactActionInsert" method="insert" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="input">/creditapp/aft/AftRewPact_Insert.jsp</result>
+			<result name="detail">/creditapp/aft/AftRewPact_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftRewPactActionUpdate" method="update" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="input">/creditapp/aft/AftRewPact_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftRewPact_Detail.jsp</result>
+		</action>		
+		
+		<!--分页查询催收列表 -->
+		<action name="AftRewPactAction_findByPageForColl" method="findByPageForColl" class="app.creditapp.aft.action.AftRewPactAction">
+			<result name="list">/creditapp/aft/AftRewPact_ListForColl.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

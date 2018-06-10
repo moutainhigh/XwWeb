@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftWsElyRepyAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftWsElyRepyAction_findByPage" method="findByPage" class="app.creditapp.inf.action.WsElyRepyAction">
+			<result name="list">/creditapp/aft/AftOfflinePrePay_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AftWsElyRepyAction_input" method="input" class="app.creditapp.inf.action.WsElyRepyAction">
+			<result name="input">/creditapp/aft/AftOfflinePrePay_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AftWsElyRepyAction_del" method="del" class="app.creditapp.inf.action.WsElyRepyAction">
+			<result name="list">/creditapp/aft/AftOfflinePrePay_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AftWsElyRepyAction_getById" method="getById" class="app.creditapp.inf.action.WsElyRepyAction">
+			<result name="detail">/creditapp/aft/AftOfflinePrePay_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AftWsElyRepyActionInsert" method="insert" class="app.creditapp.inf.action.WsElyRepyAction">
+			<result name="input">/creditapp/aft/AftOfflinePrePay_Insert.jsp</result>
+			<result type="redirect" name="success">AftWsElyRepyAction_findByPage.action</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftWsElyRepyActionUpdate" method="update" class="app.creditapp.inf.action.WsElyRepyAction">
+			<result name="input">/creditapp/aft/AftOfflinePrePay_Detail.jsp</result>
+			<result name="detail">/creditapp/aft/AftOfflinePrePay_Detail.jsp</result>
+		</action>
+		<!-- 还款金额测算 -->
+		<action name="AftWsElyRepyActionValidate" method="calcu" class="app.creditapp.inf.action.WsElyRepyAction">
+			<result name="success">/creditapp/aft/AftOfflinePrePay_Insert.jsp</result>
+			<result name="input">/creditapp/aft/AftOfflinePrePay_Insert.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

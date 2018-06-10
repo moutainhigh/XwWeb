@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="Parmarea" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="ParmAreaAction_findByPage" method="findByPage" class="app.creditapp.sys.action.ParmAreaAction">
+			<result name="list">/creditapp/sys/ParmArea_List.jsp</result>
+		</action>
+		<action name="ParmAreaAction_listDepartment" method="listDepartment" class="app.creditapp.sys.action.ParmAreaAction">
+			<result name="toDepartmentInfo">/creditapp/sys/ParmArea_List.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="ParmAreaAction_input" method="input" class="app.creditapp.sys.action.ParmAreaAction">
+			<result name="input">/creditapp/sys/ParmArea_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="ParmAreaAction_del" method="del" class="app.creditapp.sys.action.ParmAreaAction">
+			<result name="list">/creditapp/sys/ParmArea_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="ParmAreaAction_getById" method="getById" class="app.creditapp.sys.action.ParmAreaAction">
+			<result name="detail">/creditapp/sys/ParmArea_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="ParmAreaActionInsert" method="insert" class="app.creditapp.sys.action.ParmAreaAction">
+			<result name="input">/creditapp/sys/ParmArea_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/ParmArea_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ParmAreaActionUpdate" method="update" class="app.creditapp.sys.action.ParmAreaAction">
+			<result name="input">/creditapp/sys/ParmArea_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/ParmArea_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

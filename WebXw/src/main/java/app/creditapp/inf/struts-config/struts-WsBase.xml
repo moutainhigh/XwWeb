@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="WsBaseAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="WsBaseAction_findByPage" method="findByPage" class="app.creditapp.inf.action.WsBaseAction">
+			<result name="list">/creditapp/inf/WsBase_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="WsBaseAction_input" method="input" class="app.creditapp.inf.action.WsBaseAction">
+			<result name="input">/creditapp/inf/WsBase_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="WsBaseAction_del" method="del" class="app.creditapp.inf.action.WsBaseAction">
+			<result name="list">/creditapp/inf/WsBase_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="WsBaseAction_getById" method="getById" class="app.creditapp.inf.action.WsBaseAction">
+			<result name="detail">/creditapp/inf/WsBase_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="WsBaseActionInsert" method="insert" class="app.creditapp.inf.action.WsBaseAction">
+			<result name="input">/creditapp/inf/WsBase_Insert.jsp</result>
+			<result name="detail">/creditapp/inf/WsBase_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="WsBaseActionUpdate" method="update" class="app.creditapp.inf.action.WsBaseAction">
+			<result name="input">/creditapp/inf/WsBase_Detail.jsp</result>
+			<result name="detail">/creditapp/inf/WsBase_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

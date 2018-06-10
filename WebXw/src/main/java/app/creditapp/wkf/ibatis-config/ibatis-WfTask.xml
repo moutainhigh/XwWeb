@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WfTask" type="app.creditapp.wkf.entity.WfTask"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WfTask" class="WfTask">
+    <result property="taskId" column="DBID_" />
+    <result property="taskClass" column="CLASS_" />
+    <result property="taskDbversion" column="DBVERSION_" />
+    <result property="taskState" column="STATE_" />
+    <result property="taskSignState" column="SIGN_STATE_" />
+    <result property="taskAssignee" column="ASSIGNEE_" />
+    <result property="taskExcutionId" column="EXECUTION_ID_" />
+    <result property="taskBranch" column="BRANCH_" />
+    <result property="taskAppId" column="APP_ID_" />
+    <result property="taskAppType" column="APP_TYPE_" />
+    <result property="taskApproveUrl" column="APPROVE_URL_" />
+    <result property="taskApproveByLast" column="APPROVE_BYLAST_" />
+    
+    </resultMap>
+     <sql id="WfTask.columns">
+        <![CDATA[
+         DBID_,
+         CLASS_,
+         DBVERSION_,
+         STATE_,
+         SIGN_STATE_,
+         ASSIGNEE_,
+         EXECUTION_ID_,
+         BRANCH_,
+         APP_ID_,
+         APP_TYPE_,
+         APPROVE_URL_,
+         APPROVE_BYLAST_
+          ]]>
+    </sql>
+    
+    <!-- 表查询ByAppId -->
+    <select id="WfTask.findTaskByAppId"  resultMap="RM.WfTask">
+        SELECT <include refid="WfTask.columns"/>
+        <![CDATA[
+             FROM WF_TASK 
+         WHERE 
+               	APP_ID_ = #taskAppId#         ]]>
+     </select>
+    
+     <!-- 表查询ByProcessId -->
+    <select id="WfTask.findTaskByProcessId"  resultMap="RM.WfTask">
+        SELECT <include refid="WfTask.columns"/>
+        <![CDATA[
+             FROM WF_TASK 
+         WHERE 
+               	EXECUTION_ID_ = #taskExcutionId#         ]]>
+     </select>
+     
+          <!-- 表查询ByTaskId -->
+    <select id="WfTask.findTaskByTaskId"  resultMap="RM.WfTask">
+        SELECT <include refid="WfTask.columns"/>
+        <![CDATA[
+             FROM WF_TASK 
+         WHERE 
+               	DBID_ = #taskId#         ]]>
+     </select>
+     
+      <!-- 表查询ByUserId -->
+    <select id="WfTask.findTaskByUserId"  resultMap="RM.WfTask">
+        SELECT <include refid="WfTask.columns"/>
+        <![CDATA[
+             FROM WF_TASK 
+         WHERE 
+               	ASSIGNEE_ = #taskAssignee#         ]]>
+     </select>
+     
+           <!-- 表查询ByUserIdAndBranchId -->
+    <select id="WfTask.findTaskByUserIdAndBranchId"  resultMap="RM.WfTask">
+        SELECT <include refid="WfTask.columns"/>
+        <![CDATA[
+             FROM WF_TASK 
+         WHERE 
+               	ASSIGNEE_ = #taskAssignee#
+               	AND BRANCH_ = #taskBranch#         ]]>
+     </select>
+     
+      <!-- 表删除 -->
+    <delete id="WfTask.deleteByAppId">
+        <![CDATA[
+               DELETE FROM WF_TASK 
+                 WHERE
+               	APP_ID_ = #taskAppId#        ]]>
+    </delete>
+    
+    <!-- 表修改 -->
+    <update id="WfTask.updateToAPPROVE">
+        <![CDATA[
+         UPDATE WF_TASK set
+         APPROVE_BYLAST_='N'
+          WHERE
+               	APP_ID_ = #taskAppId#        ]]>
+    </update>
+
+</sqlMap>

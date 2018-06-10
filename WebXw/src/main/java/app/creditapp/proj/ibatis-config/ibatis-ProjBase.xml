@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ProjBase" type="app.creditapp.proj.entity.ProjBase"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ProjBase" class="ProjBase">
+    <result property="projSts" column="PROJ_STS" />
+    <result property="incDisFre" column="INC_DIS_FRE" />
+    <result property="incDisWay" column="INC_DIS_WAY" />
+    <result property="projAmt" column="PROJ_AMT" jdbcType="double"/>
+    <result property="projStr" column="PROJ_STR" />
+    <result property="projNatu" column="PROJ_NATU" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="mpactNo" column="MPACT_NO" />
+    <result property="assType" column="ASS_TYPE" />
+    <result property="keepBkno" column="KEEP_BKNO" />
+    <result property="secPayWay" column="SEC_PAY_WAY" />
+    <result property="secRepayWay" column="SEC_REPAY_WAY" />
+    <result property="quitWay" column="QUIT_WAY" />
+    <result property="proFloat" column="PRO_FLOAT" />
+    <result property="infdisWay" column="INFDIS_WAY" />
+    <result property="funType" column="FUN_TYPE" />
+    <result property="payRate" column="PAY_RATE" nullValue="0.00" jdbcType="float"/>
+    <result property="payRateDesc" column="PAY_RATE_DESC" />
+    <result property="othFee" column="OTH_FEE" jdbcType="double"/>
+    <result property="projCode" column="PROJ_CODE" />
+    <result property="othRate" column="OTH_RATE" nullValue="0.00" jdbcType="float"/>
+    <result property="prepubBeg" column="PREPUB_BEG" />
+    <result property="setupDate" column="SETUP_DATE" />
+    <result property="prepubEnd" column="PREPUB_END" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="setupCond" column="SETUP_COND" />
+    <result property="endDate" column="END_DATE" />
+    <result property="ifObo" column="IF_OBO" />
+    <result property="projTerm" column="PROJ_TERM" jdbcType="Int"/>
+    <result property="termUnit" column="TERM_UNIT" />
+    <result property="termDesc" column="TERM_DESC" />
+    <result property="filler" column="FILLER" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="projId" column="PROJ_ID" />
+    <result property="bankAcntNo" column="BANK_ACNT_NO" />
+    <result property="tenantNo" column="TENANT_NO" />
+    
+    </resultMap>
+        <resultMap id="RM.ProjBaseForFlag" class="ProjBase">
+    <result property="projSts" column="PROJ_STS" />
+    <result property="incDisFre" column="INC_DIS_FRE" />
+    <result property="incDisWay" column="INC_DIS_WAY" />
+    <result property="projAmt" column="PROJ_AMT" jdbcType="double"/>
+    <result property="projStr" column="PROJ_STR" />
+    <result property="projNatu" column="PROJ_NATU" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="mpactNo" column="MPACT_NO" />
+    <result property="assType" column="ASS_TYPE" />
+    <result property="keepBkno" column="KEEP_BKNO" />
+    <result property="secPayWay" column="SEC_PAY_WAY" />
+    <result property="secRepayWay" column="SEC_REPAY_WAY" />
+    <result property="quitWay" column="QUIT_WAY" />
+    <result property="proFloat" column="PRO_FLOAT" />
+    <result property="infdisWay" column="INFDIS_WAY" />
+    <result property="funType" column="FUN_TYPE" />
+    <result property="payRate" column="PAY_RATE" nullValue="0.00"/>
+    <result property="payRateDesc" column="PAY_RATE_DESC" />
+    <result property="othFee" column="OTH_FEE" jdbcType="double"/>
+    <result property="projCode" column="PROJ_CODE" />
+    <result property="othRate" column="OTH_RATE" nullValue="0.00"/>
+    <result property="prepubBeg" column="PREPUB_BEG" />
+    <result property="setupDate" column="SETUP_DATE" />
+    <result property="prepubEnd" column="PREPUB_END" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="setupCond" column="SETUP_COND" />
+    <result property="endDate" column="END_DATE" />
+    <result property="ifObo" column="IF_OBO" />
+    <result property="projTerm" column="PROJ_TERM" jdbcType="Int"/>
+    <result property="termUnit" column="TERM_UNIT" />
+    <result property="termDesc" column="TERM_DESC" />
+    <result property="filler" column="FILLER" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="projId" column="PROJ_ID" />
+    <result property="vipFlag" column="VIP_FLAG" />
+    <result property="tenantNo" column="TENANT_NO" />
+    </resultMap>
+     <sql id="ProjBase.columns">
+        <![CDATA[
+         PROJ_STS,
+         INC_DIS_FRE,
+         INC_DIS_WAY,
+         PROJ_AMT,
+         PROJ_STR,
+         PROJ_NATU,
+         BR_NAME,
+         BR_NO,
+         PROJ_NAME,
+         PROJ_NO,
+         MPACT_NO,
+         ASS_TYPE,
+         KEEP_BKNO,
+         SEC_PAY_WAY,
+         SEC_REPAY_WAY,
+         QUIT_WAY,
+         PRO_FLOAT,
+         INFDIS_WAY,
+         FUN_TYPE,
+         PAY_RATE,
+         PAY_RATE_DESC,
+         OTH_FEE,
+         OTH_RATE,
+         PREPUB_BEG,
+         SETUP_DATE,
+         PREPUB_END,
+         BEG_DATE,
+         SETUP_COND,
+         END_DATE,
+         IF_OBO,
+         PROJ_TERM,
+         TERM_UNIT,
+         TERM_DESC,
+         FILLER,
+         DEPT_NO,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         PROJ_ID,
+         PROJ_CODE,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         BANK_ACNT_NO,
+         TENANT_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ProjBase.insert">
+        <![CDATA[
+        INSERT INTO PROJ_BASE(
+         PROJ_STS,
+         INC_DIS_FRE,
+         INC_DIS_WAY,
+         PROJ_AMT,
+         PROJ_STR,
+         PROJ_NATU,
+         BR_NAME,
+         BR_NO,
+         PROJ_NAME,
+         PROJ_NO,
+         MPACT_NO,
+         ASS_TYPE,
+         KEEP_BKNO,
+         SEC_PAY_WAY,
+         SEC_REPAY_WAY,
+         QUIT_WAY,
+         PRO_FLOAT,
+         INFDIS_WAY,
+         FUN_TYPE,
+         PAY_RATE,
+         PAY_RATE_DESC,
+         OTH_FEE,
+         OTH_RATE,
+         PROJ_ID,
+         PREPUB_BEG,
+         SETUP_DATE,
+         PREPUB_END,
+         BEG_DATE,
+         SETUP_COND,
+         END_DATE,
+         IF_OBO,
+         PROJ_TERM,
+         TERM_UNIT,
+         TERM_DESC,
+         FILLER,
+         DEPT_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         PROJ_CODE,
+         UP_OPNO,
+         TENANT_NO
+         )VALUES(
+         #projSts#,
+         #incDisFre#,
+         #incDisWay#,
+         #projAmt#,
+         #projStr#,
+         #projNatu#,
+         #brName#,
+         #brNo#,
+         #projName#,
+         #projNo#,
+         #mpactNo#,
+         #assType#,
+         #keepBkno#,
+         #secPayWay#,
+         #secRepayWay#,
+         #quitWay#,
+         #proFloat#,
+         #infdisWay#,
+         #funType#,
+         #payRate#,
+         #payRateDesc#,
+         #othFee#,
+         #othRate#,
+         #projId#,
+         #prepubBeg#,
+         #setupDate#,
+         #prepubEnd#,
+         #begDate#,
+         #setupCond#,
+         #endDate#,
+         #ifObo#,
+         #projTerm#,
+         #termUnit#,
+         #termDesc#,
+         #filler#,
+         #deptNo#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #projCode#,
+         #upOpno#,
+         #tenantNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ProjBase.del">
+        <![CDATA[
+               DELETE FROM PROJ_BASE
+                 WHERE
+               	PROJ_NO = #projNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ProjBase.update">
+        <![CDATA[
+         UPDATE PROJ_BASE set
+         PROJ_STS=#projSts#,
+         INC_DIS_FRE=#incDisFre#,
+         INC_DIS_WAY=#incDisWay#,
+         PROJ_AMT=#projAmt#,
+         PROJ_STR=#projStr#,
+         PROJ_NATU=#projNatu#,
+         BR_NAME=#brName#,
+         BR_NO=#brNo#,
+         PROJ_NAME=#projName#,
+         PROJ_NO=#projNo#,
+         MPACT_NO=#mpactNo#,
+         ASS_TYPE=#assType#,
+         KEEP_BKNO=#keepBkno#,
+         SEC_PAY_WAY=#secPayWay#,
+         SEC_REPAY_WAY=#secRepayWay#,
+         QUIT_WAY=#quitWay#,
+         PRO_FLOAT=#proFloat#,
+         INFDIS_WAY=#infdisWay#,
+         FUN_TYPE=#funType#,
+         PAY_RATE=#payRate#,
+         PAY_RATE_DESC=#payRateDesc#,
+         OTH_FEE=#othFee#,
+         OTH_RATE=#othRate#,
+         PROJ_CODE=#projCode#,
+         PREPUB_BEG=#prepubBeg#,
+         SETUP_DATE=#setupDate#,
+         PREPUB_END=#prepubEnd#,
+         BEG_DATE=#begDate#,
+         SETUP_COND=#setupCond#,
+         END_DATE=#endDate#,
+         IF_OBO=#ifObo#,
+         PROJ_TERM=#projTerm#,
+         TERM_UNIT=#termUnit#,
+         TERM_DESC=#termDesc#,
+         FILLER=#filler#,
+         DEPT_NO=#deptNo#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         UP_OPNO=#upOpno#,
+         TENANT_NO=#tenantNo#
+          WHERE
+               	PROJ_ID = #projId#        ]]>
+    </update>
+    <!-- 表修改 -->
+    <update id="ProjBase.update_Read">
+    	update ac_ln_mst set INT_TO_STP_IND='Y' where proj_no=#projNo#
+    </update>
+    <!--更改项目状态 -->
+    <update id="ProjBase.updateSts">
+        <![CDATA[
+         UPDATE PROJ_BASE set
+         PROJ_STS=#projSts#
+          WHERE
+               	PROJ_NO = #projNo#        ]]>
+    </update>
+    <select id="ProjBase.getByIdForBrNo"  resultMap="RM.ProjBase">
+        SELECT <include refid="ProjBase.columns"/>
+        <![CDATA[
+             FROM PROJ_BASE 
+         WHERE 
+               	PROJ_NO = #projNo#   AND  BR_NO = #brNo#     ]]>
+      </select>
+     <!-- 表查询ById -->
+    <select id="ProjBase.getById"  resultMap="RM.ProjBase">
+        SELECT <include refid="ProjBase.columns"/>
+        <![CDATA[
+             FROM PROJ_BASE 
+         WHERE 1=1  ]]>
+               	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+             <isPropertyAvailable property="projId">
+                  <isNotEmpty prepend="AND" property="projId">
+                      PROJ_ID = #projId#
+                   </isNotEmpty>
+             </isPropertyAvailable> 
+     </select>
+    <select id="ProjBase.getByIdForProjNo"  resultMap="RM.ProjBase">
+        SELECT <include refid="ProjBase.columns"/>
+        <![CDATA[
+             FROM PROJ_BASE 
+         WHERE 
+               	PROJ_NO = #projNo#        ]]>
+     </select>
+     <select id="ProjBase.getByIdForFlag"  resultMap="RM.ProjBaseForFlag">
+        select * from Proj_Base pb,proj_mang pm where pb.proj_no=pm.proj_no and pb.proj_no=#projNo#  and pm.login_id=#loginid#
+
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ProjBase.findPage.where">
+        <dynamic prepend="where">
+            <isPropertyAvailable property="projId">
+                  <isNotEmpty prepend="AND" property="projId">
+                      PROJ_ID = #projId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projSts">
+                  <isNotEmpty prepend="AND" property="projSts">
+                      PROJ_STS = #projSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNatu">
+                  <isNotEmpty prepend="AND" property="projNatu">
+                      PROJ_NATU = #projNatu#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      PROJ_NAME like '%$projName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!--合作机构管理360视图根据合同号进行展示列表
+    <select id="ProjBase.getByIdforCorp"  resultMap="RM.ProjBase">
+        SELECT <include refid="ProjBase.columns"/>
+        <![CDATA[
+             FROM PROJ_BASE 
+         WHERE 
+               	BR_NO = #brNo#        ]]>
+     </select>-->
+     <!-- 分页查询记录数 
+    <select id="ProjBase.findPageforCorp.count" resultClass="int">
+        SELECT count(*) FROM PROJ_BASE WHERE BR_NO = #brNo#
+    </select>-->
+    <!--结束-->
+    <!-- 分页查询记录数 -->
+    <select id="ProjBase.findPageForUser.count" resultClass="int">
+SELECT count(*)
+                  FROM PROJ_BASE A, PROJ_MANG B
+                 where A.proj_no = B.proj_no
+			 <isPropertyAvailable property="projId">
+                  <isNotEmpty prepend="AND" property="projId">
+                      A.PROJ_ID = #projId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projSts">
+                  <isNotEmpty prepend="AND" property="projSts">
+                      A.PROJ_STS = #projSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNatu">
+                  <isNotEmpty prepend="AND" property="projNatu">
+                      PROJ_NATU = #projNatu#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      A.PROJ_NAME like '%$projName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      A.BR_NAME like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      A.PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      A.BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      B.login_id =#loginid#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             ORDER BY A.PROJ_NO DESC
+    </select>
+    <!-- 分页查询 -->
+    <select id="ProjBase.findByPageForUser" resultMap="RM.ProjBaseForFlag">
+        SELECT 
+         PROJ_STS,
+         INC_DIS_FRE,
+         INC_DIS_WAY,
+         PROJ_AMT,
+         PROJ_STR,
+         PROJ_NATU,
+         BR_NAME,
+         BR_NO,
+         PROJ_NAME,
+         PROJ_NO,
+         MPACT_NO,
+         ASS_TYPE,
+         KEEP_BKNO,
+         SEC_PAY_WAY,
+         SEC_REPAY_WAY,
+         QUIT_WAY,
+         PRO_FLOAT,
+         INFDIS_WAY,
+         FUN_TYPE,
+         PAY_RATE,
+         PAY_RATE_DESC,
+         OTH_FEE,
+         OTH_RATE,
+         PREPUB_BEG,
+         SETUP_DATE,
+         PREPUB_END,
+         BEG_DATE,
+         SETUP_COND,
+         END_DATE,
+         IF_OBO,
+         PROJ_TERM,
+         TERM_UNIT,
+         TERM_DESC,
+         FILLER,
+         DEPT_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         PROJ_ID,
+         PROJ_CODE,
+         BANK_ACNT_NO,
+         VIP_FLAG,
+         TENANT_NO
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT PROJ_STS,
+         INC_DIS_FRE,
+         INC_DIS_WAY,
+         PROJ_AMT,
+         PROJ_STR,
+         PROJ_NATU,
+         BR_NAME,
+         BR_NO,
+         PROJ_NAME,
+         A.PROJ_NO,
+         MPACT_NO,
+         ASS_TYPE,
+         KEEP_BKNO,
+         SEC_PAY_WAY,
+         SEC_REPAY_WAY,
+         QUIT_WAY,
+         PRO_FLOAT,
+         INFDIS_WAY,
+         FUN_TYPE,
+         PAY_RATE,
+         PAY_RATE_DESC,
+         OTH_FEE,
+         OTH_RATE,
+         PREPUB_BEG,
+         SETUP_DATE,
+         PREPUB_END,
+         BEG_DATE,
+         SETUP_COND,
+         END_DATE,
+         IF_OBO,
+         PROJ_TERM,
+         TERM_UNIT,
+         TERM_DESC,
+         FILLER,
+         DEPT_NO,
+         A.OP_NO,
+         A.TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         PROJ_ID,
+         PROJ_CODE,
+         BANK_ACNT_NO,
+         vip_flag,
+         TENANT_NO
+          FROM PROJ_BASE A,PROJ_MANG B
+                    where A.proj_no = B.proj_no 
+              <isPropertyAvailable property="projId">
+                  <isNotEmpty prepend="AND" property="projId">
+                      PROJ_ID = #projId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projSts">
+                  <isNotEmpty prepend="AND" property="projSts">
+                      PROJ_STS = #projSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNatu">
+                  <isNotEmpty prepend="AND" property="projNatu">
+                      PROJ_NATU = #projNatu#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      PROJ_NAME like '%$projName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      A.PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      B.login_id =#loginid#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             ORDER BY PROJ_NO DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+        <!-- 分页查询记录数 -->
+    <select id="ProjBase.findPage.count" resultClass="int">
+        SELECT count(*) FROM PROJ_BASE <include refid="ProjBase.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ProjBase.findByPage" resultMap="RM.ProjBase">
+        SELECT <include refid="ProjBase.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjBase.columns"/> FROM PROJ_BASE
+                    <include refid="ProjBase.findPage.where"/>ORDER BY PROJ_NO DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 分页查询 -->
+    <select id="ProjBase.findByPageFormer" resultMap="RM.ProjBase">
+       SELECT <include refid="ProjBase.columns"/>
+       FROM PROJ_BASE <include refid="ProjBase.findPage.where"/>
+    </select>
+
+    <!-- meger -->
+    <update  id="ProjBase.merge">
+  MERGE into PROJ_BASE a USING (
+     SELECT vw.* from VW_BIZ_PROJECTINFO@TA_DBLINK VW where EXISTS (
+            SELECT 1 FROM VW_CST_SYSDEPARTMENT@TA_DBLINK D  WHERE VW.DEPTID = D.ID AND (D.PARENTID = '601' OR D.ID = '601'))  AND VW.ISESTIMATESTATE = '5'
+     ) t on (A.proj_id=t.id)
+  WHEN MATCHED THEN
+   UPDATE SET 
+      a.PROJ_NO=t.ID,
+      a.PROJ_NAME=t.PROJECTNAME,
+      a.PROJ_NATU=DECODE(t.SETFLAG,'0','01','1','02',''),
+      a.PROJ_TERM=t.TERMNUM,
+      a.TERM_UNIT=t.TERMUNIT,
+      a.PREPUB_BEG=to_char(t.SELLSTARTDATE,'YYYYMMDD'),
+      a.PREPUB_END=to_char(t.SELLENDDATE,'YYYYMMDD'),
+      a.SETUP_DATE=to_char(t.ESTABLISHDATE,'YYYYMMDD'),
+      a.BEG_DATE=to_char(t.EFFECTDATE,'YYYYMMDD'),
+      a.PROJ_STS=DECODE(t.STATE,'1','01','4','01','6','02','7','02','8','01','13','01','15','02','16','02','17','01','22','01','24','02','25','02'),
+      a.TERM_DESC=t.TERMNUMDESCRIPTION,
+      a.IF_OBO=DECODE(t.ISSPLIT,'0','0','1','1'),
+      a.SETUP_COND=t.ESTABLISHMENTCONDITIONS,
+      a.OTH_FEE=t.OTHERREMUNERATION,
+      a.OTH_RATE=t.OTHEREXPENSERATIO,
+      a.MPACT_NO=t.CONTRACTNO,
+      a.PROJ_STR=DECODE(t.XMJGSX,'0','01','1','02',''),
+      a.PAY_RATE_DESC=t.HTXTBCL,
+      a.INC_DIS_WAY=DECODE(t.SYFPFS,'0','00','1','01','2','02','3','03',''),
+      a.INC_DIS_FRE=DECODE(t.SYFPPD,'0','00','1','01','2','02','3','03','4','04','5','05','06'),
+      a.SEC_PAY_WAY=DECODE(t.GUARANTEEFUNDSPAYMODE,'1','01','2','02','3','03','4','04',''),
+      a.SEC_REPAY_WAY=DECODE(t.GUARANTEEFUNDSRETURNMODE,'1','01','2','02',''),
+      a.QUIT_WAY=DECODE(t.QUITWAY,'1','01','2','02','3','03',''),
+      a.PRO_FLOAT=DECODE(t.SEC_BENIFITFLUXILITYPLAN,'1','01','2','02',''),
+      a.INFDIS_WAY=DECODE(t.SEC_INFODISCLOSUREWAY,'1','01','2','02','3','03','4','04',''),
+      a.ASS_TYPE=t.FINASSETSTYPEID,
+      a.FUN_TYPE=DECODE(t.FUNCTIONCLASS,'0','01','1','02','2','03',''),
+      a.KEEP_BKNO=t.FINBANKID,
+      a.PAY_RATE=t.HTXTBCLZ,
+      a.PROJ_AMT=t.MAXAMOUNT,
+      a.BANK_ACNT_NO=t.BANKACNTNO,
+      a.END_DATE=to_char(t.FORECASTPROENDDATE,'YYYYMMDD'),
+      a.PROJ_CODE=t.PROJECTCODE
+ WHEN NOT MATCHED THEN
+    INSERT(
+        a.PROJ_NO,                 
+        a.PROJ_ID,                  
+        a.PROJ_NAME,               
+        a.PROJ_NATU,                
+        a.PROJ_TERM,                
+        a.TERM_UNIT,                
+        a.PREPUB_BEG,               
+        a.PREPUB_END,               
+        a.SETUP_DATE,               
+        a.BEG_DATE,                 
+        a.PROJ_STS,                 
+        a.TERM_DESC,                
+        a.IF_OBO,                   
+        a.SETUP_COND,               
+        a.OTH_FEE,                  
+        a.OTH_RATE,                 
+        a.MPACT_NO,                 
+        a.PROJ_STR ,                
+        a.PAY_RATE_DESC,            
+        a.INC_DIS_WAY,              
+        a.INC_DIS_FRE ,             
+        a.SEC_PAY_WAY,              
+        a.SEC_REPAY_WAY,            
+        a.QUIT_WAY,                 
+        a.PRO_FLOAT,                
+        a.INFDIS_WAY ,              
+        a.ASS_TYPE ,                
+        a.FUN_TYPE,                 
+        a.KEEP_BKNO,                
+        a.PAY_RATE ,                
+        a.PROJ_AMT,                 
+        a.BANK_ACNT_NO,             
+        a.END_DATE,                 
+        a.PROJ_CODE,
+        a.OP_NO,
+        a.TX_DATE
+          ) values(
+        t.ID,                                               
+        t.ID,                          
+        t.PROJECTNAME,                         
+        DECODE(t.SETFLAG,'0','01','1','02',''),                    
+        t.TERMNUM,                         
+        t.TERMUNIT,                            
+        to_char(t.SELLSTARTDATE,'YYYYMMDD'),                       
+        to_char(t.SELLENDDATE,'YYYYMMDD'),                     
+        to_char(t.ESTABLISHDATE,'YYYYMMDD'),                       
+        to_char(t.EFFECTDATE,'YYYYMMDD'),                      
+        '03',
+        t.TERMNUMDESCRIPTION,                          
+        DECODE(t.ISSPLIT,'0','0','1','1'),                     
+        t.ESTABLISHMENTCONDITIONS,                         
+        t.OTHERREMUNERATION,                       
+        t.OTHEREXPENSERATIO,                       
+        t.CONTRACTNO,                          
+        DECODE(t.XMJGSX,'0','01','1','02',''),                     
+        t.HTXTBCL,                         
+        DECODE(t.SYFPFS,'0','00','1','01','2','02','3','03',''),                   
+        DECODE(t.SYFPPD,'0','00','1','01','2','02','3','03','4','04','5','05','06'),               
+        DECODE(t.GUARANTEEFUNDSPAYMODE,'1','01','2','02','3','03','4','04',''),                
+        DECODE(t.GUARANTEEFUNDSRETURNMODE,'1','01','2','02',''),                   
+        DECODE(t.QUITWAY,'1','01','2','02','3','03',''),                   
+        DECODE(t.SEC_BENIFITFLUXILITYPLAN,'1','01','2','02',''),                   
+        DECODE(t.SEC_INFODISCLOSUREWAY,'1','01','2','02','3','03','4','04',''),                
+        t.FINASSETSTYPEID,                         
+        DECODE(t.FUNCTIONCLASS,'0','01','1','02','2','03',''),                 
+        t.FINBANKID,                           
+        t.HTXTBCLZ,                            
+        t.MAXAMOUNT,                           
+        t.BANKACNTNO,                          
+        to_char(t.FORECASTPROENDDATE,'YYYYMMDD'),                      
+        t.PROJECTCODE,
+        #opNo#,
+        #txDate#
+          ) 
+    </update>
+        <!--myProj_echarts项目/规模查询 -->
+    <select id="ProjBase.myProj_echarts" resultMap="RM.ProjBase">
+     SELECT 
+    ''  as   proj_Id ,
+    ''  as   PROJ_STS,
+    
+    ''  as   INC_DIS_FRE,
+    ''  as   INC_DIS_WAY,
+    SUM(B.FD_AMT)  as   PROJ_AMT,
+    ''  as   PROJ_STR,
+    ''  as   PROJ_NATU,
+    ''  as   BR_NAME,
+    ''  as   BR_NO,
+    A.PROJ_NAME  as   PROJ_NAME,
+    A.PROJ_NO  as   PROJ_NO,
+    ''  as   MPACT_NO,
+    ''  as   ASS_TYPE,
+    ''  as   KEEP_BKNO,
+    ''  as   SEC_PAY_WAY,
+    ''  as   SEC_REPAY_WAY,
+    ''  as   QUIT_WAY,
+    ''  as   PRO_FLOAT,
+    ''  as   INFDIS_WAY,
+    ''  as   FUN_TYPE,
+    ''  as   PAY_RATE,
+    ''  as   PAY_RATE_DESC,
+    ''  as   OTH_FEE,
+    ''  as   OTH_RATE,
+    ''  as   PREPUB_BEG,
+    ''  as   SETUP_DATE,
+    ''  as   PREPUB_END,
+    ''  as   BEG_DATE,
+    ''  as   SETUP_COND,
+    ''  as   END_DATE,
+    ''  as   IF_OBO,
+    ''  as   PROJ_TERM,
+    ''  as   TERM_UNIT,
+    ''  as   TERM_DESC,
+    ''  as   FILLER,
+    ''  as   DEPT_NO,
+    ''  as   OP_NO,
+    ''  as   TX_DATE,
+    ''  as   UP_DATE,
+    ''  as   UP_OPNO,
+    ''  as   PROJ_CODE,
+    ''  as   OP_NAME,
+    ''  as   UP_OPNAME,
+    ''  as   BANK_ACNT_NO,
+    ''  as   TENANT_NO
+      FROM PROJ_BASE A,FUND_BASE B
+      WHERE A.PROJ_NO = B.PROJ_NO
+        AND B.FD_FLAG = '01'
+        AND B.FD_STATE = '01'
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      A.PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>        
+        GROUP BY A.PROJ_NO,A.PROJ_NAME
+    </select>
+     <!--myProj_day_echarts项目/累计发放业务量查询 -->
+    <select id="ProjBase.myProj_day_echarts" resultMap="RM.ProjBase">
+     SELECT 
+    ''  as   proj_Id ,     
+    ''  as   PROJ_STS,
+    ''  as   PROJ_CODE,
+    ''  as   INC_DIS_FRE,
+    ''  as   INC_DIS_WAY,
+    A.AMT_TOT  as   PROJ_AMT,
+    ''  as   PROJ_STR,
+    ''  as   PROJ_NATU,
+    ''  as   BR_NAME,
+    ''  as   BR_NO,
+    C.PROJ_NAME  as   PROJ_NAME,
+    C.PROJ_NO  as   PROJ_NO,
+    ''  as   MPACT_NO,
+    ''  as   ASS_TYPE,
+    ''  as   KEEP_BKNO,
+    ''  as   SEC_PAY_WAY,
+    ''  as   SEC_REPAY_WAY,
+    ''  as   QUIT_WAY,
+    ''  as   PRO_FLOAT,
+    ''  as   INFDIS_WAY,
+    ''  as   FUN_TYPE,
+    ''  as   PAY_RATE,
+    ''  as   PAY_RATE_DESC,
+    ''  as   OTH_FEE,
+    ''  as   OTH_RATE,
+    ''  as   PREPUB_BEG,
+    ''  as   SETUP_DATE,
+    ''  as   PREPUB_END,
+    ''  as   BEG_DATE,
+    ''  as   SETUP_COND,
+    ''  as   END_DATE,
+    ''  as   IF_OBO,
+    ''  as   PROJ_TERM,
+    ''  as   TERM_UNIT,
+    ''  as   TERM_DESC,
+    ''  as   FILLER,
+    ''  as   DEPT_NO,
+    ''  as   OP_NO,
+    ''  as   TX_DATE,
+    ''  as   UP_DATE,
+    ''  as   UP_OPNO,
+    ''  as   OP_NAME,
+    ''  as   UP_OPNAME,
+    ''  as   BANK_ACNT_NO,
+    ''  as   TENANT_NO
+      FROM RPT_PROJ A, PROJ_BASE C
+      WHERE A.PROJ_NO = C.PROJ_NO
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      A.PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>        
+        <!--AND A.RPT_DATE = to_char(to_date(#txDate#,'yyyymmdd')-1,'yyyymmdd')-->
+    </select>
+         <!--myProj_day_echarts项目(集合/单一)/累计发放业务量查询 -->
+    <select id="ProjBase.myProj_fdtype_day_echarts" resultMap="RM.ProjBase">
+        SELECT    
+    ''  as   proj_Id ,              
+    ''  as   PROJ_STS,
+    ''  as   PROJ_CODE,
+    ''  as   INC_DIS_FRE,
+    ''  as   INC_DIS_WAY,
+    SUM(A.AMT_TOT)  as   PROJ_AMT,
+    ''  as   PROJ_STR,
+    A.PROJ_NATU  as   PROJ_NATU,
+    ''  as   BR_NAME,
+    ''  as   BR_NO,
+    ''  as   PROJ_NAME,
+    ''  as   PROJ_NO,
+    ''  as   MPACT_NO,
+    ''  as   ASS_TYPE,
+    ''  as   KEEP_BKNO,
+    ''  as   SEC_PAY_WAY,
+    ''  as   SEC_REPAY_WAY,
+    ''  as   QUIT_WAY,
+    ''  as   PRO_FLOAT,
+    ''  as   INFDIS_WAY,
+    ''  as   FUN_TYPE,
+    ''  as   PAY_RATE,
+    ''  as   PAY_RATE_DESC,
+    ''  as   OTH_FEE,
+    ''  as   OTH_RATE,
+    ''  as   PREPUB_BEG,
+    ''  as   SETUP_DATE,
+    ''  as   PREPUB_END,
+    ''  as   BEG_DATE,
+    ''  as   SETUP_COND,
+    ''  as   END_DATE,
+    ''  as   IF_OBO,
+    ''  as   PROJ_TERM,
+    ''  as   TERM_UNIT,
+    ''  as   TERM_DESC,
+    ''  as   FILLER,
+    ''  as   DEPT_NO,
+    ''  as   OP_NO,
+    ''  as   TX_DATE,
+    ''  as   UP_DATE,
+    ''  as   UP_OPNO,  
+    ''  as   OP_NAME,
+    ''  as   UP_OPNAME,
+    ''  as   BANK_ACNT_NO,
+    ''  as   TENANT_NO
+      FROM RPT_PROJ A
+      WHERE 1=1
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      A.PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+      GROUP BY A.PROJ_NATU
+    </select>
+</sqlMap>

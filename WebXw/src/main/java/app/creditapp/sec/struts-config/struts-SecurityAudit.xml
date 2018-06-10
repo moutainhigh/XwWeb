@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+    <struts>
+	<package name="SecurityAuditAction" namespace="/" extends="struts-cms">
+	<global-results>
+            <result name="invalid.token">/creditapp/common/commitRepeat.jsp</result>
+            <result name="commonException">/creditapp/common/exception.jsp</result>
+      </global-results>
+    <global-exception-mappings>
+      <exception-mapping result="commonException" exception="java.lang.Exception"></exception-mapping>  
+    </global-exception-mappings>
+		<action name="SecurityAuditAction_*" method="{1}" class="app.creditapp.sec.action.SecurityAuditAction">
+			<result name="list">/creditapp/sec/SecurityAudit_List.jsp</result>
+			<result name="newList">/creditapp/sec/SecurityAudit_newList.jsp</result>
+			<result name="input">/creditapp/sec/SecurityAudit_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/SecurityAudit_Detail.jsp</result>
+			<result name="toDelete">/creditapp/common/deleteinfo.jsp</result>
+			<result name="securityLogin">/creditapp/changepassesc.jsp</result>
+			<result name="success">/creditapp/sec/changepassesc.jsp</result>
+		</action>
+		<action name="SecurityAuditActionInsert" method="insert" class="app.creditapp.sec.action.SecurityAuditAction">
+			<result name="input">/creditapp/sec/SecurityAudit_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/SecurityAudit_Detail.jsp</result>
+		</action>
+		<action name="SecurityAuditActionUpdate" method="update" class="app.creditapp.sec.action.SecurityAuditAction">
+			<result name="input">/creditapp/sec/SecurityAudit_Detail.jsp</result>
+			<result name="detail">/creditapp/sec/SecurityAudit_Detail.jsp</result>
+		</action>
+	</package>
+	</struts>
+
+
+

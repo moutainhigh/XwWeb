@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="PreGageAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="PreGageAction_findByPage" method="findByPage" class="app.creditapp.ln.action.PreGageAction">
+			<result name="list">/creditapp/ln/PreGage_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="PreGageAction_input" method="input" class="app.creditapp.ln.action.PreGageAction">
+			<result name="input">/creditapp/ln/PreGage_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="PreGageAction_del" method="del" class="app.creditapp.ln.action.PreGageAction">
+			<result name="list">/creditapp/ln/PreGage_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="PreGageAction_getById" method="getById" class="app.creditapp.ln.action.PreGageAction">
+			<result name="detail">/creditapp/ln/PreGage_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="PreGageActionInsert" method="insert" class="app.creditapp.ln.action.PreGageAction">
+			<result name="input">/creditapp/ln/PreGage_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/PreGage_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PreGageActionUpdate" method="update" class="app.creditapp.ln.action.PreGageAction">
+			<result name="input">/creditapp/ln/PreGage_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/PreGage_Detail.jsp</result>
+		</action>
+		<!-- 根据预进件申请信息appid显示所有的的押品信息 -->
+		<action name="PreGageAction_listQuotaForLn" method="listQuotaForLn" class="app.creditapp.ln.action.PreGageAction">
+			<result name="list">/creditapp/ln/PreGage_listQuotaForLn.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

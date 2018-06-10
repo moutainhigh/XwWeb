@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="inf0069" title="提前还款批次主表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="batchNo" fieldtype="1" maxlength="30" formactiveid="1" labelalign="3" labelcol="1" labelname="批次编号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="2" labelalign="3" labelcol="3" labelname="合作机构号" mustinput="0" row="1"/>
+<formelement datatype="1" fieldalign="1" fieldcol="2" fieldname="dataCnt" fieldtype="1" maxlength="4" formactiveid="3" labelalign="3" labelcol="1" labelname="记录数" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="txTime" fieldtype="1" maxlength="18" formactiveid="4" labelalign="3" labelcol="3" labelname="批次接收数据时间" mustinput="0" row="2"/>
+</form>

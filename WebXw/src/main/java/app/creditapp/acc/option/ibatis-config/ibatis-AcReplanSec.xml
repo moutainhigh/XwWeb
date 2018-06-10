@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcReplanSec" type="app.creditapp.acc.option.entity.AcReplanSec"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcReplanSec" class="AcReplanSec">
+    <result property="secId" column="SEC_ID" />
+    <result property="replanId" column="REPLAN_ID" />
+    <result property="formulaId" column="FORMULA_ID" />
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="capitalRate" column="CAPITAL_RATE" jdbcType="double"/>
+    <result property="begRepayNo" column="BEG_REPAY_NO" />
+    <result property="endRepayNo" column="END_REPAY_NO" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="secOrderNo" column="SEC_ORDER_NO" />
+    </resultMap>
+     <sql id="AcReplanSec.columns">
+        <![CDATA[
+         SEC_ID,
+         REPLAN_ID,
+         FORMULA_ID,
+         REPAY_TYPE,
+         CAPITAL_RATE,
+         BEG_REPAY_NO,
+         END_REPAY_NO,
+         UP_DATE,
+         SEC_ORDER_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcReplanSec.insert">
+        <![CDATA[
+        INSERT INTO AC_REPLAN_SEC(
+         SEC_ID,
+         REPLAN_ID,
+         FORMULA_ID,
+         REPAY_TYPE,
+         CAPITAL_RATE,
+         BEG_REPAY_NO,
+         END_REPAY_NO,
+         UP_DATE,
+         SEC_ORDER_NO
+         )VALUES(
+         #secId#,
+         #replanId#,
+         #formulaId#,
+         #repayType#,
+         #capitalRate#,
+         #begRepayNo#,
+         #endRepayNo#,
+         #upDate#,
+         #secOrderNo#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="secId" >
+			SELECT AC_REPLAN_SEC_seq.nextval AS SEC_ID FROM DUAL
+    		</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcReplanSec.del">
+        <![CDATA[
+               DELETE FROM AC_REPLAN_SEC
+                 WHERE
+               	SEC_ID = #secId#        ]]>
+    </delete>
+    
+    <delete id="AcReplanSec.delByReplanId">
+        <![CDATA[
+               DELETE FROM AC_REPLAN_SEC
+                 WHERE
+               	replan_id = #replanId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcReplanSec.update">
+        <![CDATA[
+         UPDATE AC_REPLAN_SEC set
+         SEC_ID=#secId#,
+         REPLAN_ID=#replanId#,
+         FORMULA_ID=#formulaId#,
+         REPAY_TYPE=#repayType#,
+         CAPITAL_RATE=#capitalRate#,
+         BEG_REPAY_NO=#begRepayNo#,
+         END_REPAY_NO=#endRepayNo#,
+         UP_DATE=#upDate#,
+         SEC_ORDER_NO=#secOrderNo#
+          WHERE
+               	SEC_ID = #secId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcReplanSec.getById"  resultMap="RM.AcReplanSec">
+        SELECT <include refid="AcReplanSec.columns"/>
+        <![CDATA[
+             FROM AC_REPLAN_SEC 
+         WHERE 
+               	SEC_ID = #secId#        ]]>
+     </select>
+     
+      <!-- 表查询ById -->
+    <select id="AcReplanSec.getByIdAndOrderNo"  resultMap="RM.AcReplanSec">
+        SELECT <include refid="AcReplanSec.columns"/>
+        <![CDATA[
+             FROM AC_REPLAN_SEC 
+         WHERE 
+               	replan_id = #replanId# and SEC_ORDER_NO=#secOrderNo#       ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcReplanSec.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="secId">
+                  <isNotEmpty prepend="AND" property="secId">
+                      SEC_ID = #secId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="replanId">
+                  <isNotEmpty prepend="AND" property="replanId">
+                      REPLAN_ID = #replanId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="repayType">
+                  <isNotEmpty prepend="AND" property="repayType">
+                      REPAY_TYPE = #repayType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcReplanSec.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_REPLAN_SEC <include refid="AcReplanSec.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcReplanSec.findByPage" resultMap="RM.AcReplanSec">
+        SELECT <include refid="AcReplanSec.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcReplanSec.columns"/> FROM AC_REPLAN_SEC 
+                    <include refid="AcReplanSec.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <select id="AcReplanSec.getListByReplanId" resultMap="RM.AcReplanSec">
+        SELECT <include refid="AcReplanSec.columns"/>
+        FROM AC_REPLAN_SEC WHERE REPLAN_ID=#replanId#  order by sec_order_no
+    </select>
+    
+</sqlMap>

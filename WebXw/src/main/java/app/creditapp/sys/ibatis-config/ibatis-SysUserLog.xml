@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="SysUserLog" type="app.creditapp.sys.entity.SysUserLog" />
+	<!-- 列表查询返回字段 -->
+	<resultMap id="RM.SysUserLog" class="SysUserLog">
+		<result property="userId" column="USER_ID" />
+		<result property="loginTime" column="LOGIN_TIME" />
+		<result property="logoutTime" column="LOGOUT_TIME" />
+		<result property="lastTime" column="LAST_TIME" />
+		<result property="loginCnt" column="LOGIN_CNT" jdbcType="Int" />
+		<result property="passError" column="PASS_ERROR" jdbcType="Int" />
+		<result property="loginIp" column="LOGIN_IP" />
+		<result property="sessionId" column="SESSION_ID" />
+		<result property="clientInfo" column="CLIENT_INFO" />
+		
+		<result property="userName" column="USER_NAME" />
+	</resultMap>
+	<sql id="SysUserLog.columns">
+        <![CDATA[
+         USER_ID,
+         FUN_GETUSERNAMEBYID(USER_ID) AS USER_NAME,
+         LOGIN_TIME,
+         LOGOUT_TIME,
+         LAST_TIME,
+         LOGIN_CNT,
+         PASS_ERROR,
+         LOGIN_IP,
+         SESSION_ID,
+         CLIENT_INFO
+          ]]>
+	</sql>
+	<!-- 表新增 -->
+	<insert id="SysUserLog.insert">
+        <![CDATA[
+        INSERT INTO SYS_USER_LOG(
+         USER_ID,
+         LOGIN_TIME,
+         LOGOUT_TIME,
+         LAST_TIME,
+         LOGIN_CNT,
+         PASS_ERROR,
+         LOGIN_IP,
+         SESSION_ID,
+         CLIENT_INFO
+         )VALUES(
+         #userId#,
+         #loginTime#,
+         #logoutTime#,
+         #lastTime#,
+         #loginCnt#,
+         #passError#,
+         #loginIp#,
+         #sessionId#,
+         #clientInfo#
+         )
+          ]]>
+	</insert>
+	<!-- 表删除 -->
+	<delete id="SysUserLog.del">
+        <![CDATA[
+               DELETE FROM SYS_USER_LOG
+                 WHERE
+               	USER_ID = #userId#        ]]>
+	</delete>
+	<!-- 表修改 -->
+	<update id="SysUserLog.update">
+        <![CDATA[
+         UPDATE SYS_USER_LOG set
+         LOGIN_TIME=#loginTime#,
+         LOGOUT_TIME=#logoutTime#,
+         LAST_TIME=#lastTime#,
+         LOGIN_CNT=#loginCnt#,
+         PASS_ERROR=#passError#,
+         LOGIN_IP=#loginIp#,
+         SESSION_ID=#sessionId#,
+         CLIENT_INFO=#clientInfo#
+          WHERE
+               	USER_ID = #userId#        ]]>
+	</update>
+
+	<!-- 用户登录 -->
+	<update id="SysUserLog.userLogin">
+        <![CDATA[
+         UPDATE SYS_USER_LOG set
+         LOGIN_TIME=FUN_SYSTIME,
+         LAST_TIME=LOGIN_TIME,
+         LOGIN_CNT=LOGIN_CNT+1,
+         PASS_ERROR=#passError#,
+         LOGIN_IP=#loginIp#,
+         SESSION_ID=#sessionId#,
+         CLIENT_INFO=#clientInfo#
+         WHERE USER_ID = #userId#        ]]>
+	</update>
+
+	<!-- 用户登录 -->
+	<update id="SysUserLog.userLogout">
+        <![CDATA[
+         UPDATE SYS_USER_LOG set
+         LOGOUT_TIME=FUN_SYSTIME 
+          WHERE
+               	USER_ID = #userId#        ]]>
+	</update>
+
+	<!-- 表查询ById -->
+	<select id="SysUserLog.getById" resultMap="RM.SysUserLog">
+		SELECT
+		<include refid="SysUserLog.columns" />
+        <![CDATA[
+             FROM SYS_USER_LOG 
+         WHERE 
+               	USER_ID = #userId#        ]]>
+	</select>
+
+	<!-- 根据实际情况选择分页查询条件 -->
+	<sql id="SysUserLog.findPage.where">
+		<dynamic prepend="where">
+		<isPropertyAvailable property="userId">
+                  <isNotEmpty prepend="AND" property="userId">
+                      USER_ID = #userId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="loginIp">
+                  <isNotEmpty prepend="AND" property="loginIp">
+                      LOGIN_IP = #loginIp#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="loginCnt">
+                  <isNotEmpty prepend="AND" property="loginCnt">
+                      LOGIN_CNT = #loginCnt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+		</dynamic>
+	</sql>
+	<!-- 分页查询记录数 -->
+	<select id="SysUserLog.findPage.count" resultClass="int">
+		SELECT count(*) FROM SYS_USER_LOG
+		<include refid="SysUserLog.findPage.where" />
+	</select>
+	<!-- 分页查询 -->
+	<select id="SysUserLog.findByPage" resultMap="RM.SysUserLog">
+		SELECT
+		<include refid="SysUserLog.columns" />
+		FROM (
+		SELECT m.*, rownum as rnum
+		FROM
+		(SELECT
+		<include refid="SysUserLog.columns" />
+		FROM SYS_USER_LOG
+		<include refid="SysUserLog.findPage.where" /> order by LOGIN_TIME desc
+		) m
+		) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+	</select>
+</sqlMap>

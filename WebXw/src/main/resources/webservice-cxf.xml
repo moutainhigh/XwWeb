@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="
+ 	http://www.springframework.org/schema/beans 
+ 	http://www.springframework.org/schema/beans/spring-beans.xsd 
+ 	http://cxf.apache.org/jaxws 
+    http://cxf.apache.org/schemas/jaxws.xsd">
+    
+    <!-- ****************收拨款（预拨款）客户端配置*********************  -->
+    <bean id="AllocateRegServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="app.creditapp.inf.client.AllocateRegService"/>
+       <!-- <property name="address" value="http://172.16.112.145:8080/service/IActTransactionWebService"/>
+        <property name="address" value="http://10.7.101.43:9081/contract/services/IActTransactionWebService"/>-->
+	</bean>  
+	<!-- ****************批量、单笔征信结果本地查询客户端配置*********************  -->
+    <bean id="LocalhostCreditServiceFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="app.creditapp.inf.client.CreditSelService"/>
+        <!--<property name="address" value="http://localhost:8888/dhcc_crp_zxxt/cxf/sel_batch_datagram?wsdl"/>
+        <property name="address" value="http://10.7.56.23:7777/dhcc_crp_zxxt/cxf/sel_batch_datagram?wsdl"/>-->
+	</bean>
+    
+</beans>

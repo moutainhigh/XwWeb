@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleRoot>
+	<!-- ===========================分割线=========================== -->
+	<!-- ====================该验证的表QUERY_CREDIT================== -->
+	<!-- =========================================================== -->
+	<rules>
+		<ruleId>wsQueryCreditOneId</ruleId>
+		<ruleName>queryCreditOneRule</ruleName>
+		<columnList>
+			<!-- 批次号码 
+			<column columenName="batchNo">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>-->
+			<!-- 查证流水号 -->
+			<column columenName="czPactNo">
+				<canNull>false</canNull>
+				<maxLength>40</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 合作机构号码 -->
+			<column columenName="brNo">
+				<canNull>false</canNull>
+				<maxLength>10</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 进件日期 -->
+			<column columenName="appDate">
+				<canNull>false</canNull>
+				<maxLength>8</maxLength>
+				<minLength>8</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber>true</onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 证件类型 -->
+			<column columenName="idType">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 证件号码 -->
+			<column columenName="idNo">
+				<canNull>false</canNull>
+				<maxLength>18</maxLength>
+				<minLength>18</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 姓名 -->
+			<column columenName="cifName">
+				<canNull>false</canNull>
+				<maxLength>30</maxLength>
+				<minLength></minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+			<!-- 查询原因 -->
+			<column columenName="crpReason">
+				<canNull>false</canNull>
+				<maxLength>2</maxLength>
+				<minLength>2</minLength>
+				<maxValue></maxValue>
+				<minValue></minValue>
+				<startStr></startStr>
+				<endStr></endStr>
+				<containStr></containStr>
+				<onlyNumber></onlyNumber>
+				<regexpType></regexpType>
+			</column>
+		</columnList>
+	</rules>
+</ruleRoot>

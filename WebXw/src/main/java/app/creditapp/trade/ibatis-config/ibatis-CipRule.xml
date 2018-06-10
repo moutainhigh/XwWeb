@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CipRule" type="app.creditapp.trade.entity.CipRule"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CipRule" class="CipRule">
+    <result property="rule_no" column="RULE_NO" />
+    <result property="trade_id" column="TRADE_ID" />
+    <result property="trade_name" column="TRADE_NAME" />
+    <result property="col_name" column="COL_NAME" />
+    <result property="ch_col" column="CH_COL" />
+    <result property="rule_type" column="RULE_TYPE" />
+    <result property="col_length" column="COL_LENGTH" />
+    <result property="dec_length" column="DEC_LENGTH" />
+    <result property="if_param" column="IF_PARAM" />
+    <result property="if_send" column="IF_SEND" />
+    <result property="key_col" column="KEY_COL" />
+    </resultMap>
+     <sql id="CipRule.columns">
+        <![CDATA[
+         RULE_NO,
+         TRADE_ID,
+         GETTRADENAME(TRADE_ID) AS TRADE_NAME,
+         COL_NAME,
+         CH_COL,
+         RULE_TYPE,
+         COL_LENGTH,
+         DEC_LENGTH,
+         IF_PARAM,
+         IF_SEND,
+         KEY_COL
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CipRule.insert">
+        <![CDATA[
+        INSERT INTO CIP_RULE(
+         RULE_NO,
+         TRADE_ID,
+         COL_NAME,
+         CH_COL,
+         RULE_TYPE,
+         COL_LENGTH,
+         DEC_LENGTH,
+         IF_PARAM,
+         IF_SEND,
+         KEY_COL
+         )VALUES(
+         #rule_no#,
+         #trade_id#,
+         #col_name#,
+         #ch_col#,
+         #rule_type#,
+         #col_length#,
+         #dec_length#,
+         #if_param#,
+         #if_send#,
+         #key_col#
+         )
+          ]]>
+  		<selectKey resultClass="java.lang.String" type="pre" keyProperty="rule_no" >
+			SELECT CIP_RULE_SEQ.NEXTVAL AS rule_no FROM DUAL
+        </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CipRule.del">
+        <![CDATA[
+               DELETE FROM CIP_RULE
+                 WHERE
+               	RULE_NO = #rule_no#        ]]>
+    </delete>
+    <!-- 依據交易碼表删除 -->
+    <delete id="CipRule.delByTradeId">
+        <![CDATA[
+               DELETE FROM CIP_RULE
+                 WHERE
+               	TRADE_ID=#trade_id#       ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CipRule.update">
+        <![CDATA[
+         UPDATE CIP_RULE set
+         RULE_NO=#rule_no#,
+         TRADE_ID=#trade_id#,
+         COL_NAME=#col_name#,
+         CH_COL=#ch_col#,
+         RULE_TYPE=#rule_type#,
+         COL_LENGTH=#col_length#,
+         DEC_LENGTH=#dec_length#,
+         IF_PARAM=#if_param#,
+         IF_SEND=#if_send#,
+         KEY_COL=#key_col#
+          WHERE
+               	RULE_NO = #rule_no#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CipRule.getById"  resultMap="RM.CipRule">
+        SELECT <include refid="CipRule.columns"/>
+        <![CDATA[
+             FROM CIP_RULE 
+         WHERE 
+               	RULE_NO = #rule_no#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CipRule.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rule_no">
+                  <isNotEmpty prepend="AND" property="rule_no">
+                      RULE_NO = #rule_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="trade_id">
+                  <isNotEmpty prepend="AND" property="trade_id">
+                      TRADE_ID = #trade_id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="col_name">
+                  <isNotEmpty prepend="AND" property="col_name">
+                      COL_NAME like '%' || #col_name# || '%' 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="ch_col">
+                  <isNotEmpty prepend="AND" property="ch_col">
+                      CH_COL  like '%' || #ch_col# || '%'  
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CipRule.findPage.count" resultClass="int">
+        SELECT count(*) FROM CIP_RULE <include refid="CipRule.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CipRule.findByPage" resultMap="RM.CipRule">
+        SELECT <include refid="CipRule.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CipRule.columns"/> FROM CIP_RULE
+                    <include refid="CipRule.findPage.where"/> ORDER BY TRADE_ID,RULE_NO
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 依据交易号获取接口字段规则-->
+    <select id="CipRule.getCipRuleList"  resultMap="RM.CipRule">
+        SELECT <include refid="CipRule.columns"/>
+        <![CDATA[
+             FROM CIP_RULE 
+         WHERE 
+               	TRADE_ID = #trade_id#        ]]>
+     </select>
+</sqlMap>

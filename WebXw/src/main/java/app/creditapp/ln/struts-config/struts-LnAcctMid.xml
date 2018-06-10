@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnAcctMidAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnAcctMidAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="list">/creditapp/ln/LnAcctMid_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="LnAcctMidAction_input" method="input" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="input">/creditapp/ln/LnAcctMid_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnAcctMidAction_del" method="del" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="list">/creditapp/ln/LnAcctMid_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnAcctMidAction_getById" method="getById" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="detail">/creditapp/ln/LnAcctMid_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnAcctMidActionInsert" method="insert" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="input">/creditapp/ln/LnAcctMid_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnAcctMid_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnAcctMidActionUpdate" method="update" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="input">/creditapp/ln/LnAcctMid_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnAcctMid_Detail.jsp</result>
+		</action>
+		
+		<!-- 根据预进件申请信息appid显示所有的的账户信息 -->
+		<action name="LnAcctMidAction_listQuotaForLn" method="listQuotaForLn" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="list">/creditapp/ln/LnAcctMid_listQuotaForIn.jsp</result>
+		</action>
+		<action name="LnAcctMidAction_listQuotaForLn_Read" method="listQuotaForLn_Read" class="app.creditapp.ln.action.LnAcctMidAction">
+			<result name="list_Read">/creditapp/ln/LnAcctMid_listQuotaForIn_Read.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

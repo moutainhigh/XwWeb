@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="RulesBase" type="app.creditapp.sys.entity.RulesBase"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.RulesBase" class="RulesBase">
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="codeValue" column="CODE_VALUE" />
+    <result property="codeName" column="CODE_NAME" />
+    <result property="codeDesc" column="CODE_DESC" />
+    <result property="codeSts" column="CODE_STS" />
+    </resultMap>
+     <sql id="RulesBase.columns">
+        <![CDATA[
+         PRDT_NO,
+         CODE_VALUE,
+         CODE_NAME,
+         CODE_DESC,
+         CODE_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="RulesBase.insert">
+        <![CDATA[
+        INSERT INTO RULES_BASE(
+         PRDT_NO,
+         CODE_VALUE,
+         CODE_NAME,
+         CODE_DESC,
+         CODE_STS
+         )VALUES(
+         #prdtNo#,
+         #codeValue#,
+         #codeName#,
+         #codeDesc#,
+         #codeSts#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="RulesBase.del">
+        <![CDATA[
+               DELETE FROM RULES_BASE
+                 WHERE
+               	PRDT_NO = #prdtNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="RulesBase.update">
+        <![CDATA[
+         UPDATE RULES_BASE set
+         PRDT_NO=#prdtNo#,
+         CODE_VALUE=#codeValue#,
+         CODE_NAME=#codeName#,
+         CODE_DESC=#codeDesc#,
+         CODE_STS=#codeSts#
+          WHERE
+               	PRDT_NO = #prdtNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="RulesBase.getById"  resultMap="RM.RulesBase">
+        SELECT <include refid="RulesBase.columns"/>
+        <![CDATA[
+             FROM RULES_BASE 
+         WHERE 
+               	PRDT_NO = #prdtNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="RulesBase.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="prdtNo">
+                  <isNotEmpty prepend="AND" property="prdtNo">
+                      PRDT_NO = #prdtNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="codeValue">
+                  <isNotEmpty prepend="AND" property="codeValue">
+                      CODE_VALUE = #codeValue#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="codeName">
+                  <isNotEmpty prepend="AND" property="codeName">
+                      CODE_NAME = #codeName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="codeDesc">
+                  <isNotEmpty prepend="AND" property="codeDesc">
+                      CODE_DESC = #codeDesc#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="codeSts">
+                  <isNotEmpty prepend="AND" property="codeSts">
+                      CODE_STS = #codeSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="RulesBase.findPage.count" resultClass="int">
+        SELECT count(*) FROM RULES_BASE <include refid="RulesBase.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="RulesBase.findByPage" resultMap="RM.RulesBase">
+        SELECT <include refid="RulesBase.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="RulesBase.columns"/> FROM RULES_BASE
+                    <include refid="RulesBase.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+        <!-- 分页查询 -->
+    <select id="RulesBase.findById" resultMap="RM.RulesBase">
+        SELECT <include refid="RulesBase.columns"/>
+        FROM RULES_BASE
+        WHERE PRDT_NO = #prdtNo#
+    </select>
+</sqlMap>

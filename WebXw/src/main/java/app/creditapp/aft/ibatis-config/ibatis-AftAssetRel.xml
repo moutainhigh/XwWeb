@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftAssetRel" type="app.creditapp.aft.entity.AftAssetRel"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftAssetRel" class="AftAssetRel">
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="assId" column="ASS_ID" />
+    <result property="recId" column="REC_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="assAmt" column="ASS_AMT" jdbcType="double"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="brName" column="BR_NAME" />
+    <result property="cifName" column="CIF_NAME" />
+    </resultMap>
+     <sql id="AftAssetRel.columns">
+        <![CDATA[
+         BR_NO,
+         PACT_NO,
+         PACT_ID,
+         ASS_ID,
+         REC_ID,
+         CIF_NO,
+         ASS_AMT,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         FUN_GETBRNAME(BR_NO) AS BR_NAME,
+         FUN_GETCIFNAME(CIF_NO) AS CIF_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftAssetRel.insert">
+        <![CDATA[
+        INSERT INTO AFT_ASSET_REL(
+         BR_NO,
+         PACT_NO,
+         PACT_ID,
+         ASS_ID,
+         REC_ID,
+         CIF_NO,
+         ASS_AMT,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #brNo#,
+         #pactNo#,
+         #pactId#,
+         #assId#,
+         #recId#,
+         #cifNo#,
+         #assAmt#,
+         #opNo#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="recId" >
+				SELECT  AFT_ASSET_REL_SEQ.NEXTVAL AS REC_ID FROM DUAL
+      	 </selectKey>	
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftAssetRel.del">
+        <![CDATA[
+               DELETE FROM AFT_ASSET_REL
+                 WHERE
+               	REC_ID = #recId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftAssetRel.update">
+        <![CDATA[
+         UPDATE AFT_ASSET_REL set
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         PACT_ID=#pactId#,
+         ASS_ID=#assId#,
+         REC_ID=#recId#,
+         ASS_AMT=#assAmt#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	REC_ID = #recId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftAssetRel.getById"  resultMap="RM.AftAssetRel">
+        SELECT <include refid="AftAssetRel.columns"/>
+        <![CDATA[
+             FROM AFT_ASSET_REL 
+         WHERE 
+               	REC_ID = #recId#        ]]>
+     </select>
+     <select id="AftAssetRel.getTotalAmt" resultClass="double">
+        select sum(ass_amt) from AFT_ASSET_REL where REC_ID !=#recId# and pact_no=#pactNo#   
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftAssetRel.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="assId">
+                  <isNotEmpty prepend="AND" property="assId">
+                      ASS_ID = #assId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftAssetRel.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_ASSET_REL <include refid="AftAssetRel.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftAssetRel.findByPage" resultMap="RM.AftAssetRel">
+        SELECT <include refid="AftAssetRel.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftAssetRel.columns"/> FROM AFT_ASSET_REL
+                    <include refid="AftAssetRel.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <update id="AftAssetRel.updateForLn">
+    UPDATE AFT_ASSET_REL SET  PACT_ID=#pactId#, PACT_NO=#pactNo# WHERE 	ASS_ID = #assId#    
+    </update>
+    
+   	<update id="AftAssetRel.updateValue" parameterClass="java.util.Map">
+        <![CDATA[
+         UPDATE AFT_ASSET_REL set
+         ASS_AMT=#assAmt#
+          WHERE
+                 REC_ID = #recId#
+        ]]>
+    </update>
+</sqlMap>

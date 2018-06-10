@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnApplyRegAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnApplyRegAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="list">/creditapp/ln/LnApplyReg_List.jsp</result>
+		</action>
+		<!-- 改变手机号的方法-->
+		<action name="LnApplyRegAction_findByPagechanyephone" method="findByPagechanyephone" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="list">/creditapp/ln/LnApplyReg_Listchangephone.jsp</result>
+		</action>
+		<!--分页查询 
+		<action name="LnApplyRegAction_findByReturnId" method="findByReturnId" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="find">/creditapp/ln/LnApplyReg_findRe.jsp</result>
+		</action>  -->
+		
+		<!--获取新增页面-->
+		<action name="LnApplyRegAction_input" method="input" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="input">/creditapp/ln/LnApplyReg_Insert.jsp</result>
+		</action>
+		<action name="LnApplyRegAction_inputxiugai" method="inputxiugai" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="input">/creditapp/ln/LnApplyReg_Insertxiugai.jsp</result>
+		</action>
+		<!--删除 -->
+		<action name="LnApplyRegAction_del" method="del" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="list">/creditapp/ln/LnApplyReg_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnApplyRegAction_getById" method="getById" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="detail">/creditapp/ln/LnApplyReg_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnApplyRegActionInsert" method="insert" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="input">/creditapp/ln/LnApplyReg_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnApplyReg_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnApplyRegActionUpdate" method="update" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="input">/creditapp/ln/LnApplyReg_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnApplyReg_Detail.jsp</result>
+		</action>
+		<!--修改保存111-->
+		<action name="LnApplyRegActionUpdateinfor" method="updateinfor" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="input">/creditapp/ln/LnApplyReg_Listchangephone.jsp</result>
+			<result name="detail" type="redirect">LnApplyRegAction_findByPagechanyephone.action</result>
+		</action>
+		<!-- 总详细信息 -->
+		<action name="LnApplyRegAction_getAllDetail" method="getAllDetail" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="all">/creditapp/ln/LnApplyReg_All.jsp</result>
+	    </action>		
+	    
+	    <!-- 上面常显信息 -->
+		<action name="LnApplyRegAction_getDetailTop" method="getDetailTop" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="top">/creditapp/ln/LnApplyReg_All_Top.jsp</result>
+		</action>
+	    
+	    <!-- 客户详细信息 -->
+		<action name="LnApplyRegAction_getTab" method="getTab" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="tab">/creditapp/ln/LnApplyReg_Tab.jsp</result>
+		</action>
+		
+		<!-- 导入页面 -->
+		<action name="LnApplyRegAction_uploadInput" method="uploadInput" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="uploadInput">/creditapp/ln/LnApplyReg_uploadInput.jsp</result>
+		</action>
+		
+		<!-- 导入 -->
+		<action name="LnApplyRegAction_upload" method="upload" class="app.creditapp.ln.action.LnApplyRegAction">
+			<result name="input">/creditapp/ln/LnApplyReg_uploadInput.jsp</result>
+			<result name="upload" type="redirect">LnBatchAction_findByPage.action</result>
+		</action>
+		
+		<!-- 导出文件 -->
+		<action name="LnApplyRegAction_download" method="download" class="app.creditapp.ln.action.LnApplyRegAction">
+			<param name="downloadFile">${downloadFile}</param>
+			<result name="download" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">targetFile</param>
+				<param name="contentDisposition">attachment;filename="${downfName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

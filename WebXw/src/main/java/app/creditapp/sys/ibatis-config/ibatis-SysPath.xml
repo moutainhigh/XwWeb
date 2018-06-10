@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysPath" type="app.creditapp.sys.entity.SysPath"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysPath" class="SysPath">
+    <result property="pathId" column="PATH_ID" />
+    <result property="pathDesc" column="PATH_DESC" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pathDir" column="PATH_DIR" />
+    <result property="filler" column="FILLER" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upTime" column="UP_TIME" />
+    </resultMap>
+     <sql id="SysPath.columns">
+        <![CDATA[
+         PATH_ID,
+         PATH_DESC,
+         BR_NO,
+         PATH_DIR,
+         FILLER,
+         OP_NO,
+         TX_DATE,
+         UP_TIME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysPath.insert">
+        <![CDATA[
+        INSERT INTO SYS_PATH(
+         PATH_ID,
+         PATH_DESC,
+         BR_NO,
+         PATH_DIR,
+         FILLER,
+         OP_NO,
+         TX_DATE,
+         UP_TIME
+         )VALUES(
+         #pathId#,
+         #pathDesc#,
+         #brNo#,
+         #pathDir#,
+         #filler#,
+         #opNo#,
+         #txDate#,
+         #upTime#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysPath.del">
+        <![CDATA[
+               DELETE FROM SYS_PATH
+                 WHERE
+               	PATH_ID = #pathId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysPath.update">
+        <![CDATA[
+         UPDATE SYS_PATH set
+         PATH_ID=#pathId#,
+         PATH_DESC=#pathDesc#,
+         BR_NO=#brNo#,
+         PATH_DIR=#pathDir#,
+         FILLER=#filler#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_TIME=#upTime#
+          WHERE
+               	PATH_ID = #pathId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysPath.getById"  resultMap="RM.SysPath">
+        SELECT <include refid="SysPath.columns"/>
+        <![CDATA[
+             FROM SYS_PATH 
+         WHERE 
+               	PATH_ID = #pathId#        ]]>
+     </select>
+     <!-- 表查询  查询所有记录 -->
+     <select id="SysPath.findList"  resultMap="RM.SysPath">
+        SELECT <include refid="SysPath.columns"/>
+        <![CDATA[
+             FROM SYS_PATH  ]]>
+     </select>
+     
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysPath.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="pathId">
+                  <isNotEmpty prepend="AND" property="pathId">
+                      PATH_ID = #pathId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysPath.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_PATH <include refid="SysPath.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysPath.findByPage" resultMap="RM.SysPath">
+        SELECT <include refid="SysPath.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysPath.columns"/> FROM SYS_PATH
+                    <include refid="SysPath.findPage.where"/> 
+                    order by PATH_ID
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

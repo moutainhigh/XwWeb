@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="BatchNode" type="app.creditapp.batch.entity.BatchNode"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.BatchNode" class="BatchNode"> 
+    <result property="node_no" column="NODE_NO" />
+    <result property="node_name" column="NODE_NAME" />
+    <result property="scheme_no" column="SCHEME_NO" />
+    <result property="scheme_info" column="SCHEME_INFO" />
+    <result property="filler" column="FILLER" />
+    <result property="scheme_time_type" column="SCHEME_TIME_TYPE" />
+    <result property="scheme_time_detail" column="SCHEME_TIME_DETAIL" />
+    <result property="use_sts" column="USE_STS" />
+    <result property="err_flag" column="ERR_FLAG" />
+    </resultMap>
+     <sql id="BatchNode.columns">
+        <![CDATA[
+         NODE_NO,
+         NODE_NAME,
+         SCHEME_NO,
+         SCHEME_INFO,
+         FILLER,
+         SCHEME_TIME_TYPE,
+         SCHEME_TIME_DETAIL,
+         USE_STS,
+         ERR_FLAG
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="BatchNode.insert">
+        <![CDATA[
+        INSERT INTO BATCH_NODE(
+         NODE_NO,
+         NODE_NAME,
+         SCHEME_NO,
+         SCHEME_INFO,
+         FILLER,
+         SCHEME_TIME_TYPE,
+         SCHEME_TIME_DETAIL,
+         USE_STS,
+         ERR_FLAG
+         )VALUES(
+         #node_no#,
+         #node_name#,
+         #scheme_no#,
+         #scheme_info#,
+         #filler#,
+         #scheme_time_type#,
+         #scheme_time_detail#,
+         #use_sts#,
+         #err_flag#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="BatchNode.del">
+        <![CDATA[
+               DELETE FROM BATCH_NODE
+                 WHERE
+               	NODE_NO = #node_no#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="BatchNode.update">
+        <![CDATA[
+         UPDATE BATCH_NODE set
+         NODE_NO=#node_no#,
+         NODE_NAME=#node_name#,
+         SCHEME_NO=#scheme_no#,
+         SCHEME_INFO=#scheme_info#,
+         FILLER=#filler#,
+         SCHEME_TIME_TYPE=#scheme_time_type#,
+         scheme_time_detail=#scheme_time_detail#,
+         USE_STS=#use_sts#,
+         ERR_FLAG=#err_flag#
+          WHERE
+               	NODE_NO = #node_no#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="BatchNode.getById"  resultMap="RM.BatchNode">
+        SELECT <include refid="BatchNode.columns"/>
+        <![CDATA[
+             FROM BATCH_NODE 
+         WHERE 
+               	NODE_NO = #node_no#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="BatchNode.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="node_no">
+                  <isNotEmpty prepend="AND" property="node_no">
+                      NODE_NO = #node_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="node_name">
+                  <isNotEmpty prepend="AND" property="node_name">
+                      NODE_NAME LIKE '%$node_name$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="BatchNode.findPage.count" resultClass="int">
+        SELECT count(*) FROM BATCH_NODE <include refid="BatchNode.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="BatchNode.findByPage" resultMap="RM.BatchNode">
+        SELECT <include refid="BatchNode.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="BatchNode.columns"/> FROM BATCH_NODE
+                    <include refid="BatchNode.findPage.where"/> ORDER BY NODE_NO
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

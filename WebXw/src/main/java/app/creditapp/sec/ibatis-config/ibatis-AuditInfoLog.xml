@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AuditInfoLog" type="app.creditapp.sec.entity.AuditInfoLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AuditInfoLog" class="AuditInfoLog">
+    <result property="logId" column="LOG_ID"/>
+    <result property="auditType" column="AUDIT_TYPE"/>
+    <result property="userId" column="USER_ID"/>
+    <result property="userName" column="USER_NAME"/>
+    <result property="changeUserId" column="CHANGE_USER_ID"/>
+    <result property="changeUserName" column="CHANGE_USER_NAME"/>
+    <result property="auditTime" column="AUDIT_TIME"/>
+    <result property="remark1" column="REMARK1"/>
+    <result property="remark2" column="REMARK2"/>
+    </resultMap>
+     <sql id="AuditInfoLog.columns">
+        <![CDATA[
+         LOG_ID,
+         AUDIT_TYPE,
+         USER_ID,
+         USER_NAME,
+         CHANGE_USER_ID,
+         CHANGE_USER_NAME,
+         AUDIT_TIME,
+         REMARK1,
+         REMARK2
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AuditInfoLog.insert">
+        <![CDATA[
+        INSERT INTO AUDIT_INFO_LOG(
+         LOG_ID,
+         AUDIT_TYPE,
+         USER_ID,
+         USER_NAME,
+         CHANGE_USER_ID,
+         CHANGE_USER_NAME,
+         AUDIT_TIME,
+         REMARK1,
+         REMARK2
+         )VALUES(
+         #logId#,
+         #auditType#,
+         #userId#,
+         #userName#,
+         #changeUserId#,
+         #changeUserName#,
+         #auditTime#,
+         #remark1#,
+         #remark2#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.Integer" type="pre" keyProperty="logId" >
+		SELECT  AUDIT_INFO_LOG_SEQUENCE.nextval FROM DUAL
+        </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AuditInfoLog.del">
+        <![CDATA[
+               DELETE FROM AUDIT_INFO_LOG
+                 WHERE
+               LOG_ID = #logId#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AuditInfoLog.update">
+        <![CDATA[
+         UPDATE AUDIT_INFO_LOG set
+         LOG_ID=#logId#,
+         AUDIT_TYPE=#auditType#,
+         USER_ID=#userId#,
+         USER_NAME=#userName#,
+         CHANGE_USER_ID=#changeUserId#,
+         CHANGE_USER_NAME=#changeUserName#,
+         AUDIT_TIME=#auditTime#,
+         REMARK1=#remark1#,
+         REMARK2=#remark2#
+          WHERE
+                 LOG_ID = #logId#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AuditInfoLog.getById"  resultMap="RM.AuditInfoLog">
+        SELECT <include refid="AuditInfoLog.columns"/>
+        <![CDATA[
+             FROM AUDIT_INFO_LOG
+         WHERE 
+             LOG_ID = #logId#
+        ]]>
+     </select>
+     
+       <!-- 分页查询条件 -->
+    <sql id="AuditInfoLog.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="logId">
+                  		<isNotEqual prepend="and" property="logId" compareValue="0">
+                          LOG_ID = #logId#
+                        </isNotEqual>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="userId">
+                        <isNotEmpty prepend="AND" property="userId">
+                          USER_ID = #userId#
+                        </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="changeUserId">
+                        <isNotEmpty prepend="AND" property="changeUserId">
+                          CHANGE_USER_ID = #changeUserId#
+                        </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="auditTime">
+                        <isNotEmpty prepend="AND" property="auditTime">
+                          AUDIT_TIME = #auditTime#
+                        </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AuditInfoLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM AUDIT_INFO_LOG <include refid="AuditInfoLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AuditInfoLog.findByPage" resultMap="RM.AuditInfoLog">
+        SELECT <include refid="AuditInfoLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AuditInfoLog.columns"/> FROM AUDIT_INFO_LOG
+                    <include refid="AuditInfoLog.findPage.where"/>
+             ) m
+        ) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

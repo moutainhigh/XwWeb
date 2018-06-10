@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="FundProvProjAction" namespace="/" extends="struts-cms">
+	
+		<!--tab -->
+		<action name="FundProvProjAction_getTab" method="getTab" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="tab">/creditapp/fund/FundProvProj_tab.jsp</result>
+		</action>
+		
+	    <!--分页查询 -->
+		<action name="FundProvProjAction_findByPage" method="findByPage" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="list">/creditapp/fund/FundProvProj_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="FundProvProjAction_input" method="input" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="input">/creditapp/fund/FundProvProj_Insert.jsp</result>
+			<result name="detail">/creditapp/fund/FundProvProj_Detail.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="FundProvProjAction_del" method="del" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="list">/creditapp/fund/FundProvProj_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="FundProvProjAction_getById" method="getById" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="detail">/creditapp/fund/FundProvProj_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="FundProvProjActionInsert" method="insert" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="input">/creditapp/fund/FundProvProj_Insert.jsp</result>
+			<result name="detail">/creditapp/fund/FundProvProj_Detail.jsp</result>
+			<result name="all">/creditapp/fund/FundProvProj_All.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="FundProvProjActionUpdate" method="update" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="input">/creditapp/fund/FundProvProj_Detail.jsp</result>
+			<result name="detail">/creditapp/fund/FundProvProj_Detail.jsp</result>
+		</action>
+		<!-- 上面常显信息 -->
+		<action name="FundProvProjAction_getDetailTop" method="getDetailTop" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="top">/creditapp/fund/FundProvProj_All_Top.jsp</result>
+		</action>
+		<!-- 总详细信息 -->
+		<action name="FundProvProjAction_getAllDetail" method="getAllDetail" class="app.creditapp.fund.action.FundProvProjAction">
+			<result name="all">/creditapp/fund/FundProvProj_All.jsp</result>
+	    </action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcLnLoAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AcLnLoAction_*" method="{1}" class="app.creditapp.acc.loan.action.AcLnLoAction">
+			<result name="list">/creditapp/acc/loan/AcLnLo_List.jsp</result>
+			<result name="listForRead">/creditapp/acc/loan/AcLnLo_ListForRead.jsp</result>
+			<result name="input">/creditapp/acc/loan/AcLnLo_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLnLo_Detail.jsp</result>
+			<result name="detailForRead">/creditapp/acc/loan/AcLnLo_DetailForRead.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AcLnLoActionInsert" method="insert" class="app.creditapp.acc.loan.action.AcLnLoAction">
+			<result name="input">/creditapp/acc/loan/AcLnLo_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLnLo_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcLnLoActionUpdate" method="update" class="app.creditapp.acc.loan.action.AcLnLoAction">
+			<result name="input">/creditapp/acc/loan/AcLnLo_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLnLo_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

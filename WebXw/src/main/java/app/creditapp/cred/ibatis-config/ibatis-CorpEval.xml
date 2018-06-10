@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpEval" type="app.creditapp.cred.entity.CorpEval"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpEval" class="CorpEval">
+    <result property="evalNo" column="EVAL_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="screditNo" column="SCREDIT_NO" />
+    <result property="grade" column="GRADE" />
+    <result property="evalSts" column="EVAL_STS" />
+    <result property="evalDate" column="EVAL_DATE" />
+    <result property="evalDesc" column="EVAL_DESC" />
+    <result property="resultId" column="RESULT_ID" />
+    </resultMap>
+     <sql id="CorpEval.columns">
+        <![CDATA[
+         EVAL_NO,
+         BR_NO,
+         BR_NAME,
+         SCREDIT_NO,
+         GRADE,
+         EVAL_STS,
+         EVAL_DATE,
+         EVAL_DESC,
+         RESULT_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpEval.insert">
+        <![CDATA[
+        INSERT INTO CORP_EVAL(
+         EVAL_NO,
+         BR_NO,
+         BR_NAME,
+         SCREDIT_NO,
+         GRADE,
+         EVAL_STS,
+         EVAL_DATE,
+         EVAL_DESC,
+         RESULT_ID
+         )VALUES(
+         #evalNo#,
+         #brNo#,
+         #brName#,
+         #screditNo#,
+         #grade#,
+         #evalSts#,
+         #evalDate#,
+         #evalDesc#,
+         #resultId#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpEval.del">
+        <![CDATA[
+               DELETE FROM CORP_EVAL
+                 WHERE
+               	EVAL_NO = #evalNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpEval.update">
+        <![CDATA[
+         UPDATE CORP_EVAL set
+         EVAL_NO=#evalNo#,
+         BR_NO=#brNo#,
+         BR_NAME=#brName#,
+         SCREDIT_NO=#screditNo#,
+         GRADE=#grade#,
+         EVAL_STS=#evalSts#,
+         EVAL_DATE=#evalDate#,
+         EVAL_DESC=#evalDesc#
+          WHERE
+               	EVAL_NO = #evalNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CorpEval.getById"  resultMap="RM.CorpEval">
+        SELECT <include refid="CorpEval.columns"/>
+        <![CDATA[
+             FROM CORP_EVAL 
+         WHERE 
+               	EVAL_NO = #evalNo#   AND  BR_NO = #brNo#   ]]>
+     </select>
+     <!-- 获取最新评级信息ByMaxId -->
+    <select id="CorpEval.getByMaxId"  resultMap="RM.CorpEval">
+        SELECT <include refid="CorpEval.columns"/> 
+			  FROM (SELECT <include refid="CorpEval.columns"/> 
+			          FROM CORP_EVAL
+			         WHERE BR_NO = #brNo#
+			         ORDER BY EVAL_NO DESC)
+			 WHERE rownum = 1
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpEval.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+<!--        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME  like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>-->
+        	<isPropertyAvailable property="evalSts">
+                  <isNotEmpty prepend="AND" property="evalSts">
+                      EVAL_STS = #evalSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="grade">
+                  <isNotEmpty prepend="AND" property="grade">
+                      GRADE = #grade#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      br_no in (select br_no from proj_base where proj_no in (select proj_no from proj_mang where login_id = #loginid#))
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpEval.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_EVAL <include refid="CorpEval.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpEval.findByPage" resultMap="RM.CorpEval"> 
+        SELECT <include refid="CorpEval.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpEval.columns"/> FROM CORP_EVAL
+                    <include refid="CorpEval.findPage.where"/>order by EVAL_NO desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 获取BAKKEY -->
+    <select id="CorpEval.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CORP_EVAL_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

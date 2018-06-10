@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="acc8009" title="分录定义表,查询用form">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="entryCde" fieldtype="1" formactiveid="1" labelalign="3" labelcol="1" labelname="分录代码" maxlength="10" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="accHrt" fieldtype="1" formactiveid="2" labelalign="3" labelcol="3" labelname="科目控制字" maxlength="10" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="amtTyp" fieldsize="AC_LOAN_AMT_TYP" fieldtype="21" formactiveid="3" labelalign="3" labelcol="1" labelname="金额类型" maxlength="10" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="glNo" fieldtype="1" formactiveid="4" labelalign="3" labelcol="3" labelname="核算参数" maxlength="10" mustinput="" readonly="" row="2"/>
+</form>

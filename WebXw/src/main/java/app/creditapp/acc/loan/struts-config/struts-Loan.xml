@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="loan" namespace="/" extends="struts-cms">
+		<global-results>
+			<result name="invalid.token">/creditapp/common/commitRepeat.jsp
+			</result>
+			<result name="commonException">/creditapp/common/exception.jsp
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="commonException"
+				exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		<action name="LoanAction_grantLoan" method="grantLoan"
+			class="app.creditapp.acc.loan.action.LoanAction">
+			<result name="input">/creditapp/acc/loan/OpenLoan_Detail.jsp
+			</result>
+			<result name="success">/creditapp/acc/loan/OpenLoan_Detail.jsp
+			</result>
+		</action>
+		<action name="LoanAction_grantLoanBack" method="grantLoanBack"
+			class="app.creditapp.acc.loan.action.LoanAction">
+			<result name="input">/creditapp/acc/loan/OpenLoan_Detail.jsp
+			</result>
+			<result name="success">/creditapp/acc/loan/OpenLoan_Detail.jsp
+			</result>
+		</action>
+	</package>
+</struts>

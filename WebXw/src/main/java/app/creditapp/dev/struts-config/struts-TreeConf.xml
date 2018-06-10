@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="TreeConfAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="TreeConfAction_findByPage" method="findByPage" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="list">/creditapp/dev/TreeConf_List.jsp</result>
+		</action>
+		
+		<!--通用树 -->
+		<action name="TreeConfAction_getTree" method="getTree" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="showTree">/creditapp/sys/TreeNote.jsp</result>
+		</action>
+		
+		<action name="TreeConfAction_getTreePot" method="getTreePot" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="showTree">/creditapp/sys/TreeNote.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="TreeConfAction_input" method="input" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="input">/creditapp/dev/TreeConf_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="TreeConfAction_del" method="del" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="list">/creditapp/dev/TreeConf_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="TreeConfAction_getById" method="getById" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="detail">/creditapp/dev/TreeConf_Detail.jsp</result>
+		</action>
+		
+		<action name="TreeConfAction_testTree" method="testTree" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="testTree">/creditapp/dev/TreeConf_Test.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="TreeConfActionInsert" method="insert" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="input">/creditapp/dev/TreeConf_Insert.jsp</result>
+			<result name="detail">/creditapp/dev/TreeConf_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="TreeConfActionUpdate" method="update" class="app.creditapp.dev.action.TreeConfAction">
+			<result name="input">/creditapp/dev/TreeConf_Detail.jsp</result>
+			<result name="detail">/creditapp/dev/TreeConf_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

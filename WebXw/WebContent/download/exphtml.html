@@ -1,0 +1,481 @@
+<script language="JavaScript" src="viewctrl.js"></script>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>#title#通知书</TITLE>
+<STYLE type=text/css></STYLE>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link rel="stylesheet" href="css/style1.css" type="text/css"> 
+<style type="text/css">     
+  .tdStyle{
+	  border:1px solid;
+	  color: #0066cc;
+	  }
+</style>
+<style type="text/css">
+<!--
+.style1 {
+	color: #0066cc;
+	font-weight: bold;
+}
+.style4 {color: #0066cc; font-size: 14px; }
+TD {
+	FONT-FAMILY: 宋体; FONT-SIZE: 9pt
+}
+-->
+</style>
+
+<script language="JavaScript"><!--
+   //屏蔽鼠标右键、Ctrl+N、Shift+F10、F11、F5刷新、退格键  
+function  document.oncontextmenu(){event.returnValue=false;}//屏蔽鼠标右键  
+function  window.onhelp(){return  false}  //屏蔽F1帮助  
+function  document.onkeydown()  
+{  
+   if  ((window.event.altKey)&&  
+           ((window.event.keyCode==37)  ||      //屏蔽  Alt+  方向键  ←  
+             (window.event.keyCode==39)))      //屏蔽  Alt+  方向键  →  
+   {  
+         alert("不准你使用ALT+方向键前进或后退网页！");  
+         event.returnValue=false;  
+   }  
+         /*  注：这还不是真正地屏蔽  Alt+  方向键，  
+         因为  Alt+  方向键弹出警告框时，按住  Alt  键不放，  
+         用鼠标点掉警告框，这种屏蔽方法就失效了。以后若  
+         有哪位高手有真正屏蔽  Alt  键的方法，请告知。*/  
+ 
+   if  ((event.keyCode==8)      ||                                  //屏蔽退格删除键  
+           (event.keyCode==116)  ||                                  //屏蔽  F5  刷新键  
+           (event.ctrlKey  &&  event.keyCode==82)){  //Ctrl  +  R  
+         event.keyCode=0;  
+         event.returnValue=false;  
+         }  
+   if  (event.keyCode==122){event.keyCode=0;event.returnValue=false;}    //屏蔽F11  
+   if  (event.ctrlKey  &&  event.keyCode==78)  event.returnValue=false;      //屏蔽  Ctrl+n  
+   if  (event.shiftKey  &&  event.keyCode==121)event.returnValue=false;    //屏蔽  shift+F10  
+   if  (window.event.srcElement.tagName  ==  "A"  &&  window.event.shiftKey)    
+           window.event.returnValue  =  false;                          //屏蔽  shift  加鼠标左键新开一网页  
+   if  ((window.event.altKey)&&(window.event.keyCode==115))                          //屏蔽Alt+F4  
+   {  
+           window.showModelessDialog("about:blank","","dialogWidth:1px;dialogheight:1px");  
+           return  false;  
+   }  
+}  
+//-->
+function msover(){
+event.srcElement.style.backgroundColor="#ccffff";
+event.srcElement.style.cursor = "hand";
+}
+
+function msout(){
+event.srcElement.style.backgroundColor="#FFF6DC";
+event.srcElement.style.cursor = "auto";
+}
+</script>
+
+
+</HEAD>
+<BODY>
+
+
+<div align="center">
+  <center>
+  <p></p>
+  </center>
+   <style type="text/css">
+<!--
+.tableStyle{
+	border-collapse:collapse;
+	border:none;
+	border-color:black;
+}
+
+.tdStyle{
+    border:1px solid;
+}
+-->
+</style>
+</div>
+<table width="720" cellspacing="0" cellpadding="0" align="center" style="border-collapse:collapse;border:none" >
+  <tr>
+    <td height="117" align="center">
+      <table  height=95 cellspacing=0 cellpadding=0 width=720 align="center" style="border-collapse:collapse;border:none">
+        <tbody>
+        <tr align="center" valign="middle">
+	          <td height=24 colspan=3 >
+	            <div align=center><font color=#0066cc size=6><b><font face="黑体">#title#通知书</font></b></font></div>
+	          </td>
+          </tr>  
+          <tr>
+	          <td  height="40px" class=high valign="bottom" >
+	            <div align=right><span class="style1"><font color=#0066cc size=3 ><b>#date#</b></span><b></b></font></div>
+	          </td>
+	      </tr>   
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</table>
+	
+<tr style="line-height:15px"><td>&nbsp;</td></tr> 
+  <tr> 
+    <td> 
+      <div  align=center><font color=#0066cc><span class=high><b>委外催收提醒</b></span></font></div>
+    </td>
+  </tr>
+<table cellspacing=0 cellpadding=0 width=1800 border="1" align="center" style="border-collapse: collapse;border:none; border-color: black">
+
+        <tr height=30 align="center" valign="middle" >
+          <td width="8%" class="tdStyle">
+            <font color=#0066cc>合同编号</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>项目编号</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+           <font color=#0066cc> 项目名称</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>客户号</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>客户名称</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>产品号</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>产品名称</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>合同金额</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>合同余额</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>欠息</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>起始日期</font>
+          </td>
+          <td  class="tdStyle" width="8%">
+            <font color=#0066cc>到期日期</font>
+          </td>
+        </tr>
+  <tr>$$</tr>
+  </tbody>
+</table>
+    </td>
+  </tr>
+
+
+
+
+  	
+ <tr style="line-height:15px"><td>&nbsp;</td></tr> 
+  <tr> 
+    <td> 
+      <div  align=center><font color=#0066cc><span class=high><b>待代偿明细</b></span></font></div>
+    </td>
+  </tr>
+    <td>
+<table cellspacing=0 cellpadding=2 width=1800 align=center style="border-collapse: collapse;border:none;" bordercolor="#0066cc">
+<tbody>
+        <tr height=30 align="center" valign="middle" >
+          <td width="8%" class="tdStyle">
+            <font color=#0066cc>合同号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>代偿编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+           <font color=#0066cc> 借据号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户名</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>期次号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>应收本金</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>应收利息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>应收罚息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>实收本金</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>实收利息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>实收罚息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>代偿日期</font>
+          </td>
+        </tr>
+  <tr>$1$</tr>
+  </tbody> 
+</table>
+ </td>
+  </tr>
+  
+  <tr style="line-height:15px"><td>&nbsp;</td></tr> 
+  <tr> 
+    <td> 
+      <div  align=center><font color=#0066cc><span class=high><b>待回购列表</b></span></font></div>
+    </td>
+  </tr>
+    <td>
+<table cellspacing=0 cellpadding=2 width=1800 align=center style="border-collapse: collapse;border:none;" bordercolor="#0066cc">
+<tbody>
+        <tr height=30 align="center" valign="middle" >
+          <td width="8%" class="tdStyle">
+            <font color=#0066cc>合同号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>回购编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+           <font color=#0066cc> 借据号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户名</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>应收本金</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>应收利息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>实收本金</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>实收利息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>实收罚息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>回购金额</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>回购日期</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>回购金额汇总</font>
+          </td>
+        </tr>
+  <tr>$2$</tr>
+  </tbody> 
+</table>
+ </td>
+  </tr>
+  
+  <tr style="line-height:15px"><td>&nbsp;</td></tr> 
+  <tr> 
+    <td> 
+      <div  align=center><font color=#0066cc><span class=high><b>还款计划未上传</b></span></font></div>
+    </td>
+  </tr>
+    <td>
+<table cellspacing=0 cellpadding=2 width=1800 align=center style="border-collapse: collapse;border:none;" bordercolor="#0066cc">
+<tbody>
+        <tr height=30 align="center" valign="middle" >
+          <td width="8%" class="tdStyle">
+            <font color=#0066cc>合同编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>批次号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+           <font color=#0066cc> 合作机构号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户号码</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>贷款类型</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>合同金额</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>月利率</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>起始日期</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>到期日期</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>还款方式</font>
+          </td>
+        </tr>
+  <tr>$3$</tr>
+  </tbody> 
+</table>
+ </td>
+  </tr>
+  
+    <tr style="line-height:15px"><td>&nbsp;</td></tr> 
+  <tr> 
+    <td> 
+      <div  align=center><font color=#0066cc><span class=high><b>影像资料未上传</b></span></font></div>
+    </td>
+  </tr>
+    <td>
+<table cellspacing=0 cellpadding=2 width=1800 align=center style="border-collapse: collapse;border:none;" bordercolor="#0066cc">
+<tbody>
+        <tr height=30 align="center" valign="middle" >
+          <td width="8%" class="tdStyle">
+            <font color=#0066cc>合同编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+           <font color=#0066cc> 项目名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>客户名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>产品名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>合同金额</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>合同余额</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>欠息</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>起始日期</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>到期日期</font>
+          </td>
+        </tr>
+  <tr>$4$</tr>
+  </tbody> 
+</table>
+ </td>
+  </tr>
+  
+     <tr style="line-height:15px"><td>&nbsp;</td></tr> 
+  <tr> 
+    <td> 
+      <div  align=center><font color=#0066cc><span class=high><b>资金到期清算</b></span></font></div>
+    </td>
+  </tr>
+    <td>
+<table cellspacing=0 cellpadding=2 width=1800 align=center style="border-collapse: collapse;border:none;" bordercolor="#0066cc">
+<tbody>
+        <tr height=30 align="center" valign="middle" bordercolor="#0066cc" >
+          <td width="8%" class="tdStyle">
+            <font color=#0066cc>预警编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>预警产生日期</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+           <font color=#0066cc> 项目编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>项目名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>资金编号</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>资金名称</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>资金当前规模</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>起始日期</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>到期日期</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>现金余额</font>
+          </td>
+          <td  class="tdStyle" width="5%">
+            <font color=#0066cc>结息方式</font>
+          </td>
+         <td  class="tdStyle" width="5%">
+            <font color=#0066cc>现金余额汇总</font>
+          </td>
+        </tr>
+  <tr>$5$</tr>
+  </tbody> 
+</table>
+ </td>
+  </tr> 
+  
+</body>
+</html>

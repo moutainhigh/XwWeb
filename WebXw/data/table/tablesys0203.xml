@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="sys0203" para="eadis_page" link="SysExceptionAction_findByPage.action" title="系统异常" type="1">
+<tableitem align="2" filedname="expId" id="1" indexed="1" label="异常ID" row="1" type="4" typepara="SysExceptionAction_getById.action;expId-expId;query-'query'"/>
+<tableitem align="2" filedname="userId" id="2" indexed="2" label="操作人员" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="7" indexed="7" label="-" row="1" type="5" typepara="SysExceptionAction_getById.action;expId-expId;" width="2"/>
+<tableitem align="2" filedname="删除" id="8" indexed="8" label="-" row="1" type="5" typepara="SysExceptionAction_del.action;expId-expId;onClick-lkconfirm" width="2"/>
+</table>

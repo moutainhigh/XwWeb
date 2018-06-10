@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsRepyPlan" type="app.creditapp.inf.entity.WsRepyPlan"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsRepyPlan" class="WsRepyPlan">
+    <result property="wsId" column="WS_ID" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cnt" column="CNT" jdbcType="Int"/>
+    <result property="begDate" column="BEG_DATE" jdbcType="Int"/>
+    <result property="endDate" column="END_DATE" jdbcType="Int"/>
+    <result property="totalAmt" column="TOTAL_AMT" jdbcType="double"/>
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double"/>
+    <result property="sts" column="STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="brName" column="BR_NAME"/>
+    </resultMap>
+  <typeAlias alias="WsOut2202" type="app.creditapp.inf.entity.WsOut2202"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsOut2202" class="WsOut2202">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cnt" column="PERD_NO" jdbcType="Int" nullValue="0"/>
+    <result property="endDate" column="PAY_DT" jdbcType="Int" nullValue="0"/>
+    <result property="totalAmt" column="INSTM_AMT" jdbcType="double" nullValue="0" />
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double" nullValue="0"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double" nullValue="0"/>
+    <result property="fineInt" column="FINE_INT" jdbcType="double" nullValue="0"/>
+    <result property="repayPrcpAmt" column="REPAY_PRCP_AMT" jdbcType="double" nullValue="0"/>
+    <result property="repayNormInt" column="REPAY_NORM_INT" jdbcType="double" nullValue="0"/>
+    <result property="repayFineInt" column="REPAY_FINE_INT" jdbcType="double" nullValue="0"/>
+    <result property="wvPrcpAmt" column="WV_PRCP_AMT" jdbcType="double" nullValue="0"/>
+    <result property="wvNormInt" column="WV_NORM_INT" jdbcType="double" nullValue="0"/>
+    <result property="wvFineInt" column="WV_FINE_INT" jdbcType="double" nullValue="0"/>
+    <result property="sts" column="SETL_STS" />
+    <result property="prcpSts" column="PRCP_STS" />
+    </resultMap>
+     <sql id="WsRepyPlan.columns">
+        <![CDATA[
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         BEG_DATE,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE,
+         FUN_GETBRNAME(br_no) as BR_NAME
+          ]]>
+    </sql>
+    <sql id="WsOut2202.columns">
+        <![CDATA[
+         PACT_NO,
+		 PERD_NO,
+		 PAY_DT,
+		 INSTM_AMT,
+		 PRCP_AMT,
+		 NORM_INT,
+		 FINE_INT,
+		 REPAY_PRCP_AMT,
+		 REPAY_NORM_INT,
+		 REPAY_FINE_INT,
+		 WV_PRCP_AMT,
+		 WV_NORM_INT,
+		 WV_FINE_INT,
+		 SETL_STS,
+		 PRCP_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WsRepyPlan.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_PLAN(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         BEG_DATE,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE
+         )VALUES(
+         WS_ID_SEQ.NEXTVAL,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #begDate#,
+         #endDate#,
+         #totalAmt#,
+         #prcpAmt#,
+         #normInt#,
+         '01',
+         TO_CHAR(SYSDATE,'YYYYMMDD')
+         )
+          ]]>
+    </insert>
+        <!--ws2201 表新增 -->
+    <insert id="WsRepyPlan.insertWs">
+        <![CDATA[
+        INSERT INTO WS_REPY_PLAN(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE
+         )VALUES(
+         WS_ID_SEQ.NEXTVAL,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #endDate#,
+         #totalAmt#,
+         #prcpAmt#,
+         #normInt#,
+         '01',
+         FUN_SYSTIME
+         )
+          ]]>
+    </insert>
+    <!-- ws2602 ws2604 ws2802表新增 -->
+    <insert id="WsRepyPlan.insertForWs">
+        <![CDATA[
+        INSERT INTO WS_REPY_PLAN(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         BEG_DATE,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE
+         )VALUES(
+         WS_ID_SEQ.NEXTVAL,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #begDt#,
+         #endDt#,
+         #instmAmt#,
+         #prcpAmt#,
+         #normInt#,
+         '01',
+         FUN_SYSTIME
+         )
+          ]]>
+    </insert>
+    <insert id="WsRepyPlan.insertForWsIn270_">
+        <![CDATA[
+        INSERT INTO WS_REPY_PLAN(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         BEG_DATE,
+         END_DATE,
+         TOTAL_AMT,
+         PRCP_AMT,
+         NORM_INT,
+         STS,
+         TX_DATE
+         )VALUES(
+         WS_ID_SEQ.NEXTVAL,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #begDt#,
+         #endDt#,
+         #instmAmt#,
+         #prcpAmt#,
+         #normInt#,
+         '01',
+         FUN_SYSTIME
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="WsRepyPlan.del">
+        <![CDATA[
+               DELETE FROM WS_REPY_PLAN
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+      <!-- 删除有字段错误的合同号 -->
+     <delete id="WsRepyPlan.delforbr">
+        <![CDATA[
+               DELETE FROM WS_REPY_PLAN
+                 WHERE
+               	PACT_NO = #pactNo#
+               	AND 
+               	BR_NO = #brNo#       ]]>
+    </delete>
+    <!-- 根据合同号删除当日数据 -->
+    <delete id="WsRepyPlan.delByPactNo">
+        <![CDATA[
+               DELETE FROM WS_REPY_PLAN
+                 WHERE
+               	PACT_NO = #pactNo#        
+               	 AND
+               	TX_DATE = TO_CHAR(SYSDATE, 'YYYYMMDD') 			]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WsRepyPlan.update">
+        <![CDATA[
+         UPDATE WS_REPY_PLAN set
+         WS_ID=#wsId#,
+         BATCH_NO=#batchNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         CNT=#cnt#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         TOTAL_AMT=#totalAmt#,
+         PRCP_AMT=#prcpAmt#,
+         NORM_INT=#normInt#,
+         STS=#sts#,
+         TX_DATE=#txDate#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WsRepyPlan.getById"  resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlan.columns"/>
+        <![CDATA[
+             FROM WS_REPY_PLAN 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     <!--查询机构号-->
+     <select id="WsRepyPlan.getByIdFirst"  resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlan.columns"/>
+        <![CDATA[
+             FROM WS_REPY_PLAN 
+         WHERE 
+               	BATCH_NO = #batchNo#  AND  ROWNUM = 1    ]]>
+     </select>
+     
+     <!-- ws2601表查询ByPactNo -->
+    <select id="WsRepyPlan.getByPactNo"  resultMap="RM.WsOut2202">
+        SELECT <include refid="WsOut2202.columns"/>
+        <![CDATA[
+             FROM WS_REPY_PLAN 
+         WHERE 
+               	PACT_NO = #pactNo#        ]]>
+     </select>
+       <!-- 根据实际情况选择查询条件 -->
+    <sql id="WsIn2202.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WsRepyPlan.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="wsId">
+                  <isNotEmpty prepend="AND" property="wsId">
+                      WS_ID = #wsId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="sts">
+                  <isNotEmpty prepend="AND" property="sts">
+                      STS = #sts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="WsRepyPlan.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_REPY_PLAN <include refid="WsRepyPlan.findPage.where"/>
+    </select>
+    <!-- 查询还款计划 -->
+    <select id="WsRepyPlan.findByWsIn" resultMap="RM.WsOut2202">
+        SELECT <include refid="WsOut2202.columns"/>
+         FROM 
+         	AC_LN_REPAY_PLN <include refid="WsIn2202.where"/> ORDER  BY PERD_NO ASC
+    </select>
+    <!-- 分页查询 -->
+    <select id="WsRepyPlan.findByPage" resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlan.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRepyPlan.columns"/> FROM WS_REPY_PLAN
+                    <include refid="WsRepyPlan.findPage.where"/>
+                    ORDER BY WS_ID DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 同一个合同中的每期应还本金之和 PRCP_AMT -->
+    <select id="WsRepyPlan.getPrcpAmtCount" resultClass="double">
+       select sum(PRCP_AMT) from WS_REPY_PLAN where PACT_NO=#pactNo#  AND BATCH_NO=#batchNo#
+    </select>
+    
+    <!-- 同一个合同的最大到期日 -->
+    <select id="WsRepyPlan.getMaxEndDate" resultClass="String">
+       select max(END_DATE) from WS_REPY_PLAN where PACT_NO=#pactNo#
+    </select>
+    
+     <!-- 取期次号（判断期次号连续） -->
+    <select id="WsRepyPlan.getByPactNoList" resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlan.columns"/>
+        FROM WS_REPY_PLAN  WHERE PACT_NO=#pactNo#
+    </select>
+    
+     <!-- 每期的利息 -->
+    <select id="WsRepyPlan.getNormInt" resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlan.columns"/>
+        FROM WS_REPY_PLAN  WHERE PACT_NO=#pactNo# and CNT=#cnt#
+    </select>
+    
+     <!-- 取开始日和结束日（判断本期次起始日应该等于上一期的到期日） 
+    <select id="WsRepyPlan.getBybegendDate" resultMap="RM.WsRepyPlan">
+        SELECT <include refid="WsRepyPlan.columns"/>
+        FROM WS_REPY_PLAN  WHERE PACT_NO=#pactNo# and CNT=#cnt#
+    </select>-->
+</sqlMap>

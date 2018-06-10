@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnBatchAction" namespace="/" extends="struts-cms">
+	
+	 	<!-- 详细信息 -->
+		<action name="LnBatchAction_getTab" method="getTab" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="tab">/creditapp/ln/LnBatch_Tab.jsp</result>
+		</action>
+	    <!--分页查询 -->
+		<action name="LnBatchAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="list">/creditapp/ln/LnBatch_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="LnBatchAction_input" method="input" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="input">/creditapp/ln/LnBatch_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnBatchAction_del" method="del" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="list">/creditapp/ln/LnBatch_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnBatchAction_getById" method="getById" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="detail">/creditapp/ln/LnBatch_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnBatchActionInsert" method="insert" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="input">/creditapp/ln/LnBatch_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnBatch_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnBatchActionUpdate" method="update" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="input">/creditapp/ln/LnBatch_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnBatch_Detail.jsp</result>
+		</action>
+		<!--显示进度 -->
+		<action name="LnBatchAction_getShowSchedule" method="getShowSchedule" class="app.creditapp.ln.action.LnBatchAction">
+			<result name="detail">/creditapp/ln/LnBatch_ShowSchedule.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

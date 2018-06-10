@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CipTrade" type="app.creditapp.trade.entity.CipTrade"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CipTrade" class="CipTrade">
+    <result property="trade_id" column="TRADE_ID" />
+    <result property="trade_name" column="TRADE_NAME" />
+    <result property="sql" column="SQL" />
+    <result property="channel_id" column="CHANNEL_ID" />
+    <result property="req_msgid" column="REQ_MSGID" />
+    <result property="rsp_msgid" column="RSP_MSGID" />
+    <result property="tx_flag" column="TX_FLAG" />
+    </resultMap>
+     <sql id="CipTrade.columns">
+        <![CDATA[
+         TRADE_ID,
+         TRADE_NAME,
+         SQL,
+         CHANNEL_ID,
+         REQ_MSGID,
+         RSP_MSGID,
+         TX_FLAG
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CipTrade.insert">
+        <![CDATA[
+        INSERT INTO CIP_TRADE(
+         TRADE_ID,
+         TRADE_NAME,
+         CHANNEL_ID,
+         REQ_MSGID,
+         RSP_MSGID,
+         TX_FLAG,
+         SQL
+         )VALUES(
+         #trade_id#,
+         #trade_name#,
+         #channel_id#,
+         #req_msgid#,
+         #rsp_msgid#,
+         #tx_flag#,
+         #sql#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CipTrade.del">
+        <![CDATA[
+               DELETE FROM CIP_TRADE
+                 WHERE
+               	TRADE_ID = #trade_id#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CipTrade.update">
+        <![CDATA[
+         UPDATE CIP_TRADE set
+         TRADE_ID=#trade_id#,
+         TRADE_NAME=#trade_name#,
+         CHANNEL_ID=#channel_id#,
+         REQ_MSGID=#req_msgid#,
+         RSP_MSGID=#rsp_msgid#,
+         TX_FLAG=#tx_flag#,
+         SQL=#sql#
+          WHERE
+               	TRADE_ID = #trade_id#        ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="CipTrade.getById"  resultMap="RM.CipTrade">
+        SELECT <include refid="CipTrade.columns"/>
+        <![CDATA[
+             FROM CIP_TRADE 
+         WHERE 
+               	TRADE_ID = #trade_id#        ]]>
+     </select>
+     <select id="CipTrade.getByReqMsgid"  resultMap="RM.CipTrade">
+        SELECT <include refid="CipTrade.columns"/>
+        <![CDATA[
+             FROM CIP_TRADE 
+         WHERE 
+               	REQ_MSGID = #req_msgid#       ]]>
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CipTrade.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="trade_id">
+                  <isNotEmpty prepend="AND" property="trade_id">
+                      TRADE_ID like '%' || #trade_id# || '%' 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="trade_name">
+                  <isNotEmpty prepend="AND" property="trade_name">
+                      TRADE_NAME like '%' || #trade_name# || '%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="channel_id">
+                  <isNotEmpty prepend="AND" property="channel_id">
+                      CHANNEL_ID = #channel_id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="req_msgid">
+            	 <isNotEmpty prepend="AND" property="req_msgid">
+                      REQ_MSGID  like '%' || #req_msgid# || '%'
+                  </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="tx_flag">
+            	 <isNotEmpty prepend="AND" property="tx_flag">
+                      TX_FLAG  = #tx_flag# 
+                  </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CipTrade.findPage.count" resultClass="int">
+        SELECT count(*) FROM CIP_TRADE <include refid="CipTrade.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CipTrade.findByPage" resultMap="RM.CipTrade">
+        SELECT <include refid="CipTrade.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CipTrade.columns"/> FROM CIP_TRADE
+                    <include refid="CipTrade.findPage.where"/> ORDER BY TRADE_ID
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 启用/停用通信接口 -->
+     <update id="CipTrade.updateTxFlag">
+        <![CDATA[
+         UPDATE CIP_TRADE set
+         TX_FLAG=#tx_flag# ]]>
+  	  </update>
+  	  <!-- 启用/停用通信接口 -->
+     <update id="CipTrade.updateTxFlagByTradeId">
+        <![CDATA[
+         UPDATE CIP_TRADE set
+         TX_FLAG=#tx_flag# where TRADE_ID = #trade_id#]]>
+  	  </update>
+     <!-- 依据交易号与渠道 编号获取交易SQL语句  -->
+    <select id="CipTrade.getCipTradeSql"  resultMap="RM.CipTrade">
+        SELECT <include refid="CipTrade.columns"/>
+        <![CDATA[
+             FROM CIP_TRADE 
+         WHERE 
+               	TRADE_ID = #trade_id#  AND  CHANNEL_ID = #channel_id#    ]]>
+     </select>
+      <select id="CipTrade.getCipTradeList" resultMap="RM.CipTrade">
+        SELECT <include refid="CipTrade.columns"/>
+        FROM CIP_TRADE WHERE REQ_MSGID = #trade_id#
+    </select>
+</sqlMap>

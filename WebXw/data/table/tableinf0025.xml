@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="inf0025" para="eadis_page" link="WsRepydayChgAction_findByPage.action" title="扣款日变更信息上传进件表" type="1">
+<tableitem align="2" filedname="wsId" id="1" indexed="1" label="数据ＩＤ" row="1" type="4" typepara="WsRepydayChgAction_getById.action;wsId-wsId;query-'query'"/>
+<tableitem align="2" filedname="batchNo" id="2" indexed="2" label="批次编号" row="1" type="0" />
+<tableitem align="2" filedname="brNo" id="3" indexed="3" label="合作机构编号" row="1" type="0" />
+<tableitem align="2" filedname="pactNo" id="4" indexed="4" label="合同号:主键" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="8" indexed="8" label="-" row="1" type="5" typepara="WsRepydayChgAction_getById.action;wsId-wsId;" width="2"/>
+<tableitem align="2" filedname="删除" id="9" indexed="9" label="-" row="1" type="5" typepara="WsRepydayChgAction_del.action;wsId-wsId;onClick-lkconfirm" width="2"/>
+</table>

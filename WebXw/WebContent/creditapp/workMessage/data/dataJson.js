@@ -1,0 +1,32 @@
+var showData = 
+{
+	"ajaxData":
+		{
+		"sysTaskInfoArray":
+			{"endNum":15,"hasNext":false,"hasPrevious":false,"oldEndNum":16,"pageCounts":18,"pageNo":1,"pageSize":15,"pageSum":2,"params":{},"paramsStr":"",
+				"result":[
+                      {"bizPkNo":"1","createDate":"20160726","createTime":"23:26:01","criteriaLists":[],"customQuery":[],"dueDate":"","endDate":"","endNum":0,"formId":"","importLev":"3","isMustReply":"1","optType":"","pasAware":"","pasContent":"12312312312312","pasIsMust":"0","pasMaxNo":"1","pasMinNo":"103","pasNo":"1000001220","pasResult":"","pasSts":"0","pasTitle":"中关村发展集团股份有限公司-管理员-123123","pasType":"0","pasUrl":"","startNum":0,"startNumAndEndNum":0,"userNo":"0000","wkfTaskNo":""},
+                      {"bizPkNo":"2","createDate":"20160726","createTime":"21:25:29","criteriaLists":[],"customQuery":[],"dueDate":"","endDate":"","endNum":0,"formId":"","importLev":"3","isMustReply":"1","optType":"","pasAware":"","pasContent":"123123","pasIsMust":"1","pasMaxNo":"2","pasMinNo":"203","pasNo":"1000001219","pasResult":"","pasSts":"0","pasTitle":"中关村发展集团股份有限公司-管理员-123123","pasType":"0","pasUrl":"","startNum":0,"startNumAndEndNum":0,"userNo":"0000","wkfTaskNo":""},
+                      {"bizPkNo":"3","createDate":"20160726","createTime":"19:51:44","criteriaLists":[],"customQuery":[],"dueDate":"","endDate":"","endNum":0,"formId":"","importLev":"1","isMustReply":"","optType":"2","pasAware":"","pasContent":"风险客户:小A","pasIsMust":"1","pasMaxNo":"1","pasMinNo":"102","pasNo":"1000001217","pasResult":"","pasSts":"0","pasTitle":"风险预警","pasType":"2","pasUrl":"CifBlackActionAjax_updateAprRiskAjax.action?bizPk=100000213","startNum":0,"startNumAndEndNum":0,"userNo":"0000","wkfTaskNo":""},
+                      {"bizPkNo":"4","createDate":"20160726","createTime":"3:16:20","criteriaLists":[],"customQuery":[],"dueDate":"","endDate":"","endNum":0,"formId":"formId","importLev":"1","isMustReply":"","optType":"2","pasAware":"","pasContent":"qweqwe","pasIsMust":"0","pasMaxNo":"2","pasMinNo":"202","pasNo":"1000000908","pasResult":"","pasSts":"1","pasTitle":"中关村发展集团股份有限公司-管理员-建议-qweqwe","pasType":"2","pasUrl":"pasUrl","startNum":0,"startNumAndEndNum":0,"userNo":"0000","wkfTaskNo":""},
+                      {"bizPkNo":"5","createDate":"20160707","createTime":"14:54:33","criteriaLists":[],"customQuery":[],"dueDate":"","endDate":"20160711","endNum":0,"formId":"publishrisktask0001","importLev":"1","isMustReply":"","optType":"2","pasAware":"","pasContent":"风险客户:东华软件股份公司","pasIsMust":"1","pasMaxNo":"3","pasMinNo":"301","pasNo":"1000000856","pasResult":"通过","pasSts":"1","pasTitle":"风险预警","pasType":"2","pasUrl":"CifBlackActionAjax_updateAprRiskAjax.action?bizPk=100000187","startNum":0,"startNumAndEndNum":0,"userNo":"0000","wkfTaskNo":""}
+                      ],
+                "startRow":1
+			 },
+        "pasBigType":[
+                     {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_BIG_TYPE","optCode":"1","optName":"消息提醒","seqn":2,"startNum":0,"startNumAndEndNum":0,"sts":"","id":"8","name":"消息提醒","open":true,"count":"0"},
+                     {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_BIG_TYPE","optCode":"2","optName":"风险预警","seqn":3,"startNum":0,"startNumAndEndNum":0,"sts":"","id":"6","name":"风险预警","open":true,"count":"1"},
+                     {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_BIG_TYPE","optCode":"3","optName":"待办任务","seqn":4,"startNum":0,"startNumAndEndNum":0,"sts":"","id":"7","name":"待办任务","open":true,"count":"0"},
+                     ],
+        "pasSubType":[
+                      {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_SUB_TYPE","optCode":"101","optName":"资金消息提醒","seqn":1,"startNum":0,"startNumAndEndNum":0,"sts":""},
+                      {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_SUB_TYPE","optCode":"201","optName":"资金风险预警","seqn":3,"startNum":0,"startNumAndEndNum":0,"sts":""},
+                      {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_SUB_TYPE","optCode":"102","optName":"项目消息提醒","seqn":18,"startNum":0,"startNumAndEndNum":0,"sts":""},
+                      {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_SUB_TYPE","optCode":"202","optName":"项目风险预警","seqn":19,"startNum":0,"startNumAndEndNum":0,"sts":""},
+                      {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_SUB_TYPE","optCode":"103","optName":"业务消息提醒","seqn":20,"startNum":0,"startNumAndEndNum":0,"sts":""},
+                      {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_SUB_TYPE","optCode":"203","optName":"业务风险预警","seqn":21,"startNum":0,"startNumAndEndNum":0,"sts":""},
+                      {"criteriaLists":[],"customQuery":[],"endNum":0,"keyName":"PAS_SUB_TYPE","optCode":"301","optName":"待办任务","seqn":22,"startNum":0,"startNumAndEndNum":0,"sts":""},
+                      ],
+        "pasAwareCount":"1","sysDate":"20160710"
+		}
+	};  

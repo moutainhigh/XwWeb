@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcTraceLogAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AcTraceLogAction_*" method="{1}" class="app.creditapp.acc.log.action.AcTraceLogAction">
+			<result name="list">/creditapp/acc/log/AcTraceLog_List.jsp</result>
+			<result name="input">/creditapp/acc/log/AcTraceLog_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/log/AcTraceLog_Detail.jsp</result>
+			<result name="list360">/creditapp/acc/log/AcTraceLog_List.jsp</result>
+			<result name="lists">/creditapp/acc/log/AcTraceLog_ListForRead.jsp</result>
+		</action>
+		
+		<!--冲账-->
+		<action name="AcTraceLogAction_doSubmit" method="doSubmit" class="app.creditapp.acc.log.action.AcTraceLogAction">
+			<result name="list">/creditapp/acc/log/AcTraceLog_List.jsp</result>
+			<result name="input">/creditapp/acc/log/AcTraceLog_List.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AcTraceLogActionInsert" method="insert" class="app.creditapp.acc.log.action.AcTraceLogAction">
+			<result name="input">/creditapp/acc/log/AcTraceLog_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/log/AcTraceLog_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcTraceLogActionUpdate" method="update" class="app.creditapp.acc.log.action.AcTraceLogAction">
+			<result name="input">/creditapp/acc/log/AcTraceLog_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/log/AcTraceLog_Detail.jsp</result>
+		</action>
+		
+		<action name="AcTraceLogAction_getTab" method="getTab" class="app.creditapp.acc.log.action.AcTraceLogAction">
+			<result name="tab">/creditapp/acc/log/AcTraceLog_Tab.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

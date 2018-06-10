@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ProjBaseAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="ProjBaseAction_findByPage" method="findByPage" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/ProjBase_List.jsp</result>
+		</action>
+		<action name="ProjBaseAction_merge" method="merge" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_List.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="ProjBaseAction_input" method="input" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="input">/creditapp/proj/ProjBase_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="ProjBaseAction_del" method="del" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/ProjBase_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="ProjBaseAction_getById" method="getById" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_Detail.jsp</result>
+		</action>
+		<action name="ProjBaseAction_getByIdForProjNo" method="getByIdForProjNo" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_Detail.jsp</result>
+		</action>
+		<!--查看-->
+		<action name="ProjBaseAction_getByIdforCorp" method="getByIdforCorp" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="view">/creditapp/proj/ProjBase_ListforCorp.jsp</result>
+		</action>
+		<action name="ProjBaseAction_getByIdforCorp360" method="getByIdforCorp360" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="view">/creditapp/proj/ProjBase_ListforCorp360.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="ProjBaseActionInsert" method="insert" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="input">/creditapp/proj/ProjBase_Insert.jsp</result>
+			<result name="detail">/creditapp/proj/ProjBase_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ProjBaseAction_update" method="update" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="input">/creditapp/proj/ProjBase_Detail.jsp</result>
+			<result name="detail">/creditapp/proj/ProjBase_Detail.jsp</result>
+		</action>
+		<!--标记-->
+		<action name="ProjBaseAction_updateForFlag" method="updateForFlag" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list"  type="redirect">ProjBaseAction_findByPage.action</result>
+		</action>
+		<!-- 总详细信息 -->
+		<action name="ProjBaseAction_getAllDetail" method="getAllDetail" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="all">/creditapp/proj/ProjBase_All.jsp</result>
+	    </action>		
+	    <action name="ProjBaseAction_getAllDetailForRead" method="getAllDetailForRead" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="all">/creditapp/proj/ProjBase_AllForRead.jsp</result>
+	    </action>
+	    <!-- 上面常显信息 -->
+		<action name="ProjBaseAction_getDetailTop" method="getDetailTop" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="top">/creditapp/proj/ProjBase_All_Top.jsp</result>
+		</action>
+	    
+	    <!-- 客户详细信息 -->
+		<action name="ProjBaseAction_getTab" method="getTab" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="tab">/creditapp/proj/ProjBase_Tab.jsp</result>
+		</action>
+
+		 <!-- 客户详细信息 -->
+		<action name="ProjBaseAction_updateForBrNo" method="updateForBrNo" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/ProjBase_List.jsp</result>
+		</action>
+		
+		<action name="ProjBaseAction_relateBr" method="relateBr" class="app.creditapp.proj.action.ProjBaseAction">
+		</action>
+		
+		<!-- 项目详细信息tab页 -->
+		<action name="ProjBaseAction_getDetailTab" method="getDetailTab" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="tab">/creditapp/proj/ProjBase_DetailTab.jsp</result>
+		</action>
+		
+		<!--资产笔数-->
+		<action name="ProjBaseAction_getProNum" method="getProNum" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_ProNum.jsp</result>
+		</action>
+		
+		<!--发放金额-->
+		<action name="ProjBaseAction_getLoanAmt" method="getLoanAmt" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_LoanAmt.jsp</result>
+		</action>
+		<!--每日金额汇总-->
+		<action name="ProjBaseAction_getAmtDay" method="getAmtDay" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_AmtDay.jsp</result>
+		</action>
+		
+		<!--收益金额-->
+		<action name="ProjBaseAction_getIncome" method="getIncome" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_Income.jsp</result>
+		</action>
+		
+		<!--资金规模趋势-->
+		<action name="ProjBaseAction_getSize" method="getSize" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_Size.jsp</result>
+		</action>
+		
+		<!--资金杠杆比例-->
+		<action name="ProjBaseAction_getLever" method="getLever" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_Lever.jsp</result>
+		</action>
+		
+		<!--放款回收金额-->
+		<action name="ProjBaseAction_getReback" method="getReback" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_Reback.jsp</result>
+		</action>
+		<!--放款回收金额-->
+		<action name="ProjBaseAction_getReNumback" method="getReNumback" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_ReNumback.jsp</result>
+		</action>
+		<!--专户虚拟户余额-->
+		<action name="ProjBaseAction_getVirtualBal" method="getVirtualBal" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_VirtualBal.jsp</result>
+		</action>
+		<!--我的项目ALL-->
+		<action name="ProjBaseAction_myProj_getAllDetail" method="myProj_getAllDetail" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="all">/creditapp/proj/MyProj_Echarts_All.jsp</result>
+	    </action>
+	    <!-- 我的项目Top -->
+	    <action name="ProjBaseAction_myProj_echarts" method="myProj_echarts" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/MyProj_Echarts.jsp</result>
+		</action>
+		<!-- 我的项目详细信息tab页 -->
+		<action name="ProjBaseAction_myProj_getDetailTab" method="myProj_getDetailTab" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="tab">/creditapp/proj/MyProj_Echarts_DetailTab.jsp</result>
+		</action>		
+		<!-- 我的项目中列表 -->
+		<action name="ProjBaseAction_myProj_findByPage" method="myProj_findByPage" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/MYProj_Echarts_List.jsp</result>
+		</action>	
+		<!--账户余额ALL-->
+		<action name="ProjBaseAction_account_getAllDetail" method="account_getAllDetail" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="all">/creditapp/proj/ProjAcct_All.jsp</result>
+		</action>
+		<!-- 专户余额Top(echarts) -->
+		<action name="ProjBaseAction_getAccountBal" method="getAccountBal" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_AccountBal.jsp</result>
+		</action>
+		<!-- 虚拟户余额Top(echarts) -->
+		<action name="ProjBaseAction_getAccountVirBal" method="getAccountVirBal" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_AccountVirBal.jsp</result>
+		</action>
+		<!-- 经营情况tab页 -->
+		<action name="ProjBaseAction_getManagerDetailTab" method="getManagerDetailTab" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="tab">/creditapp/proj/ProjBase_ManagerDetailTab.jsp</result>
+		</action>
+		<!--经营指标 -->
+		<action name="ProjBaseAction_getBusniess_Indicators" method="getBusniess_Indicators" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="detail">/creditapp/proj/ProjBase_Business_Indicators.jsp</result>
+		</action>		
+		<!--更改项目状态为结束-->
+		<action name="ProjBaseAction_getBusniess_Theend" method="Theend" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/ProjBase_List.jsp</result>
+		</action>		
+		<!--更改项目状态为解冻-->
+		<action name="ProjBaseAction_getBusniess_unfreeze" method="unfreeze" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/ProjBase_List.jsp</result>
+		</action>		
+		<!--更改项目状态为冻结-->
+		<action name="ProjBaseAction_getBusniess_Freeze" method="Freeze" class="app.creditapp.proj.action.ProjBaseAction">
+			<result name="list">/creditapp/proj/ProjBase_List.jsp</result>
+		</action>		
+	</package>
+</struts>
+
+
+

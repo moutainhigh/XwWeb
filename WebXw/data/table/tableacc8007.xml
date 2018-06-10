@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GB2312"?>
+<table id="acc8007" link="AcDcEntryAction_findByPage.action" para="eadis_page" title="分录定义表list" type="1">
+<tableitem align="2" filedname="entryCde" id="1" indexed="1" label="分录代码" row="1" type="4" typepara="AcDcEntryAction_getTabView.action;entryCde-entryCde;entrySeq-entrySeq;view-'view'"/>
+<tableitem align="2" filedname="entrySeq" id="2" indexed="2" label="序号" row="1" type="0"/>
+<tableitem align="2" filedname="accHrt" id="3" indexed="3" label="科目控制字" row="1" type="0"/>
+<tableitem align="2" filedname="dcInd" id="4" indexed="4" label="借贷标志" row="1" type="6" typepara="AC_DC_IND"/>
+<tableitem align="2" filedname="amtTyp" id="5" indexed="5" label="金额类型" row="1" type="6" typepara="AC_LOAN_AMT_TYP"/>
+<tableitem align="2" filedname="prdtNo" id="6" indexed="6" label="核算产品编号" row="1" type="6" typepara="AC_PRDT_NAME"/>
+<tableitem align="2" filedname="修改" id="16" indexed="14" label="修改" row="1" type="5" typepara="AcDcEntryAction_getTab.action;entrySeq-entrySeq;entryCde-entryCde;query-'query'" width="4"/>
+<tableitem align="2" filedname="删除" id="15" indexed="15" label="删除" row="1" type="5" typepara="AcDcEntryAction_del.action;entrySeq-entrySeq;entryCde-entryCde;onClick-lkconfirm" width="4"/>
+</table>

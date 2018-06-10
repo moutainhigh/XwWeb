@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftRewFund" type="app.creditapp.aft.entity.AftRewFund"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftRewFund" class="AftRewFund">
+    <result property="rewType" column="REW_TYPE" />
+    <result property="rewId" column="REW_ID" />
+    <result property="rewNo" column="REW_NO" />
+    <result property="rewValue" column="REW_VALUE" jdbcType="double"/>
+    <result property="rewDate" column="REW_DATE" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="fundName" column="FUND_NAME" />
+    <result property="fdAmt" column="FD_AMT" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="cashBal" column="CASH_BAL" jdbcType="double"/>
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="rewCont" column="REW_CONT" />
+    <result property="acptNo" column="ACPT_NO" />
+    <result property="dealRest" column="DEAL_REST" />
+    <result property="rewSts" column="REW_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="rewName" column="REW_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+     <sql id="AftRewFund.columns">
+        <![CDATA[
+         REW_TYPE,
+         REW_ID,
+         REW_NO,
+         REW_VALUE,
+         REW_DATE,
+         PROJ_NO,
+         FUND_NO,
+         FUND_NAME,
+         FD_AMT,
+         BEG_DATE,
+         END_DATE,
+         CASH_BAL,
+         REPAY_TYPE,
+         REW_CONT,
+         ACPT_NO,
+         DEAL_REST,
+         REW_STS,
+         TX_DATE,
+         UP_DATE,
+         FUN_GETREWNAME(rew_no) as REW_NAME,
+         FUN_GETPROJNAME(proj_no) as PROJ_NAME,
+         BR_NO,
+         FUN_GETBRNAME(br_no) as BR_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftRewFund.insert">
+        <![CDATA[
+        INSERT INTO AFT_REW_FUND(
+         REW_TYPE,
+         REW_ID,
+         REW_NO,
+         REW_VALUE,
+         REW_DATE,
+         PROJ_NO,
+         FUND_NO,
+         FUND_NAME,
+         FD_AMT,
+         BEG_DATE,
+         END_DATE,
+         CASH_BAL,
+         REPAY_TYPE,
+         REW_CONT,
+         ACPT_NO,
+         DEAL_REST,
+         REW_STS,
+         TX_DATE,
+         UP_DATE,
+         BR_NO
+         )VALUES(
+         #rewType#,
+         #rewId#,
+         #rewNo#,
+         #rewValue#,
+         #rewDate#,
+         #projNo#,
+         #fundNo#,
+         #fundName#,
+         #fdAmt#,
+         #begDate#,
+         #endDate#,
+         #cashBal#,
+         #repayType#,
+         #rewCont#,
+         #acptNo#,
+         #dealRest#,
+         #rewSts#,
+         #txDate#,
+         #upDate#,
+         #brNo#
+         )
+          ]]>
+          <selectKey resultClass="String" type="pre" keyProperty="rewId" >
+				SELECT  AFT_REW_SEQ.NEXTVAL AS REW_ID FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftRewFund.del">
+        <![CDATA[
+               DELETE FROM AFT_REW_FUND
+                 WHERE
+               	REW_ID = #rewId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftRewFund.update">
+        <![CDATA[
+         UPDATE AFT_REW_FUND set
+         REW_TYPE=#rewType#,
+         REW_ID=#rewId#,
+         REW_NO=#rewNo#,
+         REW_VALUE=#rewValue#,
+         REW_DATE=#rewDate#,
+         PROJ_NO=#projNo#,
+         FUND_NO=#fundNo#,
+         FUND_NAME=#fundName#,
+         FD_AMT=#fdAmt#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         CASH_BAL=#cashBal#,
+         REPAY_TYPE=#repayType#,
+         REW_CONT=#rewCont#,
+         ACPT_NO=#acptNo#,
+         DEAL_REST=#dealRest#,
+         REW_STS=#rewSts#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         BR_NO=#brNo#
+          WHERE
+               	REW_ID = #rewId#        ]]>
+    </update>
+    
+    <update id="AftRewFund.updateSts">
+        <![CDATA[
+         UPDATE AFT_REW_FUND set
+         REW_STS=#rewSts#
+          WHERE
+               	REW_ID = #rewId#        ]]>
+    </update>
+    
+     <update id="AftRewFund.updateDealRest">
+        <![CDATA[
+         UPDATE AFT_REW_FUND set
+        DEAL_REST=#dealRest#
+          WHERE
+               	REW_ID = #rewId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftRewFund.getById"  resultMap="RM.AftRewFund">
+        SELECT <include refid="AftRewFund.columns"/>
+        <![CDATA[
+             FROM AFT_REW_FUND 
+         WHERE 
+               	REW_ID = #rewId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftRewFund.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rewType">
+                  <isNotEmpty prepend="AND" property="rewType">
+                      REW_TYPE = #rewType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewNo">
+                  <isNotEmpty prepend="AND" property="rewNo">
+                      REW_NO = #rewNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dealRest">
+                  <isNotEmpty prepend="AND" property="dealRest">
+                      DEAL_REST = #dealRest#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="rewSts">
+                  <isNotEmpty prepend="AND" property="rewSts">
+                      REW_STS = #rewSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="rewDate">
+                  <isNotEmpty prepend="AND" property="rewDate">
+                      REW_DATE = #rewDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftRewFund.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_REW_FUND <include refid="AftRewFund.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftRewFund.findByPage" resultMap="RM.AftRewFund">
+        SELECT <include refid="AftRewFund.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftRewFund.columns"/> FROM AFT_REW_FUND
+                    <include refid="AftRewFund.findPage.where"/> order by REW_DATE desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <select id="AftRewFund.findByList" resultMap="RM.AftRewFund">
+        SELECT <include refid="AftRewFund.columns"/>
+        FROM AFT_REW_FUND  <include refid="AftRewFund.findPage.where"/>
+    </select>
+    
+     <select id="AftRewFund.findByDateBewteen" parameterClass="java.util.Map" resultMap="RM.AftRewFund">
+        SELECT <include refid="AftRewFund.columns"/>
+        FROM AFT_REW_FUND  <include refid="AftRewFund.findPage.where"/> 
+        <![CDATA[
+        and REW_DATE <= #endDate# and REW_DATE >= #beginDate#
+        ]]>
+    </select>
+</sqlMap>

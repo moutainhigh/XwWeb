@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="aftclear0002" title="提前清贷申请表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="pactNo" fieldtype="1" maxlength="40" formactiveid="1" labelalign="3" labelcol="1" labelname="合同号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="2" labelalign="3" labelcol="3" labelname="机构号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="clearId" fieldtype="1" maxlength="10" formactiveid="3" labelalign="3" labelcol="1" labelname="提前清贷申请id" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="wsId" fieldtype="1" maxlength="20" formactiveid="4" labelalign="3" labelcol="3" labelname="数据ID" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="perdNo" fieldtype="1" maxlength="3" formactiveid="5" labelalign="3" labelcol="1" labelname="期次号" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="clearSts" fieldtype="1" maxlength="2" formactiveid="6" labelalign="3" labelcol="3" labelname="处理状态[01-待处理,02-处理成功,03-处理失败]" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dealDesc" fieldtype="1" maxlength="60" formactiveid="7" labelalign="3" labelcol="1" labelname="结果描述" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="txDate" fieldtype="1" maxlength="8" formactiveid="8" labelalign="3" labelcol="3" labelname="登记日期" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="upDate" fieldtype="1" maxlength="8" formactiveid="9" labelalign="3" labelcol="1" labelname="更新日期" mustinput="0" row="5"/>
+</form>

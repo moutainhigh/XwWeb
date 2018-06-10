@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <package name="acComHoliday" namespace="/" extends="struts-cms">
+        <global-results>
+            <result name="invalid.token">/creditapp/common/commitRepeat.jsp</result>
+        <result name="commonException">/creditapp/common/exception.jsp</result>
+      </global-results>
+    <global-exception-mappings>
+      <exception-mapping result="commonException" exception="java.lang.Exception"></exception-mapping>  
+    </global-exception-mappings>
+    
+    	<action name="AcComHolidayActionInsert" method="insert" class="app.creditapp.acc.option.action.AcComHolidayAction">
+    		<result name="input">/creditapp/acc/option/AcComHoliday_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/option/AcComHoliday_Detail.jsp</result>
+		</action>
+		<!-- 
+        <action name="AcComHolidayAction_*" method="{1}" class="app.creditapp.acc.option.action.AcComHolidayAction">
+          <result name="list">/creditapp/acc/option/AcComHoliday_List.jsp</result>
+          <result name="input">/creditapp/acc/option/AcComHoliday_Insert.jsp</result>
+		  <result name="detail">/creditapp/acc/option/AcComHoliday_Detail.jsp</result>
+        </action>
+         -->
+        <!--<action name="AcComHolidayAction_*" method="{1}" class="app.creditapp.acc.action.AcComHolidayAction">
+			<result name="monthlist">/creditapp/acc/AcComHoliday_month_list.jsp</result>
+		</action>-->
+
+		<action name="AcComHolidayAction_monthlist" method="monthlist" class="app.creditapp.acc.option.action.AcComHolidayAction">
+			<result name="monthlist">/creditapp/acc/option/AcComHoliday_month_list.jsp</result>
+		</action>
+
+		<action name="AcComHolidayAction_save" method="save" class="app.creditapp.acc.option.action.AcComHolidayAction">
+			<result name="monthlist">/creditapp/acc/option/AcComHoliday_month_list.jsp</result>
+		</action>
+		
+		 <action name="AcComHolidayAction_findByPage" method="findByPage" class="app.creditapp.acc.option.action.AcComHolidayAction">
+          <result name="list">/creditapp/acc/option/AcComHoliday_List.jsp</result>
+        </action>
+         <action name="AcComHolidayAction_input" method="input" class="app.creditapp.acc.option.action.AcComHolidayAction">
+          <result name="input">/creditapp/acc/option/AcComHoliday_Insert.jsp</result>
+        </action>
+         <action name="AcComHolidayActionUpdate" method="update" class="app.creditapp.acc.option.action.AcComHolidayAction">
+		  <result name="detail">/creditapp/acc/option/AcComHoliday_Detail.jsp</result>
+          <result name="input">/creditapp/acc/option/AcComHoliday_Detail.jsp</result>
+        </action>
+        <action name="AcComHolidayAction_getById" method="getById" class="app.creditapp.acc.option.action.AcComHolidayAction">
+		  <result name="detail">/creditapp/acc/option/AcComHoliday_Detail.jsp</result>
+        </action>
+        <action name="AcComHolidayAction_del" method="del" class="app.creditapp.acc.option.action.AcComHolidayAction">
+          <result name="list">/creditapp/acc/option/AcComHoliday_List.jsp</result>
+        </action>
+</package>
+</struts>

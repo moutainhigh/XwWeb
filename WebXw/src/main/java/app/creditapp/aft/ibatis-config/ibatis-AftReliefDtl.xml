@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftReliefDtl" type="app.creditapp.aft.entity.AftReliefDtl"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftReliefDtl" class="AftReliefDtl">
+    <result property="perdNo" column="PERD_NO" />
+    <result property="reliefType" column="RELIEF_TYPE" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="refAmt" column="REF_AMT" jdbcType="double"/>
+    <result property="refIntst" column="REF_INTST" jdbcType="double"/>
+    <result property="refFine" column="REF_FINE" jdbcType="double"/>
+    <result property="refFee" column="REF_FEE" jdbcType="double"/>
+    <result property="txDt" column="TX_DT" />
+    </resultMap>
+     <sql id="AftReliefDtl.columns">
+        <![CDATA[
+         PERD_NO,
+         RELIEF_TYPE,
+         TRACE_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         REF_AMT,
+         REF_INTST,
+         REF_FINE,
+         REF_FEE,
+         TX_DT
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftReliefDtl.insert">
+        <![CDATA[
+        INSERT INTO AFT_RELIEF_DTL(
+         PERD_NO,
+         RELIEF_TYPE,
+         TRACE_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         REF_AMT,
+         REF_INTST,
+         REF_FINE,
+         REF_FEE,
+         TX_DT
+         )VALUES(
+         #perdNo#,
+         #reliefType#,
+         #traceNo#,
+         #loanNo#,
+         #pactNo#,
+         #brNo#,
+         #refAmt#,
+         #refIntst#,
+         #refFine#,
+         #refFee#,
+         #txDt#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftReliefDtl.del">
+        <![CDATA[
+               DELETE FROM AFT_RELIEF_DTL
+                 WHERE
+               	RELIEF_TYPE = #reliefType#  and perd_no = #perdNo#
+  and trace_no = #traceNo#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftReliefDtl.update">
+        <![CDATA[
+         UPDATE AFT_RELIEF_DTL set
+         PERD_NO=#perdNo#,
+         RELIEF_TYPE=#reliefType#,
+         TRACE_NO=#traceNo#,
+         LOAN_NO=#loanNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         REF_AMT=#refAmt#,
+         REF_INTST=#refIntst#,
+         REF_FINE=#refFine#,
+         REF_FEE=#refFee#,
+         TX_DT=#txDt#
+          WHERE
+               	RELIEF_TYPE = #reliefType#  and perd_no = #perdNo#
+  and trace_no = #traceNo#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftReliefDtl.getById"  resultMap="RM.AftReliefDtl">
+        SELECT <include refid="AftReliefDtl.columns"/>
+        <![CDATA[
+             FROM AFT_RELIEF_DTL 
+         WHERE 
+               	RELIEF_TYPE = #reliefType#  and perd_no = #perdNo#
+  and trace_no = #traceNo#
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftReliefDtl.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="perdNo">
+                  <isNotEmpty prepend="AND" property="perdNo">
+                      PERD_NO = #perdNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="reliefType">
+                  <isNotEmpty prepend="AND" property="reliefType">
+                      RELIEF_TYPE = #reliefType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      TRACE_NO = #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftReliefDtl.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_RELIEF_DTL <include refid="AftReliefDtl.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftReliefDtl.findByPage" resultMap="RM.AftReliefDtl">
+        SELECT <include refid="AftReliefDtl.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftReliefDtl.columns"/> FROM AFT_RELIEF_DTL
+                    <include refid="AftReliefDtl.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

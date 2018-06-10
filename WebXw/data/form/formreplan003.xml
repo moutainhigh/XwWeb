@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="replan003" title="还款分段信息">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="secId" fieldtype="1" maxlength="10" formactiveid="1" labelalign="3" labelcol="1" labelname="分段编号" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="replanId" fieldtype="1" maxlength="10" formactiveid="2" labelalign="3" labelcol="3" labelname="还款方案编号" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="repayType" fieldtype="1" maxlength="2" formactiveid="4" labelalign="3" labelcol="3" labelname="计息方式" mustinput="0" row="2" />
+</form>

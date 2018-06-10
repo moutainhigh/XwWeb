@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="repyfine0001" para="eadis_page" link="WsRepyFineAction_findByPage.action" title="扣款、提前清贷罚息信息上传" type="1">
+<tableitem align="2" filedname="修改" id="6" indexed="6" label="-" row="1" type="5" typepara="WsRepyFineAction_getById.action;wsId-wsId;" width="2"/>
+<tableitem align="2" filedname="删除" id="7" indexed="7" label="-" row="1" type="5" typepara="WsRepyFineAction_del.action;wsId-wsId;onClick-lkconfirm" width="2"/>
+</table>

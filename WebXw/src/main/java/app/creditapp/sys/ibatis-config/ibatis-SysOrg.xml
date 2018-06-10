@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysOrg" type="app.creditapp.sys.entity.SysOrg"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysOrg" class="SysOrg">
+    <result property="orgDisname" column="ORG_DISNAME" />
+    <result property="orgName" column="ORG_NAME" />
+    <result property="orgNo" column="ORG_NO" />
+    <result property="supNo" column="SUP_NO" />
+    <result property="orgType" column="ORG_TYPE" />
+    <result property="orgLev" column="ORG_LEV" jdbcType="Int"/>
+    <result property="orgChannel" column="ORG_CHANNEL" />
+    <result property="orgFinno" column="ORG_FINNO" />
+    <result property="orgSts" column="ORG_STS" />
+    </resultMap>
+     <sql id="SysOrg.columns">
+        <![CDATA[
+         ORG_DISNAME,
+         ORG_NAME,
+         ORG_NO,
+         SUP_NO,
+         ORG_TYPE,
+         ORG_LEV,
+         ORG_CHANNEL,
+         ORG_FINNO,
+         ORG_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysOrg.insert">
+        <![CDATA[
+        INSERT INTO SYS_ORG(
+         ORG_DISNAME,
+         ORG_NAME,
+         ORG_NO,
+         SUP_NO,
+         ORG_TYPE,
+         ORG_LEV,
+         ORG_CHANNEL,
+         ORG_FINNO,
+         ORG_STS
+         )VALUES(
+         #orgDisname#,
+         #orgName#,
+         #orgNo#,
+         #supNo#,
+         #orgType#,
+         #orgLev#,
+         #orgChannel#,
+         #orgFinno#,
+         #orgSts#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysOrg.del">
+        <![CDATA[
+               DELETE FROM SYS_ORG
+                 WHERE
+               	ORG_NO = #orgNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysOrg.update">
+        <![CDATA[
+         UPDATE SYS_ORG set
+         ORG_NO=#orgNo#,
+         ORG_NAME=#orgName#,
+         ORG_DISNAME=#orgDisname#,
+         SUP_NO=#supNo#,
+         ORG_TYPE=#orgType#,
+         ORG_LEV=#orgLev#,
+         ORG_CHANNEL=#orgChannel#,
+         ORG_FINNO=#orgFinno#,
+         ORG_STS=#orgSts#
+          WHERE
+               	ORG_NO = #orgNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysOrg.getById"  resultMap="RM.SysOrg">
+        SELECT <include refid="SysOrg.columns"/>
+        <![CDATA[
+             FROM SYS_ORG 
+         WHERE 
+               	ORG_NO = #orgNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysOrg.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="orgDisname">
+                  <isNotEmpty prepend="AND" property="orgDisname">
+                      ORG_DISNAME like '%$orgDisname$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="orgName">
+                  <isNotEmpty prepend="AND" property="orgName">
+                      ORG_NAME like '%$orgName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="orgNo">
+                  <isNotEmpty prepend="AND" property="orgNo">
+                      ORG_NO = #orgNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="orgSts">
+                  <isNotEmpty prepend="AND" property="orgSts">
+                      ORG_STS = #orgSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysOrg.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_ORG <include refid="SysOrg.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysOrg.findByPage" resultMap="RM.SysOrg">
+        SELECT <include refid="SysOrg.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysOrg.columns"/> FROM SYS_ORG
+                    <include refid="SysOrg.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+         <select id="SysOrg.getBrnoChildren"
+		resultMap="RM.SysOrg">
+		SELECT
+		<include refid="SysOrg.columns" />
+		<![CDATA[
+             FROM  SYS_ORG WHERE ORG_STS = '01'
+        ]]>
+        
+	</select>
+</sqlMap>

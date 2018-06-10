@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="AllocateRegWsIn" type="app.creditapp.inf.entity.AllocateRegWsIn" />
+	<!-- 列表查询返回字段 -->
+	<resultMap id="RM.AllocateRegWsIn" class="AllocateRegWsIn">
+		<result property="id" column="ID" />
+		<result property="businessflag" column="BUSINESSFLAG" />
+		<result property="autoSyncFlag" column="AUTOSYNCFLAG" />
+		<result property="projectid" column="PROJECTID" />
+		<result property="ddtype" column="DDTYPE" />
+		<result property="transdate" column="TRANSDATE" />
+		<result property="transreason" column="TRANSREASON" />
+		<result property="purpose" column="PURPOSE" />
+		<result property="memo" column="MEMO" />
+		<result property="userCode" column="USERCODE" />
+		<result property="staffapp" column="STAFFAPP" />
+		<result property="amount" column="AMOUNT" />
+		<result property="bktranstypecode" column="BKTRANSTYPECODE" />
+		<result property="sktranstypecode" column="SKTRANSTYPECODE" />
+		<result property="feetypecode" column="FEETYPECODE" />
+		<result property="taxtypecode" column="TAXTYPECODE" />
+		<result property="customid" column="CUSTOMID" />
+		<result property="accountid" column="ACCOUNTID" />
+		<result property="opbankacntno" column="OPBANKACNTNO" />
+		<result property="opbankname" column="OPBANKNAME" />
+		<result property="opbankacntname" column="OPBANKACNTNAME" />
+		<result property="opbankprovince" column="OPBANKPROVINCE" />
+		<result property="opbankcity" column="OPBANKCITY" />
+		<result property="repaytypeid" column="REPAYTYPEID" />
+		<result property="appusercode" column="APPUSERCODE" />
+		<result property="personnel" column="PERSONNEL" />
+		<result property="project" column="PROJECT" />
+		<result property="customer" column="CUSTOMER" />
+		<result property="cashflow" column="CASHFLOW" />
+		<result property="virtualaccount" column="VIRTUALACCOUNT" />
+		<result property="contractnumber" column="CONTRACTNUMBER" />
+		<result property="stockcode" column="STOCKCODE" />
+		<result property="fundaccount" column="FUNDACCOUNT" />
+		<result property="salesdepartment" column="SALESDEPARTMENT" />
+		<result property="checknumber" column="CHECKNUMBER" />
+		<result property="businesstype" column="BUSINESSTYPE" />
+		<result property="cashflowstatement" column="CASHFLOWSTATEMENT" />
+		<result property="taxcategory" column="TAXCATEGORY" />
+		<result property="interestrate" column="INTERESTRATE" />
+		<result property="industry" column="INDUSTRY" />
+		<result property="stock" column="STOCK" />
+		<result property="assetname" column="ASSETNAME" />
+		<result property="productname" column="PRODUCTNAME" />
+		<result property="clientorbeneficiary" column="CLIENTORBENEFICIARY" />
+		<result property="shareholder" column="SHAREHOLDER" />
+		<result property="entrustcontractnumber" column="ENTRUSTCONTRACTNUMBER" />
+		<result property="tradingpurpose" column="TRADINGPURPOSE" />
+		<result property="contractvariety" column="CONTRACTVARIETY" />
+		<result property="dateofreceipt" column="DATEOFRECEIPT" />
+		<result property="interestdate" column="INTERESTDATE" />
+		<result property="duedate" column="DUEDATE" />
+		<result property="inorout" column="INOROUT" />
+		<result property="billnumber" column="BILLNUMBER" />
+		<result property="wssts" column="WS_STS" />
+		<result property="txtime" column="TX_TIME" />
+		<result property="sdtime" column="SD_TIME" />
+		<result property="transid" column="TRANSID" />
+		<result property="workflowstate" column="WORKFLOWSTATE" />
+		<result property="remarks" column="REMARKS" />
+	</resultMap>
+	<sql id="AllocateRegWsIn.columns">
+        <![CDATA[
+         ID,
+         BUSINESSFLAG,
+         AUTOSYNCFLAG,
+         PROJECTID,
+         DDTYPE,
+         TRANSDATE,
+         TRANSREASON,
+         PURPOSE,
+         MEMO,
+         USERCODE,
+         STAFFAPP,
+         AMOUNT,
+         BKTRANSTYPECODE,
+         SKTRANSTYPECODE,
+         FEETYPECODE,
+         TAXTYPECODE,
+         CUSTOMID,
+         ACCOUNTID,
+         OPBANKACNTNO,
+         OPBANKNAME,
+         OPBANKACNTNAME,
+         OPBANKPROVINCE,
+         OPBANKCITY,
+         REPAYTYPEID,
+         APPUSERCODE,
+         PERSONNEL,
+         PROJECT,
+         CUSTOMER,
+         CASHFLOW,
+         VIRTUALACCOUNT,
+         CONTRACTNUMBER,
+         STOCKCODE,
+         FUNDACCOUNT,
+         SALESDEPARTMENT,
+         CHECKNUMBER,
+         BUSINESSTYPE,
+         CASHFLOWSTATEMENT,
+         TAXCATEGORY,
+         INTERESTRATE,
+         INDUSTRY,
+         STOCK,
+         ASSETNAME,
+         PRODUCTNAME,
+         CLIENTORBENEFICIARY,
+         SHAREHOLDER,
+         ENTRUSTCONTRACTNUMBER,
+         TRADINGPURPOSE,
+         CONTRACTVARIETY,
+         DATEOFRECEIPT,
+         INTERESTDATE,
+         DUEDATE,
+         INOROUT,
+         BILLNUMBER,
+         WS_STS,
+         TX_TIME,
+         SD_TIME,
+         TRANSID,
+         WORKFLOWSTATE,
+         REMARKS
+          ]]>
+	</sql>
+	<!-- 表新增 -->
+	<insert id="AllocateRegWsIn.insert">
+        <![CDATA[
+        INSERT INTO ALLOCATE_REG_WS_IN(
+         ID,
+         BUSINESSFLAG,
+         AUTOSYNCFLAG,
+         PROJECTID,
+         DDTYPE,
+         TRANSDATE,
+         TRANSREASON,
+         PURPOSE,
+         MEMO,
+         USERCODE,
+         STAFFAPP,
+         AMOUNT,
+         BKTRANSTYPECODE,
+         SKTRANSTYPECODE,
+         FEETYPECODE,
+         TAXTYPECODE,
+         CUSTOMID,
+         ACCOUNTID,
+         OPBANKACNTNO,
+         OPBANKNAME,
+         OPBANKACNTNAME,
+         OPBANKPROVINCE,
+         OPBANKCITY,
+         REPAYTYPEID,
+         APPUSERCODE,
+         PERSONNEL,
+         PROJECT,
+         CUSTOMER,
+         CASHFLOW,
+         VIRTUALACCOUNT,
+         CONTRACTNUMBER,
+         STOCKCODE,
+         FUNDACCOUNT,
+         SALESDEPARTMENT,
+         CHECKNUMBER,
+         BUSINESSTYPE,
+         CASHFLOWSTATEMENT,
+         TAXCATEGORY,
+         INTERESTRATE,
+         INDUSTRY,
+         STOCK,
+         ASSETNAME,
+         PRODUCTNAME,
+         CLIENTORBENEFICIARY,
+         SHAREHOLDER,
+         ENTRUSTCONTRACTNUMBER,
+         TRADINGPURPOSE,
+         CONTRACTVARIETY,
+         DATEOFRECEIPT,
+         INTERESTDATE,
+         DUEDATE,
+         INOROUT,
+         BILLNUMBER,
+         TX_TIME
+         )VALUES(
+         #id#,
+         #businessflag#,
+         #autoSyncFlag#,
+         #projectid#,
+         #ddtype#,
+         #transdate#,
+         #transreason#,
+         #purpose#,
+         #memo#,
+         #userCode#,
+         #staffapp#,
+         #amount#,
+         #bktranstypecode#,
+         #sktranstypecode#,
+         #feetypecode#,
+         #taxtypecode#,
+         #customid#,
+         #accountid#,
+         #opbankacntno#,
+         #opbankname#,
+         #opbankacntname#,
+         #opbankprovince#,
+         #opbankcity#,
+         #repaytypeid#,
+         #appusercode#,
+         #personnel#,
+         #project#,
+         #customer#,
+         #cashflow#,
+         #virtualaccount#,
+         #contractnumber#,
+         #stockcode#,
+         #fundaccount#,
+         #salesdepartment#,
+         #checknumber#,
+         #businesstype#,
+         #cashflowstatement#,
+         #taxcategory#,
+         #interestrate#,
+         #industry#,
+         #stock#,
+         #assetname#,
+         #productname#,
+         #clientorbeneficiary#,
+         #shareholder#,
+         #entrustcontractnumber#,
+         #tradingpurpose#,
+         #contractvariety#,
+         #dateofreceipt#,
+         #interestdate#,
+         #duedate#,
+         #inorout#,
+         #billnumber#,
+         FUN_SYSTIME
+         )
+          ]]>
+	</insert>
+	<!-- 表删除 -->
+	<delete id="AllocateRegWsIn.del">
+        <![CDATA[
+         DELETE FROM ALLOCATE_REG_WS_IN WHERE ID = #id#        
+       ]]>
+	</delete>
+	<!-- 表修改 -->
+	<update id="AllocateRegWsIn.update">
+        <![CDATA[
+         UPDATE ALLOCATE_REG_WS_IN set
+         BUSINESSFLAG=#businessflag#,
+         AUTOSYNCFLAG=#autoSyncFlag#,
+         PROJECTID=#projectid#,
+         DDTYPE=#ddtype#,
+         TRANSDATE=#transdate#,
+         TRANSREASON=#transreason#,
+         PURPOSE=#purpose#,
+         MEMO=#memo#,
+         USERCODE=#userCode#,
+         STAFFAPP=#staffapp#,
+         AMOUNT=#amount#,
+         BKTRANSTYPECODE=#bktranstypecode#,
+         SKTRANSTYPECODE=#sktranstypecode#,
+         FEETYPECODE=#feetypecode#,
+         TAXTYPECODE=#taxtypecode#,
+         CUSTOMID=#customid#,
+         ACCOUNTID=#accountid#,
+         OPBANKACNTNO=#opbankacntno#,
+         OPBANKNAME=#opbankname#,
+         OPBANKACNTNAME=#opbankacntname#,
+         OPBANKPROVINCE=#opbankprovince#,
+         OPBANKCITY=#opbankcity#,
+         REPAYTYPEID=#repaytypeid#,
+         APPUSERCODE=#appusercode#,
+         PERSONNEL=#personnel#,
+         PROJECT=#project#,
+         CUSTOMER=#customer#,
+         CASHFLOW=#cashflow#,
+         VIRTUALACCOUNT=#virtualaccount#,
+         CONTRACTNUMBER=#contractnumber#,
+         STOCKCODE=#stockcode#,
+         FUNDACCOUNT=#fundaccount#,
+         SALESDEPARTMENT=#salesdepartment#,
+         CHECKNUMBER=#checknumber#,
+         BUSINESSTYPE=#businesstype#,
+         CASHFLOWSTATEMENT=#cashflowstatement#,
+         TAXCATEGORY=#taxcategory#,
+         INTERESTRATE=#interestrate#,
+         INDUSTRY=#industry#,
+         STOCK=#stock#,
+         ASSETNAME=#assetname#,
+         PRODUCTNAME=#productname#,
+         CLIENTORBENEFICIARY=#clientorbeneficiary#,
+         SHAREHOLDER=#shareholder#,
+         ENTRUSTCONTRACTNUMBER=#entrustcontractnumber#,
+         TRADINGPURPOSE=#tradingpurpose#,
+         CONTRACTVARIETY=#contractvariety#,
+         DATEOFRECEIPT=#dateofreceipt#,
+         INTERESTDATE=#interestdate#,
+         DUEDATE=#duedate#,
+         INOROUT=#inorout#,
+         BILLNUMBER=#billnumber#,
+         WS_STS=#wssts#,
+         SD_TIME=#sdtime#,
+         TRANSID=#transid#,
+         REMARKS=#remarks#
+        WHERE ID = #id#
+      ]]>
+	</update>
+
+	<!-- 表查询ById -->
+	<select id="AllocateRegWsIn.getById" resultMap="RM.AllocateRegWsIn">
+		SELECT
+		<include refid="AllocateRegWsIn.columns" />
+        <![CDATA[
+             FROM ALLOCATE_REG_WS_IN  WHERE  ID = #id#        
+        ]]>
+	</select>
+
+	<!-- 根据实际情况选择分页查询条件 -->
+	<sql id="AllocateRegWsIn.findPage.where">
+		<dynamic prepend="where">
+			<isPropertyAvailable property="id">
+				<isNotEmpty prepend="AND" property="id">
+					ID = #id#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="projectid">
+				<isNotEmpty prepend="AND" property="projectid">
+					PROJECTID = #projectid#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="transdate">
+				<isNotEmpty prepend="AND" property="transdate">
+					TRANSDATE = #transdate#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="wssts">
+				<isNotEmpty prepend="AND" property="wssts">
+					WS_STS = #wssts#
+				</isNotEmpty>
+			</isPropertyAvailable>
+		</dynamic>
+	</sql>
+	
+	<!-- 分页查询记录数 -->
+	<select id="AllocateRegWsIn.findPage.count" resultClass="int">
+		SELECT count(*) FROM ALLOCATE_REG_WS_IN
+		<include refid="AllocateRegWsIn.findPage.where" />
+	</select>
+	
+	<!-- 查询ID -->
+	<select id="AllocateRegWsIn.Byid" resultClass="string">
+		SELECT ALLOCATE_WS_SEQ.NEXTVAL AS id FROM DUAL
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="AllocateRegWsIn.findByPage" resultMap="RM.AllocateRegWsIn">
+		SELECT
+		<include refid="AllocateRegWsIn.columns" />
+		FROM (
+		SELECT m.*, rownum as rnum
+		FROM
+		(SELECT
+		<include refid="AllocateRegWsIn.columns" />
+		FROM ALLOCATE_REG_WS_IN
+		<include refid="AllocateRegWsIn.findPage.where" />
+		) m
+		) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+	</select>
+</sqlMap>

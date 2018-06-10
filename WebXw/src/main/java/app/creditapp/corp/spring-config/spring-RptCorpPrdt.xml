@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="rptCorpPrdtDao" class="app.creditapp.corp.dao.impl.RptCorpPrdtDaoImpl">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
+	
+	<bean id="rptCorpPrdtBo" class="app.creditapp.corp.bo.impl.RptCorpPrdtBoImpl">
+		<property name="rptCorpPrdtDao" ref="rptCorpPrdtDao"/>
+	</bean>
+</beans>

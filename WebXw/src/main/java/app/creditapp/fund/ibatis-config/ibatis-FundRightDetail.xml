@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundRightDetail" type="app.creditapp.fund.entity.FundRightDetail"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundRightDetail" class="FundRightDetail">
+    <result property="detailId" column="DETAIL_ID" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="buyFno" column="BUY_FNO" />
+    <result property="saleFno" column="SALE_FNO" />
+    <result property="txAmt" column="TX_AMT" jdbcType="double"/>
+    <result property="txTime" column="TX_TIME" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="FundRightDetail.columns">
+        <![CDATA[
+         DETAIL_ID,
+         PROJ_NO,
+         BUY_FNO,
+         SALE_FNO,
+         TX_AMT,
+         TX_TIME,
+         FILLER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundRightDetail.insert">
+        <![CDATA[
+        INSERT INTO FUND_RIGHT_DETAIL(
+         DETAIL_ID,
+         PROJ_NO,
+         BUY_FNO,
+         SALE_FNO,
+         TX_AMT,
+         TX_TIME,
+         FILLER
+         )VALUES(
+         #detailId#,
+         #projNo#,
+         #buyFno#,
+         #saleFno#,
+         #txAmt#,
+         #txTime#,
+         #filler#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundRightDetail.del">
+        <![CDATA[
+               DELETE FROM FUND_RIGHT_DETAIL
+                 WHERE
+               	DETAIL_ID = #detailId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundRightDetail.update">
+        <![CDATA[
+         UPDATE FUND_RIGHT_DETAIL set
+         DETAIL_ID=#detailId#,
+         PROJ_NO=#projNo#,
+         BUY_FNO=#buyFno#,
+         SALE_FNO=#saleFno#,
+         TX_AMT=#txAmt#,
+         TX_TIME=#txTime#,
+         FILLER=#filler#
+          WHERE
+               	DETAIL_ID = #detailId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundRightDetail.getById"  resultMap="RM.FundRightDetail">
+        SELECT <include refid="FundRightDetail.columns"/>
+        <![CDATA[
+             FROM FUND_RIGHT_DETAIL 
+         WHERE 
+               	DETAIL_ID = #detailId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundRightDetail.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="buyFno">
+                  <isNotEmpty prepend="AND" property="buyFno">
+                      BUY_FNO = #buyFno#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="saleFno">
+                  <isNotEmpty prepend="AND" property="saleFno">
+                      SALE_FNO = #saleFno#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txTime">
+                  <isNotEmpty prepend="AND" property="txTime">
+                      TX_TIME = #txTime#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundRightDetail.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_RIGHT_DETAIL where  PROJ_NO = #projNo#
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundRightDetail.findByPage" resultMap="RM.FundRightDetail">
+        SELECT <include refid="FundRightDetail.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundRightDetail.columns"/> FROM FUND_RIGHT_DETAIL
+             where  PROJ_NO = #projNo# 
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

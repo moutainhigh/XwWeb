@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLoanBackLog" type="app.creditapp.acc.loan.entity.AcLoanBackLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLoanBackLog" class="AcLoanBackLog">
+    <result property="backLogNo" column="BACK_LOG_NO" />
+    <result property="backCnt" column="BACK_CNT" />
+    <result property="loanLogNo" column="LOAN_LOG_NO" />
+    <result property="backType" column="BACK_TYPE" />
+    <result property="backRes" column="BACK_RES" />
+	<result property="failCaus" column="FAIL_CAUS" />
+    <result property="backDate" column="BACK_DATE" />
+    <result property="backSts" column="BACK_STS" />
+    <result property="busOrderType" column="BUS_ORDER_TYPE" />
+    <result property="busEntryType" column="BUS_ENTRY_TYPE" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="uuid" column="UUID" />
+    <result property="status" column="STATUS" />
+    <result property="descCode" column="DESC_CODE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upTime" column="UP_TIME" />
+    <result property="cardChn" column="CARD_CHN" />
+    </resultMap>
+    <resultMap id="RM.AcLoanBackLogBackCnt" class="AcLoanBackLog">
+    <result property="backCnt" column="BACK_CNT" />
+    </resultMap>
+     <sql id="AcLoanBackLog.columns">
+        <![CDATA[
+         BACK_LOG_NO,
+         BACK_CNT,
+         LOAN_LOG_NO,
+         BACK_TYPE,
+         BACK_RES,
+         FAIL_CAUS,
+         BACK_DATE,
+         BACK_STS,
+         BUS_ORDER_TYPE,
+         BUS_ENTRY_TYPE,
+         TRACE_NO,
+         UUID,
+         STATUS,
+         DESC_CODE,
+         TX_TIME,
+         UP_TIME,
+         CARD_CHN
+          ]]>
+    </sql>
+    <sql id="AcLoanBackLog.columnbackcnt">
+        <![CDATA[
+         BACK_CNT
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLoanBackLog.insert">
+        <![CDATA[
+        INSERT INTO AC_LOAN_BACK_LOG(
+         BACK_LOG_NO,
+         BACK_CNT,
+         LOAN_LOG_NO,
+         BACK_TYPE,
+         BACK_RES,
+         FAIL_CAUS,
+         BACK_DATE,
+         BACK_STS,
+         BUS_ORDER_TYPE,
+         BUS_ENTRY_TYPE,
+         TRACE_NO,
+         UUID,
+         STATUS,
+         DESC_CODE,
+         TX_TIME,
+         UP_TIME,
+         CARD_CHN
+         )VALUES(
+         #backLogNo#,
+         #backCnt#,
+         #loanLogNo#,
+         #backType#,
+         #backRes#,
+         #failCaus#,
+         #backDate#,
+         #backSts#,
+         #busOrderType#,
+         #busEntryType#,
+         #traceNo#,
+         #uuid#,
+         #status#,
+         #descCode#,
+         #txTime#,
+         #upTime#,
+         #cardChn#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLoanBackLog.del">
+        <![CDATA[
+               DELETE FROM AC_LOAN_BACK_LOG
+                 WHERE
+               	BACK_LOG_NO = #backLogNo#  and BACK_CNT=#backCnt#      ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcLoanBackLog.update">
+        <![CDATA[
+         UPDATE AC_LOAN_BACK_LOG set
+         BACK_LOG_NO=#backLogNo#,
+         BACK_CNT=#backCnt#,
+         LOAN_LOG_NO=#loanLogNo#,
+         BACK_TYPE=#backType#,
+         BACK_RES=#backRes#,
+         FAIL_CAUS=#failCaus#,
+         BACK_DATE=#backDate#,
+         BACK_STS=#backSts#,
+         BUS_ORDER_TYPE=#busOrderType#,
+         BUS_ENTRY_TYPE=#busEntryType#,
+         TRACE_NO=#traceNo#,
+         UUID=#uuid#,
+         STATUS=#status#,
+         DESC_CODE=#descCode#,
+         TX_TIME=#txTime#,
+         UP_TIME=#upTime#,
+         CARD_CHN=#cardChn#
+          WHERE
+               	BACK_LOG_NO = #backLogNo#        ]]>
+    </update>
+     <!-- 表修改 -->
+    <update id="AcLoanBackLog.updateSts">
+        <![CDATA[
+         UPDATE AC_LOAN_BACK_LOG set
+         BACK_LOG_NO=#backLogNo#,
+         BACK_CNT=#backCnt#,
+         LOAN_LOG_NO=#loanLogNo#,
+         BACK_TYPE=#backType#,
+         BACK_RES=#backRes#,
+         FAIL_CAUS=#failCaus#,
+         BACK_DATE=#backDate#,
+         BACK_STS=#backSts#,
+         BUS_ORDER_TYPE=#busOrderType#,
+         BUS_ENTRY_TYPE=#busEntryType#,
+         TRACE_NO=#traceNo#,
+         UUID=#uuid#,
+         STATUS=#status#
+          WHERE
+               	BACK_CNT = #backCnt#        ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="AcLoanBackLog.getByLoanNoAndStsType"  resultMap="RM.AcLoanBackLog">
+        SELECT <include refid="AcLoanBackLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_BACK_LOG 
+         WHERE 
+               	LOAN_LOG_NO = #loanLogNo#    and  BACK_RES=#backRes#  and  BACK_TYPE=#backType#  ]]>
+     </select>
+     
+     <select id="AcLoanBackLog.getListByLogNoAndType"  resultMap="RM.AcLoanBackLog">
+        SELECT <include refid="AcLoanBackLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_BACK_LOG 
+         WHERE 
+               	LOAN_LOG_NO = #loanLogNo# and  BACK_TYPE=#backType#  ]]>
+     </select>
+     
+     <select id="AcLoanBackLog.getListByBackLogNo"  resultMap="RM.AcLoanBackLog">
+        SELECT <include refid="AcLoanBackLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_BACK_LOG 
+         WHERE 
+               	BACK_LOG_NO=#backLogNo#  ]]>
+     </select>
+     <!--轮询对账,按秒查询，状态为发送成功,发送异常,异常回调-->
+      <select id="AcLoanBackLog.getListFail"  resultMap="RM.AcLoanBackLogBackCnt">
+        SELECT <include refid="AcLoanBackLog.columnbackcnt"/>
+             FROM AC_LOAN_BACK_LOG G
+         WHERE 
+	         (SYSDATE - TO_DATE(G.TX_TIME, 'yyyy-mm-dd hh24:mi:ss')) * 24 * 60 * 60 &gt;= #timeMin#
+	         AND G.BACK_STS in ('02','03','05')
+         	<!--
+               	BACK_STS = '01' AND (SYSDATE-to_date(#txTime#,'yyyy-mm-dd hh24:mi:ss'))*24*60*60 &gt;= #timeMin#
+               	-->
+     </select>
+     
+      <select id="AcLoanBackLog.getById"  resultMap="RM.AcLoanBackLog">
+        SELECT <include refid="AcLoanBackLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_BACK_LOG 
+         WHERE 
+               	   
+               	BACK_CNT = #backCnt#  and UUID=#uuid#      ]]><!--BACK_LOG_NO = #backLogNo#  and BACK_CNT=#backCnt#  --> 
+     </select>
+      <select id="AcLoanBackLog.getByBackCnt"  resultMap="RM.AcLoanBackLog">
+        SELECT <include refid="AcLoanBackLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_BACK_LOG 
+         WHERE 
+               	   
+               	BACK_CNT = #backCnt#      ]]><!--BACK_LOG_NO = #backLogNo#  and BACK_CNT=#backCnt#  --> 
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLoanBackLog.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="backLogNo">
+                  <isNotEmpty prepend="AND" property="backLogNo">
+                      BACK_LOG_NO = #backLogNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="loanLogNo">
+                  <isNotEmpty prepend="AND" property="loanLogNo">
+                      LOAN_LOG_NO = #loanLogNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLoanBackLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LOAN_BACK_LOG <include refid="AcLoanBackLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLoanBackLog.findByPage" resultMap="RM.AcLoanBackLog">
+        SELECT <include refid="AcLoanBackLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcLoanBackLog.columns"/> FROM AC_LOAN_BACK_LOG
+                    <include refid="AcLoanBackLog.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

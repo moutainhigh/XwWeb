@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GB2312"?>
+<table id="acc8112" para="eadis_page" link="AcLnRepayDtlSeqAction_findByPageView.action" title="还款顺序详细列表" type="1">
+<tableitem align="2" filedname="repaySeqCde" id="1" indexed="1" label="还款顺序代码" row="1" type="0" />
+<tableitem align="2" filedname="repaySeq" id="2" indexed="2" label="还款序号" row="1" type="0" />
+<tableitem align="2" filedname="repayAmtTyp" id="3" indexed="3" label="还款金额类型" row="1" type="6" typepara="AC_LN_TX_TYPE" />
+</table>
+
+

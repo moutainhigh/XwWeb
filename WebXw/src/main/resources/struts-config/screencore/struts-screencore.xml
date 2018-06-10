@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  	<package name="screencore" namespace="/" extends="struts-default">
+    <global-results>
+        <result name="invalid.token">/creditapp/common/commitRepeat.jsp</result>
+        <result name="commonException">/creditapp/common/exception.jsp</result>
+     </global-results>
+    <global-exception-mappings>
+      <exception-mapping result="commonException" exception="java.lang.Exception"></exception-mapping>  
+    </global-exception-mappings>
+       
+         
+         
+         
+          <action name="initForm" method="initForm" class="com.core.formbean.screen.FormBean">
+            <!-- 	<result>/screen/formlistxml.jsp</result> -->
+            <!-- 	<result>/drag/formConfig.html</result> -->
+        	<result>/drag/formConfig.html</result>
+         </action>
+         
+          <action name="initTableData" method="initTableData" class="com.core.formbean.screen.TableDataBean">
+            <!-- 	<result>/screen/table.jsp</result>  -->
+            <!-- 	<result>/drag/tableConfig.html</result>  -->
+        	<result>/drag/tableConfig.html</result> 
+          </action>
+         
+          <action name="previewTableTool" method="previewTable" class="com.core.formbean.screen.TableListBean">
+        	<result>/drag/dragTable.jsp</result>
+          </action>
+         
+         
+         
+         
+          <action name="viewForm" method="viewForm" class="com.core.formbean.screen.FormBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="insertForm" method="insertForm" class="com.core.formbean.screen.FormBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="updateForm" method="updateForm" class="com.core.formbean.screen.FormBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="delForm" method="delForm" class="com.core.formbean.screen.FormBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="saveForm" method="saveForm" class="com.core.formbean.screen.FormBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+          <action name="pageFormList" method="pageFormList" class="com.core.formbean.screen.FormBean">
+        	<result>/screen/formlistxml.jsp</result>
+         </action>
+         
+         <action name="initFormElement" method="initFormElement" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+         <action name="viewFormElement" method="viewFormElement" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+         <action name="insertFormElement" method="insertFormElement" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+         <action name="updateFormElement" method="updateFormElement" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+         <action name="delFormElement" method="delFormElement" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+         <action name="saveFormElement" method="saveFormElement" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+          <action name="insertLineFormElement" method="insertLine" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+          <action name="delLineFormElement" method="delLine" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+         
+         
+          <action name="getInitFormulavalidate" method="getInitFormulavalidate" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formulavalidate.jsp</result>
+         </action>
+         
+         <action name="checkFormulavalidate" method="checkFormulavalidate" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formulavalidate.jsp</result>
+         </action>
+         
+         <action name="saveFormulavalidate" method="saveFormulavalidate" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formulavalidate.jsp</result>
+         </action>
+         
+          <action name="getInitCalculation" method="getInitCalculation" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/calculation.jsp</result>
+         </action>
+          <action name="checkCalculation" method="checkCalculation" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/calculation.jsp</result>
+         </action>
+          <action name="saveCalculation" method="saveCalculation" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/calculation.jsp</result>
+         </action>
+         
+         
+         <action name="pageFormElementList" method="pageFormElementList" class="com.core.formbean.screen.FormDataBean">
+        	<result >screen/formsxml.jsp</result>
+         </action>
+         <action name="saveToFile" method="saveToFile" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/formsxml.jsp</result>
+         </action>
+         <action name="preViewForm" method="preViewForm" class="com.core.formbean.screen.FormDataBean">
+        	<result>/screen/previewformnew.jsp</result>
+         </action>
+         
+         
+        
+          <action name="viewTableData" method="viewTableData" class="com.core.formbean.screen.TableDataBean">
+        	<result>/screen/tablewh.jsp</result>
+         </action>
+          <action name="insertTableData" method="insertTableData" class="com.core.formbean.screen.TableDataBean">
+        	<result>/screen/tablewh.jsp</result>
+         </action>
+          <action name="updateTableData" method="updateTableData" class="com.core.formbean.screen.TableDataBean">
+        	<result>/screen/tablewh.jsp</result>
+         </action>
+          <action name="delTableData" method="delTableData" class="com.core.formbean.screen.TableDataBean">
+        	<result>/screen/tablewh.jsp</result>
+         </action>
+          <action name="searchTable" method="searchTable" class="com.core.formbean.screen.TableDataBean">
+        	<result>/screen/table.jsp</result>
+         </action>
+          <action name="saveTableData" method="saveTableData" class="com.core.formbean.screen.TableDataBean">
+        	<result>/screen/tablewh.jsp</result>
+         </action>
+          <action name="goPage" method="goPage" class="com.core.formbean.screen.TableDataBean">
+        	<result>/screen/table.jsp</result>
+         </action>
+         
+         
+          <action name="initTableList" method="initTableList" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+          <action name="viewTableList" method="viewTableList" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+          <action name="insertTableList" method="insertTableList" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+          <action name="updateTableList" method="updateTableList" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+          <action name="delTableList" method="delTableList" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+          <action name="saveTableList" method="saveTableList" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+          <action name="tablePage" method="tablePage" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+          <action name="saveTable" method="saveTable" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/tablelist.jsp</result>
+         </action>
+         
+          <action name="previewTable" method="previewTable" class="com.core.formbean.screen.TableListBean">
+        	<result>/screen/previewtable.jsp</result>
+         </action>
+  
+           <action name="exportexcel" method="doGet" class="com.core.report.ExportExcel">
+        	 <result>/bank/accridit.jsp</result>
+          </action>
+          
+          <action name="searchCusAjax" method="searchCusAjax"  class="com.core.SearchCusAction" >
+      			<result name="failure">/include/errorgo.jsp" </result>
+        </action>
+        
+    </package>
+</struts>

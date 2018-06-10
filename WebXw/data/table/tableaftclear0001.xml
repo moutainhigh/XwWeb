@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="aftclear0001" para="eadis_page" link="AftRepyClearAction_findByPage.action" title="提前清贷申请表" type="1">
+<tableitem align="2" filedname="pactNo" id="1" indexed="1" label="合同号" row="1" type="4" typepara="AftRepyClearAction_getById.action;clearId-clearId;query-'query'"/>
+<tableitem align="2" filedname="brNo" id="2" indexed="2" label="机构号" row="1" type="4" typepara="AftRepyClearAction_getById.action;clearId-clearId;query-'query'"/>
+<tableitem align="2" filedname="clearId" id="3" indexed="3" label="提前清贷申请id" row="1" type="0" />
+<tableitem align="2" filedname="wsId" id="4" indexed="4" label="数据ID" row="1" type="0" />
+<tableitem align="2" filedname="perdNo" id="5" indexed="5" label="期次号" row="1" type="0" />
+<tableitem align="2" filedname="clearSts" id="6" indexed="6" label="处理状态[01-待处理,02-处理成功,03-处理失败]" row="1" type="0" />
+<tableitem align="2" filedname="dealDesc" id="7" indexed="7" label="结果描述" row="1" type="0" />
+<tableitem align="2" filedname="txDate" id="8" indexed="8" label="登记日期" row="1" type="0" />
+<tableitem align="2" filedname="upDate" id="9" indexed="9" label="更新日期" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="10" indexed="10" label="-" row="1" type="5" typepara="AftRepyClearAction_getById.action;clearId-clearId;" width="2"/>
+<tableitem align="2" filedname="删除" id="11" indexed="11" label="-" row="1" type="5" typepara="AftRepyClearAction_del.action;clearId-clearId;onClick-lkconfirm" width="2"/>
+</table>

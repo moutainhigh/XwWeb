@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysUser" type="app.creditapp.sys.entity.SysUser"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysUser" class="SysUser">
+    <result property="user_id" column="USER_ID" />
+    <result property="user_no" column="USER_NO" />
+    <result property="user_name" column="USER_NAME" />
+    <result property="disp_name" column="DISP_NAME" />
+    <result property="pass_word" column="PASS_WORD" />
+    <result property="pass_date" column="PASS_DATE" />
+    <result property="id_no" column="ID_NO" />
+    <result property="user_type" column="USER_TYPE" />
+    <result property="org_no" column="ORG_NO" />
+    <result property="skin" column="SKIN" />
+    <result property="user_sts" column="USER_STS" />
+    <result property="tx_date" column="TX_DATE" />
+    <result property="up_date" column="UP_DATE" />
+    <result property="roleNos" column="ROLENOS" />
+    <result property="lastUi" column="LAST_UI" />
+    
+    </resultMap>
+     <sql id="SysUser.columns">
+        <![CDATA[
+         USER_ID,
+         USER_NO,
+         USER_NAME,
+         DISP_NAME,
+         PASS_WORD,
+         PASS_DATE,
+         ID_NO,
+         USER_TYPE,
+         ORG_NO,
+         SKIN,
+         USER_STS,
+         TX_DATE,
+         UP_DATE,
+         ROLENOS,
+         LAST_UI
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysUser.insert">
+        <![CDATA[
+        INSERT INTO SYS_USER(
+         USER_ID,
+         USER_NO,
+         USER_NAME,
+         DISP_NAME,
+         PASS_WORD,
+         PASS_DATE,
+         ID_NO,
+         USER_TYPE,
+         ORG_NO,
+         SKIN,
+         USER_STS,
+         TX_DATE,
+         UP_DATE,
+         ROLENOS,
+         LAST_UI
+         )VALUES(
+         SYS_USER_SEQ.NEXTVAL,
+         #user_no#,
+         #user_name#,
+         #disp_name#,
+         #pass_word#,
+         #pass_date#,
+         #id_no#,
+         #user_type#,
+         #org_no#,
+         #skin#,
+         #user_sts#,
+         #tx_date#,
+         #up_date#,
+         #roleNos#,
+         #lastUi#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysUser.del">
+        <![CDATA[
+               DELETE FROM SYS_USER
+                 WHERE
+               	USER_NO = #user_no#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysUser.update">
+        <![CDATA[
+         UPDATE SYS_USER set
+         USER_NO=#user_no#,
+         USER_NAME=#user_name#,
+         DISP_NAME=#disp_name#,
+         PASS_WORD=#pass_word#,
+         PASS_DATE=#pass_date#,
+         ID_NO=#id_no#,
+         USER_TYPE=#user_type#,
+         ORG_NO=#org_no#,
+         SKIN=#skin#,
+         USER_STS=#user_sts#,
+         TX_DATE=#tx_date#,
+         UP_DATE=#up_date#,
+         ROLENOS=#roleNos#,
+         LAST_UI=#lastUi#
+          WHERE
+               	USER_NO = #user_no#        ]]>
+    </update>
+    <!-- 修改用户状态 -->
+    <update id="SysUser.updateUserSts">
+		<![CDATA[
+        UPDATE SYS_USER SET
+	        USER_STS=#user_sts#
+        WHERE 
+	        USER_NO = #user_no# 
+    ]]>
+	</update>
+     <!-- 表查询ById -->
+    <select id="SysUser.getById"  resultMap="RM.SysUser">
+        SELECT <include refid="SysUser.columns"/>
+        <![CDATA[
+             FROM SYS_USER 
+         WHERE 
+               	USER_NO = #user_no#         ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysUser.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="user_no">
+                  <isNotEmpty prepend="AND" property="user_no">
+                     USER_NO = #user_no# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="user_name">
+                  <isNotEmpty prepend="AND" property="user_name">
+                      USER_NAME = #user_name#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="disp_name">
+                  <isNotEmpty prepend="AND" property="disp_name">
+                      DISP_NAME = #disp_name#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="user_sts">
+                  <isNotEmpty prepend="AND" property="user_sts">
+                      USER_STS = #user_sts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+<!--              <isPropertyAvailable property="bs_no">
+                  <isNotEmpty prepend="AND" property="bs_no">
+                      getorgname(bs_no) like  '%$bs_no$%'
+                   </isNotEmpty>
+             </isPropertyAvailable> -->
+        </dynamic>
+    </sql>
+    
+    <sql id="SysUser.findPageForMangeNoPop.where">
+        	<isPropertyAvailable property="user_no">
+                  <isNotEmpty prepend="AND" property="user_no">
+                     USER_NO = #user_no# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="user_name">
+                  <isNotEmpty prepend="AND" property="user_name">
+                      USER_NAME LIKE '%$user_name$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql>
+     <sql id="SysUser.findPageForManange.where">
+      <dynamic prepend="where">
+      
+      <isPropertyAvailable property="user_sts">
+                  <isNotEmpty prepend="AND" property="user_sts">
+                      USER_STS = #user_sts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+        	<isPropertyAvailable property="user_no">
+                  <isNotEmpty prepend="AND" property="user_no">
+                     USER_NO = #user_no# 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="user_name">
+                  <isNotEmpty prepend="AND" property="user_name">
+                      USER_NAME LIKE '%$user_name$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="user_type">
+                  <isNotEmpty prepend="AND" property="user_type">
+                      USER_TYPE = #user_type#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+              <isPropertyAvailable property="org_no">
+                  <isNotEmpty prepend="AND" property="org_no">
+                      ORG_NO = #org_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <!-- <isPropertyAvailable property="bs_name">
+                  <isNotEmpty prepend="AND" property="bs_name">
+                      fun_getbrname(bs_no) like  '%$bs_name$%'
+                   </isNotEmpty>
+             </isPropertyAvailable> -->
+        </dynamic>
+    </sql>   
+    <!-- 分页查询记录数 -->
+    <select id="SysUser.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_USER 
+                     <include refid="SysUser.findPageForManange.where" />
+    </select>
+    <select id="SysUser.findPageForPop.count" resultClass="int">
+       SELECT count(*) FROM VW_SYS_USERINFO@USER_DBLINK where userstate='0'
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysUser.findByPage" resultMap="RM.SysUser">
+        SELECT <include refid="SysUser.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysUser.columns"/> FROM SYS_USER 
+                    
+                <include refid="SysUser.findPageForManange.where" />
+                     order by user_no
+             ) m 
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     
+    <select id="SysUser.findByPageForPop" resultMap="RM.SysUser">
+       SELECT 
+       		'' user_id,
+         usercode user_no,
+         username user_name,
+         '' disp_name,
+         '' pass_word,
+         '' pass_date,
+         '' id_no,
+         '' user_type,
+         '' org_no,
+         '' skin,
+         '' user_sts,
+         '' tx_date,
+         '' up_date,
+         '' roleNos,
+         '' last_Ui
+          FROM VW_SYS_USERINFO@USER_DBLINK where userstate='0'
+    </select>
+     
+    <!-- 通讯录 start -->
+	<sql id="SysUser.findPageForAddressBook.where">
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="user_no">
+				USER_NO = #user_no#
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="user_name">
+				USER_NAME like '%$user_name$%'
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+	
+	<select id="SysUser.findPageForAddressBook.count" resultClass="int">
+		SELECT count(*) FROM SYS_USER
+		<include refid="SysUser.findPageForAddressBook.where" />
+	</select>
+	
+	<select id="SysUser.findPageForAddressBook" resultMap="RM.SysUser">
+		SELECT
+		<include refid="SysUser.columns" />
+		FROM ( SELECT m.*, rownum as rnum FROM (SELECT
+		<include refid="SysUser.columns" />
+		FROM SYS_USER
+		<include refid="SysUser.findPageForAddressBook.where" />
+		) m WHERE rownum &lt;#endNum# ) WHERE rnum &gt;= #startNum#
+	</select>
+	
+	<!-- 通讯录查询ByLoginId -->
+    <select id="SysUser.getLoginId"  resultMap="RM.SysUser">
+        SELECT <include refid="SysUser.columns"/>
+        <![CDATA[
+             FROM SYS_USER SYS_USER
+         WHERE 
+               	USER_NO = #user_no#      ]]>
+     </select>
+     <update id="SysUser.updateAddress">
+		UPDATE SYS_USER SET
+			USER_NAME = #user_name#,
+			DISP_NAME = #disp_name#,
+        WHERE 
+	        USER_NO = #user_no# 
+	</update>
+	<!-- 通讯录end -->
+	<!--修改用户皮肤-->
+	<update id="SysUser.updateSkin">
+		<![CDATA[
+        UPDATE SYS_USER SET
+	        SKIN=#skin#
+        WHERE 
+	        USER_NO = #user_no# 
+    ]]>
+    </update>
+    <!-- 客户经理分页查询记录数 -->
+    <select id="SysUser.findPage.MangNoPopCount" resultClass="int">
+        SELECT count(*) FROM SYS_USER 
+       		where USER_NO in (SELECT DISTINCT user_no FROM Sys_User_Role WHERE role_no='01')
+        	<include refid="SysUser.findPageForMangeNoPop.where"/>
+    </select>
+    <!-- 客户经理分页查询 -->
+    <select id="SysUser.findMangNoPop" resultMap="RM.SysUser">
+        SELECT <include refid="SysUser.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysUser.columns"/> FROM SYS_USER
+            		where USER_NO IN (SELECT DISTINCT user_no FROM Sys_User_Role WHERE role_no='01')
+                    <include refid="SysUser.findPageForMangeNoPop.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    
+     <!-- 分页查询记录数 -->
+    <select id="SysUser.findPage.countZt" resultClass="int">
+        SELECT count(*) FROM SYS_USER SUI where 
+EXISTS (SELECT 1
+          FROM SYS_USER_ROLE r
+         WHERE R.USER_NO = SUI.USER_NO
+           AND R.ROLE_NO IN ('33', '73'，'74'))
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysUser.findZt" resultMap="RM.SysUser">
+        SELECT <include refid="SysUser.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT   USER_NO,
+         USER_NAME,
+         DISP_NAME,
+         PASS_WORD,
+         PASS_DATE,
+         ID_NO,
+         USER_TYPE,
+         ORG_NO,
+         SKIN,
+         USER_STS,
+         TX_DATE,
+         LAST_UI,
+         UP_DATE FROM SYS_USER SUI where
+EXISTS (SELECT 1
+          FROM SYS_USER_ROLE r
+         WHERE R.USER_NO = SUI.USER_NO
+           AND R.ROLE_NO IN (SELECT ROLE_NO FROM SYS_ROLE WHERE ROLE_TYPE = '5' ) )
+             ) m 
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

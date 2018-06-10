@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnDueAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnDueAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_List.jsp</result>
+		</action>
+		<action name="LnDueAction_findByPagePartFail" method="findByPagePartFail" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_ListPartFail.jsp</result>
+		</action>
+		<action name="LnDueAction_findByPageForPop" method="findByPageForPop" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_ListForPop.jsp</result>
+		</action>
+		<action name="LnDueAction_findByPageForRead" method="findByPageForRead" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_ListForRead.jsp</result>
+		</action>
+		<!--入账账号 -->
+		<action name="LnDueAction_getTab" method="getTab" class="app.creditapp.ln.action.LnDueAction">
+			<result name="tab">/creditapp/ln/LnDue_Tab.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="LnDueAction_input" method="input" class="app.creditapp.ln.action.LnDueAction">
+			<result name="input">/creditapp/ln/LnDue_Insert.jsp</result>
+		</action>
+		<!--分账放款失败-->
+		<action name="LnDueAction_findAllFail" method="findAllFail" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_List.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnDueAction_del" method="del" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnDueAction_getById" method="getById" class="app.creditapp.ln.action.LnDueAction">
+			<result name="detail">/creditapp/ln/LnDue_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnDueActionInsert" method="insert" class="app.creditapp.ln.action.LnDueAction">
+			<result name="input">/creditapp/ln/LnDue_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnDue_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnDueActionUpdate" method="update" class="app.creditapp.ln.action.LnDueAction">
+			<result name="input">/creditapp/ln/LnDue_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnDue_Detail.jsp</result>
+		</action>		
+		<!--贷后列表-->
+		<action name="LnDueAction_findByPageForCheck" method="findByPageForCheck" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_ListForCheck.jsp</result>
+		</action>
+		<action name="LnDueAction_doFailWork" method="doFailWork" class="app.creditapp.ln.action.LnDueAction">
+			<result name="input">/creditapp/ln/LnDue_ListForPop.jsp</result>
+			<result name="list" type="redirect">LnDueAction_findByPagePartFail</result>
+		</action>
+		<action name="LnDueAction_doAFailWork" method="doAFailWork" class="app.creditapp.ln.action.LnDueAction">
+			<result name="list">/creditapp/ln/LnDue_List.jsp</result>
+		</action>
+		<action name="LnDueAction_doReplace" method="doReplace" class="app.creditapp.ln.action.LnDueAction">
+			<result name="input">/creditapp/ln/LnDue_ListForPop.jsp</result>
+			<result name="list" type="redirect">LnDueAction_findByPageForPop.action?poolId=${poolId}</result>
+		</action>
+		<action name="LnDueAction_doReplaceAjax" method="doReplaceAjax" class="app.creditapp.ln.action.LnDueAction">
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftAdvpay" type="app.creditapp.aft.entity.AftAdvpay"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftAdvpay" class="AftAdvpay">
+    <result property="repId" column="REP_ID" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactAmt" column="PACT_AMT" jdbcType="double"/>
+    <result property="bal" column="BAL" jdbcType="double"/>
+    <result property="intst" column="INTST" jdbcType="double"/>
+    <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    <result property="acType" column="AC_TYPE" />
+    <result property="acNo" column="AC_NO" />
+    <result property="acName" column="AC_NAME" />
+    <result property="acBankname" column="AC_BANKNAME" />
+    <result property="repReason" column="REP_REASON" />
+    <result property="repType" column="REP_TYPE" />
+    <result property="repSts" column="REP_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="payDate" column="PAY_DATE" />
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="brName" column="BR_NAME"/>
+    <result property="opName" column="OP_NAME"/>
+    <result property="traceNo" column="TRACE_NO"/>
+    <result property="onlinOff" column="ONLIN_OFF"/>
+    </resultMap>
+     <sql id="AftAdvpay.columns">
+        <![CDATA[
+         REP_ID,
+         PACT_ID,
+         PACT_NO,
+         BR_NO,
+         PACT_AMT,
+         BAL,
+         INTST,
+         PAY_AMT,
+         AC_TYPE,
+         AC_NO,
+         AC_NAME,
+         AC_BANKNAME,
+         REP_REASON,
+         REP_TYPE,
+         REP_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         PAY_DATE,
+         REPAY_TYPE,
+         END_DATE,
+         FUN_GETBRNAME(br_no) as BR_NAME,
+         FUN_GETUSERNAME(OP_NO)as OP_NAME,
+         TRACE_NO,
+         ONLIN_OFF
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftAdvpay.insert">
+        <![CDATA[
+        INSERT INTO AFT_ADVPAY(
+         REP_ID,
+         PACT_ID,
+         PACT_NO,
+         BR_NO,
+         PACT_AMT,
+         BAL,
+         INTST,
+         PAY_AMT,
+         AC_TYPE,
+         AC_NO,
+         AC_NAME,
+         AC_BANKNAME,
+         REP_REASON,
+         REP_TYPE,
+         REP_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         PAY_DATE,
+         REPAY_TYPE,
+         END_DATE,
+         TRACE_NO,
+         ONLIN_OFF
+         )VALUES(
+         #repId#,
+         #pactId#,
+         #pactNo#,
+         #brNo#,
+         #pactAmt#,
+         #bal#,
+         #intst#,
+         #payAmt#,
+         #acType#,
+         #acNo#,
+         #acName#,
+         #acBankname#,
+         #repReason#,
+         #repType#,
+         #repSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #payDate#,
+         #repayType#,
+         #endDate#,
+         #traceNo#,
+         #onlinOff#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftAdvpay.del">
+        <![CDATA[
+               DELETE FROM AFT_ADVPAY
+                 WHERE
+               	REP_ID = #repId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftAdvpay.update">
+        <![CDATA[
+         UPDATE AFT_ADVPAY set
+         REP_ID=#repId#,
+         PACT_ID=#pactId#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         PACT_AMT=#pactAmt#,
+         BAL=#bal#,
+         INTST=#intst#,
+         PAY_AMT=#payAmt#,
+         AC_TYPE=#acType#,
+         AC_NO=#acNo#,
+         AC_NAME=#acName#,
+         AC_BANKNAME=#acBankname#,
+         REP_REASON=#repReason#,
+         REP_TYPE=#repType#,
+         REP_STS=#repSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         PAY_DATE=#payDate#,
+         REPAY_TYPE=#repayType#,
+         END_DATE=#endDate#,
+         TRACE_NO=#traceNo#,
+          ONLIN_OFF=#onlinOff#
+          WHERE
+               	REP_ID = #repId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftAdvpay.getById"  resultMap="RM.AftAdvpay">
+        SELECT <include refid="AftAdvpay.columns"/>
+        <![CDATA[
+             FROM AFT_ADVPAY 
+         WHERE 
+               	REP_ID = #repId#        ]]>
+     </select>
+    <select id="AftAdvpay.getByIdForTrace"  resultMap="RM.AftAdvpay">
+        SELECT <include refid="AftAdvpay.columns"/>
+        <![CDATA[
+             FROM AFT_ADVPAY 
+         WHERE 
+               	TRACE_NO = #traceNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftAdvpay.findPage.where">
+        <dynamic prepend="where">
+        	ONLIN_OFF = '01'
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acType">
+                  <isNotEmpty prepend="AND" property="acType">
+                      AC_TYPE = #acType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="repType">
+                  <isNotEmpty prepend="AND" property="repType">
+                      REP_TYPE = #repType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      BR_NO in (select br_no from proj_base where proj_no in (select proj_no from proj_mang where login_id = #loginid#))
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftAdvpay.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_ADVPAY <include refid="AftAdvpay.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftAdvpay.findByPage" resultMap="RM.AftAdvpay">
+        SELECT <include refid="AftAdvpay.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftAdvpay.columns"/> FROM AFT_ADVPAY
+                    <include refid="AftAdvpay.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 获取KEY -->
+    <select id="AftAdvpay.getKey" resultClass="string">
+   	 <![CDATA[ SELECT AFT_CHG_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+	
+	<!-- 提前还款当日处理成功-->
+    <select id="AftAdvpay.getSucByTxDate" resultClass="int">
+        SELECT count(*) FROM AFT_ADVPAY WHERE PACT_NO = #pactNo# AND TX_DATE=#txDate# AND REP_STS = '03'
+    </select>
+</sqlMap>

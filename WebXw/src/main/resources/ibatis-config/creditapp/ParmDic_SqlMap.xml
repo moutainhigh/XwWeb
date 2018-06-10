@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<!-- 不使用namespace是由于sql搜索定位会比较方便 -->
+<sqlMap>
+<typeAlias alias="ParmDic" type="app.creditapp.entity.ParmDic"/>
+    <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ParmDic" class="ParmDic">
+      <result property="key_name" column="KEY_NAME"/>
+      <result property="opt_code" column="OPT_CODE"/>
+      <result property="opt_name" column="OPT_NAME"/>
+      <result property="opt_seq" column="OPT_SEQ" />
+      <result property="opt_sts" column="OPT_STS" />
+    </resultMap>
+
+    <!-- 表字段 -->
+    <sql id="ParmDic.columns">
+        <![CDATA[
+            KEY_NAME,
+            OPT_CODE,
+            OPT_NAME,
+            OPT_SEQ,
+            OPT_STS
+        ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ParmDic.insert">
+        <![CDATA[
+          INSERT INTO PARM_DIC(
+            KEY_NAME,
+            OPT_CODE,
+            OPT_NAME,
+            OPT_SEQ,
+            OPT_STS
+           )VALUES(
+            #key_name#,
+            #opt_code#,
+            #opt_name#,
+            #opt_seq#,
+            #opt_sts#
+            )
+        ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ParmDic.del">
+        <![CDATA[
+               DELETE FROM PARM_DIC
+                 WHERE
+               KEY_NAME=#key_name#
+               AND 
+               OPT_CODE=#opt_code#
+        ]]>
+    </delete>
+    
+    <!-- 表删除 -->
+    <delete id="ParmDic.delte">
+        <![CDATA[
+               DELETE FROM PARM_DIC
+                 WHERE
+               KEY_NAME=#key_name#
+               
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ParmDic.update">
+        <![CDATA[
+            UPDATE PARM_DIC set 
+               KEY_NAME=#key_name#,
+               OPT_CODE=#opt_code#,
+               OPT_NAME=#opt_name#,
+               OPT_SEQ=#opt_seq#,
+               OPT_STS=#opt_sts#
+            WHERE
+                OPT_CODE=#opt_code#
+                AND 
+                KEY_NAME=#key_name#
+        ]]>
+    </update>
+    <!-- 表查询ById -->
+    <select id="ParmDic.getById" resultMap="RM.ParmDic">
+        SELECT <include refid="ParmDic.columns"/>
+        <![CDATA[
+             FROM PARM_DIC
+         WHERE 
+             KEY_NAME = #key_name#  AND 
+             OPT_CODE = #opt_code# 
+        ]]>
+     </select>
+     <!-- 表查询ById -->
+    <select id="ParmDic.find"  resultMap="RM.ParmDic">
+        SELECT <include refid="ParmDic.columns"/>
+        <![CDATA[
+             FROM PARM_DIC
+         WHERE 
+             KEY_NAME = #key_name#
+              
+        ]]>
+     </select>
+     <!-- 表查询getOptName-->
+    <select id="ParmDic.getOptName" resultClass="String">
+        SELECT  OPT_NAME
+        <![CDATA[
+             FROM PARM_DIC
+         WHERE 
+             KEY_NAME = #key_name#  AND 
+             OPT_CODE = #opt_code#
+              
+        ]]>
+     </select>
+     <!-- 表查询getOptName-->
+    <select id="ParmDic.getBusiName" resultClass="String">
+        SELECT  OPT_NAME
+        <![CDATA[
+             FROM PARM_DIC
+         WHERE 
+             KEY_NAME in ('PERS_TERM','ACCEP_TERM','GUA_TERM','FACTOR_TERM','LONG_TERM','DIS_TERM','SHOURT_TERM')  AND 
+             OPT_CODE = #opt_code#  
+              
+        ]]>
+     </select>
+     
+     <!-- 表查询getOptCode-->
+    <select id="ParmDic.getOptCode" resultClass="String">
+        SELECT  OPT_CODE
+        <![CDATA[
+             FROM PARM_DIC
+         WHERE 
+             KEY_NAME = #key_name#  AND 
+             OPT_NAME = #opt_name#
+              
+        ]]>
+     </select>
+     
+    
+    <!-- 分页查询条件 -->
+    <sql id="ParmDic.findPage.where">
+    <dynamic prepend="where">
+			<isPropertyAvailable property="key_name">
+				<isNotEmpty prepend="AND" property="key_name">
+					KEY_NAME=#key_name#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			 <isPropertyAvailable property="opt_name">
+                  <isNotEmpty prepend="AND" property="opt_name">
+                      OPT_NAME like '%$opt_name$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+		</dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ParmDic.findPage.count" resultClass="int">
+        SELECT count(*) FROM PARM_DIC <include refid="ParmDic.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ParmDic.findByPage" resultMap="RM.ParmDic">
+        SELECT <include refid="ParmDic.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="ParmDic.columns"/> FROM PARM_DIC     <include refid="ParmDic.findPage.where"/>
+             ) m 
+          WHERE rownum &lt;#endNum# ) 
+		WHERE rnum &gt;= #startNum# order by OPT_SEQ
+    </select>
+    </sqlMap>

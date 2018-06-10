@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnApprIdea" type="app.creditapp.ln.entity.LnApprIdea"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnApprIdea" class="LnApprIdea">
+    <result property="ideaId" column="IDEA_ID" />
+    <result property="appId" column="APP_ID" />
+    <result property="apprId" column="APPR_ID" />
+    <result property="apprType" column="APPR_TYPE" />
+    <result property="apprTime" column="APPR_TIME" />
+    <result property="apprOpt" column="APPR_OPT" />
+    <result property="apprIdea" column="APPR_IDEA" />
+    <result property="apprDesc" column="APPR_DESC" />
+    <result property="apprOp" column="APPR_OP" />
+    <result property="apprRole" column="APPR_ROLE" />
+    <result property="apprKind" column="APPR_KIND" />
+    
+     <result property="apprRoleName" column="APPR_ROLE_NAME" />
+     <result property="userName" column="USER_NAME" />
+    </resultMap>
+    <resultMap id="RM.LnApprIdeaForRead" class="LnApprIdea">
+    <result property="appId" column="APP_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="blkFlag" column="BLK_FLAG" />
+    <result property="apprIdea" column="APPR_IDEA" />
+    <result property="apprTime" column="APPR_TIME" />
+    
+    </resultMap>
+     <sql id="LnApprIdea.columns">
+        <![CDATA[
+         IDEA_ID,
+         APP_ID,
+         APPR_ID,
+         APPR_TYPE,
+         APPR_TIME,
+         APPR_OPT,
+         APPR_IDEA,
+         APPR_DESC,
+         APPR_OP,
+         APPR_ROLE,
+         FUN_GETLNINAPPRIDEA(APPR_ROLE) as APPR_ROLE_NAME,
+         FUN_GETLAIUSERNAME(APPR_OP) as USER_NAME,
+         APPR_KIND
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnApprIdea.insert">
+        <![CDATA[
+        INSERT INTO LN_APPR_IDEA(
+         IDEA_ID,
+         APP_ID,
+         APPR_ID,
+         APPR_TYPE,
+         APPR_TIME,
+         APPR_OPT,
+         APPR_IDEA,
+         APPR_DESC,
+         APPR_OP,
+         APPR_ROLE,
+         APPR_KIND
+         )VALUES(
+         #ideaId#,
+         #appId#,
+         #apprId#,
+         #apprType#,
+         #apprTime#,
+         #apprOpt#,
+         #apprIdea#,
+         #apprDesc#,
+         #apprOp#,
+         #apprRole#,
+         #apprKind#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="ideaId" >
+				SELECT  LN_APPR_IDEA_SEQ.NEXTVAL AS ideaId FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnApprIdea.del">
+        <![CDATA[
+               DELETE FROM LN_APPR_IDEA
+                 WHERE
+               	IDEA_ID = #ideaId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnApprIdea.update">
+        <![CDATA[
+         UPDATE LN_APPR_IDEA set
+         IDEA_ID=#ideaId#,
+         APP_ID=#appId#,
+         APPR_ID=#apprId#,
+         APPR_TYPE=#apprType#,
+         APPR_TIME=#apprTime#,
+         APPR_OPT=#apprOpt#,
+         APPR_IDEA=#apprIdea#,
+         APPR_DESC=#apprDesc#,
+         APPR_OP=#apprOp#,
+         APPR_ROLE=#apprRole#,
+         APPR_KIND=#apprKind#
+          WHERE
+               	IDEA_ID = #ideaId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnApprIdea.getById"  resultMap="RM.LnApprIdea">
+        SELECT <include refid="LnApprIdea.columns"/>
+        <![CDATA[
+             FROM LN_APPR_IDEA 
+         WHERE 
+               	IDEA_ID = #ideaId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnApprIdea.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="ideaId">
+                  <isNotEmpty prepend="AND" property="ideaId">
+                      IDEA_ID = #ideaId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="apprType">
+                  <isNotEmpty prepend="AND" property="apprType">
+                      APPR_TYPE = #apprType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="apprIdea">
+                  <isNotEmpty prepend="AND" property="apprIdea">
+                      APPR_IDEA = #apprIdea#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprOp">
+                  <isNotEmpty prepend="AND" property="apprOp">
+                      APPR_OP = #apprOp#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprKind">
+                  <isNotEmpty prepend="AND" property="apprKind">
+                      APPR_KIND = #apprKind#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnApprIdea.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_APPR_IDEA where appr_type='02' 
+                    <isPropertyAvailable property="ideaId">
+                  <isNotEmpty prepend="AND" property="ideaId">
+                      IDEA_ID = #ideaId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="apprType">
+                  <isNotEmpty prepend="AND" property="apprType">
+                      APPR_TYPE = #apprType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="apprIdea">
+                  <isNotEmpty prepend="AND" property="apprIdea">
+                      APPR_IDEA = #apprIdea#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprOp">
+                  <isNotEmpty prepend="AND" property="apprOp">
+                      APPR_OP = #apprOp#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprKind">
+                  <isNotEmpty prepend="AND" property="apprKind">
+                      APPR_KIND = #apprKind#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    <select id="LnApprIdea.findPageForRead.count" resultClass="int">
+        SELECT count(*)  FROM LN_APPR_IDEA A, cif_black B where appr_type='02'  and A.APP_ID = #appId# and a.APP_ID=b.blk_id
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnApprIdea.findByPage" resultMap="RM.LnApprIdea">
+        SELECT <include refid="LnApprIdea.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnApprIdea.columns"/> FROM LN_APPR_IDEA where appr_type='02' 
+                    <isPropertyAvailable property="ideaId">
+                  <isNotEmpty prepend="AND" property="ideaId">
+                      IDEA_ID = #ideaId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="apprType">
+                  <isNotEmpty prepend="AND" property="apprType">
+                      APPR_TYPE = #apprType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="apprIdea">
+                  <isNotEmpty prepend="AND" property="apprIdea">
+                      APPR_IDEA = #apprIdea#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprOp">
+                  <isNotEmpty prepend="AND" property="apprOp">
+                      APPR_OP = #apprOp#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="apprKind">
+                  <isNotEmpty prepend="AND" property="apprKind">
+                      APPR_KIND = #apprKind#
+                   </isNotEmpty>
+             </isPropertyAvailable>  order by IDEA_ID desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="LnApprIdea.findByPageForRead" resultMap="RM.LnApprIdeaForRead">
+        SELECT 
+        app_id,
+        CIF_NO,
+        CIF_NAME,
+        ID_TYPE,
+        ID_NO,
+        BLK_FLAG,
+        APPR_IDEA,
+        APPR_TIME
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT 
+       A.app_id,
+        CIF_NO,
+        CIF_NAME,
+        ID_TYPE,
+        ID_NO,
+        BLK_FLAG,
+        APPR_IDEA,
+        APPR_TIME
+        FROM LN_APPR_IDEA A, cif_black B where appr_type='02'  and A.APP_ID = #appId# and a.APP_ID=b.blk_id
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <select id="LnApprIdea.findByPageForAppId" resultMap="RM.LnApprIdea">
+            SELECT <include refid="LnApprIdea.columns"/> FROM LN_APPR_IDEA
+                where       APP_ID = #appId#
+              order by IDEA_ID asc
+    </select>
+</sqlMap>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<service id="remoting-service"
+	class="flex.messaging.services.RemotingService">
+
+	<adapters>
+		<adapter-definition id="java-object"
+			class="flex.messaging.services.remoting.adapters.JavaAdapter"
+			default="true" />
+	</adapters>
+
+	<default-channels>
+		<channel ref="my-amf" />
+	</default-channels>
+
+	<destination id="ProcessService">
+		<properties>
+			<source>
+				com.dhcc.workflow.flex.service.ProcessService
+			</source>
+		</properties>
+	</destination>
+
+	<destination id="UserService">
+		<properties>
+			<factory>spring</factory>
+			<source>userService</source>
+		</properties>
+	</destination>
+
+	<destination id="GroupService">
+		<properties>
+			<factory>spring</factory>
+			<source>groupService</source>
+		</properties>
+	</destination>
+
+	<destination id="BranchService">
+		<properties>
+			<factory>spring</factory>
+			<source>branchService</source>
+		</properties>
+	</destination>
+
+	<destination id="ConfigService">
+		<properties>
+			<factory>spring</factory>
+			<source>configService</source>
+		</properties>
+	</destination>
+	
+	<destination id="dictionaryService">
+		<properties>
+			<factory>spring</factory>
+			<source>dictionaryService</source>
+		</properties>
+	</destination>	
+
+</service>

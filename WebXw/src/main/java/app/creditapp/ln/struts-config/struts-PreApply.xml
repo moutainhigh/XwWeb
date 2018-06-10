@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="PreApplyAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="PreApplyAction_findByPage" method="findByPage" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="list">/creditapp/ln/PreApply_List.jsp</result>
+		</action>
+		<!--查询规则引擎 -->
+		<action name="PreApplyAction_findByReturnId" method="findByReturnId" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="find">/creditapp/ln/PreApply_findReturn.jsp</result>
+		</action>  
+		<!--筛查结果查询 -->
+		<action name="PreApplyAction_findByChk" method="findByChk" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="list">/creditapp/ln/PreApply_findChk.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="PreApplyAction_input" method="input" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="input">/creditapp/ln/PreApply_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="PreApplyAction_del" method="del" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="list">/creditapp/ln/PreApply_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="PreApplyAction_getById" method="getById" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="detail">/creditapp/ln/PreApply_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="PreApplyActionInsert" method="insert" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="input">/creditapp/ln/PreApply_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/PreApply_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="PreApplyActionUpdate" method="update" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="input">/creditapp/ln/PreApply_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/PreApply_Detail.jsp</result>
+		</action>
+		
+		
+		<!-- 总详细信息 -->
+		<action name="PreApplyAction_getAllDetail" method="getAllDetail" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="all">/creditapp/ln/PreApply_All.jsp</result>
+	    </action>		
+	    
+	    <!-- 上面常显信息 -->
+		<action name="PreApplyAction_getDetailTop" method="getDetailTop" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="top">/creditapp/ln/PreApply_All_Top.jsp</result>
+		</action>
+	    
+	    <!-- 客户详细信息 -->
+		<action name="PreApplyAction_getTab" method="getTab" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="tab">/creditapp/ln/PreApply_Tab.jsp</result>
+		</action>
+		
+		<!-- 导入页面 -->
+		<action name="PreApplyAction_uploadInput" method="uploadInput" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="uploadInput">/creditapp/ln/PreApply_uploadInput.jsp</result>
+		</action>
+		
+		<!-- 导入 -->
+		<action name="PreApplyAction_upload" method="upload" class="app.creditapp.ln.action.PreApplyAction">
+			<result name="input">/creditapp/ln/PreApply_uploadInput.jsp</result>
+			<result name="upload" type="redirect">PreBatchAction_findByPage.action</result>
+		</action>
+		
+		<!-- 导出文件 -->
+		<action name="PreApplyAction_download" method="download" class="app.creditapp.ln.action.PreApplyAction">
+			<param name="downloadFile">${downloadFile}</param>
+			<result name="download" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">targetFile</param>
+				<param name="contentDisposition">attachment;filename="${downfName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

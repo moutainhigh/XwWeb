@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="lngagemid0001" title="进件押品表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="appId" fieldtype="1" maxlength="12" formactiveid="1" labelalign="3" labelcol="1" labelname="申请ID" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="gageType" fieldtype="1" maxlength="2" formactiveid="5" labelalign="3" labelcol="1" labelname="押品类型" mustinput="0" row="3" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="gageName" fieldtype="1" maxlength="40" formactiveid="6" labelalign="3" labelcol="3" labelname="押品名称" mustinput="0" row="3" />
+</form>

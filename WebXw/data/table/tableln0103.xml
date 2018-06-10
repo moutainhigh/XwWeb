@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="ln0103" para="eadis_page" link="LnComAction_findByPage.action" title="共同借款人" type="1">
+<tableitem align="2" filedname="appId" id="1" indexed="1" label="申请ID" row="1" type="0" />
+<tableitem align="2" filedname="comName" id="2" indexed="2" label="名称" row="1" type="0" />
+<tableitem align="2" filedname="comIdtype" id="3" indexed="3" label="证件类型" row="1" type="4" typepara="LnComAction_getById.action;appId-appId;comName-comName;query-'query'"/>
+<tableitem align="2" filedname="comIdno" id="4" indexed="4" label="证件号" row="1" type="4" typepara="LnComAction_getById.action;appId-appId;comName-comName;query-'query'"/>
+<tableitem align="2" filedname="comTel" id="5" indexed="5" label="联系电话" row="1" type="4" typepara="LnComAction_getById.action;appId-appId;comName-comName;query-'query'"/>
+<tableitem align="2" filedname="修改" id="6" indexed="6" label="-" row="1" type="5" typepara="LnComAction_getById.action;appId-appId;comName-comName;" width="2"/>
+<tableitem align="2" filedname="删除" id="7" indexed="7" label="-" row="1" type="5" typepara="LnComAction_del.action;appId-appId;comName-comName;onClick-lkconfirm" width="2"/>
+</table>

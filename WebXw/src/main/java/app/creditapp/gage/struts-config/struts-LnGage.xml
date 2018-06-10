@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnGageAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnGageAction_findByPage" method="findByPage" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list">/creditapp/gage/LnGage_List.jsp</result>
+		</action>
+		
+		<!--分页查询待解押产品信息 -->
+		<action name="LnGageAction_findlistBygageSts" method="findlistBygageSts" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list">/creditapp/gage/LnGagePush_List.jsp</result>
+		</action>
+		<!--分页查询待解押产品信息 -->
+		<action name="LnGageAction_updateSts" method="updateSts" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list">/creditapp/gage/LnGagePush_List.jsp</result>
+		</action>
+		<!--业务明细查询押品关联借据列表-->
+		<action name="LnGageAction_findLnDue" method="findLnDue" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list">/creditapp/gage/LnDue_List.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="LnGageAction_input" method="input" class="app.creditapp.gage.action.LnGageAction">
+			<result name="input">/creditapp/gage/LnGage_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnGageAction_del" method="del" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list">/creditapp/gage/LnGage_List.jsp</result>
+		</action>
+		<!--详情 -->
+		<action name="LnGageAction_getDetail" method="getDetail" class="app.creditapp.gage.action.LnGageAction">
+			<result name="detail">/creditapp/gage/LnGage_Detail.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="LnGageAction_getById" method="getById" class="app.creditapp.gage.action.LnGageAction">
+			<result name="detail">/creditapp/gage/LnGage_Detail.jsp</result>
+			<result name="detailRead">/creditapp/gage/LnGage_DetailRead.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="LnGageAction_getById_Read" method="getById_Read" class="app.creditapp.gage.action.LnGageAction">
+			<result name="detail_Read">/creditapp/gage/LnGage_Detail_Read.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="LnGageActionInsert" method="insert" class="app.creditapp.gage.action.LnGageAction">
+			<result name="input">/creditapp/gage/LnGage_Insert.jsp</result>
+			<result name="detail">/creditapp/gage/LnGage_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnGageActionUpdate" method="update" class="app.creditapp.gage.action.LnGageAction">
+			<result name="input">/creditapp/gage/LnGage_Detail.jsp</result>
+			<result name="detail">/creditapp/gage/LnGage_Detail.jsp</result>
+		</action>
+		
+		<!-- 根据客户号查询某客户的押品信息 -->
+		<action name="LnGageAction_listQuotaForCif" method="listQuotaForCif" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list">/creditapp/gage/LnGage_listQuotaForCif.jsp</result>
+		</action>
+		<action name="LnGageAction_listQuotaForCif_Read" method="listQuotaForCif_Read" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list_Read">/creditapp/gage/LnGage_listQuotaForCif_Read.jsp</result>
+		</action>
+		
+		<!-- 根据预进件申请信息appid显示所有的的押品信息 -->
+		<action name="LnGageAction_listQuotaForLn" method="listQuotaForLn" class="app.creditapp.gage.action.LnGageAction">
+			<result name="list">/creditapp/gage/LnGage_listQuotaForLn.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="proj0014" para="eadis_page" link="AllocateRegWsInAction_findByPage.action" title="收拨款接口数据表" type="1">
+<tableitem align="2" filedname="id" id="1" indexed="1" label="唯一标识本条记录(唯一标识，外围系统通过该ID可获得生成的拨款台账主信息)" row="1" type="4" typepara="AllocateRegWsInAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="wsSts" id="2" indexed="2" label="状态 0未处理 1已成功发送TA 2发生TA失败" row="1" type="0" />
+<tableitem align="2" filedname="transid" id="5" indexed="5" label="TA返回交易ID" row="1" type="0" />
+<tableitem align="2" filedname="businessflag" id="9" indexed="9" label="业务标示1:账户拨款，2:信托付自营，3:账户收款，4:自营代垫，5:信托付保障基金，6:多账户拨款" row="1" type="0" />
+<tableitem align="2" filedname="projectid" id="10" indexed="10" label="项目ID" row="1" type="0" />
+<tableitem align="2" filedname="memo" id="15" indexed="15" label="摘要" row="1" type="0" />
+<tableitem align="2" filedname="amount" id="18" indexed="18" label="交易金额(2位小数)" row="1" type="0" />
+<tableitem align="2" filedname="project" id="33" indexed="33" label="项目(名字)" row="1" type="0" />
+<tableitem align="2" filedname="businesstype" id="42" indexed="42" label="业务类型" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="60" indexed="60" label="-" row="1" type="5" typepara="AllocateRegWsInAction_getById.action;id-id;" width="2"/>
+<tableitem align="2" filedname="删除" id="61" indexed="61" label="-" row="1" type="5" typepara="AllocateRegWsInAction_del.action;id-id;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="pub0006" para="eadis_page" link="PubOpinConfAction_findByPage.action" title="舆情配置" type="1">
+<tableitem align="2" filedname="confId" id="1" indexed="1" label="配置ID" row="1" type="0" />
+<tableitem align="2" filedname="cronTime" id="2" indexed="2" label="频率，单位：分钟" row="1" type="4" typepara="PubOpinConfAction_getById.action;confId-confId;query-'query'"/>
+<tableitem align="2" filedname="webName" id="4" indexed="4" label="网站名称" row="1" type="4" typepara="PubOpinConfAction_getById.action;confId-confId;query-'query'"/>
+<tableitem align="2" filedname="webSite" id="5" indexed="5" label="网址" row="1" type="4" typepara="PubOpinConfAction_getById.action;confId-confId;query-'query'"/>
+<tableitem align="2" filedname="修改" id="6" indexed="6" label="-" row="1" type="5" typepara="PubOpinConfAction_getById.action;confId-confId;" width="2"/>
+<tableitem align="2" filedname="删除" id="7" indexed="7" label="-" row="1" type="5" typepara="PubOpinConfAction_del.action;confId-confId;onClick-lkconfirm" width="2"/>
+</table>

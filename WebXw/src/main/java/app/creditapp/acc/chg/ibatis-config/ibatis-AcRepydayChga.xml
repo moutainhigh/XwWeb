@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcRepydayChga" type="app.creditapp.acc.chg.entity.AcRepydayChga"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcRepydayChga" class="AcRepydayChga">
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="newPayDay" column="NEW_PAY_DAY" jdbcType="Int"/>
+    <result property="chgReason" column="CHG_REASON" />
+    <result property="chgaSts" column="CHGA_STS" />
+    </resultMap>
+     <sql id="AcRepydayChga.columns">
+        <![CDATA[
+         BATCH_NO,
+         PACT_NO,
+         BR_NO,
+         NEW_PAY_DAY,
+         CHG_REASON,
+         CHGA_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcRepydayChga.insert">
+        <![CDATA[
+        INSERT INTO AC_REPYDAY_CHGA(
+         BATCH_NO,
+         PACT_NO,
+         BR_NO,
+         NEW_PAY_DAY,
+         CHG_REASON,
+         CHGA_STS
+         )VALUES(
+         #batchNo#,
+         #pactNo#,
+         #brNo#,
+         #newPayDay#,
+         #chgReason#,
+         #chgaSts#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcRepydayChga.del">
+        <![CDATA[
+               DELETE FROM AC_REPYDAY_CHGA
+                 WHERE
+               	BR_NO = #brNo#  and pact_no = #pactNo#
+  and batch_no = #batchNo#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcRepydayChga.update">
+        <![CDATA[
+         UPDATE AC_REPYDAY_CHGA set
+         BATCH_NO=#batchNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         NEW_PAY_DAY=#newPayDay#,
+         CHG_REASON=#chgReason#,
+         CHGA_STS=#chgaSts#
+          WHERE
+               	BR_NO = #brNo#  and pact_no = #pactNo#
+  and batch_no = #batchNo#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcRepydayChga.getById"  resultMap="RM.AcRepydayChga">
+        SELECT <include refid="AcRepydayChga.columns"/>
+        <![CDATA[
+             FROM AC_REPYDAY_CHGA 
+         WHERE 
+               	BR_NO = #brNo#  and pact_no = #pactNo#
+  and batch_no = #batchNo#
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcRepydayChga.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="chgaSts">
+                  <isNotEmpty prepend="AND" property="chgaSts">
+                      CHGA_STS = #chgaSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcRepydayChga.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_REPYDAY_CHGA <include refid="AcRepydayChga.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcRepydayChga.findByPage" resultMap="RM.AcRepydayChga">
+        SELECT <include refid="AcRepydayChga.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcRepydayChga.columns"/> FROM AC_REPYDAY_CHGA
+                    <include refid="AcRepydayChga.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

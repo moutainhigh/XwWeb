@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="WkfApprovalUserAction" namespace="/" extends="struts-cms">
+	
+		<global-results>
+    		<result name="invalid.token">/creditapp/common/commitRepeat.jsp</result>
+    		<result name="commonException">/creditapp/common/exception.jsp</result>
+    	</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="commonException" exception="java.lang.Exception"></exception-mapping>		
+		</global-exception-mappings>	
+	
+		<action name="WkfApprovalUserAction_*" method="{1}" class="app.creditapp.wkf.action.WkfApprovalUserAction">	
+			<result name="list">/creditapp/wkf/WkfApprovalUser_List.jsp</result>
+			<result name="popList">/creditapp/wkf/WkfApprovalUser_PopList.jsp</result>
+			<result name="userMapList">/creditapp/wkf/WkfApprovalUser_MapPopList.jsp</result>
+			<result name="listForUser">/creditapp/wkf/WkfApprovalUser_ListForUser.jsp</result>
+			<result name="approvalUserList">/creditapp/wkf/WkfApprovalUser_ListApprovalUser.jsp</result>
+			<!--查询审贷会角色对应人员-->
+			<result name="approvalUserList">/creditapp/wkf/WkfApprovalUser_ListApproveUser.jsp</result>
+			<!--获取新增页面-->
+			<result name="input">/creditapp/wkf/WkfApprovalUser_Insert.jsp</result>
+			<!--获取批量新增页面-->
+			<result name="batchInput">/creditapp/wkf/WkfApprovalUser_BatchInsert.jsp</result>
+			<result name="detail">/creditapp/wkf/WkfApprovalUser_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="WkfApprovalUserActionInsert" method="insert" class="app.creditapp.wkf.action.WkfApprovalUserAction">
+			<result name="input">/creditapp/wkf/WkfApprovalUser_Insert.jsp</result>
+			<result name="detail">/creditapp/wkf/WkfApprovalUser_Detail.jsp</result>
+		</action>
+		<!--批量新增保存-->
+		<action name="WkfApprovalUserActionBatchInsert" method="batchInsert" class="app.creditapp.wkf.action.WkfApprovalUserAction">
+			<result name="batchInput">/creditapp/wkf/WkfApprovalUser_BatchInsert.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="WkfApprovalUserActionUpdate" method="update" class="app.creditapp.wkf.action.WkfApprovalUserAction">
+			<result name="input">/creditapp/wkf/WkfApprovalUser_Detail.jsp</result>
+			<result name="detail">/creditapp/wkf/WkfApprovalUser_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

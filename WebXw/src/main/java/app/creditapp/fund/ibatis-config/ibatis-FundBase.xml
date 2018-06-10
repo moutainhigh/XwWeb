@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundBase" type="app.creditapp.fund.entity.FundBase"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundBase" class="FundBase">
+    <result property="fundNo" column="FUND_NO" />
+    <result property="fundName" column="FUND_NAME" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="fdInitialAmt" column="FD_INITIAL_AMT" jdbcType="double"/>
+    <result property="fdAmt" column="FD_AMT" jdbcType="double"/>
+    <result property="cashBal" column="CASH_BAL" jdbcType="double"/>
+    <result property="rightBal" column="RIGHT_BAL" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="financeRate" column="FINANCE_RATE" jdbcType="float" nullValue="0.00"/>
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="yearDays" column="YEAR_DAYS" jdbcType="Int"/>
+    <result property="fdType" column="FD_TYPE" />
+    <result property="fdState" column="FD_STATE" />
+    <result property="reDeem" column="REDEEM" />
+    <result property="fdFlag" column="FD_FLAG" />
+    <result property="packetSts" column="PACKET_STS" />
+    <result property="packetDate" column="PACKET_DATE" />
+    <result property="tranSts" column="TRAN_STS" />
+    <result property="tranDate" column="TRAN_DATE" />
+    <result property="filler" column="FILLER" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="repayDay" column="REPAY_DAY" />
+    </resultMap>
+     <sql id="FundBase.columns">
+        <![CDATA[
+         FUND_NO,
+         FUND_NAME,
+         PROJ_NO,
+         PROJ_NAME,
+         CUR_NO,
+         FD_INITIAL_AMT,
+         FD_AMT,
+         CASH_BAL,
+         RIGHT_BAL,
+         BEG_DATE,
+         END_DATE,
+         FINANCE_RATE,
+         REPAY_TYPE,
+         YEAR_DAYS,
+         FD_TYPE,
+         REDEEM,
+         FD_FLAG,
+         FD_STATE,
+         PACKET_STS,
+         PACKET_DATE,
+         TRAN_STS,
+         TRAN_DATE,
+         FILLER,
+         OP_NO,
+         TX_DATE,
+         UP_OPNO,
+         UP_DATE,
+         REPAY_DAY
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundBase.insert">
+        <![CDATA[
+        INSERT INTO FUND_BASE(
+         FUND_NO,
+         FUND_NAME,
+         PROJ_NO,
+         PROJ_NAME,
+         CUR_NO,
+         FD_INITIAL_AMT,
+         FD_AMT,
+         CASH_BAL,
+         RIGHT_BAL,
+         BEG_DATE,
+         END_DATE,
+         FINANCE_RATE,
+         REPAY_TYPE,
+         YEAR_DAYS,
+         FD_TYPE,
+         REPAY_DAY,
+         FD_STATE,
+         REDEEM,
+         FD_FLAG,
+         PACKET_STS,
+         PACKET_DATE,
+         TRAN_STS,
+         TRAN_DATE,
+         FILLER,
+         OP_NO,
+         TX_DATE,
+         UP_OPNO,
+         UP_DATE
+         )VALUES(
+         #fundNo#,
+         #fundName#,
+         #projNo#,
+         #projName#,
+         #curNo#,
+         #fdInitialAmt#,
+         #fdAmt#,
+         #cashBal#,
+         #rightBal#,
+         #begDate#,
+         #endDate#,
+         #financeRate#,
+         #repayType#,
+         #yearDays#,
+         #fdType#,
+         #repayDay#,
+         #fdState#,
+         #reDeem#,
+         #fdFlag#,
+         #packetSts#,
+         #packetDate#,
+         #tranSts#,
+         #tranDate#,
+         #filler#,
+         #opNo#,
+         #txDate#,
+         #upOpno#,
+         #upDate#
+         )
+          ]]>
+    </insert>
+    
+      
+    <!-- 表删除 -->
+    <delete id="FundBase.del">
+        <![CDATA[
+               DELETE FROM FUND_BASE
+                 WHERE
+               	FUND_NO = #fundNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundBase.update">
+        <![CDATA[
+         UPDATE FUND_BASE set
+         FUND_NO=#fundNo#,
+         FUND_NAME=#fundName#,
+         PROJ_NO=#projNo#,
+         PROJ_NAME=#projName#,
+         CUR_NO=#curNo#,
+         FD_INITIAL_AMT=#fdInitialAmt#,
+         FD_AMT=#fdAmt#,
+         CASH_BAL=#cashBal#,
+         RIGHT_BAL=#rightBal#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         FINANCE_RATE=#financeRate#,
+         REPAY_TYPE=#repayType#,
+         YEAR_DAYS=#yearDays#,
+         FD_TYPE=#fdType#,
+         REPAY_DAY=#repayDay#,
+         FD_STATE=#fdState#,
+         REDEEM=#reDeem#,
+         FD_FLAG=#fdFlag#,
+         PACKET_STS=#packetSts#,
+         PACKET_DATE=#packetDate#,
+         TRAN_STS=#tranSts#,
+         TRAN_DATE=#tranDate#,
+         FILLER=#filler#,
+         UP_OPNO=#upOpno#,
+         UP_DATE=#upDate#
+          WHERE
+               	FUND_NO = #fundNo#        ]]>
+    </update>
+   <!-- 字段修改 -->
+    <update id="FundBase.updateCash">
+        <![CDATA[
+         UPDATE FUND_BASE set
+         FD_AMT=FD_AMT+#fdAmt#,
+         CASH_BAL=CASH_BAL+#fdAmt#
+         WHERE
+               	FUND_NO = #fundNo#        ]]>
+    </update>   
+    <!-- 转让操作 -->
+    <update id="LnDue.updateBytransts">
+        <![CDATA[
+         UPDATE LN_DUE set
+         TRAN_STS='02',
+         TRAN_DATE=FUN_SYSTIME
+         WHERE
+         FUND_NO = #fundNo#        ]]>
+    </update>    
+     <!-- 表查询ById -->
+    <select id="FundBase.getById"  resultMap="RM.FundBase">
+        SELECT FUND_NO,
+         FUND_NAME,
+         PROJ_NO,
+         PROJ_NAME,
+         CUR_NO,
+         FD_INITIAL_AMT,
+         FD_AMT,
+         CASH_BAL,
+         RIGHT_BAL,
+         BEG_DATE,
+         END_DATE,
+         FINANCE_RATE,
+         REPAY_TYPE,
+         YEAR_DAYS,
+         FD_TYPE,
+         FD_STATE,
+         REDEEM,
+         FD_FLAG,
+         PACKET_STS,
+         PACKET_DATE,
+         TRAN_STS,
+         TRAN_DATE,
+         FILLER,
+         fun_getusername(OP_NO) as OP_NO,
+         TX_DATE,
+         fun_getusername(UP_OPNO) as UP_OPNO,
+         UP_DATE,
+         REPAY_DAY
+        <![CDATA[
+             FROM FUND_BASE 
+         WHERE 
+               	FUND_NO = #fundNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundBase.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundName">
+                  <isNotEmpty prepend="AND" property="fundName">
+                      FUND_NAME like '%$fundName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="begDate">
+                  <isNotEmpty prepend="AND" property="begDate">
+                      BEG_DATE = #begDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="endDate">
+                  <isNotEmpty prepend="AND" property="endDate">
+                      END_DATE = #endDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fdType">
+                  <isNotEmpty prepend="AND" property="fdType">
+                      FD_TYPE = #fdType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fdState">
+                  <isNotEmpty prepend="AND" property="fdState">
+                      FD_STATE = #fdState#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="opNo">
+                  <isNotEmpty prepend="AND" property="opNo">
+                      PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#opNo#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundBase.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_BASE <include refid="FundBase.findPage.where"/>
+    </select>
+    <!--查询是否存在不符合规定的数据-->
+    <select id="FundBase.unmatched" resultClass="int">
+        SELECT count(*) FROM FUND_BASE WHERE PROJ_NO = #projNo# 
+                                         AND (YEAR_DAYS &lt; 1 OR YEAR_DAYS IS NULL OR FINANCE_RATE =0 OR FINANCE_RATE IS NULL) 
+    </select>
+     <!--查询是否存在已插入的数据-->
+    <select id="FundBase.unmatcheds" resultClass="int">
+       select count(*) from fund_base a ,fund_pay_plan b,proj_parm c
+        where a.fund_no = b.fund_no
+          and a.proj_no = c.proj_no
+          and a.end_date-to_char(sysdate,'yyyymmdd')&lt;=c.FUND_END_DAYS
+          and a.end_date-to_char(sysdate,'yyyymmdd')&gt;0
+          and not exists (select 1 from daily_event c where substr(c.END_TIME,0,8)= b.pay_date and c.title='资金到期兑付')
+    </select>
+    <!--select id="FundBase.unmatcheds" resultClass="int">
+       select count(*) from fund_base a ,proj_parm b
+        where a.proj_no = b.proj_no
+          and trunc(a.end_date)-trunc(to_char(sysdate,'yyyymmdd'))&lt;=b.FUND_END_DAYS
+          and trunc(a.end_date)-trunc(to_char(sysdate,'yyyymmdd'))&gt;0 
+          and not exists  (select substr(b.event_desc,5,11) from daily_event b where a.fund_no=substr(b.event_desc,5,11))
+    </select-->    
+    <!--资金清算提醒-->
+    <select id="FundBase.getFundRepayRemind" resultClass="int">
+       	SELECT COUNT(*)
+		FROM FUND_REPAY_PLAN a
+		WHERE TRUNC(a.REPAY_DATE)-TRUNC(TO_CHAR(sysdate,'yyyymmdd')) &lt;=10
+		AND TRUNC(a.REPAY_DATE)  -TRUNC(TO_CHAR(sysdate,'yyyymmdd'))  &gt; 0
+		AND NOT EXISTS
+  		(SELECT SUBSTR(b.event_desc,5,11)
+  		FROM daily_event b
+  		WHERE a.fund_no=SUBSTR(b.event_desc,5,11)
+  		)
+    </select>
+    
+    <!-- 分页查询 -->
+    <select id="FundBase.findByPage" resultMap="RM.FundBase">
+        SELECT <include refid="FundBase.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundBase.columns"/> FROM FUND_BASE
+                    <include refid="FundBase.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundBase.findByFdflag" resultMap="RM.FundBase">
+        SELECT <include refid="FundBase.columns"/>
+        FROM (SELECT A.* 
+                FROM FUND_BASE A,RPT_PROJ B, PROJ_MANG C
+                WHERE A.PROJ_NO = B.PROJ_NO
+                  AND B.PROJ_NO = C.PROJ_NO
+                  AND C.LOGIN_ID = #opNo#
+                  AND A.FD_FLAG = '02'
+             ) 
+    </select>    
+    <select id="FundBase.echarts" resultMap="RM.FundBase">
+        SELECT <include refid="FundBase.columns"/>
+        	from 
+    </select>
+     <!-- 获得按照资金类型获取总金额 -->
+    <select id="FundBase.findPage.getByfdTypeCount" resultClass="Double">
+        SELECT NVL(sum(FD_AMT),0) AS SUM_AMT FROM FUND_BASE WHERE PROJ_NO = #projNo# AND FD_TYPE = #fdType# AND FD_FLAG = '01' AND FD_STATE in ('01','03')
+    </select>
+     <!-- 获得按照资金类型获取现金金额 -->
+    <select id="FundBase.findPage.getByfdTypeCashbal" resultClass="Double">
+        SELECT NVL(sum(CASH_BAL),0) AS SUM_AMT FROM FUND_BASE WHERE PROJ_NO = #projNo# AND FD_TYPE = #fdType# 
+    </select>
+    <!-- 调用存贮过程-->
+    <parameterMap id="proParameters" class="map" >    
+        <parameter property="TXDATE" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>     
+        <parameter property="PROJNO" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+        <parameter property="MTXDATE" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>      
+        <parameter property="OPNO" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+        <parameter property="FLAG" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>    
+    </parameterMap>
+    <procedure id="FundBase.sync" parameterMap="proParameters" >  
+      {call PKG_FUND.PROC_SYNC_FUND(?,?,?,?,?)}  
+    </procedure>
+    <!-- 调用存贮过程单笔资金-->
+    <parameterMap id="fundSingle" class="map" >    
+        <parameter property="TXDATE" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>     
+        <parameter property="PROJNO" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+        <parameter property="MTXDATE" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>      
+        <parameter property="OPNO" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+        <parameter property="FLAG" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+        <parameter property="FUNDNO" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/> 
+    </parameterMap>
+    <procedure id="FundBase.syncSingle" parameterMap="fundSingle" >  
+      {call PKG_FUND.PROC_SYNC_FUND_SINGLE(?,?,?,?,?,?)}  
+    </procedure>
+    <!-- 查询项目对应最大的明细日期 -->
+    <select id="FundDetail.findMax.txdate" resultClass="string">
+        SELECT nvl(max(b.tx_date),10000101) FROM fund_base a ,fund_detail b where a.fund_no=b.fund_no and a.PROJ_NO = #projNo# 
+    </select>
+    <!-- 查询单笔资金对应最大的明细日期 -->
+    <select id="FundDetail.findMax.txdateSingle" resultClass="string">
+        SELECT nvl(max(b.tx_date),10000101) FROM fund_base a ,fund_detail b where a.fund_no=b.fund_no and a.PROJ_NO = #projNo# and a.fund_no = #fundNo#
+    </select>
+</sqlMap>

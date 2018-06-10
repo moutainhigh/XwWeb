@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcComHoliday" type="accounting.domain.sys.AcComHoliday"/>
+    <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcComHoliday" class="AcComHoliday">
+      <result property="begDt" column="BEG_DT"/>
+      <result property="endDt" column="END_DT"/>
+      <result property="days" column="DAYS" nullValue="0"/>
+      <result property="typ" column="TYP"/>
+      <result property="hoId" column="HO_ID"/>
+    </resultMap>
+    <!-- 表字段 -->
+    <sql id="ac_com_holiday.columns">
+        <![CDATA[
+            BEG_DT,
+            END_DT,
+            DAYS,
+            TYP,
+            HO_ID
+        ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcComHoliday.insert">
+        <![CDATA[
+          INSERT INTO AC_COM_HOLIDAY(
+            BEG_DT,
+            END_DT,
+            DAYS,
+            TYP,
+            HO_ID
+           )VALUES(
+            #begDt#,
+            #endDt#,
+            #days#,
+            #typ#,
+            #hoId#
+            )
+        ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcComHoliday.del">
+        <![CDATA[
+               DELETE FROM AC_COM_HOLIDAY
+                 WHERE
+               beg_dt=#begDt# and end_dt=#endDt# and typ=#typ#
+        ]]>
+    </delete>
+    
+    <delete id="AcComHoliday.delByBegDt">
+        <![CDATA[
+               DELETE FROM AC_COM_HOLIDAY
+                 WHERE
+               BEG_DT LIKE '%$begDt%$%'
+        ]]>
+    </delete>
+    
+    <select id="AcComHoliday.getListByBegDt" resultMap="RM.AcComHoliday">
+        SELECT <include refid="ac_com_holiday.columns"/> FROM AC_COM_HOLIDAY WHERE BEG_DT LIKE '%$begDt$%'
+    </select>
+    <!-- 表修改 -->
+    <update id="AcComHoliday.update">
+        <![CDATA[
+            UPDATE AC_COM_HOLIDAY set
+               BEG_DT=#begDt#,
+               END_DT=#endDt#,
+               DAYS=#days#,
+               TYP=#typ#,
+               HO_ID=#hoId#
+            WHERE
+                 beg_dt=#begDt# and end_dt=#endDt# and typ=#typ#
+        ]]>
+    </update>
+     <!-- 按系统时间查询自定义节假日 -->
+    <select id="AcComHoliday.findHolidayBySysDate" resultMap="RM.AcComHoliday">
+        SELECT <include refid="ac_com_holiday.columns"/> 
+         <![CDATA[
+         FROM AC_COM_HOLIDAY where BEG_DT LIKE '%$sysDate$%'
+         ]]>
+    </select>
+    <!-- 表查询ById -->
+    <select id="AcComHoliday.getById"  resultMap="RM.AcComHoliday">
+        SELECT <include refid="ac_com_holiday.columns"/>
+        <![CDATA[
+             FROM Ac_Com_Holiday
+         WHERE 
+             beg_dt=#begDt# and end_dt=#endDt# and typ=#typ#
+        ]]>
+     </select>
+     
+          <!-- 查询当天是节假日的记录 -->
+      <select id="AcComHoliday.getByDay"  resultMap="RM.AcComHoliday">
+        SELECT <include refid="ac_com_holiday.columns"/>
+        <![CDATA[
+             FROM Ac_Com_Holiday
+         WHERE 
+             beg_dt<=#day# and end_dt>=#day#
+        ]]>
+     </select>
+     
+    <!-- 分页查询条件 -->
+    <sql id="AcComHoliday.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="begDt">
+                      <isNotEmpty prepend="AND" property="begDt">
+                          beg_dt=#begDt# 
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  
+                  <isPropertyAvailable property="endDt">
+                      <isNotEmpty prepend="AND" property="endDt">
+                         end_dt=#endDt# 
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  
+                  <isPropertyAvailable property="typ">
+                      <isNotEmpty prepend="AND" property="typ">
+                          typ=#typ#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcComHoliday.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_COM_HOLIDAY <include refid="AcComHoliday.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcComHoliday.findByPage" resultMap="RM.AcComHoliday">
+        SELECT <include refid="ac_com_holiday.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM 
+            (SELECT <include refid="ac_com_holiday.columns"/> FROM AC_COM_HOLIDAY
+                    <include refid="AcComHoliday.findPage.where"/>
+             ) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+</sqlMap>

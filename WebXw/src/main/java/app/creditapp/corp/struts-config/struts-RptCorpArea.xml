@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<!-- START SNIPPET: xworkSample -->
+<struts>
+	<package name="RptCorpAreaPackage" namespace="/" extends="struts-default">
+
+		<action name="RptCorpAreaAction_del" method="del" class="app.creditapp.corp.action.RptCorpAreaAction">
+        	<result name="del" type="redirect">RptCorpAreaAction_findByPage.action</result>
+        </action>
+        <action name="RptCorpAreaAction_insert" method="insert" class="app.creditapp.corp.action.RptCorpAreaAction">
+        	<result name="insert" type="redirect">RptCorpAreaAction_findByPage.action</result>
+        </action>
+        <action name="RptCorpAreaAction_update" method="update" class="app.creditapp.corp.action.RptCorpAreaAction">
+        	<result name="update" type="redirect">RptCorpAreaAction_findByPage.action</result>
+        </action>
+        <action name="RptCorpAreaAction_*" method="{1}" class="app.creditapp.corp.action.RptCorpAreaAction">
+            <result name="{1}">/creditapp/strgg/RptCorpArea_{1}.jsp</result>
+        </action>
+        
+    </package>
+</struts>

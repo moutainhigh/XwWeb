@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="FundDetailAction" namespace="/" extends="struts-cms">
+
+	    <!--分页查询 -->
+		<action name="FundDetailAction_findByPage" method="findByPage" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="list">/creditapp/fund/FundDetail_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="FundDetailAction_input" method="input" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="input">/creditapp/fund/FundDetail_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="FundDetailAction_del" method="del" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="list">/creditapp/fund/FundDetail_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="FundDetailAction_getById" method="getById" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="detail">/creditapp/fund/FundDetail_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="FundDetailActionInsert" method="insert" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="input">/creditapp/fund/FundDetail_Insert.jsp</result>
+			<result name="detail">/creditapp/fund/FundDetail_Detail.jsp</result>
+			<result name="detail1">/creditapp/fund/FundDetail_Detail_U.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="FundDetailActionUpdate" method="update" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="input">/creditapp/fund/FundDetail_Detail.jsp</result>
+			<result name="detail">/creditapp/fund/FundDetail_Detail.jsp</result>
+			<result name="detail1">/creditapp/fund/FundDetail_Detail_U.jsp</result>
+		</action>
+		
+		<!-- 导入页面 -->
+		<action name="FundDetailAction_uploadInput" method="uploadInput" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="uploadInput">/creditapp/fund/FundDetail_uploadInput.jsp</result>
+		</action>	
+		<!-- 导入 -->
+		<action name="FunDetailAction_upload" method="upload" class="app.creditapp.fund.action.FundDetailAction">
+			<result name="input">/creditapp/fund/FundDetail_uploadInput.jsp</result>
+			<result name="upload" type="redirect">FundDetailAction_findByPage.action</result>
+			<result name="list">/creditapp/fund/FundDetail_List.jsp</result>
+		</action>		
+		<!-- 导出文件 -->
+		<action name="FunDetailAction_download" method="download" class="app.creditapp.fund.action.FundDetailAction">
+			<param name="downloadFile">${downloadFile}</param>
+			<result name="download" type="stream">
+				<param name="contentType">text/plain</param>
+				<param name="inputName">targetFile</param>
+				<param name="contentDisposition">attachment;filename="${downfName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+
+

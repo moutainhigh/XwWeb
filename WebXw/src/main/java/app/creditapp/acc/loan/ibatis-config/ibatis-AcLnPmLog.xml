@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLnPmLog" type="app.creditapp.acc.loan.entity.AcLnPmLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnPmLog" class="AcLnPmLog">
+    <result property="perdNo" column="PERD_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="cancelTraceNo" column="CANCEL_TRACE_NO" jdbcType="Int"/>
+    <result property="chrgId" column="CHRG_ID" />
+    <result property="cancelDt" column="CANCEL_DT" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="repayPrcpAmt" column="REPAY_PRCP_AMT" jdbcType="double"/>
+    <result property="repayNormInt" column="REPAY_NORM_INT" jdbcType="double"/>
+    <result property="repayFineInt" column="REPAY_FINE_INT" jdbcType="double"/>
+    <result property="repayFeeAmt" column="REPAY_FEE_AMT" jdbcType="double"/>
+    <result property="prcpSts" column="PRCP_STS" />
+    <result property="intSts" column="INT_STS" />
+    <result property="chrgSts" column="CHRG_STS" />
+    <result property="txDt" column="TX_DT" />
+    <result property="cancelInd" column="CANCEL_IND" />
+    
+    </resultMap>
+    <resultMap id="RM.AcLnPmLogLnDue" class="AcLnPmLog">
+    <result property="perdNo" column="PERD_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="cancelTraceNo" column="CANCEL_TRACE_NO" jdbcType="Int"/>
+    <result property="cancelDt" column="CANCEL_DT" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="repayPrcpAmt" column="REPAY_PRCP_AMT" jdbcType="double"/>
+    <result property="repayNormInt" column="REPAY_NORM_INT" jdbcType="double"/>
+    <result property="repayFineInt" column="REPAY_FINE_INT" jdbcType="double"/>
+    <result property="repayFeeAmt" column="REPAY_FEE_AMT" jdbcType="double"/>
+    <result property="prcpSts" column="PRCP_STS" />
+    <result property="intSts" column="INT_STS" />
+    <result property="chrgSts" column="CHRG_STS" />
+    <result property="txDt" column="TX_DT" />
+    <result property="cancelInd" column="CANCEL_IND" />
+    <result property="cifName" column="CIF_NAME" />
+     <result property="brName" column="BR_NAME" />
+      <result property="dueAmt" column="DUE_AMT" />
+      <result property="bal" column="BAL" />
+    
+    </resultMap>
+    
+    <resultMap id="RM.PmRepay" class="AcLnPmLog">
+    <result property="repayPrcpAmt" column="REPAY_PRCP_AMT" jdbcType="double"/>
+    <result property="repayNormInt" column="REPAY_NORM_INT" jdbcType="double"/>
+    <result property="repayFineInt" column="REPAY_FINE_INT" jdbcType="double"/>
+    <result property="repayFeeAmt" column="REPAY_FEE_AMT" jdbcType="double"/>
+    </resultMap>
+     <sql id="AcLnPmLog.columns">
+        <![CDATA[
+         PERD_NO,
+         LOAN_NO,
+         TRACE_NO,
+         CANCEL_TRACE_NO,
+         CANCEL_DT,
+         CHRG_ID,
+         PACT_NO,
+         BR_NO,
+         REPAY_PRCP_AMT,
+         REPAY_NORM_INT,
+         REPAY_FINE_INT,
+         REPAY_FEE_AMT,
+         PRCP_STS,
+         INT_STS,
+         CHRG_STS,
+         TX_DT,
+         CANCEL_IND,
+         fun_getbrname(br_no) as BR_NAME
+          ]]>
+    </sql>
+    <sql id="AcLnPmLogLnDue.columns">
+        <![CDATA[
+         PERD_NO,
+         LOAN_NO,
+         TRACE_NO,
+         CANCEL_TRACE_NO,
+         CANCEL_DT,
+         PACT_NO,
+         BR_NO,
+         CHRG_ID,
+         REPAY_PRCP_AMT,
+         REPAY_NORM_INT,
+         REPAY_FINE_INT,
+         REPAY_FEE_AMT,
+         PRCP_STS,
+         INT_STS,
+         CHRG_STS,
+         TX_DT,
+         CANCEL_IND,
+         CIF_NAME,
+         BAL,
+         DUE_AMT,
+         BR_NAME,
+         PROJ_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLnPmLog.insert">
+        <![CDATA[
+        INSERT INTO AC_LN_PM_LOG(
+         PERD_NO,
+         LOAN_NO,
+         TRACE_NO,
+         CANCEL_TRACE_NO,
+         CANCEL_DT,
+         CHRG_ID,
+         PACT_NO,
+         BR_NO,
+         REPAY_PRCP_AMT,
+         REPAY_NORM_INT,
+         REPAY_FINE_INT,
+         REPAY_FEE_AMT,
+         PRCP_STS,
+         INT_STS,
+         CHRG_STS,
+         TX_DT,
+         CANCEL_IND
+         )VALUES(
+         #perdNo#,
+         #loanNo#,
+         #traceNo#,
+         #cancelTraceNo#,
+         #cancelDt#,
+         #chrgId#,
+         #pactNo#,
+         #brNo#,
+         #repayPrcpAmt#,
+         #repayNormInt#,
+         #repayFineInt#,
+         #repayFeeAmt#,
+         #prcpSts#,
+         #intSts#,
+         #chrgSts#,
+         #txDt#,
+         #cancelInd#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLnPmLog.del">
+        <![CDATA[
+               DELETE FROM AC_LN_PM_LOG
+                 WHERE
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+  and trace_no = #traceNo#
+        ]]>
+    </delete>
+    <select id="AcLnPmLog.procReaccFund" resultMap="RM.AcLnPmLog">
+        SELECT <include refid="AcLnPmLog.columns"/>
+        FROM AC_LN_PM_LOG G
+		 WHERE G.TRACE_NO = #traceNo#
+		   AND G.PERD_NO NOT IN (SELECT S.CNT
+		                           FROM COMPST_MES S
+		                          WHERE S.BR_NO = G.BR_NO
+		                            AND S.PACT_NO = G.PACT_NO)
+		   AND G.REPAY_PRCP_AMT + G.REPAY_NORM_INT &gt; 0
+    </select>
+    <!-- 表修改 -->
+    <update id="AcLnPmLog.update">
+        <![CDATA[
+         UPDATE AC_LN_PM_LOG set
+         PERD_NO=#perdNo#,
+         LOAN_NO=#loanNo#,
+         TRACE_NO=#traceNo#,
+         CANCEL_TRACE_NO=#cancelTraceNo#,
+         CANCEL_DT=#cancelDt#,
+          CHRG_ID=#chrgId#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         REPAY_PRCP_AMT=#repayPrcpAmt#,
+         REPAY_NORM_INT=#repayNormInt#,
+         REPAY_FINE_INT=#repayFineInt#,
+         REPAY_FEE_AMT=#repayFeeAmt#,
+         PRCP_STS=#prcpSts#,
+         INT_STS=#intSts#,
+         CHRG_STS=#chrgSts#,
+         TX_DT=#txDt#,
+         CANCEL_IND=#cancelInd#
+          WHERE
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+  and trace_no = #traceNo#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcLnPmLog.getById"  resultMap="RM.AcLnPmLog">
+        SELECT <include refid="AcLnPmLog.columns"/>
+        <![CDATA[
+             FROM AC_LN_PM_LOG 
+         WHERE 
+               	PERD_NO = #perdNo#  and loan_no = #loanNo#
+  and trace_no = #traceNo#
+        ]]>
+     </select>
+     
+     <select id="AcLnPmLog.getListByTraceNoAndLoanNo"  resultMap="RM.AcLnPmLog">
+        SELECT <include refid="AcLnPmLog.columns"/>
+        <![CDATA[
+             FROM AC_LN_PM_LOG 
+         WHERE 
+               	loan_no = #loanNo#
+  and trace_no = #traceNo#
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLnPmLog.findPage.where">
+        
+        	<isPropertyAvailable property="perdNo">
+                  <isNotEmpty prepend="AND" property="perdNo">
+                      F.PERD_NO = #perdNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      F.TRACE_NO = #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      F.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      F.BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="txDt">
+                  <isNotEmpty prepend="AND" property="txDt">
+                      F.TX_DT = #txDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+              <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                     L.CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+         <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                     l.proj_no in (select proj_no from proj_mang where login_id = #loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLnPmLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_PM_LOG F, LN_DUE L WHERE F.LOAN_NO=L.DUE_NO
+         <include refid="AcLnPmLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLnPmLog.findByPage" resultMap="RM.AcLnPmLogLnDue">
+        SELECT 
+			  <include refid="AcLnPmLogLnDue.columns"/>
+            
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT
+		         F.PERD_NO,
+		         F.LOAN_NO,
+		         F.TRACE_NO,
+		         F.CANCEL_TRACE_NO,
+		         F.CANCEL_DT,
+		         F.PACT_NO,
+		         F.BR_NO,
+		         F.CHRG_ID,
+		         F.REPAY_PRCP_AMT,
+		         F.REPAY_NORM_INT,
+		         F.REPAY_FINE_INT,
+		         F.REPAY_FEE_AMT,
+		         F.PRCP_STS,
+		         F.INT_STS,
+		         F.CHRG_STS,
+		         F.TX_DT,
+		         F.CANCEL_IND,
+		         L.BAL,
+		         L.DUE_AMT,
+		         fun_getbrname(F.BR_NO) AS BR_NAME,
+		         L.CIF_NAME,
+		         L.PROJ_NO
+           		 FROM AC_LN_PM_LOG F, LN_DUE L WHERE F.LOAN_NO=L.DUE_NO 
+                    <include refid="AcLnPmLog.findPage.where"/> order by F.TX_DT DESC,F.PERD_NO ASC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+        	
+    </select>
+    
+    <select id="AcLnPmLog.getPmLogByCompst" resultMap="RM.AcLnPmLog">
+        SELECT <include refid="AcLnPmLog.columns"/>
+        FROM AC_LN_PM_LOG WHERE #compstDt#>=TX_DT 
+        <isPropertyAvailable property="lastCompstDt">
+                  <isNotEmpty prepend="AND" property="lastCompstDt">
+                      TX_DT >= #lastCompstDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    
+    <!-- 回购测算时获取未代偿所有还款记录 -->
+     <select id="AcLnPmLog.getSumRepayByLoanNo" resultMap="RM.PmRepay">
+        select nvl(sum(repay_prcp_amt),0) as repay_prcp_amt,nvl(sum(repay_norm_int),0) as repay_norm_int,
+       			 nvl(sum(repay_fine_int),0) as repay_fine_int,nvl(sum(repay_fee_amt),0) as repay_fee_amt 
+       			 from ac_ln_pm_log where loan_no=#loanNo# 
+       			 and perd_no not in(select perd_no from aft_compst where loan_no=#loanNo# and compst_sts='02')
+    </select>
+    
+</sqlMap>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="TimeController" type="app.creditapp.sys.entity.TimeController"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.TimeController" class="TimeController">
+    <result property="tcId" column="TC_ID" jdbcType="Int"/>
+    <result property="tcName" column="TC_NAME" />
+    <result property="tcState" column="TC_STATE" />
+    <result property="cronExpression" column="CRON_EXPRESSION" />
+    <result property="startTime" column="START_TIME" />
+    <result property="endTime" column="END_TIME" />
+    <result property="repeatCount" column="REPEAT_COUNT" jdbcType="Int"/>
+    <result property="repeatInterval" column="REPEAT_INTERVAL" jdbcType="Double"/>
+    <result property="timingtime" column="TIMINGTIME" />
+    <result property="triggerType" column="TRIGGER_TYPE" />
+    <result property="repeatIntTime" column="REPEAT_INTTIME" />
+    <result property="jobMode" column="JOB_MODE" />
+    <result property="week" column="WEEK" />
+    <result property="stId" column="ST_ID" jdbcType="Int"/>
+    <result property="jobName" column="JOB_NAME"/>
+    </resultMap>
+    
+    
+    <resultMap id="RM.TimeControllerStart" class="TimeController">
+	    <result property="tcState" column="TC_STATE" />
+	    <result property="cronExpression" column="CRON_EXPRESSION" />
+	    <result property="startTime" column="START_TIME" />
+	    <result property="endTime" column="END_TIME" />
+	    <result property="repeatCount" column="REPEAT_COUNT" jdbcType="Int"/>
+	    <result property="repeatInterval" column="REPEAT_INTERVAL" jdbcType="Double"/>
+	    <result property="triggerType" column="TRIGGER_TYPE" />
+	    <result property="tcName" column="TC_NAME" />
+	    <result property="jobGroup" column="JOB_GROUP" />
+	    <result property="isConcurrent" column="IS_CONCURRENT" />
+	    <result property="springId" column="SPRING_ID" />
+	    <result property="methodName" column="METHOD_NAME" />
+	    <result property="beanClass" column="BEAN_CLASS" />
+	    <result property="argumentsStr" column="ARGUMENTS_STR" />
+    </resultMap>
+    
+    <resultMap id="RM.GroupAndName" class="TimeController">
+    <result property="jobGroup" column="JOB_GROUP" />
+    <result property="tcId" column="TC_ID" jdbcType="Int"/>
+    </resultMap>
+    <sql id="TimeController.columnsStart">
+        <![CDATA[
+         
+         TC_STATE,
+         CRON_EXPRESSION,
+         START_TIME,
+         END_TIME,
+         REPEAT_COUNT,
+         REPEAT_INTERVAL,
+         TRIGGER_TYPE,
+         TC_NAME,
+         JOB_GROUP,
+         IS_CONCURRENT,
+         SPRING_ID,
+         METHOD_NAME,
+         BEAN_CLASS,
+         ARGUMENTS_STR
+          ]]>
+    </sql>
+     <sql id="TimeController.columns">
+        <![CDATA[
+         TC_ID,
+         TC_NAME,
+         TC_STATE,
+         CRON_EXPRESSION,
+         START_TIME,
+         END_TIME,
+         REPEAT_COUNT,
+         REPEAT_INTERVAL,
+         TIMINGTIME,
+         TRIGGER_TYPE,
+         REPEAT_INTTIME,
+         JOB_MODE,
+         WEEK,
+         ST_ID,
+         FUN_GETSCNAME(ST_ID) AS JOB_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="TimeController.insert">
+        <![CDATA[
+        INSERT INTO TIME_CONTROLLER(
+         TC_ID,
+         TC_NAME,
+         TC_STATE,
+         CRON_EXPRESSION,
+         START_TIME,
+         END_TIME,
+         REPEAT_COUNT,
+         REPEAT_INTERVAL,
+         TIMINGTIME,
+         TRIGGER_TYPE,
+         REPEAT_INTTIME,
+         JOB_MODE,
+         WEEK,
+         ST_ID
+         )VALUES(
+         #tcId#,
+         #tcName#,
+         #tcState#,
+         #cronExpression#,
+         #startTime#,
+         #endTime#,
+         #repeatCount#,
+         #repeatInterval#,
+         #timingtime#,
+         #triggerType#,
+         #repeatIntTime#,
+         #jobMode#,
+         #week#,
+         #stId#
+         )
+         ]]>
+    </insert>
+    
+ 	<select id="TimeController.getTcId"  resultClass="int">
+		SELECT  TIME_CONTROLLER_SEQ.NEXTVAL AS TC_ID FROM DUAL
+ 	</select>
+   
+    <!-- 表删除 -->
+    <delete id="TimeController.del">
+        <![CDATA[
+               DELETE FROM TIME_CONTROLLER
+                 WHERE
+               	TC_ID = #tcId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="TimeController.update">
+        <![CDATA[
+         UPDATE TIME_CONTROLLER set
+         TC_ID=#tcId#,
+         TC_NAME=#tcName#,
+         TC_STATE=#tcState#,
+         CRON_EXPRESSION=#cronExpression#,
+         START_TIME=#startTime#,
+         END_TIME=#endTime#,
+         REPEAT_COUNT=#repeatCount#,
+         REPEAT_INTERVAL=#repeatInterval#,
+         TIMINGTIME=#timingtime#,
+         TRIGGER_TYPE=#triggerType#,
+         REPEAT_INTTIME=#repeatIntTime#,
+         JOB_MODE=#jobMode#,
+         WEEK=#week#,
+         ST_ID=#stId#
+          WHERE
+               	TC_ID = #tcId#        ]]>
+    </update>
+    <!-- 更新定时策略状态 -->
+    <update id="TimeController.updateTimeSts">
+         UPDATE TIME_CONTROLLER set TC_STATE=#tcState#
+         where ST_ID = #stId# or TC_ID = #tcId# 
+    </update>
+    <!-- 更新定时策略状态 -->
+    <update id="TimeController.startTimeSts">
+    <![CDATA[
+         UPDATE TIME_CONTROLLER set TC_STATE=#tcState#
+         WHERE TC_ID = #tcId#   ]]>
+    </update>
+    <update id="TimeController.updateTimeController">
+    	UPDATE time_controller set ST_ID=#seId# WHERE TC_ID = #tcId# 
+    </update>
+    <!-- 表查询ById -->
+    <select id="TimeController.getById"  resultMap="RM.TimeController">
+        SELECT <include refid="TimeController.columns"/>
+        <![CDATA[
+             FROM TIME_CONTROLLER 
+         WHERE 
+               	TC_ID = #tcId#        ]]>
+     </select>
+     <!-- 表查询ById -->
+    <select id="TimeController.getByStId"  resultMap="RM.TimeController">
+        SELECT <include refid="TimeController.columns"/>
+        <![CDATA[
+             FROM TIME_CONTROLLER 
+         WHERE 
+               	ST_ID = #stId#        ]]>
+     </select>
+      <!-- 表查询ById -->
+    <select id="TimeController.getStart"  resultMap="RM.TimeControllerStart">
+        SELECT <include refid="TimeController.columnsStart"/>
+        FROM  
+            (SELECT
+            			   t.tc_state, 
+					       t.cron_expression, 
+					       t.start_time, 
+					       t.end_time,
+					       t.repeat_count,
+					       t.repeat_interval,
+					       t.trigger_type,
+					       t.tc_name,
+					       s.job_group,
+					       s.is_concurrent,
+					       s.spring_id,
+					       s.method_name,
+					       s.bean_class,
+					       s.arguments_str
+					  from schedule_task s, time_controller t
+					 where s.se_id = t.st_id
+					   and t.tc_state = '1'
+        	)
+     </select>
+    <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="TimeController.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="tcId">
+                  <isNotEmpty prepend="AND" property="tcId">
+                      TC_ID = #tcId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="tcState">
+                  <isNotEmpty prepend="AND" property="tcState">
+                      TC_STATE = #tcState#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="repeatInterval">
+                  <isNotEmpty prepend="AND" property="repeatInterval">
+                      REPEAT_INTERVAL = #repeatInterval#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="stId">
+                  <isNotEmpty prepend="AND" property="stId">
+                      ST_ID = #stId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="TimeController.findPage.count" resultClass="int">
+        SELECT count(*) FROM TIME_CONTROLLER <include refid="TimeController.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="TimeController.findByPage" resultMap="RM.TimeController">
+        SELECT <include refid="TimeController.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="TimeController.columns"/> FROM TIME_CONTROLLER
+                    <include refid="TimeController.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <select id="TimeController.findGroupAndName" resultMap="RM.GroupAndName">
+        SELECT S.JOB_GROUP,T.Tc_Id　FROM SCHEDULE_TASK S,TIME_CONTROLLER T WHERE S.SE_ID=T.ST_ID AND T.TC_ID=#tcId#
+    </select>
+</sqlMap>

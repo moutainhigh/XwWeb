@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcFineFormula" type="app.creditapp.acc.option.entity.AcFineFormula"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcFineFormula" class="AcFineFormula">
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="fineId" column="FINE_ID" />
+    <result property="fineName" column="FINE_NAME" />
+    <result property="fineFormulaDes" column="FINE_FORMULA_DES" />
+    <result property="fineFormula" column="FINE_FORMULA" />
+    <result property="fineSts" column="FINE_STS" />
+    <result property="overRate" column="OVER_RATE"  jdbcType="double" nullValue="0.000000"/>
+    </resultMap>
+     <sql id="AcFineFormula.columns">
+        <![CDATA[
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         FINE_ID,
+         FINE_NAME,
+         FINE_FORMULA_DES,
+         FINE_FORMULA,
+         FINE_STS,
+         OVER_RATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcFineFormula.insert">
+        <![CDATA[
+        INSERT INTO AC_FINE_FORMULA(
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         FINE_ID,
+         FINE_NAME,
+         FINE_FORMULA_DES,
+         FINE_FORMULA,
+         FINE_STS,
+         OVER_RATE
+         )VALUES(
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #fineId#,
+         #fineName#,
+         #fineFormulaDes#,
+         #fineFormula#,
+         #fineSts#,
+         #overRate#
+         )
+          ]]>
+           <selectKey resultClass="java.lang.String" type="pre" keyProperty="fineId" >
+			SELECT AC_FINE_FORMULA_seq.nextval AS FINE_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcFineFormula.del">
+        <![CDATA[
+               DELETE FROM AC_FINE_FORMULA
+                 WHERE
+               	FINE_ID = #fineId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcFineFormula.update">
+        <![CDATA[
+         UPDATE AC_FINE_FORMULA set
+         UP_DATE=#upDate#,
+         FINE_ID=#fineId#,
+         FINE_NAME=#fineName#,
+         FINE_FORMULA_DES=#fineFormulaDes#,
+         FINE_FORMULA=#fineFormula#,
+         OVER_RATE=#overRate#
+          WHERE
+               	FINE_ID = #fineId#        ]]>
+    </update>
+    
+     <!-- 修改状态-->
+    <update id="AcFineFormula.updateReplanSts">
+        <![CDATA[
+         UPDATE AC_FINE_FORMULA set
+         FINE_STS=#fineSts#
+          WHERE
+               	FINE_ID = #fineId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcFineFormula.getById"  resultMap="RM.AcFineFormula">
+        SELECT <include refid="AcFineFormula.columns"/>
+        <![CDATA[
+             FROM AC_FINE_FORMULA 
+         WHERE 
+               	FINE_ID = #fineId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcFineFormula.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="fineId">
+                  <isNotEmpty prepend="AND" property="fineId">
+                      FINE_ID = #fineId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fineName">
+                  <isNotEmpty prepend="AND" property="fineName">
+                      FINE_NAME = #fineName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcFineFormula.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_FINE_FORMULA <include refid="AcFineFormula.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcFineFormula.findByPage" resultMap="RM.AcFineFormula">
+        SELECT <include refid="AcFineFormula.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcFineFormula.columns"/> FROM AC_FINE_FORMULA
+                    <include refid="AcFineFormula.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

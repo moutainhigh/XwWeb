@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="proj0014" title="收拨款接口数据表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="id" fieldtype="1" maxlength="10" formactiveid="1" labelalign="3" labelcol="1" labelname="唯一标识本条记录(唯一标识，外围系统通过该ID可获得生成的拨款台账主信息)" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="wsSts" fieldtype="1" maxlength="2" formactiveid="2" labelalign="3" labelcol="3" labelname="状态 0未处理 1已成功发送TA 2发生TA失败" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txTime" fieldtype="1" maxlength="18" formactiveid="3" labelalign="3" labelcol="1" labelname="记录产生日期" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="sdTime" fieldtype="1" maxlength="18" formactiveid="4" labelalign="3" labelcol="3" labelname="发送日期" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="transid" fieldtype="1" maxlength="20" formactiveid="5" labelalign="3" labelcol="1" labelname="TA返回交易ID" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="workflowstate" fieldtype="1" maxlength="10" formactiveid="6" labelalign="3" labelcol="3" labelname="收拨款审批状态 0:正常1：审批中2：审批拒绝3：审批通过" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="remarks" fieldtype="1" maxlength="200" formactiveid="7" labelalign="3" labelcol="1" labelname="审批意见" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="rptDate" fieldtype="1" maxlength="8" formactiveid="8" labelalign="3" labelcol="3" labelname="批量生成日期" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="businessflag" fieldtype="1" maxlength="1" formactiveid="9" labelalign="3" labelcol="1" labelname="业务标示1:账户拨款，2:信托付自营，3:账户收款，4:自营代垫，5:信托付保障基金，6:多账户拨款" mustinput="0" row="5"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="projectid" fieldtype="1" maxlength="20" formactiveid="10" labelalign="3" labelcol="3" labelname="项目ID" mustinput="0" row="5"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="ddtype" fieldtype="1" maxlength="1" formactiveid="11" labelalign="3" labelcol="1" labelname="代垫类型(条件必填，如果交易类型为自营代垫则必填 1:垫营业税及附加2:垫费)" mustinput="0" row="6"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="transdate" fieldtype="1" maxlength="10" formactiveid="12" labelalign="3" labelcol="3" labelname="业务日期(拨款日期) yyyy-MM-dd" mustinput="0" row="6"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="transreason" fieldtype="1" maxlength="100" formactiveid="13" labelalign="3" labelcol="1" labelname="拨款依据" mustinput="0" row="7"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="purpose" fieldtype="1" maxlength="25" formactiveid="14" labelalign="3" labelcol="3" labelname="用途" mustinput="0" row="7"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="memo" fieldtype="1" maxlength="300" formactiveid="15" labelalign="3" labelcol="1" labelname="摘要" mustinput="0" row="8"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="usercode" fieldtype="1" maxlength="20" formactiveid="16" labelalign="3" labelcol="3" labelname="创建人CODE" mustinput="0" row="8"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="staffapp" fieldtype="1" maxlength="1" formactiveid="17" labelalign="3" labelcol="1" labelname="拨款对象 (条件必填：自营代垫必填：0：外部账户 1：个人员工户2：信托户)" mustinput="0" row="9"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="amount" fieldtype="1" maxlength="24" formactiveid="18" labelalign="3" labelcol="3" labelname="交易金额(2位小数)" mustinput="0" row="9"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="bktranstypecode" fieldtype="1" maxlength="10" formactiveid="19" labelalign="3" labelcol="1" labelname="拨款的交易类型编码(拨款时必填)" mustinput="0" row="10"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="sktranstypecode" fieldtype="1" maxlength="10" formactiveid="20" labelalign="3" labelcol="3" labelname="收款的交易类型编码 (条件必填，信托付自营或者收款交易时必填)" mustinput="0" row="10"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="feetypecode" fieldtype="1" maxlength="10" formactiveid="21" labelalign="3" labelcol="1" labelname="费用类型编码(条件必填,费用类交易类型时候必填)" mustinput="0" row="11"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="taxtypecode" fieldtype="1" maxlength="10" formactiveid="22" labelalign="3" labelcol="3" labelname="税目类型编码(条件必填,税目类交易时，必填 )" mustinput="0" row="11"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="customid" fieldtype="1" maxlength="10" formactiveid="23" labelalign="3" labelcol="1" labelname="收款人ID" mustinput="0" row="12"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="accountid" fieldtype="1" maxlength="10" formactiveid="24" labelalign="3" labelcol="3" labelname="资金运用方账号ID/借据ID(条件必填，当明细交易类型存在账户类交易类型时候必填)" mustinput="0" row="12"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opbankacntno" fieldtype="1" maxlength="100" formactiveid="25" labelalign="3" labelcol="1" labelname="对方银行账号" mustinput="0" row="13"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="opbankname" fieldtype="1" maxlength="100" formactiveid="26" labelalign="3" labelcol="3" labelname="对方银行账号开户行" mustinput="0" row="13"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opbankacntname" fieldtype="1" maxlength="100" formactiveid="27" labelalign="3" labelcol="1" labelname="对方银行账号户名" mustinput="0" row="14"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="opbankprovince" fieldtype="1" maxlength="100" formactiveid="28" labelalign="3" labelcol="3" labelname="开户行所属省" mustinput="0" row="14"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opbankcity" fieldtype="1" maxlength="100" formactiveid="29" labelalign="3" labelcol="1" labelname="开户行所属市" mustinput="0" row="15"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="repaytypeid" fieldtype="1" maxlength="2" formactiveid="30" labelalign="3" labelcol="3" labelname="还款方式(条件必填，在内部账户中的业务分类为贷款的，且明细交易类型中为本金的，01正常收回，02资产重组，03资产剥离，04以资抵债，05担保代偿，06核损核销，07政策性还款，08债转股、09转出)" mustinput="0" row="15"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="appusercode" fieldtype="1" maxlength="50" formactiveid="31" labelalign="3" labelcol="1" labelname="内部人员(自营代垫拨款对象为个人时候必填)" mustinput="0" row="16"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="personnel" fieldtype="1" maxlength="100" formactiveid="32" labelalign="3" labelcol="3" labelname="人员(名字)" mustinput="0" row="16"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="project" fieldtype="1" maxlength="100" formactiveid="33" labelalign="3" labelcol="1" labelname="项目(名字)" mustinput="0" row="17"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="customer" fieldtype="1" maxlength="100" formactiveid="34" labelalign="3" labelcol="3" labelname="客户(名字)" mustinput="0" row="17"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="cashflow" fieldtype="1" maxlength="100" formactiveid="35" labelalign="3" labelcol="1" labelname="现金流向" mustinput="0" row="18"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="virtualaccount" fieldtype="1" maxlength="100" formactiveid="36" labelalign="3" labelcol="3" labelname="虚拟账户" mustinput="0" row="18"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="contractnumber" fieldtype="1" maxlength="100" formactiveid="37" labelalign="3" labelcol="1" labelname="运用合同号" mustinput="0" row="19"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="stockcode" fieldtype="1" maxlength="100" formactiveid="38" labelalign="3" labelcol="3" labelname="股票代码" mustinput="0" row="19"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="fundaccount" fieldtype="1" maxlength="100" formactiveid="39" labelalign="3" labelcol="1" labelname="资金账号" mustinput="0" row="20"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="salesdepartment" fieldtype="1" maxlength="100" formactiveid="40" labelalign="3" labelcol="3" labelname="营业部" mustinput="0" row="20"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="checknumber" fieldtype="1" maxlength="100" formactiveid="41" labelalign="3" labelcol="1" labelname="支票号" mustinput="0" row="21"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="businesstype" fieldtype="1" maxlength="100" formactiveid="42" labelalign="3" labelcol="3" labelname="业务类型" mustinput="0" row="21"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="cashflowstatement" fieldtype="1" maxlength="100" formactiveid="43" labelalign="3" labelcol="1" labelname="现金流量表项" mustinput="0" row="22"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="taxcategory" fieldtype="1" maxlength="100" formactiveid="44" labelalign="3" labelcol="3" labelname="税种" mustinput="0" row="22"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="interestrate" fieldtype="1" maxlength="100" formactiveid="45" labelalign="3" labelcol="1" labelname="利率" mustinput="0" row="23"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="industry" fieldtype="1" maxlength="100" formactiveid="46" labelalign="3" labelcol="3" labelname="行业" mustinput="0" row="23"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="stock" fieldtype="1" maxlength="100" formactiveid="47" labelalign="3" labelcol="1" labelname="股比" mustinput="0" row="24"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="assetname" fieldtype="1" maxlength="100" formactiveid="48" labelalign="3" labelcol="3" labelname="资产名称" mustinput="0" row="24"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="productname" fieldtype="1" maxlength="100" formactiveid="49" labelalign="3" labelcol="1" labelname="产品名称" mustinput="0" row="25"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="clientorbeneficiary" fieldtype="1" maxlength="100" formactiveid="50" labelalign="3" labelcol="3" labelname="委托人/受益人" mustinput="0" row="25"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="shareholder" fieldtype="1" maxlength="100" formactiveid="51" labelalign="3" labelcol="1" labelname="股东" mustinput="0" row="26"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="entrustcontractnumber" fieldtype="1" maxlength="100" formactiveid="52" labelalign="3" labelcol="3" labelname="委托合同号" mustinput="0" row="26"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="tradingpurpose" fieldtype="1" maxlength="100" formactiveid="53" labelalign="3" labelcol="1" labelname="交易目的" mustinput="0" row="27"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="contractvariety" fieldtype="1" maxlength="100" formactiveid="54" labelalign="3" labelcol="3" labelname="合约品种" mustinput="0" row="27"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dateofreceipt" fieldtype="1" maxlength="100" formactiveid="55" labelalign="3" labelcol="1" labelname="收付款日期" mustinput="0" row="28"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="interestdate" fieldtype="1" maxlength="100" formactiveid="56" labelalign="3" labelcol="3" labelname="起息日" mustinput="0" row="28"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="duedate" fieldtype="1" maxlength="100" formactiveid="57" labelalign="3" labelcol="1" labelname="到期日" mustinput="0" row="29"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="inorout" fieldtype="1" maxlength="100" formactiveid="58" labelalign="3" labelcol="3" labelname="系统内外" mustinput="0" row="29"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="billnumber" fieldtype="1" maxlength="100" formactiveid="59" labelalign="3" labelcol="1" labelname="票据编号" mustinput="0" row="30"/>
+</form>

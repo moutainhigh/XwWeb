@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="BatchExeAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="BatchExeAction_findByPage" method="findByPage" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="list">/creditapp/batch/BatchExe_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="BatchExeAction_input" method="input" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="input">/creditapp/batch/BatchExe_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="BatchExeAction_del" method="del" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="list">/creditapp/batch/BatchExe_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="BatchExeAction_getById" method="getById" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="detail">/creditapp/batch/BatchExe_Detail.jsp</result>
+		</action>
+		
+		<action name="BatchExeAction_runNode" method="runNode" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="list">/creditapp/batch/BatchExe_List.jsp</result>
+		</action>
+		
+		
+		<action name="BatchExeAction_runBatch" method="runBatch" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="list">/creditapp/batch/BatchExe_List.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="BatchExeActionInsert" method="insert" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="input">/creditapp/batch/BatchExe_Insert.jsp</result>
+			<result name="detail">/creditapp/batch/BatchExe_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="BatchExeActionUpdate" method="update" class="app.creditapp.batch.action.BatchExeAction">
+			<result name="input">/creditapp/batch/BatchExe_Detail.jsp</result>
+			<result name="detail">/creditapp/batch/BatchExe_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

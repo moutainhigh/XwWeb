@@ -1,0 +1,210 @@
+BODY {
+	color:black;
+	background:white;
+	/*
+	scrollbar-face-color:#CCCCCC;
+	scrollbar-shadow-color:#FFFFFF;
+	scrollbar-highlight-color:#FFFFFF;
+	scrollbar-3dlight-color:#6B7A92;
+	scrollbar-darkshadow-color:#6B7A92; 
+	scrollbar-track-color:#E2E2E2;
+	scrollbar-arrow-color:#6B7A92;
+	*/
+	margin:0px;
+	overflow: auto;
+}
+
+/************************************
+*                                   *
+* tabpane                           *
+*                                   *
+*************************************/
+.tabpane-frame{
+	width: 100%;
+	height: 100%;
+	border: 1px outset black;
+	overflow: hidden;
+}
+.tabpane-selected,.tabpane-unselected{
+	position: relative;
+	border: 1px solid gray;
+	background: #F6F6F6;	
+	white-space: nowrap;
+	vertical-align:center;	
+	height: 20px;
+	padding: 3px 5px 0px 5px;
+	border-bottom: 0px;
+	font:13px ËÎÌו;
+}
+
+.tabpane-selected{
+	//top: 1px;
+	//color: black;
+	//font-weight: 700;
+	
+	height:26px; background:url(../htmlframe/images/tab/tab_on.jpg) repeat-x top;color:#fff;text-decoration:none;  padding:0px 8px;
+}
+.tabpane-unselected{
+	//top: 0px;
+	//color: black;
+	height:26px; background:url(../htmlframe/images/tab/tab_off.jpg) repeat-x top; color:#fff;text-decoration:none;  padding:0px 8px; 
+}
+
+.tabpane-pane0{
+	font-size:1px;
+	overflow: hidden;
+}
+.tabpane-pane{
+	font-size:1px;
+	overflow: hidden
+    text-align:center;
+}
+
+/************************************
+.tabpane-pane0{
+	font-size:1px;
+	background: #F6F6F6;
+	overflow: hidden;
+}
+.tabpane-pane{
+	font-size:1px;
+	background: gray;
+	overflow: hidden;
+	text-align:center;
+}	
+*************************************/
+
+
+/************************************
+*                                   *
+* grid table css define             *
+*                                   *
+*************************************/
+.grid-content{
+	position: absolute;
+	overflow: hidden;
+	background:;
+}
+.grid-area{
+	position: absolute;
+	overflow: hidden;
+	background:;
+}
+.grid-table{
+	position: absolute;
+}
+.grid-inner{
+	position: absolute;
+	overflow: hidden;
+	border: gray outset 1px;
+}
+.grid-label{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 14px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.grid-input{
+	position: relative;
+	top: -2px;
+	border: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+.grid-choice-input{
+	position: relative;
+	top: -2px;
+	border: 0px;
+	margin: 0px;
+}
+.grid-choice-button{
+	FONT-SIZE: 1px; 
+	LEFT: 40px; 
+	WIDTH: 16px; 
+	WHITE-SPACE: nowrap; 
+	TOP: 0px; 
+	HEIGHT: 20px;
+}
+.grid-choice-img{
+	VERTICAL-ALIGN: middle; 
+	WIDTH: 7px; 
+	MARGIN-RIGHT: 0px; 
+	HEIGHT: 4px;
+}
+.grid-select{
+	position: relative;
+	top: -2px;
+	border: 0px;
+	margin: 0px;
+}
+.grid-no{
+	position: absolute;
+//	background-color: ThreeDFace;
+	background-color: #99CCFF;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.grid-top-background{
+}
+.grid-left-background{
+	border: 1px solid;
+	border-width: 0px 1px 0px 0px;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	background-color: #99CCFF;
+}
+.grid-title{
+//	background-color: ThreeDFace;
+	background-color: #99CCFF;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 15px;
+	width: 100%;
+}
+.grid-total{
+	background-color: white;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 15px;
+	width: 100%;
+}
+.grid-space{
+	-moz-box-sizing: border-box;
+//	background-color: ThreeDFace;
+	background-color: #99CCFF;
+	border: 1px solid;
+	border-color: ThreeDHighlight ThreeDShadow ThreeDShadow ThreeDHighlight;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 15px;
+	width: 100%;
+	padding: 1px 4px;
+	cursor: default;
+}
+
+.grid-line{
+	position: absolute;
+	white-space: nowrap;
+	background: ;
+}
+
+.grid-field{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-left: 2px;
+	padding-right: 2px;
+	line-height: 16px;
+}

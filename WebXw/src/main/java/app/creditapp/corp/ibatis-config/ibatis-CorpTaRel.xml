@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpTaRel" type="app.creditapp.corp.entity.CorpTaRel"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpTaRel" class="CorpTaRel">
+    <result property="relid" column="RELID" />
+    <result property="brNo" column="BR_NO" />
+    <result property="taCifNo" column="TA_CIF_NO" />
+    </resultMap>
+     <sql id="CorpTaRel.columns">
+        <![CDATA[
+         RELID,
+         BR_NO,
+         TA_CIF_NO
+          ]]>
+    </sql>
+    <typeAlias alias="CorpTaRelforcif" type="app.creditapp.corp.entity.CorpTaRelforcif"/>
+	 <!-- 列表查询返回字段，返回符合条件的客户列表 -->
+    <resultMap id="RM.CorpTaRelforcif" class="CorpTaRelforcif">
+    <result property="taCifNo" column="CUSTOMID" />
+    </resultMap>
+  
+    <!-- 表新增 -->
+    <insert id="CorpTaRel.insert">
+        <![CDATA[
+        INSERT INTO CORP_TA_REL(
+         RELID,
+         BR_NO,
+         TA_CIF_NO
+         )VALUES(
+         #relid#,
+         #brNo#,
+         #taCifNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpTaRel.del">
+        <![CDATA[
+               DELETE FROM CORP_TA_REL
+                 WHERE
+               	RELID = #relid#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpTaRel.update">
+        <![CDATA[
+         UPDATE CORP_TA_REL set
+         RELID=#relid#,
+         BR_NO=#brNo#,
+         TA_CIF_NO=#taCifNo#
+          WHERE
+               	RELID = #relid#        ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="CorpTaRel.getById"  resultMap="RM.CorpTaRel">
+        SELECT <include refid="CorpTaRel.columns"/>
+        <![CDATA[
+             FROM CORP_TA_REL 
+         WHERE 
+               	RELID = #relid#        ]]>
+     </select>
+     <!-- dblink视图插入操作 -->
+      <insert id="CorpTaRelforDblink.insert">
+        <![CDATA[
+       INSERT INTO CORP_TA_REL
+     SELECT CORP_TA_REL_SEQ.NEXTVAL,#brNo#,CUSTOMID from
+    (SELECT CUSTOMID
+    FROM VW_ACT_ACCOUNTINFO@TA_DBLINK T
+    WHERE T.PROJECTID =#projNo#
+     GROUP BY CUSTOMID ) t
+          ]]>
+    </insert>
+     <!-- dblink视图插入操作，删除重复值 -->
+     <delete id="CorpTaRelforDblink.del">
+        <![CDATA[
+        DELETE FROM CORP_TA_REL A
+ 	    WHERE (A.BR_NO, A.TA_CIF_NO) IN
+       (SELECT BR_NO, TA_CIF_NO
+          FROM CORP_TA_REL
+         GROUP BY BR_NO, TA_CIF_NO
+         HAVING COUNT(1) > 1)
+  			 AND ROWID NOT IN
+       (SELECT MIN(ROWID) FROM CORP_TA_REL
+         GROUP BY BR_NO, TA_CIF_NO
+        HAVING COUNT(1) > 1)]]>
+    </delete>
+    <!--获取该合作机构号下的所有用户-->
+    <select id="CorpTaRel.getByBrNo"  resultMap="RM.CorpTaRel">
+        SELECT <include refid="CorpTaRel.columns"/>
+        <![CDATA[
+             FROM CORP_TA_REL 
+         WHERE 
+               	BR_NO = #brNo#        ]]>
+     </select>
+     <!--通过视图获取该合作机构号下的所有用户-->
+    <select id="CorpTaRel.getByBrNoForDb"  resultMap="RM.CorpTaRelforcif">
+        SELECT CUSTOMID
+        <![CDATA[
+             FROM  VW_ACT_ACCOUNTINFO@TA_DBLINK 
+         WHERE 
+               PROJECTID = #projNo#   GROUP BY  CUSTOMID  ]]>
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpTaRel.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="taCifNo">
+                  <isNotEmpty prepend="AND" property="taCifNo">
+                      TA_CIF_NO = #taCifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpTaRel.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_TA_REL <include refid="CorpTaRel.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpTaRel.findByPage" resultMap="RM.CorpTaRel">
+        SELECT <include refid="CorpTaRel.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpTaRel.columns"/> FROM CORP_TA_REL
+                    <include refid="CorpTaRel.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

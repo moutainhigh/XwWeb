@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CifPortrait" type="app.creditapp.cif.entity.CifPortrait"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CifPortrait" class="CifPortrait">
+	    <result property="cifNo" column="CIF_NO" />
+	    <result property="cifName" column="CIF_NAME" />
+	    <result property="sex" column="SEX" />
+	    <result property="birthDay" column="BIRTH_DAY" />
+	    <result property="marriage" column="MARRIAGE" />
+	    <result property="edu" column="EDU" />
+	    <result property="income" column="INCOME" jdbcType="double"/>
+	    <result property="grade" column="GRADE" />
+	    <result property="creditDesc" column="CREDIT_DESC" />
+	    <result property="workType" column="WORK_TYPE" />
+	    <result property="ifCar" column="IF_CAR" />
+	    <result property="ifRoom" column="IF_ROOM" />
+	    <result property="ifDc" column="IF_DC" />
+	    <result property="ifHg" column="IF_HG" />
+	    <result property="prtDesc" column="PRT_DESC" />
+	    <result property="txDate" column="TX_DATE" />
+	    <result property="upDate" column="UP_DATE" />
+	    <result property="cifGroup" column="CIF_GROUP" />
+	    <result property="repdNum" column="CIF_REPTNUM" jdbcType="INTEGER"/>
+	    <result property="resTel" column="RES_TEL" />
+	    <result property="resAddr" column="RES_ADDR" />
+	    <result property="cifBlacknum" column="CIF_BLACKNUM" jdbcType="INTEGER"/>
+	    <result property="gradePersent" column="CIF_PERSENT" jdbcType="DOUBLE"/>
+	    <result property="cifType" column="CIF_TYPE"/>
+	    <result property="version" column="VERSION" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="RM.CifPortraitGroup" class="CifPortrait">
+    	<result property="cifGroup" column="CIF_GROUP" />
+    </resultMap>
+     <sql id="CifPortrait.columns">
+        <![CDATA[
+         CIF_NO,
+         CIF_NAME,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         EDU,
+         INCOME,
+         GRADE,
+         CREDIT_DESC,
+         WORK_TYPE,
+         IF_CAR,
+         IF_ROOM,
+         IF_DC,
+         IF_HG,
+         PRT_DESC,
+         TX_DATE,
+         UP_DATE,
+         CIF_GROUP,
+         CIF_REPTNUM,
+         RES_TEL,
+         RES_ADDR,
+         CIF_BLACKNUM,
+         CIF_PERSENT,
+         CIF_TYPE,
+         VERSION
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CifPortrait.insert">
+        <![CDATA[
+        INSERT INTO CIF_PORTRAIT(
+         CIF_NO,
+         CIF_NAME,
+         SEX,
+         BIRTH_DAY,
+         MARRIAGE,
+         EDU,
+         INCOME,
+         GRADE,
+         CREDIT_DESC,
+         WORK_TYPE,
+         IF_CAR,
+         IF_ROOM,
+         IF_DC,
+         IF_HG,
+         PRT_DESC,
+         TX_DATE,
+         UP_DATE,
+         CIF_GROUP,
+         CIF_REPTNUM,
+         RES_TEL,
+         RES_ADDR,
+         CIF_BLACKNUM,
+         CIF_PERSENT,
+         CIF_TYPE,
+         VERSION
+         )VALUES(
+         #cifNo#,
+         #cifName#,
+         #sex#,
+         #birthDay#,
+         #marriage#,
+         #edu#,
+         #income#,
+         #grade#,
+         #creditDesc#,
+         #workType#,
+         #ifCar#,
+         #ifRoom#,
+         #ifDc#,
+         #ifHg#,
+         #prtDesc#,
+         #txDate#,
+         #upDate#,
+         #cifGroup#,
+         #repdNum#,
+         #resTel#,
+         #resAddr#,
+         #cifBlacknum#,
+         #gradePersent#,
+         #cifType#,
+         #version#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CifPortrait.del">
+        <![CDATA[
+               DELETE FROM CIF_PORTRAIT
+                 WHERE
+               	CIF_NO = #cifNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CifPortrait.update">
+        <![CDATA[
+         UPDATE CIF_PORTRAIT set
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         SEX=#sex#,
+         BIRTH_DAY=#birthDay#,
+         MARRIAGE=#marriage#,
+         EDU=#edu#,
+         INCOME=#income#,
+         GRADE=#grade#,
+         CREDIT_DESC=#creditDesc#,
+         WORK_TYPE=#workType#,
+         IF_CAR=#ifCar#,
+         IF_ROOM=#ifRoom#,
+         IF_DC=#ifDc#,
+         IF_HG=#ifHg#,
+         PRT_DESC=#prtDesc#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         CIF_GROUP=#cifGroup#
+          WHERE
+               	CIF_NO = #cifNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CifPortrait.getById"  resultMap="RM.CifPortrait">
+        SELECT <include refid="CifPortrait.columns"/>
+        <![CDATA[
+             FROM CIF_PORTRAIT 
+         WHERE 
+               	CIF_NO = #cifNo#   and    
+               	VERSION = #version#
+               	and cif_name =#cifName#
+               	 ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CifPortrait.findPage.where">
+        <dynamic prepend="where">
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CifPortrait.findPage.count" resultClass="int">
+        SELECT count(*) FROM CIF_PORTRAIT <include refid="CifPortrait.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CifPortrait.findByPage" resultMap="RM.CifPortrait">
+        SELECT <include refid="CifPortrait.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifPortrait.columns"/> FROM CIF_PORTRAIT
+                    <include refid="CifPortrait.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 根据客户号查询借据号
+    <select id="CifPortrait.getLndue" resultClass="String">
+    	SELECT DUE_NO  FROM LN_DUE WHERE CIF_NO = #cifNo# 
+    </select> -->
+    <!-- 根据客户号查询客户类型 -->
+    <select id="CifPortrait.getCifType" resultClass="String">
+    	SELECT CIF_TYPE  FROM CIF_PERS 
+    		WHERE CIF_NO = #cifNo# 
+    		AND ID_NO = #idNo# 
+    		AND CIF_NAME = #cifName# 
+    		AND ID_TYPE = #idType#
+    </select>
+    <!-- 查询逾期数 -->
+    <select id="CifPortrait.getRepdNum" resultClass="int">
+    <!--
+    	SELECT COUNT(*) FROM  AC_LN_LO WHERE LOAN_NO = #loanNo#  AND SETL_STS='N'-->
+    	select COUNT(*)
+		  from AC_LN_LO A, LN_DUE L
+		 WHERE A.LOAN_NO = L.DUE_NO
+		   AND A.SETL_STS = 'N'
+		   AND L.CIF_NO = #cifNo# 
+		   AND L.CIF_NAME = #cifName#
+    </select>
+    <!-- 占同类客户百分比 -->
+    <select id="CifPortrait.getPercent" resultClass="Double">
+  		SELECT (COUNT(CASE WHEN t.grade &lt; #grade#  THEN t.cif_no ELSE NULL END)/COUNT(t.cif_no))  FROM cif_pers t WHERE CIF_TYPE=#cifType# 
+    </select>
+    <!-- 根据客户号查询工作类型 -->
+    <select id="CifPortrait.getWorkType" resultClass="String">
+    	SELECT R.WORK_TYPE  FROM CIF_PERS_CAREER R,cif_pers S WHERE R.CIF_NO = S.CIF_NO AND R.CIF_NAME = S.CIF_NAME AND
+    		S.CIF_NO = #cifNo# 
+    		AND S.ID_NO = #idNo#
+    		AND S.CIF_NAME = #cifName#
+    		AND S.ID_TYPE =  #idType#
+    		AND rownum=1 
+    </select>
+    <!-- 根据客户号查询是否有车 -->
+    <select id="CifPortrait.getIfCar" resultClass="String">
+    	select IF_CAR from (SELECT *  FROM ln_apply_mid WHERE ID_NO = #idNo# and CIF_NAME = #cifName# and ID_TYPE = #idType# order by app_id desc  ) where  rownum=1 
+    </select>
+    <!-- 根据客户号查询是否有房 -->
+    <select id="CifPortrait.getIfRoom" resultClass="String">
+    	select IF_ROOM from (SELECT *  FROM ln_apply_mid WHERE ID_NO = #idNo# and CIF_NAME = #cifName# and ID_TYPE = #idType# order by app_id desc  ) where  rownum=1
+    </select>
+    
+    <!-- 根据客户号查询是否为黑名单 -->
+    <select id="CifPortrait.getCifBlackNum" resultClass="int">
+    	 SELECT COUNT(*) FROM CIF_BLACK WHERE 
+    	 	CIF_NO = #cifNo# 
+    		AND ID_NO = #idNo# 
+    		AND CIF_NAME = #cifName# 
+    		AND ID_TYPE = #idType#
+    	    AND BLK_FLAG = '01'
+    </select>
+    <!-- 根据客户号查询是否代偿户 -->
+    <select id="CifPortrait.getIfDC" resultClass="int">
+    	 SELECT COUNT(*) FROM AFT_COMPST WHERE CIF_NO = #cifNo# and CIF_NAME = #cifName# 
+    </select>
+    <!-- 根据客户号查询是否回购户 -->
+    <select id="CifPortrait.getIfHG" resultClass="int">
+    	 SELECT COUNT(*) FROM AFT_REBUY WHERE CIF_NO = #cifNo# and CIF_NAME = #cifName# 
+    </select>
+    <!-- 根据产品编号查询客户群体 -->
+    <select id="CifPortrait.getCifGroup" resultMap="RM.CifPortraitGroup">
+    	 select distinct prdt_type as CIF_GROUP from prdt_base WHERE PRDT_NO in (select distinct PRDT_NO from ln_pact WHERE CIF_NO = #cifNo# and CIF_NAME = #cifName#)
+    </select>
+    <!-- 查询最新状态 -->
+    <select id="CifPortrait.getVersion" resultMap="RM.CifPortrait">
+		select <include refid="CifPortrait.columns"/> from cif_portrait where CIF_NO = #cifNo# and VERSION= #version#
+    </select>
+        <!-- 根据客户号查询最新画像版本 -->
+    <select id="CifPortrait.getMaxVersion" resultClass="String">
+    	 select max(version) from cif_portrait WHERE CIF_NO = #cifNo# 
+    </select>
+    
+</sqlMap>

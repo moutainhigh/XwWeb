@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="DailyEventAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="DailyEventAction_findByPage" method="findByPage" class="app.creditapp.sys.action.DailyEventAction">
+			<result name="list">/creditapp/fund/DailyEvent_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="DailyEventAction_input" method="input" class="app.creditapp.sys.action.DailyEventAction">
+			<result name="input">/creditapp/fund/DailyEvent_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="DailyEventAction_del" method="del" class="app.creditapp.sys.action.DailyEventAction">
+			<result name="list">/creditapp/fund/DailyEvent_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="DailyEventAction_getById" method="getById" class="app.creditapp.sys.action.DailyEventAction">
+			<result name="detail">/creditapp/fund/DailyEvent_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="DailyEventActionInsert" method="insert" class="app.creditapp.sys.action.DailyEventAction">
+			<result name="input">/creditapp/fund/DailyEvent_Insert.jsp</result>
+			<result name="detail">/creditapp/fund/DailyEvent_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="DailyEventActionUpdate" method="update" class="app.creditapp.sys.action.DailyEventAction">
+			<result name="input">/creditapp/fund/DailyEvent_Detail.jsp</result>
+			<result name="detail">/creditapp/fund/DailyEvent_Detail.jsp</result>
+		</action>
+		
+		<action name="DailyEventAction_*" method="{1}" class="app.creditapp.sys.action.DailyEventAction">
+			<result name="showDailyView">/creditapp/calendar/workCalendar.jsp</result>
+			<result name="showDailyFrame">/creditapp/calendar/workCalendarFrame.jsp</result>
+			<result name="showPanding">/creditapp/calendar/eventInfoForPending.jsp</result>
+			<result name="showInfoPage">/creditapp/calendar/eventInfoForShow.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

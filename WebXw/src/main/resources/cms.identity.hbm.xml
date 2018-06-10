@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.creditapp.wkf.identify" default-access="field">
+
+  <!-- ### USER ########################################################### -->
+  <class name="WFUser" table="SYS_USER">
+  	<id name="id" type="string" column="USER_NO" >
+    	<generator class="assigned"/>
+    </id>
+    <property name="displayname" column="USER_NAME" />
+	
+	
+	<many-to-one name="br_no" 
+				column="org_no" 
+				update="false" 
+				insert="false" 
+				class="WFBranch" />
+
+  </class>
+  
+  <class name="WFUserRole" table="wkf_approval_user">
+  	<id name="id" type="string" column="seq" >
+    	<generator class="assigned"/>
+    </id>
+    
+    <many-to-one name="user"
+                 column="wkf_user_name" 
+                 class="WFUser"
+                 index="wkf_user_approval_role_index"
+                 />
+                 
+    <many-to-one name="role"
+                 column="wkf_role_no" 
+                 class="WFRole"
+                 index="wkf_user_approval_role_index"
+                 />
+  </class>
+  
+  <!-- ### GROUP ########################################################### -->
+  <class name="WFRole" table="wkf_approval_role">
+  	<id name="id" type="string" column="wkf_role_no" >
+    	<generator class="assigned"/>
+    </id>
+    <property name="name" column="wkf_role_name" />
+    <property name="level" column="WKF_ROLE_LEV" />
+  </class>  
+  
+  <class name="WFBranch" table="SYS_ORG">
+  	<id name="id" type="string" column="ORG_NO" >
+    	<generator class="assigned"/>
+    </id>
+    <property name="name" column="ORG_NAME" />
+    <property name="upone" column="SUP_NO" />
+    <property name="level" column="ORG_LEV" />
+  </class>
+
+  <query name="findGroupsByUserId">
+    <![CDATA[
+    select distinct g
+    from app.creditapp.wkf.identify.WFUserRole m
+      join m.user u
+      join m.role g
+    where u.id = :userId
+    ]]>
+  </query>
+
+  <query name="findBranchByUserId">
+    <![CDATA[
+    select distinct g
+    from app.creditapp.wkf.identify.WFUser m
+      join m.br_no g
+    where m.id = :userId
+    ]]>
+  </query>  
+  
+  <query name="findUsersByGroupAndBranch">
+    <![CDATA[
+    select distinct u
+    from app.creditapp.wkf.identify.WFUserRole m
+      join m.user u
+      join m.role g
+    where g.id in (:groupIds) and u.br_no.id = :branchId   
+    ]]>
+  </query>
+  
+</hibernate-mapping>

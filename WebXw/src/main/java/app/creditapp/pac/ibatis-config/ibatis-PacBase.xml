@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PacBase" type="app.creditapp.pac.entity.PacBase"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.PacBase" class="PacBase">
+    <result property="tx_time" column="TX_TIME" />
+    <result property="up_time" column="UP_TIME" />
+    <result property="up_opno" column="UP_OPNO" />
+    <result property="pac_id" column="PAC_ID" />
+    <result property="cif_no" column="CIF_NO" />
+    <result property="busi_no" column="BUSI_NO" />
+    <result property="pac_scene" column="PAC_SCENE" />
+    <result property="pac_type_no" column="PAC_TYPE" />
+    <result property="pac_name" column="PAC_NAME" />
+    <result property="pac_size" column="PAC_SIZE" jdbcType="double"/>
+    <result property="down_cnt" column="DOWN_CNT" jdbcType="Int"/>
+    <result property="pac_addr" column="PAC_ADDR" />
+    <result property="enc_addr" column="ENC_ADDR" />
+    <result property="rel_addr" column="REL_ADDR" />
+    <result property="pac_desc" column="PAC_DESC" />
+    <result property="field1" column="FIELD1" />
+    <result property="field2" column="FIELD2" />
+    <result property="filler" column="FILLER" />
+    <result property="br_no" column="BR_NO" />
+    <result property="op_no" column="OP_NO" />
+    </resultMap>
+     <sql id="PacBase.columns" >
+        <![CDATA[
+         TX_TIME,
+         UP_TIME,
+         UP_OPNO,
+         PAC_ID,
+         CIF_NO,
+         BUSI_NO,
+         PAC_SCENE,
+         PAC_TYPE,
+         PAC_NAME,
+         PAC_SIZE,
+         DOWN_CNT,
+         PAC_ADDR,
+         ENC_ADDR,
+         REL_ADDR,
+         PAC_DESC,
+         FIELD1,
+         FIELD2,
+         FILLER,
+         BR_NO,
+         OP_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="PacBase.insert">
+        <![CDATA[
+        INSERT INTO PAC_BASE(
+         TX_TIME,
+         UP_TIME,
+         UP_OPNO,
+         PAC_ID,
+         CIF_NO,
+         BUSI_NO,
+         PAC_SCENE,
+         PAC_TYPE,
+         PAC_NAME,
+         PAC_SIZE,
+         DOWN_CNT,
+         PAC_ADDR,
+         ENC_ADDR,
+         REL_ADDR,
+         PAC_DESC,
+         FIELD1,
+         FIELD2,
+         FILLER,
+         BR_NO,
+         OP_NO
+         )VALUES(
+         #tx_time#,
+         #up_time#,
+         #up_opno#,
+         #pac_id#,
+         #cif_no#,
+         #busi_no#,
+         #pac_scene#,
+         #pac_type_no#,
+         #pac_name#,
+         #pac_size#,
+         #down_cnt#,
+         #pac_addr#,
+         #enc_addr#,
+         #rel_addr#,
+         #pac_desc#,
+         #field1#,
+         #field2#,
+         #filler#,
+         #br_no#,
+         #op_no#
+         )
+          ]]>
+        <selectKey resultClass="java.lang.String" type="pre" keyProperty="pac_id" >
+			select  pac_base_seq.NEXTVAL AS pac_id FROM DUAL
+        </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="PacBase.del">
+        <![CDATA[
+               DELETE FROM PAC_BASE
+                 WHERE
+               	PAC_ID = #pac_id#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="PacBase.update">
+        <![CDATA[
+         UPDATE PAC_BASE set
+         TX_TIME=#tx_time#,
+         UP_TIME=#up_time#,
+         UP_OPNO=#up_opno#,
+         PAC_ID=#pac_id#,
+         CIF_NO=#cif_no#,
+         BUSI_NO=#busi_no#,
+         PAC_SCENE=#pac_scene#,
+         PAC_TYPE=#pac_type_no#,
+         PAC_NAME=#pac_name#,
+         PAC_SIZE=#pac_size#,
+         DOWN_CNT=#down_cnt#,
+         PAC_ADDR=#pac_addr#,
+         ENC_ADDR=#enc_addr#,
+         REL_ADDR=#rel_addr#,
+         PAC_DESC=#pac_desc#,
+         FIELD1=#field1#,
+         FIELD2=#field2#,
+         FILLER=#filler#,
+         BR_NO=#br_no#,
+         OP_NO=#op_no#
+          WHERE
+               	PAC_ID = #pac_id#        ]]>
+    </update>
+    
+    <update id="PacBase.updateDownCnt">
+        <![CDATA[
+         UPDATE PAC_BASE set
+         DOWN_CNT= DOWN_CNT+1
+          WHERE
+               	PAC_ID = #pac_id#        ]]>
+    </update>
+    
+    
+    
+     <!-- 表查询ById -->
+    <select id="PacBase.getById"  resultMap="RM.PacBase">
+        SELECT <include refid="PacBase.columns"/>
+        <![CDATA[
+             FROM PAC_BASE 
+         WHERE 
+               	PAC_ID = #pac_id#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PacBase.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="pac_id">
+                  <isNotEmpty prepend="AND" property="pac_id">
+                      PAC_ID = #pac_id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cif_no">
+                  <isNotEmpty prepend="AND" property="cif_no">
+                      CIF_NO = #cif_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="busi_no">
+                  <isNotEmpty prepend="AND" property="busi_no">
+                      BUSI_NO = #busi_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pac_scene">
+                  <isNotEmpty prepend="AND" property="pac_scene">
+                      PAC_SCENE = #pac_scene#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pac_type_no">
+                  <isNotEmpty prepend="AND" property="pac_type_no">
+                      PAC_TYPE = #pac_type_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pac_name">
+                  <isNotEmpty prepend="AND" property="pac_name">
+                      PAC_NAME = #pac_name#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="br_no">
+                  <isNotEmpty prepend="AND" property="br_no">
+                      BR_NO = #br_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="op_no">
+                  <isNotEmpty prepend="AND" property="op_no">
+                      OP_NO = #op_no#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="PacBase.findPage.count" resultClass="int">
+        SELECT count(*) FROM PAC_BASE <include refid="PacBase.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="PacBase.findByPage" resultMap="RM.PacBase">
+        SELECT <include refid="PacBase.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="PacBase.columns"/> FROM PAC_BASE
+                    <include refid="PacBase.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <select id="PacBase.listPacBase" resultMap="RM.PacBase">
+        SELECT <include refid="PacBase.columns"/>
+        FROM PAC_BASE
+        <include refid="PacBase.findPage.where"/> ORDER BY BR_NO,PAC_ID
+    </select>
+    
+    <select id="PacBase.getLastPacBase"  resultMap="RM.PacBase">
+         SELECT <include refid="PacBase.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="PacBase.columns"/> FROM PAC_BASE
+                    <include refid="PacBase.findPage.where"/>  ORDER BY  PAC_ID DESC
+             ) m
+        	) WHERE rnum = 1
+     </select>
+     
+     <select id="PacBase.listPacBaseBusiNo"  resultClass="map">
+           SELECT busi_no,pac_scene FROM PAC_BASE WHERE CIF_NO = #cif_no# AND pac_type = #pac_type_no#  AND BUSI_NO IS NOT NULL  group by busi_no,pac_scene
+     </select>
+     
+     <select id="PacBase.PacBaseyn"  resultMap="RM.PacBase">
+              SELECT <include refid="PacBase.columns"/>
+          FROM PAC_BASE <include refid="PacBase.findPage.where"/>
+     </select>
+     
+     <select id="PacBase.getPacCount" resultClass="int">
+              SELECT count(*)
+          FROM PAC_BASE <include refid="PacBase.findPage.where"/>
+     </select>
+     
+</sqlMap>

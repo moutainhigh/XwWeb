@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcFeeRate" type="app.creditapp.acc.option.entity.AcFeeRate"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcFeeRate" class="AcFeeRate">
+    <result property="feeId" column="FEE_ID" />
+    <result property="feeName" column="FEE_NAME" />
+    <result property="minMon" column="MIN_MON" jdbcType="Int"/>
+    <result property="maxMon" column="MAX_MON" jdbcType="Int"/>
+    <result property="feeRate" column="FEE_RATE" jdbcType="double"/>
+    <result property="frId" column="FR_ID" />
+    </resultMap>
+     <sql id="AcFeeRate.columns">
+        <![CDATA[
+         FEE_ID,
+         FEE_NAME,
+         MIN_MON,
+         MAX_MON,
+         FEE_RATE,
+         FR_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcFeeRate.insert">
+        <![CDATA[
+        INSERT INTO AC_FEE_RATE(
+         FEE_ID,
+         FEE_NAME,
+         MIN_MON,
+         MAX_MON,
+         FEE_RATE,
+         FR_ID
+         )VALUES(
+         #feeId#,
+         #feeName#,
+         #minMon#,
+         #maxMon#,
+         #feeRate#,
+         #feeId#
+         )
+          ]]>
+           <selectKey resultClass="java.lang.String" type="pre" keyProperty="feeId" >
+			SELECT AC_FEE_RATE_seq.nextval AS FEE_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcFeeRate.del">
+        <![CDATA[
+               DELETE FROM AC_FEE_RATE
+                 WHERE
+               	FEE_ID = #feeId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcFeeRate.update">
+        <![CDATA[
+         UPDATE AC_FEE_RATE set
+         FEE_ID=#feeId#,
+         FEE_NAME=#feeName#,
+         MIN_MON=#minMon#,
+         MAX_MON=#maxMon#,
+         FEE_RATE=#feeRate#,
+         FR_ID=#frId#
+          WHERE
+               	FEE_ID = #feeId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcFeeRate.getById"  resultMap="RM.AcFeeRate">
+        SELECT <include refid="AcFeeRate.columns"/>
+        <![CDATA[
+             FROM AC_FEE_RATE 
+         WHERE 
+               	FEE_ID = #feeId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcFeeRate.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="feeId">
+                  <isNotEmpty prepend="AND" property="feeId">
+                      FEE_ID = #feeId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="feeName">
+                  <isNotEmpty prepend="AND" property="feeName">
+                      FEE_NAME = #feeName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="frId">
+                  <isNotEmpty prepend="AND" property="frId">
+                      FR_ID = #frId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcFeeRate.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_FEE_RATE <include refid="AcFeeRate.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcFeeRate.findByPage" resultMap="RM.AcFeeRate">
+        SELECT <include refid="AcFeeRate.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcFeeRate.columns"/> FROM AC_FEE_RATE
+                    <include refid="AcFeeRate.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

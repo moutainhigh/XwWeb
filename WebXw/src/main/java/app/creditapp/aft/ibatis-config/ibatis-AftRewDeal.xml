@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftRewDeal" type="app.creditapp.aft.entity.AftRewDeal"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftRewDeal" class="AftRewDeal">
+    <result property="rewId" column="REW_ID" />
+    <result property="recId" column="REC_ID" />
+    <result property="dealDate" column="DEAL_DATE" />
+    <result property="dealType" column="DEAL_TYPE" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    <result property="dealRest" column="DEAL_REST" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="opName" column="OP_NAME" />
+    <result property="rewName" column="REW_NAME" />
+    <result property="rewFlag" column="REW_FLAG" />
+    </resultMap>
+     <sql id="AftRewDeal.columns">
+        <![CDATA[
+         REW_ID,
+         REC_ID,
+         DEAL_DATE,
+         DEAL_TYPE,
+         DEAL_DESC,
+         DEAL_REST,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         FUN_GETUSERNAME(OP_NO)as OP_NAME,
+         FUN_GETREWNAME(REW_ID) as REW_NAME,
+         REW_FLAG
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftRewDeal.insert">
+        <![CDATA[
+        INSERT INTO AFT_REW_DEAL(
+         REW_ID,
+         REC_ID,
+         DEAL_DATE,
+         DEAL_TYPE,
+         DEAL_DESC,
+         DEAL_REST,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         REW_FLAG
+         )VALUES(
+         #rewId#,
+         AFT_REW_SEQ.NEXTVAL,
+         #dealDate#,
+         #dealType#,
+         #dealDesc#,
+         #dealRest#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #rewFlag#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftRewDeal.del">
+        <![CDATA[
+               DELETE FROM AFT_REW_DEAL
+                 WHERE
+               	REC_ID = #recId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftRewDeal.update">
+        <![CDATA[
+         UPDATE AFT_REW_DEAL set
+         REW_ID=#rewId#,
+         REC_ID=#recId#,
+         DEAL_DATE=#dealDate#,
+         DEAL_TYPE=#dealType#,
+         DEAL_DESC=#dealDesc#,
+         DEAL_REST=#dealRest#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	REC_ID = #recId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftRewDeal.getById"  resultMap="RM.AftRewDeal">
+        SELECT <include refid="AftRewDeal.columns"/>
+        <![CDATA[
+             FROM AFT_REW_DEAL 
+         WHERE 
+               	REW_ID = #rewId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftRewDeal.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="rewId">
+                  <isNotEmpty prepend="AND" property="rewId">
+                      REW_ID = #rewId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dealType">
+                  <isNotEmpty prepend="AND" property="dealType">
+                      DEAL_TYPE = #dealType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dealRest">
+                  <isNotEmpty prepend="AND" property="dealRest">
+                      DEAL_REST = #dealRest#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="opNo">
+                  <isNotEmpty prepend="AND" property="opNo">
+                      OP_NO = #opNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftRewDeal.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_REW_DEAL <include refid="AftRewDeal.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftRewDeal.findByPage" resultMap="RM.AftRewDeal">
+        SELECT <include refid="AftRewDeal.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftRewDeal.columns"/> FROM AFT_REW_DEAL
+                    <include refid="AftRewDeal.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

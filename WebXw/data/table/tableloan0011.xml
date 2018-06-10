@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="loan0011" para="eadis_page" link="AcLnMstHstAction_findByPage.action" title="贷款主文件备份表" type="1">
+<tableitem align="2" filedname="loanNo" id="1" indexed="1" label="借据号" row="1" type="4" typepara="AcLnMstHstAction_getById.action;loanNo-loanNo;query-'query'"/>
+<tableitem align="2" filedname="pactNo" id="2" indexed="2" label="合同号" row="1" type="0" />
+<tableitem align="2" filedname="brNo" id="3" indexed="3" label="机构号" row="1" type="0" />
+<tableitem align="2" filedname="prdtNo" id="5" indexed="5" label="核算产品编号" row="1" type="0" />
+<tableitem align="2" filedname="projNo" id="6" indexed="6" label="项目编号" row="1" type="0" />
+<tableitem align="2" filedname="brAccType" id="7" indexed="7" label="机构核算类型[A/B]" row="1" type="0" />
+<tableitem align="2" filedname="cifNo" id="8" indexed="8" label="客户号" row="1" type="0" />
+<tableitem align="2" filedname="cifName" id="9" indexed="9" label="客户姓名" row="1" type="0" />
+<tableitem align="2" filedname="loanTerm" id="12" indexed="12" label="贷款期限" row="1" type="0" />
+<tableitem align="2" filedname="opnDt" id="13" indexed="13" label="开户日期" row="1" type="0" />
+<tableitem align="2" filedname="mtrDt" id="14" indexed="14" label="到期日期" row="1" type="0" />
+<tableitem align="2" filedname="loanAmt" id="19" indexed="19" label="贷款限额" row="1" type="0" />
+<tableitem align="2" filedname="loanBal" id="20" indexed="20" label="余额" row="1" type="0" />
+<tableitem align="2" filedname="loanSts" id="34" indexed="34" label="贷款状态[01-正常,02-待逾期,03-逾期,04-结清,05-已回购,06-合同取消,07-待回购,08-回购中]" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="61" indexed="61" label="-" row="1" type="5" typepara="AcLnMstHstAction_getById.action;loanNo-loanNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="62" indexed="62" label="-" row="1" type="5" typepara="AcLnMstHstAction_del.action;loanNo-loanNo;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="cls0001" para="eadis_page" link="AftPactClsAction_findByPage.action" title="贷后合同取消申请" type="1">
+<tableitem align="2" filedname="wsId" id="1" indexed="1" label="接收数据ID" row="1" type="4" typepara="AftPactClsAction_getById.action;wsId-wsId;query-'query'"/>
+<tableitem align="2" filedname="brNo" id="2" indexed="2" label="合作机构编号" row="1" type="0" />
+<tableitem align="2" filedname="pactNo" id="3" indexed="3" label="合同号" row="1" type="0" />
+<tableitem align="2" filedname="loanNo" id="4" indexed="4" label="借据号" row="1" type="0" />
+<tableitem align="2" filedname="dealSts" id="5" indexed="5" label="处理状态[01未处理02已处理]" row="1" type="0" />
+<tableitem align="2" filedname="dealDesc" id="6" indexed="6" label="处理说明" row="1" type="0" />
+<tableitem align="2" filedname="txDate" id="7" indexed="7" label="登记日期" row="1" type="0" />
+<tableitem align="2" filedname="traceNo" id="8" indexed="8" label="核算主流水" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="9" indexed="9" label="-" row="1" type="5" typepara="AftPactClsAction_getById.action;wsId-wsId;" width="2"/>
+<tableitem align="2" filedname="删除" id="10" indexed="10" label="-" row="1" type="5" typepara="AftPactClsAction_del.action;wsId-wsId;onClick-lkconfirm" width="2"/>
+</table>

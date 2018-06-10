@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CorpCertAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CorpCertAction_findByPage" method="findByPage" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="list">/creditapp/corp/CorpCert_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CorpCertAction_input" method="input" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="input">/creditapp/corp/CorpCert_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CorpCertAction_del" method="del" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="list">/creditapp/corp/CorpCert_listQuotaForCorp.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CorpCertAction_getById" method="getById" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="detail">/creditapp/corp/CorpCert_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CorpCertActionInsert" method="insert" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="input">/creditapp/corp/CorpCert_Insert.jsp</result>
+			<result name="detail">/creditapp/corp/CorpCert_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CorpCertActionUpdate" method="update" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="input">/creditapp/corp/CorpCert_Detail.jsp</result>
+			<result name="detail">/creditapp/corp/CorpCert_Detail.jsp</result>
+		</action>
+			<!-- 根据合作机构号显示所有的的zizhi信息 -->
+		<action name="CorpCertAction_listQuotaForCorp" method="listQuotaForCorp" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="list">/creditapp/corp/CorpCert_listQuotaForCorp.jsp</result>
+		</action>
+		<action name="CorpCertAction_listQuotaForCorp_Read" method="listQuotaForCorp_Read" class="app.creditapp.corp.action.CorpCertAction">
+			<result name="list_Read">/creditapp/corp/CorpCert_listQuotaForCorp_Read.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

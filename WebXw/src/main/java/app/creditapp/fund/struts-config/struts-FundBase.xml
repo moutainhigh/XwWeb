@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="FundBaseAction" namespace="/" extends="struts-cms">
+	    <!--360视图tab -->
+		<action name="FundBaseAction_getTab" method="getTab" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="tab">/creditapp/fund/FundBase_tab.jsp</result>
+		</action>
+		<!--修改tab -->
+		<action name="FundBaseAction_getTab_Update" method="getTab_Update" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="tab">/creditapp/fund/FundBase_tab.jsp</result>
+		</action>
+	    <!--分页查询 -->
+		<action name="FundBaseAction_findByPage" method="findByPage" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="list">/creditapp/fund/FundBase_List.jsp</result>
+		</action>
+		 <!--Echarts-->
+		<action name="FundBaseAction_getTabForEcharts" method="getTabForEcharts" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="tab">/creditapp/fund/FundBase_tab.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="FundBaseAction_input" method="input" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="input">/creditapp/fund/FundBase_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="FundBaseAction_del" method="del" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="list">/creditapp/fund/FundBase_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="FundBaseAction_getById" method="getById" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="detail">/creditapp/fund/FundBase_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="FundBaseActionInsert" method="insert" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="input">/creditapp/fund/FundBase_Insert.jsp</result>
+			<result name="detail">/creditapp/fund/FundBase_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="FundBaseActionUpdate" method="update" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="input">/creditapp/fund/FundBase_Detail.jsp</result>
+			<result name="detail">/creditapp/fund/FundBase_Detail.jsp</result>
+		</action>
+		<!--按照字段修改保存-->
+		<action name="FundBaseActionUpdateByfield" method="updateByfield" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="list">/creditapp/fund/FundBase_List.jsp</result>
+		</action>
+		<!--同步引入-->
+		<action name="FundBaseActionSync" method="sync" class="app.creditapp.fund.action.FundBaseAction">
+		    <result name="list">/creditapp/fund/FundBase_List.jsp</result>
+			<result name="input">/creditapp/fund/FundBase_Insert.jsp</result>
+			<result name="detail">/creditapp/fund/FundBase_Detail.jsp</result>
+		</action>
+		<!--单笔资金引入-->
+		<action name="FundBaseAction_syncSingle" method="syncSingle" class="app.creditapp.fund.action.FundBaseAction">
+		    <result name="syncSingle">/creditapp/fund/FundBase_List.jsp</result>
+		</action>
+		<!-- 上面常显信息 -->
+		<action name="FundBaseAction_getDetailTop" method="getDetailTop" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="top">/creditapp/fund/FundBase_All_Top.jsp</result>
+		</action>
+		<!-- 总详细信息 -->
+		<action name="FundBaseAction_getAllDetail" method="getAllDetail" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="all">/creditapp/fund/FundBase_All.jsp</result>
+	    </action>	
+	    <action name="FundBaseAction_getAllDetailForRead" method="getAllDetailForRead" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="all">/creditapp/fund/FundBase_AllForRead.jsp</result>
+	    </action>
+	    <!-- 转让 注入资产池 -->
+		<action name="FundBaseAction_turnAsset" method="turnAsset" class="app.creditapp.fund.action.FundBaseAction">
+			<result name="list">/creditapp/fund/FundBase_List.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

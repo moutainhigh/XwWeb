@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GB2312"?>
+<table id="acc8101" link="AcLnRepaySeqAction_findByPage.action" para="eadis_page" title="还款顺序查看列表" type="1">
+<tableitem align="2" filedname="repaySeqCde" id="1" indexed="1" label="还款顺序代码" row="1" type="4" typepara="AcLnRepaySeqAction_getTabView.action;repaySeqCde-repaySeqCde"/>
+<tableitem align="2" filedname="txTyp" id="3" indexed="3" label="交易类型" row="1" type="6" typepara="AC_REPAY_TX_TYPE"/>
+<tableitem align="2" filedname="pop" id="5" indexed="4" label="选择" row="1" type="5" typepara="#;repaySeqCde-repaySeqCde;onClick-funcPopReturn" width="4"/>
+</table>

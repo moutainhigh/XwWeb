@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="CipTradeAction" location="303,165" size="525,490">
+    <action name="CipTradeAction_findByPage" location="310,57" size="150,41">
+      <result name="list">
+        <resourceEdge source="list" routing="0" target="CipTrade_List.jsp" />
+      </result>
+    </action>
+    <action name="CipTradeAction_input" location="310,162" size="150,41">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="CipTrade_Insert.jsp" />
+      </result>
+    </action>
+    <action name="CipTradeAction_del" location="65,162" size="150,41">
+      <result name="list">
+        <resourceEdge source="list" routing="0" target="CipTrade_List.jsp" />
+      </result>
+    </action>
+    <action name="CipTradeAction_getById" location="65,407" size="150,41">
+      <result name="detail">
+        <resourceEdge source="detail" routing="0" target="CipTrade_Detail.jsp" />
+      </result>
+    </action>
+    <action name="CipTradeActionInsert" location="310,397" size="150,62">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="CipTrade_Insert.jsp" />
+      </result>
+      <result name="detail">
+        <resourceEdge source="detail" routing="0" target="CipTrade_Detail.jsp" />
+      </result>
+    </action>
+    <action name="CipTradeActionUpdate" location="310,292" size="150,62">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="CipTrade_Detail.jsp" />
+      </result>
+      <result name="detail">
+        <resourceEdge source="detail" routing="0" target="CipTrade_Detail.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="CipTrade_List.jsp" path="/creditapp/trade/CipTrade_List.jsp" location="331,10" size="150,55" />
+  <webResource name="CipTrade_Insert.jsp" path="/creditapp/trade/CipTrade_Insert.jsp" location="884,290" size="150,55" />
+  <webResource name="CipTrade_Detail.jsp" path="/creditapp/trade/CipTrade_Detail.jsp" location="9,535" size="150,55" />
+</Struts2Diagram>
+

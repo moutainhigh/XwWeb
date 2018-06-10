@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="sys0204" title="系统异常">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="expId" fieldtype="1" maxlength="12" formactiveid="1" labelalign="3" labelcol="1" labelname="异常ID" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="userId" fieldtype="1" maxlength="10" formactiveid="2" labelalign="3" labelcol="1" labelname="操作人员" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="expDate" fieldtype="1" maxlength="8" formactiveid="3" labelalign="3" labelcol="1" labelname="异常发生日期" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="expTime" fieldtype="1" maxlength="8" formactiveid="4" labelalign="3" labelcol="1" labelname="异常发生时间" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="expClass" fieldtype="1" maxlength="200" formactiveid="5" labelalign="3" labelcol="1" labelname="异常发生类和方法" mustinput="0" row="5"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="expInfo" fieldtype="1" maxlength="400" formactiveid="6" labelalign="3" labelcol="1" labelname="异常信息" mustinput="0" row="6"/>
+</form>

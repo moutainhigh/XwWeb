@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="inf0016" title="扣款信息上传进件表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txDate" fieldtype="1" maxlength="8" formactiveid="1" labelalign="3" labelcol="1" labelname="接收数据日期" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="wsId" fieldtype="1" maxlength="20" formactiveid="2" labelalign="3" labelcol="1" labelname="接收数据ID" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="batchNo" fieldtype="1" maxlength="30" formactiveid="3" labelalign="3" labelcol="1" labelname="批次编号" mustinput="0" row="3"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="4" labelalign="3" labelcol="1" labelname="合作机构编号" mustinput="0" row="4"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="pactNo" fieldtype="1" maxlength="40" formactiveid="5" labelalign="3" labelcol="1" labelname="合同编号" mustinput="0" row="5"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="acName" fieldtype="1" maxlength="30" formactiveid="6" labelalign="3" labelcol="1" labelname="账户姓名" mustinput="0" row="6"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="acNo" fieldtype="1" maxlength="30" formactiveid="7" labelalign="3" labelcol="1" labelname="还款账号" mustinput="0" row="7"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opnCode" fieldtype="1" maxlength="3" formactiveid="8" labelalign="3" labelcol="1" labelname="银行代码" mustinput="0" row="8"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="opnName" fieldtype="1" maxlength="60" formactiveid="9" labelalign="3" labelcol="1" labelname="开户行" mustinput="0" row="9"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="payOver" fieldtype="1" maxlength="16" formactiveid="10" labelalign="3" labelcol="1" labelname="应收罚息" mustinput="0" row="10"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="feeRec" fieldtype="1" maxlength="16" formactiveid="11" labelalign="3" labelcol="1" labelname="应收代扣费总额" mustinput="0" row="11"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="repayTotal" fieldtype="1" maxlength="16" formactiveid="12" labelalign="3" labelcol="1" labelname="扣款金额:11=12+13" mustinput="0" row="12"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="repayAmt" fieldtype="1" maxlength="16" formactiveid="13" labelalign="3" labelcol="1" labelname="扣款本金" mustinput="0" row="13"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="repayInte" fieldtype="1" maxlength="16" formactiveid="14" labelalign="3" labelcol="1" labelname="扣款利息" mustinput="0" row="14"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="repayOver" fieldtype="1" maxlength="16" formactiveid="15" labelalign="3" labelcol="1" labelname="扣款罚息" mustinput="0" row="15"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="feeTotal" fieldtype="1" maxlength="16" formactiveid="16" labelalign="3" labelcol="1" labelname="代扣费总额:代合作机构收取" mustinput="0" row="16"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="serialNo" fieldtype="1" maxlength="20" formactiveid="17" labelalign="3" labelcol="1" labelname="扣款流水号" mustinput="0" row="17"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dealSts" fieldtype="1" maxlength="2" formactiveid="18" labelalign="3" labelcol="1" labelname="扣款状态[01未处理02处理中03处理成功04处理失败]" mustinput="0" row="18"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dealDesc" fieldtype="1" maxlength="60" formactiveid="19" labelalign="3" labelcol="1" labelname="扣款描述" mustinput="0" row="19"/>
+</form>

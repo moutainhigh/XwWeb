@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpGdinfo" type="app.creditapp.corp.entity.CorpGdinfo"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpGdinfo" class="CorpGdinfo">
+    <result property="invAmt" column="INV_AMT" jdbcType="double"/>
+    <result property="curNo" column="CUR_NO" />
+    <result property="gdName" column="GD_NAME" />
+    <result property="gdId" column="GD_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="gdType" column="GD_TYPE" />
+    <result property="stkcNo" column="STKC_NO" />
+    <result property="gdIdType" column="GD_ID_TYPE" />
+    <result property="gdIdNo" column="GD_ID_NO" />
+    <result property="invDate" column="INV_DATE" />
+    <result property="cashAmt" column="CASH_AMT" jdbcType="double"/>
+    <result property="objAmt" column="OBJ_AMT" jdbcType="double"/>
+    <result property="invRate" column="INV_RATE" jdbcType="double"/>
+    <result property="credNo" column="CRED_NO" />
+    <result property="license" column="LICENSE" />
+    <result property="ctlFlag" column="CTL_FLAG" />
+    <result property="phone" column="PHONE" />
+    <result property="address" column="ADDRESS" />
+    <result property="filer" column="FILER" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    </resultMap>
+     <sql id="CorpGdinfo.columns">
+        <![CDATA[
+         INV_AMT,
+         CUR_NO,
+         GD_NAME,
+         GD_ID,
+         BR_NAME,
+         BR_NO,
+         GD_TYPE,
+         STKC_NO,
+         GD_ID_TYPE,
+         GD_ID_NO,
+         INV_DATE,
+         CASH_AMT,
+         OBJ_AMT,
+         INV_RATE,
+         CRED_NO,
+         LICENSE,
+         CTL_FLAG,
+         PHONE,
+         ADDRESS,
+         FILER,
+         DEPT_NO,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpGdinfo.insert">
+        <![CDATA[
+        INSERT INTO CORP_GDINFO(
+         INV_AMT,
+         CUR_NO,
+         GD_NAME,
+         GD_ID,
+         BR_NAME,
+         BR_NO,
+         GD_TYPE,
+         STKC_NO,
+         GD_ID_TYPE,
+         GD_ID_NO,
+         INV_DATE,
+         CASH_AMT,
+         OBJ_AMT,
+         INV_RATE,
+         CRED_NO,
+         LICENSE,
+         CTL_FLAG,
+         PHONE,
+         ADDRESS,
+         FILER,
+         DEPT_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO
+         )VALUES(
+         #invAmt#,
+         #curNo#,
+         #gdName#,
+         #gdId#,
+         #brName#,
+         #brNo#,
+         #gdType#,
+         #stkcNo#,
+         #gdIdType#,
+         #gdIdNo#,
+         #invDate#,
+         #cashAmt#,
+         #objAmt#,
+         #invRate#,
+         #credNo#,
+         #license#,
+         #ctlFlag#,
+         #phone#,
+         #address#,
+         #filer#,
+         #deptNo#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #upOpno#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpGdinfo.del">
+        <![CDATA[
+               DELETE FROM CORP_GDINFO
+                 WHERE
+               	GD_ID = #gdId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpGdinfo.update">
+        <![CDATA[
+         UPDATE CORP_GDINFO set
+         INV_AMT=#invAmt#,
+         CUR_NO=#curNo#,
+         GD_NAME=#gdName#,
+         GD_ID=#gdId#,
+         BR_NAME=#brName#,
+         BR_NO=#brNo#,
+         GD_TYPE=#gdType#,
+         STKC_NO=#stkcNo#,
+         GD_ID_TYPE=#gdIdType#,
+         GD_ID_NO=#gdIdNo#,
+         INV_DATE=#invDate#,
+         CASH_AMT=#cashAmt#,
+         OBJ_AMT=#objAmt#,
+         INV_RATE=#invRate#,
+         CRED_NO=#credNo#,
+         LICENSE=#license#,
+         CTL_FLAG=#ctlFlag#,
+         PHONE=#phone#,
+         ADDRESS=#address#,
+         FILER=#filer#,
+         UP_DATE=#upDate#,
+         UP_OPNO=#upOpno#
+          WHERE
+               	GD_ID = #gdId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CorpGdinfo.getById"  resultMap="RM.CorpGdinfo">
+        SELECT <include refid="CorpGdinfo.columns"/>
+        <![CDATA[
+             FROM CORP_GDINFO 
+         WHERE 
+               	GD_ID = #gdId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpGdinfo.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="gdName">
+                  <isNotEmpty prepend="AND" property="gdName">
+                      GD_NAME = #gdName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gdIdType">
+                  <isNotEmpty prepend="AND" property="gdIdType">
+                      GD_ID_TYPE = #gdIdType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpGdinfo.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_GDINFO <include refid="CorpGdinfo.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpGdinfo.findByPage" resultMap="RM.CorpGdinfo">
+        SELECT <include refid="CorpGdinfo.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpGdinfo.columns"/> FROM CORP_GDINFO
+                    <include refid="CorpGdinfo.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询合作机构股东信息记录数 -->
+    <select id="CorpGdinfo.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM CORP_GDINFO WHERE 
+             br_no = #brNo# ORDER BY GD_ID DESC
+    </select>
+    <!-- 分页查询合作机构股东信息-->
+    <select id="CorpGdinfo.findByPageQuotaForCorp" resultMap="RM.CorpGdinfo">
+        SELECT <include refid="CorpGdinfo.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpGdinfo.columns"/> FROM CORP_GDINFO WHERE  
+             br_no = #brNo# ORDER BY GD_ID DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="CorpGdinfo.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_PERS_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

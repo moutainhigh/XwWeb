@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpCont" type="app.creditapp.corp.entity.CorpCont"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpCont" class="CorpCont">
+    <result property="contIdno" column="CONT_IDNO" />
+    <result property="contIdtyoe" column="CONT_IDTYOE" />
+    <result property="contType" column="CONT_TYPE" />
+    <result property="contName" column="CONT_NAME" />
+    <result property="contNo" column="CONT_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="admTel" column="ADM_TEL" />
+    <result property="edu" column="EDU" />
+    <result property="admAddr" column="ADM_ADDR" />
+    <result property="country" column="COUNTRY" />
+    <result property="birthday" column="BIRTHDAY" />
+    <result property="duty" column="DUTY" />
+    <result property="wkTitle" column="WK_TITLE" />
+    <result property="cifFax" column="CIF_FAX" />
+    <result property="comAddr" column="COM_ADDR" />
+    <result property="resume" column="RESUME" />
+    <result property="filer" column="FILER" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="opName" column="OP_NAME" />
+    <result property="opNo" column="OP_NO" />
+    <result property="commMail" column="COMM_MAIL" />
+    </resultMap>
+     <sql id="CorpCont.columns">
+        <![CDATA[
+         CONT_IDNO,
+         CONT_IDTYOE,
+         CONT_TYPE,
+         CONT_NAME,
+         CONT_NO,
+         BR_NAME,
+         BR_NO,
+         ADM_TEL,
+         EDU,
+         ADM_ADDR,
+         COUNTRY,
+         BIRTHDAY,
+         DUTY,
+         WK_TITLE,
+         CIF_FAX,
+         COM_ADDR,
+         RESUME,
+         FILER,
+         DEPT_NO,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         COMM_MAIL
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpCont.insert">
+        <![CDATA[
+        INSERT INTO CORP_CONT(
+         CONT_IDNO,
+         CONT_IDTYOE,
+         CONT_TYPE,
+         CONT_NAME,
+         CONT_NO,
+         BR_NAME,
+         BR_NO,
+         ADM_TEL,
+         EDU,
+         ADM_ADDR,
+         COUNTRY,
+         BIRTHDAY,
+         DUTY,
+         WK_TITLE,
+         CIF_FAX,
+         COM_ADDR,
+         RESUME,
+         FILER,
+         DEPT_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         COMM_MAIL
+         )VALUES(
+         #contIdno#,
+         #contIdtyoe#,
+         #contType#,
+         #contName#,
+         #contNo#,
+         #brName#,
+         #brNo#,
+         #admTel#,
+         #edu#,
+         #admAddr#,
+         #country#,
+         #birthday#,
+         #duty#,
+         #wkTitle#,
+         #cifFax#,
+         #comAddr#,
+         #resume#,
+         #filer#,
+         #deptNo#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #upOpno#,
+         #commMail#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpCont.del">
+        <![CDATA[
+               DELETE FROM CORP_CONT
+                 WHERE
+               	CONT_NO = #contNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpCont.update">
+        <![CDATA[
+         UPDATE CORP_CONT set
+         CONT_IDNO=#contIdno#,
+         CONT_IDTYOE=#contIdtyoe#,
+         CONT_TYPE=#contType#,
+         CONT_NAME=#contName#,
+         CONT_NO=#contNo#,
+         BR_NAME=#brName#,
+         BR_NO=#brNo#,
+         ADM_TEL=#admTel#,
+         EDU=#edu#,
+         ADM_ADDR=#admAddr#,
+         COUNTRY=#country#,
+         BIRTHDAY=#birthday#,
+         DUTY=#duty#,
+         WK_TITLE=#wkTitle#,
+         CIF_FAX=#cifFax#,
+         COM_ADDR=#comAddr#,
+         RESUME=#resume#,
+         FILER=#filer#,
+         DEPT_NO=#deptNo#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         UP_OPNO=#upOpno#,
+         COMM_MAIL=#commMail#
+          WHERE
+               	CONT_NO = #contNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CorpCont.getById"  resultMap="RM.CorpCont">
+        SELECT <include refid="CorpCont.columns"/>
+        <![CDATA[
+             FROM CORP_CONT 
+         WHERE 
+               	CONT_NO = #contNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpCont.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="contIdno">
+                  <isNotEmpty prepend="AND" property="contIdno">
+                      CONT_IDNO = #contIdno#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="contName">
+                  <isNotEmpty prepend="AND" property="contName">
+                      CONT_NAME = #contName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="contNo">
+                  <isNotEmpty prepend="AND" property="contNo">
+                      CONT_NO = #contNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpCont.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_CONT <include refid="CorpCont.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpCont.findByPage" resultMap="RM.CorpCont">
+        SELECT <include refid="CorpCont.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpCont.columns"/> FROM CORP_CONT
+                    <include refid="CorpCont.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询合作机构联系人信息记录数 -->
+    <select id="CorpCont.findByPageQuotaForCorp.count" resultClass="int">
+        SELECT count(*) FROM CORP_CONT WHERE 
+             br_no = #brNo# ORDER BY CONT_NO DESC
+    </select>
+    <!-- 分页查询合作机构联系人信息-->
+    <select id="CorpCont.findByPageQuotaForCorp" resultMap="RM.CorpCont">
+        SELECT <include refid="CorpCont.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpCont.columns"/> FROM CORP_CONT WHERE  
+             br_no = #brNo# ORDER BY CONT_NO DESC
+             ) m  where rownum &lt;#endNum# 
+        	) WHERE rnum &gt;= #startNum#  
+    </select>
+    <!-- 获取KEY -->
+    <select id="CorpCont.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_PERS_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

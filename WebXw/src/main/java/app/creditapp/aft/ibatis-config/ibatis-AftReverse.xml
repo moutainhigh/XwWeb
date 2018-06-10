@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftReverse" type="app.creditapp.aft.entity.AftReverse"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftReverse" class="AftReverse">
+    <result property="reveId" column="REVE_ID" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="txCde" column="TX_CDE" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="dueNo" column="DUE_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="reveAmt" column="REVE_AMT" jdbcType="double"/>
+    <result property="reveReason" column="REVE_REASON" />
+    <result property="reveDate" column="REVE_DATE" />
+    <result property="reveSts" column="REVE_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+     <sql id="AftReverse.columns">
+        <![CDATA[
+         REVE_ID,
+         TRACE_NO,
+         TX_CDE,
+         CIF_NO,
+         CIF_NAME,
+         DUE_NO,
+         BR_NO,
+         PACT_NO,
+         REVE_AMT,
+         REVE_REASON,
+         REVE_DATE,
+         REVE_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         FUN_GETBRNAME(BR_NO) AS BR_NAME,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftReverse.insert">
+        <![CDATA[
+        INSERT INTO AFT_REVERSE(
+         REVE_ID,
+         TRACE_NO,
+         TX_CDE,
+         CIF_NO,
+         CIF_NAME,
+         DUE_NO,
+         BR_NO,
+         PACT_NO,
+         REVE_AMT,
+         REVE_REASON,
+         REVE_DATE,
+         REVE_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #reveId#,
+         #traceNo#,
+         #txCde#,
+         #cifNo#,
+         #cifName#,
+         #dueNo#,
+         #brNo#,
+         #pactNo#,
+         #reveAmt#,
+         #reveReason#,
+         #reveDate#,
+         #reveSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="reveId" >
+			SELECT AFT_CHG_SEQ.NEXTVAL AS REVE_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftReverse.del">
+        <![CDATA[
+               DELETE FROM AFT_REVERSE
+                 WHERE
+               	REVE_ID = #reveId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftReverse.updateReveSts">
+    <![CDATA[
+         UPDATE AFT_REVERSE set
+         REVE_STS=#reveSts#
+         WHERE
+               	REVE_ID = #reveId#        ]]>
+    </update>
+    <update id="AftReverse.update">
+        <![CDATA[
+         UPDATE AFT_REVERSE set
+         REVE_ID=#reveId#,
+         TRACE_NO=#traceNo#,
+         TX_CDE=#txCde#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         DUE_NO=#dueNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         REVE_AMT=#reveAmt#,
+         REVE_REASON=#reveReason#,
+         REVE_DATE=#reveDate#,
+         REVE_STS=#reveSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	REVE_ID = #reveId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftReverse.getById"  resultMap="RM.AftReverse">
+        SELECT <include refid="AftReverse.columns"/>
+        <![CDATA[
+             FROM AFT_REVERSE 
+         WHERE 
+               	REVE_ID = #reveId#        ]]>
+     </select>
+    <select id="AftReverse.getByIdForRead"  resultMap="RM.AftReverse">
+        SELECT <include refid="AftReverse.columns"/>
+        <![CDATA[
+             FROM AFT_REVERSE 
+         WHERE 
+               	TRACE_NO = #traceNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftReverse.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="dueNo">
+                  <isNotEmpty prepend="AND" property="dueNo">
+                      DUE_NO = #dueNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftReverse.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_REVERSE <include refid="AftReverse.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftReverse.findByPage" resultMap="RM.AftReverse">
+        SELECT <include refid="AftReverse.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftReverse.columns"/> FROM AFT_REVERSE
+                    <include refid="AftReverse.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

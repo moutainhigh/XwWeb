@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLnMst" type="app.creditapp.acc.loan.entity.AcLnMst"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnMst" class="AcLnMst">
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="lstIntDt" column="LST_INT_DT" />
+    <result property="hstCnt" column="HST_CNT" jdbcType="Int"/>
+    <result property="lstDt" column="LST_DT" />
+    <result property="ysBal" column="YS_BAL" jdbcType="double" nullValue="0.00"/>
+    <result property="hstBal" column="HST_BAL" jdbcType="double" nullValue="0.00"/>
+    <result property="mac" column="MAC" />
+    <result property="sailFlag" column="SAIL_FLAG" />
+    <result property="sailDt" column="SAIL_DT" />
+    <result property="zfBal" column="ZF_BAL" jdbcType="double" nullValue="0.00"/>
+    <result property="deductBegAmt" column="DEDUCT_BEG_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="deductDay" column="DEDUCT_DAY" />
+    <result property="deductMinAmt" column="DEDUCT_MIN_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="ttlPrvdAmt" column="TTL_PRVD_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="calTtlInstm" column="CAL_TTL_INSTM" jdbcType="Int" nullValue="0"/>
+    <result property="overIntstTyp" column="OVER_INTST_TYP" />
+    <result property="indpnAmt" column="INDPN_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="trustAmt" column="TRUST_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="trustAmtTrans" column="TRUST_AMT_TRANS" jdbcType="double" nullValue="0.00"/>
+    <result property="oldLoanNo" column="OLD_LOAN_NO" />
+    <result property="delqPrcpAmt" column="DELQ_PRCP_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="upDt" column="UP_DT" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="loanTyp" column="LOAN_TYP" />
+    <result property="assureMeans" column="ASSURE_MEANS" />
+    <result property="loanTerm" column="LOAN_TERM" jdbcType="Int"/>
+    <result property="opnDt" column="OPN_DT" />
+    <result property="mtrDt" column="MTR_DT" />
+    <result property="termTyp" column="TERM_TYP" />
+    <result property="termMon" column="TERM_MON" jdbcType="Int"/>
+    <result property="termDay" column="TERM_DAY" jdbcType="Int"/>
+    <result property="curNo" column="CUR_NO" />
+    <result property="loanAmt" column="LOAN_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="loanBal" column="LOAN_BAL" jdbcType="double" nullValue="0.00"/>
+    <result property="lnRate" column="LN_RATE" jdbcType="double" nullValue="0.00"/>
+    <result property="lnRateYear" column="LN_RATE_YEAR" jdbcType="double" nullValue="0.00"/>
+    <result property="overRate" column="OVER_RATE" jdbcType="double" nullValue="0.00"/>
+    <result property="icDt" column="IC_DT" />
+    <result property="repayDay" column="REPAY_DAY" />
+    <result property="expInd" column="EXP_IND" />
+    <result property="expRate" column="EXP_RATE" jdbcType="double" nullValue="0.00"/>
+    <result property="expMtrDt" column="EXP_MTR_DT" />
+    <result property="graceTyp" column="GRACE_TYP" />
+    <result property="graceDay" column="GRACE_DAY" jdbcType="Int" nullValue="0.00"/>
+    <result property="delqInd" column="DELQ_IND" />
+    <result property="devaInd" column="DEVA_IND" />
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="failCaus" column="FAIL_CAUS" />
+    <result property="intToStpInd" column="INT_TO_STP_IND" />
+    <result property="fiveSts" column="FIVE_STS" />
+    <result property="lastSetlDt" column="LAST_SETL_DT" />
+    <result property="curDueDt" column="CUR_DUE_DT" />
+    <result property="nextDueDt" column="NEXT_DUE_DT" />
+    <result property="brName" column="BR_NAME" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="loanSts" column="LOAN_STS" />
+    <result property="premRate" column="PREM_RATE" />
+    
+    </resultMap>
+    <typeAlias alias="AcLnMstFail" type="app.creditapp.acc.loan.entity.AcLnMstFail"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnMstFail" class="AcLnMstFail">
+    <result property="loanNo" column="LOAN_NO" />
+	<result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="loanTyp" column="LOAN_TYP" />
+    <result property="assureMeans" column="ASSURE_MEANS" />
+    <result property="failCaus" column="FAIL_CAUS" />
+    <result property="upDt" column="UP_DT" />
+    <result property="appId" column="APP_ID" />
+    <result property="appAmt" column="APP_AMT" />
+    <result property="brName" column="BR_NAME" />
+    <result property="failCaus" column="FAIL_CAUS" />
+    <result property="appDate" column="APP_DATE" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    
+    
+    </resultMap>
+    <!-- ws2105合同信息查询返回字段 -->
+<typeAlias alias="Ws2105" type="app.creditapp.inf.entity.WsOut2105_1"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsOut2105_1" class="Ws2105">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="custName" column="CIF_NAME" />
+    <result property="begDate" column="OPN_DT" />
+    <result property="endDate" column="MTR_DT" />
+    <result property="pactAmt" column="LOAN_AMT" nullValue="0"/>
+    <result property="bal" column="LOAN_BAL" nullValue="0"/>
+    <result property="repayDay" column="REPAY_DAY" />
+    <result property="lnRate" column="LN_RATE" nullValue="0"/>
+    <result property="lnRateYear" column="LN_RATE_YEAR" nullValue="0"/>
+    <result property="expRate" column="EXP_RATE" nullValue="0"/>
+    <result property="expMtrDt" column="EXP_MTR_DT" />
+    <result property="lnSts" column="LOAN_STS" />
+   </resultMap>
+    
+    
+     <!-- 列表查询返回字段 -->
+   	<resultMap id="RM.AcLnMstdk" class="AcLnMst">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="brNo" column="BR_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="loanAmt" column="LOAN_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="normInt" column="NORM_INT" />
+    <result property="bal" column="BAL" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="loanSts" column="LOAN_STS" />
+    <result property="loanBal" column="LOAN_BAL" />
+    </resultMap>
+     <sql id="AcLnMst.columns">
+        <![CDATA[
+         LOAN_NO,
+         LST_INT_DT,
+         HST_CNT,
+         LST_DT,
+         YS_BAL,
+         HST_BAL,
+         MAC,
+         SAIL_FLAG,
+         SAIL_DT,
+         ZF_BAL,
+         DEDUCT_BEG_AMT,
+         DEDUCT_DAY,
+         DEDUCT_MIN_AMT,
+         TTL_PRVD_AMT,
+         CAL_TTL_INSTM,
+         OVER_INTST_TYP,
+         INDPN_AMT,
+         TRUST_AMT,
+         TRUST_AMT_TRANS,
+         OLD_LOAN_NO,
+         DELQ_PRCP_AMT,
+         UP_DT,
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         PRDT_NO,
+         PROJ_NO,
+         BR_ACC_TYPE,
+         CIF_NO,
+         CIF_NAME,
+         LOAN_TYP,
+         ASSURE_MEANS,
+         LOAN_TERM,
+         OPN_DT,
+         MTR_DT,
+         TERM_TYP,
+         TERM_MON,
+         TERM_DAY,
+         CUR_NO,
+         LOAN_AMT,
+         LOAN_BAL,
+         LN_RATE,
+         LN_RATE_YEAR,
+         OVER_RATE,
+         IC_DT,
+         REPAY_DAY,
+         EXP_IND,
+         EXP_RATE,
+         EXP_MTR_DT,
+         GRACE_TYP,
+         GRACE_DAY,
+         DELQ_IND,
+         DEVA_IND,
+         DEAL_STS,
+         FAIL_CAUS,
+         LOAN_STS,
+         INT_TO_STP_IND,
+         FIVE_STS,
+         LAST_SETL_DT,
+         CUR_DUE_DT,
+         NEXT_DUE_DT,
+         fun_getprojname (proj_no) AS PROJ_NAME,
+         fun_getbrname (br_no) as BR_NAME,
+          FUN_GETPRDTNAME(prdt_no) as PRDT_NAME,
+          PREM_RATE
+          ]]>
+    </sql>
+    <sql id="AcLnMstFail.columns">
+        <![CDATA[
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         PROJ_NO,
+         CIF_NO,
+         CIF_NAME,
+         UP_DT,
+         LOAN_TYP,
+         ASSURE_MEANS,
+         FAIL_CAUS,
+         APP_ID,
+         APP_AMT,
+         APP_DATE,
+         fun_getprdtname(prdt_no) as PRDT_NAME,
+         fun_getbrname(br_no) as BR_NAME,
+         fun_getprojname(proj_no) as PROJ_NAME
+          ]]>
+    </sql>
+    <sql id="WsOut2105_1.columns">
+        <![CDATA[
+        	PACT_NO,
+			PRDT_NO,
+			PROJ_NO,
+			CIF_NAME,
+			OPN_DT,
+			MTR_DT,
+			LOAN_AMT,
+			LOAN_BAL,
+			REPAY_DAY,
+			LN_RATE,
+			LN_RATE_YEAR,
+			EXP_RATE,
+			EXP_MTR_DT,
+			LOAN_STS
+          ]]>
+    </sql>
+    <sql id="AcLnMstdk.columns">
+        <![CDATA[
+      		PRDT_NO,
+     	    NORM_INT,
+   			PACT_NO,
+   			BR_NO,
+   			LOAN_NO,
+   			CIF_NAME,
+   			LOAN_AMT,
+   			BEG_DATE,
+   			END_DATE,
+   			BAL,
+   			fun_getbrname(br_no) AS BR_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLnMst.insert">
+        <![CDATA[
+        INSERT INTO AC_LN_MST(
+         LOAN_NO,
+         LST_INT_DT,
+         HST_CNT,
+         LST_DT,
+         YS_BAL,
+         HST_BAL,
+         MAC,
+         SAIL_FLAG,
+         SAIL_DT,
+         ZF_BAL,
+         DEDUCT_BEG_AMT,
+         DEDUCT_DAY,
+         DEDUCT_MIN_AMT,
+         TTL_PRVD_AMT,
+         CAL_TTL_INSTM,
+         OVER_INTST_TYP,
+         INDPN_AMT,
+         TRUST_AMT,
+         TRUST_AMT_TRANS,
+         OLD_LOAN_NO,
+         DELQ_PRCP_AMT,
+         UP_DT,
+         PACT_NO,
+         BR_NO,
+         BATCH_NO,
+         PRDT_NO,
+         PROJ_NO,
+         BR_ACC_TYPE,
+         CIF_NO,
+         CIF_NAME,
+         LOAN_TYP,
+         ASSURE_MEANS,
+         LOAN_TERM,
+         OPN_DT,
+         MTR_DT,
+         TERM_TYP,
+         TERM_MON,
+         TERM_DAY,
+         CUR_NO,
+         LOAN_AMT,
+         LOAN_BAL,
+         LN_RATE,
+         LN_RATE_YEAR,
+         OVER_RATE,
+         IC_DT,
+         REPAY_DAY,
+         EXP_IND,
+         EXP_RATE,
+         EXP_MTR_DT,
+         GRACE_TYP,
+         GRACE_DAY,
+         DELQ_IND,
+         DEVA_IND,
+         DEAL_STS,
+         FAIL_CAUS,
+         LOAN_STS,
+         INT_TO_STP_IND,
+         FIVE_STS,
+         LAST_SETL_DT,
+         CUR_DUE_DT,
+         NEXT_DUE_DT,
+         BEG_DATE,
+         END_DATE,
+         PRDT_NAME,
+         )VALUES(
+         #loanNo#,
+         #lstIntDt#,
+         #hstCnt#,
+         #lstDt#,
+         #ysBal#,
+         #hstBal#,
+         #mac#,
+         #sailFlag#,
+         #sailDt#,
+         #zfBal#,
+         #deductBegAmt#,
+         #deductDay#,
+         #deductMinAmt#,
+         #ttlPrvdAmt#,
+         #calTtlInstm#,
+         #overIntstTyp#,
+         #indpnAmt#,
+         #trustAmt#,
+         #trustAmtTrans#,
+         #oldLoanNo#,
+         #delqPrcpAmt#,
+         #upDt#,
+         #pactNo#,
+         #brNo#,
+         #batchNo#,
+         #prdtNo#,
+         #projNo#,
+         #brAccType#,
+         #cifNo#,
+         #cifName#,
+         #loanTyp#,
+         #assureMeans#,
+         #loanTerm#,
+         #opnDt#,
+         #mtrDt#,
+         #termTyp#,
+         #termMon#,
+         #termDay#,
+         #curNo#,
+         #loanAmt#,
+         #loanBal#,
+         #lnRate#,
+         #lnRate_year#,
+         #overRate#,
+         #icDt#,
+         #repayDay#,
+         #expInd#,
+         #expRate#,
+         #expMtrDt#,
+         #graceTyp#,
+         #graceDay#,
+         #delqInd#,
+         #devaInd#,
+         #dealSts#,
+         #failCaus#,
+         #loanSts#,
+         #intToStpInd#,
+         #fiveSts#,
+         #lastSetlDt#,
+         #curDueDt#,
+         #nextDueDt#,
+         #begDate#,
+         #endDate#,
+         #pidtName#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLnMst.del">
+        <![CDATA[
+               DELETE FROM AC_LN_MST
+                 WHERE
+               	LOAN_NO = #loanNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcLnMst.update">
+        <![CDATA[
+         UPDATE AC_LN_MST set
+         LOAN_NO=#loanNo#,
+         LST_INT_DT=#lstIntDt#,
+         HST_CNT=#hstCnt#,
+         LST_DT=#lstDt#,
+         YS_BAL=#ysBal#,
+         HST_BAL=#hstBal#,
+         MAC=#mac#,
+         SAIL_FLAG=#sailFlag#,
+         SAIL_DT=#sailDt#,
+         ZF_BAL=#zfBal#,
+         DEDUCT_BEG_AMT=#deductBegAmt#,
+         DEDUCT_DAY=#deductDay#,
+         DEDUCT_MIN_AMT=#deductMinAmt#,
+         TTL_PRVD_AMT=#ttlPrvdAmt#,
+         CAL_TTL_INSTM=#calTtlInstm#,
+         OVER_INTST_TYP=#overIntstTyp#,
+         INDPN_AMT=#indpnAmt#,
+         TRUST_AMT=#trustAmt#,
+         TRUST_AMT_TRANS=#trustAmtTrans#,
+         OLD_LOAN_NO=#oldLoanNo#,
+         DELQ_PRCP_AMT=#delqPrcpAmt#,
+         UP_DT=#upDt#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         BATCH_NO=#batchNo#,
+         PRDT_NO=#prdtNo#,
+         PROJ_NO=#projNo#,
+         BR_ACC_TYPE=#brAccType#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         LOAN_TYP=#loanTyp#,
+         ASSURE_MEANS=#assureMeans#,
+         LOAN_TERM=#loanTerm#,
+         OPN_DT=#opnDt#,
+         MTR_DT=#mtrDt#,
+         TERM_TYP=#termTyp#,
+         TERM_MON=#termMon#,
+         TERM_DAY=#termDay#,
+         CUR_NO=#curNo#,
+         LOAN_AMT=#loanAmt#,
+         LOAN_BAL=#loanBal#,
+         LN_RATE=#lnRate#,
+         LN_RATE_YEAR=#lnRate_year#,
+         OVER_RATE=#overRate#,
+         IC_DT=#icDt#,
+         REPAY_DAY=#repayDay#,
+         EXP_IND=#expInd#,
+         EXP_RATE=#expRate#,
+         EXP_MTR_DT=#expMtrDt#,
+         GRACE_TYP=#graceTyp#,
+         GRACE_DAY=#graceDay#,
+         DELQ_IND=#delqInd#,
+         DEVA_IND=#devaInd#,
+         DEAL_STS=#dealSts#,
+         FAIL_CAUS=#failCaus#,
+         LOAN_STS=#loanSts#,
+         INT_TO_STP_IND=#intToStpInd#,
+         FIVE_STS=#fiveSts#,
+         LAST_SETL_DT=#lastSetlDt#,
+         CUR_DUE_DT=#curDueDt#,
+         NEXT_DUE_DT=#nextDueDt#
+          WHERE
+               	LOAN_NO = #loanNo#        ]]>
+    </update>
+    
+    <!--更新贷款状态-->
+    <update id="AcLnMst.updateLoanSts">
+    <![CDATA[
+         UPDATE AC_LN_MST set LOAN_STS=#loanSts# where LOAN_NO = #loanNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcLnMst.getById"  resultMap="RM.AcLnMst">
+        SELECT <include refid="AcLnMst.columns"/>
+        <![CDATA[
+             FROM AC_LN_MST 
+         WHERE 
+               	LOAN_NO = #loanNo#        ]]>
+     </select>
+     
+     <!-- 表查询bypactno -->
+    <select id="AcLnMst.getByPactNo"  resultMap="RM.AcLnMst">
+        SELECT <include refid="AcLnMst.columns"/>
+        <![CDATA[
+             FROM AC_LN_MST 
+         WHERE 
+               	PACT_NO = #pactNo#  AND BR_NO=#brNo#      ]]>
+     </select>
+     <!-- ws2105根据brNo/PactNo/begDate查询 -->
+    <sql id="AcLnMst.findPageForList.where">
+        <dynamic prepend="where">
+        <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="opnDt">
+                  <isNotEmpty prepend="AND" property="opnDt">
+                      OPN_DT = #opnDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+      <!-- 放款失败根据DEAL_STS='04'查询 -->
+    <sql id="AcLnMst.findByPageToLoanFail.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="dealSts">
+                  <isNotEmpty prepend="AND" property="dealSts">
+                      DEAL_STS = #dealSts#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      LOAN_NO = #loanNo#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            
+            <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            
+             <isPropertyAvailable property="appDate">
+                  <isNotEmpty prepend="AND" property="appDate">
+                      APP_DATE = #appDate#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+        </dynamic>
+    </sql>
+        <sql id="AcLnMstFail.findByPageToLoanFail.AND">
+            <isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      a.LOAN_NO = #loanNo#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      a.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      a.BR_NO = #brNo#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+             <isPropertyAvailable property="dealSts">
+                  <isNotEmpty prepend="AND" property="dealSts">
+                      (a.DEAL_STS = '04' OR a.DEAL_STS = '06')
+                   </isNotEmpty>
+            </isPropertyAvailable>
+ 
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                     a.CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+            </isPropertyAvailable>
+  <!--           
+            <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                     fun_getbrname(A.br_no)= #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+   -->          
+             <isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                     a.BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                     a.PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="appDate">
+                  <isNotEmpty prepend="AND" property="appDate">
+                     b.APP_DATE = #appDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      a.PROJ_NO IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#) 
+                   </isNotEmpty>
+             </isPropertyAvailable>    
+    </sql>
+    <sql id="AcLnMstFail.findByPagedk.AND">
+            <isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      A.LOAN_NO = #loanNo#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      A.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      A.BR_NO = #brNo#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+ 
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      A.CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            
+            <isPropertyAvailable property="loanSts">
+                  <isNotEmpty prepend="AND" property="loanSts">
+                      LOAN_STS = #loanSts#
+                   </isNotEmpty>
+            </isPropertyAvailable>
+            <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      A.PROJ_NO IN (select proj_no from proj_mang where login_id = #loginid#)
+                   </isNotEmpty>
+            </isPropertyAvailable>
+<!--           
+            <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                     fun_getbrname(A.br_no)= #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                     A.CIF_NAME = #cifName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+  -->           
+            
+    </sql>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLnMst.findPage.where">
+        <dynamic prepend="where">
+        <isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      LOAN_NO = #loanNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+             <isPropertyAvailable property="pactName">
+                  <isNotEmpty prepend="AND" property="pactName">
+                      PACT_NAME like '%$pactName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+              <isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME = #brName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+   
+    <!-- 分页查询记录数 -->
+    <select id="AcLnMst.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_MST <include refid="AcLnMst.findPage.where"/>
+    </select>
+    
+    <select id="AcLnMst.findPagedk.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_MST A, LN_DUE L
+                 WHERE A.LOAN_NO = L.DUE_NO 
+                 <include refid="AcLnMstFail.findByPagedk.AND"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLnMst.findByPage" resultMap="RM.AcLnMst">
+        SELECT <include refid="AcLnMst.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  LOAN_NO,
+			         LST_INT_DT,
+			         HST_CNT,
+			         LST_DT,
+			         YS_BAL,
+			         HST_BAL,
+			         MAC,
+			         SAIL_FLAG,
+			         SAIL_DT,
+			         ZF_BAL,
+			         DEDUCT_BEG_AMT,
+			         DEDUCT_DAY,
+			         DEDUCT_MIN_AMT,
+			         TTL_PRVD_AMT,
+			         CAL_TTL_INSTM,
+			         OVER_INTST_TYP,
+			         INDPN_AMT,
+			         TRUST_AMT,
+			         TRUST_AMT_TRANS,
+			         OLD_LOAN_NO,
+			         DELQ_PRCP_AMT,
+			         UP_DT,
+			         PACT_NO,
+			         BR_NO,
+			         BATCH_NO,
+			         PRDT_NO,
+			         PROJ_NO,
+			         BR_ACC_TYPE,
+			         CIF_NO,
+			         CIF_NAME,
+			         LOAN_TYP,
+			         ASSURE_MEANS,
+			         LOAN_TERM,
+			         OPN_DT,
+			         MTR_DT,
+			         TERM_TYP,
+			         TERM_MON,
+			         TERM_DAY,
+			         CUR_NO,
+			         LOAN_AMT,
+			         LOAN_BAL,
+			         LN_RATE,
+			         OVER_RATE,
+			         IC_DT,
+			         REPAY_DAY,
+			         EXP_IND,
+			         EXP_RATE,
+			         EXP_MTR_DT,
+			         GRACE_TYP,
+			         GRACE_DAY,
+			         DELQ_IND,
+			         DEVA_IND,
+			         DEAL_STS,
+			         FAIL_CAUS,
+			         LOAN_STS,
+			         INT_TO_STP_IND,
+			         FIVE_STS,
+			         LAST_SETL_DT,
+			         CUR_DUE_DT,
+			         NEXT_DUE_DT
+ 			FROM AC_LN_MST
+                    <include refid="AcLnMst.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    
+    <select id="AcLnMst.findByPagedk" resultMap="RM.AcLnMstdk">   
+			  SELECT PRDT_NO,
+			       NORM_INT,
+			       PACT_NO,
+			       BR_NO,
+			       LOAN_NO,
+			       CIF_NAME,
+			       LOAN_AMT,
+			       BAL,
+			       BEG_DATE,
+			       END_DATE,
+			       LOAN_STS,
+			       fun_getbrname(br_no) AS BR_NAME,
+                   fun_getprdtname(prdt_no) AS PRDT_NAME,
+			       LOAN_BAL
+  FROM ( SELECT m.*, rownum as rnum 
+          FROM (SELECT 
+                       A.PRDT_NO,
+                       L.NORM_INT,
+                       A.PACT_NO,
+                       A.BR_NO,
+                       A.LOAN_NO,
+                       A.CIF_NAME,
+                       A.LOAN_AMT,
+                       L.BAL,
+                       L.BEG_DATE ,
+                       A.LOAN_STS,
+                       L.END_DATE,
+                       LOAN_BAL,
+                       A.PROJ_NO
+                  FROM AC_LN_MST A, LN_DUE L
+                 WHERE A.LOAN_NO = L.DUE_NO 
+                 <include refid="AcLnMstFail.findByPagedk.AND"/> order by A.LOAN_NO desc
+                 
+                 ) m
+                 ) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+
+   </select>
+   
+    <!-- ws2105分页查询 -->
+    <select id="AcLnMst.findPageforlist.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_MST <include refid="AcLnMst.findPageForList.where"/>
+    </select>
+    <select id="AcLnMst.findByPageForList" resultMap="RM.WsOut2105_1">
+        SELECT <include refid="WsOut2105_1.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsOut2105_1.columns"/> FROM AC_LN_MST
+                    <include refid="AcLnMst.findPageForList.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 放款失败分页查询记录数 -->
+    <select id="AcLnMstFail.findByPageToLoanFail.count" resultClass="int">
+        SELECT count(*) FROM ( select a.loan_no,
+			       a.pact_no,
+			       a.br_no,
+			       a.batch_no,
+			       a.proj_no,
+			       a.cif_no,
+			       a.cif_name,
+			       a.loan_typ,
+			       a.assure_means,
+			       a.fail_caus,
+			       b.app_id,
+			       b.app_date
+			  from Ac_Ln_Mst a, ln_apply_mid b
+			 where a.pact_no = b.pact_no
+			   and a.br_no = b.br_no
+                 <include refid="AcLnMstFail.findByPageToLoanFail.AND"/>)
+    </select>
+    <!-- 放款失败分页查询 -->
+    <select id="AcLnMstFail.findByPageToLoanFail" resultMap="RM.AcLnMstFail">
+        SELECT <include refid="AcLnMstFail.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (select a.loan_no,
+			       a.pact_no,
+			       a.br_no,
+			       a.proj_no,
+			       a.batch_no,
+			       a.cif_no,
+			       a.cif_name,
+			       a.loan_typ,
+			       a.up_dt,
+			       a.assure_means,
+			       a.fail_caus,
+			       b.app_id,
+			       b.prdt_No,
+			       b.app_amt,
+			       b.app_date
+			  from Ac_Ln_Mst a, ln_apply_mid b
+			 where a.pact_no = b.pact_no
+			   and a.br_no = b.br_no
+                 <include refid="AcLnMstFail.findByPageToLoanFail.AND"/> order by b.app_id desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

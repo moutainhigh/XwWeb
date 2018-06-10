@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsElyRepyBatch" type="app.creditapp.inf.entity.WsElyRepyBatch"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsElyRepyBatch" class="WsElyRepyBatch">
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="dataCnt" column="DATA_CNT" jdbcType="Int"/>
+    <result property="txTime" column="TX_TIME" />
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+     <sql id="WsElyRepyBatch.columns">
+        <![CDATA[
+         BATCH_NO,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) AS BR_NAME,
+         DATA_CNT,
+         TX_TIME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WsElyRepyBatch.insert">
+        <![CDATA[
+        INSERT INTO WS_ELY_REPY_BATCH(
+         BATCH_NO,
+         BR_NO,
+         DATA_CNT,
+         TX_TIME
+         )VALUES(
+         #batchNo#,
+         #brNo#,
+         #dataCnt#,
+         FUN_SYSTIME
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="WsElyRepyBatch.del">
+        <![CDATA[
+               DELETE FROM WS_ELY_REPY_BATCH
+                 WHERE
+               	BATCH_NO = #batchNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WsElyRepyBatch.update">
+        <![CDATA[
+         UPDATE WS_ELY_REPY_BATCH set
+         BATCH_NO=#batchNo#,
+         BR_NO=#brNo#,
+         DATA_CNT=#dataCnt#,
+         TX_TIME=#txTime#
+          WHERE
+               	BATCH_NO = #batchNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WsElyRepyBatch.getById"  resultMap="RM.WsElyRepyBatch">
+        SELECT <include refid="WsElyRepyBatch.columns"/>
+        <![CDATA[
+             FROM WS_ELY_REPY_BATCH 
+         WHERE 
+               	BATCH_NO = #batchNo#        ]]>
+     </select>
+     <!-- ws2803查询记录数 -->
+    <select id="WsElyRepyBatch.cnt" resultClass="int">      
+        SELECT count(*) 
+        FROM WS_ELY_REPY_BATCH   
+        WHERE BATCH_NO = #batchNo#
+    </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WsElyRepyBatch.findPage.where">
+    		<dynamic prepend="where">
+         		  <isPropertyAvailable property="batchNo">
+                      <isNotEmpty prepend="AND" property="batchNo">
+                          BATCH_NO = #batchNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="txTime">
+                      <isNotEmpty prepend="AND" property="txTime">
+                          TX_TIME like '%$txTime$%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+               </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="WsElyRepyBatch.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_ELY_REPY_BATCH <include refid="WsElyRepyBatch.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WsElyRepyBatch.findByPage" resultMap="RM.WsElyRepyBatch">
+        SELECT <include refid="WsElyRepyBatch.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsElyRepyBatch.columns"/> FROM WS_ELY_REPY_BATCH
+                    <include refid="WsElyRepyBatch.findPage.where"/>
+                    ORDER BY TX_TIME DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ScheduleTaskAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="ScheduleTaskAction_findByPage" method="findByPage" class="app.creditapp.sys.action.ScheduleTaskAction">
+			<result name="list">/creditapp/sys/ScheduleTask_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="ScheduleTaskAction_input" method="input" class="app.creditapp.sys.action.ScheduleTaskAction">
+			<result name="input">/creditapp/sys/ScheduleTask_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="ScheduleTaskAction_del" method="del" class="app.creditapp.sys.action.ScheduleTaskAction">
+			<result name="list">/creditapp/sys/ScheduleTask_List.jsp</result>
+		</action>
+		<!--更新任务状态 -->
+		<action name="ScheduleTaskAction_*" method="{1}" class="app.creditapp.sys.action.ScheduleTaskAction">
+			<result name="{1}">/creditapp/sys/ScheduleTask_List.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="ScheduleTaskAction_getById" method="getById" class="app.creditapp.sys.action.ScheduleTaskAction">
+			<result name="detail">/creditapp/sys/ScheduleTask_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="ScheduleTaskActionInsert" method="insert" class="app.creditapp.sys.action.ScheduleTaskAction">
+			<result name="input">/creditapp/sys/ScheduleTask_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/ScheduleTask_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="ScheduleTaskActionUpdate" method="update" class="app.creditapp.sys.action.ScheduleTaskAction">
+			<result name="input">/creditapp/sys/ScheduleTask_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/ScheduleTask_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

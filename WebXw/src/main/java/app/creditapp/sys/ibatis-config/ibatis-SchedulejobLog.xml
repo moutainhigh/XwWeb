@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SchedulejobLog" type="app.creditapp.sys.entity.SchedulejobLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SchedulejobLog" class="SchedulejobLog">
+    <result property="logId" column="LOG_ID" />
+    <result property="createTime" column="CREATE_TIME" />
+    <result property="jobName" column="JOB_NAME" />
+    <result property="jobDescription" column="JOB_DESCRIPTION" />
+    <result property="beanClass" column="BEAN_CLASS" />
+    <result property="methodName" column="METHOD_NAME" />
+    <result property="springId" column="SPRING_ID" />
+    <result property="argumentsstr" column="ARGUMENTSSTR" />
+    </resultMap>
+     <sql id="SchedulejobLog.columns">
+        <![CDATA[
+         LOG_ID,
+         CREATE_TIME,
+         JOB_NAME,
+         JOB_DESCRIPTION,
+         BEAN_CLASS,
+         METHOD_NAME,
+         SPRING_ID,
+         ARGUMENTSSTR
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SchedulejobLog.insert">
+        <![CDATA[
+        INSERT INTO SCHEDULEJOB_LOG(
+         LOG_ID,
+         CREATE_TIME,
+         JOB_NAME,
+         JOB_DESCRIPTION,
+         BEAN_CLASS,
+         METHOD_NAME,
+         SPRING_ID,
+         ARGUMENTSSTR
+         )VALUES(
+         #logId#,
+         FUN_SYSTIME(),
+         #jobName#,
+         #jobDescription#,
+         #beanClass#,
+         #methodName#,
+         #springId#,
+         #argumentsstr#
+         )
+          ]]>
+    </insert>
+    <select id="SchedulejobLog.nextSeq" resultClass="String">
+		SELECT lpad(scheduleLog_seq.Nextval,10,'0') FROM DUAL    
+	</select>
+    <!-- 表删除 -->
+    <delete id="SchedulejobLog.del">
+        <![CDATA[
+               DELETE FROM SCHEDULEJOB_LOG
+                 WHERE
+               	LOG_ID = #logId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SchedulejobLog.update">
+        <![CDATA[
+         UPDATE SCHEDULEJOB_LOG set
+         LOG_ID=#logId#,
+         CREATE_TIME=#createTime#,
+         JOB_NAME=#jobName#,
+         JOB_DESCRIPTION=#jobDescription#,
+         BEAN_CLASS=#beanClass#,
+         METHOD_NAME=#methodName#,
+         SPRING_ID=#springId#,
+         ARGUMENTSSTR=#argumentsstr#
+          WHERE
+               	LOG_ID = #logId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SchedulejobLog.getById"  resultMap="RM.SchedulejobLog">
+        SELECT <include refid="SchedulejobLog.columns"/>
+        <![CDATA[
+             FROM SCHEDULEJOB_LOG 
+         WHERE 
+               	LOG_ID = #logId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SchedulejobLog.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="logId">
+                  <isNotEmpty prepend="AND" property="logId">
+                      LOG_ID = #logId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="jobName">
+                  <isNotEmpty prepend="AND" property="jobName">
+                      JOB_NAME like '%$jobName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="argumentsstr">
+                  <isNotEmpty prepend="AND" property="argumentsstr">
+                      ARGUMENTSSTR like '%$argumentsstr$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="createTime">
+                  <isNotEmpty prepend="AND" property="createTime">
+                      CREATE_TIME like '%$createTime$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SchedulejobLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM SCHEDULEJOB_LOG <include refid="SchedulejobLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SchedulejobLog.findByPage" resultMap="RM.SchedulejobLog">
+        SELECT <include refid="SchedulejobLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SchedulejobLog.columns"/> FROM SCHEDULEJOB_LOG
+                    <include refid="SchedulejobLog.findPage.where"/> order by CREATE_TIME desc 
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundProvSplitTerm" type="app.creditapp.fund.entity.FundProvSplitTerm"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundProvSplitTerm" class="FundProvSplitTerm">
+    <result property="provTermNo" column="PROV_TERM_NO" />
+    <result property="provProjNo" column="PROV_PROJ_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="partNo" column="PART_NO" />
+    <result property="termNo" column="TERM_NO" />
+    <result property="termAmt" column="TERM_AMT" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="jtBegDate" column="JT_BEG_DATE" />
+    <result property="jtEndDate" column="JT_END_DATE" />
+    <result property="days" column="DAYS" jdbcType="Int"/>
+    <result property="yearDays" column="YEAR_DAYS" jdbcType="Int"/>
+    <result property="invRate" column="INV_RATE" jdbcType="float"/>
+    <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    <result property="financeRate" column="FINANCE_RATE" jdbcType="float"/>
+    <result property="finCost" column="FIN_COST" jdbcType="double"/>   
+    <result property="finlIncome" column="FINL_INCOME" jdbcType="double"/>   
+    <result property="managerRate" column="MANAGER_RATE" jdbcType="float"/>       
+    <result property="managerFee" column="MANAGER_FEE" jdbcType="double"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="FundProvSplitTerm.columns">
+        <![CDATA[
+         PROV_TERM_NO,
+         PROV_PROJ_NO,
+         PROJ_NO,
+         FUND_NO,
+         FUN_GET_FUND_SPLIT_NAME(PART_NO) AS PART_NO,
+         TERM_NO,
+         TERM_AMT,
+         BEG_DATE,
+         END_DATE,
+         JT_BEG_DATE,
+         JT_END_DATE,
+         DAYS,
+         YEAR_DAYS,
+         INV_RATE,
+         PAY_AMT,
+         FINANCE_RATE,
+         FIN_COST,
+         FINL_INCOME,
+         MANAGER_RATE,
+         MANAGER_FEE,
+         fun_getusername(OP_NO) AS OP_NO,
+         TX_DATE,
+         FILLER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundProvSplitTerm.insert">
+        <![CDATA[
+        INSERT INTO FUND_PROV_SPLIT_TERM(
+         PROV_TERM_NO,
+         PROV_PROJ_NO,
+         PROJ_NO,
+         FUND_NO,
+         PART_NO,
+         TERM_NO,
+         TERM_AMT,
+         BEG_DATE,
+         END_DATE,
+         JT_BEG_DATE,
+         JT_END_DATE,
+         DAYS,
+         YEAR_DAYS,
+         INV_RATE,
+         PAY_AMT,
+         FINANCE_RATE,
+         FIN_COST,
+         FINL_INCOME,
+         MANAGER_RATE,
+         MANAGER_FEE,
+         OP_NO,
+         TX_DATE,
+         FILLER
+         )VALUES(
+         #provTermNo#,
+         #provProjNo#,
+         #projNo#,
+         #fundNo#,
+         #partNo#,
+         #termNo#,
+         #termAmt#,
+         #begDate#,
+         #endDate#,
+         #jtBegDate#,
+         #jtEndDate#,
+         #days#,
+         #yearDays#,
+         #invRate#,
+         #payAmt#,
+         #financeRate#,
+         #finCost#,
+         #finlIncome#,
+         #managerRate#,
+         #managerFee#,
+         #opNo#,
+         #txDate#,
+         #filler#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="provTermNo" >
+				SELECT  FUND_PROV_SPLIT_TERM_SEQ.NEXTVAL AS provTermNo FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundProvSplitTerm.del">
+        <![CDATA[
+               DELETE FROM FUND_PROV_SPLIT_TERM
+                 WHERE
+               	PROV_TERM_NO = #provTermNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundProvSplitTerm.update">
+        <![CDATA[
+         UPDATE FUND_PROV_SPLIT_TERM set
+         PROV_TERM_NO=#provTermNo#,
+         PROJ_NO=#projNo#,
+         FUND_NO=#fundNo#,
+         PART_NO=#partNo#,
+         TERM_NO=#termNo#,
+         TERM_AMT=#termAmt#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         JT_BEG_DATE=#jtBegDate#,
+         JT_END_DATE=#jtEndDate#,
+         DAYS=#days#,
+         YEAR_DAYS=#yearDays#,
+         INV_RATE=#invRate#,
+         PAY_AMT=#payAmt#,
+         FINANCE_RATE=#financeRate#,
+         FIN_COST=#finCost#,
+         FINL_INCOME=#finlIncome#,
+         MANAGER_RATE=#managerRate#,
+         MANAGER_FEE=#managerFee#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         FILLER=#filler#
+          WHERE
+               	PROV_TERM_NO = #provTermNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundProvSplitTerm.getById"  resultMap="RM.FundProvSplitTerm">
+        SELECT <include refid="FundProvSplitTerm.columns"/>
+        <![CDATA[
+             FROM FUND_PROV_SPLIT_TERM 
+         WHERE 
+               	PROV_TERM_NO = #provTermNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 收益报酬-->
+    <sql id="FundProvSplitTerm.findPage.where">
+        <dynamic prepend="where">
+            <isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      A.PROJ_NO=B.PROJ_NO AND B.TRU_PAY_TYPE like '%4%'  AND A.PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="provProjNo">
+                  <isNotEmpty prepend="AND" property="provProjNo">
+                      PROV_PROJ_NO = #provProjNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="provTermNo">
+                  <isNotEmpty prepend="AND" property="provTermNo">
+                      PROV_TERM_NO = #provTermNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="partNo">
+                  <isNotEmpty prepend="AND" property="partNo">
+                      PART_NO in ( select part_no from fund_split where part_name  like '%$partNo$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 收益报酬 -->
+    <select id="FundProvSplitTerm.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_PROV_SPLIT_TERM A,PROJ_PARM B <include refid="FundProvSplitTerm.findPage.where"/>
+    </select>
+    <!-- 分页查询 收益报酬-->
+    <select id="FundProvSplitTerm.findByPage" resultMap="RM.FundProvSplitTerm">
+        SELECT <include refid="FundProvSplitTerm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT A.* FROM FUND_PROV_SPLIT_TERM A,PROJ_PARM B 
+                    <include refid="FundProvSplitTerm.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 根据实际情况选择分页查询条件 信托管理费-->
+    <sql id="FundProvSplitTermmanager.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      A.PROJ_NO=B.PROJ_NO AND (B.TRU_PAY_TYPE like '%1%' OR B.TRU_PAY_TYPE like '%2%') AND A.PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="provProjNo">
+                  <isNotEmpty prepend="AND" property="provProjNo">
+                      PROV_PROJ_NO = #provProjNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="provTermNo">
+                  <isNotEmpty prepend="AND" property="provTermNo">
+                      PROV_TERM_NO = #provTermNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="partNo">
+                  <isNotEmpty prepend="AND" property="partNo">
+                      PART_NO in ( select part_no from fund_split where part_name like '%$partNo$%' )
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 信托管理费 -->
+    <select id="FundProvSplitTermmanager.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_PROV_SPLIT_TERM A,PROJ_PARM B  <include refid="FundProvSplitTermmanager.findPage.where"/>
+    </select>
+    <!-- 分页查询 信托管理费 -->
+    <select id="FundProvSplitTermmanager.findByPage" resultMap="RM.FundProvSplitTerm">
+        SELECT <include refid="FundProvSplitTerm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT A.* FROM FUND_PROV_SPLIT_TERM A,PROJ_PARM B 
+                    <include refid="FundProvSplitTermmanager.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

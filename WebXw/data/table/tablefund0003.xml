@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="fund0003" para="eadis_page" link="RptFundDailyAction_findByPage.action" title="资金日报" type="1">
+<tableitem align="2" filedname="rptDate" id="1" indexed="1" label="报表日期" row="1" type="0" />
+<tableitem align="2" filedname="rptType" id="2" indexed="2" label="报表类型" row="1" type="0" />
+<tableitem align="2" filedname="projNo" id="3" indexed="3" label="项目编号" row="1" type="4" typepara="RptFundDailyAction_getById.action;fundNo-fundNo;fdType-fdType;rptDate-rptDate;query-'query'"/>
+<tableitem align="2" filedname="fundNo" id="4" indexed="4" label="资金编号" row="1" type="0" />
+<tableitem align="2" filedname="fdType" id="5" indexed="5" label="资金类型" row="1" type="4" typepara="RptFundDailyAction_getById.action;fundNo-fundNo;fdType-fdType;rptDate-rptDate;query-'query'"/>
+<tableitem align="2" filedname="fdAmt" id="6" indexed="6" label="资金规模" row="1" type="0" />
+<tableitem align="2" filedname="cashBal" id="7" indexed="7" label="现金余额" row="1" type="0" />
+<tableitem align="2" filedname="rightBal" id="8" indexed="8" label="债权金额" row="1" type="0" />
+<tableitem align="2" filedname="addAmt" id="9" indexed="9" label="累计新增" row="1" type="0" />
+<tableitem align="2" filedname="payAmt" id="10" indexed="10" label="累计兑付" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="11" indexed="11" label="-" row="1" type="5" typepara="RptFundDailyAction_getById.action;fundNo-fundNo;fdType-fdType;rptDate-rptDate;" width="2"/>
+<tableitem align="2" filedname="删除" id="12" indexed="12" label="-" row="1" type="5" typepara="RptFundDailyAction_del.action;fundNo-fundNo;fdType-fdType;rptDate-rptDate;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+    default-lazy-init="false">
+	
+<bean id="lnPactDao" class="app.creditapp.pact.dao.impl.LnPactDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+
+<bean id="lnPactBo" class="app.creditapp.pact.bo.impl.LnPactBoImpl">
+	<property name="lnPactDao" ref="lnPactDao"/>
+	<property name="aftAssetRelDao" ref="aftAssetRelDao"/>
+	<property name="wkfApprovalUserBo" ref="wkfApprovalUserBo"/>
+	<property name="wfTaskBo" ref="wfTaskBo"/>
+	<property name="wkfInterface" ref="wkfInterface"/>
+	
+</bean>
+	
+</beans>
+

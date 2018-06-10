@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcLoanBackLogAction" namespace="/" extends="struts-default">
+	
+	    <!--分页查询 -->
+		<action name="AcLoanBackLogAction_*" method="{1}" class="app.creditapp.acc.loan.action.AcLoanBackLogAction">
+			<result name="list">/creditapp/acc/loan/AcLoanBackLog_List.jsp</result>
+			<result name="input">/creditapp/acc/loan/AcLoanBackLog_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLoanBackLog_Detail.jsp</result>
+			<result name="success">/index.jsp</result>
+		</action>
+		<!--放款反馈测试 -->
+<!--		<action name="AcLoanBackLogActiondealBack" method="dealBack" class="app.creditapp.acc.loan.action.AcLoanBackLogAction">
+		<result name="list">/creditapp/acc/loan/AcLoanBackLog_List.jsp</result>
+		
+		</action>
+		-->
+		<!--新增保存-->
+		<action name="AcLoanBackLogActionInsert" method="insert" class="app.creditapp.acc.loan.action.AcLoanBackLogAction">
+			<result name="input">/creditapp/acc/loan/AcLoanBackLog_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLoanBackLog_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcLoanBackLogActionUpdate" method="update" class="app.creditapp.acc.loan.action.AcLoanBackLogAction">
+			<result name="input">/creditapp/acc/loan/AcLoanBackLog_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLoanBackLog_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

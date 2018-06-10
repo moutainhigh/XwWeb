@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CipTradeAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CipTradeAction_findByPage" method="findByPage" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="list">/creditapp/trade/CipTrade_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CipTradeAction_input" method="input" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="input">/creditapp/trade/CipTrade_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CipTradeAction_del" method="del" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="list">/creditapp/trade/CipTrade_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CipTradeAction_getById" method="getById" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="detail">/creditapp/trade/CipTrade_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CipTradeActionInsert" method="insert" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="input">/creditapp/trade/CipTrade_Insert.jsp</result>
+			<result name="detail">/creditapp/trade/CipTrade_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CipTradeActionUpdate" method="update" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="input">/creditapp/trade/CipTrade_Detail.jsp</result>
+			<result name="detail">/creditapp/trade/CipTrade_Detail.jsp</result>
+		</action>
+		<!--启用、停用通信接口 -->
+		<action name="CipTradeAction_updateTxFlag" method="updateTxFlag" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="list">/creditapp/trade/CipTrade_List.jsp</result>
+		</action>
+		<action name="CipTradeAction_updateTxFlagByTradeId" method="updateTxFlagByTradeId" class="app.creditapp.trade.action.CipTradeAction">
+			<result name="list">/creditapp/trade/CipTrade_List.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundPayPlan" type="app.creditapp.fund.entity.FundPayPlan"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundPayPlan" class="FundPayPlan">
+    <result property="payPlanNo" column="PAY_PLAN_NO" />
+    <result property="fundNo" column="FUND_NO" />    
+    <result property="partNo" column="PART_NO" />
+    <result property="totalIssue" column="TOTAL_ISSUE" jdbcType="Int"/>
+    <result property="totalAmt" column="TOTAL_AMT" jdbcType="double"/>
+    <result property="payIssue" column="PAY_ISSUE" jdbcType="Int"/>
+    <result property="payDate" column="PAY_DATE" />
+    <result property="recPayAmt" column="REC_PAY_AMT" jdbcType="double"/>
+    <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    <result property="unpayAmt" column="UNPAY_AMT" jdbcType="double"/>
+    <result property="filler" column="FILLER" />
+    <result property="warnDate" column="WARN_DATE" />
+    </resultMap>
+    
+     <resultMap id="RM.FundPayPlanForAmt" class="FundPayPlan">
+   		 <result property="fundNo" column="FUND_NO" />    
+    	 <result property="payDate" column="PAY_DATE" />
+   		 <result property="payAmt" column="PAY_AMT" jdbcType="double"/>
+    </resultMap>
+     <sql id="FundPayPlan.columns">
+        <![CDATA[
+         PAY_PLAN_NO,
+         FUND_NO,
+         PART_NO,
+         TOTAL_ISSUE,
+         TOTAL_AMT,
+         PAY_ISSUE,
+         PAY_DATE,
+         REC_PAY_AMT,
+         PAY_AMT,
+         UNPAY_AMT,
+         FILLER,
+         WARN_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundPayPlan.insert">
+        <![CDATA[
+        INSERT INTO FUND_PAY_PLAN(
+         PAY_PLAN_NO,
+         FUND_NO,
+         PART_NO,
+         TOTAL_ISSUE,
+         TOTAL_AMT,
+         PAY_ISSUE,
+         PAY_DATE,
+         REC_PAY_AMT,
+         PAY_AMT,
+         UNPAY_AMT,
+         FILLER,
+         WARN_DATE
+         )VALUES(
+         #payPlanNo#,
+         #fundNo#,
+         #partNo#,
+         #totalIssue#,
+         #totalAmt#,
+         #payIssue#,
+         #payDate#,
+         #recPayAmt#,
+         #payAmt#,
+         #unpayAmt#,
+         #filler#,
+         #warnDate#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="payPlanNo" >
+				SELECT  fund_pay_plan_seq.NEXTVAL AS payPlanNo FROM DUAL
+         </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundPayPlan.del">
+        <![CDATA[
+               DELETE FROM FUND_PAY_PLAN
+                 WHERE
+               	PAY_PLAN_NO = #payPlanNo#        ]]>
+    </delete>
+        <!-- 表按照分配方案删除 -->
+    <delete id="FundPayPlan.delByPartNo">
+        <![CDATA[
+               DELETE FROM FUND_PAY_PLAN
+                 WHERE
+               	PART_NO = #partNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundPayPlan.update">
+        <![CDATA[
+         UPDATE FUND_PAY_PLAN set
+         PAY_PLAN_NO=#payPlanNo#,
+         FUND_NO=#fundNo#,         
+         PART_NO=#partNo#,
+         TOTAL_ISSUE=#totalIssue#,
+         TOTAL_AMT=#totalAmt#,
+         PAY_ISSUE=#payIssue#,
+         PAY_DATE=#payDate#,
+         REC_PAY_AMT=#recPayAmt#,
+         PAY_AMT=#payAmt#,
+         UNPAY_AMT=#unpayAmt#,
+         FILLER=#filler#,
+         WARN_DATE=#warnDate#
+          WHERE
+               	PAY_PLAN_NO = #payPlanNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundPayPlan.getById"  resultMap="RM.FundPayPlan">
+        SELECT <include refid="FundPayPlan.columns"/>
+        <![CDATA[
+             FROM FUND_PAY_PLAN 
+         WHERE 
+               	PAY_PLAN_NO = #payPlanNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundPayPlan.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="payPlanNo">
+                  <isNotEmpty prepend="AND" property="payPlanNo">
+                      PAY_PLAN_NO = #payPlanNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="partNo">
+                  <isNotEmpty prepend="AND" property="partNo">
+                      PART_NO = #partNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>             
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundPayPlan.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_PAY_PLAN <include refid="FundPayPlan.findPage.where"/>
+    </select>
+    <select id="FundPayPlan.findByPageForAmt.count" resultClass="int">
+        SELECT count(*) FROM (SELECT fund_no,pay_date,sum(pay_amt) as pay_amt FROM FUND_PAY_PLAN
+                    <include refid="FundPayPlan.findPage.where"/>
+                    group by fund_no,pay_date order by fund_no,pay_date
+             )
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundPayPlan.findByPage" resultMap="RM.FundPayPlan">
+        SELECT <include refid="FundPayPlan.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundPayPlan.columns"/> FROM FUND_PAY_PLAN
+                    <include refid="FundPayPlan.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <select id="FundPayPlan.findByPageForAmt" resultMap="RM.FundPayPlanForAmt">
+        SELECT fund_no,pay_date,pay_amt
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT fund_no,pay_date,sum(pay_amt) as pay_amt FROM FUND_PAY_PLAN
+                    <include refid="FundPayPlan.findPage.where"/>
+                    group by fund_no,pay_date order by fund_no,pay_date
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--一段时间内兑付金额-->
+    <select id="FundPayPlan.getBalByDate" resultClass="int">
+        SELECT nvl(sum(PAY_AMT),0) FROM FUND_PAY_PLAN A, FUND_BASE B
+          WHERE A.FUND_NO = B.FUND_NO
+            AND B.PROJ_NO = #fundNo#
+            AND PAY_DATE  &gt; #payDate# 
+            AND PAY_DATE &lt; = #warnDate#
+    </select>    
+</sqlMap>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="FundRightDetailAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="FundRightDetailAction_findByPage" method="findByPage" class="app.creditapp.fund.action.FundRightDetailAction">
+			<result name="list">/creditapp/fund/FundRightDetail_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="FundRightDetailAction_input" method="input" class="app.creditapp.fund.action.FundRightDetailAction">
+			<result name="input">/creditapp/fund/FundRightDetail_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="FundRightDetailAction_del" method="del" class="app.creditapp.fund.action.FundRightDetailAction">
+			<result name="list">/creditapp/fund/FundRightDetail_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="FundRightDetailAction_getById" method="getById" class="app.creditapp.fund.action.FundRightDetailAction">
+			<result name="detail">/creditapp/fund/FundRightDetail_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="FundRightDetailActionInsert" method="insert" class="app.creditapp.fund.action.FundRightDetailAction">
+			<result name="input">/creditapp/fund/FundRightDetail_Insert.jsp</result>
+			<result name="detail">/creditapp/fund/FundRightDetail_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="FundRightDetailActionUpdate" method="update" class="app.creditapp.fund.action.FundRightDetailAction">
+			<result name="input">/creditapp/fund/FundRightDetail_Detail.jsp</result>
+			<result name="detail">/creditapp/fund/FundRightDetail_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

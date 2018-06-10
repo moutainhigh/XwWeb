@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+    <struts>
+	<package name="UserApptimeAction" namespace="/" extends="struts-cms">
+		<action name="UserApptimeAction_*" method="{1}" class="app.creditapp.sec.action.UserApptimeAction">
+			<result name="list">/creditapp/sec/UserApptime_List.jsp</result>
+			<result name="input">/creditapp/sec/UserApptime_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/UserApptime_Detail.jsp</result>
+			<result name="toDelete">/creditapp/common/deleteinfo.jsp</result>
+			<result name="alllist">/creditapp/sec/UserApptime_AllList.jsp</result>
+		</action>
+		<action name="UserApptimeActionInsert" method="insert" class="app.creditapp.sec.action.UserApptimeAction">
+			<result name="input">/creditapp/sec/UserApptime_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/UserApptime_Detail.jsp</result>
+		</action>
+		<action name="UserApptimeActionUpdate" method="update" class="app.creditapp.sec.action.UserApptimeAction">
+			<result name="input">/creditapp/sec/UserApptime_Detail.jsp</result>
+			<result name="detail">/creditapp/sec/UserApptime_Detail.jsp</result>
+		</action>
+	</package>
+	</struts>
+
+
+

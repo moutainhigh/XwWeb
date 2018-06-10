@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CorpBase" type="app.creditapp.corp.entity.CorpBase"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CorpBase" class="CorpBase">
+    <result property="orgTerm" column="ORG_TERM" jdbcType="Int"/>
+    <result property="brNo" column="BR_NO" />
+    <result property="brName" column="BR_NAME" />
+    <result property="brType" column="BR_TYPE" />
+    <result property="setupDate" column="SETUP_DATE" />
+    <result property="areaName" column="AREA_NAME" />
+    <result property="cifArea" column="CIF_AREA" />
+    <result property="license" column="LICENSE" />
+    <result property="licBegDate" column="LIC_BEG_DATE" />
+    <result property="licEndDate" column="LIC_END_DATE" />
+    <result property="regAddr" column="REG_ADDR" />
+    <result property="regArea" column="REG_AREA" />
+    <result property="locTaxNo" column="LOC_TAX_NO" />
+    <result property="cenTaxNo" column="CEN_TAX_NO" />
+    <result property="orgNo" column="ORG_NO" />
+    <result property="screditNo" column="SCREDIT_NO" />
+    <result property="cardNo" column="CARD_NO" />
+    <result property="ifLnuse" column="IF_LNUSE" />
+    <result property="totalAssets" column="TOTAL_ASSETS" jdbcType="double"/>
+    <result property="totalDebts" column="TOTAL_DEBTS" jdbcType="double"/>
+    <result property="regFund" column="REG_FUND" jdbcType="double"/>
+    <result property="factFund" column="FACT_FUND" jdbcType="double"/>
+    <result property="corpType" column="CORP_TYPE" />
+    <result property="runMan" column="RUN_MAN" />
+    <result property="mainBus" column="MAIN_BUS" />
+    <result property="comAddr" column="COM_ADDR" />
+    <result property="postCode" column="POST_CODE" />
+    <result property="partner" column="PARTNER" />
+    <result property="outGrade" column="OUT_GRADE" />
+    <result property="inGrade" column="IN_GRADE" />
+    <result property="brSts" column="BR_STS" />
+    <result property="filler" column="FILLER" />
+    <result property="deptNo" column="DEPT_NO" />
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="upOpno" column="UP_OPNO" />
+    <result property="upOpname" column="UP_OPNAME" />
+    <result property="brAccType" column="BR_ACC_TYPE" />
+    <result property="stateSts" column="STATE_STS" />
+    </resultMap>
+     <sql id="CorpBase.columns">
+        <![CDATA[
+         ORG_TERM,
+         BR_NO,
+         BR_NAME,
+         BR_TYPE,
+         SETUP_DATE,
+         AREA_NAME,
+         CIF_AREA,
+         LICENSE,
+         LIC_BEG_DATE,
+         LIC_END_DATE,
+         REG_ADDR,
+         REG_AREA,
+         LOC_TAX_NO,
+         CEN_TAX_NO,
+         ORG_NO,
+         SCREDIT_NO,
+         CARD_NO,
+         IF_LNUSE,
+         TOTAL_ASSETS,
+         TOTAL_DEBTS,
+         REG_FUND,
+         FACT_FUND,
+         CORP_TYPE,
+         RUN_MAN,
+         MAIN_BUS,
+         COM_ADDR,
+         POST_CODE,
+         PARTNER,
+         OUT_GRADE,
+         IN_GRADE,
+         BR_STS,
+         FILLER,
+         DEPT_NO,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         FUN_GETUSERNAME(UP_OPNO) AS UP_OPNAME,
+         BR_ACC_TYPE,
+         STATE_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CorpBase.insert">
+        <![CDATA[
+        INSERT INTO CORP_BASE(
+         ORG_TERM,
+         BR_NO,
+         BR_NAME,
+         BR_TYPE,
+         SETUP_DATE,
+         AREA_NAME,
+         CIF_AREA,
+         LICENSE,
+         LIC_BEG_DATE,
+         LIC_END_DATE,
+         REG_ADDR,
+         REG_AREA,
+         LOC_TAX_NO,
+         CEN_TAX_NO,
+         ORG_NO,
+         SCREDIT_NO,
+         CARD_NO,
+         IF_LNUSE,
+         TOTAL_ASSETS,
+         TOTAL_DEBTS,
+         REG_FUND,
+         FACT_FUND,
+         CORP_TYPE,
+         RUN_MAN,
+         MAIN_BUS,
+         COM_ADDR,
+         POST_CODE,
+         PARTNER,
+         OUT_GRADE,
+         IN_GRADE,
+         BR_STS,
+         FILLER,
+         DEPT_NO,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         UP_OPNO,
+         BR_ACC_TYPE,
+         STATE_STS
+         )VALUES(
+         #orgTerm#,
+         #brNo#,
+         #brName#,
+         #brType#,
+         #setupDate#,
+         #areaName#,
+         #cifArea#,
+         #license#,
+         #licBegDate#,
+         #licEndDate#,
+         #regAddr#,
+         #regArea#,
+         #locTaxNo#,
+         #cenTaxNo#,
+         #orgNo#,
+         #screditNo#,
+         #cardNo#,
+         #ifLnuse#,
+         #totalAssets#,
+         #totalDebts#,
+         #regFund#,
+         #factFund#,
+         #corpType#,
+         #runMan#,
+         #mainBus#,
+         #comAddr#,
+         #postCode#,
+         #partner#,
+         #outGrade#,
+         #inGrade#,
+         #brSts#,
+         #filler#,
+         #deptNo#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #upOpno#,
+         'A',
+         #stateSts#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="opName" >
+				SELECT USER_NAME FROM SYS_USER WHERE USER_NO = #opNo#
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CorpBase.delcont">
+        <![CDATA[
+               DELETE FROM CORP_CONT
+                 WHERE
+               	BR_NO = #brNo#        ]]>
+    </delete>
+    <delete id="CorpBase.del">
+        <![CDATA[
+               DELETE FROM CORP_BASE
+                 WHERE
+               	BR_NO = #brNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CorpBase.update">
+        <![CDATA[
+         UPDATE CORP_BASE set
+         ORG_TERM=#orgTerm#,
+         BR_NO=#brNo#,
+         BR_NAME=#brName#,
+         BR_TYPE=#brType#,
+         SETUP_DATE=#setupDate#,
+         AREA_NAME=#areaName#,
+         CIF_AREA=#cifArea#,
+         LICENSE=#license#,
+         LIC_BEG_DATE=#licBegDate#,
+         LIC_END_DATE=#licEndDate#,
+         REG_ADDR=#regAddr#,
+         REG_AREA=#regArea#,
+         LOC_TAX_NO=#locTaxNo#,
+         CEN_TAX_NO=#cenTaxNo#,
+         ORG_NO=#orgNo#,
+         SCREDIT_NO=#screditNo#,
+         CARD_NO=#cardNo#,
+         IF_LNUSE=#ifLnuse#,
+         TOTAL_ASSETS=#totalAssets#,
+         TOTAL_DEBTS=#totalDebts#,
+         REG_FUND=#regFund#,
+         FACT_FUND=#factFund#,
+         CORP_TYPE=#corpType#,
+         RUN_MAN=#runMan#,
+         MAIN_BUS=#mainBus#,
+         COM_ADDR=#comAddr#,
+         POST_CODE=#postCode#,
+         PARTNER=#partner#,
+         OUT_GRADE=#outGrade#,
+         IN_GRADE=#inGrade#,
+         BR_STS=#brSts#,
+         FILLER=#filler#,
+         UP_DATE=#upDate#,
+         UP_OPNO=#upOpno#,
+         BR_ACC_TYPE='A',
+         STATE_STS=#stateSts#
+          WHERE
+               	BR_NO = #brNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CorpBase.getById"  resultMap="RM.CorpBase">
+        SELECT <include refid="CorpBase.columns"/>
+        <![CDATA[
+             FROM CORP_BASE 
+         WHERE 
+               	BR_NO = #brNo#        ]]>
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CorpBase.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      BR_NAME like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brType">
+                  <isNotEmpty prepend="AND" property="brType">
+                      BR_TYPE = #brType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brSts">
+                  <isNotEmpty prepend="AND" property="brSts">
+                      BR_STS = #brSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                  	br_no in (select br_no from proj_base where proj_no in (select proj_no from proj_mang where login_id = #loginid#))
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="CorpBase.findPage.count" resultClass="int">
+        SELECT count(*) FROM CORP_BASE <include refid="CorpBase.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CorpBase.findByPage" resultMap="RM.CorpBase">
+        SELECT <include refid="CorpBase.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CorpBase.columns"/> FROM CORP_BASE 
+                    <include refid="CorpBase.findPage.where"/>
+                    order by br_no asc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 获取KEY -->
+    <select id="CorpBase.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CORP_BASE_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+	<select id="CorpBase.getByBrNo" resultMap="RM.CorpBase">
+		select 
+		<include refid="CorpBase.columns"/>
+		 from Corp_Base where Br_No=#brNo#
+	</select>
+</sqlMap>

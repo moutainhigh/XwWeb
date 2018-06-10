@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AftReliefAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AftReliefAction_*" method="{1}" class="app.creditapp.acc.chg.action.AftReliefAction">
+			<result name="list">/creditapp/acc/chg/AftRelief_List.jsp</result>
+			<result name="input">/creditapp/acc/chg/AftRelief_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/chg/AftRelief_Detail.jsp</result>
+			<result name="detaill">/creditapp/acc/chg/AftRelief_Detaill.jsp</result>
+			<result name="detailForRead">/creditapp/acc/chg/AftRelief_Detaill.jsp</result>
+			<result name="details">/creditapp/acc/chg/AftRelief_Details.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AftReliefActionInsert" method="insert" class="app.creditapp.acc.chg.action.AftReliefAction">
+			<result name="input">/creditapp/acc/chg/AftRelief_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/chg/AftRelief_Details.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AftReliefActionUpdate" method="update" class="app.creditapp.acc.chg.action.AftReliefAction">
+			<result name="input">/creditapp/acc/chg/AftRelief_Details.jsp</result>
+			<result name="details">/creditapp/acc/chg/AftRelief_Details.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

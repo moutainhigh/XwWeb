@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundSplit" type="app.creditapp.fund.entity.FundSplit"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundSplit" class="FundSplit">
+    <result property="partNo" column="PART_NO" />
+    <result property="partName" column="PART_NAME" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="partLevel" column="PART_LEVEL" jdbcType="int"/>
+    <result property="partAmt" column="PART_AMT" jdbcType="double"  nullValue="0.00"/>
+    <result property="invRate" column="INV_RATE" jdbcType="float"  nullValue="0.00"/>
+    <result property="yearDays" column="YEAR_DAYS" jdbcType="Int"/>   
+    <result property="payType" column="PAY_TYPE" />
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="payDay" column="PAY_Day" />
+    </resultMap>
+     <sql id="FundSplit.columns">
+        <![CDATA[
+         PART_NO,
+         PART_NAME,
+         FUND_NO,
+         PART_LEVEL,
+         PART_AMT,
+         INV_RATE,
+         YEAR_DAYS,
+         PAY_TYPE,
+         BEG_DATE,
+         END_DATE,
+         TX_DATE,
+         fun_getusername(OP_NO) as OP_NO,
+         PAY_Day
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundSplit.insert">
+        <![CDATA[
+        INSERT INTO FUND_SPLIT(
+         PART_NO,
+         PART_NAME,
+         FUND_NO,
+         PART_LEVEL,
+         PART_AMT,
+         INV_RATE,
+         YEAR_DAYS,
+         PAY_TYPE,
+         BEG_DATE,
+         END_DATE,
+         TX_DATE,
+         OP_NO,
+         PAY_Day
+         )VALUES(
+         #partNo#,
+         #partName#,
+         #fundNo#,
+         #partLevel#,
+         #partAmt#,
+         #invRate#,
+         #yearDays#,
+         #payType#,
+         #begDate#,
+         #endDate#,                  
+         #txDate#,
+         #opNo#,
+         #payDay#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundSplit.del">
+        <![CDATA[
+               DELETE FROM FUND_SPLIT
+                 WHERE
+               	part_no = #partNo#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundSplit.update">
+        <![CDATA[
+         UPDATE FUND_SPLIT set
+         PART_NO=#partNo#,
+         PART_NAME=#partName#,
+         FUND_NO=#fundNo#,
+         PART_LEVEL=#partLevel#,
+         PART_AMT=#partAmt#,
+         INV_RATE=#invRate#,
+         YEAR_DAYS=#yearDays#,
+         PAY_TYPE=#payType#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,                  
+         TX_DATE=#txDate#,
+         PAY_Day=#payDay#
+          WHERE
+               	part_no = #partNo#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundSplit.getById"  resultMap="RM.FundSplit">
+        SELECT <include refid="FundSplit.columns"/>
+        <![CDATA[
+             FROM FUND_SPLIT 
+         WHERE 
+               	part_no = #partNo#
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundSplit.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="partNo">
+                  <isNotEmpty prepend="AND" property="partNo">
+                      PART_NO = #partNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txDate">
+                  <isNotEmpty prepend="AND" property="txDate">
+                      TX_DATE = #txDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="begDate">
+                  <isNotEmpty prepend="AND" property="begDate">
+                      BEG_DATE = #begDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundSplit.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_SPLIT <include refid="FundSplit.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundSplit.findByPage" resultMap="RM.FundSplit">
+        SELECT <include refid="FundSplit.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundSplit.columns"/> FROM FUND_SPLIT
+                    <include refid="FundSplit.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+        <select id="FundSplit.echarts" resultMap="RM.FundSplit">
+    	SELECT <include refid="FundSplit.columns"/> FROM FUND_SPLIT
+                    <include refid="FundSplit.findPage.where"/>
+    </select>
+</sqlMap>

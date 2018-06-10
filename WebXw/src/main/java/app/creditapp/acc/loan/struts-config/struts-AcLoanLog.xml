@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcLoanLogAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AcLoanLogAction_*" method="{1}" class="app.creditapp.acc.loan.action.AcLoanLogAction">
+			<result name="list">/creditapp/acc/loan/AcLoanLog_List.jsp</result>
+			<result name="input">/creditapp/acc/loan/AcLoanLog_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLoanLog_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AcLoanLogActionInsert" method="insert" class="app.creditapp.acc.loan.action.AcLoanLogAction">
+			<result name="input">/creditapp/acc/loan/AcLoanLog_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLoanLog_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcLoanLogActionUpdate" method="update" class="app.creditapp.acc.loan.action.AcLoanLogAction">
+			<result name="input">/creditapp/acc/loan/AcLoanLog_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/loan/AcLoanLog_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

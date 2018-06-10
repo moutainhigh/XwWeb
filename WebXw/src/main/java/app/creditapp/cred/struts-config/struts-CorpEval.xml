@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CorpEvalAction" namespace="/" extends="struts-cms">
+	
+		
+	    <!--分页查询 -->
+		<action name="CorpEvalAction_active" method="active" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_List.jsp</result>
+		</action>
+		
+		
+	    <!--分页查询 -->
+		<action name="CorpEvalAction_inactive" method="inactive" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_List.jsp</result>
+		</action>
+	
+	    <!--分页查询 -->
+		<action name="CorpEvalAction_findByPage" method="findByPage" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_List.jsp</result>
+		</action>
+		<!--分页查询360 -->
+		<action name="CorpEvalAction_findByPage_360" method="findByPage_360" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_List_360.jsp</result>
+		</action>
+		<!--分页查询360 -->
+		<action name="CorpEvalAction_findByPage360" method="findByPage360" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_List360.jsp</result>
+		</action>
+		<action name="CorpEvalAction_findByPageForCred" method="findByPageForCred" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/PcrpQueryInfo_Query.jsp</result>
+		</action>
+		<action name="CorpEvalAction_findByPageForRead" method="findByPageForRead" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_ListForRead.jsp</result>
+		</action>
+		<action name="CorpEvalAction_findByPageForReadBr" method="findByPageForReadBr" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_ListForRead.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="CorpEvalAction_input" method="input" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="input">/creditapp/cred/CorpEval_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CorpEvalAction_del" method="del" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="list">/creditapp/cred/CorpEval_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CorpEvalAction_getById" method="getById" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="detail">/creditapp/cred/CorpEval_Detail.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="CorpEvalAction_getByIdForRead" method="getByIdForRead" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="detail">/creditapp/cred/CorpEval_DetailForRead.jsp</result>
+		</action>
+		<action name="CorpEvalAction_findByReturnId" method="findByReturnId" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="find">/creditapp/cred/CorpEval_findReturn.jsp</result>
+		</action>
+		<!--在其他视图中展示本视图连接-->
+	    <action name="CorpEvalAction_getAllDetail_360" method="getAllDetail_360" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="all">/creditapp/cred/CorpEval_All_360.jsp</result>
+	    </action>	
+	    <!-- 机构详细信息360 -->
+		<action name="CorpEvalAction_getTab_360" method="getTab_360" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="tab">/creditapp/cred/CorpEval_Tab_360.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="CorpEvalActionInsert" method="insert" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="input">/creditapp/cred/CorpEval_Insert.jsp</result>
+			<result name="detail">/creditapp/cred/CorpEval_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CorpEvalActionUpdate" method="update" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="input">/creditapp/cred/CorpEval_Detail.jsp</result>
+			<result name="detail">/creditapp/cred/CorpEval_Detail.jsp</result>
+		</action>
+		<!--显示合作机构最新评分信息-->
+		<action name="CorpEvalAction_getTab" method="getTab" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="tab">/creditapp/cred/CorpEval_Tab_360.jsp</result>
+		</action>
+		<action name="CorpEvalAction_findRuleByNo" method="findRuleByNo" class="app.creditapp.cred.action.CorpEvalAction">
+			<result name="find">/creditapp/cred/CorpEval_findReturn.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

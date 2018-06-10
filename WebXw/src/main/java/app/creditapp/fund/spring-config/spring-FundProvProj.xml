@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd "
+    default-lazy-init="false">
+	
+<bean id="fundProvProjDao" class="app.creditapp.fund.dao.impl.FundProvProjDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundProvDao" class="app.creditapp.fund.dao.impl.FundProvDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundBaseDao" class="app.creditapp.fund.dao.impl.FundBaseDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundSplitDao" class="app.creditapp.fund.dao.impl.FundSplitDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>
+<bean id="projParmDao" class="app.creditapp.proj.dao.impl.ProjParmDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundSplitTermDao" class="app.creditapp.fund.dao.impl.FundSplitTermDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundServiceRateDao" class="app.creditapp.sys.dao.impl.FundServiceRateDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="prdtBaseDao" class="app.creditapp.sys.dao.impl.PrdtBaseDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundProvServiceDao" class="app.creditapp.fund.dao.impl.FundProvServiceDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundProvSplitTermDao" class="app.creditapp.fund.dao.impl.FundProvSplitTermDaoImpl">
+	<property name="sqlMapClient" ref="sqlMapClient"/>
+</bean>	
+<bean id="fundProvProjBo" class="app.creditapp.fund.bo.impl.FundProvProjBoImpl">
+	<property name="fundProvProjDao" ref="fundProvProjDao"/>
+	<property name="fundProvDao" ref="fundProvDao"/>
+	<property name="fundBaseDao" ref="fundBaseDao"/>
+	<property name="fundSplitTermDao" ref="fundSplitTermDao"/>
+	<property name="projParmDao" ref="projParmDao"/>
+	<property name="fundSplitDao" ref="fundSplitDao"/>
+	<property name="fundServiceRateDao" ref="fundServiceRateDao"/>
+	<property name="prdtBaseDao" ref="prdtBaseDao"/>
+	<property name="fundProvServiceDao" ref="fundProvServiceDao"/>
+	<property name="fundProvSplitTermDao" ref="fundProvSplitTermDao"/>
+</bean>
+	
+</beans>
+

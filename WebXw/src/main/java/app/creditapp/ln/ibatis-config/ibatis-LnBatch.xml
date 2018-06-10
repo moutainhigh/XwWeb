@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnBatch" type="app.creditapp.ln.entity.LnBatch"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnBatch" class="LnBatch">
+    <result property="brNo" column="BR_NO" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="batchDate" column="BATCH_DATE" />
+    <result property="batchTime" column="BATCH_TIME" />
+    <result property="batchType" column="BATCH_TYPE" />
+    <result property="batchFile" column="BATCH_FILE" />
+    <result property="batchErrfile" column="BATCH_ERRFILE" />
+    <result property="batchNum" column="BATCH_NUM" />
+    <result property="dbNum" column="DB_NUM" />
+    <result property="chkNum" column="CHK_NUM"/>
+    <result property="chkNumOk" column="CHK_NUM_OK"/>
+    <result property="autoNum" column="AUTO_NUM"/>
+    <result property="appNum" column="APP_NUM"/>
+    <result property="appNumOk" column="APP_NUM_OK"/>
+    <result property="lnNum" column="LN_NUM"/>
+    <result property="lnNumFz" column="LN_NUM_FZ"/>
+    <result property="lnNumOk" column="LN_NUM_OK"/>
+    <result property="batchSts" column="BATCH_STS" />
+    <result property="upTime" column="UP_TIME" />
+    <result property="brName" column="BR_NAME" />
+    <result property="appAmt" column="APP_AMT" />
+    <result property="dueAmt" column="DUE_AMT" />
+    </resultMap>
+    <!--接口ws2103 返回列表-->    
+    <typeAlias alias="WsOut2103_1" type="app.creditapp.inf.entity.WsOut2103_1"/>    
+    <resultMap id="RM.WsOut2103_1" class="WsOut2103_1">
+			<result property="batNo" column="BATCH_NO" columnIndex="1"/>
+			<result property="batTime" column="BATCH_TIME" columnIndex="2"/>
+			<result property="batNum" column="BATCH_NUM" columnIndex="3"/>
+			<result property="recvNum" column="DB_NUM" columnIndex="4"/>
+			<result property="chkNum" column="CHK_NUM" columnIndex="5"/>
+			<result property="chkNumOk" column="CHK_NUM_OK" columnIndex="6"/>
+			<result property="lnNum" column="LN_NUM" columnIndex="7"/>
+    </resultMap>
+    
+     <sql id="LnBatch.columns">
+        <![CDATA[
+         BR_NO,
+         BATCH_NO,
+         BATCH_DATE,
+         BATCH_TIME,
+         BATCH_TYPE,
+         BATCH_FILE,
+         BATCH_ERRFILE,
+         BATCH_NUM,
+         DB_NUM,
+         CHK_NUM,
+         fun_getcount_chknumok(BATCH_NO) as CHK_NUM_OK,
+         AUTO_NUM,
+         APP_NUM,
+         fun_getcount_appnumok(BATCH_NO) as APP_NUM_OK,
+         LN_NUM,
+         LN_NUM_FZ,
+         fun_getcount_lnnumok(BATCH_NO) as LN_NUM_OK,
+         BATCH_STS,
+         UP_TIME,
+         fun_getbrname(BR_NO) as BR_NAME,
+         APP_AMT,
+         DUE_AMT
+          ]]>
+    </sql>
+    <sql id="WsOut2103_1.columns">
+        <![CDATA[
+				BATCH_NO,
+				BATCH_TIME,
+				BATCH_NUM,
+				DB_NUM,
+				CHK_NUM,
+				CHK_NUM_OK,
+				LN_NUM
+        ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnBatch.insert">
+        <![CDATA[
+        INSERT INTO LN_BATCH(
+         BR_NO,
+         BATCH_NO,
+         BATCH_DATE,
+         BATCH_TIME,
+         BATCH_TYPE,
+         BATCH_FILE,
+         BATCH_ERRFILE,
+         BATCH_NUM,
+         DB_NUM,
+         CHK_NUM,
+         CHK_NUM_OK,
+         AUTO_NUM,
+         APP_NUM,
+         APP_AMT,
+         APP_NUM_OK,
+         LN_NUM,
+         LN_NUM_FZ,
+         LN_NUM_OK,
+         BATCH_STS,
+         UP_TIME
+         )VALUES(
+         #brNo#,
+         #batchNo#,
+         #batchDate#,
+         #batchTime#,
+         #batchType#,
+         #batchFile#,
+         #batchErrfile#,
+         #batchNum#,
+         #dbNum#,
+         #chkNum#,
+         #chkNumOk#,
+         #autoNum#,
+         #appNum#,
+         #appAmt#,
+         #appNumOk#,
+         #lnNum#,
+         #lnNumFz#,
+         #lnNumOk#,
+         #batchSts#,
+         #upTime#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnBatch.del">
+        <![CDATA[
+               DELETE FROM LN_BATCH
+                 WHERE
+               	BATCH_NO = #batchNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnBatch.update">
+        <![CDATA[
+         UPDATE LN_BATCH set
+         BR_NO=#brNo#,
+         BATCH_NO=#batchNo#,
+         BATCH_DATE=#batchDate#,
+         BATCH_TIME=#batchTime#,
+         BATCH_TYPE=#batchType#,
+         BATCH_FILE=#batchFile#,
+         BATCH_ERRFILE=#batchErrfile#,
+         BATCH_NUM=#batchNum#,
+         DB_NUM=#dbNum#,
+         CHK_NUM=#chkNum#,
+         CHK_NUM_OK=#chkNumOk#,
+         AUTO_NUM=#autoNum#,
+         APP_NUM=#appNum#,
+         APP_NUM_OK=#appNumOk#,
+         LN_NUM=#lnNum#,
+         LN_NUM_FZ=#lnNumFz#,
+         LN_NUM_OK=#lnNumOk#,
+         BATCH_STS=#batchSts#,
+         UP_TIME=#upTime#
+          WHERE
+               	BATCH_NO = #batchNo#        ]]>
+    </update>
+    
+     <!-- 表修改 -->
+    <update id="LnBatch.updateNum">
+        <![CDATA[
+         update ln_batch b
+		   set chk_num =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and a.chk_sts <> '01'),
+		       chk_num_ok =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and a.chk_sts = '02'),
+		       auto_num =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and a.zdapp_sts <> '01'),
+		       app_num =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and a.rgapp_sts <> '00'),
+		       app_num_ok =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and a.zdapp_sts = '02' and ( a.rgapp_sts = '00' or a.rgapp_sts = '02' )),
+		       ln_num =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and (a.pay_sts = '02' or a.pay_sts = '03')),
+		       ln_num_fz =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and a.pay_sts = '02' and part_sts = '01'),
+		       ln_num_ok =
+		       (select count(*) from ln_stage a where a.batch_no = b.batch_no and a.pay_sts = '02')
+		 where b.batch_no = #batchNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnBatch.getById"  resultMap="RM.LnBatch">
+        SELECT <include refid="LnBatch.columns"/>
+        <![CDATA[
+             FROM LN_BATCH 
+         WHERE 
+               	BATCH_NO = #batchNo#        ]]>
+     </select>
+      <!-- 导入Excel时查询 -->
+    <select id="LnBatch.getByLnApplyMid"  resultMap="RM.LnBatch">
+        SELECT <include refid="LnBatch.columns"/>
+        <![CDATA[
+             FROM LN_BATCH 
+         WHERE 
+               	BATCH_NO = #batchNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnBatch.findPage.where">
+        <dynamic prepend="where">
+              <isPropertyAvailable property="batchNo">
+                      <isNotEmpty prepend="AND" property="batchNo">
+                          BATCH_NO = #batchNo#
+                      </isNotEmpty>
+              </isPropertyAvailable>
+              <isPropertyAvailable property="batchSts">
+                      <isNotEmpty prepend="AND" property="batchSts">
+                          BATCH_STS = #batchSts#
+                      </isNotEmpty>
+              </isPropertyAvailable>
+              <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+ <!--            <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      fun_getbrname(BR_NO) like '%$brName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>-->
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                 BR_NO IN (SELECT p.br_no FROM proj_base p WHERE p.proj_no IN (SELECT PROJ_NO FROM proj_mang WHERE login_id=#loginid#))
+                  </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchDate">
+                  <isNotEmpty prepend="AND" property="batchDate">
+                      BATCH_DATE = #batchDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+        <!--接口ws2103 返回符合条件总的记录数和分页-->
+     <sql id="LnBatch.findByPage.whereforlist">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchNo">
+                  <isNotEmpty prepend="AND" property="batchNo">
+                      BATCH_NO = #batchNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="batchDate">
+                  <isNotEmpty prepend="AND" property="batchDate">
+                      BATCH_DATE = #batchDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnBatch.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_BATCH <include refid="LnBatch.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnBatch.findByPage" resultMap="RM.LnBatch">
+        SELECT <include refid="LnBatch.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  BR_NO,
+			         BATCH_NO,
+			         BATCH_DATE,
+			         BATCH_TIME,
+			         BATCH_TYPE,
+			         BATCH_FILE,
+			         BATCH_ERRFILE,
+			         BATCH_NUM,
+			         DB_NUM,
+			         CHK_NUM,
+			         AUTO_NUM,
+			         APP_NUM,
+			         LN_NUM,
+			         LN_NUM_FZ,
+			         BATCH_STS,
+			         UP_TIME,
+			         APP_AMT,
+			         DUE_AMT 
+			      FROM LN_BATCH
+                    <include refid="LnBatch.findPage.where"/> ORDER BY BATCH_DATE DESC,BATCH_TIME DESC
+             ) m
+             WHERE rownum &lt;#endNum#              
+        ) WHERE rnum &gt;= #startNum# 
+    </select>
+    
+    <select id="LnBatch.findPageforlist.count" resultClass="int">
+    	SELECT count(*) FROM LN_BATCH <include refid="LnBatch.findByPage.whereforlist"/>
+    </select>
+    
+    <select id="LnBatch.findByPageforlist" resultMap="RM.WsOut2103_1">
+         SELECT <include refid="WsOut2103_1.columns"/>
+         FROM(
+              SELECT m.*, rownum as rnum 
+              FROM
+              (SELECT <include refid="WsOut2103_1.columns"/> FROM LN_BATCH
+                    <include refid="LnBatch.findByPage.whereforlist"/>
+              ) m 
+               WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+     <!--结束-->
+</sqlMap>

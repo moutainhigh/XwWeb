@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="WsElyRepy" type="app.creditapp.inf.entity.WsElyRepy" />
+	<typeAlias alias="CorpBase" type="app.creditapp.corp.entity.CorpBase"/>
+	
+	<!-- WS2801列表查询返回字段 -->
+	<resultMap id="RM.WsElyRepy" class="WsElyRepy">
+		<result property="wsId" column="WS_ID" />
+		<result property="batchNo" column="BATCH_NO" />
+		<result property="brNo" column="BR_NO" />
+		<result property="pactNo" column="PACT_NO" />
+		<result property="payTotal" column="PAY_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payAmt" column="PAY_AMT" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payInte" column="PAY_INTE" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payOver" column="PAY_OVER" jdbcType="double"
+			nullValue="0.00" />
+		<result property="feeTotal" column="FEE_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="feeDam" column="FEE_DAM" jdbcType="double"
+			nullValue="0.00" />
+		<result property="dealSts" column="DEAL_STS" />
+		<result property="dealDesc" column="DEAL_DESC" />
+		<result property="txDate" column="TX_DATE" />
+		<result property="debitType" column="DEBIT_TYPE" />
+    	<result property="onlinOff" column="ONLIN_OFF" />
+		<result property="brName" column="BR_NAME" />
+		<result property="projName" column="PROJ_NAME" />
+		<result property="cifName" column="CIF_NAME" />
+		<result property="dueSts" column="DUE_STS" />
+
+	</resultMap>
+	<!-- WS2801列表查询返回字段 -->
+	<resultMap id="RM.WsElyRepyTwo" class="WsElyRepy">
+		<result property="wsId" column="WS_ID" />
+		<result property="batchNo" column="BATCH_NO" />
+		<result property="brNo" column="BR_NO" />
+		<result property="pactNo" column="PACT_NO" />
+		<result property="payTotal" column="PAY_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payAmt" column="PAY_AMT" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payInte" column="PAY_INTE" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payOver" column="PAY_OVER" jdbcType="double"
+			nullValue="0.00" />
+		<result property="feeTotal" column="FEE_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="feeDam" column="FEE_DAM" jdbcType="double"
+			nullValue="0.00" />
+		<result property="dealSts" column="DEAL_STS" />
+		<result property="dealDesc" column="DEAL_DESC" />
+		<result property="txDate" column="TX_DATE" />
+		<result property="debitType" column="DEBIT_TYPE" />
+    	<result property="onlinOff" column="ONLIN_OFF" />
+	</resultMap>
+	
+	<!-- WS2801列表查询返回字段二次 -->
+	<resultMap id="RM.WsElyRepyTwo" class="WsElyRepy">
+		<result property="wsId" column="WS_ID" />
+		<result property="batchNo" column="BATCH_NO" />
+		<result property="brNo" column="BR_NO" />
+		<result property="pactNo" column="PACT_NO" />
+		<result property="payTotal" column="PAY_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payAmt" column="PAY_AMT" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payInte" column="PAY_INTE" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payOver" column="PAY_OVER" jdbcType="double"
+			nullValue="0.00" />
+		<result property="feeTotal" column="FEE_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="feeDam" column="FEE_DAM" jdbcType="double"
+			nullValue="0.00" />
+		<result property="dealSts" column="DEAL_STS" />
+		<result property="dealDesc" column="DEAL_DESC" />
+		<result property="txDate" column="TX_DATE" />
+		<result property="debitType" column="DEBIT_TYPE" />
+    	<result property="onlinOff" column="ONLIN_OFF" />
+	</resultMap>
+	
+	<!-- ws2805列表查询返回字段 -->
+	<resultMap id="RM.WsOut2805_1" class="WsElyRepy">
+		<result property="pactNo" column="PACT_NO" />
+		<result property="payTotal" column="PAY_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payAmt" column="PAY_AMT" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payInte" column="PAY_INTE" jdbcType="double"
+			nullValue="0.00" />
+		<result property="payOver" column="PAY_OVER" jdbcType="double"
+			nullValue="0.00" />
+		<result property="feeTotal" column="FEE_TOTAL" jdbcType="double"
+			nullValue="0.00" />
+		<result property="dealSts" column="DEAL_STS" />
+		<result property="dealDesc" column="DEAL_DESC" />
+	</resultMap>
+	<sql id="WsElyRepy.columns">
+        <![CDATA[
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         PAY_TOTAL,
+         PAY_AMT,
+         PAY_INTE,
+         PAY_OVER,
+         FEE_TOTAL,
+         FEE_DAM,
+         DEAL_STS,
+         DEAL_DESC,
+         TX_DATE,
+         DEBIT_TYPE,
+         ONLIN_OFF
+          ]]>
+	</sql>
+	<sql id="WsElyRepyTwo.columns">
+        <![CDATA[
+         BR_NAME,
+         WS_ELY_REPY.BR_NO,
+         PACT_NO,
+         PAY_TOTAL
+          ]]>
+	</sql>
+	
+	<!-- ws2805响应字段 -->
+	<sql id="WsOut2805_1.columns">
+        <![CDATA[
+         PACT_NO,
+         PAY_TOTAL,
+         PAY_AMT,
+         PAY_INTE,
+         PAY_OVER,
+         FEE_TOTAL,
+         DEAL_STS,
+         DEAL_DESC
+          ]]>
+	</sql>
+	<select id="WsElyRepy.getByBatchNo"  resultMap="RM.WsElyRepyTwo">
+        SELECT <include refid="WsElyRepy.columns"/>
+        <![CDATA[
+             FROM WS_ELY_REPY 
+         WHERE 
+               	BATCH_NO = #batchNo#        ]]>
+     </select>
+	
+	<!-- 表新增 -->
+	<insert id="WsElyRepy.insert">
+        <![CDATA[
+        INSERT INTO WS_ELY_REPY(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         PAY_TOTAL,
+         PAY_AMT,
+         PAY_INTE,
+         PAY_OVER,
+         FEE_TOTAL,
+         FEE_DAM,
+         DEAL_STS,
+         DEAL_DESC,
+         TX_DATE,
+         DEBIT_TYPE,
+         ONLIN_OFF
+         )VALUES(
+         #wsId#,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #payTotal#,
+         #payAmt#,
+         #payInte#,
+         #payOver#,
+         #feeTotal#,
+         #feeDam#,
+         #dealSts#,
+         #dealDesc#,
+         #txDate#,
+         #debitType#,
+         #onlinOff#
+         )
+          ]]>
+          <!-- TO_CHAR(#txDate#,'YYYYMMDD') -->
+	</insert>
+	<!-- 表删除 -->
+	<delete id="WsElyRepy.del">
+        <![CDATA[
+               DELETE FROM WS_ELY_REPY
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+	</delete>
+	<!-- ws2801表删除根据合同号删除当日同合同申请 -->
+	<delete id="WsElyRepy.delByPactNo">
+        <![CDATA[
+               DELETE FROM WS_ELY_REPY
+                 WHERE
+               PACT_NO = #pactNo#
+               	 AND
+               TX_DATE = #txDate#
+          ]]>
+          <!-- TX_DATE = TO_CHAR(SYSDATE,'YYYYMMDD') 系统时间-->
+	</delete>
+	<!-- 表修改 -->
+	<update id="WsElyRepy.update">
+        <![CDATA[
+         UPDATE WS_ELY_REPY set
+         BATCH_NO=#batchNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         PAY_TOTAL=#payTotal#,
+         TX_DATE=#txDate#
+          WHERE WS_ID = #wsId#]]>
+	</update>
+	
+	<update id="WsElyRepy.updateStsAndDesc">
+        <![CDATA[
+         UPDATE WS_ELY_REPY set
+         DEAL_STS=#dealSts#,
+         DEAL_DESC=#dealDesc#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+
+	<!-- 表查询ById -->
+	<select id="WsElyRepy.getById" resultMap="RM.WsElyRepyTwo">
+		SELECT
+		<include refid="WsElyRepy.columns" />
+        <![CDATA[
+             FROM WS_ELY_REPY 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+	</select>
+	<!-- ws2805根据brNo/PactNo/batchNo查询 -->
+	<sql id="WsElyRepy.where">
+		<dynamic prepend="where">
+			<isPropertyAvailable property="brNo">
+				<isNotEmpty prepend="AND" property="brNo">
+					BR_NO = #brNo#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="batchNo">
+				<isNotEmpty prepend="AND" property="batchNo">
+					BATCH_NO = #batchNo#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="pactNo">
+				<isNotEmpty prepend="AND" property="pactNo">
+					PACT_NO = #pactNo#
+				</isNotEmpty>
+			</isPropertyAvailable>
+		</dynamic>
+	</sql>
+	<!-- ws2805查询记录数 -->
+	<select id="WsElyRepy.count" resultClass="int">
+		SELECT count(*) FROM WS_ELY_REPY
+		<include refid="WsElyRepy.where" />
+	</select>
+	<!-- 根据实际情况选择分页查询条件 -->
+	<sql id="WsElyRepy.findPage.where">
+		<dynamic prepend="where">
+			
+			<isPropertyAvailable property="pactNo">
+				<isNotEmpty prepend="AND" property="pactNo">
+					PACT_NO = #pactNo#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="brNo">
+				<isNotEmpty prepend="AND" property="brNo">
+					BR_NO = #brNo#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="cifName">
+				<isNotEmpty prepend="AND" property="cifName">
+					CIF_NAME like '%$cifName$%'
+				</isNotEmpty>
+			</isPropertyAvailable>
+		</dynamic>	
+	</sql>
+	
+	<sql id="WsElyRepy.findPagedk.where">
+		<dynamic prepend="where">
+			we.ONLIN_OFF = '02'
+			
+			<isPropertyAvailable property="pactNo">
+				<isNotEmpty  property="pactNo">
+				AND	we.PACT_NO = #pactNo#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="brNo">
+				<isNotEmpty  property="brNo">
+				AND	we.BR_NO = #brNo#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="cifName">
+				<isNotEmpty  property="cifName">
+				AND	al.CIF_NAME like '%$cifName$%'
+				</isNotEmpty>
+			</isPropertyAvailable>
+			<isPropertyAvailable property="debitType">
+				<isNotEmpty  property="debitType">
+				AND	we.DEBIT_TYPE = #debitType#
+				</isNotEmpty>
+			</isPropertyAvailable>
+			
+		</dynamic>	
+	</sql>
+	<!-- 分页查询记录数 -->
+	<select id="WsElyRepy.findPage.count" resultClass="int">
+		SELECT count(*) 
+		FROM WS_ELY_REPY we left join CORP_BASE cb on we.BR_NO = cb.BR_NO
+							left join AC_LN_MST al on we.PACT_NO = al.PACT_NO
+      						left join PROJ_BASE pb on pb.PROJ_NO = al.PROJ_NO
+							left join LN_DUE alrp on we.PACT_NO = alrp.PACT_NO
+			<!--				
+		where we.PACT_NO = #pactNo# and we.BR_NO = #brNo# and al.CIF_NAME = '%$cifName$%'
+		  -->
+	    <include refid="WsElyRepy.findPagedk.where" />
+	    
+	</select>
+	<!-- 分页查询 -->
+	<select id="WsElyRepy.findByPage" resultMap="RM.WsElyRepy">
+		SELECT distinct
+		 n.WS_ID,
+         n.BATCH_NO,
+         n.BR_NO,
+         n.PACT_NO,
+         n.PAY_TOTAL,
+         n.PAY_AMT,
+         n.PAY_INTE,
+         n.PAY_OVER,
+         n.FEE_TOTAL,
+         n.FEE_DAM,
+         n.DEAL_STS,
+         n.DEAL_DESC,
+         n.TX_DATE,
+         n.DEBIT_TYPE,
+         n.ONLIN_OFF,
+         cb.BR_NAME,
+         pb.PROJ_NAME,
+         al.CIF_NAME,
+         alrp.DUE_STS
+          <!--  
+		<include refid="WsElyRepy.columns" />
+		-->
+		FROM (
+		SELECT m.*, rownum as rnum
+		FROM
+		(SELECT 
+		 we.WS_ID,
+         we.BATCH_NO,
+         we.BR_NO,
+         we.PACT_NO,
+         we.PAY_TOTAL,
+         we.PAY_AMT,
+         we.PAY_INTE,
+         we.PAY_OVER,
+         we.FEE_TOTAL,
+         we.FEE_DAM,
+         we.DEAL_STS,
+         we.DEAL_DESC,
+         we.TX_DATE,
+         we.DEBIT_TYPE,
+      	 we.ONLIN_OFF
+         FROM WS_ELY_REPY we left join AC_LN_MST al on we.PACT_NO = al.PACT_NO
+		<!--  
+		<include refid="WsElyRepy.columns" />
+		-->
+		<!-- 
+		FROM WS_ELY_REPY we left join AC_LN_MST al on we.PACT_NO = al.PACT_NO
+		where we.PACT_NO = #pactNo# and we.BR_NO = #brNo# and al.CIF_NAME = '%$cifName$%'
+		 -->
+		<include refid="WsElyRepy.findPagedk.where" />
+		
+		ORDER BY BR_NO DESC
+		) m
+		) n left join CORP_BASE cb on n.BR_NO = cb.BR_NO
+		    left join AC_LN_MST al on n.PACT_NO = al.PACT_NO
+      		left join PROJ_BASE pb on pb.PROJ_NO = al.PROJ_NO
+			left join LN_DUE alrp on n.PACT_NO = alrp.PACT_NO
+			
+		WHERE rnum &gt;= #startNum# AND rnum
+		&lt;#endNum#
+		<isPropertyAvailable property="loginid">
+				<isNotEmpty prepend="AND" property="loginid">
+					pb.proj_no in (select proj_no from proj_mang where login_id = #loginid#)
+				</isNotEmpty>
+			</isPropertyAvailable>
+	</select>
+	<!-- ws2805 分页查找记录 -->
+	<select id="WsElyRepy.findByPageForList" resultMap="RM.WsOut2805_1">
+		SELECT
+		<include refid="WsOut2805_1.columns" />
+		FROM (
+		SELECT m.*, rownum as rnum
+		FROM
+		(SELECT
+		<include refid="WsOut2805_1.columns" />
+		FROM WS_ELY_REPY
+		<include refid="WsElyRepy.where" />
+		) m
+		) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+	</select>
+</sqlMap>

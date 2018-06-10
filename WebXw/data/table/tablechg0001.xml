@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="chg0001" para="eadis_page" link="AcRepydayChgaAction_findByPage.action" title="扣款日变更申请表" type="1">
+<tableitem align="2" filedname="batchNo" id="1" indexed="1" label="批次号" row="1" type="4" typepara="AcRepydayChgaAction_getById.action;brNo-brNo;pactNo-pactNo;batchNo-batchNo;query-'query'"/>
+<tableitem align="2" filedname="pactNo" id="2" indexed="2" label="合同号" row="1" type="0" />
+<tableitem align="2" filedname="brNo" id="3" indexed="3" label="机构号" row="1" type="0" />
+<tableitem align="2" filedname="newPayDay" id="4" indexed="4" label="新扣款日" row="1" type="0" />
+<tableitem align="2" filedname="chgReason" id="5" indexed="5" label="变更原因" row="1" type="0" />
+<tableitem align="2" filedname="chgaSts" id="6" indexed="6" label="变更状态" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="7" indexed="7" label="-" row="1" type="5" typepara="AcRepydayChgaAction_getById.action;brNo-brNo;pactNo-pactNo;batchNo-batchNo;" width="2"/>
+<tableitem align="2" filedname="删除" id="8" indexed="8" label="-" row="1" type="5" typepara="AcRepydayChgaAction_del.action;brNo-brNo;pactNo-pactNo;batchNo-batchNo;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundProvService" type="app.creditapp.fund.entity.FundProvService"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundProvService" class="FundProvService">
+    <result property="provServiceNo" column="PROV_SERVICE_NO" />
+    <result property="provProjNo" column="PROV_PROJ_NO" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="stepNo" column="STEP_NO" />
+    <result property="minAmt" column="MIN_AMT" jdbcType="double"/>
+    <result property="maxAmt" column="MAX_AMT" jdbcType="double"/>
+    <result property="svRate" column="SV_RATE" jdbcType="float"/>
+    <result property="servicefee" column="SERVICEFEE" jdbcType="double"/>
+    <result property="jtBegDate" column="JT_BEG_DATE" />
+    <result property="jtEndDate" column="JT_END_DATE" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="offRate" column="OFF_RATE" jdbcType="float"/>
+    <result property="prdtDueAmt" column="PRDT_DUE_AMT" jdbcType="double"/>
+    <result property="prdtServicefee" column="PRDT_SERVICEFEE" jdbcType="double"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="FundProvService.columns">
+        <![CDATA[
+         PROV_SERVICE_NO,
+         PROV_PROJ_NO,
+         PROJ_NO,
+         STEP_NO,
+         MIN_AMT,
+         MAX_AMT,
+         SV_RATE,
+         SERVICEFEE,
+         JT_BEG_DATE,
+         JT_END_DATE,
+         PRDT_NO,
+         FUN_GETPRDTNAME(PRDT_NO) AS PRDT_NAME,
+         OFF_RATE,
+         PRDT_DUE_AMT,
+         PRDT_SERVICEFEE,
+         fun_getusername(OP_NO) AS OP_NO,
+         TX_DATE,
+         FILLER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundProvService.insert">
+        <![CDATA[
+        INSERT INTO FUND_PROV_SERVICE(
+         PROV_SERVICE_NO,
+         PROV_PROJ_NO,
+         PROJ_NO,
+         STEP_NO,
+         MIN_AMT,
+         MAX_AMT,
+         SV_RATE,
+         SERVICEFEE,
+         JT_BEG_DATE,
+         JT_END_DATE,
+         PRDT_NO,
+         PRDT_NAME,
+         OFF_RATE,
+         PRDT_DUE_AMT,
+         PRDT_SERVICEFEE,
+         OP_NO,
+         TX_DATE,
+         FILLER
+         )VALUES(
+         #provServiceNo#,
+         #provProjNo#,
+         #projNo#,
+         #stepNo#,
+         #minAmt#,
+         #maxAmt#,
+         #svRate#,
+         #servicefee#,
+         #jtBegDate#,
+         #jtEndDate#,
+         #prdtNo#,
+         #prdtName#,
+         #offRate#,
+         #prdtDueAmt#,
+         #prdtServicefee#,
+         #opNo#,
+         #txDate#,
+         #filler#
+         )
+          ]]>
+         <selectKey resultClass="java.lang.String" type="pre" keyProperty="provServiceNo" >
+				SELECT  FUND_PROV_SERVICE_SEQ.NEXTVAL AS provServiceNo FROM DUAL
+      	 </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundProvService.del">
+        <![CDATA[
+               DELETE FROM FUND_PROV_SERVICE
+                 WHERE
+               	PROV_SERVICE_NO = #provServiceNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundProvService.update">
+        <![CDATA[
+         UPDATE FUND_PROV_SERVICE set
+         PROV_SERVICE_NO=#provServiceNo#,
+         PROJ_NO=#projNo#,
+         STEP_NO=#stepNo#,
+         MIN_AMT=#minAmt#,
+         MAX_AMT=#maxAmt#,
+         SV_RATE=#svRate#,
+         SERVICEFEE=#servicefee#,
+         JT_BEG_DATE=#jtBegDate#,
+         JT_END_DATE=#jtEndDate#,
+         PRDT_NO=#prdtNo#,
+         PRDT_NAME=#prdtName#,
+         OFF_RATE=#offRate#,
+         PRDT_DUE_AMT=#prdtDueAmt#,
+         PRDT_SERVICEFEE=#prdtServicefee#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         FILLER=#filler#
+          WHERE
+               	PROV_SERVICE_NO = #provServiceNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundProvService.getById"  resultMap="RM.FundProvService">
+        SELECT <include refid="FundProvService.columns"/>
+        <![CDATA[
+             FROM FUND_PROV_SERVICE 
+         WHERE 
+               	PROV_SERVICE_NO = #provServiceNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundProvService.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="provProjNo">
+                  <isNotEmpty prepend="AND" property="provProjNo">
+                      PROV_PROJ_NO = #provProjNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="stepNo">
+                  <isNotEmpty prepend="AND" property="stepNo">
+                      STEP_NO = #stepNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="prdtNo">
+                  <isNotEmpty prepend="AND" property="prdtNo">
+                      PRDT_NO = #prdtNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="prdtName">
+                  <isNotEmpty prepend="AND" property="prdtName">
+                      PRDT_NAME = #prdtName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundProvService.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_PROV_SERVICE <include refid="FundProvService.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundProvService.findByPage" resultMap="RM.FundProvService">
+        SELECT <include refid="FundProvService.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundProvService.columns"/> FROM FUND_PROV_SERVICE
+                    <include refid="FundProvService.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

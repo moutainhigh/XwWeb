@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PopParmConf" type="app.creditapp.dev.entity.PopParmConf"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.PopParmConf" class="PopParmConf">
+    <result property="scene_id" column="SCENE_ID" />
+    <result property="col_name" column="COL_NAME" />
+    <result property="sql" column="SQL" />
+    <result property="db_bean_rel" column="DB_BEAN_REL" />
+     <result property="scene_desc" column="SCENE_DESC" />
+    <result property="query_disName" column="QUERY_DISNAME" />
+    <result property="query_name" column="QUERY_NAME" />
+    <result property="page_no" column="PAGE_NO" />
+    <result property="dyn_or" column="DYN_OR" />
+    <result property="dyn_and" column="DYN_AND" />
+    <result property="orderby" column="ORDERBY" />
+    <result property="if_checkbox" column="IF_CHECKBOX" />
+    <result property="hidden_col" column="HIDDEN_COL" />
+    <result property="if_query" column="IF_QUERY" />
+    </resultMap>
+     <sql id="PopParmConf.columns">
+        <![CDATA[
+         SCENE_ID,
+         COL_NAME,
+         SQL,
+         DB_BEAN_REL,
+         SCENE_DESC,
+         QUERY_NAME,
+         QUERY_DISNAME,
+         PAGE_NO,
+         DYN_OR,
+         DYN_AND,
+         ORDERBY,
+         IF_CHECKBOX,
+         HIDDEN_COL,
+         IF_QUERY
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="PopParmConf.insert">
+        <![CDATA[
+        INSERT INTO POP_PARM_CONF(
+         SCENE_ID,
+         COL_NAME,
+         SQL,
+         DB_BEAN_REL,
+         SCENE_DESC,
+         QUERY_NAME,
+         QUERY_DISNAME,
+         PAGE_NO,
+         DYN_OR,
+         DYN_AND,
+         ORDERBY,
+         IF_CHECKBOX,
+         HIDDEN_COL,
+         IF_QUERY
+         )VALUES(
+         #scene_id#,
+         #col_name#,
+         #sql#,
+         #db_bean_rel#,
+         #scene_desc#,
+         #query_name#,
+         #query_disName#,
+         #page_no#,
+         #dyn_or#,
+         #dyn_and#,
+         #orderby#,
+         #if_checkbox#,
+         #hidden_col#,
+         #if_query#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="PopParmConf.del">
+        <![CDATA[
+               DELETE FROM POP_PARM_CONF
+                 WHERE
+               	SCENE_ID = #scene_id#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="PopParmConf.update">
+        <![CDATA[
+         UPDATE POP_PARM_CONF set
+         SCENE_ID=#scene_id#,
+         COL_NAME=#col_name#,
+         SQL=#sql#,
+         DB_BEAN_REL=#db_bean_rel#,
+         SCENE_DESC=#scene_desc#,
+         QUERY_NAME = #query_name#,
+         QUERY_DISNAME = #query_disName#,
+         PAGE_NO = #page_no#,
+         DYN_OR=#dyn_or#,
+         DYN_AND=#dyn_and#,
+         ORDERBY=#orderby#,
+         IF_CHECKBOX=#if_checkbox#,
+         HIDDEN_COL=#hidden_col#,
+         IF_QUERY=#if_query#
+          WHERE
+               	SCENE_ID = #scene_id#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="PopParmConf.getById"  resultMap="RM.PopParmConf">
+        SELECT <include refid="PopParmConf.columns"/>
+        <![CDATA[
+             FROM POP_PARM_CONF 
+         WHERE 
+               	SCENE_ID = #scene_id#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="PopParmConf.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="scene_id">
+                  <isNotEmpty prepend="AND" property="scene_id">
+                      SCENE_ID = #scene_id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="col_name">
+                  <isNotEmpty prepend="AND" property="col_name">
+                      COL_NAME like '%$col_name$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="scene_desc">
+                  <isNotEmpty prepend="AND" property="scene_desc">
+                      SCENE_DESC like '%$scene_desc$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="if_checkbox">
+                  <isNotEmpty prepend="AND" property="if_checkbox">
+                      IF_CHECKBOX = #if_checkbox#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+    <select id="PopParmConf.getMaxId" resultClass="int">
+        SELECT max(SUBSTR(scene_id,5,3))+1 FROM pop_parm_conf
+    </select>
+    
+    <!-- 分页查询记录数 -->
+    <select id="PopParmConf.findPage.count" resultClass="int">
+        SELECT count(*) FROM POP_PARM_CONF <include refid="PopParmConf.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="PopParmConf.findByPage" resultMap="RM.PopParmConf">
+        SELECT <include refid="PopParmConf.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="PopParmConf.columns"/> FROM POP_PARM_CONF
+                    <include refid="PopParmConf.findPage.where"/> ORDER BY SCENE_ID
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

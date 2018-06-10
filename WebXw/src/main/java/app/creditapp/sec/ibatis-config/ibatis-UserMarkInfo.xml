@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="UserMarkInfo" type="app.creditapp.sec.entity.UserMarkInfo"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.UserMarkInfo" class="UserMarkInfo">
+    <result property="userId" column="USER_ID"/>
+    <result property="passwordUpdateTime" column="PASSWORD_UPDATE_TIME"/>
+    <result property="visitTimes" column="VISIT_TIMES"/>
+    <result property="loginErrorTimes" column="LOGIN_ERROR_TIMES"/>
+    <result property="lastSignInTime" column="LAST_SIGN_IN_TIME"/>
+    <result property="lastSignOutTime" column="LAST_SIGN_OUT_TIME"/>
+    <result property="currentSignInTime" column="CURRENT_SIGN_IN_TIME"/>
+    <result property="passwordState" column="PASSWORD_STATE"/>
+    <result property="passwordMessege" column="PASSWORD_MESSEGE"/>
+    </resultMap>
+     <sql id="UserMarkInfo.columns">
+        <![CDATA[
+         USER_ID,
+         PASSWORD_UPDATE_TIME,
+         VISIT_TIMES,
+         LOGIN_ERROR_TIMES,
+         LAST_SIGN_IN_TIME,
+         LAST_SIGN_OUT_TIME,
+         CURRENT_SIGN_IN_TIME,
+         PASSWORD_STATE,
+         PASSWORD_MESSEGE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="UserMarkInfo.insert">
+        <![CDATA[
+        INSERT INTO USER_MARK_INFO(
+         USER_ID,
+         PASSWORD_UPDATE_TIME,
+         VISIT_TIMES,
+         LOGIN_ERROR_TIMES,
+         LAST_SIGN_IN_TIME,
+         LAST_SIGN_OUT_TIME,
+         CURRENT_SIGN_IN_TIME,
+         PASSWORD_STATE,
+         PASSWORD_MESSEGE
+         )VALUES(
+         #userId#,
+         #passwordUpdateTime#,
+         #visitTimes#,
+         #loginErrorTimes#,
+         #lastSignInTime#,
+         #lastSignOutTime#,
+         #currentSignInTime#,
+         #passwordState#,
+         #passwordMessege#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="UserMarkInfo.del">
+        <![CDATA[
+               DELETE FROM USER_MARK_INFO
+                 WHERE
+               USER_ID = #userId#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="UserMarkInfo.update">
+        <![CDATA[
+         UPDATE USER_MARK_INFO set
+         USER_ID=#userId#,
+         PASSWORD_UPDATE_TIME=#passwordUpdateTime#,
+         VISIT_TIMES=#visitTimes#,
+         LOGIN_ERROR_TIMES=#loginErrorTimes#,
+         LAST_SIGN_IN_TIME=#lastSignInTime#,
+         LAST_SIGN_OUT_TIME=#lastSignOutTime#,
+         CURRENT_SIGN_IN_TIME=#currentSignInTime#,
+         PASSWORD_STATE=#passwordState#,
+         PASSWORD_MESSEGE=#passwordMessege#
+          WHERE
+                 USER_ID = #userId#
+        ]]>
+    </update>
+     <update id="UserMarkInfo.updateSta">
+        <![CDATA[
+         UPDATE USER_MARK_INFO set
+         	PASSWORD_STATE=#passwordState#
+          WHERE
+                 USER_ID = #userId#
+        ]]>
+    </update>
+     <!-- 表查询ById -->
+    <select id="UserMarkInfo.getById"  resultMap="RM.UserMarkInfo">
+        SELECT <include refid="UserMarkInfo.columns"/>
+        <![CDATA[
+             FROM USER_MARK_INFO
+         WHERE 
+             USER_ID = #userId#
+        ]]>
+     </select>
+     
+       <!-- 分页查询条件 -->
+    <sql id="UserMarkInfo.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="userId">
+                      <isNotEmpty prepend="AND" property="userId">
+                          USER_ID = #userId#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="lastSignInTime">
+                      <isNotEmpty prepend="AND" property="lastSignInTime">
+                          LAST_SIGN_IN_TIME = #lastSignInTime#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="currentSignInTime">
+                      <isNotEmpty prepend="AND" property="currentSignInTime">
+                          CURRENT_SIGN_IN_TIME = #currentSignInTime#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="passwordUpdateTime">
+                      <isNotEmpty prepend="AND" property="passwordUpdateTime">
+                          PASSWORD_UPDATE_TIME = #passwordUpdateTime#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="UserMarkInfo.findPage.count" resultClass="int">
+        SELECT count(*) FROM USER_MARK_INFO <include refid="UserMarkInfo.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="UserMarkInfo.findByPage" resultMap="RM.UserMarkInfo">
+        SELECT <include refid="UserMarkInfo.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="UserMarkInfo.columns"/> FROM USER_MARK_INFO
+                    <include refid="UserMarkInfo.findPage.where"/> order by CURRENT_SIGN_IN_TIME desc
+             )m 
+           )
+       WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 表查询getAllLogin-->
+    <select id="UserMarkInfo.getAllLogin"  resultMap="RM.UserMarkInfo">
+        <![CDATA[
+		 select DISTINCT
+ '0' as USER_ID,
+(select count(login_time) From sys_login_log where login_date =#userId#) 
+as PASSWORD_UPDATE_TIME,
+(select count(user_id) From USER_MARK_INFO where  CURRENT_SIGN_IN_TIME=#userId#) 
+as LAST_SIGN_OUT_TIME,
+'0' as LOGIN_ERROR_TIMES,
+(select count(logout_time) From sys_login_log where  login_date=#userId#) 
+as LAST_SIGN_IN_TIME,
+'0' as VISIT_TIMES,
+(select count(last_sign_out_time) From USER_MARK_INFO where  CURRENT_SIGN_IN_TIME=#userId#) 
+as CURRENT_SIGN_IN_TIME,
+'0' as PASSWORD_STATE,
+(select sum(Login_error_times) From USER_MARK_INFO where  CURRENT_SIGN_IN_TIME=#userId#) 
+as PASSWORD_MESSEGE
+ from USER_MARK_INFO
+		]]>
+     </select>
+</sqlMap>

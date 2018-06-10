@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+  <session-factory>
+     <property name="hibernate.dialect">rg.hibernate.dialect.OracleDialect</property>
+     <property name="hibernate.hbm2ddl.auto">none</property>
+     <property name="hibernate.show_sql">true</property>
+     <property name="hibernate.format_sql">false</property>
+     <property name="hibernate.jdbc.fetch_size">50</property><!-- oracle support -->
+     <property name="hibernate.jdbc.batch_size">30</property><!-- oracle support -->
+     <property name="hibernate.query.factory_class">org.hibernate.hql.ast.ASTQueryTranslatorFactory</property>
+     <property name="hibernate.connection.release_mode">after_transaction</property>
+     <!-- weblogic 支持修改 -->
+     <!--  
+     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property> 
+     -->
+     <!-- oracle11g 支持修改 -->
+     <!-- 
+     <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+     -->
+     <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+     <mapping resource="cms.identity.hbm.xml" />
+  </session-factory>
+</hibernate-configuration>

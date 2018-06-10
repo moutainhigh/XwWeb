@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnStageAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnStageAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnStageAction">
+			<result name="list">/creditapp/ln/LnStage_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="LnStageAction_input" method="input" class="app.creditapp.ln.action.LnStageAction">
+			<result name="input">/creditapp/ln/LnStage_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnStageAction_del" method="del" class="app.creditapp.ln.action.LnStageAction">
+			<result name="list">/creditapp/ln/LnStage_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnStageAction_getById" method="getById" class="app.creditapp.ln.action.LnStageAction">
+			<result name="detail">/creditapp/ln/LnStage_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnStageActionInsert" method="insert" class="app.creditapp.ln.action.LnStageAction">
+			<result name="input">/creditapp/ln/LnStage_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnStage_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnStageActionUpdate" method="update" class="app.creditapp.ln.action.LnStageAction">
+			<result name="input">/creditapp/ln/LnStage_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnStage_Detail.jsp</result>
+		</action>
+		<!--查询 -->
+		<action name="LnStageAction_getSts" method="getSts" class="app.creditapp.ln.action.LnStageAction">
+			<result name="detail">/creditapp/ln/LnStage_Sts.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

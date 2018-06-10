@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysException" type="app.util.syslog.entity.SysException"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysException" class="SysException">
+    <result property="expId" column="EXP_ID" />
+    <result property="userId" column="USER_ID" />
+    <result property="expDate" column="EXP_DATE" />
+    <result property="expTime" column="EXP_TIME" />
+    <result property="expClass" column="EXP_CLASS" />
+    <result property="expInfo" column="EXP_INFO" />
+    
+    <result property="userName" column="USER_NAME" />
+    </resultMap>
+     <sql id="SysException.columns">
+        <![CDATA[
+         EXP_ID,
+         USER_ID,
+         FUN_GETUSERNAMEBYID(USER_ID) AS USER_NAME,
+         EXP_DATE,
+         EXP_TIME,
+         EXP_CLASS,
+         EXP_INFO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysException.insert">
+        <![CDATA[
+        INSERT INTO SYS_EXCEPTION(
+         EXP_ID,
+         USER_ID,
+         EXP_DATE,
+         EXP_TIME,
+         EXP_CLASS,
+         EXP_INFO
+         )VALUES(
+         SYS_EXCEPTION_SEQ.NEXTVAL,
+         #userId#,
+         #expDate#,
+         #expTime#,
+         #expClass#,
+         #expInfo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysException.del">
+        <![CDATA[
+               DELETE FROM SYS_EXCEPTION
+                 WHERE
+               	EXP_ID = #expId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysException.update">
+        <![CDATA[
+         UPDATE SYS_EXCEPTION set
+         EXP_ID=#expId#,
+         EXP_DATE=#expDate#,
+         EXP_TIME=#expTime#,
+         EXP_CLASS=#expClass#,
+         EXP_INFO=#expInfo#
+          WHERE
+               	EXP_ID = #expId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysException.getById"  resultMap="RM.SysException">
+        SELECT <include refid="SysException.columns"/>
+        <![CDATA[
+             FROM SYS_EXCEPTION 
+         WHERE 
+               	EXP_ID = #expId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysException.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="expId">
+                  <isNotEmpty prepend="AND" property="expId">
+                      EXP_ID = #expId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="userId">
+                  <isNotEmpty prepend="AND" property="userId">
+                      USER_ID = #userId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="expDate">
+                  <isNotEmpty prepend="AND" property="expDate">
+                      EXP_DATE = #expDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="expTime">
+                  <isNotEmpty prepend="AND" property="expTime">
+                      EXP_TIME = #expTime#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysException.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_EXCEPTION <include refid="SysException.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysException.findByPage" resultMap="RM.SysException">
+        SELECT <include refid="SysException.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysException.columns"/> FROM SYS_EXCEPTION
+                    <include refid="SysException.findPage.where"/> order by exp_id desc
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

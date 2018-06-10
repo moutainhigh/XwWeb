@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ScheduleTask" type="app.creditapp.sys.entity.ScheduleTask"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ScheduleTask" class="ScheduleTask">
+    <result property="seId" column="SE_ID" jdbcType="Int"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="createTime" column="CREATE_TIME" />
+    <result property="updateTime" column="UPDATE_TIME" />
+    <result property="jobName" column="JOB_NAME" />
+    <result property="jobGroup" column="JOB_GROUP" />
+    <result property="jobStatus" column="JOB_STATUS" />
+    <result property="description" column="DESCRIPTION" />
+    <result property="isConcurrent" column="IS_CONCURRENT" />
+    <result property="springId" column="SPRING_ID" />
+    <result property="methodName" column="METHOD_NAME" />
+    <result property="beanClass" column="BEAN_CLASS" />
+    <result property="argumentsStr" column="ARGUMENTS_STR" />
+    <result property="opName" column="OP_NAME" />
+    <result property="tcId" column="TC_ID" />
+    <result property="templateName" column="TEMPLATE_NAME" />
+    
+    </resultMap>
+     <sql id="ScheduleTask.columns">
+        <![CDATA[
+         SE_ID,
+         OP_NO,
+         CREATE_TIME,
+         UPDATE_TIME,
+         JOB_NAME,
+         JOB_GROUP,
+         JOB_STATUS,
+         DESCRIPTION,
+         IS_CONCURRENT,
+         SPRING_ID,
+         METHOD_NAME,
+         BEAN_CLASS,
+         ARGUMENTS_STR,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         FUN_GETTCID(SE_ID) AS TC_ID,
+         TEMPLATE_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ScheduleTask.insert">
+        <![CDATA[
+        INSERT INTO SCHEDULE_TASK(
+         SE_ID,
+         OP_NO,
+         CREATE_TIME,
+         UPDATE_TIME,
+         JOB_NAME,
+         JOB_GROUP,
+         JOB_STATUS,
+         DESCRIPTION,
+         IS_CONCURRENT,
+         SPRING_ID,
+         METHOD_NAME,
+         BEAN_CLASS,
+         ARGUMENTS_STR
+         )VALUES(
+         SCHEDULE_TASK_SEQ.NEXTVAL,
+         #opNo#,
+         #createTime#,
+         #updateTime#,
+         #jobName#,
+         #jobGroup#,
+         #jobStatus#,
+         #description#,
+         #isConcurrent#,
+         #springId#,
+         #methodName#,
+         #beanClass#,
+         #argumentsStr#
+         )
+          ]]>
+    </insert>
+    <!-- 表新增 -->
+    
+    <update id="ScheduleTask.updateTimeController">
+    	UPDATE time_controller set ST_ID=#seId# WHERE TC_ID = #tcId# 
+    </update>
+    <!-- 表删除 -->
+    <delete id="ScheduleTask.del">
+        <![CDATA[
+               DELETE FROM SCHEDULE_TASK
+                 WHERE
+               	SE_ID = #seId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ScheduleTask.update">
+        <![CDATA[
+         UPDATE SCHEDULE_TASK set
+         SE_ID=#seId#,
+         OP_NO=#opNo#,
+         CREATE_TIME=#createTime#,
+         UPDATE_TIME=#updateTime#,
+         JOB_NAME=#jobName#,
+         JOB_GROUP=#jobGroup#,
+         JOB_STATUS=#jobStatus#,
+         DESCRIPTION=#description#,
+         IS_CONCURRENT=#isConcurrent#,
+         SPRING_ID=#springId#,
+         METHOD_NAME=#methodName#,
+         BEAN_CLASS=#beanClass#,
+         ARGUMENTS_STR=#argumentsStr#
+          WHERE
+               	SE_ID = #seId#        ]]>
+    </update>
+    <!-- 更新预设任务状态 -->
+    <update id="ScheduleTask.updateTaskSts">
+        <![CDATA[
+         UPDATE SCHEDULE_TASK set
+         JOB_STATUS=#jobStatus#
+          WHERE
+               	SE_ID = #seId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ScheduleTask.getById"  resultMap="RM.ScheduleTask">
+        SELECT <include refid="ScheduleTask.columns"/>
+        <![CDATA[
+             FROM SCHEDULE_TASK 
+         WHERE 
+               	SE_ID = #seId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ScheduleTask.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="seId">
+                  <isNotEmpty prepend="AND" property="seId">
+                      SE_ID = #seId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="createTime">
+                  <isNotEmpty prepend="AND" property="createTime">
+                      CREATE_TIME = #createTime#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="jobName">
+                  <isNotEmpty prepend="AND" property="jobName">
+                      JOB_NAME = #jobName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="jobStatus">
+                  <isNotEmpty prepend="AND" property="jobStatus">
+                      JOB_STATUS = #jobStatus#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ScheduleTask.findPage.count" resultClass="int">
+        SELECT count(*) FROM SCHEDULE_TASK <include refid="ScheduleTask.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ScheduleTask.findByPage" resultMap="RM.ScheduleTask">
+        SELECT <include refid="ScheduleTask.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ScheduleTask.columns"/> FROM SCHEDULE_TASK
+                    <include refid="ScheduleTask.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--根据状态查询启用的预设任务-->
+    <select id="ScheduleTask.findStartTask" resultMap="RM.ScheduleTask">
+       select <include refid="ScheduleTask.columns"/> from SCHEDULE_TASK  WHERE JOB_STATUS = #jobStatus#
+    </select>
+</sqlMap>

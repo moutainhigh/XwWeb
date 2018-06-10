@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="inf0360" title="扣款日变更信息上传进件表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dealSts" fieldtype="1" maxlength="2" formactiveid="1" labelalign="3" labelcol="1" labelname="处理状态[01未处理02处理中03处理成功04处理失败]" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="batchNo" fieldtype="1" maxlength="30" formactiveid="4" labelalign="3" labelcol="3" labelname="批次编号" mustinput="0" row="2" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="pactNo" fieldtype="1" maxlength="40" formactiveid="6" labelalign="3" labelcol="3" labelname="合同号:主键" mustinput="0" row="3" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="txDate" fieldtype="1" maxlength="8" formactiveid="9" labelalign="3" labelcol="1" labelname="接收日期" mustinput="0" row="5" />
+</form>

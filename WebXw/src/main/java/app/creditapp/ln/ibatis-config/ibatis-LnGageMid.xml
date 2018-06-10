@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnGageMid" type="app.creditapp.ln.entity.LnGageMid"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnGageMid" class="LnGageMid">
+    <result property="appId" column="APP_ID" />
+    <result property="gageCifname" column="GAGE_CIFNAME" />
+    <result property="gageIdtype" column="GAGE_IDTYPE" />
+    <result property="gageIdno" column="GAGE_IDNO" />
+    <result property="gageType" column="GAGE_TYPE" />
+    <result property="gageName" column="GAGE_NAME" />
+    <result property="gageDesc" column="GAGE_DESC" />
+    <result property="gageValue" column="GAGE_VALUE" jdbcType="double"/>
+    <result property="gageLic" column="GAGE_LIC" />
+    <result property="gageLictype" column="GAGE_LICTYPE" />
+    <result property="gageLicbr" column="GAGE_LICBR" />
+    <result property="gageBegdate" column="GAGE_BEGDATE" />
+    <result property="gageEnddate" column="GAGE_ENDDATE" />
+    <result property="gageAmt" column="GAGE_AMT" jdbcType="double"/>
+    <result property="pactNo" column="PACT_NO" />
+    </resultMap>
+     <sql id="LnGageMid.columns">
+        <![CDATA[
+         APP_ID,
+         GAGE_CIFNAME,
+         GAGE_IDTYPE,
+         GAGE_IDNO,
+         GAGE_TYPE,
+         GAGE_NAME,
+         GAGE_DESC,
+         GAGE_VALUE,
+         GAGE_LIC,
+         GAGE_LICTYPE,
+         GAGE_LICBR,
+         GAGE_BEGDATE,
+         GAGE_ENDDATE,
+         GAGE_AMT,
+         PACT_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnGageMid.insert">
+        <![CDATA[
+        INSERT INTO LN_GAGE_MID(
+         APP_ID,
+         GAGE_CIFNAME,
+         GAGE_IDTYPE,
+         GAGE_IDNO,
+         GAGE_TYPE,
+         GAGE_NAME,
+         GAGE_DESC,
+         GAGE_VALUE,
+         GAGE_LIC,
+         GAGE_LICTYPE,
+         GAGE_LICBR,
+         GAGE_BEGDATE,
+         GAGE_ENDDATE,
+         GAGE_AMT,
+         PACT_NO
+         )VALUES(
+         #appId#,
+         #gageCifname#,
+         #gageIdtype#,
+         #gageIdno#,
+         #gageType#,
+         #gageName#,
+         #gageDesc#,
+         #gageValue#,
+         #gageLic#,
+         #gageLictype#,
+         #gageLicbr#,
+         #gageBegdate#,
+         #gageEnddate#,
+         #gageAmt#,
+         #pactNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表新增 -->
+    <insert id="WsIn2101_1_2.insert">
+        <![CDATA[
+        INSERT INTO LN_GAGE_MID(
+         APP_ID,
+         GAGE_CIFNAME,
+         GAGE_IDTYPE,
+         GAGE_IDNO,
+         GAGE_TYPE,
+         GAGE_NAME,
+         GAGE_DESC,
+         GAGE_VALUE,
+         GAGE_LIC,
+         GAGE_LICTYPE,
+         GAGE_LICBR,
+         GAGE_BEGDATE,
+         GAGE_ENDDATE,
+         GAGE_AMT,
+         PACT_NO
+         )VALUES(
+         #appId#,
+         #gcustName#,
+         #gcustIdtype#,
+         #gcustIdno#,
+         #gType#,
+         #gName#,
+         #gDesc#,
+         #gValue#,
+         #gLicno#,
+         #gLicType#,
+         #gLicbr#,
+         #gBegdate#,
+         #gEnddate#,
+         #gAmt#,
+         #pactNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnGageMid.del">
+        <![CDATA[
+               DELETE FROM LN_GAGE_MID
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnGageMid.update">
+        <![CDATA[
+         UPDATE LN_GAGE_MID set
+         APP_ID=#appId#,
+         GAGE_CIFNAME=#gageCifname#,
+         GAGE_IDTYPE=#gageIdtype#,
+         GAGE_IDNO=#gageIdno#,
+         GAGE_TYPE=#gageType#,
+         GAGE_NAME=#gageName#,
+         GAGE_DESC=#gageDesc#,
+         GAGE_VALUE=#gageValue#,
+         GAGE_LIC=#gageLic#,
+         GAGE_LICTYPE=#gageLictype#,
+         GAGE_LICBR=#gageLicbr#,
+         GAGE_BEGDATE=#gageBegdate#,
+         GAGE_ENDDATE=#gageEnddate#,
+         GAGE_AMT=#gageAmt#,
+         PACT_NO=#pactNo#
+          WHERE
+               	APP_ID = #appId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnGageMid.getById"  resultMap="RM.LnGageMid">
+        SELECT <include refid="LnGageMid.columns"/>
+        <![CDATA[
+             FROM LN_GAGE_MID 
+         WHERE 
+               	APP_ID = #appId#  ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnGageMid.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="appId">
+                  <isNotEmpty prepend="AND" property="appId">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gageType">
+                  <isNotEmpty prepend="AND" property="gageType">
+                      GAGE_TYPE = #gageType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="gageName">
+                  <isNotEmpty prepend="AND" property="gageName">
+                      GAGE_NAME = #gageName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnGageMid.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_GAGE_MID <include refid="LnGageMid.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnGageMid.findByPage" resultMap="RM.LnGageMid">
+        SELECT <include refid="LnGageMid.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnGageMid.columns"/> FROM LN_GAGE_MID
+                    <include refid="LnGageMid.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 分页查询某shenqing的押品信息记录数 -->
+    <select id="LnGageMid.findByPageQuotaForLn.count" resultClass="int">
+        SELECT count(*) FROM LN_GAGE_MID WHERE 
+             APP_ID = #appId# ORDER BY APP_ID DESC
+    </select>
+    <!-- 分页查询某shenqing的押品信息-->
+    <select id="LnGageMid.findByPageQuotaForLn" resultMap="RM.LnGageMid">
+        SELECT <include refid="LnGageMid.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnGageMid.columns"/> FROM LN_GAGE_MID WHERE  
+              APP_ID = #appId# ORDER BY APP_ID DESC
+             ) m   
+        	) WHERE rnum &gt;= #startNum#  AND rnum &lt;#endNum# 
+    </select>
+    
+    <select id="LnGageMid.getListByLnGageMid"  resultMap="RM.LnGageMid">
+        SELECT <include refid="LnGageMid.columns"/>
+             FROM LN_GAGE_MID 
+               where app_id in (select app_id from ln_apply_mid where batch_no=#appId#)
+     </select>
+</sqlMap>

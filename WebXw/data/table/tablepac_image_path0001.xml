@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="pac_image_path0001" para="eadis_page" link="ImgPathAction_findByPage.action" title="影像路径表" type="1">
+<tableitem align="2" filedname="fileType" id="1" indexed="1" label="文件类型 (后缀名)" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="ifSign" id="2" indexed="2" label="是否已经签章0：未签章 1：已签章';2：不需要再签章（针对双章合同）" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="brNo" id="3" indexed="3" label="机构号" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="inTime" id="4" indexed="4" label="时间" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="docPath" id="5" indexed="5" label="文档路径" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="docName" id="6" indexed="6" label="文档名称" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="docType" id="7" indexed="7" label="文档类型" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="transNo" id="8" indexed="8" label="业务编号  合同号码或授信编号" row="1" type="4" typepara="ImgPathAction_getById.action;id-id;query-'query'"/>
+<tableitem align="2" filedname="id" id="9" indexed="9" label="主键" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="10" indexed="10" label="-" row="1" type="5" typepara="ImgPathAction_getById.action;id-id;" width="2"/>
+<tableitem align="2" filedname="删除" id="11" indexed="11" label="-" row="1" type="5" typepara="ImgPathAction_del.action;id-id;onClick-lkconfirm" width="2"/>
+</table>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CifEvalAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CifEvalAction_findByPage" method="findByPage" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="list">/creditapp/cred/CifEval_List.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="CifEvalAction_findByPage360_Read" method="findByPage360_Read" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="list360_Read">/creditapp/cred/CifEval_List360_Read.jsp</result>
+		</action>
+		<!--分页查询 -->
+		<action name="CifEvalAction_findByPage360" method="findByPage360" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="list360">/creditapp/cred/CifEval_List360.jsp</result>
+		</action>
+		<action name="CifEvalAction_active" method="active" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="list">/creditapp/cred/CifEval_List.jsp</result>
+			<result name="list360">/creditapp/cred/CifEval_List360.jsp</result>
+		</action>
+		<action name="CifEvalAction_inactive" method="inactive" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="list">/creditapp/cred/CifEval_List.jsp</result>
+			<result name="list360">/creditapp/cred/CifEval_List360.jsp</result>
+		</action>
+		<!--获取新增页面-->
+		<action name="CifEvalAction_input" method="input" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="input">/creditapp/cred/CifEval_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CifEvalAction_del" method="del" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="list">/creditapp/cred/CifEval_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CifEvalAction_getById" method="getById" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="detail">/creditapp/cred/CifEval_Detail.jsp</result>
+		</action>
+		<action name="CifEvalAction_findByReturnId" method="findByReturnId" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="find">/creditapp/cred/CifEval_findReturn.jsp</result>
+		</action>
+		<action name="CifEvalAction_findRuleByNo" method="findRuleByNo" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="find">/creditapp/cred/CifEval_findReturn.jsp</result>
+		</action>
+		<action name="CifEvalAction_getAllDetail" method="getAllDetail" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="all">/creditapp/cred/CifEval_All.jsp</result>
+	    </action>	
+	    <!--在其他视图中展示本视图连接-->
+	    <action name="CifEvalAction_getAllDetail_360" method="getAllDetail_360" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="all">/creditapp/cred/CifEval_All_360.jsp</result>
+	    </action>	
+	    <!-- 客户详细信息 -->
+		<action name="CifEvalAction_getTab" method="getTab" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="tab">/creditapp/cred/CifEval_Tab.jsp</result>
+		</action>
+		 <!-- 客户详细信息360 -->
+		<action name="CifEvalAction_getTab_360" method="getTab_360" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="tab">/creditapp/cred/CifEval_Tab_360.jsp</result>
+		</action>
+		 <!-- 客户评分信息 -->
+		<action name="CifEvalAction_getRateTab" method="getRateTab" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="tab">/creditapp/cred/CifEval_Tab.jsp</result>
+		</action>
+		<!--新增保存-->
+		<action name="CifEvalActionInsert" method="insert" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="input">/creditapp/cred/CifEval_Insert.jsp</result>
+			<result name="detail">/creditapp/cred/CifEval_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CifEvalActionUpdate" method="update" class="app.creditapp.cred.action.CifEvalAction">
+			<result name="input">/creditapp/cred/CifEval_Detail.jsp</result>
+			<result name="detail">/creditapp/cred/CifEval_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

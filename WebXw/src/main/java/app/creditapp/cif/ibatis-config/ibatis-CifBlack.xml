@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="CifBlack" type="app.creditapp.cif.entity.CifBlack"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.CifBlack" class="CifBlack">
+    
+    <result property="blkId" column="BLK_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="blkSource" column="BLK_SOURCE" />
+    <result property="blkLevel" column="BLK_LEVEL" />
+     <result property="blkDate" column="BLK_DATE" />
+    <result property="blkCause" column="BLK_CAUSE" />
+    <result property="blkSts" column="BLK_STS" />
+    <result property="blkFlag" column="BLK_FLAG" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="opName" column="OP_NAME" />
+    
+    </resultMap>
+    
+    <resultMap id="RM.CifBlackWf" class="CifBlack">
+    
+    <result property="blkId" column="BLK_ID" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="blkSource" column="BLK_SOURCE" />
+    <result property="blkLevel" column="BLK_LEVEL" />
+     <result property="blkDate" column="BLK_DATE" />
+    <result property="blkCause" column="BLK_CAUSE" />
+    <result property="blkSts" column="BLK_STS" />
+    <result property="blkFlag" column="BLK_FLAG" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="opName" column="OP_NAME" />
+    <result property="dbid" column="DBID"/>
+    <result property="url" column="EXECUTION_ID"/>
+    </resultMap>
+     <sql id="CifBlack.columns">
+        <![CDATA[
+         BLK_ID,
+		 CIF_NO,
+		 CIF_NAME,
+		 ID_TYPE,
+		 ID_NO,
+		 BLK_SOURCE,
+		 BLK_LEVEL,
+		 BLK_DATE,
+		 BLK_CAUSE,
+		 BLK_STS,
+		 BLK_FLAG,
+		 TX_DATE,
+		 OP_NO,
+		 UP_DATE,
+		 PROCESS_ID,
+		 FUN_GETUSERNAME(op_no) as OP_NAME
+          ]]>
+    </sql>
+    
+     <sql id="CifBlack.columnsWf2">
+        <![CDATA[
+         BLK_ID,
+		 CIF_NO,
+		 CIF_NAME,
+		 ID_TYPE,
+		 ID_NO,
+		 BLK_SOURCE,
+		 BLK_LEVEL,
+		 BLK_DATE,
+		 BLK_CAUSE,
+		 BLK_STS,
+		 BLK_FLAG,
+		 TX_DATE,
+		 OP_NO,
+		 UP_DATE,
+		 PROCESS_ID,
+		 FUN_GETUSERNAME(op_no) as OP_NAME,
+		 DBID,
+         EXECUTION_ID
+          ]]>
+    </sql>
+    
+     <sql id="CifBlack.columnsWf">
+        <![CDATA[
+         A.BLK_ID,
+		 A.CIF_NO,
+		 A.CIF_NAME,
+		 A.ID_TYPE,
+		 A.ID_NO,
+		 A.BLK_SOURCE,
+		 A.BLK_LEVEL,
+		 A.BLK_DATE,
+		 A.BLK_CAUSE,
+		 A.BLK_STS,
+		 A.BLK_FLAG,
+		 A.TX_DATE,
+		 A.OP_NO,
+		 A.UP_DATE,
+		 A.PROCESS_ID,
+		 FUN_GETUSERNAME(A.op_no) as OP_NAME,
+		 B.DBID,
+         B.EXECUTION_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="CifBlack.insert">
+        <![CDATA[
+        INSERT INTO CIF_BLACK(
+         BLK_ID,
+		 CIF_NO,
+		 CIF_NAME,
+		 ID_TYPE,
+		 ID_NO,
+		 BLK_SOURCE,
+		 BLK_LEVEL,
+		 BLK_DATE,
+		 BLK_CAUSE,
+		 BLK_STS,
+		 BLK_FLAG,
+		 TX_DATE,
+		 OP_NO,
+		 UP_DATE,
+		 PROCESS_ID
+         )VALUES(
+         #blkId#,
+		 #cifNo#,
+		 #cifName#,
+		 #idType#,
+		 #idNo#,
+		 #blkSource#,
+		 #blkLevel#,
+		 #blkDate#,
+		 #blkCause#,
+		 #blkSts#,
+		 #blkFlag#,
+		 #txDate#,
+		 #opNo#,
+		 #upDate#,
+		 #processId#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="CifBlack.del">
+        <![CDATA[
+               DELETE FROM CIF_BLACK
+                 WHERE
+               	BLK_ID = #blkId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="CifBlack.update">
+        <![CDATA[
+         UPDATE CIF_BLACK set
+         BLK_ID=#blkId#,
+   		 CIF_NO=#cifNo#,
+   		 CIF_NAME=#cifName#,
+   		 ID_TYPE=#idType#,
+   		 ID_NO=#idNo#,
+   		 BLK_SOURCE=#blkSource#,
+   		 BLK_LEVEL=#blkLevel#,
+   		 BLK_DATE=#blkDate#,
+   		 BLK_CAUSE=#blkCause#,
+   		 BLK_STS=#blkSts#,
+   		 BLK_FLAG=#blkFlag#,
+   		 TX_DATE=#txDate#,
+   		 OP_NO=#opNo#,
+   		 UP_DATE=#upDate#,
+   		 PROCESS_ID=#processId#
+          WHERE
+               	BLK_ID = #blkId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="CifBlack.getById"  resultMap="RM.CifBlack">
+        SELECT <include refid="CifBlack.columns"/>
+        <![CDATA[
+             FROM CIF_BLACK 
+         WHERE 
+               	BLK_ID = #blkId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="CifBlack.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="idNo">
+                  <isNotEmpty prepend="AND" property="idNo">
+                      ID_NO = #idNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="blkId">
+                  <isNotEmpty prepend="AND" property="blkId">
+                      BLK_ID like '%$blkId$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="idType">
+                  <isNotEmpty prepend="AND" property="idType">
+                      ID_TYPE = #idType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+              <isPropertyAvailable property="blkFlag">
+                  <isNotEmpty prepend="AND" property="blkFlag">
+                      BLK_FLAG = #blkFlag#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+        <select id="CifBlack.findByPageForAppr"  resultMap="RM.CifBlack">
+		SELECT <include refid="CifBlack.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifBlack.columns"/> FROM CIF_BLACK
+                    <include refid="CifBlack.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+     </select>
+    <!-- 分页查询记录数 -->
+    <select id="CifBlack.findPage.count" resultClass="int">
+        SELECT count(*) FROM CIF_BLACK <include refid="CifBlack.findPage.where"/>
+    </select>
+    <select id="CifBlack.findPageForAppr.count" resultClass="int">
+        SELECT count(*) FROM CIF_BLACK <include refid="CifBlack.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="CifBlack.findByPage" resultMap="RM.CifBlack">
+        SELECT <include refid="CifBlack.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifBlack.columns"/> FROM CIF_BLACK
+                    <include refid="CifBlack.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 获取KEY -->
+    <select id="CifBlack.getKey" resultClass="string">
+   	 <![CDATA[ SELECT CIF_BLACK_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+	
+	
+	<select id="CifBlack.findPage.countForTask" resultClass="int">
+        SELECT count(*) FROM CIF_BLACK A,
+                    (select p.APP_ID_ as app_id,p.dbid_ as dbid,p.EXECUTION_ID_ as EXECUTION_ID
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '03'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')) B WHERE A.BLK_ID=B.app_id
+               
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      A.CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      A.CIF_NAME LIKE '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="idNo">
+                  <isNotEmpty prepend="AND" property="idNo">
+                      A.ID_NO = #idNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+	
+	 <select id="CifBlack.findByPageForTask" resultMap="RM.CifBlackWf">
+        SELECT <include refid="CifBlack.columnsWf2"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="CifBlack.columnsWf"/> FROM CIF_BLACK A,
+                    (select p.APP_ID_ as app_id,p.dbid_ as dbid,p.EXECUTION_ID_ as EXECUTION_ID
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '03'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')) B WHERE A.BLK_ID=B.app_id
+               
+             <isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      A.CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      A.CIF_NAME LIKE '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="idNo">
+                  <isNotEmpty prepend="AND" property="idNo">
+                      A.ID_NO = #idNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+</sqlMap>

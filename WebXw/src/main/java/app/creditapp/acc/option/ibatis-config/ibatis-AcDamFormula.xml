@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcDamFormula" type="app.creditapp.acc.option.entity.AcDamFormula"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcDamFormula" class="AcDamFormula">
+    <result property="damId" column="DAM_ID" />
+    <result property="damName" column="DAM_NAME" />
+    <result property="damFormulaDes" column="DAM_FORMULA_DES" />
+    <result property="damFormula" column="DAM_FORMULA" />
+    <result property="frId" column="FR_ID" />
+    <result property="damSts" column="DAM_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    </resultMap>
+     <sql id="AcDamFormula.columns">
+        <![CDATA[
+         DAM_ID,
+         DAM_NAME,
+         DAM_FORMULA_DES,
+         DAM_FORMULA,
+         FR_ID,
+         DAM_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcDamFormula.insert">
+        <![CDATA[
+        INSERT INTO AC_DAM_FORMULA(
+         DAM_ID,
+         DAM_NAME,
+         DAM_FORMULA_DES,
+         DAM_FORMULA,
+         FR_ID,
+         DAM_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #damId#,
+         #damName#,
+         #damFormulaDes#,
+         #damFormula#,
+         #frId#,
+         #damSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+            <selectKey resultClass="java.lang.String" type="pre" keyProperty="damId" >
+			SELECT AC_DAM_FORMULA_seq.nextval AS DAM_ID FROM DUAL
+    	</selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcDamFormula.del">
+        <![CDATA[
+               DELETE FROM AC_DAM_FORMULA
+                 WHERE
+               	DAM_ID = #damId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcDamFormula.update">
+        <![CDATA[
+         UPDATE AC_DAM_FORMULA set
+         DAM_ID=#damId#,
+         DAM_NAME=#damName#,
+         DAM_FORMULA_DES=#damFormulaDes#,
+         DAM_FORMULA=#damFormula#,
+         FR_ID=#frId#,
+         UP_DATE=#upDate#
+          WHERE
+               	DAM_ID = #damId#        ]]>
+    </update>
+    
+     <!-- 修改状态 -->
+    <update id="AcDamFormula.updateSts">
+        <![CDATA[
+         UPDATE AC_DAM_FORMULA set
+         DAM_STS=#damSts#
+          WHERE
+               	DAM_ID = #damId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcDamFormula.getById"  resultMap="RM.AcDamFormula">
+        SELECT <include refid="AcDamFormula.columns"/>
+        <![CDATA[
+             FROM AC_DAM_FORMULA 
+         WHERE 
+               	DAM_ID = #damId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcDamFormula.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="damId">
+                  <isNotEmpty prepend="AND" property="damId">
+                      DAM_ID = #damId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="damName">
+                  <isNotEmpty prepend="AND" property="damName">
+                      DAM_NAME = #damName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcDamFormula.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_DAM_FORMULA <include refid="AcDamFormula.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcDamFormula.findByPage" resultMap="RM.AcDamFormula">
+        SELECT <include refid="AcDamFormula.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcDamFormula.columns"/> FROM AC_DAM_FORMULA
+                    <include refid="AcDamFormula.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="batch0010" title="批量执行表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="node_no" fieldtype="1" maxlength="12" formactiveid="1" labelalign="3" labelcol="1" labelname="节点号" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="node_name" fieldtype="1" maxlength="40" formactiveid="2" labelalign="3" labelcol="3" labelname="节点名称" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="node_status" fieldtype="1" maxlength="2" formactiveid="3" labelalign="3" labelcol="1" labelname="节点状态" mustinput="0" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="batch_date" fieldtype="1" maxlength="10" formactiveid="4" labelalign="3" labelcol="3" labelname="执行日期" mustinput="0" row="2"/>
+<formelement datatype="1" fieldalign="1" fieldcol="2" fieldname="arrive_step" fieldtype="1" maxlength="0" formactiveid="5" labelalign="3" labelcol="1" labelname="执行步骤" mustinput="0" row="3"/>
+</form>

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="PcrpQueryInfo" type="app.creditapp.cred.entity.PcrpQueryInfo"/>
+	  <!--列表查询返回字段  -->
+   
+    <resultMap id="RM.PcrpQueryInfo" class="PcrpQueryInfo">
+		 <result property="crpId" column="CRP_ID"/>             
+		 <result property="custNo" column="CUST_NO"/>  
+		 <result property="batchNo" column="BATCH_NO"/>    
+		 <result property="czPactNo" column="CZ_PACT_NO"/>        
+		 <result property="custName" column="CUST_NAME"/>       
+		 <result property="reportType" column="REPORT_TYPE"/>   
+		 <result property="certType" column="CERT_TYPE"/>       
+		 <result property="certNum" column="CERT_NUM"/>         
+		 <result property="crpTime" column="CRP_TIME"/>         
+		 <result property="crpReason" column="CRP_REASON"/>     
+		 <result property="crpSts" column="CRP_STS"/>           
+		 <result property= "crpType" column="CRP_TYPE"/>        
+		 <result property="grandId" column="GRANT_ID"/>         
+		 <result property="crpMtrDate" column="CRP_MTRDATE"/>   
+		 <result property="intOprrno" column="INT_OPRRNO"/>
+		 <result property="reportId" column="REPORT_ID"/>     
+		 <result property="crpContent" column="CRP_CONTENT"/>   
+		 <result property="crpFileName" column="CRP_FILENAME"/>   
+		 <result property="txDate" column="TX_DATE"/>           
+		 <result property="ipAddr" column="IP_ADDR"/>           
+		 <result property="macAddr" column="MAC_ADDR"/>         
+		 <result property="remarks" column="REMARKS"/>          
+		 <result property="crpExpDate" column="CRP_EXPDATE"/>   
+		 <result property="crpFilePath" column="CRP_FILEPATH"/> 
+		 <result property="opprNo" column="OPPR_NO"/>           
+		 <result property="brNo" column="BR_NO"/>       
+		 <result property="querytype" column="QUERY_TYPE"/>   
+		 <result property="existFlag" column="EXIST_FLAG"/>       
+		 <result property="validFlag" column="VALID_FLAG"/>           
+    </resultMap>
+    
+    <!-- 对私信用报告查询返回字段-->
+    <sql id="PcrpQueryInfo.columns">
+        <![CDATA[
+            CRP_ID      ,
+			CUST_NO     ,
+			BATCH_NO    ,
+			CZ_PACT_NO	,
+			CUST_NAME   ,
+			REPORT_TYPE ,
+			CERT_TYPE   ,
+			CERT_NUM    ,
+			CRP_TIME    ,
+			CRP_REASON  ,
+			CRP_STS     ,
+			CRP_TYPE    ,
+			GRANT_ID    ,
+			CRP_MTRDATE ,
+			INT_OPRRNO  ,
+			REPORT_ID,
+			CRP_CONTENT ,
+			CRP_FILENAME ,
+			TX_DATE     ,
+			IP_ADDR     ,
+			MAC_ADDR    ,
+			REMARKS     ,
+			CRP_EXPDATE ,
+			CRP_FILEPATH,
+			OPPR_NO     ,
+			BR_NO       ,  
+			QUERY_TYPE  ,
+			EXIST_FLAG  ,
+			VALID_FLAG
+          ]]> 
+    </sql>
+    
+    <!-- 分页查询全部信息条件 --> 
+    <sql id="PcrpQueryInfo.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="crpType">
+                      <isNotEmpty prepend="AND" property="crpType">
+                          CRP_TYPE = #crpType#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+  
+    <!-- 全部分页查询 -->
+    <select id="PcrpQueryInfo.selectAll" resultMap="RM.PcrpQueryInfo">
+        SELECT <include refid="PcrpQueryInfo.columns"/>
+       		FROM (
+            	SELECT m.*, row_number() over(ORDER BY 1 desc) as rnum 
+        			FROM  
+            			(SELECT <include refid="PcrpQueryInfo.columns"/> FROM PCRP_QUERY_INFO  
+             			) m
+        		) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+    </select>   
+    <!-- 根据查询条件导出excel数据  -->
+    <sql id="PcrpQueryInfo.selectExportDate.where">
+         <dynamic prepend="where">
+              <isPropertyAvailable property="brNo">
+              <isNotEmpty prepend="AND" property="brNo">
+	                        br_no IN(
+                   SELECT BR_NO FROM  ITP_INST_DEPARTMENTS  WHERE
+                    (VILBANK_FLAG = (SELECT VILBANK_FLAG FROM ITP_INST_DEPARTMENTS WHERE BR_NO = #brNo#) AND UP_ONE != '-1') OR
+                    ('-1' = (SELECT UP_ONE FROM ITP_INST_DEPARTMENTS WHERE BR_NO = #brNo#))
+   					START WITH BR_NO = #brNo# CONNECT BY PRIOR BR_NO = UP_ONE                                    )
+               </isNotEmpty>
+               </isPropertyAvailable>
+               <isPropertyAvailable property="crpExpDate">
+              <isNotEmpty prepend="AND" property="crpExpDate">
+	                        tx_date &gt;= #crpExpDate#
+               </isNotEmpty>
+               </isPropertyAvailable>
+                <isPropertyAvailable property="crpMtrDate">
+              <isNotEmpty prepend="AND" property="crpMtrDate">
+	                         tx_date &lt;= #crpMtrDate#
+               </isNotEmpty>
+               </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <select id="PcrpQueryInfo.selectExportDate" resultMap="RM.PcrpQueryInfo">
+
+          SELECT <include refid="PcrpQueryInfo.columns"/> FROM Pcrp_query_info_view  
+                 <include refid="PcrpQueryInfo.selectExportDate.where"/>    
+                 			
+    </select> 
+    <!--
+    <select id="PcrpQueryInfo.selectExportDate" resultMap="RM.PcrpQueryInfo">
+
+          SELECT nvl(a.BR_NO,b.BR_NO),nvl(b.CUST_NO,'-'),nvl(a.BATCH_NO,b.BATCH_NO),nvl(a.CZ_PACT_NO,b.CZ_PACT_NO),nvl(a.CIF_NAME,b.CUST_NAME),nvl(a.ID_TYPE,b.CERT_TYPE),
+		nvl(a.ID_NO,b.CERT_NUM),nvl(b.CRP_REASON,'02'),nvl(b.CRP_STS,'1'),nvl(b.GRANT_ID,'-'),nvl(b.CRP_TIME,substr(a.REPORT_FILE,-19,14)),nvl(b.CRP_MTRDATE,to_char(to_date(substr(REPORT_FILE,-19,8),'yyyymmdd')+90,'yyyymmdd')),nvl(b.QUERY_TYPE,'1') 
+		FROM CRP_BATCH_INFO a left join Pcrp_query_info_view b on  b.CERT_NUM=a.ID_NO
+		WHERE a.br_no IN( SELECT BR_NO FROM ITP_INST_DEPARTMENTS WHERE (
+        VILBANK_FLAG = ( SELECT VILBANK_FLAG FROM ITP_INST_DEPARTMENTS WHERE BR_NO =#brNo#) AND UP_ONE != '-1' )
+        OR (  '-1' = ( SELECT UP_ONE FROM ITP_INST_DEPARTMENTS WHERE BR_NO =#brNo#) )  START  WITH BR_NO =#brNo# CONNECT BY PRIOR BR_NO = UP_ONE)
+		AND a.tx_date &gt;= #crpExpDate# AND a.tx_date &lt;= #crpMtrDate#     
+                 			
+    </select>-->
+    
+     <!-- 分页查询全部信息记录数 -->
+    <select id="PcrpQueryInfo.findPage.count" resultClass="int">
+        SELECT count(*) FROM PCRP_QUERY_INFO 
+    </select>
+    
+    
+     <!-- 个人单笔分页查询条件 -->
+    <sql id="PcrpQueryInfo.singleFindPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="custName">
+                      <isNotEmpty prepend="AND" property="custName">
+                          CUST_NAME like '%' || #custName# || '%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="certNum">
+                      <isNotEmpty prepend="AND" property="certNum">
+                          CERT_NUM = #certNum#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="crpReason">
+                      <isNotEmpty prepend="AND" property="crpReason">
+                         CRP_REASON = #crpReason#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="certType">
+                      <isNotEmpty prepend="AND" property="certType">
+                          CERT_TYPE = #certType#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  <isPropertyAvailable property="crpSts">
+                      <isNotEmpty prepend="AND" property="crpSts">
+                          CRP_STS = #crpSts#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  
+        </dynamic>
+    </sql>
+    
+    <!-- 有条件分页查询记录数 -->
+    <select id="PcrpQueryInfo.singleFindPage.count" resultClass="int">
+        SELECT count(*) FROM PCRP_QUERY_INFO <include refid="PcrpQueryInfo.singleFindPage.where"/>
+    </select>
+    <!-- 个人单笔分页查询 -->
+    <select id="PcrpQueryInfo.singleFindByPage" resultMap="RM.PcrpQueryInfo">
+        SELECT <include refid="PcrpQueryInfo.columns"/>
+       		FROM (
+            	SELECT m.*, row_number() over(ORDER BY 1 desc) as rnum 
+        			FROM  
+            			(SELECT <include refid="PcrpQueryInfo.columns"/> FROM PCRP_QUERY_INFO 
+            			<include refid="PcrpQueryInfo.singleFindPage.where"/>
+            			) m
+        		) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+
+
+ 	<!--信用报告查询新增-->
+	    <insert id="PcrpQueryInfo.insert">
+	    	 <![CDATA[
+	    	 INSERT INTO PCRP_QUERY_INFO(
+	    	 	CRP_ID,
+				CUST_NO,
+				CUST_NAME,
+				REPORT_TYPE,
+				CERT_TYPE,
+				CERT_NUM,
+				CRP_TIME,
+				CRP_REASON,
+				CRP_STS,
+				CRP_TYPE,
+				GRANT_ID,
+				CRP_MTRDATE,
+				INT_OPRRNO,
+				REPORT_ID,
+				CRP_CONTENT,
+				CRP_FILENAME,
+				TX_DATE,
+				IP_ADDR,
+				MAC_ADDR,
+				REMARKS,
+				CRP_EXPDATE,
+				CRP_FILEPATH,
+				OPPR_NO,
+				BR_NO,
+				QUERY_TYPE,
+				EXIST_FLAG,
+				VALID_FLAG
+	    	 ) VALUES(
+		    	 #brNo#,
+				 #custNo#,
+				 #custName#,
+				 #reportType#,
+				 #certType#,
+				 #certNum#,
+				 #crpTime#,
+				 #crpReason#,
+				 #crpSts#,
+				 #crpType#,
+				 #grandId#,
+				 #crpMtrDate#,
+				 #intOprrno#,
+				 #reportId#,
+				 #crpContent#,
+				 #crpFileName#,
+				 #txDate#,
+				 #ipAddr#,
+				 #macAddr#,
+				 #remarks#,
+				 #crpExpDate#,
+				 #crpFilePath#,
+				 #opprNo#,
+				 #brNo#,
+				 #querytype#,
+				 #existFlag#,
+				 #validFlag#
+	    	 )
+	    	   ]]>
+	       </insert>
+	<!-- 对私根据本地信用报告编号查询本地信用报告-->
+	 <select id="PcrpQueryInfo.getByCrpId" resultMap="RM.PcrpQueryInfo">
+        SELECT <include refid="PcrpQueryInfo.columns"/> FROM PCRP_QUERY_INFO  where CRP_ID= #crpId#
+    </select> 
+    
+    <!-- 对私根据客户信息查询本地信用报告-->
+	 <select id="PcrpQueryInfo.getByCrp" resultMap="RM.PcrpQueryInfo">
+        SELECT <include refid="PcrpQueryInfo.columns"/> FROM PCRP_QUERY_INFO  where CERT_TYPE = #certType# and CERT_NUM=#certNum# and CUST_NAME=#custName# and CRP_REASON=#crpReason#
+    </select>
+    
+    <!-- 对私根据客户信息返回本地信用报告URL-->
+	 <select id="PcrpQueryInfo.getByUrl" resultClass="String">
+        SELECT CRP_FILEPATH FROM PCRP_QUERY_INFO where CERT_TYPE = #certType# and CERT_NUM=#certNum# and CUST_NAME=#custName# and CRP_REASON=#crpReason# 
+    </select>
+
+	<!-- 表删除失效授权文件 -->
+   <delete id="PcrpQueryInfo.deleteToHist" parameterClass="java.lang.String">
+       <![CDATA[
+              DELETE FROM PCRP_QUERY_INFO 
+                WHERE
+              CRP_MTRDATE < #date#
+       ]]>
+   </delete>
+   
+    <!-- 根据客户证件号码，查询征信信息表中有无数据 -->
+    <select id="pcrpQueryInfo.existValid" resultMap="RM.PcrpQueryInfo">
+        SELECT <include refid="PcrpQueryInfo.columns"/> FROM ZXXT.PCRP_QUERY_INFO where CERT_NUM=#certNum# and CUST_NAME=#custName# and CERT_TYPE=#certType#
+    </select>
+    
+    <!-- 根据客户证件号码，更新状态 
+    <select id="pcrpQueryInfo.update" resultMap="RM.PcrpQueryInfo">
+        SELECT * FROM PCRP_QUERY_INFO where CERT_NUM=#certNum# 
+    </select>-->
+    
+    <update id="pcrpQueryInfo.update">
+        <![CDATA[
+         UPDATE PCRP_QUERY_INFO set
+         CRP_TIME=#crpTime#,
+         CRP_STS=#crpSts#,
+         CRP_TYPE=#crpType#,
+         CRP_MTRDATE=#crpMtrDate#,
+         INT_OPRRNO=#intOprrno#,
+         REPORT_ID=#reportId#,
+         CRP_CONTENT=#crpContent#,
+         CRP_FILENAME=#crpFileName#,
+         TX_DATE=#txDate#,
+         IP_ADDR=#ipAddr#,
+         MAC_ADDR=#macAddr#,
+         REMARKS=#remarks#,
+         CRP_EXPDATE=#crpExpDate#,
+         CRP_FILEPATH=#crpFilePath#,
+         QUERY_TYPE=#querytype#,
+         EXIST_FLAG=#existFlag#,
+         VALID_FLAG=#validFlag#
+          WHERE
+               	CERT_NUM=#certNum#       ]]>
+    </update>
+   
+   	<!--历史表插入-->
+	    <insert id="PcrpQueryInfo.insertToHist" parameterClass="java.lang.String">
+	    	 <![CDATA[
+	    	 INSERT INTO PCRP_QUERY_INFO_HIST(
+	    	 	CRP_ID,
+				CUST_NO,
+				CUST_NAME,
+				REPORT_TYPE,
+				CERT_TYPE,
+				CERT_NUM,
+				CRP_TIME,
+				CRP_REASON,
+				CRP_STS,
+				CRP_TYPE,
+				GRANT_ID,
+				CRP_MTRDATE,
+				INT_OPRRNO,
+				REPORT_ID,
+				CRP_CONTENT,
+				CRP_FILENAME,
+				TX_DATE,
+				IP_ADDR,
+				MAC_ADDR,
+				REMARKS,
+				CRP_EXPDATE,
+				CRP_FILEPATH,
+				OPPR_NO,
+				BR_NO,
+				QUERY_TYPE,
+				EXIST_FLAG,
+				VALID_FLAG
+	    	 ) SELECT 
+	    	    CRP_ID,
+				CUST_NO,
+				CUST_NAME,
+				REPORT_TYPE,
+				CERT_TYPE,
+				CERT_NUM,
+				CRP_TIME,
+				CRP_REASON,
+				CRP_STS,
+				CRP_TYPE,
+				GRANT_ID,
+				CRP_MTRDATE,
+				INT_OPRRNO,
+				REPORT_ID,
+				CRP_CONTENT,
+				CRP_FILENAME,
+				TX_DATE,
+				IP_ADDR,
+				MAC_ADDR,
+				REMARKS,
+				CRP_EXPDATE,
+				CRP_FILEPATH,
+				OPPR_NO,
+				BR_NO,
+				QUERY_TYPE, 
+				EXIST_FLAG, 
+				VALID_FLAG
+				FROM PCRP_QUERY_INFO WHERE CRP_MTRDATE < #date#
+	    	   ]]>
+	       </insert>
+	<!--根据月份查笔数-->
+    <sql id="PcrpQueryInfo.getBatchCount.AND">
+                  <isPropertyAvailable property="crpTime">
+                      <isNotEmpty prepend="AND" property="crpTime">
+                          TX_DATE like '$crpTime$%'
+                      </isNotEmpty>
+                  </isPropertyAvailable>                  
+                  <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+    </sql>
+	<select id="PcrpQueryInfo.getBankCount.count" resultClass="int">
+	SELECT a.n + b.n
+ 	 FROM (select count(*) n from ZXXT.PCRP_QUERY_INFO where BR_NO=#brNo#) a,
+       (select count(*) n from ZXXT.PCRP_QUERY_INFO_HIST where BR_NO=#brNo#) b
+    </select>
+    <select id="PcrpQueryInfo.getBatchCount.count" resultClass="int">
+        SELECT count(*) FROM ZXXT.CRP_BATCH_INFO
+        WHERE CRP_STATE='03' 
+        <include refid="PcrpQueryInfo.getBatchCount.AND"/>
+    </select>
+</sqlMap>

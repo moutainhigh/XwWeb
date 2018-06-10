@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundServiceRate" type="app.creditapp.sys.entity.FundServiceRate"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundServiceRate" class="FundServiceRate">
+    <result property="serviceRateId" column="SERVICE_RATE_ID" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="projName" column="PROJ_NAME" />
+    <result property="stepNo" column="STEP_NO" />
+    <result property="minAmt" column="MIN_AMT" jdbcType="double"/>
+    <result property="maxAmt" column="MAX_AMT" jdbcType="double"/>
+    <result property="svRate" column="SV_RATE" jdbcType="float" nullValue="0.0"/>
+    <result property="opNo" column="OP_NO" />
+    <result property="opName" column="OP_NAME" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="filler" column="FILLER" />
+    </resultMap>
+     <sql id="FundServiceRate.columns">
+        <![CDATA[
+         SERVICE_RATE_ID,
+         PROJ_NO,
+         PROJ_NAME,
+         STEP_NO,
+         MIN_AMT,
+         MAX_AMT,
+         SV_RATE,
+         OP_NO,
+         FUN_GETUSERNAME(OP_NO) AS OP_NAME,
+         TX_DATE,
+         FILLER
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundServiceRate.insert">
+        <![CDATA[
+        INSERT INTO FUND_SERVICE_RATE(
+         SERVICE_RATE_ID,
+         PROJ_NO,
+         PROJ_NAME,
+         STEP_NO,
+         MIN_AMT,
+         MAX_AMT,
+         SV_RATE,
+         OP_NO,
+         TX_DATE,
+         FILLER
+         )VALUES(
+         Fund_Service_Rate_SEQ.NEXTVAL,
+         #projNo#,
+         #projName#,
+         #stepNo#,
+         #minAmt#,
+         #maxAmt#,
+         #svRate#,
+         #opNo#,
+         #txDate#,
+         #filler#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundServiceRate.del">
+        <![CDATA[
+               DELETE FROM FUND_SERVICE_RATE
+                 WHERE
+               	SERVICE_RATE_ID=#serviceRateId#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundServiceRate.update">
+        <![CDATA[
+         UPDATE FUND_SERVICE_RATE set
+         SERVICE_RATE_ID=#serviceRateId#,
+         PROJ_NO=#projNo#,
+         PROJ_NAME=#projName#,
+         STEP_NO=#stepNo#,
+         MIN_AMT=#minAmt#,
+         MAX_AMT=#maxAmt#,
+         SV_RATE=#svRate#,
+         TX_DATE=#txDate#,
+         FILLER=#filler#
+          WHERE
+               	SERVICE_RATE_ID=#serviceRateId#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundServiceRate.getById"  resultMap="RM.FundServiceRate">
+        SELECT <include refid="FundServiceRate.columns"/>
+        <![CDATA[
+             FROM FUND_SERVICE_RATE 
+         WHERE 
+               	SERVICE_RATE_ID=#serviceRateId#
+        ]]>
+     </select>
+      <!-- 表查询ByProjAndMinamt -->
+    <select id="FundServiceRate.getByProjAndMinamt"  resultMap="RM.FundServiceRate">
+        SELECT <include refid="FundServiceRate.columns"/>
+        <![CDATA[
+             FROM FUND_SERVICE_RATE 
+         WHERE 
+               	PROJ_NO= #projNo# AND MIN_AMT = #minAmt#
+        ]]>
+     </select>    
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundServiceRate.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projName">
+                  <isNotEmpty prepend="AND" property="projName">
+                      PROJ_NAME like '%$projName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="minAmt">
+                  <isNotEmpty prepend="AND" property="minAmt">
+                      MIN_AMT = #minAmt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundServiceRate.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_SERVICE_RATE <include refid="FundServiceRate.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundServiceRate.findByPage" resultMap="RM.FundServiceRate">
+        SELECT <include refid="FundServiceRate.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundServiceRate.columns"/> FROM FUND_SERVICE_RATE
+                    <include refid="FundServiceRate.findPage.where"/> 
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#  ORDER BY STEP_NO ASC
+    </select>
+</sqlMap>

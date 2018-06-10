@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftRelief" type="app.creditapp.acc.chg.entity.AftRelief"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftRelief" class="AftRelief">
+    <result property="refId" column="REF_ID" />
+    <result property="loFee" column="LO_FEE" jdbcType="double"/>
+    <result property="refAmt" column="REF_AMT" jdbcType="double"/>
+    <result property="refIntst" column="REF_INTST" jdbcType="double"/>
+    <result property="refFine" column="REF_FINE" jdbcType="double"/>
+    <result property="refFee" column="REF_FEE" jdbcType="double"/>
+    <result property="refSts" column="REF_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="dueAmt" column="DUE_AMT" jdbcType="double"/>
+    <result property="loIntst" column="LO_INTST" jdbcType="double"/>
+    <result property="loAmt" column="LO_AMT" jdbcType="double"/>
+    <result property="loFine" column="LO_FINE" jdbcType="double"/>
+    <result property="appSts" column="APP_STS" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="opName" column="OP_NAME"/>
+    </resultMap>
+    
+     <resultMap id="RM.AftReliefWf" class="AftRelief">
+    <result property="refId" column="REF_ID" />
+    <result property="loFee" column="LO_FEE" jdbcType="double"/>
+    <result property="refAmt" column="REF_AMT" jdbcType="double"/>
+    <result property="refIntst" column="REF_INTST" jdbcType="double"/>
+    <result property="refFine" column="REF_FINE" jdbcType="double"/>
+    <result property="refFee" column="REF_FEE" jdbcType="double"/>
+    <result property="refSts" column="REF_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="dueAmt" column="DUE_AMT" jdbcType="double"/>
+    <result property="loIntst" column="LO_INTST" jdbcType="double"/>
+    <result property="loAmt" column="LO_AMT" jdbcType="double"/>
+    <result property="loFine" column="LO_FINE" jdbcType="double"/>
+    <result property="appSts" column="APP_STS" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="opName" column="OP_NAME"/>
+    <result property="dbid" column="DBID"/>
+    <result property="url" column="EXECUTION_ID"/>
+    </resultMap>
+     <sql id="AftRelief.columns">
+        <![CDATA[
+         REF_ID,
+         LO_FEE,
+         REF_AMT,
+         REF_INTST,
+         REF_FINE,
+         REF_FEE,
+         REF_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         TRACE_NO,
+         PACT_ID,
+         PACT_NO,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         CIF_NO,
+         CIF_NAME,
+         DUE_AMT,
+         LO_INTST,
+         LO_AMT,
+         LO_FINE,
+         APP_STS,
+         PROCESS_ID,
+         FUN_GETUSERNAME(OP_NO)as OP_NAME
+          ]]>
+    </sql>
+    
+    <sql id="AftRelief.columnsWf">
+        <![CDATA[
+         A.REF_ID,
+         A.LO_FEE,
+         A.REF_AMT,
+         A.REF_INTST,
+         A.REF_FINE,
+         A.REF_FEE,
+         A.REF_STS,
+         A.OP_NO,
+         A.TX_DATE,
+         A.UP_DATE,
+         A.TRACE_NO,
+         A.PACT_ID,
+         A.PACT_NO,
+         A.BR_NO,
+         FUN_GETBRNAME(A.BR_NO) as BR_NAME,
+         A.CIF_NO,
+         A.CIF_NAME,
+         A.DUE_AMT,
+         A.LO_INTST,
+         A.LO_AMT,
+         A.LO_FINE,
+         A.APP_STS,
+         A.PROCESS_ID,
+         FUN_GETUSERNAME(A.OP_NO)as OP_NAME,
+         B.DBID,
+         B.EXECUTION_ID
+          ]]>
+    </sql>
+    
+    <sql id="AftRelief.columnsWf2">
+        <![CDATA[
+         REF_ID,
+         LO_FEE,
+         REF_AMT,
+         REF_INTST,
+         REF_FINE,
+         REF_FEE,
+         REF_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         TRACE_NO,
+         PACT_ID,
+         PACT_NO,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         CIF_NO,
+         CIF_NAME,
+         DUE_AMT,
+         LO_INTST,
+         LO_AMT,
+         LO_FINE,
+         APP_STS,
+         PROCESS_ID,
+         FUN_GETUSERNAME(OP_NO)as OP_NAME,
+         DBID,
+         EXECUTION_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftRelief.insert">
+        <![CDATA[
+        INSERT INTO AFT_RELIEF(
+         REF_ID,
+         LO_FEE,
+         REF_AMT,
+         REF_INTST,
+         REF_FINE,
+         REF_FEE,
+         REF_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE,
+         TRACE_NO,
+         PACT_ID,
+         PACT_NO,
+         BR_NO,
+         CIF_NO,
+         CIF_NAME,
+         DUE_AMT,
+         LO_INTST,
+         LO_AMT,
+         LO_FINE,
+         APP_STS,
+         PROCESS_ID
+         )VALUES(
+         #refId#,
+         #loFee#,
+         #refAmt#,
+         #refIntst#,
+         #refFine#,
+         #refFee#,
+         #refSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#,
+         #traceNo#,
+         #pactId#,
+         #pactNo#,
+         #brNo#,
+         #cifNo#,
+         #cifName#,
+         #dueAmt#,
+         #loIntst#,
+         #loAmt#,
+         #loFine#,
+         #appSts#,
+         #processId#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftRelief.del">
+        <![CDATA[
+               DELETE FROM AFT_RELIEF
+                 WHERE
+               	REF_ID = #refId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftRelief.update">
+        <![CDATA[
+         UPDATE AFT_RELIEF set
+         REF_ID=#refId#,
+         LO_FEE=#loFee#,
+         REF_AMT=#refAmt#,
+         REF_INTST=#refIntst#,
+         REF_FINE=#refFine#,
+         REF_FEE=#refFee#,
+         REF_STS=#refSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#,
+         TRACE_NO=#traceNo#,
+         PACT_ID=#pactId#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         DUE_AMT=#dueAmt#,
+         LO_INTST=#loIntst#,
+         LO_AMT=#loAmt#,
+         LO_FINE=#loFine#,
+         APP_STS=#appSts#,
+         PROCESS_ID=#processId#
+          WHERE
+               	REF_ID = #refId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AftRelief.getById"  resultMap="RM.AftRelief">
+        SELECT <include refid="AftRelief.columns"/>
+        <![CDATA[
+             FROM AFT_RELIEF 
+         WHERE 
+               	REF_ID = #refId#  
+                  ]]>
+     </select>
+    <select id="AftRelief.getByIdForTrace"  resultMap="RM.AftRelief">
+        SELECT <include refid="AftRelief.columns"/>
+        <![CDATA[
+             FROM AFT_RELIEF 
+         WHERE 
+               	TRACE_NO = #traceNo#  
+                  ]]>
+     </select>
+     
+      <select id="AftRelief.getRefId" resultClass="string">
+        SELECT AFT_RELIEF_SEQ.NEXTVAL FROM DUAL  
+    </select>
+    
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftRelief.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="refId">
+                  <isNotEmpty prepend="AND" property="refId">
+                      REF_ID = #refId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftRelief.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_RELIEF <include refid="AftRelief.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftRelief.findByPage" resultMap="RM.AftRelief">
+        SELECT <include refid="AftRelief.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftRelief.columns"/> FROM AFT_RELIEF
+                    <include refid="AftRelief.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <select id="AftRelief.findPage.countForTask" resultClass="int">
+        SELECT count(*) FROM AFT_RELIEF A,
+                    (select p.APP_ID_ as app_id,p.dbid_ as dbid,p.EXECUTION_ID_ as EXECUTION_ID
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '04'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')) B WHERE A.REF_ID=B.app_id
+               
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      A.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      A.BR_NO IN(SELECT BR_NO FROM CORP_BASE WHERE BR_NAME LIKE '%$brName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      A.CIF_NO IN(SELECT CIF_NO FROM AC_LN_MST WHERE CIF_NAME LIKE '%$cifName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    
+    <select id="AftRelief.findByPageForTask" resultMap="RM.AftReliefWf">
+        SELECT <include refid="AftRelief.columnsWf2"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftRelief.columnsWf"/> FROM AFT_RELIEF A,
+                    (select p.APP_ID_ as app_id,p.dbid_ as dbid,p.EXECUTION_ID_ as EXECUTION_ID
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '04'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')) B WHERE A.REF_ID=B.app_id
+               
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      A.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      A.BR_NO IN(SELECT BR_NO FROM CORP_BASE WHERE BR_NAME LIKE '%$brName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      A.CIF_NO IN(SELECT CIF_NO FROM AC_LN_MST WHERE CIF_NAME LIKE '%$cifName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

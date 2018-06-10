@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="lnappr0001" title="审批主表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="apprId" fieldtype="1" maxlength="12" formactiveid="1" labelalign="3" labelcol="1" labelname="审批批次ID" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="projNo" fieldtype="1" maxlength="20" formactiveid="3" labelalign="3" labelcol="1" labelname="项目编号" mustinput="0" row="3" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="apprSts" fieldtype="1" maxlength="2" formactiveid="9" labelalign="3" labelcol="1" labelname="审批状态[01待审批02审批中03审批完成]" mustinput="0" row="9" />
+</form>

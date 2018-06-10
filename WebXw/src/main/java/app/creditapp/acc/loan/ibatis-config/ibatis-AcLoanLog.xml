@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLoanLog" type="app.creditapp.acc.loan.entity.AcLoanLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLoanLog" class="AcLoanLog">
+    <result property="loanLogNo" column="LOAN_LOG_NO" />
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="loanAmt" column="LOAN_AMT" jdbcType="double"/>
+    <result property="xtAcNo" column="XT_AC_NO" />
+    <result property="loanAcNo" column="LOAN_AC_NO" />
+    <result property="loanAcType" column="LOAN_AC_TYPE" />
+    <result property="loanAcName" column="LOAN_AC_NAME" />
+    <result property="loanBankCode" column="LOAN_BANK_CODE" />
+    <result property="loanBankProv" column="LOAN_BANK_PROV" />
+    <result property="loanBankCity" column="LOAN_BANK_CITY" />
+    <result property="loanBankSite" column="LOAN_BANK_SITE" />
+    <result property="loanSts" column="LOAN_STS" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="cardChn" column="CARD_CHN" />
+    <result property="busEntryType" column="BUS_ENTRY_TYPE" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="phoneNo" column="PHONE_NO" />
+    <result property="validDate" column="VALID_DATE" />
+    <result property="cvvNo" column="CVV_NO" />
+    
+    </resultMap>
+     <sql id="AcLoanLog.columns">
+        <![CDATA[
+         LOAN_LOG_NO,
+         TRACE_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         LOAN_AMT,
+         XT_AC_NO,
+         LOAN_AC_NO,
+         LOAN_AC_TYPE,
+         LOAN_AC_NAME,
+         LOAN_BANK_CODE,
+         LOAN_BANK_PROV,
+         LOAN_BANK_CITY,
+         LOAN_BANK_SITE,
+         LOAN_STS,
+         TX_DATE,
+         TX_TIME,
+         UP_DATE,
+         CARD_CHN,
+         BUS_ENTRY_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLoanLog.insert">
+        <![CDATA[
+        INSERT INTO AC_LOAN_LOG(
+         LOAN_LOG_NO,
+         TRACE_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         LOAN_AMT,
+         XT_AC_NO,
+         LOAN_AC_NO,
+         LOAN_AC_TYPE,
+         LOAN_AC_NAME,
+         LOAN_BANK_CODE,
+         LOAN_BANK_PROV,
+         LOAN_BANK_CITY,
+         LOAN_BANK_SITE,
+         LOAN_STS,
+         TX_DATE,
+         TX_TIME,
+         UP_DATE,
+         CARD_CHN,
+         BUS_ENTRY_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO
+         )VALUES(
+         #loanLogNo#,
+         #traceNo#,
+         #loanNo#,
+         #pactNo#,
+         #brNo#,
+         #loanAmt#,
+         #xtAcNo#,
+         #loanAcNo#,
+         #loanAcType#,
+         #loanAcName#,
+         #loanBankCode#,
+         #loanBankProv#,
+         #loanBankCity#,
+         #loanBankSite#,
+         #loanSts#,
+         #txDate#,
+         #txTime#,
+         #upDate#,
+         #cardChn#,
+         #busEntryType#,
+         #idType#,
+         #idNo#,
+         #phoneNo#,
+         #validDate#,
+         #cvvNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLoanLog.del">
+        <![CDATA[
+               DELETE FROM AC_LOAN_LOG
+                 WHERE
+               	LOAN_LOG_NO = #loanLogNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcLoanLog.update">
+        <![CDATA[
+         UPDATE AC_LOAN_LOG set
+         LOAN_LOG_NO=#loanLogNo#,
+         TRACE_NO=#traceNo#,
+         LOAN_NO=#loanNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         LOAN_AMT=#loanAmt#,
+         XT_AC_NO=#xtAcNo#,
+         LOAN_AC_NO=#loanAcNo#,
+         LOAN_AC_TYPE=#loanAcType#,
+         LOAN_AC_NAME=#loanAcName#,
+         LOAN_BANK_CODE=#loanBankCode#,
+         LOAN_BANK_PROV=#loanBankProv#,
+         LOAN_BANK_CITY=#loanBankCity#,
+         LOAN_BANK_SITE=#loanBankSite#,
+         LOAN_STS=#loanSts#,
+         TX_DATE=#txDate#,
+         TX_TIME=#txTime#,
+         UP_DATE=#upDate#,
+         CARD_CHN=#cardChn#,
+         BUS_ENTRY_TYPE=#busEntryType#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         PHONE_NO=#phoneNo#,
+         VALID_DATE=#validDate#,
+         CVV_NO=#cvvNo#
+          WHERE
+               	LOAN_LOG_NO = #loanLogNo#        ]]>
+    </update>
+    
+     <!-- 表根据借据号、放款账号查询已发送、放款成功信息 -->
+    <select id="AcLoanLog.getListByAcnoAndLoanno"  resultMap="RM.AcLoanLog">
+        SELECT <include refid="AcLoanLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_LOG 
+         WHERE 
+               	LOAN_LOG_NO = #loanLogNo# and loan_ac_no=#loanAcNo#  and loan_sts in('02','03')      ]]>
+     </select>
+     
+      <select id="AcLoanLog.getListByTraceNo"  resultMap="RM.AcLoanLog">
+        SELECT <include refid="AcLoanLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_LOG 
+         WHERE 
+               	trace_no=#traceNo#     ]]>
+     </select>
+     
+      <select id="AcLoanLog.getById"  resultMap="RM.AcLoanLog">
+        SELECT <include refid="AcLoanLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_LOG 
+         WHERE 
+               	LOAN_LOG_NO = #loanLogNo#        ]]>
+     </select>
+     
+     <!-- 查询放款成功信息 -->
+      <select id="AcLoanLog.getSuccessByAcno"  resultMap="RM.AcLoanLog">
+        SELECT <include refid="AcLoanLog.columns"/>
+        <![CDATA[
+             FROM AC_LOAN_LOG 
+         WHERE 
+               	loan_no=#loanNo# and loan_ac_no=#loanAcNo# and loan_sts=#loanSts#       ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLoanLog.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLoanLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LOAN_LOG <include refid="AcLoanLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLoanLog.findByPage" resultMap="RM.AcLoanLog">
+        SELECT <include refid="AcLoanLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcLoanLog.columns"/> FROM AC_LOAN_LOG
+                    <include refid="AcLoanLog.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="RequireLogTable" type="app.creditapp.sysConfig.entity.SysRequireTable"/>
+<typeAlias alias="TableInfo" type="app.creditapp.sysConfig.entity.TableInfo"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.RequireLogTable" class="RequireLogTable">
+    <result property="tableCode" column="TABLE_CODE"/>
+    <result property="tableName" column="TABLE_NAME"/>
+    </resultMap>
+    <!-- 表信息返回字段 -->
+    <resultMap id="RM.TableInfo" class="TableInfo">
+    <result property="table_name" column="TABLE_NAME"/>
+    <result property="comments" column="COMMENTS"/>
+    </resultMap>
+    <sql id="TableInfo.columns">
+        <![CDATA[
+         TABLE_NAME,
+         COMMENTS
+          ]]>
+    </sql>
+     <sql id="RequireLogTable.columns">
+        <![CDATA[
+         TABLE_CODE,
+         TABLE_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="RequireLogTable.insert">
+        <![CDATA[
+        INSERT INTO SYS_REQUIRE_TABLE(
+         TABLE_CODE,
+         TABLE_NAME
+         )VALUES(
+         #tableCode#,
+         #tableName#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="RequireLogTable.del">
+        <![CDATA[
+               DELETE FROM SYS_REQUIRE_TABLE
+                 WHERE
+               	TABLE_CODE = #tableCode#       ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="RequireLogTable.update">
+        <![CDATA[
+         UPDATE SYS_REQUIRE_TABLE set
+         TABLE_CODE=#tableCode#,
+         TABLE_NAME=#tableName#
+          WHERE
+               	TABLE_CODE = #tableCode#       ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="RequireLogTable.getById"  resultMap="RM.RequireLogTable">
+        SELECT <include refid="RequireLogTable.columns"/>
+        <![CDATA[
+             FROM SYS_REQUIRE_TABLE 
+         WHERE 
+               	TABLE_CODE = #tableCode#            
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="RequireLogTable.findPage.where">
+        <dynamic prepend="where">
+                <isPropertyAvailable property="tableCode">
+                      <isNotEmpty prepend="AND" property="tableCode">
+                          TABLE_CODE = #tableCode#
+                      </isNotEmpty>
+                </isPropertyAvailable>
+                <isPropertyAvailable property="tableName">
+                      <isNotEmpty prepend="AND" property="tableName">
+                          TABLE_NAME like '%'||#tableName#||'%'
+                      </isNotEmpty>
+                </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    
+     <sql id="TableInfo.findPage.where">
+           <isPropertyAvailable property="table_name">
+                 <isNotEmpty prepend="AND" property="table_name">
+                          user_tab_comments.TABLE_NAME = #table_name#
+                  </isNotEmpty>
+           </isPropertyAvailable>
+    </sql>
+    
+    <!-- 分页查询记录数 -->
+    <select id="RequireLogTable.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_REQUIRE_TABLE <include refid="RequireLogTable.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="RequireLogTable.findByPage" resultMap="RM.RequireLogTable">
+        SELECT <include refid="RequireLogTable.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="RequireLogTable.columns"/> FROM SYS_REQUIRE_TABLE
+                    <include refid="RequireLogTable.findPage.where"/>
+             ) m 
+           WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+    
+     <!-- 表查询findAll -->
+    <select id="RequireLogTable.getAll"  resultMap="RM.RequireLogTable">
+        SELECT <include refid="RequireLogTable.columns"/>
+        <![CDATA[
+             FROM SYS_REQUIRE_TABLE          
+        ]]>
+     </select>
+     
+     <!--查询所有的表 -->
+    <select id="TableInfo.getAll"  resultMap="RM.TableInfo" parameterClass="TableInfo">
+        SELECT user_tab_comments.TABLE_NAME,user_tab_comments.COMMENTS
+             FROM USER_TABLES,USER_TAB_COMMENTS WHERE user_tables.TABLE_NAME=user_tab_comments.table_name and user_tables.TABLE_NAME not in(select table_name from SYS_REQUIRE_TABLE) 
+        	<include refid="TableInfo.findPage.where"/>  order by user_tab_comments.table_name asc  
+     </select>
+     
+     <select id="TableInfo.getAllNotExistsDoc"  resultMap="RM.TableInfo" parameterClass="TableInfo">
+        SELECT USER_TAB_COMMENTS.TABLE_NAME,USER_TAB_COMMENTS.COMMENTS
+             FROM USER_TABLES,USER_TAB_COMMENTS WHERE USER_TABLES.TABLE_NAME=USER_TAB_COMMENTS.TABLE_NAME AND USER_TABLES.TABLE_NAME NOT IN(SELECT DOC_NAME FROM TABLE_DOC ) 
+        	  ORDER BY USER_TAB_COMMENTS.TABLE_NAME ASC  
+     </select>
+     
+</sqlMap>

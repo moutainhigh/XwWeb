@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="LnAcctMid" type="app.creditapp.ln.entity.LnAcctMid"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.LnAcctMid" class="LnAcctMid">
+    <result property="bankSite" column="BANK_SITE" />
+    <result property="bankCity" column="BANK_CITY" />
+    <result property="bankProv" column="BANK_PROV" />
+    <result property="bankCode" column="BANK_CODE" />
+    <result property="acName" column="AC_NAME" />
+    <result property="acNo" column="AC_NO" />
+    <result property="acType" column="AC_TYPE" />
+    <result property="acAmt" column="AC_AMT" jdbcType="double"/>
+    <result property="acUse" column="AC_USE" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="phoneNo" column="PHONE_NO" />
+    <result property="appId" column="APP_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="payType" column="PAY_TYPE" />
+    <result property="validDate" column="VALID_DATE" />
+    <result property="cvvNo" column="CVV_NO" />
+    </resultMap>
+     <sql id="LnAcctMid.columns">
+        <![CDATA[
+         BANK_SITE,
+         BANK_CITY,
+         BANK_PROV,
+         BANK_CODE,
+         AC_NAME,
+         AC_NO,
+         AC_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO,
+         AC_AMT,
+         AC_USE,
+         APP_ID,
+         PACT_NO,
+         PAY_TYPE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="LnAcctMid.insert">
+        <![CDATA[
+        INSERT INTO LN_ACCT_MID(
+         BANK_SITE,
+         BANK_CITY,
+         BANK_PROV,
+         BANK_CODE,
+         AC_NAME,
+         AC_NO,
+         AC_TYPE,
+         AC_AMT,
+         AC_USE,
+         APP_ID,
+         PACT_NO,
+         PAY_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO
+         )VALUES(
+         #bankSite#,
+         #bankCity#,
+         #bankProv#,
+         #bankCode#,
+         #acName#,
+         #acNo#,
+         #acType#,
+         #acAmt#,
+         #acUse#,
+         #appId#,
+         #pactNo#,
+         #payType#,
+         #idType#,
+         #idNo#,
+         #phoneNo#,
+         #validDate#,
+         #cvvNo#
+         )
+          ]]>
+    </insert>
+     <!-- 表新增 -->
+    <insert id="WsIn2101_1_1.insert">
+        <![CDATA[
+        INSERT INTO LN_ACCT_MID(
+         BANK_SITE,
+         BANK_CITY,
+         BANK_PROV,
+         BANK_CODE,
+         AC_NAME,
+         AC_NO,
+         AC_TYPE,
+         AC_AMT,
+         AC_USE,
+         APP_ID,
+         PACT_NO,
+         PAY_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO
+         )VALUES(
+         #bankSite#,
+         #bankCity#,
+         #bankProv#,
+         #bankCode#,
+         #acName#,
+         #acNo#,
+         #acType#,
+         #acAmt#,
+         #acUse#,
+         #appId#,
+         #pactNo#,
+         #payType#,
+         #idType#,
+         #idNo#,
+         #phoneNo#,
+         #validDate#,
+         #cvvNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="LnAcctMid.del">
+        <![CDATA[
+               DELETE FROM LN_ACCT_MID
+                 WHERE
+               	APP_ID = #appId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="LnAcctMid.update">
+        <![CDATA[
+         UPDATE LN_ACCT_MID set
+         BANK_SITE=#bankSite#,
+         BANK_CITY=#bankCity#,
+         BANK_PROV=#bankProv#,
+         BANK_CODE=#bankCode#,
+         AC_NAME=#acName#,
+         AC_NO=#acNo#,
+         AC_TYPE=#acType#,
+         AC_AMT=#acAmt#,
+         AC_USE=#acUse#,
+         APP_ID=#appId#,
+         PACT_NO=#pactNo#,
+         PAY_TYPE=#payType#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         PHONE_NO=#phoneNo#,
+         VALID_DATE=#validDate#,
+         CVV_NO=#cvvNo#
+          WHERE
+               	APP_ID = #appId#  and	AC_USE = #acUse#  and ac_no = #acNo#      ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="LnAcctMid.getById"  resultMap="RM.LnAcctMid">
+        SELECT <include refid="LnAcctMid.columns"/>
+        <![CDATA[
+             FROM LN_ACCT_MID 
+         WHERE 
+               	APP_ID = #appId#   and 	AC_USE = #acUse#  and ac_no = #acNo#     ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="LnAcctMid.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="acName">
+                  <isNotEmpty prepend="AND" property="acName">
+                      AC_NAME = #acName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acNo">
+                  <isNotEmpty prepend="AND" property="acNo">
+                      AC_NO = #acNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="acType">
+                  <isNotEmpty prepend="AND" property="acType">
+                      AC_TYPE = #acType#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="acType">
+                  <isNotEmpty prepend="AND" property="acType">
+                      APP_ID = #appId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="LnAcctMid.findPage.count" resultClass="int">
+        SELECT count(*) FROM LN_ACCT_MID <include refid="LnAcctMid.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="LnAcctMid.findByPage" resultMap="RM.LnAcctMid">
+        SELECT <include refid="LnAcctMid.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnAcctMid.columns"/> FROM LN_ACCT_MID
+                    <include refid="LnAcctMid.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    
+     <!-- 分页查询预进件申请信息账户信息记录数 -->
+    <select id="LnAcctMid.findByPageQuotaForLn.count" resultClass="int">
+        SELECT count(*) FROM LN_ACCT_Mid WHERE 
+            APP_ID = #appId# ORDER BY APP_ID DESC
+    </select>
+    <!-- 分页查询预进件申请信息账户信息-->
+    <select id="LnAcctMid.findByPageQuotaForLn" resultMap="RM.LnAcctMid">
+        SELECT <include refid="LnAcctMid.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="LnAcctMid.columns"/> FROM LN_ACCT_Mid WHERE  
+             APP_ID = #appId# ORDER BY APP_ID DESC
+             ) m  
+        	) WHERE rnum &gt;= #startNum#  AND rnum &lt;#endNum#
+    </select>
+   
+    <!-- 分页查询预进件申请信息账户信息-->
+    <select id="LnAcctMid.getListByLnAcctMid" resultMap="RM.LnAcctMid">
+        SELECT <include refid="LnAcctMid.columns"/>
+        FROM  
+            LN_ACCT_Mid where app_id in (select app_id from ln_apply_mid where batch_no=#appId#)
+    </select>
+    
+</sqlMap>

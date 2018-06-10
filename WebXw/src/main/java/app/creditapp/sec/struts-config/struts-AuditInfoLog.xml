@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+    <struts>
+	<package name="AuditInfoLogAction" namespace="/" extends="struts-cms">
+		<action name="AuditInfoLogAction_*" method="{1}" class="app.creditapp.sec.action.AuditInfoLogAction">
+			<result name="list">/creditapp/sec/AuditInfoLog_List.jsp</result>
+			<result name="input">/creditapp/sec/AuditInfoLog_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/AuditInfoLog_Detail.jsp</result>
+			<result name="toDelete">/creditapp/common/deleteinfo.jsp</result>
+		</action>
+		<action name="AuditInfoLogActionInsert" method="insert" class="app.creditapp.sec.action.AuditInfoLogAction">
+			<result name="input">/creditapp/sec/AuditInfoLog_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/AuditInfoLog_Detail.jsp</result>
+		</action>
+		<action name="AuditInfoLogActionUpdate" method="update" class="app.creditapp.sec.action.AuditInfoLogAction">
+			<result name="input">/creditapp/sec/AuditInfoLog_Detail.jsp</result>
+			<result name="detail">/creditapp/sec/AuditInfoLog_Detail.jsp</result>
+		</action>
+	</package>
+	</struts>
+
+
+

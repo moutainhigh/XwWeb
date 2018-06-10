@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundSplitTerm" type="app.creditapp.fund.entity.FundSplitTerm"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundSplitTerm" class="FundSplitTerm">
+    <result property="termNo" column="TERM_NO" />
+    <result property="fundNo" column="FUND_NO" />
+    <result property="partNo" column="PART_NO" />
+    <result property="termAmt" column="TERM_AMT" jdbcType="double"/>
+    <result property="invRate" column="INV_RATE" jdbcType="float"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="days" column="DAYS" jdbcType="Int"/>
+    <result property="filler" column="FILLER" />
+    <result property="curNo" column="CUR_NO" />
+    </resultMap>
+     <sql id="FundSplitTerm.columns">
+        <![CDATA[
+         TERM_NO,
+         FUND_NO,
+         PART_NO,
+         TERM_AMT,
+         INV_RATE,
+         BEG_DATE,
+         END_DATE,
+         DAYS,
+         FILLER,
+         CUR_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundSplitTerm.insert">
+        <![CDATA[
+        INSERT INTO FUND_SPLIT_TERM(
+         TERM_NO,
+         FUND_NO,
+         PART_NO,
+         TERM_AMT,
+         INV_RATE,
+         BEG_DATE,
+         END_DATE,
+         DAYS,
+         FILLER,
+         CUR_NO
+         )VALUES(
+         #termNo#,
+         #fundNo#,
+         #partNo#,
+         #termAmt#,
+         #invRate#,
+         #begDate#,
+         #endDate#,
+         #days#,
+         #filler#,
+         #curNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundSplitTerm.del">
+        <![CDATA[
+               DELETE FROM FUND_SPLIT_TERM
+                 WHERE
+               	TERM_NO = #termNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundSplitTerm.update">
+        <![CDATA[
+         UPDATE FUND_SPLIT_TERM set
+         TERM_NO=#termNo#,
+         FUND_NO=#fundNo#,
+         PART_NO=#partNo#,
+         TERM_AMT=#termAmt#,
+         INV_RATE=#invRate#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         DAYS=#days#,
+         FILLER=#filler#,
+         CUR_NO=#curNo#
+          WHERE
+               	TERM_NO = #termNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundSplitTerm.getById"  resultMap="RM.FundSplitTerm">
+        SELECT <include refid="FundSplitTerm.columns"/>
+        <![CDATA[
+             FROM FUND_SPLIT_TERM 
+         WHERE 
+               	TERM_NO = #termNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundSplitTerm.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="fundNo">
+                  <isNotEmpty prepend="AND" property="fundNo">
+                      FUND_NO = #fundNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="partNo">
+                  <isNotEmpty prepend="AND" property="partNo">
+                      PART_NO = #partNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="begDate">
+                  <isNotEmpty prepend="AND" property="begDate">
+                      BEG_DATE = #begDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="endDate">
+                  <isNotEmpty prepend="AND" property="endDate">
+                      END_DATE = #endDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundSplitTerm.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_SPLIT_TERM <include refid="FundSplitTerm.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundSplitTerm.findByPage" resultMap="RM.FundSplitTerm">
+        SELECT <include refid="FundSplitTerm.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundSplitTerm.columns"/> FROM FUND_SPLIT_TERM
+                    <include refid="FundSplitTerm.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+     <!-- 表查询是否大于交易日期的存续段 -->
+    <select id="FundSplitTerm.getByTxdate"  resultMap="RM.FundSplitTerm">
+        SELECT <include refid="FundSplitTerm.columns"/>
+        FROM FUND_SPLIT_TERM 
+         WHERE 
+               FUND_NO = #fundNo# AND PART_NO = #partNo# AND END_DATE &gt; #endDate# 
+     </select>
+</sqlMap>

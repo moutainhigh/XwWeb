@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="SysLog" type="app.creditapp.sys.entity.SysLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.SysLog" class="SysLog">
+    <result property="logId" column="LOG_ID"/>
+    <result property="logDate" column="LOG_DATE"/>
+    <result property="logTime" column="LOG_TIME"/>
+    <result property="opNo" column="OP_NO"/>
+    <result property="opId" column="OP_ID"/>
+    <result property="opDesc" column="OP_DESC"/>
+    <result property="opClass" column="OP_CLASS"/>
+    
+    <result property="userName" column="USER_NAME"/>
+    </resultMap>
+     <sql id="SysLog.columns">
+        <![CDATA[
+         LOG_ID,
+         LOG_DATE,
+         LOG_TIME,
+         OP_NO,
+         FUN_GETUSERNAMEBYID(OP_NO) AS USER_NAME,
+         OP_ID,
+         OP_DESC,
+         OP_CLASS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="SysLog.insert">
+        <![CDATA[
+        INSERT INTO SYS_LOG(
+         LOG_ID,
+         LOG_DATE,
+         LOG_TIME,
+         OP_NO,
+         OP_ID,
+         OP_DESC,
+         OP_CLASS
+         )VALUES(
+         SYS_LOG_SEQ.NEXTVAL,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         TO_CHAR(SYSDATE,'HH24:MI:SS'),
+         #opNo#,
+         #opId#,
+         #opDesc#,
+         #opClass#
+         )
+          ]]>
+          <selectKey resultClass="java.lang.String" type="pre" keyProperty="logId" >
+             SELECT  SYS_LOG_SEQ.nextval AS log_id FROM DUAL
+        </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="SysLog.del">
+        <![CDATA[
+               DELETE FROM SYS_LOG
+                 WHERE
+               LOG_ID=#logId#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="SysLog.update">
+        <![CDATA[
+         UPDATE SYS_LOG set
+         LOG_DATE=#logDate#,
+         LOG_TIME=#logTime#,
+         OP_NO=#opNo#,
+         OP_ID=#opId#,
+         OP_DESC=#opDesc#,
+         OP_CLASS=#opClass#
+          WHERE
+               	LOG_ID=#logId#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="SysLog.getById"  resultMap="RM.SysLog">
+        SELECT <include refid="SysLog.columns"/>
+        <![CDATA[
+             FROM SYS_LOG 
+         WHERE 
+               	LOG_ID=#logId#
+        ]]>
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="SysLog.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="opId">
+                      <isNotEmpty prepend="AND" property="opId">
+                          OP_ID=#opId#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="opNo">
+                      <isNotEmpty prepend="AND" property="opNo">
+                          OP_NO=#opNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                  
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="SysLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM SYS_LOG <include refid="SysLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="SysLog.findByPage" resultMap="RM.SysLog">
+        SELECT <include refid="SysLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="SysLog.columns"/> FROM SYS_LOG
+                    <include refid="SysLog.findPage.where"/> order by log_id desc
+             ) m 
+        	)
+        WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum#
+    </select>
+</sqlMap>

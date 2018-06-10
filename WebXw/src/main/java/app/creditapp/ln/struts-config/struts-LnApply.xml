@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="LnApplyAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="LnApplyAction_findByPage" method="findByPage" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="list">/creditapp/ln/LnApply_List.jsp</result>
+		</action>
+		<!--查询规则引擎 -->
+		<action name="LnApplyAction_findByReturnId" method="findByReturnId" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="find">/creditapp/ln/LnApply_findReturn.jsp</result>
+		</action>  
+		<!--获取新增页面-->
+		<action name="LnApplyAction_input" method="input" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="input">/creditapp/ln/LnApply_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="LnApplyAction_del" method="del" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="list">/creditapp/ln/LnApply_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="LnApplyAction_getById" method="getById" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="detail">/creditapp/ln/LnApply_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="LnApplyActionInsert" method="insert" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="input">/creditapp/ln/LnApply_Insert.jsp</result>
+			<result name="detail">/creditapp/ln/LnApply_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="LnApplyActionUpdate" method="update" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="input">/creditapp/ln/LnApply_Detail.jsp</result>
+			<result name="detail">/creditapp/ln/LnApply_Detail.jsp</result>
+		</action>
+		
+		<!-- 总详细信息 -->
+		<action name="LnApplyAction_getAllDetail" method="getAllDetail" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="all">/creditapp/ln/LnApply_All.jsp</result>
+	    </action>		
+	    
+	    <!-- 上面常显信息 -->
+		<action name="LnApplyAction_getDetailTop" method="getDetailTop" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="top">/creditapp/ln/LnApply_All_Top.jsp</result>
+		</action>
+	    
+	    <!-- 客户详细信息 -->
+		<action name="LnApplyAction_getTab" method="getTab" class="app.creditapp.ln.action.LnApplyAction">
+			<result name="tab">/creditapp/ln/LnApply_Tab.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

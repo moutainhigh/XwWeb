@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsRedctn" type="app.creditapp.inf.entity.WsRedctn"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsRedctn" class="WsRedctn">
+    <result property="wsId" column="WS_ID" />
+    <result property="batchNo" column="BATCH_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="refAmt" column="REF_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="refInte" column="REF_INTE" jdbcType="double" nullValue="0.00"/>
+    <result property="refOver" column="REF_OVER" jdbcType="double" nullValue="0.00"/>
+    <result property="refFee" column="REF_FEE" jdbcType="double" nullValue="0.00"/>
+    <result property="txDate" column="TX_DATE" />
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    <result property="brName" column="BR_NAME"/>
+    </resultMap>
+    <!--接口ws2901返回字段,开始-->
+    <typeAlias alias="WsRedctnforws2902" type="app.creditapp.inf.entity.WsOut2902_1"/>
+    <resultMap id="RM.WsRedctnforws2902" class="WsRedctnforws2902">
+    <result property="pactNo" column="PACT_NO" />
+    <result property="refAmt" column="REF_AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="refInte" column="REF_INTE" jdbcType="double" nullValue="0.00"/>
+    <result property="refOver" column="REF_OVER" jdbcType="double" nullValue="0.00"/>
+    <result property="refFee" column="REF_FEE" jdbcType="double" nullValue="0.00"/>
+    <result property="dealSts" column="DEAL_STS" />
+    <result property="dealDesc" column="DEAL_DESC" />
+    </resultMap>
+    
+    <sql id="WsRedctnfows2902.columns">
+        <![CDATA[
+         PACT_NO,
+         REF_AMT,
+         REF_INTE,
+         REF_OVER,
+         REF_FEE,
+         DEAL_STS,
+         DEAL_DESC
+         
+          ]]>
+    </sql>
+    <!--结束-->
+    
+     <sql id="WsRedctn.columns">
+        <![CDATA[
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         REF_AMT,
+         REF_INTE,
+         REF_OVER,
+         REF_FEE,
+         TX_DATE,
+         DEAL_STS,
+         DEAL_DESC,
+         FUN_GETBRNAME(br_no) as BR_NAME
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WsRedctn.insert">
+        <![CDATA[
+        INSERT INTO WS_REDCTN(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         REF_AMT,
+         REF_INTE,
+         REF_OVER,
+         REF_FEE,
+         TX_DATE,
+         DEAL_STS,
+         DEAL_DESC
+         )VALUES(
+         #wsId#,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #refAmt#,
+         #refInte#,
+         #refOver#,
+         #refFee#,
+         #txDate#,
+         #dealSts#,
+         #dealDesc#
+         )
+          ]]>
+    </insert>
+    
+    <!-- 接口ws2901表新增 -->
+    <insert id="WsRedctnforws2901.insert">
+        <![CDATA[
+        INSERT INTO WS_REDCTN(
+         WS_ID,
+         BATCH_NO,
+         BR_NO,
+         PACT_NO,
+         REF_AMT,
+         REF_INTE,
+         REF_OVER,
+         REF_FEE,
+         TX_DATE,
+         DEAL_STS,
+         DEAL_DESC
+         )VALUES(
+         #wsId#,
+         #batchNo#,
+         #brNo#,
+         #pactNo#,
+         #refAmt#,
+         #refInte#,
+         #refOver#,
+         #refFee#,
+         TO_CHAR(SYSDATE,'YYYYMMDD'),
+         #dealSts#,
+         #dealDesc#
+         )
+          ]]>
+    </insert>
+    <!--结束-->
+    
+    
+    <!-- 表删除 -->
+    <delete id="WsRedctn.del">
+        <![CDATA[
+               DELETE FROM WS_REDCTN
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    
+    <!-- 接口ws2901表删除 -->
+    <delete id="WsRedctnforws2901.del">
+        <![CDATA[
+               DELETE FROM WS_REDCTN
+                 WHERE
+               	PACT_NO = #pactNo# AND TX_DATE = TO_CHAR(SYSDATE,'YYYYMMDD')
+               	        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WsRedctn.update">
+        <![CDATA[
+         UPDATE WS_REDCTN set
+         WS_ID=#wsId#,
+         BATCH_NO=#batchNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         REF_AMT=#refAmt#,
+         REF_INTE=#refInte#,
+         REF_OVER=#refOver#,
+         REF_FEE=#refFee#,
+         TX_DATE=#txDate#,
+         DEAL_STS=#dealSts#,
+         DEAL_DESC=#dealDesc#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WsRedctn.getById"  resultMap="RM.WsRedctn">
+        SELECT <include refid="WsRedctn.columns"/>
+        <![CDATA[
+             FROM WS_REDCTN 
+         WHERE 
+               	WS_ID = #wsId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WsRedctn.findPage.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="batchNo">
+                      <isNotEmpty prepend="AND" property="batchNo">
+                          BATCH_NO = #batchNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="pactNo">
+                      <isNotEmpty prepend="AND" property="pactNo">
+                          PACT_NO = #pactNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <!-- 接口ws2902查找条件 -->
+    <sql id="WsRedctn.findPageforws2902.where">
+        <dynamic prepend="where">
+                  <isPropertyAvailable property="batchNo">
+                      <isNotEmpty prepend="AND" property="batchNo">
+                          BATCH_NO = #batchNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="brNo">
+                      <isNotEmpty prepend="AND" property="brNo">
+                          BR_NO = #brNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+                   <isPropertyAvailable property="pactNo">
+                      <isNotEmpty prepend="AND" property="pactNo">
+                          PACT_NO = #pactNo#
+                      </isNotEmpty>
+                  </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <!--接口ws2902返回条数和查找语句-->
+     <select id="WsRedctn.findPage.countforws2902" resultClass="int">
+        SELECT count(*) FROM WS_REDCTN <include refid="WsRedctn.findPageforws2902.where"/>
+    </select>
+    
+    <select id="WsRedctn.findByPageforws2902" resultMap="RM.WsRedctnforws2902">
+        SELECT <include refid="WsRedctnfows2902.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRedctnfows2902.columns"/> FROM WS_REDCTN
+                    <include refid="WsRedctn.findPageforws2902.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <!-- 分页查询记录数 -->
+    <select id="WsRedctn.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_REDCTN <include refid="WsRedctn.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WsRedctn.findByPage" resultMap="RM.WsRedctn">
+        SELECT <include refid="WsRedctn.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRedctn.columns"/> FROM WS_REDCTN
+                    <include refid="WsRedctn.findPage.where"/>
+                    ORDER BY WS_ID DESC
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

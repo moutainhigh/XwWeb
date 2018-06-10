@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="lnstage0001" title="业务阶段表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="paySts" fieldtype="1" maxlength="2" formactiveid="4" labelalign="3" labelcol="1" labelname="放款状态[01未放款02已放款]" mustinput="0" row="4" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="appId" fieldtype="1" maxlength="14" formactiveid="8" labelalign="3" labelcol="1" labelname="申请ID" mustinput="0" row="8" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="evelSts" fieldtype="1" maxlength="1" formactiveid="12" labelalign="3" labelcol="1" labelname="客户评级[1未评级A级B级C级]C为拒绝" mustinput="0" row="12" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="pactSts" fieldtype="1" maxlength="2" formactiveid="14" labelalign="3" labelcol="1" labelname="合同生成标志[01未生成02已生成]" mustinput="0" row="14" />
+</form>

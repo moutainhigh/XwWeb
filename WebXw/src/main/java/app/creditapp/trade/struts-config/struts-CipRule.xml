@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CipRuleAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CipRuleAction_findByPage" method="findByPage" class="app.creditapp.trade.action.CipRuleAction">
+			<result name="list">/creditapp/trade/CipRule_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CipRuleAction_input" method="input" class="app.creditapp.trade.action.CipRuleAction">
+			<result name="input">/creditapp/trade/CipRule_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CipRuleAction_del" method="del" class="app.creditapp.trade.action.CipRuleAction">
+			<result name="list">/creditapp/trade/CipRule_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CipRuleAction_getById" method="getById" class="app.creditapp.trade.action.CipRuleAction">
+			<result name="detail">/creditapp/trade/CipRule_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CipRuleActionInsert" method="insert" class="app.creditapp.trade.action.CipRuleAction">
+			<result name="input">/creditapp/trade/CipRule_Insert.jsp</result>
+			<result name="detail">/creditapp/trade/CipRule_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CipRuleActionUpdate" method="update" class="app.creditapp.trade.action.CipRuleAction">
+			<result name="input">/creditapp/trade/CipRule_Detail.jsp</result>
+			<result name="detail">/creditapp/trade/CipRule_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

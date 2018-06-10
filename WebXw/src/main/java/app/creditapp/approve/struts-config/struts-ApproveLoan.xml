@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="ApproveLoanAction" namespace="/" extends="struts-cms">
+		<action name="ApproveLoanAction_*" method="{1}"
+			class="app.creditapp.approve.action.ApproveLoanAction">
+			<result name="tab">/creditapp/approve/ApproveForCifGroupVer_Tab.jsp</result>
+			<result name="nextNode"  type="redirect">WkfTaskAction_findByPage.action?appType=01</result>
+		</action> 
+		<action name="ApproveLoanActionInput" method="input"
+			class="app.creditapp.approve.action.ApproveLoanAction">
+			<result name="success">/creditapp/approve/ApproveForLoan_Insert.jsp</result>
+		</action>
+		<action name="ApproveLoanActionInputForGo" method="inputForGo"
+			class="app.creditapp.approve.action.ApproveLoanAction">
+			<result name="success">/creditapp/approve/ApproveForLoan_InsertForGo.jsp</result>
+		</action>
+		<action name="ApproveLoanAction_doSubmit" method="doSubmit"
+			class="app.creditapp.approve.action.ApproveLoanAction">
+			<result name="input">/creditapp/approve/ApproveForLoan_Insert.jsp</result>
+			<result name="result"  type="redirect">LnPactAction_findByPageAppr.action?apprType=01</result>
+			<result name="list">/creditapp/approve/ApproveForLoan_Update.jsp</result>
+		</action>
+		<!-- 审批详细信息 -->
+		<action name="ApproveLoanAction_getTab" method="getTab" class="app.creditapp.approve.action.ApproveLoanAction">
+			<result name="tab">/creditapp/approve/ApproveForLoan_getTab.jsp</result>
+		</action>
+	</package>
+</struts>

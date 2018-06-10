@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GB2312"?>
+<table id="acc8004" link="AcLnParmAction_findByPage.action" para="eadis_page" title="核算产品参数表pop" type="1">
+<tableitem align="2" filedname="prdtNo" id="2" indexed="1" label="贷款产品类型代码" row="1" type="0"/>
+<tableitem align="2" filedname="glNo" id="1" indexed="2" label="核算设置编号" row="1" type="0"/>
+<tableitem align="2" filedname="prdtName" id="3" indexed="3" label="产品描述" row="1" type="0"/>
+<tableitem align="2" filedname="pop" id="5" indexed="4" label="选择" row="1" type="5" typepara="#;prdtNo-prdtNo;onClick-funcPopReturn" width="4"/>
+</table>

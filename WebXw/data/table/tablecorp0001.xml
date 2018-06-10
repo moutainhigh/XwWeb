@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK"?>
+<table id="corp0001" para="eadis_page" link="CorpTaRelAction_findByPage.action" title="合作机构和软通客户关联表" type="1">
+<tableitem align="2" filedname="relid" id="1" indexed="1" label="关联关系ID" row="1" type="4" typepara="CorpTaRelAction_getById.action;relid-relid;query-'query'"/>
+<tableitem align="2" filedname="brNo" id="2" indexed="2" label="信贷合作机构编号" row="1" type="0" />
+<tableitem align="2" filedname="taCifNo" id="3" indexed="3" label="软通TA客户编号" row="1" type="0" />
+<tableitem align="2" filedname="修改" id="4" indexed="4" label="-" row="1" type="5" typepara="CorpTaRelAction_getById.action;relid-relid;" width="2"/>
+<tableitem align="2" filedname="删除" id="5" indexed="5" label="-" row="1" type="5" typepara="CorpTaRelAction_del.action;relid-relid;onClick-lkconfirm" width="2"/>
+</table>

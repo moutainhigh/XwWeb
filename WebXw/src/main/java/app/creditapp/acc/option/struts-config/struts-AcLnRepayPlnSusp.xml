@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcLnRepayPlnSuspAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AcLnRepayPlnSuspAction_findByPage" method="findByPage" class="app.creditapp.acc.option.action.AcLnRepayPlnSuspAction">
+			<result name="list">/creditapp/acc/AcLnRepayPlnSusp_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AcLnRepayPlnSuspAction_input" method="input" class="app.creditapp.acc.option.action.AcLnRepayPlnSuspAction">
+			<result name="input">/creditapp/acc/AcLnRepayPlnSusp_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="AcLnRepayPlnSuspAction_del" method="del" class="app.creditapp.acc.option.action.AcLnRepayPlnSuspAction">
+			<result name="list">/creditapp/acc/AcLnRepayPlnSusp_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AcLnRepayPlnSuspAction_getById" method="getById" class="app.creditapp.acc.option.action.AcLnRepayPlnSuspAction">
+			<result name="detail">/creditapp/acc/AcLnRepayPlnSusp_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AcLnRepayPlnSuspActionInsert" method="insert" class="app.creditapp.acc.option.action.AcLnRepayPlnSuspAction">
+			<result name="input">/creditapp/acc/AcLnRepayPlnSusp_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/AcLnRepayPlnSusp_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcLnRepayPlnSuspActionUpdate" method="update" class="app.creditapp.acc.option.action.AcLnRepayPlnSuspAction">
+			<result name="input">/creditapp/acc/AcLnRepayPlnSusp_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/AcLnRepayPlnSusp_Detail.jsp</result>
+		</action>
+		<!--test-->
+		<action name="AcLnRepayPlnSuspAction_testValidAcLnRepayPlnSusp" method="testValidAcLnRepayPlnSusp" class="app.creditapp.acc.option.action.AcLnRepayPlnSuspAction">
+			<result name="input">/creditapp/acc/AcLnRepayPlnSusp_Insert.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

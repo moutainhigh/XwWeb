@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="FundSplitDetail" type="app.creditapp.fund.entity.FundSplitDetail"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.FundSplitDetail" class="FundSplitDetail">
+    <result property="partId" column="PART_ID" />
+    <result property="partNo" column="PART_NO" />
+    <result property="bfTxAmt" column="BF_TX_AMT" jdbcType="double"/>
+    <result property="txAmt" column="TX_AMT" jdbcType="double"/>
+    <result property="afTxAmt" column="AF_TX_AMT" jdbcType="double"/>
+    <result property="invRate" column="INV_RATE" jdbcType="float"/>
+    <result property="tradeType" column="TRADE_TYPE" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="opNo" column="OP_NO" />
+    </resultMap>
+     <sql id="FundSplitDetail.columns">
+        <![CDATA[
+         PART_ID,
+         PART_NO,
+         BF_TX_AMT,
+         TX_AMT,
+         AF_TX_AMT,
+         INV_RATE,
+         TRADE_TYPE,
+         TX_DATE,
+         OP_NO
+          ]]>
+    </sql>
+     <sql id="FundSplitDetail.columnsS">
+        <![CDATA[
+         PART_ID,
+         PART_NO,
+         BF_TX_AMT,
+         TX_AMT,
+         AF_TX_AMT,
+         INV_RATE,
+         TRADE_TYPE,
+         TX_DATE,
+         fun_getusername(OP_NO) as op_no
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="FundSplitDetail.insert">
+        <![CDATA[
+        INSERT INTO FUND_SPLIT_DETAIL(
+         PART_ID,
+         PART_NO,
+         BF_TX_AMT,
+         TX_AMT,
+         AF_TX_AMT,
+         INV_RATE,
+         TRADE_TYPE,
+         TX_DATE,
+         OP_NO
+         )VALUES(
+         #partId#,
+         #partNo#,
+         #bfTxAmt#,
+         #txAmt#,
+         #afTxAmt#,
+         #invRate#,
+         #tradeType#,
+         #txDate#,
+         #opNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="FundSplitDetail.del">
+        <![CDATA[
+               DELETE FROM FUND_SPLIT_DETAIL
+                 WHERE
+               	PART_ID = #partId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="FundSplitDetail.update">
+        <![CDATA[
+         UPDATE FUND_SPLIT_DETAIL set
+         PART_ID=#partId#,
+         PART_NO=#partNo#,
+         BF_TX_AMT=#bfTxAmt#,
+         TX_AMT=#txAmt#,
+         AF_TX_AMT=#afTxAmt#,
+         INV_RATE=#invRate#,
+         TRADE_TYPE=#tradeType#,
+         TX_DATE=#txDate#,
+         OP_NO=#opNo#
+          WHERE
+               	PART_ID = #partId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="FundSplitDetail.getById"  resultMap="RM.FundSplitDetail">
+        SELECT <include refid="FundSplitDetail.columnsS"/>
+        <![CDATA[
+             FROM FUND_SPLIT_DETAIL 
+         WHERE 
+               	PART_ID = #partId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="FundSplitDetail.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="partNo">
+                  <isNotEmpty prepend="AND" property="partNo">
+                      PART_NO = #partNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txDate">
+                  <isNotEmpty prepend="AND" property="txDate">
+                      TX_DATE = #txDate#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="FundSplitDetail.findPage.count" resultClass="int">
+        SELECT count(*) FROM FUND_SPLIT_DETAIL <include refid="FundSplitDetail.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="FundSplitDetail.findByPage" resultMap="RM.FundSplitDetail">
+        SELECT <include refid="FundSplitDetail.columnsS"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="FundSplitDetail.columns"/> FROM FUND_SPLIT_DETAIL
+                    <include refid="FundSplitDetail.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

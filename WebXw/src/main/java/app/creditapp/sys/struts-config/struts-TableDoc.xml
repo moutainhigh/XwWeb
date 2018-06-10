@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <package name="tableDoc" namespace="/" extends="struts-cms">
+        <global-results>
+            <result name="invalid.token">/creditapp/common/commitRepeat.jsp</result>
+        <result name="commonException">/creditapp/common/exception.jsp</result>
+      </global-results>
+    <global-exception-mappings>
+      <exception-mapping result="commonException" exception="java.lang.Exception"></exception-mapping>  
+    </global-exception-mappings>
+    <!-- 文档树管理 -->
+        <action name="TableDocAction_*" method="{1}" class="app.creditapp.sys.action.TableDocAction">
+           <result name="allMenu">/creditapp/sys/Table_Doc_Menu_list.jsp</result>
+        </action>
+</package>
+</struts>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+    <struts>
+	<package name="UserMarkInfoAction" namespace="/" extends="struts-cms">
+		<action name="UserMarkInfoAction_*" method="{1}" class="app.creditapp.sec.action.UserMarkInfoAction">
+			<result name="list">/creditapp/sec/UserMarkInfo_List.jsp</result>
+			<result name="input">/creditapp/sec/UserMarkInfo_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/UserMarkInfo_Detail.jsp</result>
+			<result name="toDelete">/creditapp/common/deleteinfo.jsp</result>
+			<result name="allLogin">/creditapp/sec/UserMarkInfo_AllLogin.jsp</result>
+			<result name="userIdlist">/creditapp/sec/SysLoginLogUserId_list.jsp</result>
+		</action>
+		<action name="UserMarkInfoActionInsert" method="insert" class="app.creditapp.sec.action.UserMarkInfoAction">
+			<result name="input">/creditapp/sec/UserMarkInfo_Insert.jsp</result>
+			<result name="detail">/creditapp/sec/UserMarkInfo_Detail.jsp</result>
+		</action>
+		<action name="UserMarkInfoActionUpdate" method="update" class="app.creditapp.sec.action.UserMarkInfoAction">
+			<result name="input">/creditapp/sec/UserMarkInfo_Detail.jsp</result>
+			<result name="detail">/creditapp/sec/UserMarkInfo_Detail.jsp</result>
+		</action>
+	</package>
+	</struts>
+
+
+

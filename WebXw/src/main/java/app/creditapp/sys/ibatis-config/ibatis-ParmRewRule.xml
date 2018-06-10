@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ParmRewRule" type="app.creditapp.sys.entity.ParmRewRule"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ParmRewRule" class="ParmRewRule">
+    <result property="ruleSts" column="RULE_STS" />
+    <result property="ruleId" column="RULE_ID" />
+    <result property="ruleDesc" column="RULE_DESC" />
+    <result property="riskLev" column="RISK_LEV" />
+    <result property="opProc" column="OP_PROC" />
+    <result property="sceneNo" column="SCENE_NO" />
+    </resultMap>
+     <sql id="ParmRewRule.columns">
+        <![CDATA[
+         RULE_STS,
+         RULE_ID,
+         RULE_DESC,
+         RISK_LEV,
+         OP_PROC,
+         SCENE_NO
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ParmRewRule.insert">
+        <![CDATA[
+        INSERT INTO PARM_REW_RULE(
+         RULE_STS,
+         RULE_ID,
+         RULE_DESC,
+         RISK_LEV,
+         OP_PROC,
+         SCENE_NO
+         )VALUES(
+         #ruleSts#,
+         #ruleId#,
+         #ruleDesc#,
+         #riskLev#,
+         #opProc#,
+         #sceneNo#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ParmRewRule.del">
+        <![CDATA[
+               DELETE FROM PARM_REW_RULE
+                 WHERE
+               	RULE_ID = #ruleId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ParmRewRule.update">
+        <![CDATA[
+         UPDATE PARM_REW_RULE set
+         RULE_STS=#ruleSts#,
+         RULE_ID=#ruleId#,
+         RULE_DESC=#ruleDesc#,
+         RISK_LEV=#riskLev#,
+         OP_PROC=#opProc#,
+         SCENE_NO=#sceneNo#
+          WHERE
+               	RULE_ID = #ruleId#        ]]>
+    </update>
+    
+    <!-- 表修改RuleSts -->
+    <update id="ParmRewRule.updateRuleSts">
+        <![CDATA[
+         UPDATE PARM_REW_RULE set
+         RULE_STS=#ruleSts#
+          WHERE
+               	RULE_ID = #ruleId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ParmRewRule.getById"  resultMap="RM.ParmRewRule">
+        SELECT <include refid="ParmRewRule.columns"/>
+        <![CDATA[
+             FROM PARM_REW_RULE 
+         WHERE 
+               	RULE_ID = #ruleId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ParmRewRule.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="sceneNo">
+                  <isNotEmpty prepend="AND" property="sceneNo">
+                      SCENE_NO=#sceneNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="ruleId">
+                  <isNotEmpty prepend="AND" property="ruleId">
+                      RULE_ID = #ruleId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <sql id="ParmRewRule.findAll.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="ruleSts">
+                  <isNotEmpty prepend="AND" property="ruleSts">
+                      RULE_STS = #ruleSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="ruleId">
+                  <isNotEmpty prepend="AND" property="ruleId">
+                      RULE_ID = #ruleId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="sceneNo">
+                  <isNotEmpty prepend="AND" property="sceneNo">
+                      SCENE_NO=#sceneNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ParmRewRule.findPage.count" resultClass="int">
+        SELECT count(*) FROM PARM_REW_RULE <include refid="ParmRewRule.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ParmRewRule.findByPage" resultMap="RM.ParmRewRule">
+        SELECT <include refid="ParmRewRule.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ParmRewRule.columns"/> FROM PARM_REW_RULE
+                    <include refid="ParmRewRule.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--查询状态 -->
+    <select id="ParmRewRule.findAll" resultMap="RM.ParmRewRule">
+        SELECT <include refid="ParmRewRule.columns"/>
+        FROM PARM_REW_RULE
+        <include refid="ParmRewRule.findAll.where"/>  
+        order by rule_id
+    </select>
+</sqlMap>

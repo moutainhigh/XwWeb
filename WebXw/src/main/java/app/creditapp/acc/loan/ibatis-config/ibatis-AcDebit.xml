@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcDebit" type="app.creditapp.acc.loan.entity.AcDebit"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcDebit" class="AcDebit">
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="traceCnt" column="TRACE_CNT" jdbcType="Int"/>
+    <result property="debitNo" column="DEBIT_NO" />
+    <result property="txDt" column="TX_DT" />
+    <result property="dcNo" column="DC_NO" jdbcType="Int"/>
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="acctBankCde" column="ACCT_BANK_CDE" />
+    <result property="acNo" column="AC_NO" />
+    <result property="xtAcNo" column="XT_AC_NO" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="debitType" column="DEBIT_TYPE" />
+    <result property="atpyAmt" column="ATPY_AMT" jdbcType="double"/>
+    <result property="loAmt" column="LO_AMT" jdbcType="double"/>
+    <result property="curAmt" column="CUR_AMT" jdbcType="double"/>
+    <result property="myFeeAmt" column="MY_FEE_AMT" jdbcType="double"/>
+    <result property="otherFeeAmt" column="OTHER_FEE_AMT" jdbcType="double"/>
+    <result property="repayAmt" column="REPAY_AMT" jdbcType="double"/>
+    <result property="sts" column="STS" />
+    <result property="createDt" column="CREATE_DT" />
+    <result property="spoolDt" column="SPOOL_DT" />
+    <result property="rtnDt" column="RTN_DT" />
+    <result property="rtnTime" column="RTN_TIME" />
+    <result property="rtnTraceNo" column="RTN_TRACE_NO" jdbcType="Int"/>
+    <result property="revseTraceNo" column="REVSE_TRACE_NO" jdbcType="Int"/>
+    <result property="errDesc" column="ERR_DESC" />
+    <result property="acType" column="AC_TYPE"/>
+    <result property="acName" column="AC_NAME"/>
+    <result property="bankCode" column="BANK_CODE"/>
+    <result property="bankProv" column="BANK_PROV"/>
+    <result property="bankCity" column="BANK_CITY"/>
+    <result property="bankSite" column="BANK_SITE"/>
+    <result property="busEntryType" column="BUS_ENTRY_TYPE" />
+    <result property="idType" column="ID_TYPE" />
+    <result property="idNo" column="ID_NO" />
+    <result property="phoneNo" column="PHONE_NO" />
+    <result property="validDate" column="VALID_DATE" />
+    <result property="cvvNo" column="CVV_NO" />
+    <result property="failCaus" column="FAIL_CAUS" />
+    <result property="cardChn" column="CARD_CHN" />
+    <result property="debitMold" column="DEBIT_MOLD" />
+    </resultMap>
+    <resultMap id="RM.AcDebitTwo" class="AcDebit">
+    <result property="txDt" column="TX_DT" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="atpyAmt" column="ATPY_AMT" jdbcType="double"/>
+    <result property="acName" column="AC_NAME"/>
+	<result property="curNo" column="CUR_NO" />
+    </resultMap>
+     <sql id="AcDebit.columns">
+        <![CDATA[
+         TRACE_NO,
+         TRACE_CNT,
+         DEBIT_NO,
+         TX_DT,
+         DC_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         ACCT_BANK_CDE,
+         AC_NO,
+         XT_AC_NO,
+         CUR_NO,
+         DEBIT_TYPE,
+         ATPY_AMT,
+         LO_AMT,
+         CUR_AMT,
+         MY_FEE_AMT,
+         OTHER_FEE_AMT,
+         REPAY_AMT,
+         STS,
+         CREATE_DT,
+         SPOOL_DT,
+         RTN_DT,
+         RTN_TIME,
+         RTN_TRACE_NO,
+         REVSE_TRACE_NO,
+         ERR_DESC,
+         AC_TYPE,
+         AC_NAME,
+         BANK_CODE,
+         BANK_PROV,
+         BANK_CITY,
+         BANK_SITE,
+         BUS_ENTRY_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO,
+         FAIL_CAUS,
+         CARD_CHN,
+         DEBIT_MOLD
+          ]]>
+    </sql>
+    <sql id="AcDebit.columnsTwo">
+        <![CDATA[
+         TX_DT,       
+         PACT_NO,
+         BR_NO,   
+         ATPY_AMT,        
+         AC_NAME,
+         CUR_NO
+          ]]>
+    </sql>
+    <typeAlias alias="AcDebitFor2305" type="app.creditapp.inf.entity.WsOut2305_1"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcDebitFor2305" class="AcDebitFor2305">
+    <result property="serialNo" column="DEBIT_NO" />
+    <result property="txDate" column="TX_DT" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="feeTotal" column="OTHER_FEE_AMT" jdbcType="double" nullValue="0"/>
+    <result property="repayTotal" column="REPAY_AMT" jdbcType="double" nullValue="0"/>
+    <result property="dealSts" column="STS" />
+    <result property="dealDesc" column="FAIL_CAUS" />
+    </resultMap>
+    <sql id="AcDebit.columnsFor2305">
+        <![CDATA[
+         DEBIT_NO,
+         TX_DT,
+         PACT_NO,
+         OTHER_FEE_AMT,
+         REPAY_AMT,
+         STS,
+         FAIL_CAUS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcDebit.insert">
+        <![CDATA[
+        INSERT INTO AC_DEBIT(
+         TRACE_NO,
+         TRACE_CNT,
+         DEBIT_NO,
+         TX_DT,
+         DC_NO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         ACCT_BANK_CDE,
+         AC_NO,
+         XT_AC_NO,
+         CUR_NO,
+         DEBIT_TYPE,
+         ATPY_AMT,
+         LO_AMT,
+         CUR_AMT,
+         MY_FEE_AMT,
+         OTHER_FEE_AMT,
+         REPAY_AMT,
+         STS,
+         CREATE_DT,
+         SPOOL_DT,
+         RTN_DT,
+         RTN_TIME,
+         RTN_TRACE_NO,
+         REVSE_TRACE_NO,
+         ERR_DESC,
+         AC_TYPE,
+         AC_NAME,
+         BANK_CODE,
+         BANK_PROV,
+         BANK_CITY,
+         BANK_SITE,
+         BUS_ENTRY_TYPE,
+         ID_TYPE,
+         ID_NO,
+         PHONE_NO,
+         VALID_DATE,
+         CVV_NO,
+         FAIL_CAUS,
+         CARD_CHN,
+         DEBIT_MOLD
+         )VALUES(
+         #traceNo#,
+         #traceCnt#,
+         #debitNo#,
+         #txDt#,
+         #dcNo#,
+         #loanNo#,
+         #pactNo#,
+         #brNo#,
+         #acctBankCde#,
+         #acNo#,
+         #xtAcNo#,
+         #curNo#,
+         #debitType#,
+         #atpyAmt#,
+         #loAmt#,
+         #curAmt#,
+         #myFeeAmt#,
+         #otherFeeAmt#,
+         #repayAmt#,
+         #sts#,
+         #createDt#,
+         #spoolDt#,
+         #rtnDt#,
+         #rtnTime#,
+         #rtnTraceNo#,
+         #revseTraceNo#,
+         #errDesc#,
+         #acType#,
+         #acName#,
+         #bankCode#,
+         #bankProv#,
+         #bankCity#,
+         #bankSite#,
+         #busEntryType#,
+         #idType#,
+         #idNo#,
+         #phoneNo#,
+         #validDate#,
+         #cvvNo#,
+         #failCaus#,
+         #cardChn#,
+         #debitMold#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcDebit.del">
+        <![CDATA[
+               DELETE FROM AC_DEBIT
+                 WHERE
+               	TRACE_NO = #traceNo#        ]]>
+    </delete>
+    <!-- 删除 未发送批扣-->
+    <delete id="AcDebit.delBySts">
+        <![CDATA[
+               DELETE FROM AC_DEBIT
+                 WHERE
+               	pact_no = #pactNo#  AND br_no = #brNo#  and sts = #sts#     ]]>
+    </delete>
+    <!-- 删除某个状态的批扣文件 -->
+    <delete id="AcDebit.delByLoanNoAndSts">
+        <![CDATA[
+               DELETE FROM AC_DEBIT
+                 WHERE
+               	LOAN_NO = #loanNo# AND STS=#sts#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcDebit.update">
+        <![CDATA[
+         UPDATE AC_DEBIT set
+         TRACE_NO=#traceNo#,
+         TRACE_CNT=#traceCnt#,
+         DEBIT_NO=#debitNo#,
+         TX_DT=#txDt#,
+         DC_NO=#dcNo#,
+         LOAN_NO=#loanNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         ACCT_BANK_CDE=#acctBankCde#,
+         AC_NO=#acNo#,
+         XT_AC_NO=#xtAcNo#,
+         CUR_NO=#curNo#,
+         DEBIT_TYPE=#debitType#,
+         ATPY_AMT=#atpyAmt#,
+         LO_AMT=#loAmt#,
+         CUR_AMT=#curAmt#,
+         MY_FEE_AMT=#myFeeAmt#,
+         OTHER_FEE_amt=#otherFeeAmt#,
+         REPAY_AMT=#repayAmt#,
+         STS=#sts#,
+         CREATE_DT=#createDt#,
+         SPOOL_DT=#spoolDt#,
+         RTN_DT=#rtnDt#,
+         RTN_TIME=#rtnTime#,
+         RTN_TRACE_NO=#rtnTraceNo#,
+         REVSE_TRACE_NO=#revseTraceNo#,
+         ERR_DESC=#errDesc#,
+         AC_TYPE=#acType#,
+         AC_NAME=#acName#,
+         BANK_CODE=#bankCode#,
+         BANK_PROV=#bankProv#,
+         BANK_CITY=#bankCity#,
+         BANK_SITE=#bankSite#,
+         BUS_ENTRY_TYPE=#busEntryType#,
+         ID_TYPE=#idType#,
+         ID_NO=#idNo#,
+         PHONE_NO=#phoneNo#,
+         VALID_DATE=#validDate#,
+         CVV_NO=#cvvNo#,
+         FAIL_CAUS=#failCaus#,
+         CARD_CHN=#cardChn#,
+         DEBIT_MOLD=#debitMold#
+          WHERE
+               	TRACE_NO = #traceNo#        ]]>
+    </update>
+    
+    <!-- 更新批扣文件为已发送 -->
+    <update id="AcDebit.updateSts02">
+        <![CDATA[
+         UPDATE AC_DEBIT set
+         STS=#sts#
+          WHERE
+               	TRACE_NO = #traceNo#   and sts='01'     ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcDebit.getById"  resultMap="RM.AcDebit">
+        SELECT <include refid="AcDebit.columns"/>
+        <![CDATA[
+             FROM AC_DEBIT 
+         WHERE 
+               	TRACE_NO = #traceNo#        ]]>
+     </select>
+     <select id="AcDebit.getByLoanNoAndSts" resultMap="RM.AcDebit">
+     	SELECT <include refid="AcDebit.columns"/>
+        <![CDATA[
+               FROM AC_DEBIT 
+                 WHERE
+               	LOAN_NO = #loanNo# AND STS=#sts#        ]]>
+    </select>
+      <!-- 查询未决扣款
+    <select id="AcDebit.getByLoanNoIng"  resultMap="RM.AcDebit">
+        SELECT <include refid="AcDebit.columns"/>
+        <![CDATA[
+             FROM AC_DEBIT 
+         WHERE 
+               	LOAN_NO = #loanNo# AND STS='06' AND  ATPY_AMT>(NVL(MY_FEE_AMT,0)+NVL(OTHER_FEE_AMT,0))    ]]>
+     </select>
+      -->
+      <select id="AcDebit.getByLoanNoIng"  resultMap="RM.AcDebit">
+        SELECT <include refid="AcDebit.columns"/>
+        <![CDATA[
+             FROM AC_DEBIT 
+         WHERE 
+               	LOAN_NO = #loanNo# AND STS='02'  ]]> AND DEBIT_MOLD &lt;&gt; '08'
+     </select>
+     <select id="AcDebit.getByDebitNo"  resultMap="RM.AcDebit">
+        SELECT <include refid="AcDebit.columns"/>
+        <![CDATA[
+             FROM AC_DEBIT 
+         WHERE 
+               	debit_No = #debitNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcDebit.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="acName">
+                  <isNotEmpty prepend="AND" property="acName">
+                      AC_NAME = #acName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="txDt">
+                  <isNotEmpty prepend="AND" property="txDt">
+                      TX_DT = #txDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+            	  <isNotEmpty prepend="AND" property="loginid">
+                      BR_NO in (select br_no from proj_base where proj_no in (select proj_no from proj_mang where login_id = #loginid#))
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!--接口2305分页查询  方法开始-->
+      <!-- A类扣款结果查询 查找条件-->
+    <sql id="AcDebit.findPage.whereFor2305">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="txDt">
+                  <isNotEmpty prepend="AND" property="txDt">
+                      TX_DT = #txDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <!-- 分页查询记录数 -->
+    <select id="AcDebit.findPage.countFor2305" resultClass="int">
+        SELECT count(*) FROM AC_DEBIT <include refid="AcDebit.findPage.whereFor2305"/>
+    </select>
+     <!-- 分页查询 -->
+    <select id="AcDebit.findByPageFor2305" resultMap="RM.AcDebitFor2305">
+        SELECT <include refid="AcDebit.columnsFor2305"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcDebit.columnsFor2305"/> FROM AC_DEBIT
+                    <include refid="AcDebit.findPage.whereFor2305"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!--接口2305分页查询  方法结束-->
+    
+    
+    <!-- 分页查询 -->
+    <!-- 分页查询记录数 -->
+    <select id="AcDebit.findPage.count" resultClass="int">
+        SELECT count(distinct PACT_NO) FROM AC_DEBIT <include refid="AcDebit.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcDebit.findByPage" resultMap="RM.AcDebitTwo">
+        SELECT 
+        	<include refid="AcDebit.columnsTwo"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT distinct  
+            		<include refid="AcDebit.columnsTwo"/>
+         	FROM AC_DEBIT
+            <include refid="AcDebit.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+     <!-- 查询需要发送的定时扣款 -->
+     <!-- SELECT <include refid="AcDebit.columns"/>
+        from ac_debit where CREATE_DT=#createDt# and sts = '01' and br_no = #brNo# -->
+    <select id="AcDebit.findTimDebit" resultMap="RM.AcDebit">
+        SELECT   T.TRACE_NO,
+		         T.TRACE_CNT,
+		         T.DEBIT_NO,
+		         T.TX_DT,
+		         T.DC_NO,
+		         T.LOAN_NO,
+		         T.PACT_NO,
+		         T.BR_NO,
+		         T.ACCT_BANK_CDE,
+		         T.AC_NO,
+		         T.XT_AC_NO,
+		         T.CUR_NO,
+		         T.DEBIT_TYPE,
+		         T.ATPY_AMT,
+		         T.LO_AMT,
+		         T.CUR_AMT,
+		         T.MY_FEE_AMT,
+		         T.OTHER_FEE_AMT,
+		         T.REPAY_AMT,
+		         T.STS,
+		         T.CREATE_DT,
+		         T.SPOOL_DT,
+		         T.RTN_DT,
+		         T.RTN_TIME,
+		         T.RTN_TRACE_NO,
+		         T.REVSE_TRACE_NO,
+		         T.ERR_DESC,
+		         T.AC_TYPE,
+		         T.AC_NAME,
+		         T.BANK_CODE,
+		         T.BANK_PROV,
+		         T.BANK_CITY,
+		         T.BANK_SITE,
+		         T.BUS_ENTRY_TYPE,
+		         T.ID_TYPE,
+		         T.ID_NO,
+		         T.PHONE_NO,
+		         T.VALID_DATE,
+		         T.CVV_NO,
+		         T.FAIL_CAUS,
+		         T.CARD_CHN,
+		         T.DEBIT_MOLD
+		  FROM AC_DEBIT T, CORP_BASE E
+		 WHERE T.BR_NO = E.BR_NO
+		   AND E.BR_ACC_TYPE = 'A'
+		   AND T.CREATE_DT=#createDt#
+		   AND T.STS = '01'
+    </select>
+    <select id="AcDebit.getBySts" resultMap="RM.AcDebit">
+        SELECT <include refid="AcDebit.columns"/>
+        from ac_debit where sts = #sts# and loan_no = #loanNo#
+    </select>
+    <!--扣款账号变更-->
+    <select id="AcDebit.getByDtAndSts" resultMap="RM.AcDebit">
+        SELECT <include refid="AcDebit.columns"/>
+        from ac_debit where sts = #sts# and loan_no = #loanNo# and CREATE_DT=#createDt#
+    </select>
+    <!--获取扣款失败数量-->
+    <select id="AcDebit.getFailCount" resultClass="int">
+        select count(0) from AC_DEBIT where loan_no =#loan_no#  and substr(rtn_time,0,8) = #rtn_time# and sts = #sts#
+    </select>
+</sqlMap>

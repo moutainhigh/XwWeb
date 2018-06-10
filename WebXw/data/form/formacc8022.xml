@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="GB2312"?>
+<form id="acc8022" title="公共币种配置,编辑form">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="curNo" fieldtype="1" fieldwidth="30" formactiveid="1" labelalign="3" labelcol="1" labelname="币种" labelwidth="20" maxlength="3" mustinput="1" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="curNoName" fieldtype="1" fieldwidth="30" formactiveid="2" labelalign="3" labelcol="3" labelname="币种名称" labelwidth="20" maxlength="20" mustinput="1" row="1"/>
+<formelement datatype="3" fieldalign="1" fieldcol="2" fieldname="curBase" fieldtype="1" formactiveid="4" labelalign="3" labelcol="1" labelname="计算基础" maxlength="3" mustinput="1" row="2"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="useInd" fieldsize="AC_YES_NO" fieldtype="2" formactiveid="5" labelalign="3" labelcol="3" labelname="是否启用" maxlength="10" mustinput="1" row="2"/>
+</form>

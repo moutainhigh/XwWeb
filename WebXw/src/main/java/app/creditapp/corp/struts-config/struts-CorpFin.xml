@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="CorpFinAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="CorpFinAction_findByPage" method="findByPage" class="app.creditapp.corp.action.CorpFinAction">
+			<result name="list">/creditapp/corp/CorpFin_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="CorpFinAction_input" method="input" class="app.creditapp.corp.action.CorpFinAction">
+			<result name="input">/creditapp/corp/CorpFin_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="CorpFinAction_del" method="del" class="app.creditapp.corp.action.CorpFinAction">
+			<result name="list">/creditapp/corp/CorpFin_listQuotaForCorp.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="CorpFinAction_getById" method="getById" class="app.creditapp.corp.action.CorpFinAction">
+			<result name="detail">/creditapp/corp/CorpFin_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="CorpFinActionInsert" method="insert" class="app.creditapp.corp.action.CorpFinAction">
+			<result name="input">/creditapp/corp/CorpFin_Insert.jsp</result>
+			<result name="detail">/creditapp/corp/CorpFin_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="CorpFinActionUpdate" method="update" class="app.creditapp.corp.action.CorpFinAction">
+			<result name="input">/creditapp/corp/CorpFin_Detail.jsp</result>
+			<result name="detail">/creditapp/corp/CorpFin_Detail.jsp</result>
+		</action>
+		<!-- 根据合作机构号显示所有的的caiwu信息 -->
+		<action name="CorpFinAction_listQuotaForCorp" method="listQuotaForCorp" class="app.creditapp.corp.action.CorpFinAction">
+			<result name="list">/creditapp/corp/CorpFin_listQuotaForCorp.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

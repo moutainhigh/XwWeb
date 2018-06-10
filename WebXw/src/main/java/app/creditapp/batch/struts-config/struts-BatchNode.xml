@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="BatchNodeAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="BatchNodeAction_findByPage" method="findByPage" class="app.creditapp.batch.action.BatchNodeAction">
+			<result name="list">/creditapp/batch/BatchNode_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="BatchNodeAction_input" method="input" class="app.creditapp.batch.action.BatchNodeAction">
+			<result name="input">/creditapp/batch/BatchNode_Insert.jsp</result>
+		</action>
+		
+		<!--tab页面-->
+		<action name="BatchNodeAction_getTab" method="getTab" class="app.creditapp.batch.action.BatchNodeAction">
+			<result name="tab">/creditapp/batch/BatchNode_Tab.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="BatchNodeAction_del" method="del" class="app.creditapp.batch.action.BatchNodeAction">
+			<result name="list">/creditapp/batch/BatchNode_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="BatchNodeAction_getById" method="getById" class="app.creditapp.batch.action.BatchNodeAction">
+			<result name="detail">/creditapp/batch/BatchNode_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="BatchNodeActionInsert" method="insert" class="app.creditapp.batch.action.BatchNodeAction">
+			<result name="input">/creditapp/batch/BatchNode_Insert.jsp</result>
+			<result name="detail">/creditapp/batch/BatchNode_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="BatchNodeActionUpdate" method="update" class="app.creditapp.batch.action.BatchNodeAction">
+			<result name="input">/creditapp/batch/BatchNode_Detail.jsp</result>
+			<result name="detail">/creditapp/batch/BatchNode_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

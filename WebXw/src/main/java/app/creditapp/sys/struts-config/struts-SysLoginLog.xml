@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysLoginLogAction" namespace="/" extends="struts-cms">
+		
+		<action name="SysLoginLogAction_*" method="{1}" class="app.creditapp.sys.action.SysLoginLogAction">
+          <result name="list">/creditapp/sys/SysLoginLog_List.jsp</result>
+          <result name="input">/creditapp/sys/SysLoginLog_InsertOrUpdate.jsp</result>
+          <result name="input_result">/creditapp/sys/SysLoginLog_InsertOrUpdate_result.jsp</result>
+          <result name="del_result">/creditapp/common/deleteinfo.jsp</result>
+        </action>
+        
+    	<action name="SysLoginLogActioninsertOrUpdate" method="insertOrUpdate" class="app.creditapp.sys.action.SysLoginLogAction">
+      		<interceptor-ref name="token"></interceptor-ref>
+      		<interceptor-ref name="defaultStack"></interceptor-ref>
+      		<result name="input_result">/creditapp/sys/SysLoginLog_InsertOrUpdate_result.jsp</result>
+    	</action>
+	</package>
+</struts>
+
+
+

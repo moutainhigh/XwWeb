@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="GB2312"?>
+<table id="acc8017" link="AcTxDcRelAction_findByPage.action" para="eadis_page" title="分录配置下的交易分录关系表list" type="2">
+<tableitem align="2" filedname="txCde" id="1" indexed="1" label="交易名称" row="1" type="6" typepara="AC_TX_CDE"/>
+</table>

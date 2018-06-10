@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="infbkmeg0002" title="接口返回信息表">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="backMegKey" fieldtype="1" maxlength="10" formactiveid="1" labelalign="3" labelcol="1" labelname="返回信息编码" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="interfaceName" fieldtype="1" maxlength="20" formactiveid="2" labelalign="3" labelcol="3" labelname="接口名称" mustinput="0" row="1"/>
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="backMegDes" fieldtype="1" maxlength="100" formactiveid="3" labelalign="3" labelcol="1" labelname="返回信息描述" mustinput="0" row="2"/>
+</form>

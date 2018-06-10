@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AcReplanFormulaAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AcReplanFormulaAction_*" method="{1}" class="app.creditapp.acc.option.action.AcReplanFormulaAction">
+			<result name="list">/creditapp/acc/option/AcReplanFormula_List.jsp</result>
+			<result name="input">/creditapp/acc/option/AcReplanFormula_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/option/AcReplanFormula_Detail.jsp</result>
+			<result name="listForPop">/creditapp/acc/option/AcReplanFormula_ListForPop.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="AcReplanFormulaActionInsert" method="insert" class="app.creditapp.acc.option.action.AcReplanFormulaAction">
+			<result name="input">/creditapp/acc/option/AcReplanFormula_Insert.jsp</result>
+			<result name="detail">/creditapp/acc/option/AcReplanFormula_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="AcReplanFormulaActionUpdate" method="update" class="app.creditapp.acc.option.action.AcReplanFormulaAction">
+			<result name="input">/creditapp/acc/option/AcReplanFormula_Detail.jsp</result>
+			<result name="detail">/creditapp/acc/option/AcReplanFormula_Detail.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+

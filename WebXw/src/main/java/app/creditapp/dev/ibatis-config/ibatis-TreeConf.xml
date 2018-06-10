@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="TreeConf" type="app.creditapp.dev.entity.TreeConf"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.TreeConf" class="TreeConf">
+    <result property="tri_lev" column="TRI_LEV" />
+    <result property="select_type" column="SELECT_TYPE" />
+    <result property="sql" column="SQL" />
+    <result property="scene_desc" column="SCENE_DESC" />
+    <result property="scene_id" column="SCENE_ID" />
+    <result property="params" column="PARAMS" />
+    <result property="tri_func" column="TRI_FUNC" />
+    </resultMap>
+     <sql id="TreeConf.columns">
+        <![CDATA[
+         TRI_LEV,
+         SELECT_TYPE,
+         SQL,
+         SCENE_DESC,
+         SCENE_ID,
+         PARAMS,
+         TRI_FUNC
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="TreeConf.insert">
+        <![CDATA[
+        INSERT INTO TREE_CONF(
+         TRI_LEV,
+         SELECT_TYPE,
+         SQL,
+         SCENE_DESC,
+         SCENE_ID,
+         PARAMS,
+         TRI_FUNC
+         )VALUES(
+         #tri_lev#,
+         #select_type#,
+         #sql#,
+         #scene_desc#,
+         #scene_id#,
+         #params#,
+         #tri_func#
+         )
+          ]]>
+        <selectKey resultClass="java.lang.String" type="pre" keyProperty="scene_id" >
+			SELECT TREE_CONF_SEQ.NEXTVAL AS scene_id FROM DUAL
+        </selectKey>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="TreeConf.del">
+        <![CDATA[
+               DELETE FROM TREE_CONF
+                 WHERE
+               	SCENE_ID = #scene_id#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="TreeConf.update">
+        <![CDATA[
+         UPDATE TREE_CONF set
+         TRI_LEV=#tri_lev#,
+         SELECT_TYPE=#select_type#,
+         SQL=#sql#,
+         SCENE_DESC=#scene_desc#,
+         SCENE_ID=#scene_id#,
+         PARAMS=#params#,
+         TRI_FUNC=#tri_func#
+          WHERE
+               	SCENE_ID = #scene_id#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="TreeConf.getById"  resultMap="RM.TreeConf">
+        SELECT <include refid="TreeConf.columns"/>
+        <![CDATA[
+             FROM TREE_CONF 
+         WHERE 
+               	SCENE_ID = #scene_id#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="TreeConf.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="tri_lev">
+                  <isNotEmpty prepend="AND" property="tri_lev">
+                      TRI_LEV = #tri_lev#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="select_type">
+                  <isNotEmpty prepend="AND" property="select_type">
+                      SELECT_TYPE = #select_type#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="sql">
+                  <isNotEmpty prepend="AND" property="sql">
+                      SQL = #sql#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="scene_desc">
+                  <isNotEmpty prepend="AND" property="scene_desc">
+                      SCENE_DESC like '%$scene_desc$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="scene_id">
+                  <isNotEmpty prepend="AND" property="scene_id">
+                      SCENE_ID = #scene_id#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="params">
+                  <isNotEmpty prepend="AND" property="params">
+                      PARAMS = #params#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="tri_func">
+                  <isNotEmpty prepend="AND" property="tri_func">
+                      TRI_FUNC = #tri_func#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="TreeConf.findPage.count" resultClass="int">
+        SELECT count(*) FROM TREE_CONF <include refid="TreeConf.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="TreeConf.findByPage" resultMap="RM.TreeConf">
+        SELECT <include refid="TreeConf.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="TreeConf.columns"/> FROM TREE_CONF
+                    <include refid="TreeConf.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

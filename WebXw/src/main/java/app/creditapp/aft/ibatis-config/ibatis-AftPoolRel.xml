@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AftPoolRel" type="app.creditapp.aft.entity.AftPoolRel"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AftPoolRel" class="AftPoolRel">
+    <result property="poolId" column="POOL_ID" />
+    <result property="pactId" column="PACT_ID" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="cifNo" column="CIF_NO" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="dueAmt" column="DUE_AMT" jdbcType="double"/>
+    <result property="bal" column="BAL" jdbcType="double"/>
+    <result property="intst" column="INTST" jdbcType="double"/>
+    <result property="begDate" column="BEG_DATE" />
+    <result property="endDate" column="END_DATE" />
+    <result property="fiveSts" column="FIVE_STS" />
+    <result property="poolDate" column="POOL_DATE" />
+    <result property="poolSts" column="POOL_STS" />
+    <result property="opNo" column="OP_NO" />
+    <result property="txDate" column="TX_DATE" />
+    <result property="upDate" column="UP_DATE" />
+    <result property="brName" column="BR_NAME" />
+    </resultMap>
+     <sql id="AftPoolRel.columns">
+        <![CDATA[
+         POOL_ID,
+         PACT_ID,
+         PACT_NO,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         CIF_NO,
+         CIF_NAME,
+         DUE_AMT,
+         BAL,
+         INTST,
+         BEG_DATE,
+         END_DATE,
+         FIVE_STS,
+         POOL_DATE,
+         POOL_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AftPoolRel.insert">
+        <![CDATA[
+        INSERT INTO AFT_POOL_REL(
+         POOL_ID,
+         PACT_ID,
+         PACT_NO,
+         BR_NO,
+         CIF_NO,
+         CIF_NAME,
+         DUE_AMT,
+         BAL,
+         INTST,
+         BEG_DATE,
+         END_DATE,
+         FIVE_STS,
+         POOL_DATE,
+         POOL_STS,
+         OP_NO,
+         TX_DATE,
+         UP_DATE
+         )VALUES(
+         #poolId#,
+         #pactId#,
+         #pactNo#,
+         #brNo#,
+         #cifNo#,
+         #cifName#,
+         #dueAmt#,
+         #bal#,
+         #intst#,
+         #begDate#,
+         #endDate#,
+         #fiveSts#,
+         #poolDate#,
+         #poolSts#,
+         #opNo#,
+         #txDate#,
+         #upDate#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AftPoolRel.del">
+        <![CDATA[
+               DELETE FROM AFT_POOL_REL
+                 WHERE
+               	POOL_ID = #poolId#        ]]>
+    </delete>
+    
+    <!-- 表删除  根据合同id和资金池id -->
+    <delete id="AftPoolRel.delect">
+        <![CDATA[
+               DELETE FROM AFT_POOL_REL
+                 WHERE
+               	POOL_ID = #poolId#
+               	 AND
+               	PACT_ID = #pactId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AftPoolRel.update">
+        <![CDATA[
+         UPDATE AFT_POOL_REL set
+         POOL_ID=#poolId#,
+         PACT_ID=#pactId#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         CIF_NO=#cifNo#,
+         CIF_NAME=#cifName#,
+         DUE_AMT=#dueAmt#,
+         BAL=#bal#,
+         INTST=#intst#,
+         BEG_DATE=#begDate#,
+         END_DATE=#endDate#,
+         FIVE_STS=#fiveSts#,
+         POOL_DATE=#poolDate#,
+         POOL_STS=#poolSts#,
+         OP_NO=#opNo#,
+         TX_DATE=#txDate#,
+         UP_DATE=#upDate#
+          WHERE
+               	POOL_ID = #poolId#        ]]>
+    </update>
+        
+     <!-- 通过fundNo将ln_due中的数据批量插入aft_pool_rel表中 -->
+    <insert id="AftPoolRel.insertList">
+        <![CDATA[
+        insert into AFT_POOL_REL
+		  (select #poolId#,
+		          PACT_ID,
+		          PACT_NO,
+		          BR_NO,
+		          Cif_No,
+		          Cif_Name,
+		          Due_Amt,
+		          Bal,
+		          NORM_INT,
+		          Beg_Date,
+		          END_DATE,
+		          Five_Sts,
+		          TO_CHAR(SYSDATE, 'yyyymmdd'),
+		          #poolSts#,
+		          #opNo#,
+		          TO_CHAR(SYSDATE, 'yyyymmdd'),
+		          TO_CHAR(SYSDATE, 'yyyymmdd')
+		     from ln_due
+		    where fund_no = #fundNo#)        ]]>
+     </insert>
+     
+     <!-- 表查询ById -->
+    <select id="AftPoolRel.getById"  resultMap="RM.AftPoolRel">
+        SELECT <include refid="AftPoolRel.columns"/>
+        <![CDATA[
+             FROM AFT_POOL_REL 
+         WHERE 
+               	POOL_ID = #poolId#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AftPoolRel.findPage.where">
+        <dynamic prepend="where">
+        <isPropertyAvailable property="poolId">
+                  <isNotEmpty prepend="AND" property="poolId">
+                      POOL_ID = #poolId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactId">
+                  <isNotEmpty prepend="AND" property="pactId">
+                      PACT_Id = #pactId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifNo">
+                  <isNotEmpty prepend="AND" property="cifNo">
+                      CIF_NO = #cifNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      CIF_NAME like '%$cifName$%'
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="poolSts">
+                  <isNotEmpty prepend="AND" property="poolSts">
+                      POOL_STS = #poolSts#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AftPoolRel.findPage.count" resultClass="int">
+        SELECT count(*) FROM AFT_POOL_REL <include refid="AftPoolRel.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AftPoolRel.findByPage" resultMap="RM.AftPoolRel">
+        SELECT <include refid="AftPoolRel.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AftPoolRel.columns"/> FROM AFT_POOL_REL
+                    <include refid="AftPoolRel.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

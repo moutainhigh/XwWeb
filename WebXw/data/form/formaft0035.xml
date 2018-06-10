@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+<form id="aft0035" title="抽查回访">
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="dueNo" fieldtype="1" maxlength="14" formactiveid="1" labelalign="3" labelcol="1" labelname="借据号" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="chkId" fieldtype="1" maxlength="12" formactiveid="2" labelalign="3" labelcol="3" labelname="抽查回访ID" mustinput="0" row="1" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="pactId" fieldtype="1" maxlength="14" formactiveid="3" labelalign="3" labelcol="1" labelname="合同ID" mustinput="0" row="2" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="pactNo" fieldtype="1" maxlength="40" formactiveid="4" labelalign="3" labelcol="3" labelname="合同编号" mustinput="0" row="2" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="brNo" fieldtype="1" maxlength="10" formactiveid="5" labelalign="3" labelcol="1" labelname="合作机构号码" mustinput="0" row="3" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="cifNo" fieldtype="1" maxlength="12" formactiveid="6" labelalign="3" labelcol="3" labelname="客户号码" mustinput="0" row="3" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="cifName" fieldtype="1" maxlength="30" formactiveid="7" labelalign="3" labelcol="1" labelname="客户名称" mustinput="0" row="4" />
+<formelement datatype="0" fieldalign="1" fieldcol="4" fieldname="prdtNo" fieldtype="1" maxlength="20" formactiveid="8" labelalign="3" labelcol="3" labelname="产品编号" mustinput="0" row="4" />
+<formelement datatype="0" fieldalign="1" fieldcol="2" fieldname="projNo" fieldtype="1" maxlength="20" formactiveid="9" labelalign="3" labelcol="1" labelname="信托项目编号" mustinput="0" row="5" />
+</form>

@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcTraceLog" type="app.creditapp.acc.log.entity.AcTraceLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcTraceLog" class="AcTraceLog">
+    <result property="traceCnt" column="TRACE_CNT" jdbcType="Int"/>
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="txDt" column="TX_DT" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="txBrNo" column="TX_BR_NO" />
+    <result property="txCde" column="TX_CDE" />
+    <result property="subTxCde" column="SUB_TX_CDE" />
+    <result property="svcInd" column="SVC_IND" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="brNo" column="BR_NO"/>
+    <result property="pactNo" column="PACT_No" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="addInd" column="ADD_IND" />
+    <result property="ctInd" column="CT_IND" />
+    <result property="amt" column="AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="hstInd" column="HST_IND" />
+    <result property="cancelInd" column="CANCEL_IND" />
+    <result property="ejfno" column="EJFNO" jdbcType="Int"/>
+    <result property="ptTraceNo" column="PT_TRACE_NO" jdbcType="Int"/>
+    <result property="memo" column="MEMO" />
+    <result property="cancelTraceNo" column="CANCEL_TRACE_NO" />
+    <result property="appSts" column="APP_STS" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="cifNo" column="CIF_NO" />
+    </resultMap>
+    
+    <resultMap id="RM.AcTraceLogWf" class="AcTraceLog">
+    <result property="traceCnt" column="TRACE_CNT" jdbcType="Int"/>
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="txDt" column="TX_DT" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="txBrNo" column="TX_BR_NO" />
+    <result property="txCde" column="TX_CDE" />
+    <result property="subTxCde" column="SUB_TX_CDE" />
+    <result property="svcInd" column="SVC_IND" />
+    <result property="curNo" column="CUR_NO" />
+    <result property="prdtNo" column="PRDT_NO" />
+    <result property="brNo" column="BR_NO"/>
+    <result property="pactNo" column="PACT_No" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="addInd" column="ADD_IND" />
+    <result property="ctInd" column="CT_IND" />
+    <result property="amt" column="AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="hstInd" column="HST_IND" />
+    <result property="cancelInd" column="CANCEL_IND" />
+    <result property="ejfno" column="EJFNO" jdbcType="Int"/>
+    <result property="ptTraceNo" column="PT_TRACE_NO" jdbcType="Int"/>
+    <result property="memo" column="MEMO" />
+    <result property="cancelTraceNo" column="CANCEL_TRACE_NO" />
+    <result property="appSts" column="APP_STS" />
+    <result property="processId" column="PROCESS_ID" />
+    <result property="brName" column="BR_NAME" />
+    <result property="prdtName" column="PRDT_NAME" />
+    <result property="cifName" column="CIF_NAME" />
+    <result property="taskId" column="TASK_ID" />
+    <result property="url" column="EXECUTION_ID" />
+    </resultMap>
+ <!--接口ws3202返回字段-->
+    <typeAlias alias="WsOut3202_1" type="app.creditapp.inf.entity.WsOut3202_1"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcTraceLogforws3202" class="WsOut3202_1">
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="txDate" column="TX_DT" />
+    <result property="txTime" column="TX_TIME" />
+    <result property="txCode" column="TX_CDE" />
+    <result property="pactNo" column="PACT_No" />
+    <result property="txAmt" column="AMT" jdbcType="double" nullValue="0.00"/>
+    <result property="memo" column="MEMO" />
+    </resultMap>
+    
+    <sql id="AcTraceLogforws3202.columns">
+        <![CDATA[
+         TRACE_NO,
+         TX_DT,
+         TX_TIME,
+         TX_CDE,
+         PACT_NO,
+         AMT,
+         MEMO
+          ]]>
+    </sql>
+    <!--结束-->
+     <sql id="AcTraceLog.columns">
+        <![CDATA[
+         TRACE_CNT,
+         TRACE_NO,
+         TX_DT,
+         TX_TIME,
+         TX_BR_NO,
+         TX_CDE,
+         SUB_TX_CDE,
+         SVC_IND,
+         CUR_NO,
+         PRDT_NO,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         PACT_NO,
+         LOAN_NO,
+         ADD_IND,
+         CT_IND,
+         AMT,
+         HST_IND,
+         CANCEL_IND,
+         EJFNO,
+         PT_TRACE_NO,
+         MEMO,
+         CANCEL_TRACE_NO,
+         APP_STS,
+         PROCESS_ID,
+         FUN_GETPRDTNAME(PRDT_NO) as PRDT_NAME,
+         (select cif_no from ln_due where due_no = LOAN_NO) as cif_no,
+         (select cif_name from ln_due where due_no=LOAN_NO) as cif_name
+          ]]>
+          </sql>
+          
+           <sql id="AcTraceLog.columnsWf">
+        <![CDATA[
+         A.TRACE_CNT,
+         A.TRACE_NO,
+         A.TX_DT,
+         A.TX_TIME,
+         A.TX_BR_NO,
+         A.TX_CDE,
+         A.SUB_TX_CDE,
+         A.SVC_IND,
+         A.CUR_NO,
+         A.PRDT_NO,
+         A.BR_NO,
+         FUN_GETBRNAME(A.BR_NO) as BR_NAME,
+         A.PACT_NO,
+         A.LOAN_NO,
+         A.ADD_IND,
+         A.CT_IND,
+         A.AMT,
+         A.HST_IND,
+         A.CANCEL_IND,
+         A.EJFNO,
+         A.PT_TRACE_NO,
+         A.MEMO,
+         A.CANCEL_TRACE_NO,
+         A.APP_STS,
+         A.PROCESS_ID,
+         FUN_GETPRDTNAME(A.PRDT_NO) as PRDT_NAME,
+         (select cif_name from ln_due where due_no=A.LOAN_NO) as cif_name,
+         B.TASK_ID,
+         B.EXECUTION_ID
+          ]]>
+       </sql>
+          
+           <sql id="AcTraceLog.columnsWf2">
+        <![CDATA[
+         TRACE_CNT,
+         TRACE_NO,
+         TX_DT,
+         TX_TIME,
+         TX_BR_NO,
+         TX_CDE,
+         SUB_TX_CDE,
+         SVC_IND,
+         CUR_NO,
+         PRDT_NO,
+         BR_NO,
+         FUN_GETBRNAME(BR_NO) as BR_NAME,
+         PACT_NO,
+         LOAN_NO,
+         ADD_IND,
+         CT_IND,
+         AMT,
+         HST_IND,
+         CANCEL_IND,
+         EJFNO,
+         PT_TRACE_NO,
+         MEMO,
+         CANCEL_TRACE_NO,
+         APP_STS,
+         PROCESS_ID,
+         FUN_GETPRDTNAME(PRDT_NO) as PRDT_NAME,
+         (select cif_name from ln_due where due_no=LOAN_NO) as cif_name,
+         TASK_ID,
+         EXECUTION_ID
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcTraceLog.insert">
+        <![CDATA[
+        INSERT INTO AC_TRACE_LOG(
+         TRACE_CNT,
+         TRACE_NO,
+         TX_DT,
+         TX_TIME,
+         TX_BR_NO,
+         TX_CDE,
+         SUB_TX_CDE,
+         SVC_IND,
+         CUR_NO,
+         PRDT_NO,
+         BR_NO,
+         PACT_NO,
+         LOAN_NO,
+         ADD_IND,
+         CT_IND,
+         AMT,
+         HST_IND,
+         CANCEL_IND,
+         EJFNO,
+         PT_TRACE_NO,
+         MEMO,
+         CANCEL_TRACE_NO,
+         APP_STS,
+         PROCESS_ID
+         )VALUES(
+         #traceCnt#,
+         #traceNo#,
+         #txDt#,
+         #txTime#,
+         #txBrNo#,
+         #txCde#,
+         #subTxCde#,
+         #svcInd#,
+         #curNo#,
+         #prdtNo#,
+         #brNo#,
+         #pactNo#,
+         #loanNo#,
+         #addInd#,
+         #ctInd#,
+         #amt#,
+         #hstInd#,
+         #cancelInd#,
+         #ejfno#,
+         #ptTraceNo#,
+         #memo#,
+         #cancelTraceNo#,
+         #appSts#,
+         #processId#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcTraceLog.del">
+        <![CDATA[
+               DELETE FROM AC_TRACE_LOG
+                 WHERE
+               	TRACE_CNT = #traceCnt#  and trace_no = #traceNo#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcTraceLog.update">
+        <![CDATA[
+         UPDATE AC_TRACE_LOG set
+         TRACE_CNT=#traceCnt#,
+         TRACE_NO=#traceNo#,
+         TX_DT=#txDt#,
+         TX_TIME=#txTime#,
+         TX_BR_NO=#txBrNo#,
+         TX_CDE=#txCde#,
+         SUB_TX_CDE=#subTxCde#,
+         SVC_IND=#svcInd#,
+         CUR_NO=#curNo#,
+         PRDT_NO=#prdtNo#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         LOAN_NO=#loanNo#,
+         ADD_IND=#addInd#,
+         CT_IND=#ctInd#,
+         AMT=#amt#,
+         HST_IND=#hstInd#,
+         CANCEL_IND=#cancelInd#,
+         EJFNO=#ejfno#,
+         PT_TRACE_NO=#ptTraceNo#,
+         MEMO=#memo#,
+         CANCEL_TRACE_NO=#cancelTraceNo#,
+         APP_STS=#appSts#,
+         PROCESS_ID=#processId#
+          WHERE
+               	TRACE_CNT = #traceCnt#  and trace_no = #traceNo#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcTraceLog.getById"  resultMap="RM.AcTraceLog">
+        SELECT <include refid="AcTraceLog.columns"/>
+        <![CDATA[
+             FROM AC_TRACE_LOG 
+         WHERE 
+               	TRACE_CNT = #traceCnt#  and trace_no = #traceNo#
+        ]]>
+     </select>
+     
+     <select id="AcTraceLog.getByLoanNoAndTxCde"  resultMap="RM.AcTraceLog">
+          SELECT <include refid="AcTraceLog.columns"/> from(
+        SELECT <include refid="AcTraceLog.columns"/>
+        <![CDATA[
+             FROM AC_TRACE_LOG 
+         WHERE 
+               	loan_no=#loanNo# and tx_cde=#txCde# order by trace_no desc ) where rownum='1'
+        ]]>
+     </select>
+     
+      <!-- 表查询最近一笔日志 -->
+    <select id="AcTraceLog.getRecentTraceLog"  resultMap="RM.AcTraceLog">
+       SELECT  <include refid="AcTraceLog.columns"/> FROM 
+        (SELECT <include refid="AcTraceLog.columns"/>
+        <![CDATA[
+             FROM AC_TRACE_LOG 
+         WHERE 
+               loan_no=#loanNo# order by trace_no desc,trace_cnt desc)
+               WHERE  rownum='1' 
+        ]]>
+     </select>
+     
+ <!-- 表查询ById -->
+    <select id="AcTraceLog.getKey"  resultClass="String">
+        SELECT AC_TRACE_LOG_SEQ.NEXTVAL FROM DUAL
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcTraceLog.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      TRACE_NO = #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txDt">
+                  <isNotEmpty prepend="AND" property="txDt">
+                      TX_DT = #txDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      LOAN_NO = #loanNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_No = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="txCde">
+                  <isNotEmpty prepend="AND" property="txCde">
+                      TX_CDE = #txCde#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+     <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcTraceLog.findPage_Read.and">
+        	<isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      TRACE_NO = #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txDt">
+                  <isNotEmpty prepend="AND" property="txDt">
+                      TX_DT = #txDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="loanNo">
+                  <isNotEmpty prepend="AND" property="loanNo">
+                      LOAN_NO = #loanNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_No = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="txCde">
+                  <isNotEmpty prepend="AND" property="txCde">
+                      TX_CDE = #txCde#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+            
+    </sql>
+     <!-- 接口ws3202查询条件 -->
+    <sql id="AcTraceLogforws3202.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="txDt">
+                  <isNotEmpty prepend="AND" property="txDt">
+                      TX_DT = #txDt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!--接口ws3202返回列表-->
+      <select id="AcTraceLogforws3202.list" resultMap="RM.AcTraceLogforws3202">
+        SELECT <include refid="AcTraceLogforws3202.columns"/>
+         FROM AC_TRACE_LOG <include refid="AcTraceLogforws3202.where"/>
+    </select>
+    <!-- 分页查询记录数 -->
+    <select id="AcTraceLog.findPage.countforws3202" resultClass="int">
+        SELECT count(*) FROM AC_TRACE_LOG <include refid="AcTraceLogforws3202.where"/> 
+    </select>
+    <!--支持分页查询-->
+     <select id="AcTraceLog.findByPageforws3202" resultMap="RM.AcTraceLogforws3202">
+        SELECT <include refid="AcTraceLogforws3202.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcTraceLogforws3202.columns"/> FROM AC_TRACE_LOG
+                    <include refid="AcTraceLogforws3202.where"/> 
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    
+    <!--结束-->
+    <!-- 分页查询记录数 -->
+    <select id="AcTraceLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_TRACE_LOG <include refid="AcTraceLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcTraceLog.findByPage" resultMap="RM.AcTraceLog">
+    SELECT  <include refid="AcTraceLog.columns"/>
+         FROM(
+              SELECT m.*, rownum as rnum 
+              FROM
+              (SELECT    TRACE_CNT,
+				         TRACE_NO,
+				         TX_DT,
+				         TX_TIME,
+				         TX_BR_NO,
+				         TX_CDE,
+				         SUB_TX_CDE,
+				         SVC_IND,
+				         CUR_NO,
+				         PRDT_NO,
+				         BR_NO,
+				         PACT_NO,
+				         LOAN_NO,
+				         ADD_IND,
+				         CT_IND,
+				         AMT,
+				         HST_IND,
+				         CANCEL_IND,
+				         EJFNO,
+				         PT_TRACE_NO,
+				         MEMO,
+				         CANCEL_TRACE_NO,
+				         APP_STS,
+				         PROCESS_ID
+          FROM LN_BATCH
+                    <include refid="AcTraceLog.findPage.where"/> ORDER BY TRACE_NO DESC
+              ) m 
+               WHERE rownum &lt; #endNum#
+        )
+       WHERE rnum &gt;= #startNum#
+    </select>
+     <!-- 分页查询记录数 -->
+    <select id="AcTraceLog.findPage_Read.count" resultClass="int">
+        SELECT count(*) FROM AC_TRACE_LOG WHERE 1=1 <include refid="AcTraceLog.findPage_Read.and"/> AND TX_CDE IN('LNC4','LNAD','CGPD','LNUP','LNWV') ORDER BY TRACE_NO DESC
+    </select>
+     <!-- 分页查询 -->
+    <select id="AcTraceLog.findByPage_Read" resultMap="RM.AcTraceLog">
+        SELECT <include refid="AcTraceLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT  TRACE_CNT,
+			         TRACE_NO,
+			         TX_DT,
+			         TX_TIME,
+			         TX_BR_NO,
+			         TX_CDE,
+			         SUB_TX_CDE,
+			         SVC_IND,
+			         CUR_NO,
+			         PRDT_NO,
+			         BR_NO,
+			         PACT_NO,
+			         LOAN_NO,
+			         ADD_IND,
+			         CT_IND,
+			         AMT,
+			         HST_IND,
+			         CANCEL_IND,
+			         EJFNO,
+			         PT_TRACE_NO,
+			         MEMO,
+			         CANCEL_TRACE_NO,
+			         APP_STS,
+			         PROCESS_ID
+          FROM AC_TRACE_LOG where 1=1
+                    <include refid="AcTraceLog.findPage_Read.and"/>  AND TX_CDE IN('LNC4','LNAD','CGPD','LNUP','LNWV') ORDER BY TRACE_NO DESC
+                    
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+        	 <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      pact_no in (select pact_no from Ln_Pact where proj_no in (select proj_no from proj_mang where login_id = #loginid#))
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    
+     <!-- 冲账待办任务查询 -->
+    <select id="AcTraceLog.findPage.countForTask" resultClass="int">
+        SELECT count(*) FROM AC_TRACE_LOG A,
+                    (select p.APP_ID_ AS APP_ID ,p.DBID_ AS TASK_ID,p.EXECUTION_ID_ as EXECUTION_ID
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '02'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')) B WHERE A.TRACE_NO=B.APP_ID
+               
+               <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      A.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      A.BR_NO IN(SELECT BR_NO FROM CORP_BASE WHERE BR_NAME LIKE '%$brName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      A.LOAN_NO IN(SELECT LOAN_NO FROM AC_LN_MST WHERE CIF_NAME LIKE '%$cifName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcTraceLog.findByPageForTask" resultMap="RM.AcTraceLogWf">
+        SELECT <include refid="AcTraceLog.columnsWf2"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="AcTraceLog.columnsWf"/> FROM AC_TRACE_LOG A,
+                    (select p.APP_ID_ AS APP_ID ,p.DBID_ AS TASK_ID,p.EXECUTION_ID_ as EXECUTION_ID
+          from (select t.*
+                  from wf_task t
+                 where t.assignee_ = #userId#
+                union
+                select t.*
+                  from wf_task t, wf_participation p
+                 where p.task_ = t.dbid_
+                   and p.userid_ = #userId#
+                   and t.sign_state_ = 'unsigned'
+                union
+                select t.*
+                  from wf_task t, wf_participation p, wkf_approval_user u
+                 where p.task_ = t.dbid_
+                   and u.wkf_role_no = p.groupid_
+                   and (t.branch_ = #branchId# or u.wkf_br_no = p.branch_ or
+                       t.branch_ = 'all')
+                   and u.wkf_user_name = #userId#
+                   and t.sign_state_ = 'unsigned') p
+         where p.app_type_ = '02'
+           and ((p.approve_bylast_ = 'N' and p.last_operator_ != #userId#) or
+               p.approve_bylast_ = 'Y')) B WHERE A.TRACE_NO=B.APP_ID
+               
+               <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      A.PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brName">
+                  <isNotEmpty prepend="AND" property="brName">
+                      A.BR_NO IN(SELECT BR_NO FROM CORP_BASE WHERE BR_NAME LIKE '%$brName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="cifName">
+                  <isNotEmpty prepend="AND" property="cifName">
+                      A.LOAN_NO IN(SELECT LOAN_NO FROM AC_LN_MST WHERE CIF_NAME LIKE '%$cifName$%')
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

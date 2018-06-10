@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ProjMang" type="app.creditapp.proj.entity.ProjMang"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ProjMang" class="ProjMang">
+    <result property="loginId" column="LOGIN_ID" />
+    <result property="projNo" column="PROJ_NO" />
+    <result property="relId" column="REL_ID" />
+    <result property="userName" column="USE_NAME" />
+    <result property="prdtName" column="PROJ_NAME" />
+    <result property="perSOn" column="OP_NO" />
+    <result property="tiMe" column="TX_DATE" />
+    <result property="vipFlag" column="VIP_FLAG" />
+    <result property="perSOnName" column="PERSON_NAME" />
+  </resultMap>
+    <resultMap id="RM.ProjMangForManager" class="ProjMang">
+
+    <result property="id" column="ID" />
+    <result property="managers" column="MANAGERS" />
+    </resultMap>
+    
+    <!--如同过渡数据同步更新 proj_mang 表-->
+     <update id="ProjMangforvw.update">
+     
+    INSERT INTO PROJ_MANG
+    (REL_ID,
+     PROJ_NO,
+     LOGIN_ID
+     ) 
+    SELECT　
+    PROJ_MANG_SEQ.NEXTVAL,
+    VW.ID,
+  	VW.MANAGERS
+    FROM VW_BIZ_PROJECTINFO@TA_DBLINK VW
+    WHERE EXISTS (SELECT 1
+            FROM VW_CST_SYSDEPARTMENT@TA_DBLINK D
+           WHERE VW.DEPTID = D.ID
+             AND (D.PARENTID = '601' OR D.ID = '601'))
+     AND NOT EXISTS (SELECT 1 FROM PROJ_MANG P WHERE P.PROJ_NO = VW.ID)
+     AND VW.ISESTIMATESTATE = '5'
+    </update>
+    <!--结束-->
+    
+     <sql id="ProjMang.columns">
+        <![CDATA[
+         LOGIN_ID,
+         PROJ_NO,
+         REL_ID,
+         OP_NO,
+         TX_DATE,
+         fun_getusername(login_id) as USE_NAME,
+         FUN_GETPROJNAME(PROJ_NO) as PROJ_NAME,
+         VIP_FLAG,
+         fun_getusername(OP_NO) as PERSON_NAME
+          ]]>
+    </sql>
+    <!-- 表新增-->
+    <insert id="ProjMang.insert">
+         <![CDATA[
+         INSERT INTO PROJ_MANG(
+         LOGIN_ID,
+         PROJ_NO,
+         REL_ID,
+         OP_NO,
+         TX_DATE,
+         VIP_FLAG
+         )VALUES(
+         #loginId#,
+         #projNo#,
+         proj_mang_seq.nextval,
+         #perSOn#,
+         #tiMe#,
+         #vipFlag#
+         )
+          ]]>
+    </insert>
+    <!--表删除 -->
+    <delete id="ProjMang.del">
+        <![CDATA[
+               DELETE FROM PROJ_MANG
+                 WHERE
+               	REL_ID = #relId#        ]]>
+    </delete>
+    <!-- 表修改-->
+    <update id="ProjMang.update">
+        <![CDATA[
+         UPDATE PROJ_MANG set
+         LOGIN_ID=#loginId#,
+         PROJ_NO=#projNo#,
+         REL_ID=#relId#,
+         VIP_FLAG=#vipFlag#
+          WHERE
+               	proj_no = #projNo#    and  LOGIN_ID=#loginId#   ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ProjMang.getById"  resultMap="RM.ProjMang">
+        SELECT <include refid="ProjMang.columns"/>
+        <![CDATA[
+             FROM PROJ_MANG 
+         WHERE 
+               	proj_no = #projNo#     and  LOGIN_ID=#loginId#   ]]>
+     </select>
+         <select id="ProjMang.getByIdLoginId"  resultMap="RM.ProjMang">
+        SELECT <include refid="ProjMang.columns"/>
+        <![CDATA[
+             FROM PROJ_MANG 
+         WHERE 
+               	proj_no = #projNo#        ]]>
+     </select>
+       <!-- 根据实际情况选择分页查询条件-->
+    <sql id="ProjMang.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="loginId">
+                  <isNotEmpty prepend="AND" property="loginId">
+                      LOGIN_ID = #loginId#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="projNo">
+                  <isNotEmpty prepend="AND" property="projNo">
+                      PROJ_NO = #projNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数-->
+    <select id="ProjMang.findPage.count" resultClass="int">
+        SELECT count(*) FROM PROJ_MANG <include refid="ProjMang.findPage.where"/>
+    </select>
+    <!--  分页查询 -->
+    <select id="ProjMang.findByPage" resultMap="RM.ProjMang">
+        SELECT <include refid="ProjMang.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ProjMang.columns"/> FROM PROJ_MANG
+                    <include refid="ProjMang.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+        <!-- 通过视图，查询项目编号,项目经理 -->
+     <select id="ProjMang.findByPageForManager" resultMap="RM.ProjMangForManager">
+       select vw.id,vw.managers from VW_BIZ_PROJECTINFO@TA_DBLINK vw where exists(select 1 from proj_base pb where pb.proj_no=vw.id) and not exists (
+					select 1 from Proj_Mang pm where pm.proj_no=vw.id） 
+    </select>
+    <!--  获取KEY  -->
+    <select id="ProjMang.getKey" resultClass="string">
+   	 <![CDATA[ SELECT PROJ_MANG_SEQ.NEXTVAL FROM DUAL ]]>
+	</select>
+</sqlMap>

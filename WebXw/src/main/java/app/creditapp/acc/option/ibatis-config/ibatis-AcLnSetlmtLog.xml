@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="AcLnSetlmtLog" type="app.creditapp.acc.option.entity.AcLnSetlmtLog"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.AcLnSetlmtLog" class="AcLnSetlmtLog">
+    <result property="traceNo" column="TRACE_NO" />
+    <result property="remPrcpAmt" column="REM_PRCP_AMT" jdbcType="double"/>
+    <result property="curInt" column="CUR_INT" jdbcType="double"/>
+    <result property="feeAmt" column="FEE_AMT" jdbcType="double"/>
+    <result property="txDt" column="TX_DT" />
+    <result property="cancelInd" column="CANCEL_IND" />
+    <result property="cancelTraceNo" column="CANCEL_TRACE_NO" />
+    <result property="cancelDt" column="CANCEL_DT" />
+    <result property="cancelUsrId" column="CANCEL_USR_ID" />
+    <result property="memo" column="MEMO" />
+    <result property="loanNo" column="LOAN_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="brNo" column="BR_NO" />
+    <result property="recvAmt" column="RECV_AMT" jdbcType="double"/>
+    <result property="recvDt" column="RECV_DT" />
+    <result property="prcpAmt" column="PRCP_AMT" jdbcType="double"/>
+    <result property="normInt" column="NORM_INT" jdbcType="double"/>
+    <result property="fineInt" column="FINE_INT" jdbcType="double"/>
+    <result property="damAmt" column="DAM_AMT" jdbcType="double"/>
+    <result property="repayType" column="REPAY_TYPE" />
+    <result property="endDate" column="END_DATE" />
+    </resultMap>
+     <sql id="AcLnSetlmtLog.columns">
+        <![CDATA[
+         TRACE_NO,
+         REM_PRCP_AMT,
+         CUR_INT,
+         FEE_AMT,
+         TX_DT,
+         CANCEL_IND,
+         CANCEL_TRACE_NO,
+         CANCEL_DT,
+         CANCEL_USR_ID,
+         MEMO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         RECV_AMT,
+         RECV_DT,
+         PRCP_AMT,
+         NORM_INT,
+         FINE_INT,
+         DAM_AMT,
+         REPAY_TYPE,
+         END_DATE
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="AcLnSetlmtLog.insert">
+        <![CDATA[
+        INSERT INTO AC_LN_SETLMT_LOG(
+         TRACE_NO,
+         REM_PRCP_AMT,
+         CUR_INT,
+         FEE_AMT,
+         TX_DT,
+         CANCEL_IND,
+         CANCEL_TRACE_NO,
+         CANCEL_DT,
+         CANCEL_USR_ID,
+         MEMO,
+         LOAN_NO,
+         PACT_NO,
+         BR_NO,
+         RECV_AMT,
+         RECV_DT,
+         PRCP_AMT,
+         NORM_INT,
+         FINE_INT,
+         DAM_AMT,
+         REPAY_TYPE,
+         END_DATE
+         )VALUES(
+         #traceNo#,
+         #remPrcpAmt#,
+         #curInt#,
+         #feeAmt#,
+         #txDt#,
+         #cancelInd#,
+         #cancelTraceNo#,
+         #cancelDt#,
+         #cancelUsrId#,
+         #memo#,
+         #loanNo#,
+         #pactNo#,
+         #brNo#,
+         #recvAmt#,
+         #recvDt#,
+         #prcpAmt#,
+         #normInt#,
+         #fineInt#,
+         #damAmt#,
+         #repayType#,
+         #endDate#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="AcLnSetlmtLog.del">
+        <![CDATA[
+               DELETE FROM AC_LN_SETLMT_LOG
+                 WHERE
+               	TRACE_NO = #traceNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="AcLnSetlmtLog.update">
+        <![CDATA[
+         UPDATE AC_LN_SETLMT_LOG set
+         TRACE_NO=#traceNo#,
+         REM_PRCP_AMT=#remPrcpAmt#,
+         CUR_INT=#curInt#,
+         FEE_AMT=#feeAmt#,
+         TX_DT=#txDt#,
+         CANCEL_IND=#cancelInd#,
+         CANCEL_TRACE_NO=#cancelTraceNo#,
+         CANCEL_DT=#cancelDt#,
+         CANCEL_USR_ID=#cancelUsrId#,
+         MEMO=#memo#,
+         LOAN_NO=#loanNo#,
+         PACT_NO=#pactNo#,
+         BR_NO=#brNo#,
+         RECV_AMT=#recvAmt#,
+         RECV_DT=#recvDt#,
+         PRCP_AMT=#prcpAmt#,
+         NORM_INT=#normInt#,
+         FINE_INT=#fineInt#,
+         DAM_AMT=#damAmt#,
+         REPAY_TYPE=#repayType#,
+         END_DATE=#endDate#
+          WHERE
+               	TRACE_NO = #traceNo#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="AcLnSetlmtLog.getById"  resultMap="RM.AcLnSetlmtLog">
+        SELECT <include refid="AcLnSetlmtLog.columns"/>
+        <![CDATA[
+             FROM AC_LN_SETLMT_LOG 
+         WHERE 
+               	TRACE_NO = #traceNo#        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="AcLnSetlmtLog.findPage.where">
+        	<isPropertyAvailable property="traceNo">
+                  <isNotEmpty prepend="AND" property="traceNo">
+                      TRACE_NO = #traceNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="remPrcpAmt">
+                  <isNotEmpty prepend="AND" property="remPrcpAmt">
+                      REM_PRCP_AMT = #remPrcpAmt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="curInt">
+                  <isNotEmpty prepend="AND" property="curInt">
+                      CUR_INT = #curInt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="feeAmt">
+                  <isNotEmpty prepend="AND" property="feeAmt">
+                      FEE_AMT = #feeAmt#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="pactNo">
+                  <isNotEmpty prepend="AND" property="pactNo">
+                      PACT_NO = #pactNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="brNo">
+                  <isNotEmpty prepend="AND" property="brNo">
+                      BR_NO = #brNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+             <isPropertyAvailable property="loginid">
+                  <isNotEmpty prepend="AND" property="loginid">
+                      b.proj_no in (select proj_no from proj_mang where login_id = #loginid#)
+                   </isNotEmpty>
+             </isPropertyAvailable>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="AcLnSetlmtLog.findPage.count" resultClass="int">
+        SELECT count(*) FROM AC_LN_SETLMT_LOG a , ln_pact b where a.pact_no = b.pact_no<include refid="AcLnSetlmtLog.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="AcLnSetlmtLog.findByPage" resultMap="RM.AcLnSetlmtLog">
+        SELECT <include refid="AcLnSetlmtLog.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <![CDATA[
+         a.TRACE_NO,
+         a.REM_PRCP_AMT,
+         a.CUR_INT,
+         a.FEE_AMT,
+         a.TX_DT,
+         a.CANCEL_IND,
+         a.CANCEL_TRACE_NO,
+         a.CANCEL_DT,
+         a.CANCEL_USR_ID,
+         a.MEMO,
+         a.LOAN_NO,
+         a.PACT_NO,
+         a.BR_NO,
+         a.RECV_AMT,
+         a.RECV_DT,
+         a.PRCP_AMT,
+         a.NORM_INT,
+         a.FINE_INT,
+         a.DAM_AMT,
+         a.REPAY_TYPE,
+         a.END_DATE,
+         b.proj_no
+          ]]> FROM AC_LN_SETLMT_LOG a , ln_pact b where a.pact_no = b.pact_no
+                    <include refid="AcLnSetlmtLog.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

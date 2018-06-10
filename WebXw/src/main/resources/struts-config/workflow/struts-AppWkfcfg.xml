@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="AppWkfcfgAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="AppWkfcfgAction_findByPage" method="findByPage" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="list">/creditapp/wkf/AppWkfcfg_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AppWkfcfgAction_input" method="input" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="input">/creditapp/wkf/AppWkfcfg_Insert.jsp</result>
+		</action>
+		
+		<!--机构开办产品弹出pop页-->
+		<action name="AppWkfcfgAction_getWkfProdList" method="getWkfProdList" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="prodList">/creditapp/wkf/AppWkfcfg_prodNoList.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="AppWkfcfgActionInsert" method="insert" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="list">/creditapp/wkf/AppWkfcfg_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="AppWkfcfgAction_getById" method="getById" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="detail">/creditapp/wkf/AppWkfcfg_Detail.jsp</result>
+		</action>
+		
+		<!--修改保存-->
+		<action name="AppWkfcfgActionUpdate" method="update" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="input">/creditapp/wkf/AppWkfcfg_Detail.jsp</result>
+			<result name="detail">/creditapp/wkf/AppWkfcfg_Detail.jsp</result>
+		</action>
+		
+		<action name="AppWkfcfgAction_suspend" method="suspend" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="list">/creditapp/wkf/AppWkfcfg_List.jsp</result>
+		</action>
+		<action name="AppWkfcfgAction_activate" method="activate" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="list">/creditapp/wkf/AppWkfcfg_List.jsp</result>
+		</action>
+		<!-- 删除 -->
+		<action name="AppWkfcfgAction_delete" method="delete" class="app.creditapp.wkf.action.AppWkfcfgAction">
+			<result name="list">/creditapp/wkf/AppWkfcfg_List.jsp</result>
+		</action>
+		
+	</package>
+</struts>
+
+
+

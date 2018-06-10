@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="InterfaceBackMeg" type="app.creditapp.sys.entity.InterfaceBackMeg"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.InterfaceBackMeg" class="InterfaceBackMeg">
+    <result property="backMegKey" column="BACK_MEG_KEY" />
+    <result property="interfaceName" column="INTERFACE_NAME" />
+    <result property="backMegDes" column="BACK_MEG_DES" />
+    </resultMap>
+     <sql id="InterfaceBackMeg.columns">
+        <![CDATA[
+         BACK_MEG_KEY,
+         INTERFACE_NAME,
+         BACK_MEG_DES
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="InterfaceBackMeg.insert">
+        <![CDATA[
+        INSERT INTO INTERFACE_BACK_MEG(
+         BACK_MEG_KEY,
+         INTERFACE_NAME,
+         BACK_MEG_DES
+         )VALUES(
+         #backMegKey#,
+         #interfaceName#,
+         #backMegDes#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="InterfaceBackMeg.del">
+        <![CDATA[
+               DELETE FROM INTERFACE_BACK_MEG
+                 WHERE
+               	INTERFACE_NAME = #interfaceName#  and back_meg_key = #backMegKey#
+        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="InterfaceBackMeg.update">
+        <![CDATA[
+         UPDATE INTERFACE_BACK_MEG set
+         BACK_MEG_KEY=#backMegKey#,
+         INTERFACE_NAME=#interfaceName#,
+         BACK_MEG_DES=#backMegDes#
+          WHERE
+               	INTERFACE_NAME = #interfaceName#  and back_meg_key = #backMegKey#
+        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="InterfaceBackMeg.getById"  resultMap="RM.InterfaceBackMeg">
+        SELECT <include refid="InterfaceBackMeg.columns"/>
+        <![CDATA[
+             FROM INTERFACE_BACK_MEG 
+         WHERE 
+               	INTERFACE_NAME = #interfaceName#  and back_meg_key = #backMegKey#
+        ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="InterfaceBackMeg.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="backMegKey">
+                  <isNotEmpty prepend="AND" property="backMegKey">
+                      BACK_MEG_KEY = #backMegKey#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="interfaceName">
+                  <isNotEmpty prepend="AND" property="interfaceName">
+                      INTERFACE_NAME = #interfaceName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="backMegDes">
+                  <isNotEmpty prepend="AND" property="backMegDes">
+                      BACK_MEG_DES = #backMegDes#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="InterfaceBackMeg.findPage.count" resultClass="int">
+        SELECT count(*) FROM INTERFACE_BACK_MEG <include refid="InterfaceBackMeg.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="InterfaceBackMeg.findByPage" resultMap="RM.InterfaceBackMeg">
+        SELECT <include refid="InterfaceBackMeg.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="InterfaceBackMeg.columns"/> FROM INTERFACE_BACK_MEG
+                    <include refid="InterfaceBackMeg.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

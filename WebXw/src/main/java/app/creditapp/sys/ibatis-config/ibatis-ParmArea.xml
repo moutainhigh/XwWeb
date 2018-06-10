@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="ParmArea" type="app.creditapp.sys.entity.ParmArea"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.ParmArea" class="ParmArea">
+    <result property="areaNo" column="AREA_NO" />
+    <result property="areaName" column="AREA_NAME" />
+    <result property="areaLev" column="AREA_LEV" />
+    <result property="areaUp" column="AREA_UP" />
+    <result property="postCode" column="POST_CODE" />
+    <result property="areaSts" column="AREA_STS" />
+    
+    </resultMap>
+     <sql id="ParmArea.columns">
+        <![CDATA[
+         AREA_NO,
+         AREA_NAME,
+         AREA_LEV,
+         AREA_UP,
+         POST_CODE,
+         AREA_STS
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="ParmArea.insert">
+        <![CDATA[
+        INSERT INTO PARM_AREA(
+         AREA_NO,
+         AREA_NAME,
+         AREA_LEV,
+         AREA_UP,
+         POST_CODE,
+         AREA_STS
+         )VALUES(
+         #areaNo#,
+         #areaName#,
+         #areaLev#,
+         #areaUp#,
+         #postCode#,
+         #areaSts#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="ParmArea.del">
+        <![CDATA[
+               DELETE FROM PARM_AREA
+                 WHERE
+               	AREA_NO = #areaNo#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="ParmArea.update">
+        <![CDATA[
+         UPDATE PARM_AREA set
+         AREA_NO=#areaNo#,
+         AREA_NAME=#areaName#,
+         AREA_LEV=#areaLev#,
+         AREA_UP=#areaUp#,
+         POST_CODE=#postCode#,
+         AREA_STS=#areaSts#
+          WHERE
+               	AREA_NO = #areaNo#         ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="ParmArea.getById"  resultMap="RM.ParmArea">
+        SELECT <include refid="ParmArea.columns"/>
+        <![CDATA[
+             FROM PARM_AREA 
+         WHERE 
+               	AREA_NO = #areaNo#        ]]>
+     </select>
+             <!-- 表查询ById -->
+    <select id="ParmArea.getByDeptid"  resultMap="RM.ParmArea">
+        SELECT <include refid="ParmArea.columns"/>
+        <![CDATA[
+             FROM PARM_AREA
+         WHERE 
+             AREA_NO = #areaNo# 
+        ]]>
+     </select> 
+     	 <!-- 表查询getTreeTop -->
+    <select id="ParmArea.getTreeTop"  resultMap="RM.ParmArea">
+        SELECT <include refid="ParmArea.columns"/>
+        <![CDATA[
+             FROM PARM_AREA
+             where AREA_LEV='0'
+        ]]>
+     </select>
+      <!-- 表查询getTreeTop -->
+    <select id="ParmArea.getChildren"  resultMap="RM.ParmArea">
+        SELECT <include refid="ParmArea.columns"/>
+        <![CDATA[
+             FROM PARM_AREA
+         WHERE 
+             AREA_LEV=#areaLev#
+        ]]>
+     </select>
+         <!-- 表查询ByUpOne -->
+    <select id="ParmArea.getByUpOne"  resultMap="RM.ParmArea">
+        SELECT <include refid="ParmArea.columns"/>
+        <![CDATA[
+             FROM PARM_AREA
+         WHERE 
+             AREA_UP = #areaUp#
+        ]]>
+     </select>
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="ParmArea.findPage.where">
+        <dynamic prepend="where">
+        	<isPropertyAvailable property="areaNo">
+                  <isNotEmpty prepend="AND" property="areaNo">
+                      AREA_NO = #areaNo#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        	<isPropertyAvailable property="areaName">
+                  <isNotEmpty prepend="AND" property="areaName">
+                      AREA_NAME = #areaName#
+                   </isNotEmpty>
+             </isPropertyAvailable>
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="ParmArea.findPage.count" resultClass="int">
+        SELECT count(*) FROM PARM_AREA <include refid="ParmArea.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="ParmArea.findByPage" resultMap="RM.ParmArea">
+        SELECT <include refid="ParmArea.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="ParmArea.columns"/> FROM PARM_AREA
+                    <include refid="ParmArea.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+</sqlMap>

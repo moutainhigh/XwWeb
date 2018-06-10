@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<typeAlias alias="WsRepyFee" type="app.creditapp.acc.entity.WsRepyFee"/>
+	 <!-- 列表查询返回字段 -->
+    <resultMap id="RM.WsRepyFee" class="WsRepyFee">
+    <result property="wsId" column="WS_ID" />
+    <result property="brNo" column="BR_NO" />
+    <result property="pactNo" column="PACT_NO" />
+    <result property="cnt" column="CNT" jdbcType="Int"/>
+    <result property="feeType" column="FEE_TYPE" />
+    <result property="feeAmt" column="FEE_AMT" jdbcType="double"/>
+    <result property="feeKind" column="FEE_KIND" />
+    </resultMap>
+     <sql id="WsRepyFee.columns">
+        <![CDATA[
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         FEE_TYPE,
+         FEE_AMT,
+         FEE_KIND
+          ]]>
+    </sql>
+    <!-- 表新增 -->
+    <insert id="WsRepyFee.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_FEE(
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         FEE_TYPE,
+         FEE_AMT,
+         FEE_KIND
+         )VALUES(
+         #wsId#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #feeType#,
+         #feeAmt#,
+         #feeKind#
+         )
+          ]]>
+    </insert>
+     <!-- 表新增 -->
+    <insert id="WsIn2303_2.insert">
+        <![CDATA[
+        INSERT INTO WS_REPY_FEE(
+         WS_ID,
+         BR_NO,
+         PACT_NO,
+         CNT,
+         FEE_TYPE,
+         FEE_AMT,
+         FEE_KIND
+         )VALUES(
+         #wsId#,
+         #brNo#,
+         #pactNo#,
+         #cnt#,
+         #feeType#,
+         #feeAmt#,
+         #feeKind#
+         )
+          ]]>
+    </insert>
+    <!-- 表删除 -->
+    <delete id="WsRepyFee.del">
+        <![CDATA[
+               DELETE FROM WS_REPY_FEE
+                 WHERE
+               	WS_ID = #wsId#        ]]>
+    </delete>
+    <!-- 表修改 -->
+    <update id="WsRepyFee.update">
+        <![CDATA[
+         UPDATE WS_REPY_FEE set
+         WS_ID=#wsId#,
+         BR_NO=#brNo#,
+         PACT_NO=#pactNo#,
+         CNT=#cnt#,
+         FEE_TYPE=#feeType#,
+         FEE_AMT=#feeAmt#,
+         FEE_KIND=#feeKind#
+          WHERE
+               	WS_ID = #wsId#        ]]>
+    </update>
+    
+     <!-- 表查询ById -->
+    <select id="WsRepyFee.getFeeType"  resultMap="RM.WsRepyFee">
+        SELECT <include refid="WsRepyFee.columns"/>
+        <![CDATA[
+             FROM WS_REPY_FEE 
+         WHERE 
+               	WS_ID = #wsId#   and  FEE_KIND =  #feeKind#   ]]>
+     </select>
+     
+       <!-- 根据实际情况选择分页查询条件 -->
+    <sql id="WsRepyFee.findPage.where">
+        <dynamic prepend="where">
+        </dynamic>
+    </sql>
+    <!-- 分页查询记录数 -->
+    <select id="WsRepyFee.findPage.count" resultClass="int">
+        SELECT count(*) FROM WS_REPY_FEE <include refid="WsRepyFee.findPage.where"/>
+    </select>
+    <!-- 分页查询 -->
+    <select id="WsRepyFee.findByPage" resultMap="RM.WsRepyFee">
+        SELECT <include refid="WsRepyFee.columns"/>
+        FROM (
+            SELECT m.*, rownum as rnum 
+        FROM  
+            (SELECT <include refid="WsRepyFee.columns"/> FROM WS_REPY_FEE
+                    <include refid="WsRepyFee.findPage.where"/>
+             ) m
+        	) WHERE rnum &gt;= #startNum# AND rnum &lt;#endNum# 
+    </select>
+    <!-- 查询费用金额 -->
+    <select id="WsRepyFee.getfeeAmt" resultClass="double">
+        SELECT NVL(SUM(nvl(fee_amt,0)),0) FROM  ws_repy_fee WHERE WS_ID = #wsId#   and  FEE_KIND =  #feeKind#
+    </select>
+</sqlMap>

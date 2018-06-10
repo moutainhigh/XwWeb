@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="SysRoleMenuAction" namespace="/" extends="struts-cms">
+	
+	    <!--分页查询 -->
+		<action name="SysRoleMenuAction_findByPage" method="findByPage" class="app.creditapp.sys.action.SysRoleMenuAction">
+			<result name="list">/creditapp/sys/SysRoleMenu_List.jsp</result>
+		</action>
+		
+		<!--获取新增页面-->
+		<action name="SysRoleMenuAction_input" method="input" class="app.creditapp.sys.action.SysRoleMenuAction">
+			<result name="input">/creditapp/sys/SysRoleMenu_Insert.jsp</result>
+		</action>
+		
+		<!--删除 -->
+		<action name="SysRoleMenuAction_del" method="del" class="app.creditapp.sys.action.SysRoleMenuAction">
+			<result name="list">/creditapp/sys/SysRoleMenu_List.jsp</result>
+		</action>
+		
+		<!--查询 -->
+		<action name="SysRoleMenuAction_getById" method="getById" class="app.creditapp.sys.action.SysRoleMenuAction">
+			<result name="detail">/creditapp/sys/SysRoleMenu_Detail.jsp</result>
+		</action>
+		
+		<!--新增保存-->
+		<action name="SysRoleMenuActionInsert" method="insert" class="app.creditapp.sys.action.SysRoleMenuAction">
+			<result name="input">/creditapp/sys/SysRoleMenu_Insert.jsp</result>
+			<result name="detail">/creditapp/sys/SysRoleMenu_Detail.jsp</result>
+		</action>
+		<!--修改保存-->
+		<action name="SysRoleMenuActionUpdate" method="update" class="app.creditapp.sys.action.SysRoleMenuAction">
+			<result name="input">/creditapp/sys/SysRoleMenu_Detail.jsp</result>
+			<result name="detail">/creditapp/sys/SysRoleMenu_Detail.jsp</result>
+		</action>
+		<!--角色管理对应菜单保存与修改-->
+		<action name="SysRoleMenuAction_saveAndUpdate" method="saveAndUpdate" class="app.creditapp.sys.action.SysRoleMenuAction">
+		</action>
+	</package>
+</struts>
+
+
+
